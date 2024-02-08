@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52586a7746dcae448a3ddc39824235b7, type: 3}
+  m_Name: defaultToggleStyle
+  m_EditorClassIdentifier: 
+  color: {r: 0.76862746, g: 0.76862746, b: 0.76862746, a: 1}
+  background: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}
+  active: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  hover: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  focused: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  padding:
+    m_Left: 0
+    m_Right: 12
+    m_Top: 0
+    m_Bottom: 0

@@ -1,0 +1,42 @@
+{
+  "name": "io.embrace.sdk",
+  "version": "1.21.0",
+  "displayName": "Embrace SDK",
+  "description": "Embrace's Unity SDK lets you bring the deep, introspective and native debugging power of Embrace into your Unity game or application.",
+  "unity": "2019.1",
+  "unityRelease": "0f2",
+  "documentationUrl": "https://embrace.io/docs/unity/",
+  "changelogUrl": "https://embrace.io/docs/unity/changelog/",
+  "licensesUrl": "https://embrace.io/docs/terms-of-service/",
+  "keywords": [
+    "embrace",
+    "anr",
+    "crashes",
+    "bugs"
+  ],
+  "author": {
+    "name": "Embrace",
+    "email": "truenorth@embrace.io",
+    "url": "https://embrace.io/"
+  },
+  "hideInEditor": false,
+  "type": "library",
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "Demos to help users get started using the Embrace SDK",
+      "path": "Samples/Demo"
+    }
+  ],
+  "dependencies": {
+    "com.unity.modules.androidjni": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0",
+    "com.unity.nuget.newtonsoft-json": "3.0.2",
+    "com.unity.nuget.mono-cecil": "1.10.2"
+  },
+  "testables": [
+    "io.embrace.sdk"
+  ]
+}

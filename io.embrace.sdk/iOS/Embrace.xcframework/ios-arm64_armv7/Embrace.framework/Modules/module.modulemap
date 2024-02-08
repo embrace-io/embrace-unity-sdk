@@ -1,0 +1,6 @@
+framework module Embrace {
+  umbrella header "Embrace.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "Embrace.SDK.Editor.Weaver",
+    "rootNamespace": "EmbraceSDK.Editor.Weaver",
+    "references": [
+        "GUID:f27d444a3913e46fd8dee47fdbc15375",
+        "GUID:1a0a96818017d30419590047d969f39b",
+        "GUID:6fde6807ec2a448e5a2cd810ee81a054"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Mono.Cecil.dll",
+        "Mono.Cecil.Mdb.dll",
+        "Mono.Cecil.Pdb.dll",
+        "Mono.Cecil.Rocks.dll",
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "!EMBRACE_DISABLE_NETWORK_CAPTURE"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
