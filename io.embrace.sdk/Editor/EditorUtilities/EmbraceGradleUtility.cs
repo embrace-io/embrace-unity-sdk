@@ -161,8 +161,7 @@ namespace EmbraceSDK.EditorView
                     EmbraceLogger.LogWarning($"No gradle template found at {templatePath}. Please create a custom gradle template in Unity's Player Settings.");
                 }
                 templateContent = null;
-                throw new FileNotFoundException("We couldn't find the file!");
-                //return false;
+                return false;
             }
 
             try
@@ -174,8 +173,7 @@ namespace EmbraceSDK.EditorView
             {
                 EmbraceLogger.LogError($"Failed to parse contents of {templatePath} with error: {e.Message}");
                 templateContent = null;
-                throw new ArgumentException($"Failed to parse contents of {templatePath} with error: {e.Message}");
-                //return false;
+                return false;
             }
         }
 
