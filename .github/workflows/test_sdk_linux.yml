@@ -56,6 +56,7 @@ jobs:
         with:
           repository: embrace-io/embrace-unity-sdk-internal
           ref: "main"
+          token: ${{ secrets.CD_GITHUB_TOKEN }}
           lfs: true
       - name: Remove old SDK
         run: rm -rf io.embrace.sdk
