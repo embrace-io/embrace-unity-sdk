@@ -8,7 +8,7 @@ on:
       - closed
   push:
       branches:
-        - test-edits
+        # - test-edits
         - non-existent-branch
 
 jobs:
