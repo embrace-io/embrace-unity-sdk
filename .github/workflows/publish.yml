@@ -1,0 +1,23 @@
+# Dispatches a full publish workflow whenever a PR that has been merged and
+# has the 'release-candidate' label is closed.
+name: Dispatch Publish
+
+on:
+  pull_request:
+    types:
+      - closed
+  push:
+      branches:
+        - test-edits
+        - non-existent-branch
+
+jobs:
+  publish:
+    if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
+    name: Publish
+    uses: embrace-io/embrace-unity-sdk-internal/.github/workflows/new_publish.yml@embr-2481-github-actions-update
+    with:
+      npm_push_mode: dry-run
+      aws_push_mode: dry-run
+      tags_push_mode: dry-run
+    secrets: inherit
