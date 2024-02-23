@@ -25,6 +25,8 @@ jobs:
           repo_name="embrace-unity-sdk-internal"  
           event_type="test-sdk" 
 
+          echo "Dispatching the $event_type event to $repo_owner/$repo_name"
+
           curl -L \
           -X POST \
           -H "Accept: application/vnd.github+json" \
