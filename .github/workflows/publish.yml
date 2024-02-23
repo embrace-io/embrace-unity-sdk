@@ -25,6 +25,7 @@ jobs:
           ref: "embr-2481-github-actions-update"
           sparse-checkout: |
             public_sdk_commands.yml
+          token: ${{ secrets.CD_GITHUB_TOKEN }}
       - name: Append Command to public_sdk_commands.yml
         run: |
           echo 'commands:
