@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: embrace-io/embrace-unity-sdk-internal
+          ref: "embr-2481-github-actions-update"
           sparse-checkout: |
             public_sdk_commands.yml
       - name: Append Command to public_sdk_commands.yml
