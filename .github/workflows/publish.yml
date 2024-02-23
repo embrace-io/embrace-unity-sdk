@@ -8,16 +8,34 @@ on:
       - closed
   push:
       branches:
-        # - test-edits
+        - test-edits
         - non-existent-branch
 
 jobs:
   publish:
     if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
     name: Publish
-    uses: embrace-io/embrace-unity-sdk-internal/.github/workflows/publish.yml@main
-    with:
-      npm_push_mode: dry-run
-      aws_push_mode: dry-run
-      tags_push_mode: dry-run
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk-internal
+          sparse-checkout: |
+            public_sdk_commands.yml
+      - name: Append Command to public_sdk_commands.yml
+        run: |
+          echo 'commands:
+            - command:
+              version: "1.0.0"
+              date: "$(date +'%Y-%m-%d')"
+              type: "dry-run"' > new_command.yml
+              yq m -a append public_sdk_commands.yml new_command.yml > temp.yml && mv temp.yml public_sdk_commands.yml
+      - name: Commit and Push
+        run: |
+          git config --global user.name "embrace-ci"
+          git config --global user.email "embrace-ci@users.noreply.github.com"
+          git config --global url."https://${{ secrets.CD_GITHUB_USER }}:${{ secrets.CD_GITHUB_TOKEN }}@github.com".insteadOf "https://github.com"
+          git add public_sdk_commands.yml
+          git commit -m "Add new command"
+          git push
