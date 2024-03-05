@@ -4,17 +4,12 @@ name: Dispatch Publish
 
 on:
   pull_request:
-    types:
-      - closed
-  push:
-      branches:
-        - test-edits
-        - non-existent-branch
+    types: [closed]
+    branches: [master]
 
 jobs:
   publish:
-    # if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
-    if: always()
+    if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
     name: Publish
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +18,7 @@ jobs:
           # Set the required variables
           repo_owner="embrace-io"
           repo_name="embrace-unity-sdk-internal"  
-          event_type="test-sdk" 
+          event_type="publish-sdk"
 
           echo "Dispatching the $event_type event to $repo_owner/$repo_name"
 
