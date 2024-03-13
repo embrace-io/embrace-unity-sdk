@@ -23,32 +23,32 @@ namespace EmbraceSDK.EditorView
         private const string MAIN_GRADLE_TEMPLATE_PATH = "Plugins/Android/mainTemplate.gradle";
         private const string GRADLE_PROPERTIES_FILE_NAME = "gradle.properties";
         private const string GRADLE_PROPERTIES_TEMPLATE_PATH = "Plugins/Android/gradleTemplate.properties";
-        #if UNITY_2022_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
         private const string SETTINGS_TEMPLATE_PATH = "Plugins/Android/settingsTemplate.gradle";
-        #endif
+#endif
 
         // Regex groups
         private const string DEPENDENCY_GROUP_NAME = "dependency";
         private const string VERSION_GROUP_NAME = "version";
 
         // Dependencies
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
+#if EMBRACE_ENABLE_BUGSHAKE_FORM
         public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-bug-shake-gradle-plugin";
-        #else
+#else
         public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-swazzler";
-        #endif
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
+#endif
+#if EMBRACE_ENABLE_BUGSHAKE_FORM
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-bug-shake-gradle-plugin";
-        #else
+#else
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-android-sdk";
-        #endif
+#endif
 
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
         public static string LauncherTemplatePath { get; } = Path.Combine(Application.dataPath, LAUNCHER_TEMPLATE_PATH);
         public static string GradlePropertiesPath { get; } = Path.Combine(Application.dataPath, GRADLE_PROPERTIES_TEMPLATE_PATH);
-        #if UNITY_2022_2_OR_NEWER
+#if UNITY_2022_2_OR_NEWER
         public static string SettingsTemplatePath { get; } = Path.Combine(Application.dataPath, SETTINGS_TEMPLATE_PATH);
-        #endif
+#endif
         public static string MainTemplatePath { get; } = Path.Combine(Application.dataPath, MAIN_GRADLE_TEMPLATE_PATH);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace EmbraceSDK.EditorView
             // The EMBRACE_DISABLE_SWAZZLER_VERSION_UPDATE can be defined in Unity player settings to disable this
             // functionality. We also disable it when the active build target is not Android or iOS because our symbols
             // are only applied to those platforms.
-            #if !EMBRACE_DISABLE_SWAZZLER_VERSION_UPDATE && (UNITY_IOS || UNITY_TVOS || UNITY_ANDROID)
+#if !EMBRACE_DISABLE_SWAZZLER_VERSION_UPDATE && (UNITY_IOS || UNITY_TVOS || UNITY_ANDROID)
             if (!TryParseEdmAndroidSdkDependencyVersion(out string xmlVersion) ||
                 !TryReadGradleTemplate(BaseProjectTemplatePath, out string gradleSource, logWarningIfFileNotPresent: true))
             {
@@ -88,9 +88,9 @@ namespace EmbraceSDK.EditorView
                     EmbraceLogger.LogError($"EmbraceGradleUtility encountered {e.GetType().Name} while updating swazzler version: {e.Message}");
                 }
             }
-            #endif
+#endif
         }
-        
+
         /// <summary>
         /// Verifies that the swazzler and bugshake are not present simultaneously in the gradle template.
         /// </summary>
@@ -110,9 +110,9 @@ namespace EmbraceSDK.EditorView
                 {
                     throw new UnityEditor.Build.BuildFailedException("EmbraceGradleUtility found the embrace-bug-shake-gradle-plugin classpath in " +
                                                                      $"{BaseProjectTemplatePath}. The embrace-swazzler is not compatible " +
-                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." + 
+                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." +
                                                                      $"Please remove the embrace-bug-shake-gradle-plugin classpath from {BaseProjectTemplatePath} and build again.");
-                }   
+                }
 #endif
             }
         }
