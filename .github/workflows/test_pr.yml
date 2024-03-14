@@ -2,10 +2,6 @@ name: Test PR
 
 on:
   pull_request:
-  push:
-    branches:
-      - test-edits
-      - non-existent-branch
 
 jobs:
   TestSDK:

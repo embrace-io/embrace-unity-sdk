@@ -5,7 +5,7 @@ name: Dispatch Publish
 on:
   pull_request:
     types: [closed]
-    branches: [master]
+    branches: [main]
 
 jobs:
   publish:
