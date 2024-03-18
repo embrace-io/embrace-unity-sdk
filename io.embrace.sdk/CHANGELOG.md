@@ -5,15 +5,26 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 1.23.0
+*February 23, 2024*
+
+* Updated to Embrace Android SDK to 6.3.2
+  - Improved performance and stability of NDK serialization while the app is under memory pressure
+  - Added back support of OkHttp 3.13.0+, which was initially removed in this major version
+
+## 1.22.0
+*February 5th, 2024*
+
+* Updated changes for Unity Verified Solutions Partnership. Excited to see everyone in the Asset Store!
 
 ## 1.21.0
-*January 25th, 2024
+*January 25th, 2024*
 
 * Updated iOS SDK version to 5.24.5
 * Updated Embrace Unity API signatures for Embrace Android 6.x API
 
 ## 1.20.0
-*January 12th, 2024
+*January 12th, 2024*
 
 * Updated Android SDK to 6.2.0
 * Added screenshot capture for Unity Android Bugshake

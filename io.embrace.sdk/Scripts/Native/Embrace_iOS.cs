@@ -1,10 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using EmbraceSDK.Internal;
 using Newtonsoft.Json;
 using UnityEngine.TestTools;
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Internal
 {
     /// <summary>
     ///  Embrace_iOS uses statically linked methods that are linked into the executable using the DllImportattribute.  For iOS, we have to use “__Internal” as the library name for the attribute [DllImport("__Internal")].  

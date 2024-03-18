@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using EmbraceSDK.Internal;
 using UnityEngine;
 
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
 using EmbraceSDK.Bugshake;
 #endif
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Editor
 {
     /// <summary>
     /// Embrace_Stub is used in edit mode to allow our Embrace class to work while running our SDK in the editor. It does not allow users to call our API from the editor.
@@ -257,12 +258,6 @@ namespace EmbraceSDK
             EmbraceLogger.Log($"Tried to take a screenshot as byte array {screenshot}");
         }
         #endif
-        
-        public AndroidJavaObject GetUnityInternalInterface()
-        {
-            EmbraceLogger.Log("GetUnityInternalInterface");
-            return null;
-        }
         void IEmbraceProvider.RecordPushNotification(AndroidPushNotificationArgs androidArgs)
         {
             EmbraceLogger.Log($"Push Notification: title: {androidArgs.title} body: {androidArgs.body} topic: {androidArgs.topic} id: {androidArgs.id} notificationPriority: {androidArgs.notificationPriority} messageDeliveredPriority: {androidArgs.messageDeliveredPriority} isNotification: {androidArgs.isNotification} hasData: {androidArgs.hasData}");

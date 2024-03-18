@@ -23,7 +23,7 @@ namespace EmbraceSDK.EditorView
         private Vector2 _scrollPosition;
 
         private int _savedDeviceIndex;
-        private Editor _configEditor;
+        private UnityEditor.Editor _configEditor;
 
         private HashSet<string> _usedEnvNames = new HashSet<string>();
 
@@ -251,10 +251,10 @@ namespace EmbraceSDK.EditorView
             switch (environments.activeDeviceIndex)
             {
                 case 0:
-                    _configEditor = Editor.CreateEditor(androidConfiguration);
+                    _configEditor = UnityEditor.Editor.CreateEditor(androidConfiguration);
                     break;
                 case 1:
-                    _configEditor = Editor.CreateEditor(iOSConfiguration);
+                    _configEditor = UnityEditor.Editor.CreateEditor(iOSConfiguration);
                     break;
             }
         }

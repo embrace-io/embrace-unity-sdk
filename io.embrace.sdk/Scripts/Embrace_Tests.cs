@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Tests
 {
     [UnityEngine.TestTools.ExcludeFromCoverage]
     public class Embrace_Tests

@@ -2,17 +2,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using EmbraceSDK.Internal;
 using UnityEngine.TestTools;
 
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
 using EmbraceSDK.Bugshake;
 #endif
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Internal
 {
     /// <summary>
-    /// Embrace_Android makes calls to our java methods in our Android SDK. It uses a list of hardcoded strings that represent the Java methods that we can call from our Android SDK.
-    /// Using the provider interface to receive calls from the Embrace class, it then uses AndroidJavaObject.Call to make calls to the corresponding java method on our Android SDK by passing in the name of the method and its property values. 
+    /// Embrace_Android makes calls to our java methods in our Android SDK. It uses a list of hardcoded strings
+    /// that represent the Java methods that we can call from our Android SDK.
+    /// Using the provider interface to receive calls from the Embrace class, it then uses AndroidJavaObject.
+    /// Call to make calls to the corresponding java method on our Android SDK by passing in the name of the method and its property values. 
     /// </summary>
 #if UNITY_ANDROID
     [ExcludeFromCoverage]
@@ -29,6 +32,18 @@ namespace EmbraceSDK
         private AndroidJavaObject logWarning;
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
+        
+        private AndroidJavaObject _embraceUnityInternalSharedInstance
+        {
+            get
+            {
+                if (embraceUnityInternalSharedInstance == null)
+                {
+                    embraceUnityInternalSharedInstance = embraceSharedInstance.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
+                }
+                return embraceUnityInternalSharedInstance;
+            }
+        }
 
         private const string _StartMethod = "start";
         private const string _GetLastRunEndStateMethod = "getLastRunEndState";
@@ -114,19 +129,36 @@ namespace EmbraceSDK
         private bool ReadyForCalls()
         {
             bool result = true;
+            
             if (embraceSharedInstance == null)
             {
                 EmbraceLogger.LogError("Embrace Unity SDK did not initialize, ensure the prefab is added to the scene.");
                 result = false;
             }
+            
             if (result == true && emb_jniIsAttached() == false && AndroidJNI.AttachCurrentThread() != 0)
             {
                 EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the current thread did not attach to the Java (Dalvik) VM.");
                 result = false;
             }
+            
             return result;
         }
 
+        private bool UnityInternalInterfaceReadyForCalls()
+        {
+            bool result = true;
+            
+            if (_embraceUnityInternalSharedInstance == null)
+            {
+                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the internal interface is null. " +
+                                       "Check if the SDK is enabled or ensure the prefab is added to the scene.");
+                result = false;
+            }
+            
+            return result;
+        }
+        
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
@@ -145,12 +177,6 @@ namespace EmbraceSDK
             logInfo = logSeverity.GetStatic<AndroidJavaObject>("INFO");
             logWarning = logSeverity.GetStatic<AndroidJavaObject>("WARNING");
             logError = logSeverity.GetStatic<AndroidJavaObject>("ERROR");
-        }
-        
-        AndroidJavaObject IEmbraceProvider.GetUnityInternalInterface()
-        {
-            if (!ReadyForCalls()) { return null; }
-            return embraceSharedInstance.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
         }
 
         void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
@@ -391,27 +417,31 @@ namespace EmbraceSDK
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
             if (!ReadyForCalls()) { return; }
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call(_SetUnityMetaDataMethod, unityVersion, guid, sdkVersion);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call(_SetUnityMetaDataMethod, unityVersion, guid, sdkVersion);
         }
         
         void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
         {
             if (!ReadyForCalls()) { return; }
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
             EmbraceLogger.Log($"Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout}");
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
+            _embraceUnityInternalSharedInstance.Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
         }
         
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
         {
             if (!ReadyForCalls()) { return; }
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
             EmbraceLogger.Log($"Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
+            _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
         }
 
         void IEmbraceProvider.InstallUnityThreadSampler()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_installUnityThreadSampler);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call(_installUnityThreadSampler);
         }
 
         void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
@@ -422,13 +452,15 @@ namespace EmbraceSDK
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
             if (!ReadyForCalls()) { return; }
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call(_logUnhandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call(_logUnhandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
         }
 
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
             if (!ReadyForCalls()) { return; }
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call(_logHandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call(_logHandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
         }
         
         string IEmbraceProvider.GetCurrentSessionId()
@@ -457,13 +489,15 @@ namespace EmbraceSDK
         void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
         {
             if (!ReadyForCalls()) { return;}
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call("setShakeListener", listener);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call("setShakeListener", listener);
         }
         
         void IEmbraceProvider.saveShakeScreenshot(byte[] screenshot)
         {
             if (!ReadyForCalls()) { return;}
-            (this as IEmbraceProvider).GetUnityInternalInterface().Call("saveScreenshot", screenshot);
+            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            _embraceUnityInternalSharedInstance.Call("saveScreenshot", screenshot);
         }
         #endif
 

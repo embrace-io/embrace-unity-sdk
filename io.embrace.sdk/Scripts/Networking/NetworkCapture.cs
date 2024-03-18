@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using EmbraceSDK.Internal;
 using UnityEngine;
 using UnityEngine.Scripting;
 using UnityEngine.Networking;
@@ -102,7 +103,7 @@ namespace EmbraceSDK.Networking
             pendingRequest.requestOperation.completed -= OnUnityWebRequestAsyncOperationComplete;
             _pendingUnityWebRequests.Remove(request);
 
-            if(!Embrace.GetExistingInstance()?.IsStarted ?? true)
+            if(!InternalEmbrace.GetExistingInstance()?.IsStarted ?? true)
             {
                 EmbraceLogger.LogWarning("Attempted to log a network request before the Embrace SDK was started.");
                 return;

@@ -1,6 +1,6 @@
 using System;
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Internal
 {
     /// <summary>
     /// Add this attribute to an assembly, class, method, or property to have the EmbracePostCompilationProcessor
