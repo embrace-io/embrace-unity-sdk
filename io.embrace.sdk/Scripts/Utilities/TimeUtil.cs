@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Utilities
 {
 
     /// <summary>

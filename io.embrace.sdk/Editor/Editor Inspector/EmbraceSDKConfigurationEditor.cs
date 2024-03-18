@@ -12,7 +12,7 @@ namespace EmbraceSDK.EditorView
     /// </summary>
     [CustomEditor(typeof(EmbraceConfiguration), true)]
     [UnityEngine.TestTools.ExcludeFromCoverage]
-    public class EmbraceSDKConfigurationEditor : Editor
+    public class EmbraceSDKConfigurationEditor : UnityEditor.Editor
     {
         private StyleConfigs _styleConfigs;
         private List<SerializedProperty> _serializedProperties;

@@ -14,6 +14,8 @@ namespace EmbraceSDK.EditorView
     /// </summary>
     public class GettingsStartedEditorWindow : EmbraceEditorWindow
     {
+        private static bool? ANDROID_SELECTED = null;
+        
         private int environmentIndex = -1;
 
         private Texture2D logo;
@@ -59,6 +61,15 @@ namespace EmbraceSDK.EditorView
             {
                 window.minSize = new Vector2(window.minSize.x, window.minSize.y + 15);
                 window.maxSize = window.minSize;
+            }
+
+            if (!ANDROID_SELECTED.HasValue)
+            {
+                environments.activeDeviceIndex = 0; // set to Android by Default
+            }
+            else
+            {
+                environments.activeEnvironmentIndex = ANDROID_SELECTED.Value ? 0 : 1; // Set to Android if true, set to iOS if false
             }
 
             window.Show();
@@ -145,8 +156,7 @@ namespace EmbraceSDK.EditorView
             {
                 GUILayout.BeginVertical();
                 GUILayout.Label("Selected Configuration:", styleConfigs.defaultTextStyle.guiStyle);
-    
-                
+
                 environments.activeEnvironmentIndex = EditorGUILayout.Popup(environments.activeEnvironmentIndex,
                     environments.environmentConfigurations.Select(e => e.name).ToArray());
 
@@ -161,8 +171,12 @@ namespace EmbraceSDK.EditorView
 
             GUILayout.EndHorizontal();
             GUILayout.Space(styleConfigs.space);
-            environments.activeDeviceIndex =
-                GUILayout.Toolbar(environments.activeDeviceIndex, Environments.DeviceStrings);
+            var selectedEnvironment = GUILayout.Toolbar(environments.activeDeviceIndex, Environments.DeviceStrings);
+            if (selectedEnvironment != environments.activeDeviceIndex)
+            {
+                environments.activeDeviceIndex = selectedEnvironment;
+                ANDROID_SELECTED = environments.activeEnvironmentIndex == 0; // Android=0 => true, iOS=1 => false 
+            }
 
             switch (environments.activeDeviceIndex)
             {

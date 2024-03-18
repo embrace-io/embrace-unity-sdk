@@ -2,6 +2,10 @@ name: Test PR
 
 on:
   pull_request:
+  push:
+    branches:
+      - rc-1.24.0
+      - non-existent-branch
 
 jobs:
   TestSDK:

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using EmbraceSDK.Bugshake;
+using EmbraceSDK.Internal;
 using UnityEngine;
 
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
 using EmbraceSDK.Bugshake;
 #endif
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Internal
 {
     /// <summary>
     /// Defines the methods that are available from our iOS and Android SDK.
@@ -58,7 +59,6 @@ namespace EmbraceSDK
         #if UNITY_IOS
         void RecordPushNotification(iOSPushNotificationArgs iosArgs);
         #elif UNITY_ANDROID
-        AndroidJavaObject GetUnityInternalInterface();
         void RecordPushNotification(AndroidPushNotificationArgs androidArgs);
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
         void ShowBugReportForm();

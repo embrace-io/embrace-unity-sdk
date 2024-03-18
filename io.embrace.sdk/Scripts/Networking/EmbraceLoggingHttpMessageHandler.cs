@@ -2,6 +2,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using EmbraceSDK.Internal;
 
 namespace EmbraceSDK.Networking
 {
@@ -38,7 +39,7 @@ namespace EmbraceSDK.Networking
             }
             finally
             {
-                if (Embrace.GetExistingInstance()?.IsStarted ?? false)
+                if (InternalEmbrace.GetExistingInstance()?.IsStarted ?? false)
                 {
                     string uri = request.RequestUri?.ToString() ?? string.Empty;
                     if (!HTTPMethod.TryParse(request.Method?.ToString(), out HTTPMethod method))

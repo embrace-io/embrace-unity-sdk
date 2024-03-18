@@ -1,4 +1,5 @@
 ﻿using System;
+using EmbraceSDK.Internal;
 using UnityEditor;
 using UnityEngine;
 

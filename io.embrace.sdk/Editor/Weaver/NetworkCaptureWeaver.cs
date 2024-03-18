@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using EmbraceSDK.Internal;
 using EmbraceSDK.Networking;
 using Mono.Cecil;
 using Mono.Cecil.Cil;

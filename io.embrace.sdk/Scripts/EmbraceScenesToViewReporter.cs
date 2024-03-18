@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-namespace EmbraceSDK
+namespace EmbraceSDK.Internal
 {
     internal class EmbraceScenesToViewReporter : System.IDisposable
     {

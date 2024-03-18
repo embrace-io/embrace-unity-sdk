@@ -3,12 +3,13 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using EmbraceSDK.Bugshake;
+using EmbraceSDK.Editor;
+using EmbraceSDK.Internal;
+using EmbraceSDK.Utilities;
 using UnityEngine.SceneManagement;
 
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
 using EmbraceSDK.Bugshake;
-using Utilities;
 #endif
 
 namespace EmbraceSDK
@@ -24,18 +25,6 @@ namespace EmbraceSDK
         private Dictionary<string, string> emptyDictionary = new Dictionary<string, string>();
 
         private EmbraceScenesToViewReporter scenesToViewReporter = null;
-
-        #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
-        private bool _isBugReportFormSwapSafe
-        {
-            get;
-            set;
-        } = true; // TODO: Set to true by default for now. We need to make this stronger.
-        private readonly WaitUntil _waitForSwapSafety = new WaitUntil(() => Instance._isBugReportFormSwapSafe);
-        private readonly WaitForEndOfFrame _waitForEndOfFrame = new WaitForEndOfFrame();
-        private Coroutine _bugReportFormSwapRoutine = null;
-        private readonly float _bugReportFormSwapSafetyTimeout = 5.0f; // Set the bug report form swap safety timeout to 5 seconds by default for now.
-        #endif
 
         /// <inheritdoc />
         public bool IsStarted => _started;
@@ -61,17 +50,11 @@ namespace EmbraceSDK
                     embrace = go.AddComponent<Embrace>();
                     DontDestroyOnLoad(go);
                 }
-
+                
                 embrace.Initialize();
                 return embrace;
             }
         }
-
-        /// <summary>
-        /// An alternative to the Instance property which will not instantiate a new instance if the singleton is null.
-        /// </summary>
-        /// <returns>The singleton instance, or null if it does not exist</returns>
-        internal static Embrace GetExistingInstance() => _instance;
 
         void OnApplicationPause(bool pauseStatus)
         {
@@ -91,8 +74,8 @@ namespace EmbraceSDK
                 // We should attempt to register the shake listener whenever the app is resumed
                 // Because the internal behavior of the Android SDK is such that it contains a ShakeListener singleton
                 // we will not cause issues by registering it multiple times.
-                StartCoroutine(RegisterShakeListener());
-                #endif
+                BugshakeService.Instance.RegisterShakeListener();
+#endif
 #endif
             } else
             {
@@ -101,71 +84,6 @@ namespace EmbraceSDK
 #endif
             }
         }
-        
-        #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
-        public void ShowBugReportForm()
-        {
-            if (_bugReportFormSwapRoutine == null) // This will implicitly debounce the coroutine requests to only allow one at a time.
-                _bugReportFormSwapRoutine = StartCoroutine(BugReportFormSwapRoutine());
-        }
-        
-        /// <summary>
-        /// Embrace users should call this method when they are ready to show the bug report form.
-        /// Do not call this method if you are in the middle of a scene transition or other operation that may cause a swap to
-        /// the bug report form to occur at an inopportune time.
-        /// Calling this after MarkBugReportFormSwapUnsafe has been called is required,
-        /// otherwise the swap to the bug report form will be rendered impossible.
-        /// </summary>
-        public void MarkBugReportFormSwapSafe()
-        {
-            _isBugReportFormSwapSafe = true;
-        }
-        
-        /// <summary>
-        /// Embrace users should call this method when they are not ready to show the bug report form.
-        /// This will prevent the bug report form from being shown until MarkBugReportFormSwapSafe is called.
-        /// Call this if you are in the middle of a scene transition or other operation that may cause the bug report form
-        /// to be shown at an inopportune time. NOT calling this can result in ANRs or other issues.
-        /// </summary>
-        public void MarkBugReportFormSwapUnsafe()
-        {
-            _isBugReportFormSwapSafe = false;
-        }
-        
-        IEnumerator BugReportFormSwapRoutine()
-        {
-            var requestTimestamp = Time.realtimeSinceStartup;
-            
-            yield return _waitForSwapSafety;
-            yield return _waitForEndOfFrame;
-            
-            if (Time.realtimeSinceStartup - requestTimestamp > _bugReportFormSwapSafetyTimeout)
-            {
-                EmbraceLogger.LogWarning("Bug report form swap request timeout exceeded. Skipping bug report form swap.");
-            }
-            else
-            {
-                provider.ShowBugReportForm();
-            }
-            _bugReportFormSwapRoutine = null;
-        }
-        
-        // It is possible to break this by disabling the Embrace GameObject in the scene before we complete registration.
-        // We have no good way of fixing this at the moment because of the design of the Embrace MonoBehaviour.
-        IEnumerator RegisterShakeListener()
-        {
-            var androidProvider = provider as Embrace_Android;
-            if (androidProvider == null)
-            {
-                // This implies that we are in the Unity Editor
-                yield break;
-            }
-            var waitFor = new WaitUntil(() => androidProvider.IsReady);
-            yield return waitFor;
-
-            provider.setShakeListener(new UnityShakeListener());
-        }
-        #endif
 
         /// <summary>
         /// Alternative way of creating the Embrace singleton, primarily used for unit testing.
@@ -191,6 +109,8 @@ namespace EmbraceSDK
             sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
             embraceInstance.provider = new Embrace_Stub();
             _instance = embraceInstance;
+            
+            InternalEmbrace.SetInternalInstance(_instance);
 
             return embraceInstance;
         }
@@ -203,7 +123,7 @@ namespace EmbraceSDK
             _instance = this;
 
             _mainThread = Thread.CurrentThread;
-
+            
             TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
             sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
 
@@ -221,7 +141,7 @@ namespace EmbraceSDK
             if (SceneManagerAPI.overrideAPI == null)
             {
                 SceneManagerAPI.overrideAPI = new EmbraceSceneManagerOverride(
-                    MarkBugReportFormSwapUnsafe, MarkBugReportFormSwapSafe);
+                    BugshakeService.Instance.MarkBugReportFormSwapUnsafe, BugshakeService.Instance.MarkBugReportFormSwapSafe);
             }
             else
             {
@@ -236,25 +156,11 @@ namespace EmbraceSDK
             // the user to setup the prefab in the scene at edit time.
             // As a result if the prefab is instantiated dynamically we have no good behavioral assumption.
             // For now we will enable this by default.
-            StartCoroutine(RegisterShakeListener());
+            BugshakeService.Instance.RegisterShakeListener();
             #endif
             
             provider.InitializeSDK();
         }
-
-#if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
-        internal void TakeShakeScreenshot()
-        {
-            StartCoroutine(TakeScreenshot());
-        }
-
-        private IEnumerator TakeScreenshot()
-        {
-            // Read the screen buffer after rendering is complete
-            yield return new WaitForEndOfFrame();
-            provider.saveShakeScreenshot(ScreenshotUtil.TakeScreenshot());
-        }
-#endif
         
         // Called by Unity runtime
         private void Start()
@@ -318,6 +224,9 @@ namespace EmbraceSDK
 #endif
 
             _started = true;
+            
+            InternalEmbrace.SetInternalInstance(_instance);
+
             EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
         }
 
@@ -355,7 +264,7 @@ namespace EmbraceSDK
                     return;
                 }
 
-                (string splitName, string splitMessage) = SplitConcatenatedExceptionNameAndMessage(message);
+                (string splitName, string splitMessage) = UnhandledExceptionUtility.SplitConcatenatedExceptionNameAndMessage(message);
                 provider.LogUnhandledUnityException(splitName, splitMessage, stack);
             }
         }
@@ -732,7 +641,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            (string splitName, string splitMessage) = SplitConcatenatedExceptionNameAndMessage(exceptionMessage);
+            (string splitName, string splitMessage) = UnhandledExceptionUtility.SplitConcatenatedExceptionNameAndMessage(exceptionMessage);
             provider.LogUnhandledUnityException(splitName, splitMessage, stack);
         }
 
@@ -832,29 +741,6 @@ namespace EmbraceSDK
                 case HTTPMethod.PATCH: return 5;
                 default: return 0;
             }
-        }
-
-        /// <summary>
-        /// Splits the Unity-formatted exception type name and message into separate strings.
-        /// </summary>
-        /// <param name="exception">The exception string provided by Unity in the format "ExceptionType: Exception message."</param>
-        internal static (string name, string message) SplitConcatenatedExceptionNameAndMessage(string exception)
-        {
-            if (string.IsNullOrEmpty(exception))
-            {
-                return ("", "");
-            }
-
-            int separatorIndex = exception.IndexOf(':');
-            if(separatorIndex < 0)
-            {
-                return ("", exception);
-            }
-
-            string name = exception.Substring(0, separatorIndex);
-            string message = exception.Substring(separatorIndex + 1);
-
-            return (name, message);
         }
     }
 }
