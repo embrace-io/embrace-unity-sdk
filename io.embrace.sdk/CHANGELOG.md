@@ -5,6 +5,12 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 1.24.0
+*March 17, 2024*
+
+* Upgrade Embrace iOS Plugin to 5.25.0
+* Upgrades and changes to release as open source! Good to work with you all!
+
 ## 1.23.0
 *February 23, 2024*
 
