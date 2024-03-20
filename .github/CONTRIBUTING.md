@@ -1,12 +1,16 @@
 Contributing
 ============
 
+## Contributing License Agreement
+
+Before code can be accepted all contributors must complete our [Individual Contributor License Agreement (CLA)](https://forms.gle/SjXadmUcVwh6NrU68).
+
+## How to Contribute
+
 If you would like to contribute code you can do so through GitHub by
 forking the repository and sending a pull request.
 
-When submitting code, please make every effort to follow existing conventions
-and style in order to keep the code as readable as possible. Please also make
-sure your code compiles for your intended version of Unity.
+When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. Please also make sure your code compiles for your intended version of Unity.
 
 Some general advice
 
