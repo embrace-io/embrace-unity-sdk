@@ -17,6 +17,6 @@ Some general advice
 ## Reporting issues
 
 If you have any trouble to start contributing, please [contact us directly](mailto:support@embrace.io) or reach out in our [Community Slack](https://embraceio-community.slack.com/)
-Finally, feel free to open a [new issue](https://github.com/embrace-io/embrace-android-sdk/issues/new).
+Finally, feel free to open a [new issue](https://github.com/embrace-io/embrace-unity-sdk/issues/new).
 
  [1]: https://embrace.io/
