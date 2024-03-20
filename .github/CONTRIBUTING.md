@@ -12,7 +12,7 @@ forking the repository and sending a pull request.
 
 When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. Please also make sure your code compiles for your intended version of Unity.
 
-Some general advice
+## General Guidelines
 
 - Don’t change public API lightly; avoid it if possible, and include your reasoning in the PR if essential.  It causes pain for developers who use Embrace and sometimes runtime errors.
 - Get working code on a personal branch with tests before you submit a PR.
