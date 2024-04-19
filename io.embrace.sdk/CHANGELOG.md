@@ -5,6 +5,14 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 1.25.0
+*April 19, 2024*
+:::warning Important
+This version of the Unity SDK requires a later version than 2021.3.16f1. It is tested working on 2021.3.37f1 (the latest LTS version at time of writing). If you receive a "transformer returned null" error of some kind during your build process, please upgrade your LTS engine version.
+:::
+
+* Upgrade Embrace Android Plugin to Android 6.5.0
+
 ## 1.24.0
 *March 17, 2024*
 :::warning Important
