@@ -274,15 +274,28 @@ namespace EmbraceSDK.EditorView
                 true,
                 false);
 
+            #if UNITY_2021_3_OR_NEWER
+            // Later versions of Unity appear to automatically add the files to the linker phase.
+            // However there seems to be an issue with the copy process. To deal with this, we
+            // choose to overwrite the framework in position.
+            var xcFrameworkGuid = project.AddFile(
+                EmbraceXCFramework,
+                "Frameworks/io.embrace.sdk/iOS/Embrace.xcframework",
+                PBXSourceTree.Source);
+            
+            // We still must embed the framework, but we have previously added the build phase step.
+            project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
+            #else // !!UNITY_2021_3_OR_NEWER
             var xcFrameworkGuid = project.AddFile(
                 EmbraceXCFramework,
                 EmbraceXCFramework,
                 PBXSourceTree.Source);
-
+            
             string unityFrameworkGuid = project.GetUnityFrameworkTargetGuid();
             string linkPhaseGuid = project.GetFrameworksBuildPhaseByTarget(unityFrameworkGuid);
             project.AddFileToBuildSection(unityFrameworkGuid, linkPhaseGuid, xcFrameworkGuid);
             project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
+            #endif
 
             project.WriteToFile(projectPath);
         }
