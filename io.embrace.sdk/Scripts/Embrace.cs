@@ -724,6 +724,46 @@ namespace EmbraceSDK
             EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
             #endif
         }
+        
+        #if UNITY_IOS
+        /// <inheritdoc />
+        public void recordCompletedSpanNamed(string name, long startms, long endms, Dictionary<string, string> properties)
+        {
+            provider.RecordCompletedSpanNamed(name, startms, endms, properties);
+        }
+        #elif UNITY_ANDROID
+        /// <inheritdoc />
+        public string StartSpan(string spanName, long startTimeMs, string parentSpanId = null)
+        {
+            return provider.StartSpan(spanName, parentSpanId, startTimeMs);
+        }
+        
+        /// <inheritdoc />
+        public bool StopSpan(string spanId, int errorCode , long endTimeMs)
+        {
+            return provider.StopSpan(spanId, errorCode, endTimeMs);
+        }
+        
+        /// <inheritdoc />
+        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes)
+        {
+            return provider.AddSpanEvent(spanName, spanId, endTimeMs, attributes);
+        }
+        
+        /// <inheritdoc />
+        public bool AddSpanAttribute(string spanId, string key , string value)
+        {
+            return provider.AddSpanAttribute(spanId, key, value);
+        }
+        
+        /// <inheritdoc />
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
+            int errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
+            string parentSpanId = null)
+        {
+            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, errorCode, parentSpanId, attributes, events);
+        }
+        #endif
 
         /// <summary>
         /// Converts an HTTPMethod to an int value.
