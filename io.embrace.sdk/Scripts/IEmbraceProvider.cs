@@ -58,8 +58,15 @@ namespace EmbraceSDK.Internal
 
         #if UNITY_IOS
         void RecordPushNotification(iOSPushNotificationArgs iosArgs);
+        void RecordCompletedSpanNamed(string name, long startms, long endms, Dictionary<string, string> properties);
         #elif UNITY_ANDROID
         void RecordPushNotification(AndroidPushNotificationArgs androidArgs);
+        string StartSpan(string spanName, string parentSpanId, long startTimeMs);
+        public bool StopSpan(string spanId, int errorCode, long endTimeMs);
+        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes);
+        public bool AddSpanAttribute(string spanId, string key, string value);
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, 
+            string parentSpanId, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events);
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
         void ShowBugReportForm();
         void saveShakeScreenshot(byte[] screenshot);

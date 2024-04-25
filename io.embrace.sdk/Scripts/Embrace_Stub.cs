@@ -262,7 +262,41 @@ namespace EmbraceSDK.Editor
         {
             EmbraceLogger.Log($"Push Notification: title: {androidArgs.title} body: {androidArgs.body} topic: {androidArgs.topic} id: {androidArgs.id} notificationPriority: {androidArgs.notificationPriority} messageDeliveredPriority: {androidArgs.messageDeliveredPriority} isNotification: {androidArgs.isNotification} hasData: {androidArgs.hasData}");
         }
-        #endif
+
+        public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
+        {
+            EmbraceLogger.Log($"Start Span: span name {spanName} parent span ID: {parentSpanId}" +
+                              $" start time: {startTimeMs}");
+            return "spanId";
+        }
+
+        public bool StopSpan(string spanId, int errorCode, long endTimeMs)
+        {
+            EmbraceLogger.Log($"Stop Span: span ID {spanId} error code: {errorCode} end time: {endTimeMs}");
+            return true;
+        }
+
+        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes)
+        {
+            EmbraceLogger.Log($"Add Span Event: span name {spanName} parent span ID: {spanId} " +
+                              $"end time: {endTimeMs} attributes: {attributes}");
+            return true;
+        }
+
+        public bool AddSpanAttribute(string spanId, string key, string value)
+        {
+            EmbraceLogger.Log($"Add Span Attribute: span ID {spanId} : key: {key}, value: {value}");
+            return true;
+        }
+        
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
+            Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events)
+        {
+            EmbraceLogger.Log($"Start Span: span name {spanName} start time: {startTimeMs} end time: {endTimeMs}" +
+                              $" error code: {errorCode} parent span ID: {parentSpanId} attributes: {attributes} events: {events}");
+            return true;
+        }
+#endif
         
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {

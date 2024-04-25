@@ -81,6 +81,11 @@ namespace EmbraceSDK.Internal
         private const string _installUnityThreadSampler = "installUnityThreadSampler";
         private const string _GetCurrentSessionId = "getCurrentSessionId";
         private const string _GetUnityInternalInterfaceMethod = "getUnityInternalInterface";
+        private const string _StartSpanMethod = "startSpan";
+        private const string _StopSpanMethod = "stopSpan";
+        private const string _AddSpanEventMethod = "addSpanEvent";
+        private const string _AddSpanAttributeMethod = "addSpanAttribute";
+        private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -485,7 +490,35 @@ namespace EmbraceSDK.Internal
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
         }
         
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
+        
+        public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
+        {
+            if (!ReadyForCalls()) { return null; }
+            return embraceSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTimeMs);
+        }
+
+        public bool StopSpan(string spanId, int errorCode, long endTimeMs)
+        {
+            if (!ReadyForCalls()) { return false; }
+            return embraceSharedInstance.Call<bool>(_StopSpanMethod, spanId, errorCode, endTimeMs); }
+
+        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes)
+        {
+            if (!ReadyForCalls()) { return false; }
+            return embraceSharedInstance.Call<bool>(_AddSpanEventMethod, spanName, spanId, endTimeMs, attributes); }
+
+        public bool AddSpanAttribute(string spanId, string key, string value)
+        {
+            if (!ReadyForCalls()) { return false; }
+            return embraceSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
+        
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
+            Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events)
+        {
+            if (!ReadyForCalls()) { return false; }
+            return embraceSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
+                errorCode, parentSpanId, attributes, events); }
+#if EMBRACE_ENABLE_BUGSHAKE_FORM
         void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
         {
             if (!ReadyForCalls()) { return;}
