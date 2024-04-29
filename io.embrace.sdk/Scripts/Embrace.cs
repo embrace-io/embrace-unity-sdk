@@ -732,7 +732,7 @@ namespace EmbraceSDK
         }
         
         /// <inheritdoc />
-        public bool StopSpan(string spanId, SpanErrorCode errorCode , long endTimeMs)
+        public bool StopSpan(string spanId, EmbraceSpanErrorCode errorCode , long endTimeMs)
         {
             return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
         }
@@ -751,7 +751,7 @@ namespace EmbraceSDK
         
         /// <inheritdoc />
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
-            SpanErrorCode errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
+            EmbraceSpanErrorCode errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
             string parentSpanId = null)
         {
             return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, events);
@@ -778,15 +778,15 @@ namespace EmbraceSDK
         /// <summary>
         /// Converts a SpanErrorCode to an int value.
         /// </summary>
-        /// <param name="spanErrorCode"></param>
+        /// <param name="embraceSpanErrorCode"></param>
         /// <returns></returns>
-        public static int __BridgedSpanErrorCode(SpanErrorCode spanErrorCode)
+        public static int __BridgedSpanErrorCode(EmbraceSpanErrorCode embraceSpanErrorCode)
         {
-            switch (spanErrorCode)
+            switch (embraceSpanErrorCode)
             {
-                case SpanErrorCode.FAILURE: return 1;
-                case SpanErrorCode.USER_ABANDON: return 2;
-                case SpanErrorCode.UNKNOWN: return 3;
+                case EmbraceSpanErrorCode.FAILURE: return 1;
+                case EmbraceSpanErrorCode.USER_ABANDON: return 2;
+                case EmbraceSpanErrorCode.UNKNOWN: return 3;
                 default: return 0;
             }
         }

@@ -1,6 +1,6 @@
 namespace EmbraceSDK
 {
-    public enum SpanErrorCode
+    public enum EmbraceSpanErrorCode
     {
         /// <summary>
         /// An application failure caused the Span to terminate
