@@ -490,7 +490,6 @@ namespace EmbraceSDK.Internal
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
         }
         
-        
         public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
             if (!ReadyForCalls()) { return null; }
@@ -502,10 +501,10 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return false; }
             return embraceSharedInstance.Call<bool>(_StopSpanMethod, spanId, errorCode, endTimeMs); }
 
-        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes)
+        public bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes)
         {
             if (!ReadyForCalls()) { return false; }
-            return embraceSharedInstance.Call<bool>(_AddSpanEventMethod, spanName, spanId, endTimeMs, attributes); }
+            return embraceSharedInstance.Call<bool>(_AddSpanEventMethod, spanName, spanId, timestampMs, attributes); }
 
         public bool AddSpanAttribute(string spanId, string key, string value)
         {

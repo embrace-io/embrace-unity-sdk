@@ -725,13 +725,6 @@ namespace EmbraceSDK
             #endif
         }
         
-        #if UNITY_IOS
-        /// <inheritdoc />
-        public void recordCompletedSpanNamed(string name, long startms, long endms, Dictionary<string, string> properties)
-        {
-            provider.RecordCompletedSpanNamed(name, startms, endms, properties);
-        }
-        #elif UNITY_ANDROID
         /// <inheritdoc />
         public string StartSpan(string spanName, long startTimeMs, string parentSpanId = null)
         {
@@ -739,15 +732,15 @@ namespace EmbraceSDK
         }
         
         /// <inheritdoc />
-        public bool StopSpan(string spanId, int errorCode , long endTimeMs)
+        public bool StopSpan(string spanId, SpanErrorCode errorCode , long endTimeMs)
         {
-            return provider.StopSpan(spanId, errorCode, endTimeMs);
+            return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
         }
         
         /// <inheritdoc />
-        public bool AddSpanEvent(string spanName, string spanId, long endTimeMs, Dictionary<string, string> attributes)
+        public bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes)
         {
-            return provider.AddSpanEvent(spanName, spanId, endTimeMs, attributes);
+            return provider.AddSpanEvent(spanName, spanId, timestampMs, attributes);
         }
         
         /// <inheritdoc />
@@ -758,12 +751,11 @@ namespace EmbraceSDK
         
         /// <inheritdoc />
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
-            int errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
+            SpanErrorCode errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
             string parentSpanId = null)
         {
-            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, errorCode, parentSpanId, attributes, events);
+            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, events);
         }
-        #endif
 
         /// <summary>
         /// Converts an HTTPMethod to an int value.
@@ -779,6 +771,22 @@ namespace EmbraceSDK
                 case HTTPMethod.PUT: return 3;
                 case HTTPMethod.DELETE: return 4;
                 case HTTPMethod.PATCH: return 5;
+                default: return 0;
+            }
+        }
+        
+        /// <summary>
+        /// Converts a SpanErrorCode to an int value.
+        /// </summary>
+        /// <param name="spanErrorCode"></param>
+        /// <returns></returns>
+        public static int __BridgedSpanErrorCode(SpanErrorCode spanErrorCode)
+        {
+            switch (spanErrorCode)
+            {
+                case SpanErrorCode.FAILURE: return 1;
+                case SpanErrorCode.USER_ABANDON: return 2;
+                case SpanErrorCode.UNKNOWN: return 3;
                 default: return 0;
             }
         }
