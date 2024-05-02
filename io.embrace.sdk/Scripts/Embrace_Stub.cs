@@ -290,14 +290,14 @@ namespace EmbraceSDK.Editor
 
         public bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> spanEvent)
         {
-            EmbraceLogger.Log($"Add Span Event: span name {spanName} parent span ID: {spanId} " +
-                              $"timestamp: {timestampMs} event: {spanEvent}");
+            EmbraceLogger.Log($"Add Span Event: span name: {spanName} parent span ID: {spanId} " +
+                              $"timestamp: {timestampMs} spanEvent: {spanEvent}");
             return true;
         }
 
         public bool AddSpanAttribute(string spanId, string key, string value)
         {
-            EmbraceLogger.Log($"Add Span Attribute: span ID {spanId} : key: {key}, value: {value}");
+            EmbraceLogger.Log($"Add Span Attribute: span ID: {spanId} key: {key} value: {value}");
             return true;
         }
         
