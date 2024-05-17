@@ -16,7 +16,46 @@ namespace EmbraceSDK
 {
     public class Embrace : MonoBehaviour, IEmbraceUnityApi
     {
+        private static readonly object providerMutex = new object();
         public IEmbraceProvider provider;
+        
+        public IEmbraceProvider Provider
+        {
+            get
+            {
+                lock (providerMutex)
+                {
+                    if (provider == null)
+                    {
+                        // Initialize the provider if it is null
+                        #if UNITY_ANDROID && !UNITY_EDITOR
+                        provider = new Embrace_Android();
+                        #elif (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
+                        provider = new Embrace_iOS();
+                        #else
+                        provider = new Embrace_Stub();
+                        #endif
+
+                        if (provider == null)
+                        {
+                            EmbraceLogger.LogError("Embrace provider is null after forced initialization. " +
+                                                   "There has been an unknown error blocking assignment." +
+                                                   "Please inform the Embrace team as soon as possible.");
+                            return null;
+                        }
+                    }
+                }
+                return provider;
+            }
+            private set
+            {
+                lock (providerMutex)
+                {
+                    provider = value;
+                }
+            }
+        }
+        
         private static Embrace _instance;
         private Thread _mainThread;
         private bool _started;
@@ -59,7 +98,7 @@ namespace EmbraceSDK
         void OnApplicationPause(bool pauseStatus)
         {
             if (!pauseStatus) {
-                provider.InstallUnityThreadSampler();
+                Provider?.InstallUnityThreadSampler();
 #if UNITY_ANDROID
                 // The behaviors of the native Android SDK and the native iOS SDK have been
                 // demonstrated to be different. Namely, the iOS SDK perpetuates the views
@@ -107,7 +146,7 @@ namespace EmbraceSDK
 
             TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
             sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
-            embraceInstance.provider = new Embrace_Stub();
+            embraceInstance.Provider = new Embrace_Stub();
             _instance = embraceInstance;
             
             InternalEmbrace.SetInternalInstance(_instance);
@@ -126,14 +165,8 @@ namespace EmbraceSDK
             
             TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
             sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-            provider = new Embrace_Android();
-#elif (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
-            provider = new Embrace_iOS();
-#else
-            provider = new Embrace_Stub();
-#endif
+            
+            Provider?.InitializeSDK();
                 
             #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
             
@@ -158,8 +191,6 @@ namespace EmbraceSDK
             // For now we will enable this by default.
             BugshakeService.Instance.RegisterShakeListener();
             #endif
-            
-            provider.InitializeSDK();
         }
         
         // Called by Unity runtime
@@ -201,8 +232,8 @@ namespace EmbraceSDK
                 Initialize();
             }
 
-            provider.StartSDK(enableIntegrationTesting);
-            provider.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
+            Provider?.StartSDK(enableIntegrationTesting);
+            Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
 
             TimeUtil.Clean();
             TimeUtil.InitStopWatch();
@@ -265,7 +296,7 @@ namespace EmbraceSDK
                 }
 
                 (string splitName, string splitMessage) = UnhandledExceptionUtility.SplitConcatenatedExceptionNameAndMessage(message);
-                provider.LogUnhandledUnityException(splitName, splitMessage, stack);
+                Provider?.LogUnhandledUnityException(splitName, splitMessage, stack);
             }
         }
 
@@ -277,13 +308,13 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
 
-            provider.EndAppStartup(properties);
+            Provider?.EndAppStartup(properties);
         }
 
         /// <inheritdoc />
         public LastRunEndState GetLastRunEndState()
         {
-            return IsStarted ? provider.GetLastRunEndState() : LastRunEndState.Invalid;
+            return IsStarted ? Provider?.GetLastRunEndState() ?? LastRunEndState.Invalid : LastRunEndState.Invalid;
         }
 
         /// <inheritdoc />
@@ -295,13 +326,13 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.SetUserIdentifier(identifier);
+            Provider?.SetUserIdentifier(identifier);
         }
 
         /// <inheritdoc />
         public void ClearUserIdentifier()
         {
-            provider.ClearUserIdentifier();
+            Provider?.ClearUserIdentifier();
         }
 
         /// <inheritdoc />
@@ -313,13 +344,13 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.SetUsername(username);
+            Provider?.SetUsername(username);
         }
 
         /// <inheritdoc />
         public void ClearUsername()
         {
-            provider.ClearUsername();
+            Provider?.ClearUsername();
         }
 
         /// <inheritdoc />
@@ -331,25 +362,25 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.SetUserEmail(email);
+            Provider?.SetUserEmail(email);
         }
 
         /// <inheritdoc />
         public void ClearUserEmail()
         {
-            provider.ClearUserEmail();
+            Provider?.ClearUserEmail();
         }
 
         /// <inheritdoc />
         public void SetUserAsPayer()
         {
-            provider.SetUserAsPayer();
+            Provider?.SetUserAsPayer();
         }
 
         /// <inheritdoc />
         public void ClearUserAsPayer()
         {
-            provider.ClearUserAsPayer();
+            Provider?.ClearUserAsPayer();
         }
 
         [System.Obsolete("Please use AddUserPersona() instead. This method will be removed in a future release.")]
@@ -367,7 +398,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.AddUserPersona(persona);
+            Provider?.AddUserPersona(persona);
         }
 
         /// <inheritdoc />
@@ -379,13 +410,13 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.ClearUserPersona(persona);
+            Provider?.ClearUserPersona(persona);
         }
 
         /// <inheritdoc />
         public void ClearAllUserPersonas()
         {
-            provider.ClearAllUserPersonas();
+            Provider?.ClearAllUserPersonas();
         }
 
         /// <inheritdoc />
@@ -403,7 +434,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.AddSessionProperty(key, value, permanent);
+            Provider?.AddSessionProperty(key, value, permanent);
         }
 
         /// <inheritdoc />
@@ -415,13 +446,13 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.RemoveSessionProperty(key);
+            Provider?.RemoveSessionProperty(key);
         }
 
         /// <inheritdoc />
         public Dictionary<string, string> GetSessionProperties()
         {
-            var properties = provider.GetSessionProperties();
+            var properties = Provider?.GetSessionProperties();
             if (properties == null)
             {
                 properties = emptyDictionary;
@@ -444,7 +475,7 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
 
-            provider.StartMoment(name, identifier, allowScreenshot, properties);
+            Provider?.StartMoment(name, identifier, allowScreenshot, properties);
         }
 
         /// <inheritdoc />
@@ -461,7 +492,7 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
 
-            provider.EndMoment(name, identifier, properties);
+            Provider?.EndMoment(name, identifier, properties);
         }
 
         /// <inheritdoc />
@@ -490,7 +521,7 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
 
-            provider.LogMessage(message, severity, properties);
+            Provider?.LogMessage(message, severity, properties);
         }
 
         /// <inheritdoc />
@@ -526,19 +557,19 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.AddBreadcrumb(message);
+            Provider?.AddBreadcrumb(message);
         }
 
         /// <inheritdoc />
         public void EndSession(bool clearUserInfo = false)
         {
-            provider.EndSession(clearUserInfo);
+            Provider?.EndSession(clearUserInfo);
         }
 
         /// <inheritdoc />
         public string GetDeviceId()
         {
-            return provider.GetDeviceId();
+            return Provider?.GetDeviceId();
         }
 
         /// <inheritdoc />
@@ -550,7 +581,7 @@ namespace EmbraceSDK
                 return false;
             }
 
-            return provider.StartView(name);
+            return Provider?.StartView(name) ?? false;
         }
 
         /// <inheritdoc />
@@ -562,7 +593,7 @@ namespace EmbraceSDK
                 return false;
             }
 
-            return provider.EndView(name);
+            return Provider?.EndView(name) ?? false;
         }
 
         /// <summary>
@@ -571,7 +602,7 @@ namespace EmbraceSDK
         [System.Obsolete("This method will be removed in a future release.")]
         public void Crash()
         {
-            provider.Crash();
+            Provider?.Crash();
         }
 
         /// <inheritdoc />
@@ -592,7 +623,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
+            Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
         }
         
         /// <inheritdoc />
@@ -604,7 +635,7 @@ namespace EmbraceSDK
                 return;
             }
             
-            provider.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
+            Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
         }
         
         /// <inheritdoc />
@@ -622,7 +653,7 @@ namespace EmbraceSDK
                 return;
             }
             
-            provider.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
+            Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
         }
 
         /// <inheritdoc />
@@ -642,7 +673,7 @@ namespace EmbraceSDK
             }
 
             (string splitName, string splitMessage) = UnhandledExceptionUtility.SplitConcatenatedExceptionNameAndMessage(exceptionMessage);
-            provider.LogUnhandledUnityException(splitName, splitMessage, stack);
+            Provider?.LogUnhandledUnityException(splitName, splitMessage, stack);
         }
 
         /// <inheritdoc />
@@ -654,7 +685,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.LogUnhandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            Provider?.LogUnhandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
         }
 
         /// <inheritdoc />
@@ -666,7 +697,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.LogUnhandledUnityException(
+            Provider?.LogUnhandledUnityException(
                 exceptionName: exception.GetType().Name,
                 exceptionMessage: exception.Message ?? "",
                 stack: stack ?? exception.StackTrace ?? "");
@@ -681,7 +712,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.LogHandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            Provider?.LogHandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
         }
 
         /// <inheritdoc />
@@ -693,7 +724,7 @@ namespace EmbraceSDK
                 return;
             }
 
-            provider.LogHandledUnityException(
+            Provider?.LogHandledUnityException(
                 exceptionName: exception.GetType().Name,
                 exceptionMessage: exception.Message ?? "",
                 stack: stack ?? exception.StackTrace ?? "");
@@ -702,14 +733,14 @@ namespace EmbraceSDK
         /// <inheritdoc />
         public string GetCurrentSessionId()
         {
-            return provider.GetCurrentSessionId();
+            return Provider?.GetCurrentSessionId();
         }
 
         /// <inheritdoc />
         public void RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
             #if UNITY_IOS
-            provider.RecordPushNotification(iosArgs);
+            Provider?.RecordPushNotification(iosArgs);
             #else
             EmbraceLogger.LogError("Attempting to record iOS push notification on non-iOS platform");
             #endif
@@ -719,7 +750,7 @@ namespace EmbraceSDK
         public void RecordPushNotification(AndroidPushNotificationArgs androidArgs)
         {
             #if UNITY_ANDROID
-            provider.RecordPushNotification(androidArgs);
+            Provider?.RecordPushNotification(androidArgs);
             #else
             EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
             #endif
