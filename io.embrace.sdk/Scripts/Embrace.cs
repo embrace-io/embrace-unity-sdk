@@ -732,15 +732,15 @@ namespace EmbraceSDK
         }
         
         /// <inheritdoc />
-        public bool StopSpan(string spanId, EmbraceSpanErrorCode errorCode , long endTimeMs)
+        public bool StopSpan(string spanId, long endTimeMs, EmbraceSpanErrorCode? errorCode = null)
         {
             return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
         }
         
         /// <inheritdoc />
-        public bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes)
+        public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes = null)
         {
-            return provider.AddSpanEvent(spanName, spanId, timestampMs, attributes);
+            return provider.AddSpanEvent(spanId, spanName, timestampMs, attributes);
         }
         
         /// <inheritdoc />
@@ -751,7 +751,7 @@ namespace EmbraceSDK
         
         /// <inheritdoc />
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
-            EmbraceSpanErrorCode errorCode, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events, 
+            EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, List<Dictionary<string, string>> events = null, 
             string parentSpanId = null)
         {
             return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, events);
@@ -780,8 +780,10 @@ namespace EmbraceSDK
         /// </summary>
         /// <param name="embraceSpanErrorCode"></param>
         /// <returns></returns>
-        public static int __BridgedSpanErrorCode(EmbraceSpanErrorCode embraceSpanErrorCode)
+        public static int __BridgedSpanErrorCode(EmbraceSpanErrorCode? embraceSpanErrorCode)
         {
+            if (embraceSpanErrorCode == null) return 0;
+            
             switch (embraceSpanErrorCode)
             {
                 case EmbraceSpanErrorCode.FAILURE: return 1;

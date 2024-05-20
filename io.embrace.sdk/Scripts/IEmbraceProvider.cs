@@ -57,10 +57,10 @@ namespace EmbraceSDK.Internal
         string GetCurrentSessionId();
         string StartSpan(string spanName, string parentSpanId, long startTimeMs);
         bool StopSpan(string spanId, int errorCode, long endTimeMs);
-        bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes);
+        bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes);
         bool AddSpanAttribute(string spanId, string key, string value);
         bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, 
-            string parentSpanId, Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events);
+            string parentSpanId, Dictionary<string, string> attributes, List<Dictionary<string, string>> events);
         #if UNITY_IOS
         void RecordPushNotification(iOSPushNotificationArgs iosArgs);
         #elif UNITY_ANDROID

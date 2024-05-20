@@ -320,7 +320,7 @@ namespace EmbraceSDK.Internal
             return JsonConvert.SerializeObject(dictionary);
         }
         
-        private string DictionaryToJson(Dictionary<string, Dictionary<string, string>> dictionary)
+        private string DictionaryToJson(List<Dictionary<string, string>> dictionary)
         {
             return JsonConvert.SerializeObject(dictionary);
         }
@@ -392,7 +392,7 @@ namespace EmbraceSDK.Internal
         }
         
         bool IEmbraceProvider.RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
-            Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events)
+            Dictionary<string, string> attributes, List<Dictionary<string, string>> events)
         {
             var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs, endTimeMs, errorCode, parentSpanId, DictionaryToJson(attributes), DictionaryToJson(events));
             return !string.IsNullOrEmpty(spanId);

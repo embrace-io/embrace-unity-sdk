@@ -288,9 +288,9 @@ namespace EmbraceSDK.Editor
             return true;
         }
 
-        public bool AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> spanEvent)
+        public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> spanEvent)
         {
-            EmbraceLogger.Log($"Add Span Event: span name: {spanName} parent span ID: {spanId} " +
+            EmbraceLogger.Log($"Add Span Event: parent span ID: {spanId} span name: {spanName} " +
                               $"timestamp: {timestampMs} spanEvent: {spanEvent}");
             return true;
         }
@@ -302,7 +302,7 @@ namespace EmbraceSDK.Editor
         }
         
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
-            Dictionary<string, string> attributes, Dictionary<string, Dictionary<string, string>> events)
+            Dictionary<string, string> attributes, List<Dictionary<string, string>> events)
         {
             EmbraceLogger.Log($"Record Completed Span: span name {spanName} start time: {startTimeMs} end time: {endTimeMs}" +
                               $" error code: {errorCode} parent span ID: {parentSpanId} attributes: {attributes} events: {events}");
