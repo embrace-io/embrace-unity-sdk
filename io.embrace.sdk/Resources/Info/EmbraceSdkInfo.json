@@ -1,5 +1,5 @@
 {
-  "version": "1.25.0",
+  "version": "1.25.2",
   "npmAPIEndpoint": "https://repo.embrace.io/repository/unity",
   "wAnnouncementTitle": "iOS Configuration Update",
   "wAnnouncementMessage": "The CRASH_REPORT_ENABLED setting has been replaced by CRASH_REPORT_PROVIDER. Any existing configuration will be migrated automatically, but please take a moment to double check the value in the Embrace settings window."
