@@ -33,13 +33,42 @@ namespace EmbraceSDK.Internal
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
         
+        private static readonly object mutex = new object();
+        private AndroidJavaObject EmbraceSharedInstance
+        {
+            get
+            {
+                lock (mutex)
+                {
+                    if (embraceSharedInstance != null)
+                    {
+                        embraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
+                    
+                        if (embraceSharedInstance == null)
+                        {
+                            EmbraceLogger.LogError("Embrace Unity - Android SDK connection failed to initialize.");
+                        }
+                    }
+                }
+
+                return embraceSharedInstance;
+            }
+            set
+            {
+                lock (mutex)
+                {
+                    embraceSharedInstance = value;
+                }
+            }
+        }
+        
         private AndroidJavaObject _embraceUnityInternalSharedInstance
         {
             get
             {
                 if (embraceUnityInternalSharedInstance == null)
                 {
-                    embraceUnityInternalSharedInstance = embraceSharedInstance.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
+                    embraceUnityInternalSharedInstance = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
                 }
                 return embraceUnityInternalSharedInstance;
             }
@@ -168,7 +197,7 @@ namespace EmbraceSDK.Internal
             AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
             applicationInstance = activityInstance.Call<AndroidJavaObject>("getApplication");
             embraceClass = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace");
-            embraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
+            EmbraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
             // get the app framework object
             AndroidJavaClass appFramework = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace$AppFramework");
             unityAppFramework = appFramework.GetStatic<AndroidJavaObject>("UNITY");
@@ -182,14 +211,14 @@ namespace EmbraceSDK.Internal
         void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_StartMethod, applicationInstance, enableIntegrationTesting, unityAppFramework);
+            EmbraceSharedInstance?.Call(_StartMethod, applicationInstance, enableIntegrationTesting, unityAppFramework);
         }
 
         void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
         {
             if (!ReadyForCalls()) { return; }
             AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            embraceSharedInstance.Call(_EndAppStartupMethod, javaMap);
+            EmbraceSharedInstance?.Call(_EndAppStartupMethod, javaMap);
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
@@ -198,7 +227,7 @@ namespace EmbraceSDK.Internal
 
             try
             {
-                AndroidJavaObject lastRunStateObject = embraceSharedInstance.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
+                AndroidJavaObject lastRunStateObject = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
                 int lastRunStateInt = lastRunStateObject.Call<int>(_LastRunEndStateGetValueMethod);
 
                 switch (lastRunStateInt)
@@ -225,19 +254,19 @@ namespace EmbraceSDK.Internal
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_SetUserIdentifierMethod, identifier);
+            EmbraceSharedInstance?.Call(_SetUserIdentifierMethod, identifier);
         }
 
         void IEmbraceProvider.ClearUserIdentifier()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearUserIdentifierMethod);
+            EmbraceSharedInstance?.Call(_ClearUserIdentifierMethod);
         }
 
         void IEmbraceProvider.SetUsername(string username)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_SetUsernameMethod, username);
+            EmbraceSharedInstance?.Call(_SetUsernameMethod, username);
         }
         
         #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -248,81 +277,81 @@ namespace EmbraceSDK.Internal
                 return;
             }
 
-            embraceSharedInstance.Call("showBugReportForm");
+            EmbraceSharedInstance?.Call("showBugReportForm");
         }
         #endif
 
         void IEmbraceProvider.ClearUsername()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearUsernameMethod);
+            EmbraceSharedInstance?.Call(_ClearUsernameMethod);
         }
 
         void IEmbraceProvider.SetUserEmail(string email)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_SetUserEmailMethod, email);
+            EmbraceSharedInstance?.Call(_SetUserEmailMethod, email);
         }
 
         void IEmbraceProvider.ClearUserEmail()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearUserEmailMethod);
+            EmbraceSharedInstance?.Call(_ClearUserEmailMethod);
         }
 
         void IEmbraceProvider.SetUserAsPayer()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_SetUserAsPayerMethod);
+            EmbraceSharedInstance?.Call(_SetUserAsPayerMethod);
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearUserAsPayerMethod);
+            EmbraceSharedInstance?.Call(_ClearUserAsPayerMethod);
         }
 
         void IEmbraceProvider.SetUserPersona(string persona)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_AddUserPersonaMethod, persona);
+            EmbraceSharedInstance?.Call(_AddUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_AddUserPersonaMethod, persona);
+            EmbraceSharedInstance?.Call(_AddUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.ClearUserPersona(string persona)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearUserPersonaMethod, persona);
+            EmbraceSharedInstance?.Call(_ClearUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.ClearAllUserPersonas()
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_ClearAllUserPersonasMethod);
+            EmbraceSharedInstance?.Call(_ClearAllUserPersonasMethod);
         }
 
         bool IEmbraceProvider.AddSessionProperty(string key, string value, bool permanent)
         {
             if (!ReadyForCalls()) { return false; }
-            return embraceSharedInstance.Call<bool>(_AddSessionPropertyMethod, key, value, permanent);
+            return EmbraceSharedInstance?.Call<bool>(_AddSessionPropertyMethod, key, value, permanent) ?? false;
         }
 
         void IEmbraceProvider.RemoveSessionProperty(string key)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call<bool>(_RemoveSessionPropertyMethod, key);
+            EmbraceSharedInstance?.Call<bool>(_RemoveSessionPropertyMethod, key);
         }
 
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
             if (!ReadyForCalls()) { return null; }
 
-            AndroidJavaObject javaMap = embraceSharedInstance.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
+            AndroidJavaObject javaMap = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
 
             // The Android SDK can return null if this function is called before the SDK is initialized, or if SDK
             // initialization fails. In this case, return an empty dictionary to match behavior on iOS.
@@ -339,14 +368,14 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return; }
             AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            embraceSharedInstance.Call(_StartEventMethod, name, identifier, javaMap);
+            EmbraceSharedInstance?.Call(_StartEventMethod, name, identifier, javaMap);
         }
 
         void IEmbraceProvider.EndMoment(string name, string identifier, Dictionary<string, string> properties)
         {
             if (!ReadyForCalls()) { return; }
             AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            embraceSharedInstance.Call(_EndEventMethod, name, identifier, javaMap);
+            EmbraceSharedInstance?.Call(_EndEventMethod, name, identifier, javaMap);
         }
 
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
@@ -357,13 +386,13 @@ namespace EmbraceSDK.Internal
             switch (severity)
             {
                 case EMBSeverity.Info:
-                    embraceSharedInstance.Call(_LogMessageMethod, message, logInfo, javaMap);
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
                     break;
                 case EMBSeverity.Warning:
-                    embraceSharedInstance.Call(_LogMessageMethod, message, logWarning, javaMap);
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap);
                     break;
                 case EMBSeverity.Error:
-                    embraceSharedInstance.Call(_LogMessageMethod, message, logError, javaMap);
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap);
                     break;
             }
         }
@@ -376,37 +405,37 @@ namespace EmbraceSDK.Internal
         void IEmbraceProvider.LogBreadcrumb(string message)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_AddBreadcrumbMethod, message);
+            EmbraceSharedInstance?.Call(_AddBreadcrumbMethod, message);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_AddBreadcrumbMethod, message);
+            EmbraceSharedInstance?.Call(_AddBreadcrumbMethod, message);
         }
 
         void IEmbraceProvider.EndSession(bool clearUserInfo)
         {
             if (!ReadyForCalls()) { return; }
-            embraceSharedInstance.Call(_EndSessionMethod, clearUserInfo);
+            EmbraceSharedInstance?.Call(_EndSessionMethod, clearUserInfo);
         }
 
         string IEmbraceProvider.GetDeviceId()
         {
             if (!ReadyForCalls()) { return null; }
-            return embraceSharedInstance.Call<string>(_GetDeviceIdMethod);
+            return EmbraceSharedInstance?.Call<string>(_GetDeviceIdMethod);
         }
 
         bool IEmbraceProvider.StartView(string name)
         {
             if (!ReadyForCalls()) { return false; }
-            return embraceSharedInstance.Call<bool>(_StartFragmentMethod, name);
+            return EmbraceSharedInstance?.Call<bool>(_StartFragmentMethod, name) ?? false;
         }
 
         bool IEmbraceProvider.EndView(string name)
         {
             if (!ReadyForCalls()) { return false; }
-            return embraceSharedInstance.Call<bool>(_EndFragmentMethod, name);
+            return EmbraceSharedInstance?.Call<bool>(_EndFragmentMethod, name) ?? false;
         }
         
         void IEmbraceProvider.Crash()
@@ -466,7 +495,7 @@ namespace EmbraceSDK.Internal
         string IEmbraceProvider.GetCurrentSessionId()
         {
             if (!ReadyForCalls()) { return null; }
-            return embraceSharedInstance.Call<string>(_GetCurrentSessionId);
+            return EmbraceSharedInstance?.Call<string>(_GetCurrentSessionId);
         }
 
         void IEmbraceProvider.RecordPushNotification(AndroidPushNotificationArgs androidArgs)
@@ -481,7 +510,7 @@ namespace EmbraceSDK.Internal
             var jIsNotification = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.isNotification);
             var jHasData = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.hasData);
             
-            embraceSharedInstance.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
+            EmbraceSharedInstance?.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
         }
         
