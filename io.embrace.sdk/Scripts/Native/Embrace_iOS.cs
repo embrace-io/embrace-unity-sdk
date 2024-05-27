@@ -392,9 +392,9 @@ namespace EmbraceSDK.Internal
         }
         
         bool IEmbraceProvider.RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
-            Dictionary<string, string> attributes, List<Dictionary<string, string>> events)
+            Dictionary<string, string> attributes, EmbraceSpanEvent events)
         {
-            var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs, endTimeMs, errorCode, parentSpanId, DictionaryToJson(attributes), DictionaryToJson(events));
+            var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs, endTimeMs, errorCode, parentSpanId, DictionaryToJson(attributes), JsonConvert.SerializeObject(events));
             return !string.IsNullOrEmpty(spanId);
         }
     }

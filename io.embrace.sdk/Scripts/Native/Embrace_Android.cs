@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using EmbraceSDK.Internal;
+using JetBrains.Annotations;
 using UnityEngine.TestTools;
 
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -557,14 +558,45 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return false; }
             return EmbraceInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
         
+        /// <summary>
+        /// 
+        /// The map representing a SpanEvent has the following schema:
+        ///     {
+        ///         "name": [String],
+        ///         "timestampMs": [Long] (optional),
+        ///         "timestampNanos": [Long] (deprecated and optional),
+        ///         "attributes": [Dictionary<string, string>] (optional)
+        ///     }
+        /// 
+        /// Any object passed in the list that violates that schema will be dropped and no event will be created for it. If an entry in the
+        /// attributes map isn't <string, string>, it'll also be dropped. Omitting or passing in nulls for the optional fields are OK.
+        /// </summary>>
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
-            Dictionary<string, string> attributes, List<Dictionary<string, string>> events)
+            Dictionary<string, string> attributes, EmbraceSpanEvent embraceSpanEvent)
         {
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
-            return EmbraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
-                GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes), ListOfDictionaryToJavaListOfMaps(events));
+            // List<Dictionary<string, object>> spanEventList = null;
+            //
+            // if (embraceSpanEvent != null)
+            // {
+            //     spanEventList = new List<Dictionary<string, object>>();
+            //     
+            //     var spanEventMap = new Dictionary<string, object>();
+            //         
+            //     spanEventMap.Add("name", embraceSpanEvent.GetName());
+            //     spanEventMap.Add("timestampMs", embraceSpanEvent.GetTimestampMs());
+            //     spanEventMap.Add("timestampNanos", embraceSpanEvent.GetTimestampNanos());
+            //     spanEventMap.Add("attributes", embraceSpanEvent.GetAttributes());
+            //         
+            //     spanEventList.Add(spanEventMap);
+            // }
+            //
+            // return EmbraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
+            //     GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes), ListOfDictionaryToJavaListOfMaps(spanEventList));
+
+            return false;
         }
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
         void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
@@ -582,7 +614,7 @@ namespace EmbraceSDK.Internal
         }
         #endif
 
-        private AndroidJavaObject DictionaryToJavaMap(Dictionary<string, string> dictionary)
+        private static AndroidJavaObject DictionaryToJavaMap(Dictionary<string, string> dictionary)
         {
             if (dictionary == null)
             {
@@ -593,7 +625,7 @@ namespace EmbraceSDK.Internal
             IntPtr putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
             foreach (var entry in dictionary)
             {
-                var result = AndroidJNI.CallObjectMethod(
+                AndroidJNI.CallObjectMethod(
                     map.GetRawObject(),
                     putMethod,
                     AndroidJNIHelper.CreateJNIArgArray(new object[] { entry.Key, entry.Value })
@@ -602,34 +634,111 @@ namespace EmbraceSDK.Internal
             return map;
         }
         
-        private AndroidJavaObject ListOfDictionaryToJavaListOfMaps(List<Dictionary<string, string>> listOfDictionaries)
+        [CanBeNull]
+        private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary)
+        {
+            if (dictionary == null)
+            {
+                return null;
+            }
+
+            using (var map = new AndroidJavaObject("java.util.HashMap"))
+            {
+                var putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+
+                foreach (var entry in dictionary)
+                {
+                    if (entry.Key == null) continue;
+                    
+                    using (var key = new AndroidJavaObject("java.lang.String", entry.Key))
+                    {
+                        var value = CreateJavaObjectFromNetObject(entry.Value);
+
+                        if (value == null) continue;
+                            
+                        AndroidJNI.CallObjectMethod(
+                            map.GetRawObject(),
+                            putMethod,
+                            AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value }));
+
+                        value.Dispose();
+                    }
+                }
+
+                return map;
+            }
+        }
+        
+        [CanBeNull]
+        private static AndroidJavaObject ListOfDictionaryToJavaListOfMaps(List<Dictionary<string, object>> listOfDictionaries)
         {
             if (listOfDictionaries == null)
             {
                 return null;
             }
-            
-            AndroidJavaObject arrayList = new AndroidJavaObject("java.util.ArrayList");
-            IntPtr listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
 
-            foreach (var dictionary in listOfDictionaries)
+            using (var arrayList = new AndroidJavaObject("java.util.ArrayList"))
             {
-                var map = DictionaryToJavaMap(dictionary);
+                var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
 
-                
-                var result = AndroidJNI.CallBooleanMethod(
-                    arrayList.GetRawObject(),
-                    listAddMethod, 
-                    new jvalue[] { new() { l = map.GetRawObject() } }
-                    );
-                
-                if (!result)
+                foreach (var dictionary in listOfDictionaries)
                 {
-                    EmbraceLogger.LogWarning("Failed to add the java HashMap to ArrayList");
+                    using (var map = DictionaryWithObjectsToJavaMap(dictionary))
+                    {
+                        if (map != null)
+                        {
+                            AndroidJNI.CallBooleanMethod(
+                                arrayList.GetRawObject(), 
+                                listAddMethod, 
+                                AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
+                        }
+                    }
                 }
-            }
 
-            return arrayList;
+                return arrayList;
+            }
+        }
+        
+        [CanBeNull]
+        private static AndroidJavaObject CreateJavaObjectFromNetObject(object netObject)
+        {
+            if (netObject == null)
+            {
+                return null;
+            }
+    
+            if (netObject is string s)
+            {
+                return new AndroidJavaObject("java.lang.String", s);
+            }
+            if (netObject is int i)
+            {
+                return new AndroidJavaObject("java.lang.Integer", i);
+            }
+            if (netObject is long l)
+            {
+                return new AndroidJavaObject("java.lang.Long", l);
+            }
+            if (netObject is float f)
+            {
+                return new AndroidJavaObject("java.lang.Float", f);
+            }
+            if (netObject is double d)
+            {
+                return new AndroidJavaObject("java.lang.Double", d);
+            }
+            if (netObject is bool b)
+            {
+                return new AndroidJavaObject("java.lang.Boolean", b);
+            }
+            if (netObject is Dictionary<string, string> dict)
+            {
+                return DictionaryToJavaMap(dict);
+            }
+            // Add more types as needed
+            EmbraceLogger.LogError($"Unsupported type: {netObject.GetType()}");
+
+            return null;
         }
 
         private Dictionary<string, string> DictionaryFromJavaMap(IntPtr source)

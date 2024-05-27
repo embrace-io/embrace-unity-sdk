@@ -725,36 +725,53 @@ namespace EmbraceSDK
             #endif
         }
         
-        /// <inheritdoc />
+        /// <summary>
+        /// Create and start a new span.
+        /// </summary>
+        /// <returns>Returns the spanId of the new span if both operations are successful, and null if either fails.</returns>
         public string StartSpan(string spanName, long startTimeMs, string parentSpanId = null)
         {
             return provider.StartSpan(spanName, parentSpanId, startTimeMs);
         }
         
-        /// <inheritdoc />
+        /// <summary>
+        /// Stop an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns true if the span is stopped after the method returns and false otherwise</returns>
         public bool StopSpan(string spanId, long endTimeMs, EmbraceSpanErrorCode? errorCode = null)
         {
             return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
         }
         
-        /// <inheritdoc />
+        /// <summary>
+        /// Create and add a Span Event with the given parameters to an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns false if the event cannot be added.</returns>
         public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes = null)
         {
             return provider.AddSpanEvent(spanId, spanName, timestampMs, attributes);
         }
         
-        /// <inheritdoc />
+        /// <summary>
+        /// Add an attribute to an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns true if the attributed is added and false otherwise</returns>
         public bool AddSpanAttribute(string spanId, string key , string value)
         {
             return provider.AddSpanAttribute(spanId, key, value);
         }
         
-        /// <inheritdoc />
+        /// <summary>
+        /// 
+        /// Record a completed span with the given parameters.
+        /// 
+        /// </summary>
+        /// <returns>Returns true if the span is record and false otherwise</returns>
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
-            EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, List<Dictionary<string, string>> events = null, 
+            EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, EmbraceSpanEvent embraceSpanEvent = null, 
             string parentSpanId = null)
         {
-            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, events);
+            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, embraceSpanEvent);
         }
 
         /// <summary>
