@@ -37,7 +37,14 @@ class Wrapper {
     }
 
     fun setUnityMetaData(unityVersion: String?, buildGuid: String?, unitySdkVersion: String?) {
-        println("Setting Unity Meta Data")
         unityInternalInterface.setUnityMetaData(unityVersion, buildGuid, unitySdkVersion)
+    }
+
+    fun logUnhandledUnityException(name: String, message: String, stacktrace: String?) {
+        unityInternalInterface.logUnhandledUnityException(name, message, stacktrace)
+    }
+
+    fun logHandledUnityException(name: String, message: String, stacktrace: String?) {
+        unityInternalInterface.logHandledUnityException(name, message, stacktrace)
     }
 }
