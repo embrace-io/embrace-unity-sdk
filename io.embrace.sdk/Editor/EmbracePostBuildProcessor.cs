@@ -169,7 +169,7 @@ namespace EmbraceSDK.EditorView
             project.ReadFromFile(projectPath);
             var targetGuids = GetProjectNames(project);
             var appTargetGuid = targetGuids[0];
-
+            
             // Enable dSYM
             foreach (string targetGuid in targetGuids)
             {
@@ -237,20 +237,6 @@ namespace EmbraceSDK.EditorView
             var resourcesBuildPhase = project.GetResourcesBuildPhaseByTarget(appTargetGuid);
             var resourcesFilesGuid = project.AddFile(EmbracePlistName, "/" + EmbracePlistName, PBXSourceTree.Source);
             project.AddFileToBuildSection(appTargetGuid, resourcesBuildPhase, resourcesFilesGuid);
-
-            // check for old Embrace.framework method
-
-            string pathToOldFramework = Path.Combine(pathToBuiltProject, "Frameworks/io.embrace.sdk/");
-            
-            if (Directory.Exists(pathToOldFramework))
-            {
-                var removeGuid = project.FindFileGuidByProjectPath("Frameworks/io.embrace.sdk/iOS/Embrace.xcframework/ios-arm64_armv7/Embrace.framework");
-                if (!string.IsNullOrWhiteSpace(removeGuid))
-                {
-                    project.RemoveFile(removeGuid);
-                    Directory.Delete(pathToOldFramework, true);
-                }
-            }
             
             // Embed Embrace.framework
 
@@ -285,6 +271,11 @@ namespace EmbraceSDK.EditorView
             
             // We still must embed the framework, but we have previously added the build phase step.
             project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
+            
+            // We need to add the xcframework to the linker phase
+            var frameworkTargetGuid = targetGuids[1];
+            var linkPhaseGuid = project.GetFrameworksBuildPhaseByTarget(frameworkTargetGuid);
+            project.AddFileToBuildSection(frameworkTargetGuid, linkPhaseGuid, xcFrameworkGuid);
             #else // !!UNITY_2021_3_OR_NEWER
             var xcFrameworkGuid = project.AddFile(
                 EmbraceXCFramework,
