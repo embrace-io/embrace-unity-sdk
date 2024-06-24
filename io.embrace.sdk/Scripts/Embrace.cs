@@ -771,6 +771,12 @@ namespace EmbraceSDK
         /// <returns>Returns true if the span is stopped after the method returns and false otherwise</returns>
         public bool StopSpan(string spanId, long endTimeMs, EmbraceSpanErrorCode? errorCode = null)
         {
+            if (spanId == null) 
+            {
+                EmbraceLogger.LogError("in order to stop a span, " + EmbraceLogger.GetNullErrorMessage("spanId"));
+                return false;
+            }
+
             return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
         }
         

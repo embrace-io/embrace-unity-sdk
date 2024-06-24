@@ -165,8 +165,6 @@ namespace EmbraceSDK.Demo
         {
             var startTime = DateTime.Now.Millisecond;
             var attributes = GetAttributesBasedOnSpan(DemoConstants.COMPLETED_SPAN);
-            
-            var events = new List<EmbraceSpanEvent>();
 
             var spanEvent = new EmbraceSpanEvent(
                 $"{DemoConstants.COMPLETED_SPAN}-event",

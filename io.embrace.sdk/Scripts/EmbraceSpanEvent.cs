@@ -41,5 +41,21 @@ namespace EmbraceSDK
         {
             return _attributes;
         }
+
+        /// <summary>
+        /// Converts the span event to a dictionary for better communication with native SDKs.
+        /// </summary>
+        public Dictionary<string, object> SpanEventToDictionary()
+        {
+            var dictionary = new Dictionary<string, object>
+            {
+                { "name", _name },
+                { "timestampMs", _timestampMs },
+                { "timestampNanos", _timestampNanos },
+                { "attributes", _attributes }
+            };
+
+            return dictionary;
+        }
     }
 }

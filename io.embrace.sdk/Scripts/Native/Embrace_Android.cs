@@ -607,26 +607,9 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
-            // List<Dictionary<string, object>> spanEventList = null;
-            //
-            // if (embraceSpanEvent != null)
-            // {
-            //     spanEventList = new List<Dictionary<string, object>>();
-            //     
-            //     var spanEventMap = new Dictionary<string, object>();
-            //         
-            //     spanEventMap.Add("name", embraceSpanEvent.GetName());
-            //     spanEventMap.Add("timestampMs", embraceSpanEvent.GetTimestampMs());
-            //     spanEventMap.Add("timestampNanos", embraceSpanEvent.GetTimestampNanos());
-            //     spanEventMap.Add("attributes", embraceSpanEvent.GetAttributes());
-            //         
-            //     spanEventList.Add(spanEventMap);
-            // }
-            //
-            // return _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
-            //     GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes), ListOfDictionaryToJavaListOfMaps(spanEventList));
-
-            return false;
+            return _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
+                GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes), 
+                DictionaryToJavaListOfMaps(embraceSpanEvent.SpanEventToDictionary()));
         }
         
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -645,6 +628,10 @@ namespace EmbraceSDK.Internal
         }
         #endif
 
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java map pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and string value></param>
         private static AndroidJavaObject DictionaryToJavaMap(Dictionary<string, string> dictionary)
         {
             AndroidJavaObject map = new AndroidJavaObject("java.util.HashMap");
@@ -660,6 +647,10 @@ namespace EmbraceSDK.Internal
             return map;
         }
         
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java map pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and object value></param>
         private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary)
         {
             if (dictionary == null)
@@ -684,7 +675,8 @@ namespace EmbraceSDK.Internal
                         AndroidJNI.CallObjectMethod(
                             map.GetRawObject(),
                             putMethod,
-                            AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value }));
+                            AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value })
+                            );
 
                         value.Dispose();
                     }
@@ -694,9 +686,13 @@ namespace EmbraceSDK.Internal
             }
         }
         
-        private static AndroidJavaObject ListOfDictionaryToJavaListOfMaps(List<Dictionary<string, object>> listOfDictionaries)
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java list of maps pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and object value></param>
+        private static AndroidJavaObject DictionaryToJavaListOfMaps(Dictionary<string, object> dictionary)
         {
-            if (listOfDictionaries == null)
+            if (dictionary == null)
             {
                 return null;
             }
@@ -705,24 +701,59 @@ namespace EmbraceSDK.Internal
             {
                 var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
 
-                foreach (var dictionary in listOfDictionaries)
+                using (var map = DictionaryWithObjectsToJavaMap(dictionary))
                 {
-                    using (var map = DictionaryWithObjectsToJavaMap(dictionary))
+                    if (map != null)
                     {
-                        if (map != null)
-                        {
-                            AndroidJNI.CallBooleanMethod(
-                                arrayList.GetRawObject(), 
-                                listAddMethod, 
-                                AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
-                        }
+                        AndroidJNI.CallBooleanMethod(
+                            arrayList.GetRawObject(), 
+                            listAddMethod,
+                            AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
                     }
                 }
 
                 return arrayList;
             }
         }
-        
+
+        /// <summary>
+        /// This method is used to convert a Java pointer to a .NET dictionary.
+        /// </summary>
+        private Dictionary<string, string> DictionaryFromJavaMap(IntPtr source)
+        {
+            var dict = new Dictionary<string, string>();
+
+            if (source == IntPtr.Zero)
+            {
+                return dict;
+            }
+
+            IntPtr entries = AndroidJNI.CallObjectMethod(source, MapEntrySet, new jvalue[] { });
+            IntPtr iterator = AndroidJNI.CallObjectMethod(entries, CollectionIterator, new jvalue[] { });
+            AndroidJNI.DeleteLocalRef(entries);
+
+            while (AndroidJNI.CallBooleanMethod(iterator, IteratorHasNext, new jvalue[] { }))
+            {
+                IntPtr entry = AndroidJNI.CallObjectMethod(iterator, IteratorNext, new jvalue[] { });
+                string key = AndroidJNI.CallStringMethod(entry, MapEntryGetKey, new jvalue[] { });
+                IntPtr value = AndroidJNI.CallObjectMethod(entry, MapEntryGetValue, new jvalue[] { });
+                AndroidJNI.DeleteLocalRef(entry);
+
+                if (value != null && value != IntPtr.Zero)
+                {
+                    dict.Add(key, AndroidJNI.CallStringMethod(value, ObjectToString, new jvalue[] { }));
+                }
+                AndroidJNI.DeleteLocalRef(value);
+            }
+            AndroidJNI.DeleteLocalRef(iterator);
+
+            return dict;
+        }
+
+        /// <summary>
+        /// This method is used to convert a .NET object to a Java object.
+        /// </summary>
+        /// <returns>The proper Android Java Object to use as pointer</returns>
         private static AndroidJavaObject CreateJavaObjectFromNetObject(object netObject)
         {
             if (netObject == null)
@@ -762,37 +793,6 @@ namespace EmbraceSDK.Internal
             EmbraceLogger.LogError($"Unsupported type: {netObject.GetType()}");
 
             return null;
-        }
-
-        private Dictionary<string, string> DictionaryFromJavaMap(IntPtr source)
-        {
-            var dict = new Dictionary<string, string>();
-
-            if (source == IntPtr.Zero)
-            {
-                return dict;
-            }
-
-            IntPtr entries = AndroidJNI.CallObjectMethod(source, MapEntrySet, new jvalue[] { });
-            IntPtr iterator = AndroidJNI.CallObjectMethod(entries, CollectionIterator, new jvalue[] { });
-            AndroidJNI.DeleteLocalRef(entries);
-
-            while (AndroidJNI.CallBooleanMethod(iterator, IteratorHasNext, new jvalue[] { }))
-            {
-                IntPtr entry = AndroidJNI.CallObjectMethod(iterator, IteratorNext, new jvalue[] { });
-                string key = AndroidJNI.CallStringMethod(entry, MapEntryGetKey, new jvalue[] { });
-                IntPtr value = AndroidJNI.CallObjectMethod(entry, MapEntryGetValue, new jvalue[] { });
-                AndroidJNI.DeleteLocalRef(entry);
-
-                if (value != null && value != IntPtr.Zero)
-                {
-                    dict.Add(key, AndroidJNI.CallStringMethod(value, ObjectToString, new jvalue[] { }));
-                }
-                AndroidJNI.DeleteLocalRef(value);
-            }
-            AndroidJNI.DeleteLocalRef(iterator);
-
-            return dict;
         }
         
         private AndroidJavaObject GetSpanErrorCode(int errorCode)
