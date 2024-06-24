@@ -1,6 +1,5 @@
 fileFormatVersion: 2
 guid: 1bb30015aeda04b468b42986ad9ff898
-folderAsset: yes
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -37,10 +36,12 @@ PluginImporter:
         Exclude PS5: 1
         Exclude PSM: 1
         Exclude PSP2: 1
+        Exclude QNX: 1
         Exclude SamsungTV: 1
         Exclude Stadia: 1
         Exclude Switch: 1
         Exclude Tizen: 1
+        Exclude VisionOS: 1
         Exclude WP8: 1
         Exclude Web: 1
         Exclude WebGL: 1
@@ -63,6 +64,11 @@ PluginImporter:
       enabled: 0
       settings:
         DefaultValueInitialized: true
+  - first:
+      iPhone: iOS
+    second:
+      enabled: 1
+      settings: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
