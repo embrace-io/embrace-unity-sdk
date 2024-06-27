@@ -5,6 +5,19 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 1.25.3
+*June 24, 2024*
+* Patch to PBXProject generation on 2021 and later around linker phase construction.
+* Patch to iOS xcframework and framework plugin matrix platform labeling.
+
+## 1.25.2
+*May 23, 2024*
+* Defensive patch of null case provider issue.
+
+## 1.25.1
+*April 25, 2024*
+* Patch of issue on newer versions of Unity iOS that involved double injecting into the linker phase
+
 ## 1.25.0
 *April 19, 2024*
 :::warning Important
