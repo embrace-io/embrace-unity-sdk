@@ -2,7 +2,8 @@
     "name": "Embrace.SDK.Samples",
     "rootNamespace": "",
     "references": [
-        "GUID:6fde6807ec2a448e5a2cd810ee81a054"
+        "GUID:6fde6807ec2a448e5a2cd810ee81a054",
+        "Embrace.SDK.Editor"
     ],
     "includePlatforms": [
         "Android",
