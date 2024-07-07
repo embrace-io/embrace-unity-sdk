@@ -607,9 +607,14 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
-            return _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs, endTimeMs, 
-                GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes), 
-                DictionaryToJavaListOfMaps(embraceSpanEvent.SpanEventToDictionary()));
+            return _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
+                endTimeMs,
+                GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes),
+                DictionaryToJavaListOfMaps(embraceSpanEvent.SpanEventToDictionary())); // But this fails
+                //null); // This maps correctly
+                //EmptyListTest()); // This maps correctly as well
+                //EmptyMapTest()); // This appears to map correctly as well
+                //disposedList); // But I bet this fails. // It does!
         }
         
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -627,6 +632,26 @@ namespace EmbraceSDK.Internal
             _embraceUnityInternalSharedInstance.Call("saveScreenshot", screenshot);
         }
         #endif
+
+        private static AndroidJavaObject EmptyListTest()
+        {
+            return new AndroidJavaObject("java.util.ArrayList");
+        }
+        
+        private static AndroidJavaObject EmptyMapTest()
+        {
+            var arrayList = new AndroidJavaObject("java.util.ArrayList");
+            var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
+
+            var map = new AndroidJavaObject("java.util.HashMap");
+            AndroidJNI.CallBooleanMethod(
+                arrayList.GetRawObject(), 
+                listAddMethod,
+                AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
+
+            return arrayList;
+                
+        }
 
         /// <summary>
         /// This method is used to convert a .NET dictionary to a Java map pointer.
@@ -658,32 +683,28 @@ namespace EmbraceSDK.Internal
                 return null;
             }
 
-            using (var map = new AndroidJavaObject("java.util.HashMap"))
+            var map = new AndroidJavaObject("java.util.HashMap");
+            var putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+
+            foreach (var entry in dictionary)
             {
-                var putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+                if (entry.Key == null) continue;
 
-                foreach (var entry in dictionary)
-                {
-                    if (entry.Key == null) continue;
-                    
-                    using (var key = new AndroidJavaObject("java.lang.String", entry.Key))
-                    {
-                        var value = CreateJavaObjectFromNetObject(entry.Value);
+                var key = new AndroidJavaObject("java.lang.String", entry.Key);
+                var value = CreateJavaObjectFromNetObject(entry.Value);
 
-                        if (value == null) continue;
+                if (value == null) continue;
                             
-                        AndroidJNI.CallObjectMethod(
-                            map.GetRawObject(),
-                            putMethod,
-                            AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value })
-                            );
+                AndroidJNI.CallObjectMethod(
+                    map.GetRawObject(),
+                    putMethod,
+                    AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value })
+                );
 
-                        value.Dispose();
-                    }
-                }
-
-                return map;
+                value.Dispose();
             }
+
+            return map;
         }
         
         /// <summary>
@@ -697,23 +718,19 @@ namespace EmbraceSDK.Internal
                 return null;
             }
 
-            using (var arrayList = new AndroidJavaObject("java.util.ArrayList"))
+            var arrayList = new AndroidJavaObject("java.util.ArrayList");
+            var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
+
+            var map = DictionaryWithObjectsToJavaMap(dictionary);
+            if (map != null)
             {
-                var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
-
-                using (var map = DictionaryWithObjectsToJavaMap(dictionary))
-                {
-                    if (map != null)
-                    {
-                        AndroidJNI.CallBooleanMethod(
-                            arrayList.GetRawObject(), 
-                            listAddMethod,
-                            AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
-                    }
-                }
-
-                return arrayList;
+                AndroidJNI.CallBooleanMethod(
+                    arrayList.GetRawObject(), 
+                    listAddMethod,
+                    AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
             }
+
+            return arrayList;
         }
 
         /// <summary>
