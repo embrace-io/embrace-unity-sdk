@@ -301,7 +301,7 @@ namespace EmbraceSDK.Editor
             return true;
         }
         
-        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent embraceSpanEvent)
         {
             EmbraceLogger.Log($"Record Completed Span: span name {spanName} start time: {startTimeMs} end time: {endTimeMs}" +

@@ -601,20 +601,24 @@ namespace EmbraceSDK.Internal
         /// Any object passed in the list that violates that schema will be dropped and no event will be created for it. If an entry in the
         /// attributes map isn't <string, string>, it'll also be dropped. Omitting or passing in nulls for the optional fields are OK.
         /// </summary>>
-        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int errorCode, string parentSpanId,
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent embraceSpanEvent)
         {
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
+
+            var dict = DictionaryToJavaListOfMaps(embraceSpanEvent.SpanEventToDictionary(), out var disposables);
             
-            return _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
-                endTimeMs,
-                GetSpanErrorCode(errorCode), parentSpanId, DictionaryToJavaMap(attributes),
-                DictionaryToJavaListOfMaps(embraceSpanEvent.SpanEventToDictionary())); // But this fails
-                //null); // This maps correctly
-                //EmptyListTest()); // This maps correctly as well
-                //EmptyMapTest()); // This appears to map correctly as well
-                //disposedList); // But I bet this fails. // It does!
+            var result = _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
+                endTimeMs, errorCode != null ? GetSpanErrorCode(errorCode.Value) : null, 
+                parentSpanId, DictionaryToJavaMap(attributes), dict);
+            
+            foreach (var disposable in disposables)
+            {
+                disposable.Dispose();
+            }
+
+            return result;
         }
         
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -632,26 +636,6 @@ namespace EmbraceSDK.Internal
             _embraceUnityInternalSharedInstance.Call("saveScreenshot", screenshot);
         }
         #endif
-
-        private static AndroidJavaObject EmptyListTest()
-        {
-            return new AndroidJavaObject("java.util.ArrayList");
-        }
-        
-        private static AndroidJavaObject EmptyMapTest()
-        {
-            var arrayList = new AndroidJavaObject("java.util.ArrayList");
-            var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
-
-            var map = new AndroidJavaObject("java.util.HashMap");
-            AndroidJNI.CallBooleanMethod(
-                arrayList.GetRawObject(), 
-                listAddMethod,
-                AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
-
-            return arrayList;
-                
-        }
 
         /// <summary>
         /// This method is used to convert a .NET dictionary to a Java map pointer.
@@ -676,8 +660,9 @@ namespace EmbraceSDK.Internal
         /// This method is used to convert a .NET dictionary to a Java map pointer.
         /// </summary>
         /// <param name="dictionary" of string key and object value></param>
-        private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary)
+        private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary, out List<IDisposable> disposables)
         {
+            disposables = new List<IDisposable>();
             if (dictionary == null)
             {
                 return null;
@@ -703,6 +688,8 @@ namespace EmbraceSDK.Internal
 
                 value.Dispose();
             }
+            
+            disposables.Add(map);
 
             return map;
         }
@@ -711,8 +698,9 @@ namespace EmbraceSDK.Internal
         /// This method is used to convert a .NET dictionary to a Java list of maps pointer.
         /// </summary>
         /// <param name="dictionary" of string key and object value></param>
-        private static AndroidJavaObject DictionaryToJavaListOfMaps(Dictionary<string, object> dictionary)
+        private static AndroidJavaObject DictionaryToJavaListOfMaps(Dictionary<string, object> dictionary, out List<IDisposable> disposables)
         {
+            disposables = new List<IDisposable>();
             if (dictionary == null)
             {
                 return null;
@@ -721,7 +709,7 @@ namespace EmbraceSDK.Internal
             var arrayList = new AndroidJavaObject("java.util.ArrayList");
             var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
 
-            var map = DictionaryWithObjectsToJavaMap(dictionary);
+            var map = DictionaryWithObjectsToJavaMap(dictionary, out var inner_disposables);
             if (map != null)
             {
                 AndroidJNI.CallBooleanMethod(
@@ -729,6 +717,9 @@ namespace EmbraceSDK.Internal
                     listAddMethod,
                     AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
             }
+            
+            disposables.Add(arrayList);
+            disposables.AddRange(inner_disposables);
 
             return arrayList;
         }
