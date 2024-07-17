@@ -159,16 +159,18 @@ namespace EmbraceSDK
         /// </summary>
         private void Initialize()
         {
-            _instance = this;
+            try
+            {
+                _instance = this;
 
-            _mainThread = Thread.CurrentThread;
+                _mainThread = Thread.CurrentThread;
             
-            TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
-            sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
+                TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
+                sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
             
-            Provider?.InitializeSDK();
+                Provider?.InitializeSDK();
                 
-            #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
+#if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
             
             #if EMBRACE_USE_BUGSHAKE_SCENE_MANAGER_OVERRIDE
             if (SceneManagerAPI.overrideAPI == null)
@@ -190,7 +192,12 @@ namespace EmbraceSDK
             // As a result if the prefab is instantiated dynamically we have no good behavioral assumption.
             // For now we will enable this by default.
             BugshakeService.Instance.RegisterShakeListener();
-            #endif
+#endif
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
         
         // Called by Unity runtime
@@ -232,33 +239,40 @@ namespace EmbraceSDK
                 Initialize();
             }
 
-            Provider?.StartSDK(enableIntegrationTesting);
-            Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
+            try
+            {
+                Provider?.StartSDK(enableIntegrationTesting);
+                Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
 
-            TimeUtil.Clean();
-            TimeUtil.InitStopWatch();
+                TimeUtil.Clean();
+                TimeUtil.InitStopWatch();
 
-            Application.logMessageReceived += Embrace_Log_Handler;
+                Application.logMessageReceived += Embrace_Log_Handler;
 
-            // Scene change registration here
+                // Scene change registration here
 #if EMBRACE_AUTO_CAPTURE_ACTIVE_SCENE_AS_VIEW
             scenesToViewReporter = new EmbraceScenesToViewReporter();
             scenesToViewReporter.StartViewFromScene(SceneManager.GetActiveScene());
 #endif
 
 #if EMBRACE_USE_THREADING
-            // If this directive is defined, the Embrace SDK will capture messages regardless of whether they
-            // originate from the main thread or not.  For more details please see Unity documentation:
-            // https://docs.unity3d.com/ScriptReference/Application-logMessageReceivedThreaded.html
-            Application.logMessageReceivedThreaded += Embrace_Threaded_Log_Handler;
-            Debug.LogWarning("THREADED LOGGING ENABLED");
+                // If this directive is defined, the Embrace SDK will capture messages regardless of whether they
+                // originate from the main thread or not.  For more details please see Unity documentation:
+                // https://docs.unity3d.com/ScriptReference/Application-logMessageReceivedThreaded.html
+                Application.logMessageReceivedThreaded += Embrace_Threaded_Log_Handler;
+                Debug.LogWarning("THREADED LOGGING ENABLED");
 #endif
 
-            _started = true;
+                _started = true;
             
-            InternalEmbrace.SetInternalInstance(_instance);
+                InternalEmbrace.SetInternalInstance(_instance);
 
-            EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
+                EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         private bool IsMainThread()
