@@ -808,7 +808,7 @@ namespace EmbraceSDK
             EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, EmbraceSpanEvent embraceSpanEvent = null, 
             string parentSpanId = null)
         {
-            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, embraceSpanEvent);
+            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
         }
 
         /// <summary>

@@ -32,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) start;
 
 /**
+    Start the span at a specific time (value should be in Nanoseconds)
+ */
+-(void) startWithStartTime:(NSInteger)startTime;
+
+/**
     Stop the span at the current time
  */
 -(void) stop;
@@ -41,6 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
     Will mark span status in "ERROR" if errorCode is not `None`
  */
 -(void) stopWithErrorCode:(EmbraceOTelSpanErrorCode) errorCode;
+
+/**
+    Stop the span at the specified time and mark with an Embrace error code.
+    Will mark span status in "ERROR" if errorCode is not `None`.
+    If no endTime is provided, will use the current time.
+ */
+-(void) stopWithErrorCode:(EmbraceOTelSpanErrorCode) errorCode endTime:(NSInteger)endTime;
 
 /**
     Adds an event to the span at the given time

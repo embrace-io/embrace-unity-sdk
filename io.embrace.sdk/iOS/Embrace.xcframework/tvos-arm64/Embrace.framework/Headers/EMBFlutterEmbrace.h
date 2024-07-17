@@ -8,6 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "EmbraceOTelSpanErrorCode.h"
 
 /**
  Entry point for the Embrace Flutter SDK.
@@ -125,5 +126,66 @@
                            stackTrace:(nullable NSString *)stackTrace
                               context:(nullable NSString *)context
                               library:(nullable NSString *)library;
+
+#pragma mark - Performance Tracing
+/**
+ * Create and start a new span. Returns the spanId of the new span if both operations are successful, and null if either fails.
+ */
+- (nullable NSString *) startSpanWithName:(nonnull NSString *)name parentSpanId:(nullable NSString *)parentSpanId;
+
+/**
+* Stop an active span. Returns true if the span is stopped after the method returns and false otherwise.
+*/
+- (BOOL) stopSpanWithId:(nonnull NSString *)spanId errorCode:(EmbraceOTelSpanErrorCode)errorCode;
+
+/**
+* Create and add a Span Event with the given parameters to an active span with the given [spanId]. Returns false if the event
+* cannot be added.
+*/
+- (BOOL) addSpanEventToSpanId:(nonnull NSString *)spanId name:(nonnull NSString *)name time:(NSUInteger)time attributes:(nullable NSDictionary *)attributes;
+
+/**
+* Add an attribute to an active span with the given [spanId]. Returns true if the attributed is added and false otherwise.
+*/
+- (BOOL) addSpanAttributesToSpanId:(nonnull NSString *)spanId key:(nonnull NSString *)key value:(nonnull NSString *)value;
+
+/**
+* Record a span around the execution of the given block.
+*
+* The dictionary representing an event has the following schema:
+ * ```
+ * {
+ *  "name": [String],
+ *  "timestampNanos": [Long] (optional),
+ *  "attributes": [Map<String, String>] (optional)
+ * }
+ * ```
+* Any object passed in the list that violates that schema will be dropped and no event will be created for it. If an entry in the
+* attributes dictionary isn't <NSString, NSString>, it'll also be dropped. Omitting or passing in nulls for the optional fields are OK.
+*/
+- (nullable id) recordSpanWithName:(nonnull NSString *)name
+             parentSpanId:(nullable NSString *)parentSpanId
+               attributes:(nullable NSDictionary *)attributes
+                   events:(nullable NSArray *)events
+                operation:(id _Nullable (^_Nonnull)(void))operation;
+
+/**
+ * Record a completed span with the given parameters. Returns true if the span is record and false otherwise.
+ * The dictionary representing an event has the following schema:
+ * ```
+ * {
+ *  "name": [String],
+ *  "timestampNanos": [Long] (optional),
+ *  "attributes": [Map<String, String>] (optional)
+ * }
+ * ```
+*/
+- (nullable NSString *) recordCompletedSpanWithName:(nonnull NSString *)name
+                      startTimeNanos:(NSInteger)startTimeNanos
+                        endTimeNanos:(NSInteger)endTimeNanos
+                           errorCode:(EmbraceOTelSpanErrorCode)errorCode
+                        parentSpanId:(nonnull NSString *)parentSpanId
+                          attributes:(nullable NSDictionary *)attributes
+                              events:(nullable NSArray *)events;
 
 @end

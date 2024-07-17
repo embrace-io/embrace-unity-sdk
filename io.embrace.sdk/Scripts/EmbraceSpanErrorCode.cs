@@ -3,6 +3,10 @@ namespace EmbraceSDK
     public enum EmbraceSpanErrorCode
     {
         /// <summary>
+        /// No error occurred
+        /// </summary>
+        NONE,
+        /// <summary>
         /// An application failure caused the Span to terminate
         /// </summary>
         FAILURE,

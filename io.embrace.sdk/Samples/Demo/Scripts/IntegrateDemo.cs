@@ -100,19 +100,19 @@ namespace EmbraceSDK.Demo
         
         private void StartParentSpan()
         {
-            var startTime = DateTime.Now.Millisecond;
+            var startTime = GetCurrentMillisecondsPosix();
             _parentSpanId = Embrace.Instance.StartSpan(DemoConstants.PARENT_SPAN, startTime);
         }
         
         private void StopParentSpan()
         {
-            var endTime = DateTime.Now.Millisecond;
+            var endTime = GetCurrentMillisecondsPosix();
             Embrace.Instance.StopSpan(_parentSpanId, endTime);
         }
         
         private void RecordFailureChildSpan()
         {
-            var startTime = DateTime.Now.Millisecond;
+            var startTime = GetCurrentMillisecondsPosix();
             var id = Embrace.Instance.StartSpan(DemoConstants.CHILD_FAILURE_SPAN, startTime, _parentSpanId);
             Embrace.Instance.AddSpanAttribute(
                 id,
@@ -129,7 +129,7 @@ namespace EmbraceSDK.Demo
         
         private void RecordAbandonChildSpan()
         {
-            var startTime = DateTime.Now.Millisecond;
+            var startTime = GetCurrentMillisecondsPosix();
             var id = Embrace.Instance.StartSpan(DemoConstants.CHILD_USER_ABANDON_SPAN, startTime, _parentSpanId);
             Embrace.Instance.AddSpanAttribute(
                 id,
@@ -146,7 +146,7 @@ namespace EmbraceSDK.Demo
         
         private void RecordUnknownChildSpan()
         {
-            var startTime = DateTime.Now.Millisecond;
+            var startTime = GetCurrentMillisecondsPosix();
             var id = Embrace.Instance.StartSpan(DemoConstants.CHILD_UNKNOWN_SPAN, startTime, _parentSpanId);
             Embrace.Instance.AddSpanAttribute(
                 id,
@@ -163,17 +163,17 @@ namespace EmbraceSDK.Demo
         
         private void RecordCompletedSpan()
         {
-            var startTime = DateTime.Now.Millisecond;
+            var startTime = GetCurrentMillisecondsPosix();
             var attributes = GetAttributesBasedOnSpan(DemoConstants.COMPLETED_SPAN);
 
             var spanEvent = new EmbraceSpanEvent(
                 $"{DemoConstants.COMPLETED_SPAN}-event",
-                DateTime.Now.Millisecond,
-                DateTime.Now.Millisecond,
+                GetCurrentMillisecondsPosix(),
+                GetCurrentMillisecondsPosix(),
                 attributes
                 );
             
-            var endTime = DateTime.Now.Millisecond;
+            var endTime = GetCurrentMillisecondsPosix();
             
             Embrace.Instance.RecordCompletedSpan(
                 DemoConstants.COMPLETED_SPAN, 
@@ -182,6 +182,13 @@ namespace EmbraceSDK.Demo
                 0, 
                 attributes, 
                 spanEvent);
+        }
+
+        private long GetCurrentMillisecondsPosix()
+        {
+            var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var currentTime = DateTime.UtcNow;
+            return (long) (currentTime - unixEpoch).TotalMilliseconds;
         }
         
         private Dictionary<string, string> GetAttributesBasedOnSpan(string spanName)
@@ -199,7 +206,7 @@ namespace EmbraceSDK.Demo
             using (UnityWebRequest webRequest = UnityWebRequest.Get("https://httpbin.org/image/jpeg"))
             {
                 yield return webRequest.SendWebRequest();
-                Embrace.Instance.StopSpan(spanId, DateTime.Now.Millisecond, spanErrorCode);
+                Embrace.Instance.StopSpan(spanId, GetCurrentMillisecondsPosix(), spanErrorCode);
             }
         }
     }
