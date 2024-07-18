@@ -5,6 +5,13 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 1.26.0
+*July 18, 2024*
+* Addition of Performance Tracing Support
+* Update Embrace Android SDK dependency to 6.8.3
+* Update of min Android SDK dependency to 24
+* Patch reducing crash rate on SDK startup
+
 ## 1.25.3
 *June 24, 2024*
 * Patch to PBXProject generation on 2021 and later around linker phase construction.
