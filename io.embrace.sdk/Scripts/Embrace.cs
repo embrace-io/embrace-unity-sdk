@@ -769,6 +769,61 @@ namespace EmbraceSDK
             EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
             #endif
         }
+        
+        /// <summary>
+        /// Create and start a new span.
+        /// </summary>
+        /// <returns>Returns the spanId of the new span if both operations are successful, and null if either fails.</returns>
+        public string StartSpan(string spanName, long startTimeMs, string parentSpanId = null)
+        {
+            return provider.StartSpan(spanName, parentSpanId, startTimeMs);
+        }
+        
+        /// <summary>
+        /// Stop an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns true if the span is stopped after the method returns and false otherwise</returns>
+        public bool StopSpan(string spanId, long endTimeMs, EmbraceSpanErrorCode? errorCode = null)
+        {
+            if (spanId == null) 
+            {
+                EmbraceLogger.LogError("in order to stop a span, " + EmbraceLogger.GetNullErrorMessage("spanId"));
+                return false;
+            }
+
+            return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
+        }
+        
+        /// <summary>
+        /// Create and add a Span Event with the given parameters to an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns false if the event cannot be added.</returns>
+        public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes = null)
+        {
+            return provider.AddSpanEvent(spanId, spanName, timestampMs, attributes);
+        }
+        
+        /// <summary>
+        /// Add an attribute to an active span with the given [spanId].
+        /// </summary>
+        /// <returns>Returns true if the attributed is added and false otherwise</returns>
+        public bool AddSpanAttribute(string spanId, string key , string value)
+        {
+            return provider.AddSpanAttribute(spanId, key, value);
+        }
+        
+        /// <summary>
+        /// 
+        /// Record a completed span with the given parameters.
+        /// 
+        /// </summary>
+        /// <returns>Returns true if the span is record and false otherwise</returns>
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, 
+            EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, EmbraceSpanEvent embraceSpanEvent = null, 
+            string parentSpanId = null)
+        {
+            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
+        }
 
         /// <summary>
         /// Converts an HTTPMethod to an int value.
@@ -784,6 +839,24 @@ namespace EmbraceSDK
                 case HTTPMethod.PUT: return 3;
                 case HTTPMethod.DELETE: return 4;
                 case HTTPMethod.PATCH: return 5;
+                default: return 0;
+            }
+        }
+        
+        /// <summary>
+        /// Converts a SpanErrorCode to an int value.
+        /// </summary>
+        /// <param name="embraceSpanErrorCode"></param>
+        /// <returns></returns>
+        public static int __BridgedSpanErrorCode(EmbraceSpanErrorCode? embraceSpanErrorCode)
+        {
+            if (embraceSpanErrorCode == null) return 0;
+            
+            switch (embraceSpanErrorCode)
+            {
+                case EmbraceSpanErrorCode.FAILURE: return 1;
+                case EmbraceSpanErrorCode.USER_ABANDON: return 2;
+                case EmbraceSpanErrorCode.UNKNOWN: return 3;
                 default: return 0;
             }
         }

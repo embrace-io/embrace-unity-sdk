@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/EMBFlutterEmbrace.h</key>
 		<data>
-		aFXc7rEl2R42EDuW5+2Jcj5JnOo=
+		E1zZqLAyCTqGMFvr2G1jtSMb3kM=
 		</data>
 		<key>Headers/EMBNetworkRequest.h</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Headers/EmbraceExtension.h</key>
 		<data>
-		DGuFycLa9T+DQkUX37LkZWRuXm0=
+		SOw3Ag2sM5bPNxGLUC6moLt0TsE=
 		</data>
 		<key>Headers/EmbraceOTelSpan.h</key>
 		<data>
-		Tx83vZkwim06kVpxbt+nDfg+i1M=
+		EOWsJkF6UoZCOr6252bhaFhK2vI=
 		</data>
 		<key>Headers/EmbraceOTelSpanErrorCode.h</key>
 		<data>
@@ -62,15 +62,15 @@
 		</data>
 		<key>Headers/RNEmbrace.h</key>
 		<data>
-		4sXykv1IejP8dWQA5GR1Yv0cjAc=
+		uMxn7xEL9o1F6CT8SS1NDvBmIMQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		20Z9F+AuQekaAAX+WmOrucjCgtw=
+		b11X7Cd02Zj9tXe2s5S8TBV1hqM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		6KoVZHreLF2RvTXXheT5w3aa1/M=
+		LGXavVWZtGLlx4qxh+N6lCrsuRM=
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>PrivateHeaders/Embrace+ConfigModule.h</key>
 		<data>
-		WlWK7wgC1iZ9/fP52XNuD1nrPmw=
+		AYfimkrnQtQNU/q1c5p2lowrkuw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -109,11 +109,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			aFXc7rEl2R42EDuW5+2Jcj5JnOo=
+			E1zZqLAyCTqGMFvr2G1jtSMb3kM=
 			</data>
 			<key>hash2</key>
 			<data>
-			p6RqjjQUN/jXRYX6V8+49JdQNop3uIHPO9MwniB7KDI=
+			oSR4u+RS6rS8Ni/G9PjUrbLZVsqttR5Mwj+DyvnXwqA=
 			</data>
 		</dict>
 		<key>Headers/EMBNetworkRequest.h</key>
@@ -197,22 +197,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DGuFycLa9T+DQkUX37LkZWRuXm0=
+			SOw3Ag2sM5bPNxGLUC6moLt0TsE=
 			</data>
 			<key>hash2</key>
 			<data>
-			aLpzJFBwqKDWmg460CScmCKWgit8/k1p5CjjaBnnT28=
+			90A55c8/Mj3OcaXWdMpp4Z8GcEgCmX+379fAhdjArco=
 			</data>
 		</dict>
 		<key>Headers/EmbraceOTelSpan.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Tx83vZkwim06kVpxbt+nDfg+i1M=
+			EOWsJkF6UoZCOr6252bhaFhK2vI=
 			</data>
 			<key>hash2</key>
 			<data>
-			8yGExyfdx54QBwohRpKFBu/WJlL+JuZsyusAh0Nmeuk=
+			MXbqtBvQyhpo7BlCk/3vUKZupdKb/xy8ZiPrySoUr5s=
 			</data>
 		</dict>
 		<key>Headers/EmbraceOTelSpanErrorCode.h</key>
@@ -241,22 +241,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4sXykv1IejP8dWQA5GR1Yv0cjAc=
+			uMxn7xEL9o1F6CT8SS1NDvBmIMQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			dQRWAkF8gSLouDTC773NHl4R8UHpS5pbr6En0x2X+Pk=
+			xq/duI+SNtzJcTFcOv/NIEELX4yxbj779SrW/KhDrUU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			6KoVZHreLF2RvTXXheT5w3aa1/M=
+			LGXavVWZtGLlx4qxh+N6lCrsuRM=
 			</data>
 			<key>hash2</key>
 			<data>
-			f0xJOYf2ktuc3jrV6KFBMnpTsMF2PKrPNURDRsncxdw=
+			wPUfL/oDR/CTMMNWVsWN6FvZkwEp2P4LrFZHDCnv8rs=
 			</data>
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
@@ -274,11 +274,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WlWK7wgC1iZ9/fP52XNuD1nrPmw=
+			AYfimkrnQtQNU/q1c5p2lowrkuw=
 			</data>
 			<key>hash2</key>
 			<data>
-			6iu+cSHI1KG54oZqkvdwsW9KIdbFojDyZsfxKiOftoI=
+			GFHnYDrz9/Joh9XvZI0uf24dT8x2HhXYOF4u0bM4aMU=
 			</data>
 		</dict>
 	</dict>

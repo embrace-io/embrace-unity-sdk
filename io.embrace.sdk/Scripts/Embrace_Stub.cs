@@ -240,6 +240,7 @@ namespace EmbraceSDK.Editor
         {
             EmbraceLogger.Log($"Push Notification: title: {iosArgs.title} subtitle: {iosArgs.subtitle} body: {iosArgs.body} category: {iosArgs.category} badge: {iosArgs.badge}");
         }
+        
         #elif UNITY_ANDROID
 
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
@@ -262,7 +263,7 @@ namespace EmbraceSDK.Editor
         {
             EmbraceLogger.Log($"Push Notification: title: {androidArgs.title} body: {androidArgs.body} topic: {androidArgs.topic} id: {androidArgs.id} notificationPriority: {androidArgs.notificationPriority} messageDeliveredPriority: {androidArgs.messageDeliveredPriority} isNotification: {androidArgs.isNotification} hasData: {androidArgs.hasData}");
         }
-        #endif
+#endif
         
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
@@ -272,6 +273,38 @@ namespace EmbraceSDK.Editor
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
             EmbraceLogger.Log($"Handled Exception: {exceptionName} : {exceptionMessage} : stack : {stack}");
+        }
+        
+        public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
+        {
+            EmbraceLogger.Log($"Start Span: span name {spanName} parent span ID: {parentSpanId}" +
+                              $" start time: {startTimeMs}");
+            return "spanId";
+        }
+
+        public bool StopSpan(string spanId, int errorCode, long endTimeMs)
+        {
+            EmbraceLogger.Log($"Stop Span: span ID {spanId} error code: {errorCode} end time: {endTimeMs}");
+            return true;
+        }
+
+        public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> spanEvent)
+        {
+            EmbraceLogger.Log($"Add Span Event: parent span ID: {spanId} span name: {spanName} " +
+                              $"timestamp: {timestampMs} spanEvent: {spanEvent}");
+            return true;
+        }
+
+        public bool AddSpanAttribute(string spanId, string key, string value)
+        {
+            EmbraceLogger.Log($"Add Span Attribute: span ID: {spanId} key: {key} value: {value}");
+            return true;
+        }
+        
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
+            Dictionary<string, string> attributes, EmbraceSpanEvent[] embraceSpanEvent)
+        {
+            return true;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using EmbraceSDK.Internal;
 using Newtonsoft.Json;
+using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace EmbraceSDK.Internal
@@ -114,6 +115,21 @@ namespace EmbraceSDK.Internal
         
         [DllImport("__Internal")]
         private static extern string embrace_sdk_getCurrentSessionId();
+        
+        [DllImport("__Internal")]
+        private static extern string embrace_sdk_start_span_with_name(string spanName, string parentSpanId);
+        
+        [DllImport("__Internal")]
+        private static extern bool embrace_sdk_stop_span_with_id(string spanId, int errorCode);
+        
+        [DllImport("__Internal")]
+        private static extern bool embrace_sdk_add_span_event_to_span_id(string spanId, string spanName, long timestampMs, string attributes);
+        
+        [DllImport("__Internal")]
+        private static extern bool embrace_sdk_add_span_attribute_to_span_id(string spanId, string key, string value);
+        
+        [DllImport("__Internal")]
+        private static extern string embrace_sdk_record_completed_span(string name, long startTimeNanos, long endTimeNanos, int errorCode, string parentSpanId, string attributes, string events);
 
         void IEmbraceProvider.InitializeSDK()
         {
@@ -304,6 +320,11 @@ namespace EmbraceSDK.Internal
         {
             return JsonConvert.SerializeObject(dictionary);
         }
+        
+        private string DictionaryToJson(List<Dictionary<string, string>> dictionary)
+        {
+            return JsonConvert.SerializeObject(dictionary);
+        }
 
         private Dictionary<string, string> JsonToDictionary(string json)
         {
@@ -349,6 +370,34 @@ namespace EmbraceSDK.Internal
         string IEmbraceProvider.GetCurrentSessionId()
         {
             return embrace_sdk_getCurrentSessionId();
+        }
+        
+        string IEmbraceProvider.StartSpan(string spanName, string parentSpanId, long startTimeMs)
+        {
+            Debug.Log($"Starting span with name: {spanName} and parentSpanId: {parentSpanId}");
+            return embrace_sdk_start_span_with_name(spanName, parentSpanId);
+        }
+
+        bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
+        {
+            return embrace_sdk_stop_span_with_id(spanId, errorCode);
+        }
+
+        bool IEmbraceProvider.AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes)
+        {
+            return embrace_sdk_add_span_event_to_span_id(spanId, spanName, timestampMs, JsonConvert.SerializeObject(attributes));
+        }
+
+        bool IEmbraceProvider.AddSpanAttribute(string spanId, string key, string value)
+        {
+            return embrace_sdk_add_span_attribute_to_span_id(spanId, key, value); 
+        }
+        
+        bool IEmbraceProvider.RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
+            Dictionary<string, string> attributes, EmbraceSpanEvent[] events)
+        {
+            var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs * 1000000, endTimeMs * 1000000, errorCode ?? 0, parentSpanId, DictionaryToJson(attributes), JsonConvert.SerializeObject(events));
+            return !string.IsNullOrEmpty(spanId);
         }
     }
 #endif

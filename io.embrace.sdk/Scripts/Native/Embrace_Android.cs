@@ -26,12 +26,16 @@ namespace EmbraceSDK.Internal
 
         private AndroidJavaObject embraceSharedInstance;
         private AndroidJavaObject embraceUnityInternalSharedInstance;
+        private AndroidJavaObject embraceInternalSharedInstance;
         private AndroidJavaObject applicationInstance;
         private AndroidJavaObject unityAppFramework;
         private AndroidJavaObject logInfo;
         private AndroidJavaObject logWarning;
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
+        private AndroidJavaObject spanFailureCode;
+        private AndroidJavaObject spanUserAbandonCode;
+        private AndroidJavaObject spanUnknownCode;
         
         private static readonly object mutex = new object();
         private AndroidJavaObject EmbraceSharedInstance
@@ -73,7 +77,21 @@ namespace EmbraceSDK.Internal
                 return embraceUnityInternalSharedInstance;
             }
         }
+        
+        private AndroidJavaObject _embraceInternalSharedInstance
+        {
+            get
+            {
+                if (embraceInternalSharedInstance == null)
+                {
+                    embraceInternalSharedInstance = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetInternalInterfaceMethod);
+                }
+                return embraceInternalSharedInstance;
+            }
+        }
 
+        private const string _GetUnityInternalInterfaceMethod = "getUnityInternalInterface";
+        private const string _GetInternalInterfaceMethod = "getInternalInterface";
         private const string _StartMethod = "start";
         private const string _GetLastRunEndStateMethod = "getLastRunEndState";
         private const string _LastRunEndStateGetValueMethod = "getValue";
@@ -109,7 +127,11 @@ namespace EmbraceSDK.Internal
         private const string _initUnityAndroidConnection = "initUnityConnection";
         private const string _installUnityThreadSampler = "installUnityThreadSampler";
         private const string _GetCurrentSessionId = "getCurrentSessionId";
-        private const string _GetUnityInternalInterfaceMethod = "getUnityInternalInterface";
+        private const string _StartSpanMethod = "startSpan";
+        private const string _StopSpanMethod = "stopSpan";
+        private const string _AddSpanEventMethod = "addSpanEvent";
+        private const string _AddSpanAttributeMethod = "addSpanAttribute";
+        private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -123,6 +145,7 @@ namespace EmbraceSDK.Internal
         // Java Native Object Types
         AndroidJavaObject integerClass;
         AndroidJavaObject booleanClass;
+        AndroidJavaObject longClass;
 
         // we need some jni pointers to read java maps, it is best to grab them once and cache them
         // these are just pointers to the methods, not actual objects.
@@ -150,6 +173,7 @@ namespace EmbraceSDK.Internal
         {
             integerClass = new AndroidJavaClass("java.lang.Integer");
             booleanClass = new AndroidJavaClass("java.lang.Boolean");
+            longClass = new AndroidJavaClass("java.lang.Long");
         }
 
         // A touch sloppy here I think
@@ -188,6 +212,20 @@ namespace EmbraceSDK.Internal
             return result;
         }
         
+        private bool InternalInterfaceReadyForCalls()
+        {
+            bool result = true;
+            
+            if (_embraceInternalSharedInstance == null)
+            {
+                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the embrace internal interface is null. " +
+                                       "Check if the SDK is enabled or ensure the prefab is added to the scene.");
+                result = false;
+            }
+            
+            return result;
+        }
+        
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
@@ -206,6 +244,10 @@ namespace EmbraceSDK.Internal
             logInfo = logSeverity.GetStatic<AndroidJavaObject>("INFO");
             logWarning = logSeverity.GetStatic<AndroidJavaObject>("WARNING");
             logError = logSeverity.GetStatic<AndroidJavaObject>("ERROR");
+            AndroidJavaClass spanErrorCode = new AndroidJavaClass("io.embrace.android.embracesdk.spans.ErrorCode");
+            spanFailureCode = spanErrorCode.GetStatic<AndroidJavaObject>("FAILURE");
+            spanUserAbandonCode = spanErrorCode.GetStatic<AndroidJavaObject>("USER_ABANDON");
+            spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
         }
 
         void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
@@ -514,6 +556,77 @@ namespace EmbraceSDK.Internal
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
         }
         
+        public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
+        {
+            if (!ReadyForCalls()) { return null; }
+            if (!InternalInterfaceReadyForCalls()) { return null; }
+            
+            var startTime = longClass.CallStatic<AndroidJavaObject>("valueOf", startTimeMs);
+            return _embraceInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
+        }
+
+        public bool StopSpan(string spanId, int errorCode, long endTimeMs)
+        {
+            if (!ReadyForCalls()) { return false; }
+            if (!InternalInterfaceReadyForCalls()) { return false; }
+            
+            var endTime = longClass.CallStatic<AndroidJavaObject>("valueOf", endTimeMs);
+            return _embraceInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
+        }
+
+        public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes)
+        {
+            if (!ReadyForCalls()) { return false; }
+            if (!InternalInterfaceReadyForCalls()) { return false; }
+            
+            var timestamp = longClass.CallStatic<AndroidJavaObject>("valueOf", timestampMs);
+            return _embraceInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
+
+        public bool AddSpanAttribute(string spanId, string key, string value)
+        {
+            if (!ReadyForCalls()) { return false; }
+            if (!InternalInterfaceReadyForCalls()) { return false; }
+            return _embraceInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
+        
+        /// <summary>
+        /// 
+        /// The map representing a SpanEvent has the following schema:
+        ///     {
+        ///         "name": [String],
+        ///         "timestampMs": [Long] (optional),
+        ///         "timestampNanos": [Long] (deprecated and optional),
+        ///         "attributes": [Dictionary<string, string>] (optional)
+        ///     }
+        /// 
+        /// Any object passed in the list that violates that schema will be dropped and no event will be created for it. If an entry in the
+        /// attributes map isn't <string, string>, it'll also be dropped. Omitting or passing in nulls for the optional fields are OK.
+        /// </summary>>
+        public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
+            Dictionary<string, string> attributes, EmbraceSpanEvent[] embraceSpanEvents)
+        {
+            if (!ReadyForCalls()) { return false; }
+            if (!InternalInterfaceReadyForCalls()) { return false; }
+            
+            var spanEvents = new List<Dictionary<string, object>>();
+            foreach (var embraceSpanEvent in embraceSpanEvents)
+            {
+                spanEvents.Add(embraceSpanEvent.SpanEventToDictionary());
+            }
+
+            var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
+            
+            var result = _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
+                endTimeMs, errorCode != null ? GetSpanErrorCode(errorCode.Value) : null, 
+                parentSpanId, DictionaryToJavaMap(attributes), dict);
+            
+            foreach (var disposable in disposables)
+            {
+                disposable.Dispose();
+            }
+
+            return result;
+        }
+        
         #if EMBRACE_ENABLE_BUGSHAKE_FORM
         void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
         {
@@ -530,7 +643,11 @@ namespace EmbraceSDK.Internal
         }
         #endif
 
-        private AndroidJavaObject DictionaryToJavaMap(Dictionary<string, string> dictionary)
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java map pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and string value></param>
+        private static AndroidJavaObject DictionaryToJavaMap(Dictionary<string, string> dictionary)
         {
             AndroidJavaObject map = new AndroidJavaObject("java.util.HashMap");
             IntPtr putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
@@ -544,7 +661,80 @@ namespace EmbraceSDK.Internal
             }
             return map;
         }
+        
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java map pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and object value></param>
+        private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary, out List<IDisposable> disposables)
+        {
+            disposables = new List<IDisposable>();
+            if (dictionary == null)
+            {
+                return null;
+            }
 
+            var map = new AndroidJavaObject("java.util.HashMap");
+            var putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+
+            foreach (var entry in dictionary)
+            {
+                if (entry.Key == null) continue;
+
+                var key = new AndroidJavaObject("java.lang.String", entry.Key);
+                var value = CreateJavaObjectFromNetObject(entry.Value);
+
+                if (value == null) continue;
+                            
+                AndroidJNI.CallObjectMethod(
+                    map.GetRawObject(),
+                    putMethod,
+                    AndroidJNIHelper.CreateJNIArgArray(new object[] { key, value })
+                );
+
+                value.Dispose();
+            }
+            
+            disposables.Add(map);
+
+            return map;
+        }
+        
+        /// <summary>
+        /// This method is used to convert a .NET dictionary to a Java list of maps pointer.
+        /// </summary>
+        /// <param name="dictionary" of string key and object value></param>
+        private static AndroidJavaObject DictionariesToJavaListOfMaps(List<Dictionary<string, object>> dictionaries, out List<IDisposable> disposables)
+        {
+            disposables = new List<IDisposable>();
+            if (dictionaries == null)
+            {
+                return null;
+            }
+
+            var arrayList = new AndroidJavaObject("java.util.ArrayList");
+            var listAddMethod = AndroidJNIHelper.GetMethodID(arrayList.GetRawClass(), "add", "(Ljava/lang/Object;)Z");
+
+            foreach (var dictionary in dictionaries)
+            {
+                var map = DictionaryWithObjectsToJavaMap(dictionary, out var inner_disposables);
+                if (map != null)
+                {
+                    AndroidJNI.CallBooleanMethod(
+                        arrayList.GetRawObject(), 
+                        listAddMethod,
+                        AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
+                }
+                disposables.AddRange(inner_disposables);
+            }
+            
+            disposables.Add(arrayList);
+            return arrayList;
+        }
+
+        /// <summary>
+        /// This method is used to convert a Java pointer to a .NET dictionary.
+        /// </summary>
         private Dictionary<string, string> DictionaryFromJavaMap(IntPtr source)
         {
             var dict = new Dictionary<string, string>();
@@ -574,6 +764,65 @@ namespace EmbraceSDK.Internal
             AndroidJNI.DeleteLocalRef(iterator);
 
             return dict;
+        }
+
+        /// <summary>
+        /// This method is used to convert a .NET object to a Java object.
+        /// </summary>
+        /// <returns>The proper Android Java Object to use as pointer</returns>
+        private static AndroidJavaObject CreateJavaObjectFromNetObject(object netObject)
+        {
+            if (netObject == null)
+            {
+                return null;
+            }
+    
+            if (netObject is string s)
+            {
+                return new AndroidJavaObject("java.lang.String", s);
+            }
+            if (netObject is int i)
+            {
+                return new AndroidJavaObject("java.lang.Integer", i);
+            }
+            if (netObject is long l)
+            {
+                return new AndroidJavaObject("java.lang.Long", l);
+            }
+            if (netObject is float f)
+            {
+                return new AndroidJavaObject("java.lang.Float", f);
+            }
+            if (netObject is double d)
+            {
+                return new AndroidJavaObject("java.lang.Double", d);
+            }
+            if (netObject is bool b)
+            {
+                return new AndroidJavaObject("java.lang.Boolean", b);
+            }
+            if (netObject is Dictionary<string, string> dict)
+            {
+                return DictionaryToJavaMap(dict);
+            }
+            // Add more types as needed
+            EmbraceLogger.LogError($"Unsupported type: {netObject.GetType()}");
+
+            return null;
+        }
+        
+        private AndroidJavaObject GetSpanErrorCode(int errorCode)
+        {
+            switch (errorCode)
+            {
+                case 1:
+                    return spanFailureCode;
+                case 2:
+                    return spanUserAbandonCode;
+                case 3:
+                    return spanUnknownCode;
+                default: return null;
+            }
         }
     }
 #endif

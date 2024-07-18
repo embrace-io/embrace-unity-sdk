@@ -47,6 +47,11 @@ namespace EmbraceSDK.Demo
         public const string BUTTON_NAME_PROPERTIES_VIEW = "View Button";
         public const string BUTTON_NAME_PROPERTIES_ADD = "Add Button";
         public const string GAMEOBJECT_NAME_PROPERTIES_VIEW = "Properties View";
+        public const string PARENT_SPAN = "ParentSpan";
+        public const string CHILD_FAILURE_SPAN = "ChildFailureSpan";
+        public const string CHILD_USER_ABANDON_SPAN = "ChildUserAbandonSpan";
+        public const string CHILD_UNKNOWN_SPAN = "ChildUnknownSpan";
+        public const string COMPLETED_SPAN = "CompletedSpan";
 
     }
 }

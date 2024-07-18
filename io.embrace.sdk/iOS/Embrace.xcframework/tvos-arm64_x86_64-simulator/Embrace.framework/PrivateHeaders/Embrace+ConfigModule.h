@@ -21,6 +21,7 @@
 @property dispatch_queue_t configQueue;
 @property EMBConfigModule* configModule;
 @property EMBConfigManager* configHelper;       //TODO: This will need to be refactored individually
+@property dispatch_queue_t uploadModuleQueue;
 
 - (EMBConfigManager*) configHelper;
 - (void) setConfigHelper:(EMBConfigManager*)configHelper; 
