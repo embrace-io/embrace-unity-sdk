@@ -27,7 +27,11 @@ The Unity documentation can be found [here](https://embrace.io/docs/unity/).
 - Join our [Community Slack](https://embraceio-community.slack.com/)
 - Contact us [support@embrace.io](mailto:support@embrace.io)
 
-## License
+# License
+
+[![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-orange)](./LICENSE.txt)
+
+Embrace Unity SDK is published under the Apache-2.0 license.
 
 See the [LICENSE](https://github.com/embrace-io/embrace-unity-sdk/blob/main/LICENSE) 
-for details.
+for full details.
