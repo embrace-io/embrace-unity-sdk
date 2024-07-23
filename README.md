@@ -33,5 +33,5 @@ The Unity documentation can be found [here](https://embrace.io/docs/unity/).
 
 Embrace Unity SDK is published under the Apache-2.0 license.
 
-See the [LICENSE](https://github.com/embrace-io/embrace-unity-sdk/blob/main/LICENSE) 
+See the [LICENSE](https://github.com/embrace-io/embrace-unity-sdk/blob/main/LICENSE.txt) 
 for full details.
