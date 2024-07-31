@@ -1,0 +1,770 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCrash",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCrash"
+      },
+      {
+        "kind": "Import",
+        "name": "KSCrashRecording",
+        "printedName": "KSCrashRecording",
+        "declKind": "Import",
+        "moduleName": "EmbraceCrash"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EmbraceCrashReporter",
+        "printedName": "EmbraceCrashReporter",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "basePath",
+            "printedName": "basePath",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12EmbraceCrash0aB8ReporterC8basePathSSSgvp",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC8basePathSSSgvp",
+            "moduleName": "EmbraceCrash",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12EmbraceCrash0aB8ReporterC8basePathSSSgvg",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC8basePathSSSgvg",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "currentSessionId",
+            "printedName": "currentSessionId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(py)currentSessionId",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC16currentSessionIdSSSgvp",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "currentSessionId",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "ObjC",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)currentSessionId",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC16currentSessionIdSSSgvg",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "objc_name": "currentSessionId",
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)setCurrentSessionId:",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC16currentSessionIdSSSgvs",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "objc_name": "setCurrentSessionId:",
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12EmbraceCrash0aB8ReporterC16currentSessionIdSSSgvM",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC16currentSessionIdSSSgvM",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "onNewReport",
+            "printedName": "onNewReport",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((EmbraceCommonInternal.CrashReport) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(EmbraceCommonInternal.CrashReport) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrashReport",
+                        "printedName": "EmbraceCommonInternal.CrashReport",
+                        "usr": "c:@M@EmbraceCommonInternal@objc(cs)CrashReport"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(py)onNewReport",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC11onNewReporty0A14CommonInternal0bF0CcSgvp",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "onNewReport",
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "ObjC",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((EmbraceCommonInternal.CrashReport) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(EmbraceCommonInternal.CrashReport) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CrashReport",
+                            "printedName": "EmbraceCommonInternal.CrashReport",
+                            "usr": "c:@M@EmbraceCommonInternal@objc(cs)CrashReport"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)onNewReport",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC11onNewReporty0A14CommonInternal0bF0CcSgvg",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "objc_name": "onNewReport",
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "((EmbraceCommonInternal.CrashReport) -> ())?",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(EmbraceCommonInternal.CrashReport) -> ()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CrashReport",
+                            "printedName": "EmbraceCommonInternal.CrashReport",
+                            "usr": "c:@M@EmbraceCommonInternal@objc(cs)CrashReport"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)setOnNewReport:",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC11onNewReporty0A14CommonInternal0bF0CcSgvs",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "objc_name": "setOnNewReport:",
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12EmbraceCrash0aB8ReporterC11onNewReporty0A14CommonInternal0bF0CcSgvM",
+                "mangledName": "$s12EmbraceCrash0aB8ReporterC11onNewReporty0A14CommonInternal0bF0CcSgvM",
+                "moduleName": "EmbraceCrash",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "getLastRunState",
+            "printedName": "getLastRunState()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LastRunState",
+                "printedName": "EmbraceCommonInternal.LastRunState",
+                "usr": "c:@M@EmbraceCommonInternal@E@LastRunState"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)getLastRunState",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC15getLastRunState0A14CommonInternal0efG0OyF",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "getLastRunState",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "install",
+            "printedName": "install(context:logger:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrashReporterContext",
+                "printedName": "EmbraceCommonInternal.CrashReporterContext",
+                "usr": "c:@M@EmbraceCommonInternal@objc(cs)CrashReporterContext"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "InternalLogger",
+                "printedName": "EmbraceCommonInternal.InternalLogger",
+                "usr": "c:@M@EmbraceCommonInternal@objc(pl)InternalLogger"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)installWithContext:logger:",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC7install7context6loggery0A14CommonInternal0bC7ContextC_AG0H6Logger_ptF",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "installWithContext:logger:",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "fetchUnsentCrashReports",
+            "printedName": "fetchUnsentCrashReports(completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "([EmbraceCommonInternal.CrashReport]) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[EmbraceCommonInternal.CrashReport]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrashReport",
+                        "printedName": "EmbraceCommonInternal.CrashReport",
+                        "usr": "c:@M@EmbraceCommonInternal@objc(cs)CrashReport"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)fetchUnsentCrashReportsWithCompletion:",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC011fetchUnsentB7Reports10completionyySay0A14CommonInternal0B6ReportCGc_tF",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "fetchUnsentCrashReportsWithCompletion:",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deleteCrashReport",
+            "printedName": "deleteCrashReport(id:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)deleteCrashReportWithId:",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC06deleteB6Report2idySi_tF",
+            "moduleName": "EmbraceCrash",
+            "objc_name": "deleteCrashReportWithId:",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EmbraceCrashReporter",
+                "printedName": "EmbraceCrash.EmbraceCrashReporter",
+                "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter(im)init",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterCACycfc",
+            "moduleName": "EmbraceCrash",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@EmbraceCrash@objc(cs)EmbraceCrashReporter",
+        "mangledName": "$s12EmbraceCrash0aB8ReporterC",
+        "moduleName": "EmbraceCrash",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CrashReporter",
+            "printedName": "CrashReporter",
+            "usr": "c:@M@EmbraceCommonInternal@objc(pl)CrashReporter",
+            "mangledName": "$s21EmbraceCommonInternal13CrashReporterP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 293,
+      "length": 9,
+      "value": "\"kscrash\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 358,
+      "length": 9,
+      "value": "\"emb-sid\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 400,
+      "length": 9,
+      "value": "\"emb-sdk\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 552,
+      "length": 27,
+      "value": "\"com.embrace.crashreporter\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 1821,
+      "length": 41,
+      "value": "\"EmbraceCrashReporter already installed!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 2055,
+      "length": 24,
+      "value": "\"embrace_crash_reporter\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "Array",
+      "offset": 2523,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "Array",
+      "offset": 2687,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "Array",
+      "offset": 2809,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 3507,
+      "length": 49,
+      "value": "\"Error serializing raw crash report \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 3554,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 3648,
+      "length": 49,
+      "value": "\"Error serializing raw crash report \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 3695,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 3993,
+      "length": 6,
+      "value": "\"user\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 4259,
+      "length": 8,
+      "value": "\"report\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 4342,
+      "length": 11,
+      "value": "\"timestamp\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 5304,
+      "length": 35,
+      "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 5386,
+      "length": 13,
+      "value": "\"en_US_POSIX\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5502,
+      "length": 1,
+      "value": "0"
+    }
+  ]
+}

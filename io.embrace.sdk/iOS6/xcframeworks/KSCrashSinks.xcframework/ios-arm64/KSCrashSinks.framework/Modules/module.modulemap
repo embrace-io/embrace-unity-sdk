@@ -1,0 +1,6 @@
+framework module KSCrashSinks {
+  umbrella header "KSCrashSinks.h"
+  export *
+
+  module * { export * }
+}

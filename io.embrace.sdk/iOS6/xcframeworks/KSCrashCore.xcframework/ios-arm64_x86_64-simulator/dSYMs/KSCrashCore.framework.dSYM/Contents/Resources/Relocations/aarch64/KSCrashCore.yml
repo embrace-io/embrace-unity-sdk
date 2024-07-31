@@ -1,0 +1,11 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/KSCrash-dkhdwilyrstpwpfgbryrlkbzcjew/Build/Intermediates.noindex/ArchiveIntermediates/KSCrashCore/InstallationBuildProductsLocation/Library/Frameworks/KSCrashCore.framework/KSCrashCore'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x2E347, size: 0x8, addend: 0x0, symName: _KSCrashCoreVersionString, symObjAddr: 0x0, symBinAddr: 0x3E58, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x2E37C, size: 0x8, addend: 0x0, symName: _KSCrashCoreVersionNumber, symObjAddr: 0x30, symBinAddr: 0x3E88, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x2E3B9, size: 0x8, addend: 0x0, symName: '+[NSError(SimpleConstructor) errorWithDomain:code:description:]', symObjAddr: 0x0, symBinAddr: 0x3B70, symSize: 0xCC }
+  - { offsetInCU: 0x5B, offset: 0x2E3ED, size: 0x8, addend: 0x0, symName: '+[NSError(SimpleConstructor) errorWithDomain:code:description:]', symObjAddr: 0x0, symBinAddr: 0x3B70, symSize: 0xCC }
+  - { offsetInCU: 0xDF, offset: 0x2E471, size: 0x8, addend: 0x0, symName: '+[NSError(SimpleConstructor) fillError:withDomain:code:description:]', symObjAddr: 0xCC, symBinAddr: 0x3C3C, symSize: 0xE0 }
+  - { offsetInCU: 0x182, offset: 0x2E514, size: 0x8, addend: 0x0, symName: '+[NSError(SimpleConstructor) clearError:]', symObjAddr: 0x1AC, symBinAddr: 0x3D1C, symSize: 0x10 }
+...

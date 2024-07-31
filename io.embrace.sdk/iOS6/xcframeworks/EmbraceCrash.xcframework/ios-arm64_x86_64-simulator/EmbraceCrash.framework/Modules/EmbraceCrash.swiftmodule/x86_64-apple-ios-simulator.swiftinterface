@@ -1,0 +1,27 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios17.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceCrash
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import EmbraceCommonInternal
+import Foundation
+import KSCrashRecording
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_inheritsConvenienceInitializers @objc final public class EmbraceCrashReporter : ObjectiveC.NSObject, EmbraceCommonInternal.CrashReporter {
+  final public var basePath: Swift.String? {
+    get
+  }
+  @objc final public var currentSessionId: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @objc final public var onNewReport: ((EmbraceCommonInternal.CrashReport) -> Swift.Void)?
+  @objc final public func getLastRunState() -> EmbraceCommonInternal.LastRunState
+  @objc final public func install(context: EmbraceCommonInternal.CrashReporterContext, logger: any EmbraceCommonInternal.InternalLogger)
+  @objc final public func fetchUnsentCrashReports(completion: @escaping ([EmbraceCommonInternal.CrashReport]) -> Swift.Void)
+  @objc final public func deleteCrashReport(id: Swift.Int)
+  @objc override dynamic public init()
+  @objc deinit
+}

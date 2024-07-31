@@ -1,0 +1,52 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios17.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceCaptureService
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import EmbraceCommonInternal
+import EmbraceOTelInternal
+import Foundation
+import OpenTelemetryApi
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_inheritsConvenienceInitializers @objc open class CaptureService : ObjectiveC.NSObject {
+  weak public var otel: (any EmbraceOTelInternal.EmbraceOpenTelemetry)? {
+    get
+  }
+  weak public var logger: (any EmbraceCommonInternal.InternalLogger)? {
+    get
+  }
+  @EmbraceCommonInternal.ThreadSafe public var state: EmbraceCaptureService.CaptureServiceState {
+    get
+  }
+  public func install(otel: (any EmbraceOTelInternal.EmbraceOpenTelemetry)?, logger: (any EmbraceCommonInternal.InternalLogger)? = nil)
+  public func start()
+  public func stop()
+  @objc open func onInstall()
+  @objc open func onStart()
+  @objc open func onStop()
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension EmbraceCaptureService.CaptureService {
+  public func buildSpan(name: Swift.String, type: EmbraceCommonInternal.SpanType, attributes: [Swift.String : Swift.String]) -> (any OpenTelemetryApi.SpanBuilder)?
+  @discardableResult
+  public func add(event: EmbraceOTelInternal.RecordingSpanEvent) -> Swift.Bool
+  @discardableResult
+  public func add(events: [EmbraceOTelInternal.RecordingSpanEvent]) -> Swift.Bool
+}
+@objc public enum CaptureServiceState : Swift.Int {
+  case uninstalled
+  case installed
+  case active
+  case paused
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension EmbraceCaptureService.CaptureServiceState : Swift.Equatable {}
+extension EmbraceCaptureService.CaptureServiceState : Swift.Hashable {}
+extension EmbraceCaptureService.CaptureServiceState : Swift.RawRepresentable {}

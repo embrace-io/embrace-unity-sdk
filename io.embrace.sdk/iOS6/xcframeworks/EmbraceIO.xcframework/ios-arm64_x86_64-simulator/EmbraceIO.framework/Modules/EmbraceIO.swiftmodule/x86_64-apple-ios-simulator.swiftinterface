@@ -1,0 +1,47 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios17.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceIO
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import EmbraceCaptureService
+import EmbraceCommonInternal
+@_exported import EmbraceCore
+import EmbraceCrash
+import EmbraceOTelInternal
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc extension EmbraceCaptureService.CaptureService {
+  @objc public static func urlSession(options: EmbraceCore.URLSessionCaptureService.Options = URLSessionCaptureService.Options()) -> EmbraceCore.URLSessionCaptureService
+  @objc public static func tap() -> EmbraceCore.TapCaptureService
+  @objc public static func view() -> EmbraceCore.ViewCaptureService
+  @objc public static func webView(options: EmbraceCore.WebViewCaptureService.Options = WebViewCaptureService.Options()) -> EmbraceCore.WebViewCaptureService
+  @objc public static func lowMemoryWarning() -> EmbraceCore.LowMemoryWarningCaptureService
+  @objc public static func lowPowerMode() -> EmbraceCore.LowPowerModeCaptureService
+  @objc public static func pushNotification(options: EmbraceCore.PushNotificationCaptureService.Options = PushNotificationCaptureService.Options()) -> EmbraceCore.PushNotificationCaptureService
+}
+@_inheritsConvenienceInitializers @objc(EMBCaptureServiceBuilder) public class CaptureServiceBuilder : ObjectiveC.NSObject {
+  @objc public func build() -> [EmbraceCaptureService.CaptureService]
+  @objc public func add(_ service: EmbraceCaptureService.CaptureService)
+  @objc public func remove(ofType type: Swift.AnyClass)
+  @discardableResult
+  @objc public func addDefaults() -> Self
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension EmbraceCore.Embrace.Options {
+  @objc convenience dynamic public init(appId: Swift.String, appGroupId: Swift.String? = nil, platform: EmbraceCore.Platform = .default, endpoints: EmbraceCore.Embrace.Endpoints? = nil, logLevel: EmbraceCommonInternal.LogLevel = .default, export: EmbraceCore.OpenTelemetryExport? = nil)
+  @objc convenience dynamic public init(appId: Swift.String, appGroupId: Swift.String? = nil, platform: EmbraceCore.Platform = .default)
+}
+extension EmbraceCore.Embrace.Options : Swift.ExpressibleByStringLiteral {
+  convenience public init(stringLiteral value: Swift.String)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+}
+extension Swift.Array where Element == EmbraceCaptureService.CaptureService {
+  public static var automatic: [EmbraceCaptureService.CaptureService] {
+    get
+  }
+}

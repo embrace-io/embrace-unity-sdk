@@ -1,0 +1,6 @@
+framework module EmbraceObjCUtilsInternal {
+  umbrella header "EmbraceObjCUtilsInternal.h"
+  export *
+
+  module * { export * }
+}

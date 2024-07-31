@@ -1,0 +1,43 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/EmbraceIO-hldwvusdpgkeipdwybkhrjoxrpqj/Build/Intermediates.noindex/ArchiveIntermediates/EmbraceIO/InstallationBuildProductsLocation/Library/Frameworks/EmbraceIO.framework/EmbraceIO'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x2E69E, size: 0x8, addend: 0x0, symName: _EmbraceIOVersionString, symObjAddr: 0x0, symBinAddr: 0x3940, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x2E6D3, size: 0x8, addend: 0x0, symName: _EmbraceIOVersionNumber, symObjAddr: 0x30, symBinAddr: 0x3970, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x2E710, size: 0x8, addend: 0x0, symName: '_$s21EmbraceCaptureService0bC0C0A2IOE12lowPowerMode0A4Core03LowfgbC0CyFZ', symObjAddr: 0x134, symBinAddr: 0x1644, symSize: 0x64 }
+  - { offsetInCU: 0x3F, offset: 0x2E728, size: 0x8, addend: 0x0, symName: '_$s21EmbraceCaptureService0bC0C0A2IOE12lowPowerMode0A4Core03LowfgbC0CyFZ', symObjAddr: 0x134, symBinAddr: 0x1644, symSize: 0x64 }
+  - { offsetInCU: 0xA2, offset: 0x2E78B, size: 0x8, addend: 0x0, symName: '_$s21EmbraceCaptureService0bC0C0A2IOE12lowPowerMode0A4Core03LowfgbC0CyFZTo', symObjAddr: 0x198, symBinAddr: 0x16A8, symSize: 0x64 }
+  - { offsetInCU: 0x2B, offset: 0x2E902, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC5buildSay0acD00cD0CGyF', symObjAddr: 0x0, symBinAddr: 0x17B8, symSize: 0x48 }
+  - { offsetInCU: 0x6D, offset: 0x2E944, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC5buildSay0acD00cD0CGyF', symObjAddr: 0x0, symBinAddr: 0x17B8, symSize: 0x48 }
+  - { offsetInCU: 0xC8, offset: 0x2E99F, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC5buildSay0acD00cD0CGyFTo', symObjAddr: 0x48, symBinAddr: 0x1800, symSize: 0x70 }
+  - { offsetInCU: 0x143, offset: 0x2EA1A, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC3addyy0acD00cD0CF', symObjAddr: 0xB8, symBinAddr: 0x1870, symSize: 0xA0 }
+  - { offsetInCU: 0x1DC, offset: 0x2EAB3, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC3addyy0acD00cD0CFTo', symObjAddr: 0x158, symBinAddr: 0x1910, symSize: 0xD4 }
+  - { offsetInCU: 0x256, offset: 0x2EB2D, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC6remove6ofTypeyyXlXp_tF', symObjAddr: 0x22C, symBinAddr: 0x19E4, symSize: 0x448 }
+  - { offsetInCU: 0x7AF, offset: 0x2F086, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC6remove6ofTypeyyXlXp_tFTo', symObjAddr: 0x674, symBinAddr: 0x1E2C, symSize: 0x44 }
+  - { offsetInCU: 0x7CB, offset: 0x2F0A2, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC11addDefaultsACXDyF', symObjAddr: 0x6B8, symBinAddr: 0x1E70, symSize: 0x14 }
+  - { offsetInCU: 0x8AF, offset: 0x2F186, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC11addDefaultsACXDyFTo', symObjAddr: 0x6CC, symBinAddr: 0x1E84, symSize: 0x38 }
+  - { offsetInCU: 0x8E1, offset: 0x2F1B8, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCACycfC', symObjAddr: 0x704, symBinAddr: 0x1EBC, symSize: 0x20 }
+  - { offsetInCU: 0x8FF, offset: 0x2F1D6, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCACycfc', symObjAddr: 0x724, symBinAddr: 0x1EDC, symSize: 0x44 }
+  - { offsetInCU: 0x93A, offset: 0x2F211, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCACycfcTo', symObjAddr: 0x768, symBinAddr: 0x1F20, symSize: 0x50 }
+  - { offsetInCU: 0x975, offset: 0x2F24C, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCfD', symObjAddr: 0x7B8, symBinAddr: 0x1F70, symSize: 0x30 }
+  - { offsetInCU: 0x9A2, offset: 0x2F279, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderC11addDefaultsACXDyFTf4n_g', symObjAddr: 0xC28, symBinAddr: 0x23E0, symSize: 0x924 }
+  - { offsetInCU: 0x17B7, offset: 0x3008E, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCfETo', symObjAddr: 0x7E8, symBinAddr: 0x1FA0, symSize: 0x10 }
+  - { offsetInCU: 0x17FC, offset: 0x300D3, size: 0x8, addend: 0x0, symName: '_$sSa20_reserveCapacityImpl07minimumB013growForAppendySi_SbtF21EmbraceCaptureService0iJ0C_Tg5', symObjAddr: 0x7F8, symBinAddr: 0x1FB0, symSize: 0xC4 }
+  - { offsetInCU: 0x188E, offset: 0x30165, size: 0x8, addend: 0x0, symName: '_$ss12_ArrayBufferV20_consumeAndCreateNewAByxGyF21EmbraceCaptureService0hI0C_Tg5', symObjAddr: 0x8BC, symBinAddr: 0x2074, symSize: 0x68 }
+  - { offsetInCU: 0x1988, offset: 0x3025F, size: 0x8, addend: 0x0, symName: '_$ss20_ArrayBufferProtocolPsE15replaceSubrange_4with10elementsOfySnySiG_Siqd__ntSlRd__7ElementQyd__AGRtzlFs01_aB0Vy21EmbraceCaptureService0kL0CG_s15EmptyCollectionVyANGTg5Tf4nndn_n', symObjAddr: 0x924, symBinAddr: 0x20DC, symSize: 0x1FC }
+  - { offsetInCU: 0x1B55, offset: 0x3042C, size: 0x8, addend: 0x0, symName: '_$sSa15replaceSubrange_4withySnySiG_qd__nt7ElementQyd__RszSlRd__lF21EmbraceCaptureService0fG0C_s15EmptyCollectionVyAHGTg5Tf4ndn_n', symObjAddr: 0xB20, symBinAddr: 0x22D8, symSize: 0x108 }
+  - { offsetInCU: 0x1CF3, offset: 0x305CA, size: 0x8, addend: 0x0, symName: '_$s9EmbraceIO21CaptureServiceBuilderCMa', symObjAddr: 0x154C, symBinAddr: 0x2D04, symSize: 0x20 }
+  - { offsetInCU: 0x3F, offset: 0x30841, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platform9endpoints8logLevel6exportAESS_SSSgAA8PlatformOAC9EndpointsCSg0A14CommonInternal03LogK0OAA19OpenTelemetryExportCSgtcfC', symObjAddr: 0x0, symBinAddr: 0x2DA0, symSize: 0xD0 }
+  - { offsetInCU: 0xE4, offset: 0x308E6, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platform9endpoints8logLevel6exportAESS_SSSgAA8PlatformOAC9EndpointsCSg0A14CommonInternal03LogK0OAA19OpenTelemetryExportCSgtcfc', symObjAddr: 0xD0, symBinAddr: 0x2E70, symSize: 0x180 }
+  - { offsetInCU: 0x1FB, offset: 0x309FD, size: 0x8, addend: 0x0, symName: '_$sSa9EmbraceIO0A14CaptureService0cD0CRszlE9automaticSayADGvgZ', symObjAddr: 0x250, symBinAddr: 0x2FF0, symSize: 0x80 }
+  - { offsetInCU: 0x26C, offset: 0x30A6E, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platform9endpoints8logLevel6exportAESS_SSSgAA8PlatformOAC9EndpointsCSg0A14CommonInternal03LogK0OAA19OpenTelemetryExportCSgtcfcTo', symObjAddr: 0x2D0, symBinAddr: 0x3070, symSize: 0xAC }
+  - { offsetInCU: 0x288, offset: 0x30A8A, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platformAESS_SSSgAA8PlatformOtcfC', symObjAddr: 0x37C, symBinAddr: 0x311C, symSize: 0xA0 }
+  - { offsetInCU: 0x2A6, offset: 0x30AA8, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platformAESS_SSSgAA8PlatformOtcfc', symObjAddr: 0x41C, symBinAddr: 0x31BC, symSize: 0x174 }
+  - { offsetInCU: 0x3A2, offset: 0x30BA4, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE5appId0e5GroupF08platformAESS_SSSgAA8PlatformOtcfcTo', symObjAddr: 0x590, symBinAddr: 0x3330, symSize: 0x74 }
+  - { offsetInCU: 0x3CB, offset: 0x30BCD, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsC0A2IOE13stringLiteralAESS_tcfC', symObjAddr: 0x604, symBinAddr: 0x33A4, symSize: 0x78 }
+  - { offsetInCU: 0x41F, offset: 0x30C21, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsCs26ExpressibleByStringLiteral0A2IOs0de23ExtendedGraphemeClusterG0PWb', symObjAddr: 0x700, symBinAddr: 0x34A0, symSize: 0x24 }
+  - { offsetInCU: 0x433, offset: 0x30C35, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsCs26ExpressibleByStringLiteral0A2IO0fG4TypesAFP_s01_de7BuiltinfG0PWT', symObjAddr: 0x724, symBinAddr: 0x34C4, symSize: 0xC }
+  - { offsetInCU: 0x447, offset: 0x30C49, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsCs43ExpressibleByExtendedGraphemeClusterLiteral0A2IOs0de13UnicodeScalarI0PWb', symObjAddr: 0x730, symBinAddr: 0x34D0, symSize: 0x24 }
+  - { offsetInCU: 0x45B, offset: 0x30C5D, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsCs43ExpressibleByExtendedGraphemeClusterLiteral0A2IO0fghI4TypesAFP_s01_de7BuiltinfghI0PWT', symObjAddr: 0x794, symBinAddr: 0x3534, symSize: 0xC }
+  - { offsetInCU: 0x46F, offset: 0x30C71, size: 0x8, addend: 0x0, symName: '_$s11EmbraceCore0A0C7OptionsCs33ExpressibleByUnicodeScalarLiteral0A2IO0fgH4TypesAFP_s01_de7BuiltinfgH0PWT', symObjAddr: 0x7A0, symBinAddr: 0x3540, symSize: 0xC }
+...

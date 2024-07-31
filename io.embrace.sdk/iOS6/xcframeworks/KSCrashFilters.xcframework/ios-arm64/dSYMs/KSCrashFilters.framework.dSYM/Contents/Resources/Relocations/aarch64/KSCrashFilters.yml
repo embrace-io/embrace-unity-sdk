@@ -1,0 +1,183 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/runner/Library/Developer/Xcode/DerivedData/KSCrash-dkhdwilyrstpwpfgbryrlkbzcjew/Build/Intermediates.noindex/ArchiveIntermediates/KSCrashFilters/InstallationBuildProductsLocation/Library/Frameworks/KSCrashFilters.framework/KSCrashFilters'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x56E05, size: 0x8, addend: 0x0, symName: _KSCrashFiltersVersionString, symObjAddr: 0x0, symBinAddr: 0xCB28, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x56E3A, size: 0x8, addend: 0x0, symName: _KSCrashFiltersVersionNumber, symObjAddr: 0x30, symBinAddr: 0xCB58, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x56E77, size: 0x8, addend: 0x0, symName: '+[KSCrashAlertViewProcess process]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x14 }
+  - { offsetInCU: 0x194, offset: 0x56FE4, size: 0x8, addend: 0x0, symName: '+[KSCrashAlertViewProcess process]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x14 }
+  - { offsetInCU: 0x1CB, offset: 0x5701B, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess startWithTitle:message:yesAnswer:noAnswer:reports:onCompletion:]', symObjAddr: 0x14, symBinAddr: 0x4014, symSize: 0x5C }
+  - { offsetInCU: 0x28C, offset: 0x570DC, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess alertView:clickedButtonAtIndex:]', symObjAddr: 0x70, symBinAddr: 0x4070, symSize: 0x84 }
+  - { offsetInCU: 0x33E, offset: 0x5718E, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess reports]', symObjAddr: 0xF4, symBinAddr: 0x40F4, symSize: 0x8 }
+  - { offsetInCU: 0x375, offset: 0x571C5, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess setReports:]', symObjAddr: 0xFC, symBinAddr: 0x40FC, symSize: 0xC }
+  - { offsetInCU: 0x3B6, offset: 0x57206, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess onCompletion]', symObjAddr: 0x108, symBinAddr: 0x4108, symSize: 0x8 }
+  - { offsetInCU: 0x3ED, offset: 0x5723D, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess setOnCompletion:]', symObjAddr: 0x110, symBinAddr: 0x4110, symSize: 0x8 }
+  - { offsetInCU: 0x42C, offset: 0x5727C, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess expectedButtonIndex]', symObjAddr: 0x118, symBinAddr: 0x4118, symSize: 0x8 }
+  - { offsetInCU: 0x463, offset: 0x572B3, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess setExpectedButtonIndex:]', symObjAddr: 0x120, symBinAddr: 0x4120, symSize: 0x8 }
+  - { offsetInCU: 0x4A0, offset: 0x572F0, size: 0x8, addend: 0x0, symName: '-[KSCrashAlertViewProcess .cxx_destruct]', symObjAddr: 0x128, symBinAddr: 0x4128, symSize: 0x30 }
+  - { offsetInCU: 0x4D3, offset: 0x57323, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterAlert filterWithTitle:message:yesAnswer:noAnswer:]', symObjAddr: 0x158, symBinAddr: 0x4158, symSize: 0x8C }
+  - { offsetInCU: 0x54A, offset: 0x5739A, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert initWithTitle:message:yesAnswer:noAnswer:]', symObjAddr: 0x1E4, symBinAddr: 0x41E4, symSize: 0xC8 }
+  - { offsetInCU: 0x5C1, offset: 0x57411, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert filterReports:onCompletion:]', symObjAddr: 0x2AC, symBinAddr: 0x42AC, symSize: 0xA8 }
+  - { offsetInCU: 0x643, offset: 0x57493, size: 0x8, addend: 0x0, symName: '___55-[KSCrashReportFilterAlert filterReports:onCompletion:]_block_invoke', symObjAddr: 0x354, symBinAddr: 0x4354, symSize: 0x15C }
+  - { offsetInCU: 0x6C5, offset: 0x57515, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_, symObjAddr: 0x4B0, symBinAddr: 0x44B0, symSize: 0x10 }
+  - { offsetInCU: 0x6EA, offset: 0x5753A, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_, symObjAddr: 0x4C0, symBinAddr: 0x44C0, symSize: 0x8 }
+  - { offsetInCU: 0x709, offset: 0x57559, size: 0x8, addend: 0x0, symName: '___55-[KSCrashReportFilterAlert filterReports:onCompletion:]_block_invoke.31', symObjAddr: 0x4C8, symBinAddr: 0x44C8, symSize: 0x78 }
+  - { offsetInCU: 0x7C4, offset: 0x57614, size: 0x8, addend: 0x0, symName: '___55-[KSCrashReportFilterAlert filterReports:onCompletion:]_block_invoke_2', symObjAddr: 0x540, symBinAddr: 0x4540, symSize: 0x14 }
+  - { offsetInCU: 0x7FF, offset: 0x5764F, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32r, symObjAddr: 0x554, symBinAddr: 0x4554, symSize: 0x10 }
+  - { offsetInCU: 0x828, offset: 0x57678, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32r, symObjAddr: 0x564, symBinAddr: 0x4564, symSize: 0xC }
+  - { offsetInCU: 0x847, offset: 0x57697, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32b40r, symObjAddr: 0x570, symBinAddr: 0x4570, symSize: 0x3C }
+  - { offsetInCU: 0x870, offset: 0x576C0, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40r, symObjAddr: 0x5AC, symBinAddr: 0x45AC, symSize: 0x2C }
+  - { offsetInCU: 0x88F, offset: 0x576DF, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48b, symObjAddr: 0x5D8, symBinAddr: 0x45D8, symSize: 0x3C }
+  - { offsetInCU: 0x8B8, offset: 0x57708, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48s, symObjAddr: 0x614, symBinAddr: 0x4614, symSize: 0x30 }
+  - { offsetInCU: 0x8D7, offset: 0x57727, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert title]', symObjAddr: 0x644, symBinAddr: 0x4644, symSize: 0x8 }
+  - { offsetInCU: 0x90E, offset: 0x5775E, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert setTitle:]', symObjAddr: 0x64C, symBinAddr: 0x464C, symSize: 0xC }
+  - { offsetInCU: 0x94F, offset: 0x5779F, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert message]', symObjAddr: 0x658, symBinAddr: 0x4658, symSize: 0x8 }
+  - { offsetInCU: 0x986, offset: 0x577D6, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert setMessage:]', symObjAddr: 0x660, symBinAddr: 0x4660, symSize: 0xC }
+  - { offsetInCU: 0x9C7, offset: 0x57817, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert yesAnswer]', symObjAddr: 0x66C, symBinAddr: 0x466C, symSize: 0x8 }
+  - { offsetInCU: 0x9FE, offset: 0x5784E, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert setYesAnswer:]', symObjAddr: 0x674, symBinAddr: 0x4674, symSize: 0xC }
+  - { offsetInCU: 0xA3F, offset: 0x5788F, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert noAnswer]', symObjAddr: 0x680, symBinAddr: 0x4680, symSize: 0x8 }
+  - { offsetInCU: 0xA76, offset: 0x578C6, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert setNoAnswer:]', symObjAddr: 0x688, symBinAddr: 0x4688, symSize: 0xC }
+  - { offsetInCU: 0xAB7, offset: 0x57907, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAlert .cxx_destruct]', symObjAddr: 0x694, symBinAddr: 0x4694, symSize: 0x48 }
+  - { offsetInCU: 0x27, offset: 0x57B90, size: 0x8, addend: 0x0, symName: '-[NSString(CompareRegisterNames) kscrash_compareRegisterName:]', symObjAddr: 0x0, symBinAddr: 0x46DC, symSize: 0xC4 }
+  - { offsetInCU: 0x7B, offset: 0x57BE4, size: 0x8, addend: 0x0, symName: _g_dateFormatter, symObjAddr: 0xF100, symBinAddr: 0x162F0, symSize: 0x0 }
+  - { offsetInCU: 0x96, offset: 0x57BFF, size: 0x8, addend: 0x0, symName: _g_rfc3339DateFormatter, symObjAddr: 0xF108, symBinAddr: 0x162F8, symSize: 0x0 }
+  - { offsetInCU: 0xAC, offset: 0x57C15, size: 0x8, addend: 0x0, symName: _g_registerOrders, symObjAddr: 0xF110, symBinAddr: 0x16300, symSize: 0x0 }
+  - { offsetInCU: 0x171, offset: 0x57CDA, size: 0x8, addend: 0x0, symName: '-[NSString(CompareRegisterNames) kscrash_compareRegisterName:]', symObjAddr: 0x0, symBinAddr: 0x46DC, symSize: 0xC4 }
+  - { offsetInCU: 0x1D0, offset: 0x57D39, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterAppleFmt initialize]', symObjAddr: 0xC4, symBinAddr: 0x47A0, symSize: 0x3EC }
+  - { offsetInCU: 0x22F, offset: 0x57D98, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterAppleFmt filterWithReportStyle:]', symObjAddr: 0x4B0, symBinAddr: 0x4B8C, symSize: 0x28 }
+  - { offsetInCU: 0x276, offset: 0x57DDF, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt initWithReportStyle:]', symObjAddr: 0x4D8, symBinAddr: 0x4BB4, symSize: 0x58 }
+  - { offsetInCU: 0x2BD, offset: 0x57E26, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt majorVersion:]', symObjAddr: 0x530, symBinAddr: 0x4C0C, symSize: 0xB0 }
+  - { offsetInCU: 0x393, offset: 0x57EFC, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt filterReports:onCompletion:]', symObjAddr: 0x5E0, symBinAddr: 0x4CBC, symSize: 0x190 }
+  - { offsetInCU: 0x487, offset: 0x57FF0, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt CPUType:isSystemInfoHeader:]', symObjAddr: 0x770, symBinAddr: 0x4E4C, symSize: 0xD8 }
+  - { offsetInCU: 0x4DA, offset: 0x58043, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt CPUArchForMajor:minor:]', symObjAddr: 0x848, symBinAddr: 0x4F24, symSize: 0x114 }
+  - { offsetInCU: 0x588, offset: 0x580F1, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt backtraceString:reportStyle:mainExecutableName:]', symObjAddr: 0x95C, symBinAddr: 0x5038, symSize: 0x36C }
+  - { offsetInCU: 0x6D6, offset: 0x5823F, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt toCompactUUID:]', symObjAddr: 0xCC8, symBinAddr: 0x53A4, symSize: 0x4C }
+  - { offsetInCU: 0x71B, offset: 0x58284, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt stringFromDate:]', symObjAddr: 0xD14, symBinAddr: 0x53F0, symSize: 0x64 }
+  - { offsetInCU: 0x760, offset: 0x582C9, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt recrashReport:]', symObjAddr: 0xD78, symBinAddr: 0x5454, symSize: 0x10 }
+  - { offsetInCU: 0x7A5, offset: 0x5830E, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt systemReport:]', symObjAddr: 0xD88, symBinAddr: 0x5464, symSize: 0x10 }
+  - { offsetInCU: 0x7EA, offset: 0x58353, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt infoReport:]', symObjAddr: 0xD98, symBinAddr: 0x5474, symSize: 0x10 }
+  - { offsetInCU: 0x82F, offset: 0x58398, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt processReport:]', symObjAddr: 0xDA8, symBinAddr: 0x5484, symSize: 0x10 }
+  - { offsetInCU: 0x874, offset: 0x583DD, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt crashReport:]', symObjAddr: 0xDB8, symBinAddr: 0x5494, symSize: 0x10 }
+  - { offsetInCU: 0x8B9, offset: 0x58422, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt binaryImagesReport:]', symObjAddr: 0xDC8, symBinAddr: 0x54A4, symSize: 0x10 }
+  - { offsetInCU: 0x8FE, offset: 0x58467, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt crashedThread:]', symObjAddr: 0xDD8, symBinAddr: 0x54B4, symSize: 0x16C }
+  - { offsetInCU: 0x999, offset: 0x58502, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt mainExecutableNameForReport:]', symObjAddr: 0xF44, symBinAddr: 0x5620, symSize: 0x40 }
+  - { offsetInCU: 0x9F3, offset: 0x5855C, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt cpuArchForReport:]', symObjAddr: 0xF84, symBinAddr: 0x5660, symSize: 0x9C }
+  - { offsetInCU: 0xA6F, offset: 0x585D8, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt headerStringForReport:]', symObjAddr: 0x1020, symBinAddr: 0x56FC, symSize: 0xE0 }
+  - { offsetInCU: 0xAFC, offset: 0x58665, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt headerStringForSystemInfo:reportID:crashTime:]', symObjAddr: 0x1100, symBinAddr: 0x57DC, symSize: 0x350 }
+  - { offsetInCU: 0xBCD, offset: 0x58736, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt binaryImagesStringForReport:]', symObjAddr: 0x1450, symBinAddr: 0x5B2C, symSize: 0x2D0 }
+  - { offsetInCU: 0xD07, offset: 0x58870, size: 0x8, addend: 0x0, symName: '___59-[KSCrashReportFilterAppleFmt binaryImagesStringForReport:]_block_invoke', symObjAddr: 0x1720, symBinAddr: 0x5DFC, symSize: 0x88 }
+  - { offsetInCU: 0xD87, offset: 0x588F0, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt crashedThreadCPUStateStringForReport:cpuArch:]', symObjAddr: 0x17A8, symBinAddr: 0x5E84, symSize: 0x234 }
+  - { offsetInCU: 0xEBA, offset: 0x58A23, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt extraInfoStringForReport:mainExecutableName:]', symObjAddr: 0x19DC, symBinAddr: 0x60B8, symSize: 0x4A0 }
+  - { offsetInCU: 0x1053, offset: 0x58BBC, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt JSONForObject:]', symObjAddr: 0x1E7C, symBinAddr: 0x6558, symSize: 0x98 }
+  - { offsetInCU: 0x10BA, offset: 0x58C23, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt isZombieNSException:]', symObjAddr: 0x1F14, symBinAddr: 0x65F0, symSize: 0x298 }
+  - { offsetInCU: 0x11D4, offset: 0x58D3D, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt errorInfoStringForReport:]', symObjAddr: 0x21AC, symBinAddr: 0x6888, symSize: 0x560 }
+  - { offsetInCU: 0x133C, offset: 0x58EA5, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt stringWithUncaughtExceptionName:reason:]', symObjAddr: 0x270C, symBinAddr: 0x6DE8, symSize: 0x30 }
+  - { offsetInCU: 0x1392, offset: 0x58EFB, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt userExceptionTrace:]', symObjAddr: 0x273C, symBinAddr: 0x6E18, symSize: 0x1A4 }
+  - { offsetInCU: 0x142A, offset: 0x58F93, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt threadStringForThread:mainExecutableName:]', symObjAddr: 0x28E0, symBinAddr: 0x6FBC, symSize: 0x1A8 }
+  - { offsetInCU: 0x14D5, offset: 0x5903E, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt threadListStringForReport:mainExecutableName:]', symObjAddr: 0x2A88, symBinAddr: 0x7164, symSize: 0x170 }
+  - { offsetInCU: 0x1582, offset: 0x590EB, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt crashReportString:]', symObjAddr: 0x2BF8, symBinAddr: 0x72D4, symSize: 0x168 }
+  - { offsetInCU: 0x15ED, offset: 0x59156, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt recrashReportString:]', symObjAddr: 0x2D60, symBinAddr: 0x743C, symSize: 0x1C4 }
+  - { offsetInCU: 0x16BE, offset: 0x59227, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt toAppleFormat:]', symObjAddr: 0x2F24, symBinAddr: 0x7600, symSize: 0xCC }
+  - { offsetInCU: 0x1729, offset: 0x59292, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt reportStyle]', symObjAddr: 0x2FF0, symBinAddr: 0x76CC, symSize: 0x8 }
+  - { offsetInCU: 0x1760, offset: 0x592C9, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterAppleFmt setReportStyle:]', symObjAddr: 0x2FF8, symBinAddr: 0x76D4, symSize: 0x8 }
+  - { offsetInCU: 0x27, offset: 0x5943E, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterPassthrough filter]', symObjAddr: 0x0, symBinAddr: 0x76DC, symSize: 0x14 }
+  - { offsetInCU: 0x228, offset: 0x5963F, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterPassthrough filter]', symObjAddr: 0x0, symBinAddr: 0x76DC, symSize: 0x14 }
+  - { offsetInCU: 0x2C2, offset: 0x596D9, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPassthrough filterReports:onCompletion:]', symObjAddr: 0x14, symBinAddr: 0x76F0, symSize: 0x20 }
+  - { offsetInCU: 0x314, offset: 0x5972B, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPassthrough filterReports:onCompletion:]', symObjAddr: 0x14, symBinAddr: 0x76F0, symSize: 0x20 }
+  - { offsetInCU: 0x364, offset: 0x5977B, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine initWithFilters:keys:]', symObjAddr: 0x34, symBinAddr: 0x7710, symSize: 0x88 }
+  - { offsetInCU: 0x3BB, offset: 0x597D2, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterCombine argBlockWithFilters:andKeys:]', symObjAddr: 0xBC, symBinAddr: 0x7798, symSize: 0xF0 }
+  - { offsetInCU: 0x433, offset: 0x5984A, size: 0x8, addend: 0x0, symName: '___58+[KSCrashReportFilterCombine argBlockWithFilters:andKeys:]_block_invoke', symObjAddr: 0x1AC, symBinAddr: 0x7888, symSize: 0x134 }
+  - { offsetInCU: 0x4F7, offset: 0x5990E, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48r, symObjAddr: 0x2E0, symBinAddr: 0x79BC, symSize: 0x3C }
+  - { offsetInCU: 0x520, offset: 0x59937, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48r, symObjAddr: 0x31C, symBinAddr: 0x79F8, symSize: 0x34 }
+  - { offsetInCU: 0x53F, offset: 0x59956, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterCombine filterWithFiltersAndKeys:]', symObjAddr: 0x350, symBinAddr: 0x7A2C, symSize: 0xF8 }
+  - { offsetInCU: 0x610, offset: 0x59A27, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine initWithFiltersAndKeys:]', symObjAddr: 0x448, symBinAddr: 0x7B24, symSize: 0xF8 }
+  - { offsetInCU: 0x6E1, offset: 0x59AF8, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine filterReports:onCompletion:]', symObjAddr: 0x540, symBinAddr: 0x7C1C, symSize: 0x37C }
+  - { offsetInCU: 0x86F, offset: 0x59C86, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_, symObjAddr: 0x8BC, symBinAddr: 0x7F98, symSize: 0x28 }
+  - { offsetInCU: 0x898, offset: 0x59CAF, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_, symObjAddr: 0x8E4, symBinAddr: 0x7FC0, symSize: 0x8 }
+  - { offsetInCU: 0x8B7, offset: 0x59CCE, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_.56, symObjAddr: 0x8EC, symBinAddr: 0x7FC8, symSize: 0xC }
+  - { offsetInCU: 0x8E0, offset: 0x59CF7, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_.57, symObjAddr: 0x8F8, symBinAddr: 0x7FD4, symSize: 0x8 }
+  - { offsetInCU: 0x8FF, offset: 0x59D16, size: 0x8, addend: 0x0, symName: '___57-[KSCrashReportFilterCombine filterReports:onCompletion:]_block_invoke', symObjAddr: 0x900, symBinAddr: 0x7FDC, symSize: 0x5C }
+  - { offsetInCU: 0x969, offset: 0x59D80, size: 0x8, addend: 0x0, symName: '___57-[KSCrashReportFilterCombine filterReports:onCompletion:]_block_invoke_2', symObjAddr: 0x95C, symBinAddr: 0x8038, symSize: 0x14 }
+  - { offsetInCU: 0x9A4, offset: 0x59DBB, size: 0x8, addend: 0x0, symName: '___57-[KSCrashReportFilterCombine filterReports:onCompletion:]_block_invoke.59', symObjAddr: 0x98C, symBinAddr: 0x804C, symSize: 0x2B8 }
+  - { offsetInCU: 0xC9C, offset: 0x5A0B3, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48s56s64s72b80b88r96r, symObjAddr: 0xC44, symBinAddr: 0x8304, symSize: 0x84 }
+  - { offsetInCU: 0xCC5, offset: 0x5A0DC, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48s56s64s72s80s88r96r, symObjAddr: 0xCC8, symBinAddr: 0x8388, symSize: 0x68 }
+  - { offsetInCU: 0xCE4, offset: 0x5A0FB, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine filters]', symObjAddr: 0xD30, symBinAddr: 0x83F0, symSize: 0x8 }
+  - { offsetInCU: 0xD1B, offset: 0x5A132, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine setFilters:]', symObjAddr: 0xD38, symBinAddr: 0x83F8, symSize: 0xC }
+  - { offsetInCU: 0xD5C, offset: 0x5A173, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine keys]', symObjAddr: 0xD44, symBinAddr: 0x8404, symSize: 0x8 }
+  - { offsetInCU: 0xD93, offset: 0x5A1AA, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine setKeys:]', symObjAddr: 0xD4C, symBinAddr: 0x840C, symSize: 0xC }
+  - { offsetInCU: 0xDD4, offset: 0x5A1EB, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterCombine .cxx_destruct]', symObjAddr: 0xD58, symBinAddr: 0x8418, symSize: 0x30 }
+  - { offsetInCU: 0xE07, offset: 0x5A21E, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterPipeline filterWithFilters:]', symObjAddr: 0xD88, symBinAddr: 0x8448, symSize: 0x108 }
+  - { offsetInCU: 0xEC8, offset: 0x5A2DF, size: 0x8, addend: 0x0, symName: '___49+[KSCrashReportFilterPipeline filterWithFilters:]_block_invoke', symObjAddr: 0xE90, symBinAddr: 0x8550, symSize: 0xC }
+  - { offsetInCU: 0xF13, offset: 0x5A32A, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s, symObjAddr: 0xE9C, symBinAddr: 0x855C, symSize: 0x8 }
+  - { offsetInCU: 0xF3A, offset: 0x5A351, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s, symObjAddr: 0xEA4, symBinAddr: 0x8564, symSize: 0x8 }
+  - { offsetInCU: 0xF59, offset: 0x5A370, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline initWithFilters:]', symObjAddr: 0xEAC, symBinAddr: 0x856C, symSize: 0x104 }
+  - { offsetInCU: 0x101A, offset: 0x5A431, size: 0x8, addend: 0x0, symName: '___47-[KSCrashReportFilterPipeline initWithFilters:]_block_invoke', symObjAddr: 0xFB0, symBinAddr: 0x8670, symSize: 0xC }
+  - { offsetInCU: 0x1065, offset: 0x5A47C, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline initWithFiltersArray:]', symObjAddr: 0xFBC, symBinAddr: 0x867C, symSize: 0x184 }
+  - { offsetInCU: 0x10EE, offset: 0x5A505, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline addFilter:]', symObjAddr: 0x1140, symBinAddr: 0x8800, symSize: 0x50 }
+  - { offsetInCU: 0x1144, offset: 0x5A55B, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline filterReports:onCompletion:]', symObjAddr: 0x1190, symBinAddr: 0x8850, symSize: 0x284 }
+  - { offsetInCU: 0x126E, offset: 0x5A685, size: 0x8, addend: 0x0, symName: '___58-[KSCrashReportFilterPipeline filterReports:onCompletion:]_block_invoke', symObjAddr: 0x1414, symBinAddr: 0x8AD4, symSize: 0x5C }
+  - { offsetInCU: 0x12C2, offset: 0x5A6D9, size: 0x8, addend: 0x0, symName: '___58-[KSCrashReportFilterPipeline filterReports:onCompletion:]_block_invoke_2', symObjAddr: 0x1470, symBinAddr: 0x8B30, symSize: 0x14 }
+  - { offsetInCU: 0x1300, offset: 0x5A717, size: 0x8, addend: 0x0, symName: '___58-[KSCrashReportFilterPipeline filterReports:onCompletion:]_block_invoke_3', symObjAddr: 0x1484, symBinAddr: 0x8B44, symSize: 0x180 }
+  - { offsetInCU: 0x14CD, offset: 0x5A8E4, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48b56b64r72r, symObjAddr: 0x1604, symBinAddr: 0x8CC4, symSize: 0x6C }
+  - { offsetInCU: 0x14F6, offset: 0x5A90D, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48s56s64r72r, symObjAddr: 0x1670, symBinAddr: 0x8D30, symSize: 0x50 }
+  - { offsetInCU: 0x1515, offset: 0x5A92C, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline filters]', symObjAddr: 0x16C0, symBinAddr: 0x8D80, symSize: 0x8 }
+  - { offsetInCU: 0x154C, offset: 0x5A963, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline setFilters:]', symObjAddr: 0x16C8, symBinAddr: 0x8D88, symSize: 0xC }
+  - { offsetInCU: 0x158D, offset: 0x5A9A4, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterPipeline .cxx_destruct]', symObjAddr: 0x16D4, symBinAddr: 0x8D94, symSize: 0xC }
+  - { offsetInCU: 0x15C0, offset: 0x5A9D7, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterObjectForKey filterWithKey:allowNotFound:]', symObjAddr: 0x16E0, symBinAddr: 0x8DA0, symSize: 0x50 }
+  - { offsetInCU: 0x161A, offset: 0x5AA31, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey initWithKey:allowNotFound:]', symObjAddr: 0x1730, symBinAddr: 0x8DF0, symSize: 0x7C }
+  - { offsetInCU: 0x1674, offset: 0x5AA8B, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey filterReports:onCompletion:]', symObjAddr: 0x17AC, symBinAddr: 0x8E6C, symSize: 0x28C }
+  - { offsetInCU: 0x17B9, offset: 0x5ABD0, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey key]', symObjAddr: 0x1A38, symBinAddr: 0x90F8, symSize: 0x8 }
+  - { offsetInCU: 0x17F1, offset: 0x5AC08, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey setKey:]', symObjAddr: 0x1A40, symBinAddr: 0x9100, symSize: 0xC }
+  - { offsetInCU: 0x1833, offset: 0x5AC4A, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey allowNotFound]', symObjAddr: 0x1A4C, symBinAddr: 0x910C, symSize: 0x8 }
+  - { offsetInCU: 0x186B, offset: 0x5AC82, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey setAllowNotFound:]', symObjAddr: 0x1A54, symBinAddr: 0x9114, symSize: 0x8 }
+  - { offsetInCU: 0x18A7, offset: 0x5ACBE, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterObjectForKey .cxx_destruct]', symObjAddr: 0x1A5C, symBinAddr: 0x911C, symSize: 0xC }
+  - { offsetInCU: 0x18DB, offset: 0x5ACF2, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterConcatenate filterWithSeparatorFmt:keys:]', symObjAddr: 0x1A68, symBinAddr: 0x9128, symSize: 0x124 }
+  - { offsetInCU: 0x19B3, offset: 0x5ADCA, size: 0x8, addend: 0x0, symName: '___62+[KSCrashReportFilterConcatenate filterWithSeparatorFmt:keys:]_block_invoke', symObjAddr: 0x1B8C, symBinAddr: 0x924C, symSize: 0xC }
+  - { offsetInCU: 0x1A02, offset: 0x5AE19, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate initWithSeparatorFmt:keys:]', symObjAddr: 0x1B98, symBinAddr: 0x9258, symSize: 0x120 }
+  - { offsetInCU: 0x1ADA, offset: 0x5AEF1, size: 0x8, addend: 0x0, symName: '___60-[KSCrashReportFilterConcatenate initWithSeparatorFmt:keys:]_block_invoke', symObjAddr: 0x1CB8, symBinAddr: 0x9378, symSize: 0xC }
+  - { offsetInCU: 0x1B29, offset: 0x5AF40, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate initWithSeparatorFmt:keysArray:]', symObjAddr: 0x1CC4, symBinAddr: 0x9384, symSize: 0x1A0 }
+  - { offsetInCU: 0x1BC3, offset: 0x5AFDA, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate filterReports:onCompletion:]', symObjAddr: 0x1E64, symBinAddr: 0x9524, symSize: 0x288 }
+  - { offsetInCU: 0x1CF1, offset: 0x5B108, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate separatorFmt]', symObjAddr: 0x20EC, symBinAddr: 0x97AC, symSize: 0x8 }
+  - { offsetInCU: 0x1D29, offset: 0x5B140, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate setSeparatorFmt:]', symObjAddr: 0x20F4, symBinAddr: 0x97B4, symSize: 0xC }
+  - { offsetInCU: 0x1D6B, offset: 0x5B182, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate keys]', symObjAddr: 0x2100, symBinAddr: 0x97C0, symSize: 0x8 }
+  - { offsetInCU: 0x1DA3, offset: 0x5B1BA, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate setKeys:]', symObjAddr: 0x2108, symBinAddr: 0x97C8, symSize: 0xC }
+  - { offsetInCU: 0x1DE5, offset: 0x5B1FC, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterConcatenate .cxx_destruct]', symObjAddr: 0x2114, symBinAddr: 0x97D4, symSize: 0x30 }
+  - { offsetInCU: 0x1E19, offset: 0x5B230, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterSubset filterWithKeys:]', symObjAddr: 0x2144, symBinAddr: 0x9804, symSize: 0x108 }
+  - { offsetInCU: 0x1EE0, offset: 0x5B2F7, size: 0x8, addend: 0x0, symName: '___44+[KSCrashReportFilterSubset filterWithKeys:]_block_invoke', symObjAddr: 0x224C, symBinAddr: 0x990C, symSize: 0xC }
+  - { offsetInCU: 0x1F2F, offset: 0x5B346, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset initWithKeys:]', symObjAddr: 0x2258, symBinAddr: 0x9918, symSize: 0x104 }
+  - { offsetInCU: 0x1FF6, offset: 0x5B40D, size: 0x8, addend: 0x0, symName: '___42-[KSCrashReportFilterSubset initWithKeys:]_block_invoke', symObjAddr: 0x235C, symBinAddr: 0x9A1C, symSize: 0xC }
+  - { offsetInCU: 0x2045, offset: 0x5B45C, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset initWithKeysArray:]', symObjAddr: 0x2368, symBinAddr: 0x9A28, symSize: 0x184 }
+  - { offsetInCU: 0x20CE, offset: 0x5B4E5, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset filterReports:onCompletion:]', symObjAddr: 0x24EC, symBinAddr: 0x9BAC, symSize: 0x2DC }
+  - { offsetInCU: 0x2243, offset: 0x5B65A, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset keyPaths]', symObjAddr: 0x27C8, symBinAddr: 0x9E88, symSize: 0x8 }
+  - { offsetInCU: 0x227B, offset: 0x5B692, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset setKeyPaths:]', symObjAddr: 0x27D0, symBinAddr: 0x9E90, symSize: 0xC }
+  - { offsetInCU: 0x22BD, offset: 0x5B6D4, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterSubset .cxx_destruct]', symObjAddr: 0x27DC, symBinAddr: 0x9E9C, symSize: 0xC }
+  - { offsetInCU: 0x22F1, offset: 0x5B708, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterDataToString filter]', symObjAddr: 0x27E8, symBinAddr: 0x9EA8, symSize: 0x14 }
+  - { offsetInCU: 0x2329, offset: 0x5B740, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterDataToString filterReports:onCompletion:]', symObjAddr: 0x27FC, symBinAddr: 0x9EBC, symSize: 0x17C }
+  - { offsetInCU: 0x241A, offset: 0x5B831, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterStringToData filter]', symObjAddr: 0x2978, symBinAddr: 0xA038, symSize: 0x14 }
+  - { offsetInCU: 0x2452, offset: 0x5B869, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterStringToData filterReports:onCompletion:]', symObjAddr: 0x298C, symBinAddr: 0xA04C, symSize: 0x1E0 }
+  - { offsetInCU: 0x27, offset: 0x5C1CC, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterGZipCompress filterWithCompressionLevel:]', symObjAddr: 0x0, symBinAddr: 0xA22C, symSize: 0x28 }
+  - { offsetInCU: 0xA5, offset: 0x5C24A, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterGZipCompress filterWithCompressionLevel:]', symObjAddr: 0x0, symBinAddr: 0xA22C, symSize: 0x28 }
+  - { offsetInCU: 0xEC, offset: 0x5C291, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterGZipCompress initWithCompressionLevel:]', symObjAddr: 0x28, symBinAddr: 0xA254, symSize: 0x58 }
+  - { offsetInCU: 0x185, offset: 0x5C32A, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterGZipCompress filterReports:onCompletion:]', symObjAddr: 0x80, symBinAddr: 0xA2AC, symSize: 0x1C4 }
+  - { offsetInCU: 0x2CA, offset: 0x5C46F, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterGZipCompress compressionLevel]', symObjAddr: 0x244, symBinAddr: 0xA470, symSize: 0x8 }
+  - { offsetInCU: 0x301, offset: 0x5C4A6, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterGZipCompress setCompressionLevel:]', symObjAddr: 0x24C, symBinAddr: 0xA478, symSize: 0x8 }
+  - { offsetInCU: 0x33E, offset: 0x5C4E3, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterGZipDecompress filter]', symObjAddr: 0x254, symBinAddr: 0xA480, symSize: 0x14 }
+  - { offsetInCU: 0x375, offset: 0x5C51A, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterGZipDecompress filterReports:onCompletion:]', symObjAddr: 0x268, symBinAddr: 0xA494, symSize: 0x1B0 }
+  - { offsetInCU: 0x27, offset: 0x5C6EF, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterJSONEncode filterWithOptions:]', symObjAddr: 0x0, symBinAddr: 0xA644, symSize: 0x28 }
+  - { offsetInCU: 0xC3, offset: 0x5C78B, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterJSONEncode filterWithOptions:]', symObjAddr: 0x0, symBinAddr: 0xA644, symSize: 0x28 }
+  - { offsetInCU: 0x10A, offset: 0x5C7D2, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONEncode initWithOptions:]', symObjAddr: 0x28, symBinAddr: 0xA66C, symSize: 0x58 }
+  - { offsetInCU: 0x1AA, offset: 0x5C872, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONEncode filterReports:onCompletion:]', symObjAddr: 0x80, symBinAddr: 0xA6C4, symSize: 0x1D0 }
+  - { offsetInCU: 0x2EF, offset: 0x5C9B7, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONEncode encodeOptions]', symObjAddr: 0x250, symBinAddr: 0xA894, symSize: 0x8 }
+  - { offsetInCU: 0x326, offset: 0x5C9EE, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONEncode setEncodeOptions:]', symObjAddr: 0x258, symBinAddr: 0xA89C, symSize: 0x8 }
+  - { offsetInCU: 0x363, offset: 0x5CA2B, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterJSONDecode filterWithOptions:]', symObjAddr: 0x260, symBinAddr: 0xA8A4, symSize: 0x28 }
+  - { offsetInCU: 0x3AA, offset: 0x5CA72, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONDecode initWithOptions:]', symObjAddr: 0x288, symBinAddr: 0xA8CC, symSize: 0x58 }
+  - { offsetInCU: 0x3F1, offset: 0x5CAB9, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONDecode filterReports:onCompletion:]', symObjAddr: 0x2E0, symBinAddr: 0xA924, symSize: 0x1D0 }
+  - { offsetInCU: 0x536, offset: 0x5CBFE, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONDecode decodeOptions]', symObjAddr: 0x4B0, symBinAddr: 0xAAF4, symSize: 0x8 }
+  - { offsetInCU: 0x56D, offset: 0x5CC35, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterJSONDecode setDecodeOptions:]', symObjAddr: 0x4B8, symBinAddr: 0xAAFC, symSize: 0x8 }
+  - { offsetInCU: 0x27, offset: 0x5CD10, size: 0x8, addend: 0x0, symName: '+[KSCrashFilterSets appleFmtWithUserAndSystemData:compressed:]', symObjAddr: 0x0, symBinAddr: 0xAB04, symSize: 0x1C8 }
+  - { offsetInCU: 0xAD, offset: 0x5CD96, size: 0x8, addend: 0x0, symName: '+[KSCrashFilterSets appleFmtWithUserAndSystemData:compressed:]', symObjAddr: 0x0, symBinAddr: 0xAB04, symSize: 0x1C8 }
+  - { offsetInCU: 0x27, offset: 0x5CEC6, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterStringify filter]', symObjAddr: 0x0, symBinAddr: 0xACCC, symSize: 0x14 }
+  - { offsetInCU: 0x6C, offset: 0x5CF0B, size: 0x8, addend: 0x0, symName: '+[KSCrashReportFilterStringify filter]', symObjAddr: 0x0, symBinAddr: 0xACCC, symSize: 0x14 }
+  - { offsetInCU: 0xA3, offset: 0x5CF42, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterStringify stringifyObject:]', symObjAddr: 0x14, symBinAddr: 0xACE0, symSize: 0xA4 }
+  - { offsetInCU: 0x13F, offset: 0x5CFDE, size: 0x8, addend: 0x0, symName: '-[KSCrashReportFilterStringify filterReports:onCompletion:]', symObjAddr: 0xB8, symBinAddr: 0xAD84, symSize: 0x174 }
+...

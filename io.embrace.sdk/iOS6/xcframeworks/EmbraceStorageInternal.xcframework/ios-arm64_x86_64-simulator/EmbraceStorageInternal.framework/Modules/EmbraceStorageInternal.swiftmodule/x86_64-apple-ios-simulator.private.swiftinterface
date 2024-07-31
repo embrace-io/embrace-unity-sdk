@@ -1,0 +1,336 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target x86_64-apple-ios17.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceStorageInternal
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import EmbraceCommonInternal
+import Foundation
+import GRDB
+import OpenTelemetryApi
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension EmbraceCommonInternal.ProcessIdentifier : GRDB.DatabaseValueConvertible {
+  public var databaseValue: GRDB.DatabaseValue {
+    get
+  }
+  public static func fromDatabaseValue(_ dbValue: GRDB.DatabaseValue) -> EmbraceCommonInternal.ProcessIdentifier?
+}
+extension EmbraceCommonInternal.SessionIdentifier : GRDB.DatabaseValueConvertible {
+  public var databaseValue: GRDB.DatabaseValue {
+    get
+  }
+  public static func fromDatabaseValue(_ dbValue: GRDB.DatabaseValue) -> EmbraceCommonInternal.SessionIdentifier?
+}
+extension EmbraceCommonInternal.SpanType : GRDB.DatabaseValueConvertible {
+  public var databaseValue: GRDB.DatabaseValue {
+    get
+  }
+  public static func fromDatabaseValue(_ dbValue: GRDB.DatabaseValue) -> EmbraceCommonInternal.SpanType?
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  public enum StorageMechanism {
+    case inMemory(name: Swift.String)
+    case onDisk(baseURL: Foundation.URL, fileName: Swift.String)
+  }
+  public class Options {
+    public var spanLimits: [EmbraceCommonInternal.SpanType : Swift.Int]
+    public var resourcesLimit: Swift.Int
+    public var customPropertiesLimit: Swift.Int
+    public var personaTagsLimit: Swift.Int
+    public init(baseUrl: Foundation.URL, fileName: Swift.String)
+    public init(named name: Swift.String)
+    @objc deinit
+  }
+}
+extension EmbraceStorageInternal.EmbraceStorage.Options {
+  public var name: Swift.String? {
+    get
+  }
+  public var baseUrl: Foundation.URL? {
+    get
+  }
+  public var fileName: Swift.String? {
+    get
+  }
+  public var fileURL: Foundation.URL? {
+    get
+  }
+}
+public typealias Storage = EmbraceStorageInternal.EmbraceStorageMetadataFetcher & EmbraceStorageInternal.LogRepository
+public class EmbraceStorage : EmbraceStorageInternal.Storage {
+  public var options: EmbraceStorageInternal.EmbraceStorage.Options {
+    get
+  }
+  public var dbQueue: GRDB.DatabaseQueue {
+    get
+  }
+  public var logger: any EmbraceCommonInternal.InternalLogger {
+    get
+  }
+  public init(options: EmbraceStorageInternal.EmbraceStorage.Options, logger: any EmbraceCommonInternal.InternalLogger) throws
+  public func performMigration(resetIfError: Swift.Bool = true, migrations: [any EmbraceStorageInternal.Migration] = .current) throws
+  @objc deinit
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  public func update(record: any GRDB.PersistableRecord) throws
+  @discardableResult
+  public func delete(record: any GRDB.PersistableRecord) throws -> Swift.Bool
+  public func fetchAll<T>() throws -> [T] where T : GRDB.FetchableRecord, T : GRDB.TableRecord
+  public func executeQuery(_ sql: Swift.String, arguments: GRDB.StatementArguments?) throws
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  public func updateAsync(record: any GRDB.PersistableRecord, completion: ((Swift.Result<(), any Swift.Error>) -> Swift.Void)?)
+  public func deleteAsync(record: any GRDB.PersistableRecord, completion: ((Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)?)
+  public func fetchAllAsync<T>(completion: @escaping (Swift.Result<[T], any Swift.Error>) -> Swift.Void) where T : GRDB.FetchableRecord, T : GRDB.TableRecord
+  public func executeQueryAsync(_ sql: Swift.String, arguments: GRDB.StatementArguments?, completion: ((Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)?)
+}
+public protocol Migration {
+  static var identifier: Swift.StringLiteralType { get }
+  static var foreignKeyChecks: GRDB.DatabaseMigrator.ForeignKeyChecks { get }
+  func perform(_ db: GRDB.Database) throws
+}
+extension EmbraceStorageInternal.Migration {
+  public static var foreignKeyChecks: GRDB.DatabaseMigrator.ForeignKeyChecks {
+    get
+  }
+}
+public protocol MigrationServiceProtocol {
+  func perform(_ dbQueue: any GRDB.DatabaseWriter, migrations: [any EmbraceStorageInternal.Migration]) throws
+}
+final public class MigrationService : EmbraceStorageInternal.MigrationServiceProtocol {
+  public init(logger: any EmbraceCommonInternal.InternalLogger)
+  final public func perform(_ dbQueue: any GRDB.DatabaseWriter, migrations: [any EmbraceStorageInternal.Migration]) throws
+  @objc deinit
+}
+extension Swift.Array where Element == any EmbraceStorageInternal.Migration {
+  public static var current: [any EmbraceStorageInternal.Migration] {
+    get
+  }
+}
+public protocol EmbraceStorageMetadataFetcher : AnyObject {
+  func fetchAllResources() throws -> [EmbraceStorageInternal.MetadataRecord]
+  func fetchResourcesForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  func fetchResourcesForProcessId(_ processId: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  func fetchCustomPropertiesForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  func fetchPersonaTagsForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  func fetchPersonaTagsForProcessId(_ processId: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  @discardableResult
+  public func addMetadata(key: Swift.String, value: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String = "") throws -> EmbraceStorageInternal.MetadataRecord?
+  public func addMetadata(_ metadata: EmbraceStorageInternal.MetadataRecord) throws -> Swift.Bool
+  public func updateMetadata(key: Swift.String, value: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan) throws
+  public func updateMetadata(_ record: EmbraceStorageInternal.MetadataRecord) throws
+  public func cleanMetadata(currentSessionId: Swift.String?, currentProcessId: Swift.String) throws
+  public func removeMetadata(key: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String = "") throws
+  public func removeAllMetadata(type: EmbraceStorageInternal.MetadataRecordType, lifespans: [EmbraceStorageInternal.MetadataRecordLifespan]) throws
+  public func removeAllMetadata(keys: [Swift.String], lifespan: EmbraceStorageInternal.MetadataRecordLifespan) throws
+  public func fetchMetadata(key: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String = "") throws -> EmbraceStorageInternal.MetadataRecord?
+  public func fetchRequriedPermanentResource(key: Swift.String) throws -> EmbraceStorageInternal.MetadataRecord?
+  public func fetchAllResources() throws -> [EmbraceStorageInternal.MetadataRecord]
+  public func fetchResourcesForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  public func fetchResourcesForProcessId(_ processId: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  public func fetchCustomPropertiesForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  public func fetchPersonaTagsForSessionId(_ sessionId: EmbraceCommonInternal.SessionIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+  public func fetchPersonaTagsForProcessId(_ processId: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.MetadataRecord]
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  @discardableResult
+  public func addSession(id: EmbraceCommonInternal.SessionIdentifier, state: EmbraceCommonInternal.SessionState, processId: EmbraceCommonInternal.ProcessIdentifier, traceId: Swift.String, spanId: Swift.String, startTime: Foundation.Date, endTime: Foundation.Date? = nil, lastHeartbeatTime: Foundation.Date? = nil, crashReportId: Swift.String? = nil) throws -> EmbraceStorageInternal.SessionRecord
+  public func upsertSession(_ session: EmbraceStorageInternal.SessionRecord) throws
+  public func fetchSession(id: EmbraceCommonInternal.SessionIdentifier) throws -> EmbraceStorageInternal.SessionRecord?
+  public func fetchLatestSesssion(ignoringCurrentSessionId sessionId: EmbraceCommonInternal.SessionIdentifier? = nil) throws -> EmbraceStorageInternal.SessionRecord?
+  public func fetchOldestSesssion() throws -> EmbraceStorageInternal.SessionRecord?
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  @discardableResult
+  public func addSpan(id: Swift.String, name: Swift.String, traceId: Swift.String, type: EmbraceCommonInternal.SpanType, data: Foundation.Data, startTime: Foundation.Date, endTime: Foundation.Date? = nil, processIdentifier: EmbraceCommonInternal.ProcessIdentifier = .current) throws -> EmbraceStorageInternal.SpanRecord
+  public func upsertSpan(_ span: EmbraceStorageInternal.SpanRecord) throws
+  public func fetchSpan(id: Swift.String, traceId: Swift.String) throws -> EmbraceStorageInternal.SpanRecord?
+  public func cleanUpSpans(date: Foundation.Date? = nil) throws
+  public func closeOpenSpans(endTime: Foundation.Date) throws
+  public func fetchSpans(for sessionRecord: EmbraceStorageInternal.SessionRecord, ignoreSessionSpans: Swift.Bool = true, limit: Swift.Int = 1000) throws -> [EmbraceStorageInternal.SpanRecord]
+}
+extension EmbraceStorageInternal.LogRecord : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension EmbraceStorageInternal.EmbraceStorage {
+  public func fetchAll(excludingProcessIdentifier processIdentifier: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.LogRecord]
+  public func removeAllLogs() throws
+  public func remove(logs: [EmbraceStorageInternal.LogRecord]) throws
+  public func getAll() throws -> [EmbraceStorageInternal.LogRecord]
+  public func create(_ log: EmbraceStorageInternal.LogRecord, completion: (Swift.Result<EmbraceStorageInternal.LogRecord, any Swift.Error>) -> Swift.Void)
+}
+public struct LogRecord {
+  public var identifier: EmbraceCommonInternal.LogIdentifier
+  public var processIdentifier: EmbraceCommonInternal.ProcessIdentifier
+  public var severity: EmbraceCommonInternal.LogSeverity
+  public var body: Swift.String
+  public var timestamp: Foundation.Date
+  public var attributes: [Swift.String : EmbraceStorageInternal.PersistableValue]
+  public init(identifier: EmbraceCommonInternal.LogIdentifier, processIdentifier: EmbraceCommonInternal.ProcessIdentifier, severity: EmbraceCommonInternal.LogSeverity, body: Swift.String, attributes: [Swift.String : EmbraceStorageInternal.PersistableValue], timestamp: Foundation.Date = Date())
+}
+extension EmbraceStorageInternal.LogRecord : GRDB.FetchableRecord, GRDB.PersistableRecord {
+  public static let databaseTableName: Swift.String
+  public static let databaseColumnDecodingStrategy: GRDB.DatabaseColumnDecodingStrategy
+  public static let databaseColumnEncodingStrategy: GRDB.DatabaseColumnEncodingStrategy
+  public static let persistenceConflictPolicy: GRDB.PersistenceConflictPolicy
+  public func encode(to container: inout GRDB.PersistenceContainer)
+  public init(row: GRDB.Row)
+}
+extension EmbraceStorageInternal.LogRecord : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol LogRepository {
+  func create(_ log: EmbraceStorageInternal.LogRecord, completion: (Swift.Result<EmbraceStorageInternal.LogRecord, any Swift.Error>) -> Swift.Void)
+  func fetchAll(excludingProcessIdentifier processIdentifier: EmbraceCommonInternal.ProcessIdentifier) throws -> [EmbraceStorageInternal.LogRecord]
+  func remove(logs: [EmbraceStorageInternal.LogRecord]) throws
+  func removeAllLogs() throws
+}
+public enum PersistableValue : Swift.Equatable, Swift.CustomStringConvertible, Swift.Hashable, Swift.Codable {
+  case string(Swift.String)
+  case bool(Swift.Bool)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case stringArray([Swift.String])
+  case boolArray([Swift.Bool])
+  case intArray([Swift.Int])
+  case doubleArray([Swift.Double])
+  public var description: Swift.String {
+    get
+  }
+  public init?(_ value: Any)
+  public static func == (a: EmbraceStorageInternal.PersistableValue, b: EmbraceStorageInternal.PersistableValue) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension EmbraceStorageInternal.PersistableValue {
+  public init(_ value: Swift.String)
+  public init(_ value: Swift.Bool)
+  public init(_ value: Swift.Int)
+  public init(_ value: Swift.Double)
+  public init(_ value: [Swift.String])
+  public init(_ value: [Swift.Int])
+  public init(_ value: [Swift.Double])
+}
+extension EmbraceStorageInternal.MetadataRecord {
+  public var boolValue: Swift.Bool? {
+    get
+  }
+  public var integerValue: Swift.Int? {
+    get
+  }
+  public var doubleValue: Swift.Double? {
+    get
+  }
+  public var stringValue: Swift.String? {
+    get
+  }
+  public var uuidValue: Foundation.UUID? {
+    get
+  }
+}
+public enum MetadataRecordType : Swift.String, Swift.Codable {
+  case resource
+  case requiredResource
+  case customProperty
+  case personaTag
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum MetadataRecordLifespan : Swift.String, Swift.Codable {
+  case session
+  case process
+  case permanent
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct MetadataRecord : Swift.Codable {
+  public let key: Swift.String
+  public var value: OpenTelemetryApi.AttributeValue
+  public let type: EmbraceStorageInternal.MetadataRecordType
+  public let lifespan: EmbraceStorageInternal.MetadataRecordLifespan
+  public let lifespanId: Swift.String
+  public let collectedAt: Foundation.Date
+  public init(key: Swift.String, value: OpenTelemetryApi.AttributeValue, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String, collectedAt: Foundation.Date = Date())
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension EmbraceStorageInternal.MetadataRecord : GRDB.FetchableRecord, GRDB.PersistableRecord, GRDB.MutablePersistableRecord {
+  public static let databaseTableName: Swift.String
+  public static let databaseColumnDecodingStrategy: GRDB.DatabaseColumnDecodingStrategy
+  public static let databaseColumnEncodingStrategy: GRDB.DatabaseColumnEncodingStrategy
+  public static let persistenceConflictPolicy: GRDB.PersistenceConflictPolicy
+}
+extension EmbraceStorageInternal.MetadataRecord : Swift.Equatable {
+  public static func == (lhs: EmbraceStorageInternal.MetadataRecord, rhs: EmbraceStorageInternal.MetadataRecord) -> Swift.Bool
+}
+public struct SessionRecord : Swift.Codable {
+  public var id: EmbraceCommonInternal.SessionIdentifier
+  public var processId: EmbraceCommonInternal.ProcessIdentifier
+  public var state: Swift.String
+  public var traceId: Swift.String
+  public var spanId: Swift.String
+  public var startTime: Foundation.Date
+  public var endTime: Foundation.Date?
+  public var lastHeartbeatTime: Foundation.Date
+  public var crashReportId: Swift.String?
+  public var coldStart: Swift.Bool
+  public var cleanExit: Swift.Bool
+  public var appTerminated: Swift.Bool
+  public init(id: EmbraceCommonInternal.SessionIdentifier, state: EmbraceCommonInternal.SessionState, processId: EmbraceCommonInternal.ProcessIdentifier, traceId: Swift.String, spanId: Swift.String, startTime: Foundation.Date, endTime: Foundation.Date? = nil, lastHeartbeatTime: Foundation.Date? = nil, crashReportId: Swift.String? = nil, coldStart: Swift.Bool = false, cleanExit: Swift.Bool = false, appTerminated: Swift.Bool = false)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension EmbraceStorageInternal.SessionRecord : GRDB.FetchableRecord, GRDB.PersistableRecord, GRDB.MutablePersistableRecord {
+  public static let databaseTableName: Swift.String
+  public static let databaseColumnDecodingStrategy: GRDB.DatabaseColumnDecodingStrategy
+  public static let databaseColumnEncodingStrategy: GRDB.DatabaseColumnEncodingStrategy
+  public static let persistenceConflictPolicy: GRDB.PersistenceConflictPolicy
+}
+extension EmbraceStorageInternal.SessionRecord : Swift.Equatable {
+  public static func == (lhs: EmbraceStorageInternal.SessionRecord, rhs: EmbraceStorageInternal.SessionRecord) -> Swift.Bool
+}
+public struct SpanRecord : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var traceId: Swift.String
+  public var type: EmbraceCommonInternal.SpanType
+  public var data: Foundation.Data
+  public var startTime: Foundation.Date
+  public var endTime: Foundation.Date?
+  public var processIdentifier: EmbraceCommonInternal.ProcessIdentifier
+  public init(id: Swift.String, name: Swift.String, traceId: Swift.String, type: EmbraceCommonInternal.SpanType, data: Foundation.Data, startTime: Foundation.Date, endTime: Foundation.Date? = nil, processIdentifier: EmbraceCommonInternal.ProcessIdentifier = .current)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension EmbraceStorageInternal.SpanRecord : GRDB.FetchableRecord, GRDB.PersistableRecord, GRDB.MutablePersistableRecord {
+  public static let databaseTableName: Swift.String
+  public static let databaseColumnDecodingStrategy: GRDB.DatabaseColumnDecodingStrategy
+  public static let databaseColumnEncodingStrategy: GRDB.DatabaseColumnEncodingStrategy
+  public static let persistenceConflictPolicy: GRDB.PersistenceConflictPolicy
+}
+extension EmbraceStorageInternal.SpanRecord : Swift.Equatable {
+  public static func == (lhs: EmbraceStorageInternal.SpanRecord, rhs: EmbraceStorageInternal.SpanRecord) -> Swift.Bool
+}
+extension EmbraceStorageInternal.MetadataRecordType : Swift.Equatable {}
+extension EmbraceStorageInternal.MetadataRecordType : Swift.Hashable {}
+extension EmbraceStorageInternal.MetadataRecordType : Swift.RawRepresentable {}
+extension EmbraceStorageInternal.MetadataRecordLifespan : Swift.Equatable {}
+extension EmbraceStorageInternal.MetadataRecordLifespan : Swift.Hashable {}
+extension EmbraceStorageInternal.MetadataRecordLifespan : Swift.RawRepresentable {}
