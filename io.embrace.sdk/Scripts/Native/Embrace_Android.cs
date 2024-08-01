@@ -610,7 +610,10 @@ namespace EmbraceSDK.Internal
             var spanEvents = new List<Dictionary<string, object>>();
             foreach (var embraceSpanEvent in embraceSpanEvents)
             {
-                spanEvents.Add(embraceSpanEvent.SpanEventToDictionary());
+                if (embraceSpanEvent != null)
+                {
+                    spanEvents.Add(embraceSpanEvent.SpanEventToDictionary());
+                }
             }
 
             var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
