@@ -56,9 +56,17 @@ namespace EmbraceSDK
             }
         }
         
+        private enum InitializationState
+        {
+            NotInitialized,
+            Initializing,
+            Initialized
+        }
+        
         private static Embrace _instance;
         private Thread _mainThread;
         private bool _started;
+        private InitializationState _unitySdkInitializationState = InitializationState.NotInitialized;
         private static EmbraceSdkInfo sdkInfo;
         private UnhandledExceptionRateLimiting rateLimiter = new UnhandledExceptionRateLimiting();
         private Dictionary<string, string> emptyDictionary = new Dictionary<string, string>();
@@ -159,14 +167,29 @@ namespace EmbraceSDK
         /// </summary>
         private void Initialize()
         {
+            //lock (_unitySdkInitializationState)
+            { // Lock to ensure that the initialization state is only set once
+                if (_unitySdkInitializationState != InitializationState.NotInitialized)
+                {
+                    return;
+                }
+                _unitySdkInitializationState = InitializationState.Initializing;
+            }
+            
             try
             {
                 _instance = this;
 
                 _mainThread = Thread.CurrentThread;
             
+                /*/
+                // Old method
                 TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
                 sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
+                /*/
+                // New method
+                sdkInfo = new CurrentEmbraceSDKInfo();
+                //*/
             
                 Provider?.InitializeSDK();
                 
@@ -193,9 +216,11 @@ namespace EmbraceSDK
             // For now we will enable this by default.
             BugshakeService.Instance.RegisterShakeListener();
 #endif
+                _unitySdkInitializationState = InitializationState.Initialized;
             }
             catch (Exception e)
             {
+                _unitySdkInitializationState = InitializationState.NotInitialized;
                 Debug.LogException(e);
             }
         }
