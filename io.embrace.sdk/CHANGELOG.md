@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Unity SDK Changelog
 ## 1.26.1
-*August 6th, 2024*
+*August 12th, 2024*
 * NPE patch for null EmbraceSpanEvents
 * Improvement of AndroidJavaObject memory disposal
 
