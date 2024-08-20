@@ -107,7 +107,7 @@ function createSourceMap() {
   REACT_NATIVE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
   CLI_PATH="$REACT_NATIVE_DIR/node_modules/react-native/cli.js"
 
-  DEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH
+  DEST=/dev/null
 
   node "$CLI_PATH" bundle \
     --entry-file index.js \

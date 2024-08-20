@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Embrace/EmbraceOTelSpanErrorCode.h>
 
 /**
  Entry point for the Embrace ReactNative SDK.
@@ -135,5 +136,59 @@
     properties:(nullable EMBProperties *)properties
      startTime:(nonnull NSDate *)startTime
        endTime:(nonnull NSDate *)endTime;
+
+#pragma mark - Performance Tracing
+/**
+ * Create and start a new span. Returns the spanId of the new span if both operations are successful, and null if either fails.
+ */
+- (nullable NSString *) startSpanWithName:(nonnull NSString *)name parentSpanId:(nullable NSString *)parentSpanId;
+
+/**
+ * Create and start a new span at a specific moment in time. Returns the spanId of the new span if both operations are successful, and null if either fails.
+ */
+- (nullable NSString *)startSpanWithName:(nonnull NSString *)name parentSpanId:(nullable NSString *)parentSpanId startTimeNanos:(NSInteger)startTimeNanos;
+
+/**
+* Stop an active span. Returns true if the span is stopped after the method returns and false otherwise.
+*/
+- (BOOL) stopSpanWithId:(nonnull NSString *)spanId errorCode:(EmbraceOTelSpanErrorCode)errorCode;
+
+/**
+* Stop an active span at a specific moment in time. Returns true if the span is stopped after the method returns and false otherwise.
+*/
+- (BOOL) stopSpanWithId:(nonnull NSString *)spanId endTimeNanos:(NSInteger)endTimeNanos errorCode:(EmbraceOTelSpanErrorCode)errorCode;
+
+/**
+* Create and add a Span Event with the given parameters to an active span with the given [spanId]. Returns false if the event
+* cannot be added.
+*/
+- (BOOL) addSpanEventToSpanId:(nonnull NSString *)spanId name:(nonnull NSString *)name time:(NSUInteger)time attributes:(nullable NSDictionary *)attributes;
+
+/**
+* Add an attribute to an active span with the given [spanId]. Returns true if the attributed is added and false otherwise.
+*/
+- (BOOL) addSpanAttributesToSpanId:(nonnull NSString *)spanId key:(nonnull NSString *)key value:(nonnull NSString *)value;
+
+/**
+ * Record a completed span with the given parameters. Returns true if the span is record and false otherwise.
+ * The dictionary representing an event has the following schema:
+ * ```
+ * {
+ *  "name": [String],
+ *  "timestampNanos": [Long] (optional),
+ *  "attributes": [Map<String, String>] (optional)
+ * }
+ * ```
+ * - Returns the spanId that was saved. This can be used if you need to refer to this span as a parent span later. If the return value is nil an error occured while
+ *  saving this span.
+*/
+- (nullable NSString *) recordCompletedSpanWithName:(nonnull NSString *)name
+                      startTimeNanos:(NSInteger)startTimeNanos
+                        endTimeNanos:(NSInteger)endTimeNanos
+                           errorCode:(EmbraceOTelSpanErrorCode)errorCode
+                        parentSpanId:(nullable NSString *)parentSpanId
+                          attributes:(nullable NSDictionary *)attributes
+                              events:(nullable NSArray *)events;
+
 
 @end
