@@ -1,0 +1,6 @@
+framework module Embrace_Unity_iOS_Interface {
+  umbrella header "Embrace_Unity_iOS_Interface.h"
+  export *
+
+  module * { export * }
+}

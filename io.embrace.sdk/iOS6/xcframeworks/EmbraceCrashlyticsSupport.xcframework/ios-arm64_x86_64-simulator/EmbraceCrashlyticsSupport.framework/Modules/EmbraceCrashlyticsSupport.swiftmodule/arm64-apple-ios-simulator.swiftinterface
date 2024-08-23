@@ -8,7 +8,7 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class CrashlyticsReporter : ObjectiveC.NSObject, EmbraceCommonInternal.CrashReporter {
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(EMBCrashlyticsReporter) final public class CrashlyticsReporter : ObjectiveC.NSObject, EmbraceCommonInternal.CrashReporter {
   @objc convenience override dynamic public init()
   @objc final public var currentSessionId: Swift.String? {
     @objc get

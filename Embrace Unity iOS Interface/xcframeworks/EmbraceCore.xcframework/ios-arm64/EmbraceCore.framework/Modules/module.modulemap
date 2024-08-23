@@ -1,0 +1,4 @@
+framework module EmbraceCore {
+  header "EmbraceCore-Swift.h"
+  requires objc
+}

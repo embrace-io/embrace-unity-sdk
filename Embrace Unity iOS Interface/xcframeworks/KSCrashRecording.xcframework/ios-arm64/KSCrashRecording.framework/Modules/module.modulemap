@@ -1,0 +1,6 @@
+framework module KSCrashRecording {
+  umbrella header "KSCrashRecording.h"
+  export *
+
+  module * { export * }
+}

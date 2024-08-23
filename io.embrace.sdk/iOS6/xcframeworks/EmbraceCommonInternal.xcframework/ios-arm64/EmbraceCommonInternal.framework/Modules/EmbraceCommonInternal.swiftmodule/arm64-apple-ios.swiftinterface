@@ -58,6 +58,80 @@ import _SwiftConcurrencyShims
   public static let sdkVersion: Swift.String
   @objc deinit
 }
+public protocol EmbraceType : Swift.CustomStringConvertible, Swift.Decodable, Swift.Encodable, Swift.Hashable, Swift.RawRepresentable where Self.RawValue == Swift.String {
+  var primary: EmbraceCommonInternal.PrimaryType { get }
+  var secondary: Swift.String? { get }
+  init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+}
+public enum PrimaryType : Swift.String {
+  case performance
+  case ux
+  case system
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String? = nil)
+  public init(performance secondary: Swift.String)
+  public init(ux secondary: Swift.String)
+  public init(system secondary: Swift.String)
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public static var performance: Self {
+    get
+  }
+  public static var ux: Self {
+    get
+  }
+  public static var system: Self {
+    get
+  }
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public var rawValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct LogType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+  public typealias RawValue = Swift.String
+}
+public struct SpanEventType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+  public typealias RawValue = Swift.String
+}
+extension EmbraceCommonInternal.SpanType {
+  public static let fileIO: EmbraceCommonInternal.SpanType
+  public static let fileRead: EmbraceCommonInternal.SpanType
+  public static let fileWrite: EmbraceCommonInternal.SpanType
+  public static let sqlSelect: EmbraceCommonInternal.SpanType
+  public static let sqlUpdate: EmbraceCommonInternal.SpanType
+  public static let sqlDelete: EmbraceCommonInternal.SpanType
+  public static let sqlVacuum: EmbraceCommonInternal.SpanType
+}
+public struct SpanType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String? = nil)
+  public typealias RawValue = Swift.String
+}
 @objc public enum LogSeverity : Swift.Int, Swift.Codable {
   case trace = 1
   case debug = 5
@@ -245,33 +319,6 @@ extension Foundation.UUID {
   @discardableResult
   @objc func error(_ message: Swift.String) -> Swift.Bool
 }
-extension EmbraceCommonInternal.LogType {
-  public static let system: EmbraceCommonInternal.LogType
-}
-extension EmbraceCommonInternal.LogType {
-  public static let `default`: EmbraceCommonInternal.LogType
-  public static let breadcrumb: EmbraceCommonInternal.LogType
-  public static let crash: EmbraceCommonInternal.LogType
-  public static let `internal`: EmbraceCommonInternal.LogType
-}
-public struct LogType : Swift.Equatable {
-}
-extension EmbraceCommonInternal.LogType : Swift.RawRepresentable {
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-  public init?(rawValue: Swift.String)
-}
-extension EmbraceCommonInternal.LogType : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
-}
-extension EmbraceCommonInternal.LogType : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
 @propertyWrapper final public class ThreadSafe<Value> {
   public init(wrappedValue: Value)
   final public var wrappedValue: Value {
@@ -298,49 +345,6 @@ extension EmbraceCommonInternal.Swizzlable {
   public func swizzleInstanceMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
   public func swizzleClassMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
 }
-extension EmbraceCommonInternal.SpanType {
-  public static let performance: EmbraceCommonInternal.SpanType
-  public static let ux: EmbraceCommonInternal.SpanType
-  public static let system: EmbraceCommonInternal.SpanType
-}
-extension EmbraceCommonInternal.SpanType {
-  public static let fileIO: EmbraceCommonInternal.SpanType
-  public static let fileRead: EmbraceCommonInternal.SpanType
-  public static let fileWrite: EmbraceCommonInternal.SpanType
-  public static let sqlSelect: EmbraceCommonInternal.SpanType
-  public static let sqlUpdate: EmbraceCommonInternal.SpanType
-  public static let sqlDelete: EmbraceCommonInternal.SpanType
-  public static let sqlVacuum: EmbraceCommonInternal.SpanType
-  public static let networkHTTP: EmbraceCommonInternal.SpanType
-}
-extension EmbraceCommonInternal.SpanType {
-  public static let view: EmbraceCommonInternal.SpanType
-  public static let inputTap: EmbraceCommonInternal.SpanType
-}
-extension EmbraceCommonInternal.SpanType {
-  public static let lowPower: EmbraceCommonInternal.SpanType
-}
-extension EmbraceCommonInternal.SpanType {
-  public static let session: EmbraceCommonInternal.SpanType
-}
-public struct SpanType : Swift.Equatable, Swift.Hashable {
-}
-extension EmbraceCommonInternal.SpanType : Swift.RawRepresentable {
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-  public init?(rawValue: Swift.String)
-}
-extension EmbraceCommonInternal.SpanType : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension EmbraceCommonInternal.SpanType : Swift.Codable {
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
-}
 final public class UnfairLock {
   public init()
   @objc deinit
@@ -349,6 +353,9 @@ final public class UnfairLock {
 extension EmbraceCommonInternal.LastRunState : Swift.Equatable {}
 extension EmbraceCommonInternal.LastRunState : Swift.Hashable {}
 extension EmbraceCommonInternal.LastRunState : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.Equatable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.Hashable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.RawRepresentable {}
 extension EmbraceCommonInternal.LogSeverity : Swift.Equatable {}
 extension EmbraceCommonInternal.LogSeverity : Swift.Hashable {}
 extension EmbraceCommonInternal.LogSeverity : Swift.RawRepresentable {}

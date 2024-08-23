@@ -36,7 +36,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			d6rN1Zaog+baPNkmfpLc11VXeZrDspw26DPRiQwuTgU=
+			5zbry00rZKWlRI5BoMkUT6KgsKaOWS4Jp+QqkuWyp4I=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/arm64-apple-macos.private.swiftinterface</key>
@@ -64,14 +64,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ugmUsOxOEL3IAa2UDsPh/Svh6WwqMIKI+MrYR0fbY7U=
+			6xLylFjPkWhv7Nd8hmVQNk21Sawc1TVBO54PN/rPsIk=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			d6rN1Zaog+baPNkmfpLc11VXeZrDspw26DPRiQwuTgU=
+			5zbry00rZKWlRI5BoMkUT6KgsKaOWS4Jp+QqkuWyp4I=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.private.swiftinterface</key>
@@ -99,7 +99,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			MjGVqhfO3TTygD+ALPOWltDLUCyoIRLDSkoEPuwd+5A=
+			rU35AGtArrypIT0VWGWXa/Rbiua/S/Wqe3Dw/D4HXAs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

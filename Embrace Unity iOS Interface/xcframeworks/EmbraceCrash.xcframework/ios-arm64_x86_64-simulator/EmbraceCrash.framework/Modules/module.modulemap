@@ -1,0 +1,4 @@
+framework module EmbraceCrash {
+  header "EmbraceCrash-Swift.h"
+  requires objc
+}

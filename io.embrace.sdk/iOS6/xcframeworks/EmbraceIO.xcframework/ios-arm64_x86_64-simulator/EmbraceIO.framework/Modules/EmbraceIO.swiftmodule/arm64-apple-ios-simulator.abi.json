@@ -57,7 +57,7 @@
                     "kind": "TypeNominal",
                     "name": "CaptureService",
                     "printedName": "EmbraceCaptureService.CaptureService",
-                    "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService"
+                    "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
                   }
                 ],
                 "usr": "s:Sa"
@@ -81,23 +81,24 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
+                "name": "DynamicSelf",
+                "printedName": "Self"
               },
               {
                 "kind": "TypeNominal",
                 "name": "CaptureService",
                 "printedName": "EmbraceCaptureService.CaptureService",
-                "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService"
+                "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
               }
             ],
             "declKind": "Func",
             "usr": "c:@M@EmbraceIO@objc(cs)EMBCaptureServiceBuilder(im)add:",
-            "mangledName": "$s9EmbraceIO21CaptureServiceBuilderC3addyy0acD00cD0CF",
+            "mangledName": "$s9EmbraceIO21CaptureServiceBuilderC3addyACXD0acD00cD0CF",
             "moduleName": "EmbraceIO",
             "declAttributes": [
               "AccessControl",
               "ObjC",
+              "DiscardableResult",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -109,8 +110,8 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
+                "name": "DynamicSelf",
+                "printedName": "Self"
               },
               {
                 "kind": "TypeNominal",
@@ -127,12 +128,13 @@
             ],
             "declKind": "Func",
             "usr": "c:@M@EmbraceIO@objc(cs)EMBCaptureServiceBuilder(im)removeOfType:",
-            "mangledName": "$s9EmbraceIO21CaptureServiceBuilderC6remove6ofTypeyyXlXp_tF",
+            "mangledName": "$s9EmbraceIO21CaptureServiceBuilderC6remove6ofTypeACXDyXlXp_tF",
             "moduleName": "EmbraceIO",
             "objc_name": "removeOfType:",
             "declAttributes": [
               "AccessControl",
               "ObjC",
+              "DiscardableResult",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -324,7 +326,7 @@
                 "kind": "TypeNominal",
                 "name": "URLSessionCaptureService",
                 "printedName": "EmbraceCore.URLSessionCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)URLSessionCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBURLSessionCaptureService"
               },
               {
                 "kind": "TypeNominal",
@@ -335,7 +337,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)urlSessionWithOptions:",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)urlSessionWithOptions:",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE10urlSession7options0A4Core010URLSessionbC0CAI7OptionsC_tFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -350,18 +352,25 @@
           {
             "kind": "Function",
             "name": "tap",
-            "printedName": "tap()",
+            "printedName": "tap(options:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "TapCaptureService",
                 "printedName": "EmbraceCore.TapCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)TapCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBTapCaptureService"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Options",
+                "printedName": "EmbraceCore.TapCaptureService.Options",
+                "hasDefaultArg": true,
+                "usr": "s:11EmbraceCore17TapCaptureServiceC7OptionsC"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)tap",
-            "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE3tap0A4Core03TapbC0CyFZ",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)tapWithOptions:",
+            "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE3tap7options0A4Core03TapbC0CAI7OptionsC_tFZ",
             "moduleName": "EmbraceIO",
             "static": true,
             "declAttributes": [
@@ -381,11 +390,11 @@
                 "kind": "TypeNominal",
                 "name": "ViewCaptureService",
                 "printedName": "EmbraceCore.ViewCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)ViewCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBViewCaptureService"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)view",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)view",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE4view0A4Core04ViewbC0CyFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -406,7 +415,7 @@
                 "kind": "TypeNominal",
                 "name": "WebViewCaptureService",
                 "printedName": "EmbraceCore.WebViewCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)WebViewCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBWebViewCaptureService"
               },
               {
                 "kind": "TypeNominal",
@@ -417,7 +426,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)webViewWithOptions:",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)webViewWithOptions:",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE7webView7options0A4Core03WebfbC0CAI7OptionsC_tFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -438,11 +447,11 @@
                 "kind": "TypeNominal",
                 "name": "LowMemoryWarningCaptureService",
                 "printedName": "EmbraceCore.LowMemoryWarningCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)LowMemoryWarningCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBLowMemoryWarningCaptureService"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)lowMemoryWarning",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)lowMemoryWarning",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE16lowMemoryWarning0A4Core03LowfgbC0CyFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -463,11 +472,11 @@
                 "kind": "TypeNominal",
                 "name": "LowPowerModeCaptureService",
                 "printedName": "EmbraceCore.LowPowerModeCaptureService",
-                "usr": "c:@M@EmbraceCore@objc(cs)LowPowerModeCaptureService"
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBLowPowerModeCaptureService"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)lowPowerMode",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)lowPowerMode",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE12lowPowerMode0A4Core03LowfgbC0CyFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -499,7 +508,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)CaptureService(cm)pushNotificationWithOptions:",
+            "usr": "c:@CM@EmbraceIO@EmbraceCaptureService@objc(cs)EMBCaptureService(cm)pushNotificationWithOptions:",
             "mangledName": "$s21EmbraceCaptureService0bC0C0A2IOE16pushNotification7options0A4Core04PushfbC0CAI7OptionsC_tFZ",
             "moduleName": "EmbraceIO",
             "static": true,
@@ -513,10 +522,11 @@
           }
         ],
         "declKind": "Class",
-        "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService",
+        "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService",
         "mangledName": "$s21EmbraceCaptureService0bC0C",
         "moduleName": "EmbraceCaptureService",
         "isOpen": true,
+        "objc_name": "EMBCaptureService",
         "declAttributes": [
           "ObjC"
         ],
@@ -910,7 +920,7 @@
                     "kind": "TypeNominal",
                     "name": "CaptureService",
                     "printedName": "EmbraceCaptureService.CaptureService",
-                    "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService"
+                    "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
                   }
                 ],
                 "usr": "s:Sa"
@@ -937,7 +947,7 @@
                         "kind": "TypeNominal",
                         "name": "CaptureService",
                         "printedName": "EmbraceCaptureService.CaptureService",
-                        "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService"
+                        "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
                       }
                     ],
                     "usr": "s:Sa"
@@ -1609,9 +1619,9 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceIO\/Capture\/CaptureServiceBuilder.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceIO\/Capture\/CaptureServiceBuilder.swift",
       "kind": "Array",
-      "offset": 336,
+      "offset": 335,
       "length": 2,
       "value": "[]"
     }

@@ -35,11 +35,11 @@
                 "kind": "TypeNominal",
                 "name": "CrashlyticsReporter",
                 "printedName": "EmbraceCrashlyticsSupport.CrashlyticsReporter",
-                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter"
+                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)init",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)init",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterCACycfc",
             "moduleName": "EmbraceCrashlyticsSupport",
             "overriding": true,
@@ -74,7 +74,7 @@
               }
             ],
             "declKind": "Var",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(py)currentSessionId",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(py)currentSessionId",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC16currentSessionIdSSSgvp",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "currentSessionId",
@@ -109,7 +109,7 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)currentSessionId",
+                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)currentSessionId",
                 "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC16currentSessionIdSSSgvg",
                 "moduleName": "EmbraceCrashlyticsSupport",
                 "implicit": true,
@@ -146,7 +146,7 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)setCurrentSessionId:",
+                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)setCurrentSessionId:",
                 "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC16currentSessionIdSSSgvs",
                 "moduleName": "EmbraceCrashlyticsSupport",
                 "implicit": true,
@@ -213,7 +213,7 @@
               }
             ],
             "declKind": "Var",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(py)onNewReport",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(py)onNewReport",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC11onNewReporty0A14CommonInternal05CrashG0CcSgvp",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "onNewReport",
@@ -260,7 +260,7 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)onNewReport",
+                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)onNewReport",
                 "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC11onNewReporty0A14CommonInternal05CrashG0CcSgvg",
                 "moduleName": "EmbraceCrashlyticsSupport",
                 "implicit": true,
@@ -309,7 +309,7 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)setOnNewReport:",
+                "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)setOnNewReport:",
                 "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC11onNewReporty0A14CommonInternal05CrashG0CcSgvs",
                 "moduleName": "EmbraceCrashlyticsSupport",
                 "implicit": true,
@@ -356,7 +356,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)getLastRunState",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)getLastRunState",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC15getLastRunState0A14CommonInternal0fgH0OyF",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "getLastRunState",
@@ -392,7 +392,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)installWithContext:logger:",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)installWithContext:logger:",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC7install7context6loggery0A14CommonInternal05CrashD7ContextC_AG0I6Logger_ptF",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "installWithContext:logger:",
@@ -441,7 +441,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)fetchUnsentCrashReportsWithCompletion:",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)fetchUnsentCrashReportsWithCompletion:",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC23fetchUnsentCrashReports10completionyySay0A14CommonInternal0G6ReportCGc_tF",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "fetchUnsentCrashReportsWithCompletion:",
@@ -471,7 +471,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter(im)deleteCrashReportWithId:",
+            "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter(im)deleteCrashReportWithId:",
             "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC17deleteCrashReport2idySi_tF",
             "moduleName": "EmbraceCrashlyticsSupport",
             "objc_name": "deleteCrashReportWithId:",
@@ -485,9 +485,10 @@
           }
         ],
         "declKind": "Class",
-        "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)CrashlyticsReporter",
+        "usr": "c:@M@EmbraceCrashlyticsSupport@objc(cs)EMBCrashlyticsReporter",
         "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC",
         "moduleName": "EmbraceCrashlyticsSupport",
+        "objc_name": "EMBCrashlyticsReporter",
         "declAttributes": [
           "Final",
           "AccessControl",
@@ -581,105 +582,105 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
       "kind": "StringLiteral",
-      "offset": 274,
+      "offset": 346,
       "length": 13,
       "value": "\"crashlytics\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
       "kind": "StringLiteral",
-      "offset": 589,
+      "offset": 661,
       "length": 38,
       "value": "\"crashlyticsreports-pa.googleapis.com\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
       "kind": "StringLiteral",
-      "offset": 647,
+      "offset": 719,
       "length": 10,
       "value": "\"batchlog\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
       "kind": "StringLiteral",
-      "offset": 1787,
+      "offset": 1859,
       "length": 24,
       "value": "\"networkRequestCaptured\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsReporter.swift",
       "kind": "Array",
-      "offset": 2762,
+      "offset": 2834,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 968,
       "length": 33,
       "value": "\"com.embrace.crashlytics_wrapper\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "IntegerLiteral",
       "offset": 1055,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "IntegerLiteral",
       "offset": 1100,
       "length": 1,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "FloatLiteral",
       "offset": 1124,
       "length": 3,
       "value": "1.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 1190,
       "length": 16,
       "value": "\"FIRCrashlytics\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 1260,
       "length": 13,
       "value": "\"crashlytics\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 1327,
       "length": 24,
       "value": "\"setCustomValue:forKey:\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "IntegerLiteral",
       "offset": 2631,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 3182,
       "length": 9,
       "value": "\"emb-sid\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
       "offset": 3370,
       "length": 9,

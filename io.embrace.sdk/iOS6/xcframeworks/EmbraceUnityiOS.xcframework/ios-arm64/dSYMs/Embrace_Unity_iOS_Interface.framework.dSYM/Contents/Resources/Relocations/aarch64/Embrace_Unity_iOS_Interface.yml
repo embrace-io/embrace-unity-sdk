@@ -1,0 +1,16 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/alyssasyharath/Library/Developer/Xcode/DerivedData/Embrace_Unity_iOS_Interface-dusqucfvvcfzrigylxeaehxkrnux/Build/Intermediates.noindex/ArchiveIntermediates/Embrace Unity iOS Interface/InstallationBuildProductsLocation/Library/Frameworks/Embrace_Unity_iOS_Interface.framework/Embrace_Unity_iOS_Interface'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x2E66D, size: 0x8, addend: 0x0, symName: _Embrace_Unity_iOS_InterfaceVersionString, symObjAddr: 0x0, symBinAddr: 0x41E0, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x2E6A2, size: 0x8, addend: 0x0, symName: _Embrace_Unity_iOS_InterfaceVersionNumber, symObjAddr: 0x50, symBinAddr: 0x4230, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x2E6DF, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCACycfC', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x20 }
+  - { offsetInCU: 0x77, offset: 0x2E72F, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCACycfcTo', symObjAddr: 0x70, symBinAddr: 0x4070, symSize: 0x3C }
+  - { offsetInCU: 0xC9, offset: 0x2E781, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCMa', symObjAddr: 0x50, symBinAddr: 0x4050, symSize: 0x20 }
+  - { offsetInCU: 0x164, offset: 0x2E81C, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCACycfC', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x20 }
+  - { offsetInCU: 0x178, offset: 0x2E830, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCACycfc', symObjAddr: 0x20, symBinAddr: 0x4020, symSize: 0x30 }
+  - { offsetInCU: 0x1B4, offset: 0x2E86C, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface0A7ManagerCfD', symObjAddr: 0xAC, symBinAddr: 0x40AC, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x2E8B6, size: 0x8, addend: 0x0, symName: _embrace_sdk_is_started, symObjAddr: 0x0, symBinAddr: 0x40DC, symSize: 0x48 }
+  - { offsetInCU: 0x6E, offset: 0x2E8FD, size: 0x8, addend: 0x0, symName: _embrace_sdk_is_started, symObjAddr: 0x0, symBinAddr: 0x40DC, symSize: 0x48 }
+  - { offsetInCU: 0xB6, offset: 0x2E945, size: 0x8, addend: 0x0, symName: '_$s27Embrace_Unity_iOS_Interface22embrace_sdk_is_startedSbyF', symObjAddr: 0x48, symBinAddr: 0x4124, symSize: 0x40 }
+...

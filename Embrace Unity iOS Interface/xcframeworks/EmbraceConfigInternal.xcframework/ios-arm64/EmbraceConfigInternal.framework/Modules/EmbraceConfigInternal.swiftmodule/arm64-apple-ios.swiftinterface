@@ -1,0 +1,52 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios17.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceConfigInternal
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import EmbraceCommonInternal
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+extension EmbraceConfigInternal.EmbraceConfig {
+  public class Options {
+    public init(apiBaseUrl: Swift.String, queue: Dispatch.DispatchQueue, appId: Swift.String, deviceId: Swift.String, osVersion: Swift.String, sdkVersion: Swift.String, appVersion: Swift.String, userAgent: Swift.String, minimumUpdateInterval: Foundation.TimeInterval = 60 * 60, urlSessionConfiguration: Foundation.URLSessionConfiguration = URLSessionConfiguration.default)
+    @objc deinit
+  }
+}
+extension Foundation.NSNotification.Name {
+  public static let embraceConfigUpdated: Foundation.Notification.Name
+}
+public class EmbraceConfig {
+  final public let options: EmbraceConfigInternal.EmbraceConfig.Options
+  public var onUpdate: (() -> Swift.Void)?
+  public init(options: EmbraceConfigInternal.EmbraceConfig.Options, notificationCenter: Foundation.NotificationCenter, logger: any EmbraceCommonInternal.InternalLogger)
+  @objc deinit
+  public var isSDKEnabled: Swift.Bool {
+    get
+  }
+  public var isBackgroundSessionEnabled: Swift.Bool {
+    get
+  }
+  public var isNetworkSpansForwardingEnabled: Swift.Bool {
+    get
+  }
+  public var internalLogsTraceLimit: Swift.Int {
+    get
+  }
+  public var internalLogsDebugLimit: Swift.Int {
+    get
+  }
+  public var internalLogsInfoLimit: Swift.Int {
+    get
+  }
+  public var internalLogsWarningLimit: Swift.Int {
+    get
+  }
+  public var internalLogsErrorLimit: Swift.Int {
+    get
+  }
+  @discardableResult
+  public func updateIfNeeded() -> Swift.Bool
+  public func update()
+}

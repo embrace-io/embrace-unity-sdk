@@ -1,0 +1,4 @@
+framework module EmbraceSemantics {
+  header "EmbraceSemantics-Swift.h"
+  requires objc
+}

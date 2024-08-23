@@ -1823,7 +1823,6 @@
                 "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
-                "hasDefaultArg": true,
                 "usr": "s:SS"
               }
             ],
@@ -3002,6 +3001,355 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "EmbraceStorageError",
+        "printedName": "EmbraceStorageError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "cannotUpsertSpan",
+            "printedName": "cannotUpsertSpan",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceStorageInternal.EmbraceStorageError.Type) -> (Swift.String, Swift.String) -> EmbraceStorageInternal.EmbraceStorageError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String, Swift.String) -> EmbraceStorageInternal.EmbraceStorageError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EmbraceStorageError",
+                        "printedName": "EmbraceStorageInternal.EmbraceStorageError",
+                        "usr": "s:22EmbraceStorageInternal0aB5ErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(spanName: Swift.String, message: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceStorageInternal.EmbraceStorageError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EmbraceStorageError",
+                        "printedName": "EmbraceStorageInternal.EmbraceStorageError",
+                        "usr": "s:22EmbraceStorageInternal0aB5ErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO16cannotUpsertSpanyACSS_SStcACmF",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO16cannotUpsertSpanyACSS_SStcACmF",
+            "moduleName": "EmbraceStorageInternal"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbraceStorageError",
+                "printedName": "EmbraceStorageInternal.EmbraceStorageError",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EmbraceStorageError",
+                "printedName": "EmbraceStorageInternal.EmbraceStorageError",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO2eeoiySbAC_ACtFZ",
+            "moduleName": "EmbraceStorageInternal",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "errorDomain",
+            "printedName": "errorDomain",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO11errorDomainSSvpZ",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO11errorDomainSSvpZ",
+            "moduleName": "EmbraceStorageInternal",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO11errorDomainSSvgZ",
+                "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO11errorDomainSSvgZ",
+                "moduleName": "EmbraceStorageInternal",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorCode",
+            "printedName": "errorCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO9errorCodeSivp",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO9errorCodeSivp",
+            "moduleName": "EmbraceStorageInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO9errorCodeSivg",
+                "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO9errorCodeSivg",
+                "moduleName": "EmbraceStorageInternal",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorDescription",
+            "printedName": "errorDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO16errorDescriptionSSSgvp",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO16errorDescriptionSSSgvp",
+            "moduleName": "EmbraceStorageInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO16errorDescriptionSSSgvg",
+                "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO16errorDescriptionSSSgvg",
+                "moduleName": "EmbraceStorageInternal",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "localizedDescription",
+            "printedName": "localizedDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:22EmbraceStorageInternal0aB5ErrorO20localizedDescriptionSSvp",
+            "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO20localizedDescriptionSSvp",
+            "moduleName": "EmbraceStorageInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:22EmbraceStorageInternal0aB5ErrorO20localizedDescriptionSSvg",
+                "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO20localizedDescriptionSSvg",
+                "moduleName": "EmbraceStorageInternal",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:22EmbraceStorageInternal0aB5ErrorO",
+        "mangledName": "$s22EmbraceStorageInternal0aB5ErrorO",
+        "moduleName": "EmbraceStorageInternal",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LocalizedError",
+            "printedName": "LocalizedError",
+            "usr": "s:10Foundation14LocalizedErrorP",
+            "mangledName": "$s10Foundation14LocalizedErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomNSError",
+            "printedName": "CustomNSError",
+            "usr": "s:10Foundation13CustomNSErrorP",
+            "mangledName": "$s10Foundation13CustomNSErrorP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceStorageInternal",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "GRDB",
+        "printedName": "GRDB",
+        "declKind": "Import",
+        "moduleName": "EmbraceStorageInternal"
+      },
+      {
+        "kind": "TypeDecl",
         "name": "Migration",
         "printedName": "Migration",
         "children": [
@@ -3722,6 +4070,13 @@
         "kind": "Import",
         "name": "EmbraceCommonInternal",
         "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceStorageInternal"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
         "declKind": "Import",
         "moduleName": "EmbraceStorageInternal"
       },
@@ -7478,6 +7833,55 @@
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "lifespanIdForPermanent",
+            "printedName": "lifespanIdForPermanent",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:22EmbraceStorageInternal14MetadataRecordV22lifespanIdForPermanentSSvpZ",
+            "mangledName": "$s22EmbraceStorageInternal14MetadataRecordV22lifespanIdForPermanentSSvpZ",
+            "moduleName": "EmbraceStorageInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:22EmbraceStorageInternal14MetadataRecordV22lifespanIdForPermanentSSvgZ",
+                "mangledName": "$s22EmbraceStorageInternal14MetadataRecordV22lifespanIdForPermanentSSvgZ",
+                "moduleName": "EmbraceStorageInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -10654,10 +11058,10 @@
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
           },
           {
             "kind": "Conformance",
@@ -10668,24 +11072,24 @@
           },
           {
             "kind": "Conformance",
-            "name": "DatabaseValueConvertible",
-            "printedName": "DatabaseValueConvertible",
-            "usr": "s:4GRDB24DatabaseValueConvertibleP",
-            "mangledName": "$s4GRDB24DatabaseValueConvertibleP"
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
           },
           {
             "kind": "Conformance",
-            "name": "SQLExpressible",
-            "printedName": "SQLExpressible",
-            "usr": "s:4GRDB14SQLExpressibleP",
-            "mangledName": "$s4GRDB14SQLExpressibleP"
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
           },
           {
             "kind": "Conformance",
-            "name": "StatementBinding",
-            "printedName": "StatementBinding",
-            "usr": "s:4GRDB16StatementBindingP",
-            "mangledName": "$s4GRDB16StatementBindingP"
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
           },
           {
             "kind": "Conformance",
@@ -10711,24 +11115,31 @@
           },
           {
             "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
           },
           {
             "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
+            "name": "DatabaseValueConvertible",
+            "printedName": "DatabaseValueConvertible",
+            "usr": "s:4GRDB24DatabaseValueConvertibleP",
+            "mangledName": "$s4GRDB24DatabaseValueConvertibleP"
           },
           {
             "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
+            "name": "SQLExpressible",
+            "printedName": "SQLExpressible",
+            "usr": "s:4GRDB14SQLExpressibleP",
+            "mangledName": "$s4GRDB14SQLExpressibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "StatementBinding",
+            "printedName": "StatementBinding",
+            "usr": "s:4GRDB16StatementBindingP",
+            "mangledName": "$s4GRDB16StatementBindingP"
           }
         ]
       },
@@ -11453,805 +11864,826 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
       "kind": "Dictionary",
       "offset": 518,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 672,
       "length": 3,
       "value": "100"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 839,
       "length": 3,
       "value": "100"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 997,
       "length": 2,
       "value": "10"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage+Options.swift",
       "kind": "StringLiteral",
       "offset": 1455,
       "length": 27,
       "value": "\"baseURL must be a fileURL\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "BooleanLiteral",
       "offset": 1163,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 1417,
       "length": 65,
       "value": "\"Error performing migrations, resetting EmbraceStorage: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 1481,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 1584,
       "length": 58,
       "value": "\"Error performing migrations. Reset not enabled: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 1641,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "BooleanLiteral",
       "offset": 2103,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "BooleanLiteral",
       "offset": 6141,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 6275,
       "length": 37,
       "value": "\"Unsupported storage mechansim added\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 6822,
       "length": 365,
       "value": "\"GRDB Failed to initialize EmbraceStorage.\nWill attempt to remove existing file and create a new DB.\nMessage: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7016,
       "length": 17,
       "value": "\"[empty message]\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7034,
       "length": 1,
       "value": "\",\nResult Code: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7090,
       "length": 1,
       "value": "\",\nSQLite Extended Code: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7163,
       "length": 96,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7277,
       "length": 182,
       "value": "\"Unknown error while trying to initialize EmbraceStorage: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7366,
       "length": 4,
       "value": "\"\nWill attempt to recover by deleting existing DB.\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 7974,
       "length": 170,
       "value": "\"EmbraceStorage failed to remove DB file.\nError: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 8087,
       "length": 8,
       "value": "\"\nFilepath: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorage.swift",
       "kind": "StringLiteral",
       "offset": 8124,
       "length": 36,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "StringLiteral",
+      "offset": 380,
+      "length": 9,
+      "value": "\"Embrace\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "IntegerLiteral",
+      "offset": 502,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "StringLiteral",
+      "offset": 665,
+      "length": 45,
+      "value": "\"Failed upsertSpan `\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "StringLiteral",
+      "offset": 696,
+      "length": 1,
+      "value": "\"`: \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "StringLiteral",
+      "offset": 709,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/EmbraceStorageError.swift",
+      "kind": "StringLiteral",
+      "offset": 814,
+      "length": 19,
+      "value": "\"No Matching Error\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
       "kind": "IntegerLiteral",
       "offset": 528,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
       "kind": "StringLiteral",
       "offset": 562,
       "length": 26,
       "value": "\"No migrations to perform\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
       "kind": "StringLiteral",
       "offset": 1051,
       "length": 18,
       "value": "\"DB is up to date\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
       "kind": "StringLiteral",
       "offset": 1144,
       "length": 46,
       "value": "\"Running up to \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/MigrationService.swift",
       "kind": "StringLiteral",
       "offset": 1178,
       "length": 10,
       "value": "\" migrations\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 155,
       "length": 23,
       "value": "\"CreateSpanRecordTable\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 959,
       "length": 286,
       "value": "\"CREATE TRIGGER IF NOT EXISTS prevent_closed_span_modification\nBEFORE UPDATE ON \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240509_00_AddSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 1089,
       "length": 4,
       "value": "\"\nWHEN OLD.end_time IS NOT NULL\nBEGIN\n    SELECT RAISE(ABORT,'Attempted to modify an already closed span.');\nEND;\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 158,
       "length": 26,
       "value": "\"CreateSessionRecordTable\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
       "kind": "BooleanLiteral",
       "offset": 1074,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
       "kind": "BooleanLiteral",
       "offset": 1207,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_00_AddSessionRecordMigration.swift",
       "kind": "BooleanLiteral",
       "offset": 1344,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_01_AddMetadataRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_01_AddMetadataRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 160,
       "length": 27,
       "value": "\"CreateMetadataRecordTable\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_02_AddLogRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240510_02_AddLogRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 155,
       "length": 22,
       "value": "\"CreateLogRecordTable\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 174,
       "length": 34,
       "value": "\"AddProcessIdentifierToSpanRecord\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 278,
       "length": 12,
       "value": "\"spans_temp\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 1362,
       "length": 508,
       "value": "\"    INSERT INTO 'spans_temp' (\n        'id',\n        'trace_id',\n        'name',\n        'type',\n        'start_time',\n        'end_time',\n        'data',\n        'process_identifier'\n    ) SELECT\n        id,\n        trace_id,\n        name,\n        type,\n        start_time,\n        end_time,\n        data,\n        'c0ffee'\n    FROM 'spans'\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 2235,
       "length": 310,
       "value": "\"    CREATE TRIGGER IF NOT EXISTS prevent_closed_span_modification\n    BEFORE UPDATE ON \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Migration\/Migrations\/20240523_00_AddProcessIdentifierToSpanRecordMigration.swift",
       "kind": "StringLiteral",
       "offset": 2373,
       "length": 4,
       "value": "\"\n    WHEN OLD.end_time IS NOT NULL\n    BEGIN\n        SELECT RAISE(ABORT,'Attempted to modify an already closed span.');\n    END;\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "StringLiteral",
       "offset": 1088,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "BooleanLiteral",
       "offset": 1807,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "BooleanLiteral",
       "offset": 2753,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "BooleanLiteral",
       "offset": 2829,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "IntegerLiteral",
       "offset": 3143,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
-      "kind": "StringLiteral",
-      "offset": 5439,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "IntegerLiteral",
-      "offset": 6382,
+      "offset": 6284,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "Array",
-      "offset": 6596,
+      "offset": 6498,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "IntegerLiteral",
-      "offset": 7235,
+      "offset": 7137,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "Array",
-      "offset": 7510,
+      "offset": 7412,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "StringLiteral",
-      "offset": 7974,
+      "offset": 7876,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "Array",
-      "offset": 9298,
+      "offset": 9200,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "Array",
-      "offset": 11042,
+      "offset": 10944,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Metadata.swift",
       "kind": "Array",
-      "offset": 12083,
+      "offset": 11985,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "IntegerLiteral",
-      "offset": 199,
+      "offset": 223,
       "length": 4,
       "value": "1500"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "StringLiteral",
-      "offset": 1662,
-      "length": 69,
-      "value": "\"Failed upsertSpan `\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
-      "kind": "StringLiteral",
-      "offset": 1694,
-      "length": 1,
-      "value": "\"`: \""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
-      "kind": "StringLiteral",
-      "offset": 1712,
+      "offset": 1808,
       "length": 17,
       "value": "\"[empty message]\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
-      "kind": "StringLiteral",
-      "offset": 1730,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "BooleanLiteral",
-      "offset": 4114,
+      "offset": 4207,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "IntegerLiteral",
-      "offset": 4141,
+      "offset": 4234,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "IntegerLiteral",
-      "offset": 5200,
+      "offset": 5293,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "BooleanLiteral",
-      "offset": 6609,
+      "offset": 6702,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/EmbraceStorage+Span.swift",
       "kind": "BooleanLiteral",
-      "offset": 6823,
+      "offset": 6916,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 1002,
       "length": 6,
       "value": "\"logs\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 1967,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "Dictionary",
       "offset": 2594,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 2869,
       "length": 12,
       "value": "\"identifier\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 2939,
       "length": 20,
       "value": "\"process_identifier\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 3008,
       "length": 10,
       "value": "\"severity\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 3063,
       "length": 6,
       "value": "\"body\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 3119,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/LogRecord.swift",
       "kind": "StringLiteral",
       "offset": 3181,
       "length": 12,
       "value": "\"attributes\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/PersistableValue.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/PersistableValue.swift",
       "kind": "StringLiteral",
       "offset": 552,
       "length": 6,
       "value": "\"true\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/Log\/PersistableValue.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/Log\/PersistableValue.swift",
       "kind": "StringLiteral",
       "offset": 561,
       "length": 7,
       "value": "\"false\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 266,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 318,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 522,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 526,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 831,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord+ValueTypes.swift",
       "kind": "IntegerLiteral",
       "offset": 835,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1757,
       "length": 5,
       "value": "\"key\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1808,
       "length": 7,
       "value": "\"value\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1860,
       "length": 6,
       "value": "\"type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1915,
       "length": 10,
       "value": "\"lifespan\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1976,
       "length": 13,
       "value": "\"lifespan_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 2041,
       "length": 14,
       "value": "\"collected_at\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
       "kind": "StringLiteral",
       "offset": 2207,
       "length": 10,
       "value": "\"metadata\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/MetadataRecord.swift",
+      "kind": "StringLiteral",
+      "offset": 2760,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "BooleanLiteral",
       "offset": 1203,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "BooleanLiteral",
       "offset": 1236,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "BooleanLiteral",
       "offset": 1273,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 1815,
       "length": 4,
       "value": "\"id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 1865,
       "length": 7,
       "value": "\"state\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 1922,
       "length": 12,
       "value": "\"process_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 1982,
       "length": 10,
       "value": "\"trace_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2039,
       "length": 9,
       "value": "\"span_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2098,
       "length": 12,
       "value": "\"start_time\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2158,
       "length": 10,
       "value": "\"end_time\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2226,
       "length": 21,
       "value": "\"last_heartbeat_time\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2301,
       "length": 17,
       "value": "\"crash_report_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2368,
       "length": 12,
       "value": "\"cold_start\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2430,
       "length": 12,
       "value": "\"clean_exit\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2496,
       "length": 16,
       "value": "\"app_terminated\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SessionRecord.swift",
       "kind": "StringLiteral",
       "offset": 2663,
       "length": 10,
       "value": "\"sessions\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1041,
       "length": 4,
       "value": "\"id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1093,
       "length": 10,
       "value": "\"trace_id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1148,
       "length": 6,
       "value": "\"type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1199,
       "length": 6,
       "value": "\"data\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1255,
       "length": 12,
       "value": "\"start_time\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1315,
       "length": 10,
       "value": "\"end_time\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1370,
       "length": 6,
       "value": "\"name\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1434,
       "length": 20,
       "value": "\"process_identifier\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceStorageInternal\/Records\/SpanRecord.swift",
       "kind": "StringLiteral",
       "offset": 1602,
       "length": 7,

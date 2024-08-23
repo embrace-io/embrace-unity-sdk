@@ -916,378 +916,378 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 816,
       "length": 2,
       "value": "60"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 821,
       "length": 2,
       "value": "60"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "StringLiteral",
       "offset": 212,
       "length": 22,
       "value": "\"embraceConfigUpdated\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
       "offset": 409,
       "length": 1,
       "value": "6"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 648,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
       "offset": 741,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "StringLiteral",
       "offset": 1665,
       "length": 42,
       "value": "\"UIApplicationDidBecomeActiveNotification\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 2924,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 2973,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 3038,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 3100,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
       "offset": 3557,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
       "offset": 3883,
       "length": 2,
       "value": "16"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
       "offset": 3951,
       "length": 3,
       "value": "100"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 175,
       "length": 12,
       "value": "\"\/v2\/config\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1124,
       "length": 83,
       "value": "\"Error fetching remote config:\n\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1206,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1387,
       "length": 96,
       "value": "\"Error fetching remote config - Invalid response:\n\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1482,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "IntegerLiteral",
       "offset": 1600,
       "length": 3,
       "value": "200"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "IntegerLiteral",
       "offset": 1633,
       "length": 3,
       "value": "300"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1679,
       "length": 80,
       "value": "\"Error fetching remote config - Invalid response:\n\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 1757,
       "length": 1,
       "value": "\")\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2003,
       "length": 35,
       "value": "\"Succesfully fetched remote config\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2133,
       "length": 62,
       "value": "\"Error decoding remote config:\n\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2194,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2499,
       "length": 7,
       "value": "\"appId\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2562,
       "length": 11,
       "value": "\"osVersion\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2633,
       "length": 12,
       "value": "\"appVersion\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2706,
       "length": 10,
       "value": "\"deviceId\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 2775,
       "length": 12,
       "value": "\"sdkVersion\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3086,
       "length": 18,
       "value": "\"application\/json\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3126,
       "length": 8,
       "value": "\"Accept\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3200,
       "length": 12,
       "value": "\"User-Agent\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3243,
       "length": 5,
       "value": "\"GET\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3471,
       "length": 6,
       "value": "\"ETag\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3544,
       "length": 6,
       "value": "\"Etag\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
       "kind": "StringLiteral",
       "offset": 3663,
       "length": 15,
       "value": "\"If-None-Match\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 554,
       "length": 11,
       "value": "\"threshold\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 722,
       "length": 25,
       "value": "\"network_span_forwarding\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 843,
       "length": 13,
       "value": "\"pct_enabled\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 843,
       "length": 13,
       "value": "\"pct_enabled\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 901,
       "length": 21,
       "value": "\"internal_log_limits\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 554,
       "length": 11,
       "value": "\"threshold\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 722,
       "length": 25,
       "value": "\"network_span_forwarding\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
       "offset": 901,
       "length": 21,
       "value": "\"internal_log_limits\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
       "offset": 4774,
       "length": 5,
       "value": "100.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
       "offset": 4817,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
       "offset": 4863,
       "length": 3,
       "value": "0.0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
       "offset": 4901,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
       "offset": 4936,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
       "offset": 4970,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
       "offset": 5007,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
       "offset": 5042,
       "length": 1,

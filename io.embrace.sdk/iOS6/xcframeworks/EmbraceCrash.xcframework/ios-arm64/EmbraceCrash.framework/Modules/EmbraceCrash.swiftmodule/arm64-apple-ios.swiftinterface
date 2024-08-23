@@ -9,7 +9,7 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_inheritsConvenienceInitializers @objc final public class EmbraceCrashReporter : ObjectiveC.NSObject, EmbraceCommonInternal.CrashReporter {
+@_inheritsConvenienceInitializers @objc(EMBEmbraceCrashReporter) final public class EmbraceCrashReporter : ObjectiveC.NSObject, EmbraceCommonInternal.CrashReporter {
   final public var basePath: Swift.String? {
     get
   }

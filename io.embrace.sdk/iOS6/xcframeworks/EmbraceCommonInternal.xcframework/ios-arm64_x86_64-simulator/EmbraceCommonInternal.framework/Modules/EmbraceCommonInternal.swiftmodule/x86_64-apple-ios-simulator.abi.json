@@ -1566,6 +1566,1926 @@
         "hasMissingDesignatedInitializers": true
       },
       {
+        "kind": "TypeDecl",
+        "name": "EmbraceType",
+        "printedName": "EmbraceType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "primary",
+            "printedName": "primary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP7primaryAA07PrimaryD0Ovp",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP7primaryAA07PrimaryD0Ovp",
+            "moduleName": "EmbraceCommonInternal",
+            "protocolReq": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypeP7primaryAA07PrimaryD0Ovg",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypeP7primaryAA07PrimaryD0Ovg",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "secondary",
+            "printedName": "secondary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP9secondarySSSgvp",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP9secondarySSSgvp",
+            "moduleName": "EmbraceCommonInternal",
+            "protocolReq": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypeP9secondarySSSgvg",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypeP9secondarySSSgvg",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(primary:secondary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP7primary9secondaryxAA07PrimaryD0O_SSSgtcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP7primary9secondaryxAA07PrimaryD0O_SSSgtcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(primary:secondary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE7primary9secondaryxAA07PrimaryD0O_SSSgtcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE7primary9secondaryxAA07PrimaryD0O_SSSgtcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(performance:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE11performancexSS_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE11performancexSS_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(ux:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE2uxxSS_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE2uxxSS_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(system:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE6systemxSS_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE6systemxSS_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Var",
+            "name": "performance",
+            "printedName": "performance",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE11performancexvpZ",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE11performancexvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypePAAE11performancexvgZ",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE11performancexvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "ux",
+            "printedName": "ux",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE2uxxvpZ",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE2uxxvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypePAAE2uxxvgZ",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE2uxxvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "system",
+            "printedName": "system",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE6systemxvpZ",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE6systemxvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypePAAE6systemxvgZ",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE6systemxvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "static": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE8rawValueSSvp",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE8rawValueSSvp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypePAAE8rawValueSSvg",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE8rawValueSSvg",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "τ_0_0?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "GenericTypeParam",
+                    "printedName": "τ_0_0"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE8rawValuexSgSS_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE8rawValuexSgSS_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "GenericTypeParam",
+                "printedName": "τ_0_0"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE4fromxs7Decoder_p_tKcfc",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE4fromxs7Decoder_p_tKcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE6encode2toys7Encoder_p_tKF",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "description",
+            "printedName": "description",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal0A4TypePAAE11descriptionSSvp",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE11descriptionSSvp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal0A4TypePAAE11descriptionSSvg",
+                "mangledName": "$s21EmbraceCommonInternal0A4TypePAAE11descriptionSSvg",
+                "moduleName": "EmbraceCommonInternal",
+                "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.EmbraceType>",
+                "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.EmbraceType>",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:21EmbraceCommonInternal0A4TypeP",
+        "mangledName": "$s21EmbraceCommonInternal0A4TypeP",
+        "moduleName": "EmbraceCommonInternal",
+        "genericSig": "<τ_0_0 : Swift.CustomStringConvertible, τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable, τ_0_0 : Swift.Hashable, τ_0_0 : Swift.RawRepresentable, τ_0_0.RawValue == Swift.String>",
+        "sugared_genericSig": "<Self : Swift.CustomStringConvertible, Self : Swift.Decodable, Self : Swift.Encodable, Self : Swift.Hashable, Self : Swift.RawRepresentable, Self.RawValue == Swift.String>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PrimaryType",
+        "printedName": "PrimaryType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "performance",
+            "printedName": "performance",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceCommonInternal.PrimaryType.Type) -> EmbraceCommonInternal.PrimaryType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceCommonInternal.PrimaryType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PrimaryType",
+                        "printedName": "EmbraceCommonInternal.PrimaryType",
+                        "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:21EmbraceCommonInternal11PrimaryTypeO11performanceyA2CmF",
+            "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO11performanceyA2CmF",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "ux",
+            "printedName": "ux",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceCommonInternal.PrimaryType.Type) -> EmbraceCommonInternal.PrimaryType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceCommonInternal.PrimaryType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PrimaryType",
+                        "printedName": "EmbraceCommonInternal.PrimaryType",
+                        "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:21EmbraceCommonInternal11PrimaryTypeO2uxyA2CmF",
+            "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO2uxyA2CmF",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "system",
+            "printedName": "system",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceCommonInternal.PrimaryType.Type) -> EmbraceCommonInternal.PrimaryType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceCommonInternal.PrimaryType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PrimaryType",
+                        "printedName": "EmbraceCommonInternal.PrimaryType",
+                        "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:21EmbraceCommonInternal11PrimaryTypeO6systemyA2CmF",
+            "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO6systemyA2CmF",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "EmbraceCommonInternal.PrimaryType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal11PrimaryTypeO8rawValueACSgSS_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO8rawValueACSgSS_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal11PrimaryTypeO8rawValueSSvp",
+            "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO8rawValueSSvp",
+            "moduleName": "EmbraceCommonInternal",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO8rawValueSSvg",
+                "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO8rawValueSSvg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:21EmbraceCommonInternal11PrimaryTypeO",
+        "mangledName": "$s21EmbraceCommonInternal11PrimaryTypeO",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LogType",
+        "printedName": "LogType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "primary",
+            "printedName": "primary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV7primaryAA07PrimaryE0Ovp",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV7primaryAA07PrimaryE0Ovp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV7primaryAA07PrimaryE0Ovg",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV7primaryAA07PrimaryE0Ovg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "secondary",
+            "printedName": "secondary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV9secondarySSSgvp",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV9secondarySSSgvp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV9secondarySSSgvg",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV9secondarySSSgvg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(primary:secondary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV7primary9secondaryAcA07PrimaryE0O_SSSgtcfc",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV7primary9secondaryAcA07PrimaryE0O_SSSgtcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceCommonInternal7LogTypeV",
+        "mangledName": "$s21EmbraceCommonInternal7LogTypeV",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SpanEventType",
+        "printedName": "SpanEventType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "primary",
+            "printedName": "primary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal13SpanEventTypeV7primaryAA07PrimaryF0Ovp",
+            "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV7primaryAA07PrimaryF0Ovp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal13SpanEventTypeV7primaryAA07PrimaryF0Ovg",
+                "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV7primaryAA07PrimaryF0Ovg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "secondary",
+            "printedName": "secondary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal13SpanEventTypeV9secondarySSSgvp",
+            "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV9secondarySSSgvp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal13SpanEventTypeV9secondarySSSgvg",
+                "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV9secondarySSSgvg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(primary:secondary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanEventType",
+                "printedName": "EmbraceCommonInternal.SpanEventType",
+                "usr": "s:21EmbraceCommonInternal13SpanEventTypeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal13SpanEventTypeV7primary9secondaryAcA07PrimaryF0O_SSSgtcfc",
+            "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV7primary9secondaryAcA07PrimaryF0O_SSSgtcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceCommonInternal13SpanEventTypeV",
+        "mangledName": "$s21EmbraceCommonInternal13SpanEventTypeV",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SpanType",
+        "printedName": "SpanType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "primary",
+            "printedName": "primary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV7primaryAA07PrimaryE0Ovp",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV7primaryAA07PrimaryE0Ovp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PrimaryType",
+                    "printedName": "EmbraceCommonInternal.PrimaryType",
+                    "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV7primaryAA07PrimaryE0Ovg",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV7primaryAA07PrimaryE0Ovg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "secondary",
+            "printedName": "secondary",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9secondarySSSgvp",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9secondarySSSgvp",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9secondarySSSgvg",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9secondarySSSgvg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(primary:secondary:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PrimaryType",
+                "printedName": "EmbraceCommonInternal.PrimaryType",
+                "usr": "s:21EmbraceCommonInternal11PrimaryTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV7primary9secondaryAcA07PrimaryE0O_SSSgtcfc",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV7primary9secondaryAcA07PrimaryE0O_SSSgtcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "fileIO",
+            "printedName": "fileIO",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV6fileIOACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6fileIOACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV6fileIOACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6fileIOACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fileRead",
+            "printedName": "fileRead",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV8fileReadACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8fileReadACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV8fileReadACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8fileReadACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fileWrite",
+            "printedName": "fileWrite",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9fileWriteACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9fileWriteACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9fileWriteACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9fileWriteACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sqlSelect",
+            "printedName": "sqlSelect",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlSelectACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlSelectACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlSelectACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlSelectACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sqlUpdate",
+            "printedName": "sqlUpdate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sqlDelete",
+            "printedName": "sqlDelete",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sqlVacuum",
+            "printedName": "sqlVacuum",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvpZ",
+            "moduleName": "EmbraceCommonInternal",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvgZ",
+                "moduleName": "EmbraceCommonInternal",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceCommonInternal8SpanTypeV",
+        "mangledName": "$s21EmbraceCommonInternal8SpanTypeV",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -4924,514 +6844,6 @@
         ]
       },
       {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "EmbraceCommonInternal",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "LogType",
-        "printedName": "LogType",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "system",
-            "printedName": "system",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV6systemACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV6systemACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV6systemACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV6systemACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "default",
-            "printedName": "default",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV7defaultACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV7defaultACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV7defaultACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV7defaultACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "breadcrumb",
-            "printedName": "breadcrumb",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV10breadcrumbACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV10breadcrumbACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV10breadcrumbACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV10breadcrumbACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "crash",
-            "printedName": "crash",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV5crashACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV5crashACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV5crashACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV5crashACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "internal",
-            "printedName": "internal",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV8internalACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV8internalACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV8internalACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV8internalACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "rawValue",
-            "printedName": "rawValue",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV8rawValueSSvp",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV8rawValueSSvp",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV8rawValueSSvg",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV8rawValueSSvg",
-                "moduleName": "EmbraceCommonInternal",
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(rawValue:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "EmbraceCommonInternal.LogType?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "LogType",
-                    "printedName": "EmbraceCommonInternal.LogType",
-                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV8rawValueACSgSS_tcfc",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV8rawValueACSgSS_tcfc",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LogType",
-                "printedName": "EmbraceCommonInternal.LogType",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV4fromACs7Decoder_p_tKcfc",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "throwing": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV6encode2toys7Encoder_p_tKF",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Var",
-            "name": "description",
-            "printedName": "description",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal7LogTypeV11descriptionSSvp",
-            "mangledName": "$s21EmbraceCommonInternal7LogTypeV11descriptionSSvp",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal7LogTypeV11descriptionSSvg",
-                "mangledName": "$s21EmbraceCommonInternal7LogTypeV11descriptionSSvg",
-                "moduleName": "EmbraceCommonInternal",
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:21EmbraceCommonInternal7LogTypeV",
-        "mangledName": "$s21EmbraceCommonInternal7LogTypeV",
-        "moduleName": "EmbraceCommonInternal",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RawRepresentable",
-            "printedName": "RawRepresentable",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "RawValue",
-                "printedName": "RawValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:SY",
-            "mangledName": "$sSY"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
-          }
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "EmbraceCommonInternal",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
         "kind": "TypeDecl",
         "name": "ThreadSafe",
         "printedName": "ThreadSafe",
@@ -6084,1005 +7496,6 @@
         "moduleName": "EmbraceCommonInternal",
         "declAttributes": [
           "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "EmbraceCommonInternal",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "SpanType",
-        "printedName": "SpanType",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "performance",
-            "printedName": "performance",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV11performanceACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11performanceACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV11performanceACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11performanceACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "ux",
-            "printedName": "ux",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV2uxACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV2uxACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV2uxACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV2uxACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "system",
-            "printedName": "system",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV6systemACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6systemACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV6systemACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6systemACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "fileIO",
-            "printedName": "fileIO",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV6fileIOACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6fileIOACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV6fileIOACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6fileIOACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "fileRead",
-            "printedName": "fileRead",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV8fileReadACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8fileReadACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV8fileReadACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8fileReadACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "fileWrite",
-            "printedName": "fileWrite",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV9fileWriteACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9fileWriteACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV9fileWriteACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9fileWriteACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "sqlSelect",
-            "printedName": "sqlSelect",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlSelectACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlSelectACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlSelectACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlSelectACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "sqlUpdate",
-            "printedName": "sqlUpdate",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlUpdateACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "sqlDelete",
-            "printedName": "sqlDelete",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlDeleteACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "sqlVacuum",
-            "printedName": "sqlVacuum",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV9sqlVacuumACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "networkHTTP",
-            "printedName": "networkHTTP",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV11networkHTTPACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11networkHTTPACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV11networkHTTPACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11networkHTTPACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "view",
-            "printedName": "view",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV4viewACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV4viewACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV4viewACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV4viewACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "inputTap",
-            "printedName": "inputTap",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV8inputTapACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8inputTapACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV8inputTapACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8inputTapACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "lowPower",
-            "printedName": "lowPower",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV8lowPowerACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8lowPowerACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV8lowPowerACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8lowPowerACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "session",
-            "printedName": "session",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV7sessionACvpZ",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV7sessionACvpZ",
-            "moduleName": "EmbraceCommonInternal",
-            "static": true,
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV7sessionACvgZ",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV7sessionACvgZ",
-                "moduleName": "EmbraceCommonInternal",
-                "static": true,
-                "implicit": true,
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "rawValue",
-            "printedName": "rawValue",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV8rawValueSSvp",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8rawValueSSvp",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV8rawValueSSvg",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8rawValueSSvg",
-                "moduleName": "EmbraceCommonInternal",
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(rawValue:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "EmbraceCommonInternal.SpanType?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanType",
-                    "printedName": "EmbraceCommonInternal.SpanType",
-                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV8rawValueACSgSS_tcfc",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV8rawValueACSgSS_tcfc",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Var",
-            "name": "description",
-            "printedName": "description",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV11descriptionSSvp",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11descriptionSSvp",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV11descriptionSSvg",
-                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV11descriptionSSvg",
-                "moduleName": "EmbraceCommonInternal",
-                "isFromExtension": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "SpanType",
-                "printedName": "EmbraceCommonInternal.SpanType",
-                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV4fromACs7Decoder_p_tKcfc",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "throwing": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:21EmbraceCommonInternal8SpanTypeV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV6encode2toys7Encoder_p_tKF",
-            "moduleName": "EmbraceCommonInternal",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:21EmbraceCommonInternal8SpanTypeV",
-        "mangledName": "$s21EmbraceCommonInternal8SpanTypeV",
-        "moduleName": "EmbraceCommonInternal",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RawRepresentable",
-            "printedName": "RawRepresentable",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "RawValue",
-                "printedName": "RawValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:SY",
-            "mangledName": "$sSY"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
-          }
         ]
       },
       {
@@ -7763,714 +8176,581 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "IntegerLiteral",
       "offset": 150,
       "length": 5,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "IntegerLiteral",
       "offset": 157,
       "length": 9,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "IntegerLiteral",
       "offset": 150,
       "length": 5,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "IntegerLiteral",
       "offset": 157,
       "length": 9,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "StringLiteral",
       "offset": 605,
       "length": 11,
       "value": "\"EmbraceCommonInternal.CrashReport\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporterContext.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporterContext.swift",
       "kind": "StringLiteral",
       "offset": 175,
       "length": 20,
       "value": "\"EmbraceCommonInternal.CrashReporterContext\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/EmbraceMeta.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceMeta.swift",
       "kind": "StringLiteral",
       "offset": 241,
       "length": 7,
-      "value": "\"6.2.0\""
+      "value": "\"6.3.0\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 807,
+      "length": 6,
+      "value": "\"perf\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 895,
+      "length": 4,
+      "value": "\"ux\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 983,
+      "length": 5,
+      "value": "\"sys\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 807,
+      "length": 6,
+      "value": "\"perf\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 895,
+      "length": 4,
+      "value": "\"ux\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 983,
+      "length": 5,
+      "value": "\"sys\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 1968,
+      "length": 3,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 2075,
+      "length": 3,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2263,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 2308,
+      "length": 3,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 2788,
+      "length": 47,
+      "value": "\"Invalid EmbraceType: '\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2829,
+      "length": 2,
+      "value": "20"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
+      "kind": "StringLiteral",
+      "offset": 2833,
+      "length": 3,
+      "value": "\"'\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 192,
+      "length": 9,
+      "value": "\"file.io\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 258,
+      "length": 11,
+      "value": "\"file.read\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 327,
+      "length": 12,
+      "value": "\"file.write\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 425,
+      "length": 12,
+      "value": "\"sql.select\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 495,
+      "length": 12,
+      "value": "\"sql.update\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 565,
+      "length": 12,
+      "value": "\"sql.delete\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/SpanType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 635,
+      "length": 12,
+      "value": "\"sql.vacuum\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 153,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 172,
       "length": 1,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 190,
       "length": 1,
       "value": "9"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 208,
       "length": 2,
       "value": "13"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 2,
       "value": "17"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 248,
       "length": 2,
       "value": "24"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 477,
       "length": 7,
       "value": "\"TRACE\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 506,
       "length": 7,
       "value": "\"DEBUG\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 534,
       "length": 6,
       "value": "\"INFO\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 561,
       "length": 6,
       "value": "\"WARN\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 589,
       "length": 7,
       "value": "\"ERROR\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "StringLiteral",
       "offset": 618,
       "length": 7,
       "value": "\"FATAL\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 153,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 172,
       "length": 1,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 190,
       "length": 1,
       "value": "9"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 208,
       "length": 2,
       "value": "13"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 2,
       "value": "17"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/LogSeverity.swift",
       "kind": "IntegerLiteral",
       "offset": 248,
       "length": 2,
       "value": "24"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "StringLiteral",
       "offset": 367,
       "length": 9,
       "value": "\"Embrace\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "IntegerLiteral",
       "offset": 487,
       "length": 2,
       "value": "-1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "StringLiteral",
       "offset": 650,
       "length": 58,
       "value": "\"No method for selector \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "StringLiteral",
       "offset": 685,
       "length": 2,
       "value": "\" in class \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "StringLiteral",
       "offset": 707,
       "length": 1,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",
       "kind": "StringLiteral",
       "offset": 812,
       "length": 19,
       "value": "\"No Matching Error\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Extensions\/Date.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Extensions\/Date.swift",
       "kind": "IntegerLiteral",
       "offset": 198,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Extensions\/Date.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Extensions\/Date.swift",
       "kind": "IntegerLiteral",
       "offset": 796,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
       "kind": "IntegerLiteral",
       "offset": 333,
       "length": 2,
       "value": "16"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
       "kind": "StringLiteral",
       "offset": 588,
       "length": 7,
       "value": "\"%08lx\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
       "kind": "IntegerLiteral",
       "offset": 915,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
       "kind": "IntegerLiteral",
       "offset": 1178,
       "length": 2,
       "value": "16"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/ProcessIdentifier.swift",
       "kind": "StringLiteral",
       "offset": 1306,
       "length": 41,
       "value": "\"Encoded value is not a valid hex string\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/SessionIdentifier.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/SessionIdentifier.swift",
       "kind": "StringLiteral",
       "offset": 1399,
       "length": 42,
       "value": "\"Encoded value is not a valid UUID string\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
       "kind": "IntegerLiteral",
       "offset": 353,
       "length": 2,
       "value": "32"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
       "kind": "StringLiteral",
       "offset": 560,
       "length": 33,
       "value": "\"(.{8})(.{4})(.{4})(.{4})(.{12})\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
       "kind": "StringLiteral",
       "offset": 613,
       "length": 16,
       "value": "\"$1-$2-$3-$4-$5\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
       "kind": "StringLiteral",
       "offset": 858,
       "length": 3,
       "value": "\"-\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Identifiers\/UUID+WithoutHyphen.swift",
       "kind": "StringLiteral",
       "offset": 869,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 178,
       "length": 5,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 193,
       "length": 5,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 208,
       "length": 4,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 222,
       "length": 7,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 239,
       "length": 5,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 178,
       "length": 5,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 193,
       "length": 5,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 208,
       "length": 4,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 222,
       "length": 7,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/InternalLogger.swift",
       "kind": "IntegerLiteral",
       "offset": 239,
       "length": 5,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 288,
-      "length": 5,
-      "value": "\"log\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 346,
-      "length": 12,
-      "value": "\"breadcrumb\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 406,
-      "length": 11,
-      "value": "\"ios.crash\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 470,
-      "length": 10,
-      "value": "\"internal\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 630,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 737,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 808,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "IntegerLiteral",
-      "offset": 913,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 987,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 1453,
-      "length": 43,
-      "value": "\"Invalid LogType: '\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1490,
-      "length": 2,
-      "value": "10"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 1494,
-      "length": 3,
-      "value": "\"'\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 1860,
-      "length": 5,
-      "value": "\"sys\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/LogType\/LogType.swift",
-      "kind": "StringLiteral",
-      "offset": 1860,
-      "length": 5,
-      "value": "\"sys\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 1764,
       "length": 18,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 1781,
       "length": 15,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 1795,
       "length": 19,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 1813,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 2128,
       "length": 18,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 2145,
       "length": 15,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 2159,
       "length": 19,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Protocols\/Swizzlable.swift",
       "kind": "StringLiteral",
       "offset": 2177,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 441,
-      "length": 9,
-      "value": "\"file.io\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 507,
-      "length": 11,
-      "value": "\"file.read\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 576,
-      "length": 12,
-      "value": "\"file.write\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 674,
-      "length": 12,
-      "value": "\"sql.select\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 744,
-      "length": 12,
-      "value": "\"sql.update\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 814,
-      "length": 12,
-      "value": "\"sql.delete\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 884,
-      "length": 12,
-      "value": "\"sql.vacuum\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 979,
-      "length": 17,
-      "value": "\"network_request\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 1079,
-      "length": 6,
-      "value": "\"view\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 1133,
-      "length": 5,
-      "value": "\"tap\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 1232,
-      "length": 11,
-      "value": "\"low_power\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType+Declarations.swift",
-      "kind": "StringLiteral",
-      "offset": 1342,
-      "length": 9,
-      "value": "\"session\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 1198,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 1305,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1507,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 1581,
-      "length": 3,
-      "value": "\".\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2147,
-      "length": 44,
-      "value": "\"Invalid SpanType: '\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2185,
-      "length": 2,
-      "value": "10"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2189,
-      "length": 3,
-      "value": "\"'\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2566,
-      "length": 6,
-      "value": "\"perf\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2662,
-      "length": 4,
-      "value": "\"ux\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2758,
-      "length": 5,
-      "value": "\"sys\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2566,
-      "length": 6,
-      "value": "\"perf\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2662,
-      "length": 4,
-      "value": "\"ux\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/SpanType\/SpanType.swift",
-      "kind": "StringLiteral",
-      "offset": 2758,
-      "length": 5,
-      "value": "\"sys\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCommonInternal\/UnfairLock.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/UnfairLock.swift",
       "kind": "IntegerLiteral",
       "offset": 572,
       "length": 1,

@@ -295,7 +295,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService(im)onInstall",
+            "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService(im)onInstall",
             "mangledName": "$s21EmbraceCaptureService0bC0C9onInstallyyF",
             "moduleName": "EmbraceCaptureService",
             "isOpen": true,
@@ -318,7 +318,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService(im)onStart",
+            "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService(im)onStart",
             "mangledName": "$s21EmbraceCaptureService0bC0C7onStartyyF",
             "moduleName": "EmbraceCaptureService",
             "isOpen": true,
@@ -341,7 +341,7 @@
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService(im)onStop",
+            "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService(im)onStop",
             "mangledName": "$s21EmbraceCaptureService0bC0C6onStopyyF",
             "moduleName": "EmbraceCaptureService",
             "isOpen": true,
@@ -361,11 +361,11 @@
                 "kind": "TypeNominal",
                 "name": "CaptureService",
                 "printedName": "EmbraceCaptureService.CaptureService",
-                "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService"
+                "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService(im)init",
+            "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService(im)init",
             "mangledName": "$s21EmbraceCaptureService0bC0CACycfc",
             "moduleName": "EmbraceCaptureService",
             "overriding": true,
@@ -511,10 +511,11 @@
           }
         ],
         "declKind": "Class",
-        "usr": "c:@M@EmbraceCaptureService@objc(cs)CaptureService",
+        "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService",
         "mangledName": "$s21EmbraceCaptureService0bC0C",
         "moduleName": "EmbraceCaptureService",
         "isOpen": true,
+        "objc_name": "EMBCaptureService",
         "declAttributes": [
           "AccessControl",
           "ObjC",
@@ -887,70 +888,70 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 3622,
+      "offset": 3641,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 3686,
+      "offset": 3705,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 4182,
+      "offset": 4201,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureService.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 4248,
+      "offset": 4267,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 608,
       "length": 9,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 693,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 796,
       "length": 6,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 608,
       "length": 9,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 693,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCaptureService\/CaptureServiceState.swift",
       "kind": "IntegerLiteral",
       "offset": 796,
       "length": 6,

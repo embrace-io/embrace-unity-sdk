@@ -9,12 +9,22 @@
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
-        "moduleName": "EmbraceOTelInternal"
+        "moduleName": "EmbraceOTelInternal",
+        "declAttributes": [
+          "RawDocComment"
+        ]
       },
       {
         "kind": "Import",
         "name": "EmbraceCommonInternal",
         "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
         "declKind": "Import",
         "moduleName": "EmbraceOTelInternal"
       },
@@ -400,11 +410,11 @@
                 "kind": "TypeNominal",
                 "name": "EmbraceOTel",
                 "printedName": "EmbraceOTelInternal.EmbraceOTel",
-                "usr": "c:@M@EmbraceOTelInternal@objc(cs)EmbraceOTel"
+                "usr": "c:@M@EmbraceOTelInternal@objc(cs)EMBEmbraceOTel"
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@EmbraceOTelInternal@objc(cs)EmbraceOTel(im)init",
+            "usr": "c:@M@EmbraceOTelInternal@objc(cs)EMBEmbraceOTel(im)init",
             "mangledName": "$s19EmbraceOTelInternal0aB0CACycfc",
             "moduleName": "EmbraceOTelInternal",
             "overriding": true,
@@ -419,9 +429,10 @@
           }
         ],
         "declKind": "Class",
-        "usr": "c:@M@EmbraceOTelInternal@objc(cs)EmbraceOTel",
+        "usr": "c:@M@EmbraceOTelInternal@objc(cs)EMBEmbraceOTel",
         "mangledName": "$s19EmbraceOTelInternal0aB0C",
         "moduleName": "EmbraceOTelInternal",
+        "objc_name": "EMBEmbraceOTel",
         "declAttributes": [
           "Final",
           "AccessControl",
@@ -739,7 +750,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:attributes:)",
+            "printedName": "log(_:severity:type:attributes:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -757,6 +768,12 @@
                 "name": "LogSeverity",
                 "printedName": "EmbraceCommonInternal.LogSeverity",
                 "usr": "c:@M@EmbraceCommonInternal@E@LogSeverity"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
               },
               {
                 "kind": "TypeNominal",
@@ -780,8 +797,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity10attributesySS_0a6CommonC011LogSeverityOSDyS2SGtF",
-            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity10attributesySS_0a6CommonC011LogSeverityOSDyS2SGtF",
+            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributesySS_0a6CommonC011LogSeverityOAH0K4TypeVSDyS2SGtF",
+            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributesySS_0a6CommonC011LogSeverityOAH0K4TypeVSDyS2SGtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceOpenTelemetry>",
             "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceOpenTelemetry>",
@@ -792,7 +809,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:timestamp:attributes:)",
+            "printedName": "log(_:severity:type:timestamp:attributes:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -810,6 +827,12 @@
                 "name": "LogSeverity",
                 "printedName": "EmbraceCommonInternal.LogSeverity",
                 "usr": "c:@M@EmbraceCommonInternal@E@LogSeverity"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
               },
               {
                 "kind": "TypeNominal",
@@ -839,8 +862,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity9timestamp10attributesySS_0a6CommonC011LogSeverityO10Foundation4DateVSDyS2SGtF",
-            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity9timestamp10attributesySS_0a6CommonC011LogSeverityO10Foundation4DateVSDyS2SGtF",
+            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributesySS_0a6CommonC011LogSeverityOAI0L4TypeV10Foundation4DateVSDyS2SGtF",
+            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributesySS_0a6CommonC011LogSeverityOAI0L4TypeV10Foundation4DateVSDyS2SGtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceOpenTelemetry>",
             "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceOpenTelemetry>",
@@ -1469,6 +1492,23 @@
       },
       {
         "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -2023,6 +2063,13 @@
       },
       {
         "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal"
+      },
+      {
+        "kind": "Import",
         "name": "OpenTelemetryApi",
         "printedName": "OpenTelemetryApi",
         "declKind": "Import",
@@ -2042,6 +2089,13 @@
         "kind": "Import",
         "name": "EmbraceCommonInternal",
         "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
         "declKind": "Import",
         "moduleName": "EmbraceOTelInternal"
       },
@@ -2298,6 +2352,13 @@
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
+        "declKind": "Import",
+        "moduleName": "EmbraceOTelInternal"
       },
       {
         "kind": "Import",
@@ -3761,6 +3822,120 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "ReadableLogRecord",
+        "printedName": "ReadableLogRecord",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "embType",
+            "printedName": "embType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "EmbraceCommonInternal.LogType?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE7embType0g6CommonI00eK0VSgvp",
+            "mangledName": "$s16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE7embType0g6CommonI00eK0VSgvp",
+            "moduleName": "EmbraceOTelInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "EmbraceCommonInternal.LogType?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "LogType",
+                        "printedName": "EmbraceCommonInternal.LogType",
+                        "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE7embType0g6CommonI00eK0VSgvg",
+                "mangledName": "$s16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE7embType0g6CommonI00eK0VSgvg",
+                "moduleName": "EmbraceOTelInternal",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "isEmbType",
+            "printedName": "isEmbType(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE9isEmbTypeySb0g6CommonI00eL0VF",
+            "mangledName": "$s16OpenTelemetrySdk17ReadableLogRecordV19EmbraceOTelInternalE9isEmbTypeySb0g6CommonI00eL0VF",
+            "moduleName": "EmbraceOTelInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:16OpenTelemetrySdk17ReadableLogRecordV",
+        "mangledName": "$s16OpenTelemetrySdk17ReadableLogRecordV",
+        "moduleName": "OpenTelemetrySdk",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "Array",
         "printedName": "Array",
         "children": [
@@ -3826,6 +4001,13 @@
             "printedName": "_DestructorSafeContainer",
             "usr": "s:s24_DestructorSafeContainerP",
             "mangledName": "$ss24_DestructorSafeContainerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
           },
           {
             "kind": "Conformance",
@@ -4282,13 +4464,6 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
           },
           {
             "kind": "Conformance",
@@ -5088,238 +5263,154 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
       "kind": "StringLiteral",
-      "offset": 176,
+      "offset": 287,
       "length": 22,
       "value": "\"EmbraceOpenTelemetry\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
       "kind": "StringLiteral",
-      "offset": 232,
+      "offset": 343,
       "length": 34,
       "value": "\"semver:\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
       "kind": "StringLiteral",
-      "offset": 265,
+      "offset": 376,
       "length": 1,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
       "kind": "Dictionary",
-      "offset": 1994,
+      "offset": 2105,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/EmbraceOTel.swift",
       "kind": "Dictionary",
-      "offset": 2355,
+      "offset": 2466,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLogRecordBuilder.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLogRecordBuilder.swift",
       "kind": "StringLiteral",
       "offset": 758,
       "length": 15,
       "value": "\"EmbraceLogger\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLogger.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLogger.swift",
       "kind": "Dictionary",
       "offset": 334,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLoggerBuilder.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLoggerBuilder.swift",
       "kind": "Dictionary",
       "offset": 367,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLoggerSharedState.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLoggerSharedState.swift",
       "kind": "Dictionary",
       "offset": 517,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Logs\/Processors\/SingleLogRecordProcessor.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/Processors\/SingleLogRecordProcessor.swift",
       "kind": "IntegerLiteral",
       "offset": 652,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
       "kind": "Dictionary",
       "offset": 551,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
       "kind": "StringLiteral",
       "offset": 882,
       "length": 3,
       "value": "\":\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
       "kind": "StringLiteral",
       "offset": 1150,
       "length": 7,
       "value": "\"swift\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/Span+Embrace.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/Span+Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 473,
+      "offset": 378,
       "length": 6,
       "value": "\"true\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/Span+Embrace.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/Span+Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 918,
+      "offset": 827,
       "length": 6,
       "value": "\"true\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/SpanBuilder\/SpanBuilder+Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 119,
-      "length": 10,
-      "value": "\"emb.type\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 147,
-      "length": 9,
-      "value": "\"emb.key\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 178,
-      "length": 16,
-      "value": "\"emb.error_code\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 216,
-      "length": 13,
-      "value": "\"emb.private\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 119,
-      "length": 10,
-      "value": "\"emb.type\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 147,
-      "length": 9,
-      "value": "\"emb.key\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 178,
-      "length": 16,
-      "value": "\"emb.error_code\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 216,
-      "length": 13,
-      "value": "\"emb.private\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 289,
-      "length": 15,
-      "value": "\"error.message\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 321,
-      "length": 12,
-      "value": "\"error.code\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 289,
-      "length": 15,
-      "value": "\"error.message\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/SpanAttributeKey.swift",
-      "kind": "StringLiteral",
-      "offset": 321,
-      "length": 12,
-      "value": "\"error.code\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/SpanBuilder\/SpanBuilder+Embrace.swift",
-      "kind": "StringLiteral",
-      "offset": 425,
+      "offset": 450,
       "length": 6,
       "value": "\"true\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/SpanBuilder\/SpanBuilder+Embrace.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/SpanBuilder\/SpanBuilder+Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 542,
+      "offset": 587,
       "length": 6,
       "value": "\"true\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
       "kind": "StringLiteral",
       "offset": 462,
       "length": 26,
       "value": "\"io.embrace.spanprocessor\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
       "kind": "BooleanLiteral",
       "offset": 848,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/Processor\/SingleSpanProcessor.swift",
       "kind": "BooleanLiteral",
       "offset": 891,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/RecordingSpanEvent.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/RecordingSpanEvent.swift",
       "kind": "Dictionary",
       "offset": 378,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/RecordingSpanLink.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/Tracer\/Span\/RecordingSpanLink.swift",
       "kind": "Dictionary",
       "offset": 347,
       "length": 3,

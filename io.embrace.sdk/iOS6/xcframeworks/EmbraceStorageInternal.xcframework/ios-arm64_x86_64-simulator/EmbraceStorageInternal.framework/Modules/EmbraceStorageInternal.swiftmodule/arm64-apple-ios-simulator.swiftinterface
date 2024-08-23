@@ -3,6 +3,7 @@
 // swift-module-flags: -target arm64-apple-ios17.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceStorageInternal
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import EmbraceCommonInternal
+import EmbraceSemantics
 import Foundation
 import GRDB
 import OpenTelemetryApi
@@ -85,6 +86,24 @@ extension EmbraceStorageInternal.EmbraceStorage {
   public func fetchAllAsync<T>(completion: @escaping (Swift.Result<[T], any Swift.Error>) -> Swift.Void) where T : GRDB.FetchableRecord, T : GRDB.TableRecord
   public func executeQueryAsync(_ sql: Swift.String, arguments: GRDB.StatementArguments?, completion: ((Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)?)
 }
+public enum EmbraceStorageError : Swift.Error, Swift.Equatable {
+  case cannotUpsertSpan(spanName: Swift.String, message: Swift.String)
+  public static func == (a: EmbraceStorageInternal.EmbraceStorageError, b: EmbraceStorageInternal.EmbraceStorageError) -> Swift.Bool
+}
+extension EmbraceStorageInternal.EmbraceStorageError : Foundation.LocalizedError, Foundation.CustomNSError {
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var localizedDescription: Swift.String {
+    get
+  }
+}
 public protocol Migration {
   static var identifier: Swift.StringLiteralType { get }
   static var foreignKeyChecks: GRDB.DatabaseMigrator.ForeignKeyChecks { get }
@@ -123,7 +142,7 @@ extension EmbraceStorageInternal.EmbraceStorage {
   public func updateMetadata(key: Swift.String, value: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan) throws
   public func updateMetadata(_ record: EmbraceStorageInternal.MetadataRecord) throws
   public func cleanMetadata(currentSessionId: Swift.String?, currentProcessId: Swift.String) throws
-  public func removeMetadata(key: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String = "") throws
+  public func removeMetadata(key: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String) throws
   public func removeAllMetadata(type: EmbraceStorageInternal.MetadataRecordType, lifespans: [EmbraceStorageInternal.MetadataRecordLifespan]) throws
   public func removeAllMetadata(keys: [Swift.String], lifespan: EmbraceStorageInternal.MetadataRecordLifespan) throws
   public func fetchMetadata(key: Swift.String, type: EmbraceStorageInternal.MetadataRecordType, lifespan: EmbraceStorageInternal.MetadataRecordLifespan, lifespanId: Swift.String = "") throws -> EmbraceStorageInternal.MetadataRecord?
@@ -279,6 +298,9 @@ extension EmbraceStorageInternal.MetadataRecord : GRDB.FetchableRecord, GRDB.Per
 }
 extension EmbraceStorageInternal.MetadataRecord : Swift.Equatable {
   public static func == (lhs: EmbraceStorageInternal.MetadataRecord, rhs: EmbraceStorageInternal.MetadataRecord) -> Swift.Bool
+}
+extension EmbraceStorageInternal.MetadataRecord {
+  public static let lifespanIdForPermanent: Swift.String
 }
 public struct SessionRecord : Swift.Codable {
   public var id: EmbraceCommonInternal.SessionIdentifier

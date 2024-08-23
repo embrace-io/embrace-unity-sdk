@@ -3127,889 +3127,889 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "BooleanLiteral",
       "offset": 575,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 1254,
       "length": 4,
       "value": "\"id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 1264,
       "length": 6,
       "value": "\"type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 1594,
       "length": 6,
       "value": "\"date\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 1951,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "Array",
       "offset": 2013,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 2061,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "Array",
       "offset": 2123,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 2284,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 2358,
       "length": 25,
       "value": "\"emb-upload-cache-vacuum\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 2450,
       "length": 9,
       "value": "\"removed\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 2461,
       "length": 16,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 2476,
       "length": 3,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 2789,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 3245,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "IntegerLiteral",
       "offset": 3827,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 4033,
       "length": 6,
       "value": "\"date\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "BooleanLiteral",
       "offset": 4772,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 6425,
       "length": 197,
       "value": "\"WITH t AS (SELECT id, date, SUM(LENGTH(data)) OVER (ORDER BY date DESC,id) total_size FROM uploads)\nSELECT id FROM t WHERE total_size>=\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 6590,
       "length": 5,
       "value": "\" ORDER BY date DESC;\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "Array",
       "offset": 6655,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7265,
       "length": 98,
       "value": "\"SELECT id, date FROM uploads WHERE date <= DATE(DATE(), '-\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7345,
       "length": 3,
       "value": "\" day')\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "Array",
       "offset": 7396,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7803,
       "length": 50,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7852,
       "length": 1,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7877,
       "length": 52,
       "value": "\"DELETE FROM uploads WHERE id IN (\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/EmbraceUploadCache.swift",
       "kind": "StringLiteral",
       "offset": 7927,
       "length": 1,
       "value": "\")\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 805,
       "length": 4,
       "value": "\"id\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 854,
       "length": 6,
       "value": "\"type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 905,
       "length": 6,
       "value": "\"data\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 964,
       "length": 15,
       "value": "\"attempt_count\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1024,
       "length": 6,
       "value": "\"date\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Cache\/UploadDataRecord.swift",
       "kind": "StringLiteral",
       "offset": 1135,
       "length": 9,
       "value": "\"uploads\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceReachabilityMonitor.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceReachabilityMonitor.swift",
       "kind": "BooleanLiteral",
       "offset": 253,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 1488,
       "length": 33,
       "value": "\"com.embrace.upload.reachability\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 2609,
       "length": 66,
       "value": "\"Error retrying cached upload data: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 2674,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "IntegerLiteral",
       "offset": 3893,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "BooleanLiteral",
       "offset": 4010,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "BooleanLiteral",
       "offset": 4194,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 4602,
       "length": 58,
       "value": "\"Error caching upload data: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 4659,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "BooleanLiteral",
       "offset": 5982,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 6296,
       "length": 53,
       "value": "\"Error updating cache: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 6348,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 6643,
       "length": 53,
       "value": "\"Error deleting cache: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 6695,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 6958,
       "length": 69,
       "value": "\"Error clearing stale date from cache: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUpload.swift",
       "kind": "StringLiteral",
       "offset": 7026,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 118,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 129,
       "length": 3,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 118,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 129,
       "length": 3,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 118,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/EmbraceUploadType.swift",
       "kind": "IntegerLiteral",
       "offset": 129,
       "length": 3,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 200,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 4,
       "value": "1001"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 4,
       "value": "1002"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 200,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 4,
       "value": "1001"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 4,
       "value": "1002"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 200,
       "length": 4,
       "value": "1000"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 4,
       "value": "1001"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "IntegerLiteral",
       "offset": 263,
       "length": 4,
       "value": "1002"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 579,
       "length": 9,
       "value": "\"Embrace\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 947,
       "length": 39,
       "value": "\"Invalid status code received: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 985,
       "length": 1,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 1045,
       "length": 25,
       "value": "\"Internal Error: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 1069,
       "length": 1,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/ErrorManagement\/EmbraceUploadError.swift",
       "kind": "StringLiteral",
       "offset": 1174,
       "length": 19,
       "value": "\"No Matching Error\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "StringLiteral",
       "offset": 173,
       "length": 28,
       "value": "\"com.embrace.asyncoperation\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 284,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 333,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "StringLiteral",
       "offset": 563,
       "length": 13,
       "value": "\"isExecuting\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "StringLiteral",
       "offset": 715,
       "length": 13,
       "value": "\"isExecuting\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 783,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "StringLiteral",
       "offset": 1011,
       "length": 12,
       "value": "\"isFinished\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "StringLiteral",
       "offset": 1161,
       "length": 12,
       "value": "\"isFinished\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 1326,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 1354,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 1474,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/AsyncOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 1501,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 1459,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 1769,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2063,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2135,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 2302,
       "length": 100,
       "value": "\"Upload operation complete. Status: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 2360,
       "length": 3,
       "value": "\" URL: \""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 2401,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2446,
       "length": 3,
       "value": "200"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2475,
       "length": 3,
       "value": "300"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 2519,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2548,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 2722,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2751,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "BooleanLiteral",
       "offset": 2889,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 2918,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3138,
       "length": 6,
       "value": "\"POST\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3203,
       "length": 18,
       "value": "\"application\/json\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3243,
       "length": 8,
       "value": "\"Accept\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3278,
       "length": 18,
       "value": "\"application\/json\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3318,
       "length": 14,
       "value": "\"Content-Type\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3359,
       "length": 6,
       "value": "\"gzip\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3387,
       "length": 18,
       "value": "\"Content-Encoding\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3479,
       "length": 12,
       "value": "\"User-Agent\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3563,
       "length": 10,
       "value": "\"X-EM-AID\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3646,
       "length": 10,
       "value": "\"X-EM-DID\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 3801,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "IntegerLiteral",
       "offset": 3913,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 3937,
       "length": 19,
       "value": "\"x-emb-retry-count\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Operations\/EmbraceUploadOperation.swift",
       "kind": "StringLiteral",
       "offset": 237,
       "length": 22,
       "value": "\"EmbraceUploadInternal.EmbraceUploadOperation\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
       "kind": "StringLiteral",
       "offset": 1003,
       "length": 11,
       "value": "\"db.sqlite\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
       "kind": "IntegerLiteral",
       "offset": 1047,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
       "kind": "IntegerLiteral",
       "offset": 1085,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+CacheOptions.swift",
       "kind": "IntegerLiteral",
       "offset": 1123,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1220,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1222,
       "length": 4,
       "value": "1024"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1227,
       "length": 4,
       "value": "1024"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1286,
       "length": 2,
       "value": "20"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1289,
       "length": 4,
       "value": "1024"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "IntegerLiteral",
       "offset": 1294,
       "length": 4,
       "value": "1024"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+Options.swift",
       "kind": "StringLiteral",
       "offset": 1347,
       "length": 9,
       "value": "\"embrace\""
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
       "kind": "IntegerLiteral",
       "offset": 307,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
       "kind": "BooleanLiteral",
       "offset": 477,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
       "kind": "IntegerLiteral",
       "offset": 530,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-core-internal\/embrace-apple-core-internal\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceUploadInternal\/Options\/EmbraceUpload+RedundancyOptions.swift",
       "kind": "BooleanLiteral",
       "offset": 566,
       "length": 4,

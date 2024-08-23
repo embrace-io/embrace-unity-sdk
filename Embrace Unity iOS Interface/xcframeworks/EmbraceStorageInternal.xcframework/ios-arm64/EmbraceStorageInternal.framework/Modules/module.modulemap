@@ -1,0 +1,4 @@
+framework module EmbraceStorageInternal {
+  header "EmbraceStorageInternal-Swift.h"
+  requires objc
+}

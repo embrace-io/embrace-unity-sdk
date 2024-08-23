@@ -10,7 +10,7 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_inheritsConvenienceInitializers @objc open class CaptureService : ObjectiveC.NSObject {
+@_inheritsConvenienceInitializers @objc(EMBCaptureService) open class CaptureService : ObjectiveC.NSObject {
   weak public var otel: (any EmbraceOTelInternal.EmbraceOpenTelemetry)? {
     get
   }

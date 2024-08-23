@@ -14,7 +14,7 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 @objc extension EmbraceCaptureService.CaptureService {
   @objc public static func urlSession(options: EmbraceCore.URLSessionCaptureService.Options = URLSessionCaptureService.Options()) -> EmbraceCore.URLSessionCaptureService
-  @objc public static func tap() -> EmbraceCore.TapCaptureService
+  @objc public static func tap(options: EmbraceCore.TapCaptureService.Options = TapCaptureService.Options()) -> EmbraceCore.TapCaptureService
   @objc public static func view() -> EmbraceCore.ViewCaptureService
   @objc public static func webView(options: EmbraceCore.WebViewCaptureService.Options = WebViewCaptureService.Options()) -> EmbraceCore.WebViewCaptureService
   @objc public static func lowMemoryWarning() -> EmbraceCore.LowMemoryWarningCaptureService
@@ -23,8 +23,10 @@ import _SwiftConcurrencyShims
 }
 @_inheritsConvenienceInitializers @objc(EMBCaptureServiceBuilder) public class CaptureServiceBuilder : ObjectiveC.NSObject {
   @objc public func build() -> [EmbraceCaptureService.CaptureService]
-  @objc public func add(_ service: EmbraceCaptureService.CaptureService)
-  @objc public func remove(ofType type: Swift.AnyClass)
+  @discardableResult
+  @objc public func add(_ service: EmbraceCaptureService.CaptureService) -> Self
+  @discardableResult
+  @objc public func remove(ofType type: Swift.AnyClass) -> Self
   @discardableResult
   @objc public func addDefaults() -> Self
   @objc override dynamic public init()

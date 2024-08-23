@@ -1,0 +1,4418 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LogSemantics",
+        "printedName": "LogSemantics",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "keyEmbraceType",
+            "printedName": "keyEmbraceType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V03keyA4TypeSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V03keyA4TypeSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V03keyA4TypeSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V03keyA4TypeSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyId",
+            "printedName": "keyId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V5keyIdSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V5keyIdSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V5keyIdSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V5keyIdSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyState",
+            "printedName": "keyState",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V8keyStateSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V8keyStateSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V8keyStateSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V8keyStateSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keySessionId",
+            "printedName": "keySessionId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V12keySessionIdSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V12keySessionIdSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V12keySessionIdSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V12keySessionIdSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyStackTrace",
+            "printedName": "keyStackTrace",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V13keyStackTraceSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V13keyStackTraceSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V13keyStackTraceSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V13keyStackTraceSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyPropertiesPrefix",
+            "printedName": "keyPropertiesPrefix",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics03LogB0V19keyPropertiesPrefixSSvpZ",
+            "mangledName": "$s16EmbraceSemantics03LogB0V19keyPropertiesPrefixSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics03LogB0V19keyPropertiesPrefixSSvgZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V19keyPropertiesPrefixSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Crash",
+            "printedName": "Crash",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "keyId",
+                "printedName": "keyId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V5CrashV5keyIdSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV5keyIdSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V5CrashV5keyIdSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV5keyIdSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyProvider",
+                "printedName": "keyProvider",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V5CrashV11keyProviderSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV11keyProviderSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V5CrashV11keyProviderSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV11keyProviderSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyPayload",
+                "printedName": "keyPayload",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V5CrashV10keyPayloadSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV10keyPayloadSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V5CrashV10keyPayloadSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV10keyPayloadSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics03LogB0V5CrashV",
+            "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:16EmbraceSemantics03LogB0V",
+        "mangledName": "$s16EmbraceSemantics03LogB0V",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SpanSemantics",
+        "printedName": "SpanSemantics",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "keyEmbraceType",
+            "printedName": "keyEmbraceType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V03keyA4TypeSSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V03keyA4TypeSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V03keyA4TypeSSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V03keyA4TypeSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyIsKeySpan",
+            "printedName": "keyIsKeySpan",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V08keyIsKeyC0SSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V08keyIsKeyC0SSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V08keyIsKeyC0SSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V08keyIsKeyC0SSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyIsPrivateSpan",
+            "printedName": "keyIsPrivateSpan",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V012keyIsPrivateC0SSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V012keyIsPrivateC0SSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V012keyIsPrivateC0SSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V012keyIsPrivateC0SSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyErrorCode",
+            "printedName": "keyErrorCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V12keyErrorCodeSSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V12keyErrorCodeSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V12keyErrorCodeSSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V12keyErrorCodeSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyNSErrorMessage",
+            "printedName": "keyNSErrorMessage",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V17keyNSErrorMessageSSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V17keyNSErrorMessageSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V17keyNSErrorMessageSSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V17keyNSErrorMessageSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keyNSErrorCode",
+            "printedName": "keyNSErrorCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics04SpanB0V14keyNSErrorCodeSSvpZ",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V14keyNSErrorCodeSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics04SpanB0V14keyNSErrorCodeSSvgZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14keyNSErrorCodeSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "LowPower",
+            "printedName": "LowPower",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyStartReason",
+                "printedName": "keyStartReason",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV14keyStartReasonSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV14keyStartReasonSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV14keyStartReasonSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV14keyStartReasonSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "systemQuery",
+                "printedName": "systemQuery",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV11systemQuerySSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV11systemQuerySSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV11systemQuerySSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV11systemQuerySSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "systemNotification",
+                "printedName": "systemNotification",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV18systemNotificationSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV18systemNotificationSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV18systemNotificationSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV18systemNotificationSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics04SpanB0V8LowPowerV",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V8LowPowerV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "NetworkRequest",
+            "printedName": "NetworkRequest",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "keyUrl",
+                "printedName": "keyUrl",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV6keyUrlSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV6keyUrlSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV6keyUrlSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV6keyUrlSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyMethod",
+                "printedName": "keyMethod",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV9keyMethodSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV9keyMethodSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV9keyMethodSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV9keyMethodSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyBodySize",
+                "printedName": "keyBodySize",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV11keyBodySizeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV11keyBodySizeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV11keyBodySizeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV11keyBodySizeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyTracingHeader",
+                "printedName": "keyTracingHeader",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV16keyTracingHeaderSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV16keyTracingHeaderSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV16keyTracingHeaderSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV16keyTracingHeaderSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyStatusCode",
+                "printedName": "keyStatusCode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV13keyStatusCodeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV13keyStatusCodeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV13keyStatusCodeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV13keyStatusCodeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyResponseSize",
+                "printedName": "keyResponseSize",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV15keyResponseSizeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV15keyResponseSizeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV15keyResponseSizeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV15keyResponseSizeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyErrorType",
+                "printedName": "keyErrorType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorTypeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorTypeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorTypeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorTypeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyErrorCode",
+                "printedName": "keyErrorCode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorCodeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorCodeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorCodeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV12keyErrorCodeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyErrorMessage",
+                "printedName": "keyErrorMessage",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV15keyErrorMessageSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV15keyErrorMessageSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV15keyErrorMessageSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV15keyErrorMessageSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics04SpanB0V14NetworkRequestV",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V14NetworkRequestV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Session",
+            "printedName": "Session",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyId",
+                "printedName": "keyId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV5keyIdSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV5keyIdSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV5keyIdSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV5keyIdSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyState",
+                "printedName": "keyState",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV8keyStateSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV8keyStateSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV8keyStateSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV8keyStateSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyColdStart",
+                "printedName": "keyColdStart",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyColdStartSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyColdStartSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyColdStartSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyColdStartSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyTerminated",
+                "printedName": "keyTerminated",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV13keyTerminatedSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV13keyTerminatedSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV13keyTerminatedSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV13keyTerminatedSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyCleanExit",
+                "printedName": "keyCleanExit",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyCleanExitSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyCleanExitSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyCleanExitSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyCleanExitSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keySessionNumber",
+                "printedName": "keySessionNumber",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV03keyD6NumberSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV03keyD6NumberSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV03keyD6NumberSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV03keyD6NumberSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyHeartbeat",
+                "printedName": "keyHeartbeat",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyHeartbeatSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyHeartbeatSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV12keyHeartbeatSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV12keyHeartbeatSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyCrashId",
+                "printedName": "keyCrashId",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V7SessionV10keyCrashIdSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV10keyCrashIdSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V7SessionV10keyCrashIdSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV10keyCrashIdSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics04SpanB0V7SessionV",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V7SessionV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "View",
+            "printedName": "View",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V4ViewV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V4ViewV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyViewTitle",
+                "printedName": "keyViewTitle",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V4ViewV03keyD5TitleSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV03keyD5TitleSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V4ViewV03keyD5TitleSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV03keyD5TitleSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyViewName",
+                "printedName": "keyViewName",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics04SpanB0V4ViewV03keyD4NameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV03keyD4NameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics04SpanB0V4ViewV03keyD4NameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV03keyD4NameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics04SpanB0V4ViewV",
+            "mangledName": "$s16EmbraceSemantics04SpanB0V4ViewV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:16EmbraceSemantics04SpanB0V",
+        "mangledName": "$s16EmbraceSemantics04SpanB0V",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SpanEventSemantics",
+        "printedName": "SpanEventSemantics",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "keyEmbraceType",
+            "printedName": "keyEmbraceType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V03keyA4TypeSSvpZ",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V03keyA4TypeSSvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V03keyA4TypeSSvgZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V03keyA4TypeSSvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Bradcrumb",
+            "printedName": "Bradcrumb",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V9BradcrumbV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V9BradcrumbV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V9BradcrumbV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V9BradcrumbV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyMessage",
+                "printedName": "keyMessage",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V9BradcrumbV10keyMessageSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V9BradcrumbV10keyMessageSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V9BradcrumbV10keyMessageSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V9BradcrumbV10keyMessageSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V9BradcrumbV",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V9BradcrumbV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "LowMemory",
+            "printedName": "LowMemory",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V9LowMemoryV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V9LowMemoryV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V9LowMemoryV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V9LowMemoryV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V9LowMemoryV",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V9LowMemoryV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "PushNotification",
+            "printedName": "PushNotification",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyType",
+                "printedName": "keyType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyTypeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyTypeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyTypeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyTypeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyTitle",
+                "printedName": "keyTitle",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyTitleSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyTitleSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyTitleSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyTitleSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keySubtitle",
+                "printedName": "keySubtitle",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV11keySubtitleSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV11keySubtitleSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV11keySubtitleSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV11keySubtitleSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyBody",
+                "printedName": "keyBody",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyBodySSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyBodySSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyBodySSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV7keyBodySSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyCategory",
+                "printedName": "keyCategory",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV11keyCategorySSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV11keyCategorySSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV11keyCategorySSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV11keyCategorySSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyBadge",
+                "printedName": "keyBadge",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyBadgeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyBadgeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyBadgeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV8keyBadgeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "notificationType",
+                "printedName": "notificationType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV16notificationTypeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV16notificationTypeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV16notificationTypeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV16notificationTypeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "silentType",
+                "printedName": "silentType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV10silentTypeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV10silentTypeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV10silentTypeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV10silentTypeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V16PushNotificationV",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V16PushNotificationV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "Tap",
+            "printedName": "Tap",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyViewName",
+                "printedName": "keyViewName",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV11keyViewNameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV11keyViewNameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV11keyViewNameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV11keyViewNameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyCoordinates",
+                "printedName": "keyCoordinates",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV14keyCoordinatesSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV14keyCoordinatesSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV14keyCoordinatesSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV14keyCoordinatesSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V3TapV",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V3TapV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "WebView",
+            "printedName": "WebView",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "name",
+                "printedName": "name",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV4nameSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV4nameSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV4nameSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV4nameSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyUrl",
+                "printedName": "keyUrl",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV6keyUrlSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV6keyUrlSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV6keyUrlSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV6keyUrlSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyErrorCode",
+                "printedName": "keyErrorCode",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV12keyErrorCodeSSvpZ",
+                "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV12keyErrorCodeSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV12keyErrorCodeSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV12keyErrorCodeSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics09SpanEventB0V7WebViewV",
+            "mangledName": "$s16EmbraceSemantics09SpanEventB0V7WebViewV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:16EmbraceSemantics09SpanEventB0V",
+        "mangledName": "$s16EmbraceSemantics09SpanEventB0V",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "LogType",
+        "printedName": "LogType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "crash",
+            "printedName": "crash",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE5crashACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE5crashACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE5crashACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE5crashACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "message",
+            "printedName": "message",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE7messageACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE7messageACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE7messageACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE7messageACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "exception",
+            "printedName": "exception",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE9exceptionACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE9exceptionACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE9exceptionACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE9exceptionACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "breadcrumb",
+            "printedName": "breadcrumb",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE10breadcrumbACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE10breadcrumbACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE10breadcrumbACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE10breadcrumbACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "internal",
+            "printedName": "internal",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE8internalACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE8internalACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE8internalACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE8internalACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceCommonInternal7LogTypeV",
+        "mangledName": "$s21EmbraceCommonInternal7LogTypeV",
+        "moduleName": "EmbraceCommonInternal",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SpanType",
+        "printedName": "SpanType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "lowPower",
+            "printedName": "lowPower",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE8lowPowerACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE8lowPowerACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE8lowPowerACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE8lowPowerACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "networkRequest",
+            "printedName": "networkRequest",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE14networkRequestACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE14networkRequestACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE14networkRequestACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE14networkRequestACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "session",
+            "printedName": "session",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7sessionACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7sessionACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7sessionACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7sessionACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "view",
+            "printedName": "view",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE4viewACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE4viewACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE4viewACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE4viewACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "breadcrumb",
+            "printedName": "breadcrumb",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE10breadcrumbACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE10breadcrumbACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE10breadcrumbACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE10breadcrumbACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "lowMemory",
+            "printedName": "lowMemory",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE9lowMemoryACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE9lowMemoryACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE9lowMemoryACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE9lowMemoryACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pushNotification",
+            "printedName": "pushNotification",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE16pushNotificationACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE16pushNotificationACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE16pushNotificationACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE16pushNotificationACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "tap",
+            "printedName": "tap",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE3tapACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE3tapACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE3tapACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE3tapACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "webView",
+            "printedName": "webView",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SpanType",
+                "printedName": "EmbraceCommonInternal.SpanType",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7webViewACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7webViewACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "SpanType",
+                    "printedName": "EmbraceCommonInternal.SpanType",
+                    "usr": "s:21EmbraceCommonInternal8SpanTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7webViewACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal8SpanTypeV0A9SemanticsE7webViewACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceCommonInternal8SpanTypeV",
+        "mangledName": "$s21EmbraceCommonInternal8SpanTypeV",
+        "moduleName": "EmbraceCommonInternal",
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EmbraceType",
+            "printedName": "EmbraceType",
+            "usr": "s:21EmbraceCommonInternal0A4TypeP",
+            "mangledName": "$s21EmbraceCommonInternal0A4TypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
+      "kind": "StringLiteral",
+      "offset": 230,
+      "length": 11,
+      "value": "\"ios.crash\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
+      "kind": "StringLiteral",
+      "offset": 332,
+      "length": 16,
+      "value": "\"log.record.uid\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
+      "kind": "StringLiteral",
+      "offset": 389,
+      "length": 14,
+      "value": "\"emb.provider\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
+      "kind": "StringLiteral",
+      "offset": 443,
+      "length": 13,
+      "value": "\"emb.payload\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 169,
+      "length": 10,
+      "value": "\"emb.type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 210,
+      "length": 16,
+      "value": "\"log.record.uid\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 260,
+      "length": 11,
+      "value": "\"emb.state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 309,
+      "length": 16,
+      "value": "\"emb.session_id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 364,
+      "length": 20,
+      "value": "\"emb.stacktrace.ios\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 429,
+      "length": 19,
+      "value": "\"emb.properties.%@\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 270,
+      "length": 5,
+      "value": "\"log\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 364,
+      "length": 11,
+      "value": "\"exception\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 501,
+      "length": 12,
+      "value": "\"breadcrumb\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogType+Declarations.swift",
+      "kind": "StringLiteral",
+      "offset": 725,
+      "length": 10,
+      "value": "\"internal\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+LowPower.swift",
+      "kind": "StringLiteral",
+      "offset": 172,
+      "length": 11,
+      "value": "\"low_power\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+LowPower.swift",
+      "kind": "StringLiteral",
+      "offset": 276,
+      "length": 22,
+      "value": "\"emb-device-low-power\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+LowPower.swift",
+      "kind": "StringLiteral",
+      "offset": 342,
+      "length": 14,
+      "value": "\"start_reason\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+LowPower.swift",
+      "kind": "StringLiteral",
+      "offset": 397,
+      "length": 14,
+      "value": "\"system_query\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+LowPower.swift",
+      "kind": "StringLiteral",
+      "offset": 459,
+      "length": 21,
+      "value": "\"system_notification\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 183,
+      "length": 17,
+      "value": "\"network_request\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 301,
+      "length": 10,
+      "value": "\"url.full\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 350,
+      "length": 21,
+      "value": "\"http.request.method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 412,
+      "length": 24,
+      "value": "\"http.request.body.size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 482,
+      "length": 21,
+      "value": "\"emb.w3c_traceparent\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 546,
+      "length": 27,
+      "value": "\"http.response.status_code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 618,
+      "length": 25,
+      "value": "\"http.response.body.size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 685,
+      "length": 12,
+      "value": "\"error.type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 739,
+      "length": 12,
+      "value": "\"error.code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+NetworkRequest.swift",
+      "kind": "StringLiteral",
+      "offset": 796,
+      "length": 15,
+      "value": "\"error.message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 167,
+      "length": 9,
+      "value": "\"session\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 268,
+      "length": 13,
+      "value": "\"emb-session\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 316,
+      "length": 16,
+      "value": "\"emb.session_id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 370,
+      "length": 11,
+      "value": "\"emb.state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 423,
+      "length": 16,
+      "value": "\"emb.cold_start\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 482,
+      "length": 16,
+      "value": "\"emb.terminated\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 540,
+      "length": 16,
+      "value": "\"emb.clean_exit\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 602,
+      "length": 20,
+      "value": "\"emb.session_number\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 664,
+      "length": 30,
+      "value": "\"emb.heartbeat_time_unix_nano\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+Session.swift",
+      "kind": "StringLiteral",
+      "offset": 734,
+      "length": 14,
+      "value": "\"emb.crash_id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+View.swift",
+      "kind": "StringLiteral",
+      "offset": 164,
+      "length": 6,
+      "value": "\"view\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+View.swift",
+      "kind": "StringLiteral",
+      "offset": 259,
+      "length": 17,
+      "value": "\"emb-screen-view\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+View.swift",
+      "kind": "StringLiteral",
+      "offset": 318,
+      "length": 12,
+      "value": "\"view.title\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics+View.swift",
+      "kind": "StringLiteral",
+      "offset": 371,
+      "length": 11,
+      "value": "\"view.name\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 140,
+      "length": 10,
+      "value": "\"emb.type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 189,
+      "length": 9,
+      "value": "\"emb.key\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 240,
+      "length": 13,
+      "value": "\"emb.private\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 291,
+      "length": 16,
+      "value": "\"emb.error_code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 351,
+      "length": 15,
+      "value": "\"error.message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Span\/SpanSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 406,
+      "length": 12,
+      "value": "\"error.code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Breadcrumb.swift",
+      "kind": "StringLiteral",
+      "offset": 174,
+      "length": 12,
+      "value": "\"breadcrumb\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Breadcrumb.swift",
+      "kind": "StringLiteral",
+      "offset": 285,
+      "length": 16,
+      "value": "\"emb-breadcrumb\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Breadcrumb.swift",
+      "kind": "StringLiteral",
+      "offset": 341,
+      "length": 9,
+      "value": "\"message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+LowMemory.swift",
+      "kind": "StringLiteral",
+      "offset": 172,
+      "length": 12,
+      "value": "\"low_memory\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+LowMemory.swift",
+      "kind": "StringLiteral",
+      "offset": 283,
+      "length": 23,
+      "value": "\"emb-device-low-memory\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 180,
+      "length": 19,
+      "value": "\"push_notification\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 305,
+      "length": 23,
+      "value": "\"emb-push-notification\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 366,
+      "length": 19,
+      "value": "\"notification.type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 423,
+      "length": 20,
+      "value": "\"notification.title\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 484,
+      "length": 23,
+      "value": "\"notification.subtitle\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 544,
+      "length": 19,
+      "value": "\"notification.body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 604,
+      "length": 23,
+      "value": "\"notification.category\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 665,
+      "length": 20,
+      "value": "\"notification.badge\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 732,
+      "length": 7,
+      "value": "\"notif\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+PushNotification.swift",
+      "kind": "StringLiteral",
+      "offset": 779,
+      "length": 8,
+      "value": "\"silent\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Tap.swift",
+      "kind": "StringLiteral",
+      "offset": 163,
+      "length": 5,
+      "value": "\"tap\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Tap.swift",
+      "kind": "StringLiteral",
+      "offset": 261,
+      "length": 12,
+      "value": "\"emb-ui-tap\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Tap.swift",
+      "kind": "StringLiteral",
+      "offset": 314,
+      "length": 11,
+      "value": "\"view.name\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+Tap.swift",
+      "kind": "StringLiteral",
+      "offset": 369,
+      "length": 12,
+      "value": "\"tap.coords\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+WebView.swift",
+      "kind": "StringLiteral",
+      "offset": 167,
+      "length": 9,
+      "value": "\"webview\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+WebView.swift",
+      "kind": "StringLiteral",
+      "offset": 273,
+      "length": 14,
+      "value": "\"emb-web-view\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+WebView.swift",
+      "kind": "StringLiteral",
+      "offset": 323,
+      "length": 13,
+      "value": "\"webview.url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics+WebView.swift",
+      "kind": "StringLiteral",
+      "offset": 378,
+      "length": 20,
+      "value": "\"webview.error_code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/SpanEvent\/SpanEventSemantics.swift",
+      "kind": "StringLiteral",
+      "offset": 145,
+      "length": 10,
+      "value": "\"emb.type\""
+    }
+  ]
+}

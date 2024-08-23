@@ -12,10 +12,11 @@ namespace EmbraceSDK.Internal
     ///  Embrace_iOS uses statically linked methods that are linked into the executable using the DllImportattribute.  For iOS, we have to use “__Internal” as the library name for the attribute [DllImport("__Internal")].  
     ///  When a user makes a call to our Embrace class this is passed on to a method from the provider interface which then calls the external method. 
     /// </summary>
-#if UNITY_IOS || UNITY_TVOS
+#if (UNITY_IOS || UNITY_TVOS)
     [ExcludeFromCoverage]
     public class Embrace_iOS : IEmbraceProvider
     {
+        /*/
         [DllImport("__Internal")]
         private static extern void embrace_sdk_start();
 
@@ -130,6 +131,7 @@ namespace EmbraceSDK.Internal
         
         [DllImport("__Internal")]
         private static extern string embrace_sdk_record_completed_span(string name, long startTimeNanos, long endTimeNanos, int errorCode, string parentSpanId, string attributes, string events);
+        /*/
 
         void IEmbraceProvider.InitializeSDK()
         {
@@ -138,16 +140,18 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
         {
-            embrace_sdk_start();
+            //embrace_sdk_start();
         }
 
         void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
         {
-            embrace_sdk_endAppStartup(DictionaryToJson(properties));
+            //embrace_sdk_endAppStartup(DictionaryToJson(properties));
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
+            return LastRunEndState.Invalid;
+            /*/
             int lastRunStateValue = embrace_sdk_getLastRunEndState();
 
             switch (lastRunStateValue)
@@ -161,94 +165,96 @@ namespace EmbraceSDK.Internal
                 default:
                     return LastRunEndState.Invalid;
             }
+            //*/
         }
 
         void IEmbraceProvider.InitNativeSdkConnection() { }
 
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
-            embrace_sdk_setUserIdentifier(identifier);
+            //embrace_sdk_setUserIdentifier(identifier);
         }
 
         void IEmbraceProvider.ClearUserIdentifier()
         {
-            embrace_sdk_clearUserIdentifier();
+            //embrace_sdk_clearUserIdentifier();
         }
 
         void IEmbraceProvider.SetUsername(string username)
         {
-            embrace_sdk_setUsername(username);
+            //embrace_sdk_setUsername(username);
         }
 
         void IEmbraceProvider.ClearUsername()
         {
-            embrace_sdk_clearUsername();
+            //embrace_sdk_clearUsername();
         }
 
         void IEmbraceProvider.SetUserEmail(string email)
         {
-            embrace_sdk_setUserEmail(email);
+            //embrace_sdk_setUserEmail(email);
         }
 
         void IEmbraceProvider.ClearUserEmail()
         {
-            embrace_sdk_clearUserEmail();
+            //embrace_sdk_clearUserEmail();
         }
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            embrace_sdk_setUserAsPayer();
+            //embrace_sdk_setUserAsPayer();
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            embrace_sdk_clearUserAsPayer();
+            //embrace_sdk_clearUserAsPayer();
         }
         
         void IEmbraceProvider.SetUserPersona(string persona)
         {
-            embrace_sdk_setUserPersona(persona);
+            //embrace_sdk_setUserPersona(persona);
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
         {
-            embrace_sdk_addUserPersona(persona);
+            //embrace_sdk_addUserPersona(persona);
         }
 
         void IEmbraceProvider.ClearUserPersona(string persona)
         {
-            embrace_sdk_clearUserPersona(persona);
+            //embrace_sdk_clearUserPersona(persona);
         }
 
         void IEmbraceProvider.ClearAllUserPersonas()
         {
-            embrace_sdk_clearAllUserPersonas();
+            //embrace_sdk_clearAllUserPersonas();
         }
             
         bool IEmbraceProvider.AddSessionProperty(string key, string value, bool permanent)
         {
-            return embrace_sdk_addSessionProperty(key, value, permanent);
+            return false;
+            //return embrace_sdk_addSessionProperty(key, value, permanent);
         }
 
         void IEmbraceProvider.RemoveSessionProperty(string key)
         {
-            embrace_sdk_removeSessionProperty(key);
+            //embrace_sdk_removeSessionProperty(key);
         }
         
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
-            return JsonToDictionary(embrace_sdk_getSessionProperties());
+            return null;
+            //return JsonToDictionary(embrace_sdk_getSessionProperties());
         }
         
         void IEmbraceProvider.StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties)
         {
-            embrace_sdk_startMoment(name, identifier, allowScreenshot, DictionaryToJson(properties));
-      
+            //embrace_sdk_startMoment(name, identifier, allowScreenshot, DictionaryToJson(properties));
         }
 
         void IEmbraceProvider.EndMoment(string name, string identifier, Dictionary<string, string> properties)
         {
-            embrace_sdk_endMoment(name, identifier, DictionaryToJson(properties));
+            //embrace_sdk_endMoment(name, identifier, DictionaryToJson(properties));
         }
         
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, bool allowScreenshot)
@@ -273,47 +279,50 @@ namespace EmbraceSDK.Internal
                     break;
             }
             
-            embrace_sdk_logMessage(message, severityString, DictionaryToJson(properties), false);
+            //embrace_sdk_logMessage(message, severityString, DictionaryToJson(properties), false);
         }
 
         void IEmbraceProvider.LogBreadcrumb(string message)
         {
-            embrace_sdk_logBreadcrumb(message);
+            //embrace_sdk_logBreadcrumb(message);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
-            embrace_sdk_logBreadcrumb(message);
+            //embrace_sdk_logBreadcrumb(message);
         }
 
         void IEmbraceProvider.EndSession(bool clearUserInfo)
         {
-            embrace_sdk_endSession(clearUserInfo);
+            //embrace_sdk_endSession(clearUserInfo);
         }
             
         string IEmbraceProvider.GetDeviceId()
         {
-            return embrace_sdk_getDeviceId();
+            return null;
+            //return embrace_sdk_getDeviceId();
         }
 
         bool IEmbraceProvider.StartView(string name)
         {
-            return embrace_sdk_startView(name);
+            return false;
+            //return embrace_sdk_startView(name);
         }
     
         bool IEmbraceProvider.EndView(string name)
         {
-            return embrace_sdk_endView(name);
+            return false;
+            //return embrace_sdk_endView(name);
         }
         
         void IEmbraceProvider.Crash()
         {
-            embrace_sdk_crash();
+            //embrace_sdk_crash();
         }
 
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
-            embrace_sdk_setUnityMetaData(unityVersion, guid, sdkVersion);
+            //embrace_sdk_setUnityMetaData(unityVersion, guid, sdkVersion);
         }
         
         private string DictionaryToJson(Dictionary<string, string> dictionary)
@@ -333,13 +342,13 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
         {
-            embrace_sdk_logNetworkRequest(url, Embrace.__BridgedHTTPMethod(method), startms, endms, (int)bytesin, (int)bytesout,
-                code, "");
+            //embrace_sdk_logNetworkRequest(url, Embrace.__BridgedHTTPMethod(method), startms, endms, (int)bytesin, (int)bytesout,
+                //code, "");
         }
 
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
         {
-            embrace_sdk_logNetworkRequest(url, Embrace.__BridgedHTTPMethod(method), startms, endms, 0, 0,0, error);
+            //embrace_sdk_logNetworkRequest(url, Embrace.__BridgedHTTPMethod(method), startms, endms, 0, 0,0, error);
         }
 
         void IEmbraceProvider.InstallUnityThreadSampler()
@@ -349,55 +358,61 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
         {
-            embrace_sdk_logUnhandledUnityException("", exceptionMessage, stack);
+            //embrace_sdk_logUnhandledUnityException("", exceptionMessage, stack);
         }
 
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
-            embrace_sdk_logPushNotification(iosArgs.title, iosArgs.subtitle, iosArgs.body, iosArgs.category, iosArgs.badge);
+            //embrace_sdk_logPushNotification(iosArgs.title, iosArgs.subtitle, iosArgs.body, iosArgs.category, iosArgs.badge);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stacktrace)
         {
-            embrace_sdk_logUnhandledUnityException(exceptionName, exceptionMessage, stacktrace);
+            //embrace_sdk_logUnhandledUnityException(exceptionName, exceptionMessage, stacktrace);
         }
 
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stacktrace)
         {
-            embrace_sdk_logHandledUnityException(exceptionName, exceptionMessage, stacktrace);
+            //embrace_sdk_logHandledUnityException(exceptionName, exceptionMessage, stacktrace);
         }
         
         string IEmbraceProvider.GetCurrentSessionId()
         {
-            return embrace_sdk_getCurrentSessionId();
+            return null;
+            //return embrace_sdk_getCurrentSessionId();
         }
         
         string IEmbraceProvider.StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
             Debug.Log($"Starting span with name: {spanName} and parentSpanId: {parentSpanId}");
-            return embrace_sdk_start_span_with_name(spanName, parentSpanId);
+            return null;
+            //return embrace_sdk_start_span_with_name(spanName, parentSpanId);
         }
 
         bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
         {
-            return embrace_sdk_stop_span_with_id(spanId, errorCode);
+            return false;
+            //return embrace_sdk_stop_span_with_id(spanId, errorCode);
         }
 
         bool IEmbraceProvider.AddSpanEvent(string spanName, string spanId, long timestampMs, Dictionary<string, string> attributes)
         {
-            return embrace_sdk_add_span_event_to_span_id(spanId, spanName, timestampMs, JsonConvert.SerializeObject(attributes));
+            return false;
+            //return embrace_sdk_add_span_event_to_span_id(spanId, spanName, timestampMs, JsonConvert.SerializeObject(attributes));
         }
 
         bool IEmbraceProvider.AddSpanAttribute(string spanId, string key, string value)
         {
-            return embrace_sdk_add_span_attribute_to_span_id(spanId, key, value); 
+            return false;
+            //return embrace_sdk_add_span_attribute_to_span_id(spanId, key, value); 
         }
         
         bool IEmbraceProvider.RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent[] events)
         {
-            var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs * 1000000, endTimeMs * 1000000, errorCode ?? 0, parentSpanId, DictionaryToJson(attributes), JsonConvert.SerializeObject(events));
-            return !string.IsNullOrEmpty(spanId);
+            //var spanId = embrace_sdk_record_completed_span(spanName, startTimeMs * 1000000, endTimeMs * 1000000, errorCode ?? 0, parentSpanId, DictionaryToJson(attributes), JsonConvert.SerializeObject(events));
+            //return !string.IsNullOrEmpty(spanId);
+            return false;
         }
     }
 #endif
