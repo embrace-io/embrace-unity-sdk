@@ -6,6 +6,10 @@ cd "Embrace Unity iOS Interface"
 
 cd ..
 
+echo "Removing old xcframework"
+
+rm -rf ./io.embrace.sdk/iOS6/xcframeworks/EmbraceUnityiOS.xcframework
+
 echo "Copying xcframeworks to Unity project"
 
 cp -rf \
