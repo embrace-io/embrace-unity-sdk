@@ -1,0 +1,367 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios17.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceCommonInternal
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc public enum LastRunState : Swift.Int {
+  case unavailable, crash, cleanExit
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol CrashReporter {
+  @objc var currentSessionId: Swift.String? { get set }
+  @objc func install(context: EmbraceCommonInternal.CrashReporterContext, logger: any EmbraceCommonInternal.InternalLogger)
+  @objc func getLastRunState() -> EmbraceCommonInternal.LastRunState
+  @objc func fetchUnsentCrashReports(completion: @escaping ([EmbraceCommonInternal.CrashReport]) -> Swift.Void)
+  @objc func deleteCrashReport(id: Swift.Int)
+  @objc var onNewReport: ((EmbraceCommonInternal.CrashReport) -> Swift.Void)? { get set }
+}
+@objc public class CrashReport : ObjectiveC.NSObject {
+  public var id: Foundation.UUID {
+    get
+  }
+  public var payload: Swift.String {
+    get
+  }
+  public var provider: Swift.String {
+    get
+  }
+  public var internalId: Swift.Int? {
+    get
+  }
+  public var sessionId: Swift.String? {
+    get
+  }
+  public var timestamp: Foundation.Date? {
+    get
+  }
+  public init(payload: Swift.String, provider: Swift.String, internalId: Swift.Int? = nil, sessionId: Swift.String? = nil, timestamp: Foundation.Date? = nil)
+  @objc deinit
+}
+@objc final public class CrashReporterContext : ObjectiveC.NSObject {
+  final public let appId: Swift.String
+  final public let sdkVersion: Swift.String
+  final public let filePathProvider: any EmbraceCommonInternal.FilePathProvider
+  final public let notificationCenter: Foundation.NotificationCenter
+  public init(appId: Swift.String, sdkVersion: Swift.String, filePathProvider: any EmbraceCommonInternal.FilePathProvider, notificationCenter: Foundation.NotificationCenter)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class EmbraceMeta {
+  public static let sdkVersion: Swift.String
+  @objc deinit
+}
+public protocol EmbraceType : Swift.CustomStringConvertible, Swift.Decodable, Swift.Encodable, Swift.Hashable, Swift.RawRepresentable where Self.RawValue == Swift.String {
+  var primary: EmbraceCommonInternal.PrimaryType { get }
+  var secondary: Swift.String? { get }
+  init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+}
+public enum PrimaryType : Swift.String {
+  case performance
+  case ux
+  case system
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String? = nil)
+  public init(performance secondary: Swift.String)
+  public init(ux secondary: Swift.String)
+  public init(system secondary: Swift.String)
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public static var performance: Self {
+    get
+  }
+  public static var ux: Self {
+    get
+  }
+  public static var system: Self {
+    get
+  }
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public var rawValue: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.String)
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension EmbraceCommonInternal.EmbraceType {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct LogType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+  public typealias RawValue = Swift.String
+}
+public struct SpanEventType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String?)
+  public typealias RawValue = Swift.String
+}
+extension EmbraceCommonInternal.SpanType {
+  public static let fileIO: EmbraceCommonInternal.SpanType
+  public static let fileRead: EmbraceCommonInternal.SpanType
+  public static let fileWrite: EmbraceCommonInternal.SpanType
+  public static let sqlSelect: EmbraceCommonInternal.SpanType
+  public static let sqlUpdate: EmbraceCommonInternal.SpanType
+  public static let sqlDelete: EmbraceCommonInternal.SpanType
+  public static let sqlVacuum: EmbraceCommonInternal.SpanType
+}
+public struct SpanType : EmbraceCommonInternal.EmbraceType {
+  public let primary: EmbraceCommonInternal.PrimaryType
+  public let secondary: Swift.String?
+  public init(primary: EmbraceCommonInternal.PrimaryType, secondary: Swift.String? = nil)
+  public typealias RawValue = Swift.String
+}
+@objc public enum LogSeverity : Swift.Int, Swift.Codable {
+  case trace = 1
+  case debug = 5
+  case info = 9
+  case warn = 13
+  case error = 17
+  case fatal = 24
+  public var text: Swift.String {
+    get
+  }
+  public var number: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension EmbraceCommonInternal.LogSeverity : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum SessionState : Swift.String {
+  case foreground
+  case background
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension EmbraceCommonInternal.SessionState {
+  public init?(appState: UIKit.UIApplication.State)
+}
+public enum EmbraceSwizzableError : Swift.Error, Swift.Equatable {
+  case methodNotFound(selectorName: Swift.String, className: Swift.String)
+  public static func == (a: EmbraceCommonInternal.EmbraceSwizzableError, b: EmbraceCommonInternal.EmbraceSwizzableError) -> Swift.Bool
+}
+extension EmbraceCommonInternal.EmbraceSwizzableError : Foundation.LocalizedError, Foundation.CustomNSError {
+  public static var errorDomain: Swift.String {
+    get
+  }
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var localizedDescription: Swift.String {
+    get
+  }
+}
+extension Foundation.Date {
+  public var millisecondsSince1970: Swift.Double {
+    get
+  }
+  public var millisecondsSince1970Truncated: Swift.Int {
+    get
+  }
+  public var nanosecondsSince1970: Swift.Double {
+    get
+  }
+  public var nanosecondsSince1970Truncated: Swift.Int {
+    get
+  }
+  public var serializedInterval: Swift.Int {
+    get
+  }
+}
+public struct DeviceIdentifier : Swift.Equatable {
+  public init(value: Foundation.UUID)
+  public init?(string: Swift.String?)
+  public var hex: Swift.String {
+    get
+  }
+  public static func == (a: EmbraceCommonInternal.DeviceIdentifier, b: EmbraceCommonInternal.DeviceIdentifier) -> Swift.Bool
+}
+public struct LogIdentifier : Swift.Codable, Swift.Equatable {
+  public let value: Foundation.UUID
+  public init(value: Foundation.UUID)
+  public init()
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var toString: Swift.String {
+    get
+  }
+  public static func == (a: EmbraceCommonInternal.LogIdentifier, b: EmbraceCommonInternal.LogIdentifier) -> Swift.Bool
+}
+extension EmbraceCommonInternal.LogIdentifier {
+  public static var random: EmbraceCommonInternal.LogIdentifier {
+    get
+  }
+}
+public struct ProcessIdentifier : Swift.Equatable {
+  public let value: Swift.UInt32
+  public init?(hex: Swift.String)
+  public init(value: Swift.UInt32)
+  public var hex: Swift.String {
+    get
+  }
+  public static func == (a: EmbraceCommonInternal.ProcessIdentifier, b: EmbraceCommonInternal.ProcessIdentifier) -> Swift.Bool
+}
+extension EmbraceCommonInternal.ProcessIdentifier {
+  public static let current: EmbraceCommonInternal.ProcessIdentifier
+}
+extension EmbraceCommonInternal.ProcessIdentifier {
+  public static var random: EmbraceCommonInternal.ProcessIdentifier {
+    get
+  }
+}
+extension EmbraceCommonInternal.ProcessIdentifier : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct SessionIdentifier : Swift.Equatable {
+  public init(value: Foundation.UUID)
+  public init?(string: Swift.String?)
+  public var toString: Swift.String {
+    get
+  }
+  public static func == (a: EmbraceCommonInternal.SessionIdentifier, b: EmbraceCommonInternal.SessionIdentifier) -> Swift.Bool
+}
+extension EmbraceCommonInternal.SessionIdentifier : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension EmbraceCommonInternal.SessionIdentifier {
+  public static var random: EmbraceCommonInternal.SessionIdentifier {
+    get
+  }
+}
+extension EmbraceCommonInternal.SessionIdentifier : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Foundation.UUID {
+  public init?(withoutHyphen: Swift.String)
+  public var withoutHyphen: Swift.String {
+    get
+  }
+}
+@objc public enum LogLevel : Swift.Int {
+  case none
+  case trace
+  case debug
+  case info
+  case warning
+  case error
+  public static let `default`: EmbraceCommonInternal.LogLevel
+  public var severity: EmbraceCommonInternal.LogSeverity {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol InternalLogger {
+  @discardableResult
+  @objc func log(level: EmbraceCommonInternal.LogLevel, message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func log(level: EmbraceCommonInternal.LogLevel, message: Swift.String) -> Swift.Bool
+  @discardableResult
+  @objc func trace(_ message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func trace(_ message: Swift.String) -> Swift.Bool
+  @discardableResult
+  @objc func debug(_ message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func debug(_ message: Swift.String) -> Swift.Bool
+  @discardableResult
+  @objc func info(_ message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func info(_ message: Swift.String) -> Swift.Bool
+  @discardableResult
+  @objc func warning(_ message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func warning(_ message: Swift.String) -> Swift.Bool
+  @discardableResult
+  @objc func error(_ message: Swift.String, attributes: [Swift.String : Swift.String]) -> Swift.Bool
+  @discardableResult
+  @objc func error(_ message: Swift.String) -> Swift.Bool
+}
+@propertyWrapper final public class ThreadSafe<Value> {
+  public init(wrappedValue: Value)
+  final public var wrappedValue: Value {
+    get
+    set
+  }
+  final public func modify(_ operation: (inout Value) -> Swift.Void)
+  @objc deinit
+}
+public protocol FilePathProvider {
+  func fileURL(for scope: Swift.String, name: Swift.String) -> Foundation.URL?
+  func directoryURL(for scope: Swift.String) -> Foundation.URL?
+}
+public protocol Swizzlable {
+  associatedtype ImplementationType
+  associatedtype BlockImplementationType
+  static var selector: ObjectiveC.Selector { get }
+  var baseClass: Swift.AnyClass { get }
+  func install() throws
+  func swizzleInstanceMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
+  func swizzleClassMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
+}
+extension EmbraceCommonInternal.Swizzlable {
+  public func swizzleInstanceMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
+  public func swizzleClassMethod(_ block: (Self.ImplementationType) -> Self.BlockImplementationType) throws
+}
+final public class UnfairLock {
+  public init()
+  @objc deinit
+  final public func locked<ReturnValue>(_ f: () throws -> ReturnValue) rethrows -> ReturnValue
+}
+extension EmbraceCommonInternal.LastRunState : Swift.Equatable {}
+extension EmbraceCommonInternal.LastRunState : Swift.Hashable {}
+extension EmbraceCommonInternal.LastRunState : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.Equatable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.Hashable {}
+extension EmbraceCommonInternal.PrimaryType : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.LogSeverity : Swift.Equatable {}
+extension EmbraceCommonInternal.LogSeverity : Swift.Hashable {}
+extension EmbraceCommonInternal.LogSeverity : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.SessionState : Swift.Equatable {}
+extension EmbraceCommonInternal.SessionState : Swift.Hashable {}
+extension EmbraceCommonInternal.SessionState : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.LogLevel : Swift.Equatable {}
+extension EmbraceCommonInternal.LogLevel : Swift.Hashable {}
+extension EmbraceCommonInternal.LogLevel : Swift.RawRepresentable {}

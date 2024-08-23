@@ -1,7 +1,13 @@
 #!/bin/bash
 
-./"Embrace Unity iOS Interface"/build.xcframework.sh
+cd "Embrace Unity iOS Interface"
 
-cp -f \
+./build_xcframework.sh
+
+cd ..
+
+cp -rf \
     ./"Embrace Unity iOS Interface"/build/EmbraceUnityiOS.xcframework \
     ./io.embrace.sdk/iOS6/xcframeworks/EmbraceUnityiOS.xcframework
+
+rm -rf ./"Embrace Unity iOS Interface"/build
