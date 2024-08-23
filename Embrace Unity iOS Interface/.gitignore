@@ -2,4 +2,4 @@
 /build/*.xcarchive
 ./build/*.xcframework
 
-*.xcodeproj/xcuserdata/*
+**xcuserdata/
