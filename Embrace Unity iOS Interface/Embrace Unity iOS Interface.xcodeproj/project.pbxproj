@@ -32,6 +32,7 @@
 		11077E6A2C77935E00CAFD0C /* OpenTelemetryApi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11077E532C77935E00CAFD0C /* OpenTelemetryApi.xcframework */; };
 		11077E6B2C77935E00CAFD0C /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11077E542C77935E00CAFD0C /* OpenTelemetrySdk.xcframework */; };
 		11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6C2C77944700CAFD0C /* ExposedAPI.swift */; };
+		11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		11077E532C77935E00CAFD0C /* OpenTelemetryApi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetryApi.xcframework; sourceTree = "<group>"; };
 		11077E542C77935E00CAFD0C /* OpenTelemetrySdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetrySdk.xcframework; sourceTree = "<group>"; };
 		11077E6C2C77944700CAFD0C /* ExposedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposedAPI.swift; sourceTree = "<group>"; };
+		11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +101,10 @@
 		11077E262C76D7A200CAFD0C = {
 			isa = PBXGroup;
 			children = (
+				11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */,
 				11077E6C2C77944700CAFD0C /* ExposedAPI.swift */,
-				11077E552C77935E00CAFD0C /* xcframeworks */,
 				11077E3D2C76D80F00CAFD0C /* EmbraceManager.swift */,
+				11077E552C77935E00CAFD0C /* xcframeworks */,
 				11077E322C76D7A200CAFD0C /* Embrace Unity iOS Interface */,
 				11077E312C76D7A200CAFD0C /* Products */,
 			);
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11077E3E2C76D80F00CAFD0C /* EmbraceManager.swift in Sources */,
+				11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */,
 				11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
