@@ -289,7 +289,7 @@ public func stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePoin
         return
     }
     
-    if let _spanid = String(validatingUTF8: spanId), let _errorCodeString = String(validatingUTF8: errorCdoeString) {
+    if let _spanid = String(validatingUTF8: spanId), let _errorCodeString = String(validatingUTF8: errorCodeString) {
         EmbraceManager.stopSpan(spanId: _spanid, errorCodeString: _errorCodeString, endTimeMs: endTimeMs)
     }
 }

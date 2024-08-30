@@ -1450,7 +1450,7 @@
       {
         "kind": "Function",
         "name": "stop_span",
-        "printedName": "stop_span(spanId:errorCdoeString:endTimeMs:)",
+        "printedName": "stop_span(spanId:errorCodeString:endTimeMs:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -1509,8 +1509,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)stop_spanWithSpanId:errorCdoeString:endTimeMs:",
-        "mangledName": "$s27Embrace_Unity_iOS_Interface9stop_span0F2Id15errorCdoeString9endTimeMsySPys4Int8VGSg_AISdtF",
+        "usr": "c:(cm)stop_spanWithSpanId:errorCodeString:endTimeMs:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface9stop_span0F2Id15errorCodeString9endTimeMsySPys4Int8VGSg_AISdtF",
         "moduleName": "Embrace_Unity_iOS_Interface",
         "declAttributes": [
           "AccessControl",
@@ -1844,7 +1844,7 @@
       {
         "kind": "Function",
         "name": "log_handled_exception",
-        "printedName": "log_handled_exception(message:stacktrace:propertiesJson:)",
+        "printedName": "log_handled_exception(name:message:stacktrace:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -1919,8 +1919,8 @@
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)log_handled_exceptionWithMessage:stacktrace:propertiesJson:",
-        "mangledName": "$s27Embrace_Unity_iOS_Interface21log_handled_exception7message10stacktrace14propertiesJsonySPys4Int8VGSg_A2ItF",
+        "usr": "c:(cm)log_handled_exceptionWithName:message:stacktrace:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface21log_handled_exception4name7message10stacktraceySPys4Int8VGSg_A2ItF",
         "moduleName": "Embrace_Unity_iOS_Interface",
         "declAttributes": [
           "AccessControl",
@@ -1931,7 +1931,7 @@
       {
         "kind": "Function",
         "name": "log_unhandled_exception",
-        "printedName": "log_unhandled_exception(name:message:type:stacktrace:)",
+        "printedName": "log_unhandled_exception(name:message:stacktrace:)",
         "children": [
           {
             "kind": "TypeNominal",
@@ -2003,33 +2003,11 @@
               }
             ],
             "usr": "s:Sq"
-          },
-          {
-            "kind": "TypeNominal",
-            "name": "Optional",
-            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "UnsafePointer",
-                "printedName": "Swift.UnsafePointer<Swift.Int8>",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Int8",
-                    "printedName": "Swift.Int8",
-                    "usr": "s:s4Int8V"
-                  }
-                ],
-                "usr": "s:SP"
-              }
-            ],
-            "usr": "s:Sq"
           }
         ],
         "declKind": "Func",
-        "usr": "c:(cm)log_unhandled_exceptionWithName:message:type:stacktrace:",
-        "mangledName": "$s27Embrace_Unity_iOS_Interface23log_unhandled_exception4name7message4type10stacktraceySPys4Int8VGSg_A3JtF",
+        "usr": "c:(cm)log_unhandled_exceptionWithName:message:stacktrace:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface23log_unhandled_exception4name7message10stacktraceySPys4Int8VGSg_A2ItF",
         "moduleName": "Embrace_Unity_iOS_Interface",
         "declAttributes": [
           "AccessControl",

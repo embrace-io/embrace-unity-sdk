@@ -68,7 +68,7 @@ public func log_network_client_error(url: Swift.UnsafePointer<Swift.CChar>?, htt
 @_cdecl("start_span")
 public func start_span(name: Swift.UnsafePointer<Swift.CChar>?, parentSpanId: Swift.UnsafePointer<Swift.CChar>?, startTimeMs: Swift.Double) -> Swift.UnsafeMutablePointer<Swift.CChar>?
 @_cdecl("stop_span")
-public func stop_span(spanId: Swift.UnsafePointer<Swift.CChar>?, errorCdoeString: Swift.UnsafePointer<Swift.CChar>?, endTimeMs: Swift.Double)
+public func stop_span(spanId: Swift.UnsafePointer<Swift.CChar>?, errorCodeString: Swift.UnsafePointer<Swift.CChar>?, endTimeMs: Swift.Double)
 @_cdecl("add_span_event_to_span")
 public func add_span_event_to_span(spanId: Swift.UnsafePointer<Swift.CChar>?, name: Swift.UnsafePointer<Swift.CChar>?, time: Swift.Double, attributesJson: Swift.UnsafePointer<Swift.CChar>?)
 @_cdecl("add_span_attribute_to_span")
@@ -76,8 +76,8 @@ public func add_span_attribute_to_span(spanId: Swift.UnsafePointer<Swift.CChar>?
 @_cdecl("record_completed_span")
 public func record_completed_span(name: Swift.UnsafePointer<Swift.CChar>?, startTimeMs: Swift.Double, endTimeMs: Swift.Double, errorCodeString: Swift.UnsafePointer<Swift.CChar>?, parentSpanId: Swift.UnsafePointer<Swift.CChar>?, attributesJson: Swift.UnsafePointer<Swift.CChar>?, eventsJson: Swift.UnsafePointer<Swift.CChar>?)
 @_cdecl("log_handled_exception")
-public func log_handled_exception(message: Swift.UnsafePointer<Swift.CChar>?, stacktrace: Swift.UnsafePointer<Swift.CChar>?, propertiesJson: Swift.UnsafePointer<Swift.CChar>?)
+public func log_handled_exception(name: Swift.UnsafePointer<Swift.CChar>?, message: Swift.UnsafePointer<Swift.CChar>?, stacktrace: Swift.UnsafePointer<Swift.CChar>?)
 @_cdecl("log_unhandled_exception")
-public func log_unhandled_exception(name: Swift.UnsafePointer<Swift.CChar>?, message: Swift.UnsafePointer<Swift.CChar>?, type: Swift.UnsafePointer<Swift.CChar>?, stacktrace: Swift.UnsafePointer<Swift.CChar>?)
+public func log_unhandled_exception(name: Swift.UnsafePointer<Swift.CChar>?, message: Swift.UnsafePointer<Swift.CChar>?, stacktrace: Swift.UnsafePointer<Swift.CChar>?)
 @_cdecl("test_string")
 public func test_string() -> Swift.UnsafeMutablePointer<Swift.Int8>?

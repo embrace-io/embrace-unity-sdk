@@ -156,8 +156,26 @@ namespace EmbraceSDK.Internal
         
         public void RemoveSessionProperty(string key) => remove_session_property(key);
 
-        public void LogMessageWithSeverityAndProperties(string message, string severity, Dictionary<string, string> props) => 
-            log_message_with_severity_and_properties(message, severity, JsonConvert.SerializeObject(props));
+        public void LogMessageWithSeverityAndProperties(string message, EMBSeverity severity,
+            Dictionary<string, string> props)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+            
+            log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(props));
+        } 
         
         public void SetUserAsPayer() => set_user_as_payer();
         

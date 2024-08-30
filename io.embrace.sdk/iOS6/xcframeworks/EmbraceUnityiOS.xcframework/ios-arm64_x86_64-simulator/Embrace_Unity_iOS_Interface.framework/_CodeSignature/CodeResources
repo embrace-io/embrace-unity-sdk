@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		KKX+QipZhRoH1sPnyI5lOx0tKmw=
+		CNcCJwRqb/BLFtGS615ViZpaVo0=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		whKBq55L+l1xpN/PD5YbJymaNDI=
+		rgJlxztbBmCyNw0Y0pOIWFBrZyo=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		whKBq55L+l1xpN/PD5YbJymaNDI=
+		rgJlxztbBmCyNw0Y0pOIWFBrZyo=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		nW3ulOZwDA2yB5UAwBI828ziMKk=
+		5mjoT9OE3DYlEtUVs/36FDNmt3s=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		KKX+QipZhRoH1sPnyI5lOx0tKmw=
+		CNcCJwRqb/BLFtGS615ViZpaVo0=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		DdYn4API0o33FSyjEAL1peO9bps=
+		hhhuV8PZanAbfygT5eqAHeEAItU=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		DdYn4API0o33FSyjEAL1peO9bps=
+		hhhuV8PZanAbfygT5eqAHeEAItU=
 		</data>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		IIPM8FPnjLqKb2OdZMtb45+ui3M=
+		gAnKmBC+BVAsOibaCgTa2MhwY78=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FhVUWeuulRuWZ4dSjxDqRlUZwu0h4BFLmDaJ8ZqT7KU=
+			+S4bWa3VBb+4YFl4JLbc4hvdPEIPckvdFdczgUGu3tE=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1dOry7Xx6IXCU1aEwkozHPimjz/ycqukq7EYCA8KFhY=
+			N4EUginOyMICY6f2ryf/iIQNe2G8ByfHVXvJ+iBDg78=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -91,28 +91,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1dOry7Xx6IXCU1aEwkozHPimjz/ycqukq7EYCA8KFhY=
+			N4EUginOyMICY6f2ryf/iIQNe2G8ByfHVXvJ+iBDg78=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tL/mzNtm7v3qJq9RadWqiElgb3oQU93+Bxy5nOHfie0=
+			3xhncG8yRdPMpNK0ZM0S2HXW27Ksw3P+wOJyJFQfPL8=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FhVUWeuulRuWZ4dSjxDqRlUZwu0h4BFLmDaJ8ZqT7KU=
+			+S4bWa3VBb+4YFl4JLbc4hvdPEIPckvdFdczgUGu3tE=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cwICsXYTAMSZgnaCuvtGI9tY4V1pwMNj1C0unXJt/P4=
+			fDquY1n+CDVpevmthbgiMGJIP5V6uYV1Mp8YL5VYmGI=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -126,14 +126,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cwICsXYTAMSZgnaCuvtGI9tY4V1pwMNj1C0unXJt/P4=
+			fDquY1n+CDVpevmthbgiMGJIP5V6uYV1Mp8YL5VYmGI=
 			</data>
 		</dict>
 		<key>Modules/Embrace_Unity_iOS_Interface.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9abx1li7CQ5r5ZfmBPLuNFJre2WBa4wQmaYcOVWX7iI=
+			QaQI7cyoz1iA2gsRAPkr6D13tPr7F+0AM/KtdskDhJA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
