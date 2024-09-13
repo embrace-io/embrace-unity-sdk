@@ -22,12 +22,10 @@ The Unity documentation can be found [here](https://embrace.io/docs/unity/).
 
 - Refer to our [Features page](https://embrace.io/docs/unity/features/) to learn about the features Embrace SDK provides
 
-## Support
+## Support & Contributions
+Embrace does not currently accept pull requests from external contributors. If you have a feature suggestion or have spotted something that doesn't look right please reach out in our [Community Slack](https://join.slack.com/t/embraceio-community/shared_invite/zt-ywr4jhzp-DLROX0ndN9a0soHMf6Ksow) for direct, faster assistance.
 
-- Join our [Community Slack](https://embraceio-community.slack.com/)
-- Contact us [support@embrace.io](mailto:support@embrace.io)
-
-# License
+## License
 
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-orange)](./LICENSE.txt)
 
