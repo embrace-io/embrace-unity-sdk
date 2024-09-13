@@ -556,10 +556,11 @@ namespace EmbraceSDK.Internal
             }
 
             var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
+            var attDict = DictionaryToJavaMap(attributes);
             
             var result = _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
                 endTimeMs, errorCode != null ? GetSpanErrorCode(errorCode.Value) : null, 
-                parentSpanId, DictionaryToJavaMap(attributes), dict);
+                parentSpanId, attDict, dict);
             
             foreach (var disposable in disposables)
             {
@@ -577,6 +578,12 @@ namespace EmbraceSDK.Internal
         {
             AndroidJavaObject map = new AndroidJavaObject("java.util.HashMap");
             IntPtr putMethod = AndroidJNIHelper.GetMethodID(map.GetRawClass(), "put", "(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;");
+
+            if (dictionary == null)
+            {
+                return map;
+            }
+
             foreach (var entry in dictionary)
             {
                 AndroidJNI.CallObjectMethod(
