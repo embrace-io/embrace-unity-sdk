@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EmbraceSDK.Internal;
 
 namespace EmbraceSDK
 {
@@ -68,8 +69,9 @@ namespace EmbraceSDK
         /// Starts instrumentation of the application using the Embrace SDK. This should be called during creation of the application, as early as possible.
         /// See Embrace Docs for integration instructions. For compatibility with other SDKs, the Embrace SDK must be initialized after any other SDK.
         /// </summary>
+        /// <param name="args">Startup arguments to configure the SDK. REQUIRED on iOS</param>
         /// <param name="enableIntegrationTesting">If true, debug sessions (those which are not part of a release APK) will go to the live integration testing tab of the dashboard. If false, they will appear in 'recent sessions'.</param>
-        void StartSDK(bool enableIntegrationTesting = false);
+        void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false);
 
         /// <summary>
         /// Logs a breadcrumb.

@@ -750,7 +750,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:type:attributes:)",
+            "printedName": "log(_:severity:type:attributes:stackTraceBehavior:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -794,11 +794,17 @@
                   }
                 ],
                 "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StackTraceBehavior",
+                "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributesySS_0a6CommonC011LogSeverityOAH0K4TypeVSDyS2SGtF",
-            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributesySS_0a6CommonC011LogSeverityOAH0K4TypeVSDyS2SGtF",
+            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributes18stackTraceBehaviorySS_0a6CommonC011LogSeverityOAI0N4TypeVSDyS2SGAI05StackkL0OtF",
+            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type10attributes18stackTraceBehaviorySS_0a6CommonC011LogSeverityOAI0N4TypeVSDyS2SGAI05StackkL0OtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceOpenTelemetry>",
             "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceOpenTelemetry>",
@@ -809,7 +815,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:type:timestamp:attributes:)",
+            "printedName": "log(_:severity:type:timestamp:attributes:stackTraceBehavior:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -859,11 +865,17 @@
                   }
                 ],
                 "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StackTraceBehavior",
+                "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributesySS_0a6CommonC011LogSeverityOAI0L4TypeV10Foundation4DateVSDyS2SGtF",
-            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributesySS_0a6CommonC011LogSeverityOAI0L4TypeV10Foundation4DateVSDyS2SGtF",
+            "usr": "s:19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributes18stackTraceBehaviorySS_0a6CommonC011LogSeverityOAJ0O4TypeV10Foundation4DateVSDyS2SGAJ05StacklM0OtF",
+            "mangledName": "$s19EmbraceOTelInternal0A13OpenTelemetryP3log_8severity4type9timestamp10attributes18stackTraceBehaviorySS_0a6CommonC011LogSeverityOAJ0O4TypeV10Foundation4DateVSDyS2SGAJ05StacklM0OtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceOpenTelemetry>",
             "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceOpenTelemetry>",
@@ -1742,36 +1754,6 @@
         "children": [
           {
             "kind": "Function",
-            "name": "getResources",
-            "printedName": "getResources()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[EmbraceOTelInternal.EmbraceResource]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "EmbraceResource",
-                    "printedName": "EmbraceOTelInternal.EmbraceResource",
-                    "usr": "s:19EmbraceOTelInternal0A8ResourceP"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A16ResourceProviderP12getResourcesSayAA0aD0_pGyF",
-            "mangledName": "$s19EmbraceOTelInternal0A16ResourceProviderP12getResourcesSayAA0aD0_pGyF",
-            "moduleName": "EmbraceOTelInternal",
-            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceResourceProvider>",
-            "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceResourceProvider>",
-            "protocolReq": true,
-            "reqNewWitnessTableEntry": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "getResource",
             "printedName": "getResource()",
             "children": [
@@ -1783,15 +1765,13 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal0A16ResourceProviderPAAE03getD016OpenTelemetrySdk0D0VyF",
-            "mangledName": "$s19EmbraceOTelInternal0A16ResourceProviderPAAE03getD016OpenTelemetrySdk0D0VyF",
+            "usr": "s:19EmbraceOTelInternal0A16ResourceProviderP03getD016OpenTelemetrySdk0D0VyF",
+            "mangledName": "$s19EmbraceOTelInternal0A16ResourceProviderP03getD016OpenTelemetrySdk0D0VyF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : EmbraceOTelInternal.EmbraceResourceProvider>",
             "sugared_genericSig": "<Self where Self : EmbraceOTelInternal.EmbraceResourceProvider>",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "isFromExtension": true,
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
             "funcSelfKind": "NonMutating"
           }
         ],
@@ -1930,52 +1910,53 @@
             ]
           },
           {
-            "kind": "Function",
-            "name": "==",
-            "printedName": "==(_:_:)",
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
+                "name": "Optional",
+                "printedName": "EmbraceOTelInternal.ErrorCode?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ErrorCode",
+                    "printedName": "EmbraceOTelInternal.ErrorCode",
+                    "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
+                  }
+                ],
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
-                "name": "ErrorCode",
-                "printedName": "EmbraceOTelInternal.ErrorCode",
-                "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "ErrorCode",
-                "printedName": "EmbraceOTelInternal.ErrorCode",
-                "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
-            "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal9ErrorCodeO2eeoiySbAC_ACtFZ",
-            "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO2eeoiySbAC_ACtFZ",
+            "declKind": "Constructor",
+            "usr": "s:19EmbraceOTelInternal9ErrorCodeO8rawValueACSgSS_tcfc",
+            "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO8rawValueACSgSS_tcfc",
             "moduleName": "EmbraceOTelInternal",
-            "static": true,
             "implicit": true,
-            "funcSelfKind": "NonMutating"
+            "init_kind": "Designated"
           },
           {
             "kind": "Var",
-            "name": "hashValue",
-            "printedName": "hashValue",
+            "name": "rawValue",
+            "printedName": "rawValue",
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Var",
-            "usr": "s:19EmbraceOTelInternal9ErrorCodeO9hashValueSivp",
-            "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO9hashValueSivp",
+            "usr": "s:19EmbraceOTelInternal9ErrorCodeO8rawValueSSvp",
+            "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO8rawValueSSvp",
             "moduleName": "EmbraceOTelInternal",
             "implicit": true,
             "accessors": [
@@ -1986,44 +1967,19 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:19EmbraceOTelInternal9ErrorCodeO9hashValueSivg",
-                "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO9hashValueSivg",
+                "usr": "s:19EmbraceOTelInternal9ErrorCodeO8rawValueSSvg",
+                "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO8rawValueSSvg",
                 "moduleName": "EmbraceOTelInternal",
                 "implicit": true,
                 "accessorKind": "get"
               }
             ]
-          },
-          {
-            "kind": "Function",
-            "name": "hash",
-            "printedName": "hash(into:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Hasher",
-                "printedName": "Swift.Hasher",
-                "paramValueOwnership": "InOut",
-                "usr": "s:s6HasherV"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:19EmbraceOTelInternal9ErrorCodeO4hash4intoys6HasherVz_tF",
-            "mangledName": "$s19EmbraceOTelInternal9ErrorCodeO4hash4intoys6HasherVz_tF",
-            "moduleName": "EmbraceOTelInternal",
-            "implicit": true,
-            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Enum",
@@ -2034,6 +1990,7 @@
           "AccessControl",
           "RawDocComment"
         ],
+        "enumRawTypeName": "String",
         "conformances": [
           {
             "kind": "Conformance",
@@ -2048,6 +2005,28 @@
             "printedName": "Hashable",
             "usr": "s:SH",
             "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
           }
         ]
       },
@@ -2105,243 +2084,6 @@
         "printedName": "OpenTelemetrySdk",
         "declKind": "Import",
         "moduleName": "EmbraceOTelInternal"
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "SpanErrorCode",
-        "printedName": "SpanErrorCode",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "failure",
-            "printedName": "failure",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(EmbraceOTelInternal.SpanErrorCode.Type) -> EmbraceOTelInternal.SpanErrorCode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "SpanErrorCode",
-                        "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                        "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO7failureyA2CmF",
-            "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO7failureyA2CmF",
-            "moduleName": "EmbraceOTelInternal"
-          },
-          {
-            "kind": "Var",
-            "name": "userAbandon",
-            "printedName": "userAbandon",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(EmbraceOTelInternal.SpanErrorCode.Type) -> EmbraceOTelInternal.SpanErrorCode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "SpanErrorCode",
-                        "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                        "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO11userAbandonyA2CmF",
-            "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO11userAbandonyA2CmF",
-            "moduleName": "EmbraceOTelInternal"
-          },
-          {
-            "kind": "Var",
-            "name": "unknown",
-            "printedName": "unknown",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(EmbraceOTelInternal.SpanErrorCode.Type) -> EmbraceOTelInternal.SpanErrorCode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "SpanErrorCode",
-                        "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                        "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO7unknownyA2CmF",
-            "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO7unknownyA2CmF",
-            "moduleName": "EmbraceOTelInternal"
-          },
-          {
-            "kind": "Var",
-            "name": "rawValue",
-            "printedName": "rawValue",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO8rawValueSSvp",
-            "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO8rawValueSSvp",
-            "moduleName": "EmbraceOTelInternal",
-            "implicit": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO8rawValueSSvg",
-                "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO8rawValueSSvg",
-                "moduleName": "EmbraceOTelInternal",
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(rawValue:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "EmbraceOTelInternal.SpanErrorCode?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO8rawValueACSgSS_tcfc",
-            "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO8rawValueACSgSS_tcfc",
-            "moduleName": "EmbraceOTelInternal",
-            "implicit": true,
-            "init_kind": "Designated"
-          }
-        ],
-        "declKind": "Enum",
-        "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO",
-        "mangledName": "$s19EmbraceOTelInternal13SpanErrorCodeO",
-        "moduleName": "EmbraceOTelInternal",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "enumRawTypeName": "String",
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RawRepresentable",
-            "printedName": "RawRepresentable",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "RawValue",
-                "printedName": "RawValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:SY",
-            "mangledName": "$sSY"
-          }
-        ]
       },
       {
         "kind": "Import",
@@ -4845,13 +4587,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "EmbraceOTelInternal.SpanErrorCode?",
+                "printedName": "EmbraceOTelInternal.ErrorCode?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
+                    "name": "ErrorCode",
+                    "printedName": "EmbraceOTelInternal.ErrorCode",
+                    "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
                   }
                 ],
                 "hasDefaultArg": true,
@@ -4866,8 +4608,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end9errorCode4timeyAD0d5ErrorJ0OSg_10Foundation4DateVtF",
-            "mangledName": "$s16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end9errorCode4timeyAD0d5ErrorJ0OSg_10Foundation4DateVtF",
+            "usr": "s:16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end9errorCode4timeyAD05ErrorJ0OSg_10Foundation4DateVtF",
+            "mangledName": "$s16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end9errorCode4timeyAD05ErrorJ0OSg_10Foundation4DateVtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : OpenTelemetryApi.Span>",
             "sugared_genericSig": "<Self where Self : OpenTelemetryApi.Span>",
@@ -4904,13 +4646,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "EmbraceOTelInternal.SpanErrorCode?",
+                "printedName": "EmbraceOTelInternal.ErrorCode?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "SpanErrorCode",
-                    "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                    "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
+                    "name": "ErrorCode",
+                    "printedName": "EmbraceOTelInternal.ErrorCode",
+                    "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
                   }
                 ],
                 "hasDefaultArg": true,
@@ -4925,8 +4667,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end5error0I4Code4timeys5Error_pSg_AD0dlJ0OSg10Foundation4DateVtF",
-            "mangledName": "$s16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end5error0I4Code4timeys5Error_pSg_AD0dlJ0OSg10Foundation4DateVtF",
+            "usr": "s:16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end5error0I4Code4timeys5Error_pSg_AD0lJ0OSg10Foundation4DateVtF",
+            "mangledName": "$s16OpenTelemetryApi4SpanP19EmbraceOTelInternalE3end5error0I4Code4timeys5Error_pSg_AD0lJ0OSg10Foundation4DateVtF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : OpenTelemetryApi.Span>",
             "sugared_genericSig": "<Self where Self : OpenTelemetryApi.Span>",
@@ -5156,14 +4898,14 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "SpanErrorCode",
-                "printedName": "EmbraceOTelInternal.SpanErrorCode",
-                "usr": "s:19EmbraceOTelInternal13SpanErrorCodeO"
+                "name": "ErrorCode",
+                "printedName": "EmbraceOTelInternal.ErrorCode",
+                "usr": "s:19EmbraceOTelInternal9ErrorCodeO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:16OpenTelemetryApi11SpanBuilderP19EmbraceOTelInternalE5error0I4CodexAD0d5ErrorJ0O_tF",
-            "mangledName": "$s16OpenTelemetryApi11SpanBuilderP19EmbraceOTelInternalE5error0I4CodexAD0d5ErrorJ0O_tF",
+            "usr": "s:16OpenTelemetryApi11SpanBuilderP19EmbraceOTelInternalE5error0I4CodexAD05ErrorJ0O_tF",
+            "mangledName": "$s16OpenTelemetryApi11SpanBuilderP19EmbraceOTelInternalE5error0I4CodexAD05ErrorJ0O_tF",
             "moduleName": "EmbraceOTelInternal",
             "genericSig": "<τ_0_0 where τ_0_0 : OpenTelemetryApi.SpanBuilder>",
             "sugared_genericSig": "<Self where Self : OpenTelemetryApi.SpanBuilder>",
@@ -5319,39 +5061,11 @@
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/EmbraceLoggerSharedState.swift",
-      "kind": "Dictionary",
-      "offset": 517,
-      "length": 3,
-      "value": "[]"
-    },
-    {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Logs\/Processors\/SingleLogRecordProcessor.swift",
       "kind": "IntegerLiteral",
       "offset": 652,
       "length": 1,
       "value": "1"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
-      "kind": "Dictionary",
-      "offset": 551,
-      "length": 3,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
-      "kind": "StringLiteral",
-      "offset": 882,
-      "length": 3,
-      "value": "\":\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Shared\/EmbraceResourceProvider.swift",
-      "kind": "StringLiteral",
-      "offset": 1150,
-      "length": 7,
-      "value": "\"swift\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceOTelInternal\/Trace\/EmbraceSemantics\/Span\/Span+Embrace.swift",

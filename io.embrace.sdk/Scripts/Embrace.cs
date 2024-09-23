@@ -227,7 +227,7 @@ namespace EmbraceSDK
         }
 
         /// <inheritdoc />
-        public void StartSDK(bool enableIntegrationTesting = false)
+        public void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false)
         {
             if (_started)
             {
@@ -241,7 +241,7 @@ namespace EmbraceSDK
 
             try
             {
-                Provider?.StartSDK(enableIntegrationTesting);
+                Provider?.StartSDK(args, enableIntegrationTesting);
                 Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
 
                 TimeUtil.Clean();

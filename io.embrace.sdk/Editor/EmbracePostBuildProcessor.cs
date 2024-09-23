@@ -187,8 +187,10 @@ namespace EmbraceSDK.EditorView
                 // Copy run.sh script and upload binary
                 string embraceRunSHSrc = sdkDirectory + "/iOS/run.sh";
                 string embraceRunSHDest = pathToBuiltProject + "/" + EmbraceRunFileName;
-                string embraceUploadSrc = sdkDirectory + "/iOS/upload";
-                string embraceUploadDest = pathToBuiltProject + "/" + "upload";
+                
+                // TODO: We may want to deal with different file endings here. It's not vital though.
+                string embraceUploadSrc = sdkDirectory + "/iOS/embrace_symbol_upload.darwin";
+                string embraceUploadDest = pathToBuiltProject + "/" + "embrace_symbol_upload.darwin";
 
                 File.Copy(embraceRunSHSrc, embraceRunSHDest, true);
                 File.Copy(embraceUploadSrc, embraceUploadDest, true);
@@ -238,55 +240,28 @@ namespace EmbraceSDK.EditorView
             var resourcesFilesGuid = project.AddFile(EmbracePlistName, "/" + EmbracePlistName, PBXSourceTree.Source);
             project.AddFileToBuildSection(appTargetGuid, resourcesBuildPhase, resourcesFilesGuid);
             
-            // Embed Embrace.framework
-
-            string xcFrameworkCopySource = Path.Combine(PackagePath, "iOS", EmbraceXCFramework);
-            string xcFrameworkCopyDestination = Path.Combine(pathToBuiltProject, EmbraceXCFramework);
+            // Embed iOS frameworks
             
-            if (Directory.Exists(xcFrameworkCopyDestination))
+            /*
+             * It is worth noting that Unity *has* changed the default behavior of how xcframeworks are handled.
+             * Previously we needed to add the files to the project, add them to the linker phase, and then embed them.
+             * Now, Unity will automatically add the xcframeworks to the project and the linker phase, but we still need
+             * to embed them. This behavior is not documented, but it is consistent with the behavior we have observed.
+             * As a result, this code is fragile and may need to be updated in the future.
+             */
+            
+            string xcFrameworkSource = Path.Combine(PackagePath, "iOS", "xcframeworks");
+            string xcFrameworkProjectPath = "Frameworks/io.embrace.sdk/iOS/xcframeworks";
+            
+            var xcFrameworks = Directory.GetDirectories(xcFrameworkSource, "*.xcframework", SearchOption.TopDirectoryOnly);
+            
+            foreach (var xcFramework in xcFrameworks)
             {
-                var fileGuid = project.FindFileGuidByRealPath(xcFrameworkCopyDestination);
-                if (!string.IsNullOrWhiteSpace(fileGuid))
-                {
-                    project.RemoveFileFromBuild(project.GetUnityFrameworkTargetGuid(), fileGuid);
-                    project.RemoveFile(fileGuid);
-                }
-                Directory.Delete(xcFrameworkCopyDestination, true);
+                var xcFrameworkGuid = project.FindFileGuidByProjectPath(
+                    $"{xcFrameworkProjectPath}/{Path.GetFileName(xcFramework)}");
+                
+                project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
             }
-
-            AssetDatabaseUtil.CopyDirectory(
-                xcFrameworkCopySource,
-                xcFrameworkCopyDestination,
-                true,
-                false);
-
-            #if UNITY_2021_3_OR_NEWER
-            // Later versions of Unity appear to automatically add the files to the linker phase.
-            // However there seems to be an issue with the copy process. To deal with this, we
-            // choose to overwrite the framework in position.
-            var xcFrameworkGuid = project.AddFile(
-                EmbraceXCFramework,
-                "Frameworks/io.embrace.sdk/iOS/Embrace.xcframework",
-                PBXSourceTree.Source);
-            
-            // We still must embed the framework, but we have previously added the build phase step.
-            project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
-            
-            // We need to add the xcframework to the linker phase
-            var frameworkTargetGuid = targetGuids[1];
-            var linkPhaseGuid = project.GetFrameworksBuildPhaseByTarget(frameworkTargetGuid);
-            project.AddFileToBuildSection(frameworkTargetGuid, linkPhaseGuid, xcFrameworkGuid);
-            #else // !!UNITY_2021_3_OR_NEWER
-            var xcFrameworkGuid = project.AddFile(
-                EmbraceXCFramework,
-                EmbraceXCFramework,
-                PBXSourceTree.Source);
-            
-            string unityFrameworkGuid = project.GetUnityFrameworkTargetGuid();
-            string linkPhaseGuid = project.GetFrameworksBuildPhaseByTarget(unityFrameworkGuid);
-            project.AddFileToBuildSection(unityFrameworkGuid, linkPhaseGuid, xcFrameworkGuid);
-            project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
-            #endif
 
             project.WriteToFile(projectPath);
         }

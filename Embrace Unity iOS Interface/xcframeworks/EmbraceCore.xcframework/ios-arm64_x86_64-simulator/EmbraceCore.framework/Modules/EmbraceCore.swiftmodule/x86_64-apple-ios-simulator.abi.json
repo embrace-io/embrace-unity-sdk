@@ -230,6 +230,137 @@
       },
       {
         "kind": "Import",
+        "name": "Security",
+        "printedName": "Security",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CryptoKit",
+        "printedName": "CryptoKit",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CommonCrypto",
+        "printedName": "CommonCrypto",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Security",
+        "printedName": "Security",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CommonCrypto",
+        "printedName": "CommonCrypto",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "CryptoKit",
+        "printedName": "CryptoKit",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceConfigInternal",
+        "printedName": "EmbraceConfigInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceOTelInternal",
+        "printedName": "EmbraceOTelInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceStorageInternal",
+        "printedName": "EmbraceStorageInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceConfigInternal",
+        "printedName": "EmbraceConfigInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -4264,29 +4395,6 @@
             "funcSelfKind": "NonMutating"
           },
           {
-            "kind": "Function",
-            "name": "lastRunEndState",
-            "printedName": "lastRunEndState()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "LastRunEndState",
-                "printedName": "EmbraceCore.LastRunEndState",
-                "usr": "c:@M@EmbraceCore@E@LastRunEndState"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "c:@M@EmbraceCore@objc(cs)Embrace(im)lastRunEndState",
-            "mangledName": "$s11EmbraceCore0A0C15lastRunEndStateAA04LastdeF0OyF",
-            "moduleName": "EmbraceCore",
-            "declAttributes": [
-              "AccessControl",
-              "ObjC",
-              "RawDocComment"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
             "kind": "TypeDecl",
             "name": "Endpoints",
             "printedName": "Endpoints",
@@ -4592,14 +4700,22 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Var",
-                "usr": "s:11EmbraceCore0A0C7OptionsC5appIdSSvp",
-                "mangledName": "$s11EmbraceCore0A0C7OptionsC5appIdSSvp",
+                "usr": "s:11EmbraceCore0A0C7OptionsC5appIdSSSgvp",
+                "mangledName": "$s11EmbraceCore0A0C7OptionsC5appIdSSSgvp",
                 "moduleName": "EmbraceCore",
                 "declAttributes": [
                   "Final",
@@ -4617,14 +4733,22 @@
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
                       }
                     ],
                     "declKind": "Accessor",
-                    "usr": "s:11EmbraceCore0A0C7OptionsC5appIdSSvg",
-                    "mangledName": "$s11EmbraceCore0A0C7OptionsC5appIdSSvg",
+                    "usr": "s:11EmbraceCore0A0C7OptionsC5appIdSSSgvg",
+                    "mangledName": "$s11EmbraceCore0A0C7OptionsC5appIdSSSgvg",
                     "moduleName": "EmbraceCore",
                     "implicit": true,
                     "declAttributes": [
@@ -4758,14 +4882,22 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Endpoints",
-                    "printedName": "EmbraceCore.Embrace.Endpoints",
-                    "usr": "s:11EmbraceCore0A0C9EndpointsC"
+                    "name": "Optional",
+                    "printedName": "EmbraceCore.Embrace.Endpoints?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Endpoints",
+                        "printedName": "EmbraceCore.Embrace.Endpoints",
+                        "usr": "s:11EmbraceCore0A0C9EndpointsC"
+                      }
+                    ],
+                    "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Var",
-                "usr": "s:11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCvp",
-                "mangledName": "$s11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCvp",
+                "usr": "s:11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCSgvp",
+                "mangledName": "$s11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCSgvp",
                 "moduleName": "EmbraceCore",
                 "declAttributes": [
                   "Final",
@@ -4783,14 +4915,22 @@
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "Endpoints",
-                        "printedName": "EmbraceCore.Embrace.Endpoints",
-                        "usr": "s:11EmbraceCore0A0C9EndpointsC"
+                        "name": "Optional",
+                        "printedName": "EmbraceCore.Embrace.Endpoints?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Endpoints",
+                            "printedName": "EmbraceCore.Embrace.Endpoints",
+                            "usr": "s:11EmbraceCore0A0C9EndpointsC"
+                          }
+                        ],
+                        "usr": "s:Sq"
                       }
                     ],
                     "declKind": "Accessor",
-                    "usr": "s:11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCvg",
-                    "mangledName": "$s11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCvg",
+                    "usr": "s:11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCSgvg",
+                    "mangledName": "$s11EmbraceCore0A0C7OptionsC9endpointsAC9EndpointsCSgvg",
                     "moduleName": "EmbraceCore",
                     "implicit": true,
                     "declAttributes": [
@@ -5169,6 +5309,78 @@
               {
                 "kind": "Constructor",
                 "name": "init",
+                "printedName": "init(export:platform:captureServices:crashReporter:logLevel:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Options",
+                    "printedName": "EmbraceCore.Embrace.Options",
+                    "usr": "s:11EmbraceCore0A0C7OptionsC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OpenTelemetryExport",
+                    "printedName": "EmbraceCore.OpenTelemetryExport",
+                    "usr": "c:@M@EmbraceCore@objc(cs)EMBOpenTelemetryExport"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Platform",
+                    "printedName": "EmbraceCore.Platform",
+                    "hasDefaultArg": true,
+                    "usr": "c:@M@EmbraceCore@E@EMBPlatform"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[EmbraceCaptureService.CaptureService]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CaptureService",
+                        "printedName": "EmbraceCaptureService.CaptureService",
+                        "usr": "c:@M@EmbraceCaptureService@objc(cs)EMBCaptureService"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "EmbraceCommonInternal.CrashReporter?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrashReporter",
+                        "printedName": "EmbraceCommonInternal.CrashReporter",
+                        "usr": "c:@M@EmbraceCommonInternal@objc(pl)CrashReporter"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogLevel",
+                    "printedName": "EmbraceCommonInternal.LogLevel",
+                    "hasDefaultArg": true,
+                    "usr": "c:@M@EmbraceCommonInternal@E@LogLevel"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:11EmbraceCore0A0C7OptionsC6export8platform15captureServices13crashReporter8logLevelAeA19OpenTelemetryExportC_AA8PlatformOSay0A14CaptureService0pQ0CG0A14CommonInternal05CrashI0_pSgAS03LogK0Otcfc",
+                "mangledName": "$s11EmbraceCore0A0C7OptionsC6export8platform15captureServices13crashReporter8logLevelAeA19OpenTelemetryExportC_AA8PlatformOSay0A14CaptureService0pQ0CG0A14CommonInternal05CrashI0_pSgAS03LogK0Otcfc",
+                "moduleName": "EmbraceCore",
+                "objc_name": "initWithExport:platform:captureServices:crashReporter:logLevel:",
+                "declAttributes": [
+                  "AccessControl",
+                  "ObjC",
+                  "RawDocComment"
+                ],
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
                 "printedName": "init()",
                 "children": [
                   {
@@ -5286,6 +5498,69 @@
             "moduleName": "EmbraceCore",
             "declAttributes": [
               "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "appendCrashInfo",
+            "printedName": "appendCrashInfo(key:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@EmbraceCore@objc(cs)Embrace(im)appendCrashInfoWithKey:value:error:",
+            "mangledName": "$s11EmbraceCore0A0C15appendCrashInfo3key5valueySS_SStKF",
+            "moduleName": "EmbraceCore",
+            "objc_name": "appendCrashInfoWithKey:value:error:",
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "lastRunEndState",
+            "printedName": "lastRunEndState()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LastRunEndState",
+                "printedName": "EmbraceCore.LastRunEndState",
+                "usr": "c:@M@EmbraceCore@E@LastRunEndState"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@CM@EmbraceCore@objc(cs)Embrace(im)lastRunEndState",
+            "mangledName": "$s11EmbraceCore0A0C15lastRunEndStateAA04LastdeF0OyF",
+            "moduleName": "EmbraceCore",
+            "declAttributes": [
+              "Dynamic",
+              "AccessControl",
+              "ObjC",
               "RawDocComment"
             ],
             "isFromExtension": true,
@@ -5580,7 +5855,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:type:attributes:)",
+            "printedName": "log(_:severity:type:attributes:stackTraceBehavior:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -5626,11 +5901,18 @@
                 ],
                 "hasDefaultArg": true,
                 "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StackTraceBehavior",
+                "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                "hasDefaultArg": true,
+                "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11EmbraceCore0A0C3log_8severity4type10attributesySS_0A14CommonInternal11LogSeverityOAH0I4TypeVSDyS2SGtF",
-            "mangledName": "$s11EmbraceCore0A0C3log_8severity4type10attributesySS_0A14CommonInternal11LogSeverityOAH0I4TypeVSDyS2SGtF",
+            "usr": "s:11EmbraceCore0A0C3log_8severity4type10attributes18stackTraceBehaviorySS_0A14CommonInternal11LogSeverityOAI0L4TypeVSDyS2SGAI05StackhI0OtF",
+            "mangledName": "$s11EmbraceCore0A0C3log_8severity4type10attributes18stackTraceBehaviorySS_0A14CommonInternal11LogSeverityOAI0L4TypeVSDyS2SGAI05StackhI0OtF",
             "moduleName": "EmbraceCore",
             "declAttributes": [
               "AccessControl",
@@ -5642,7 +5924,7 @@
           {
             "kind": "Function",
             "name": "log",
-            "printedName": "log(_:severity:type:timestamp:attributes:)",
+            "printedName": "log(_:severity:type:timestamp:attributes:stackTraceBehavior:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -5693,11 +5975,18 @@
                   }
                 ],
                 "usr": "s:SD"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "StackTraceBehavior",
+                "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                "hasDefaultArg": true,
+                "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11EmbraceCore0A0C3log_8severity4type9timestamp10attributesySS_0A14CommonInternal11LogSeverityOAI0J4TypeV10Foundation4DateVSDyS2SGtF",
-            "mangledName": "$s11EmbraceCore0A0C3log_8severity4type9timestamp10attributesySS_0A14CommonInternal11LogSeverityOAI0J4TypeV10Foundation4DateVSDyS2SGtF",
+            "usr": "s:11EmbraceCore0A0C3log_8severity4type9timestamp10attributes18stackTraceBehaviorySS_0A14CommonInternal11LogSeverityOAJ0M4TypeV10Foundation4DateVSDyS2SGAJ05StackiJ0OtF",
+            "mangledName": "$s11EmbraceCore0A0C3log_8severity4type9timestamp10attributes18stackTraceBehaviorySS_0A14CommonInternal11LogSeverityOAJ0M4TypeV10Foundation4DateVSDyS2SGAJ05StackiJ0OtF",
             "moduleName": "EmbraceCore",
             "declAttributes": [
               "AccessControl",
@@ -6110,12 +6399,12 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(EmbraceCore.EmbraceSetupError.Type) -> (Swift.String) -> EmbraceCore.EmbraceSetupError",
+                "printedName": "(EmbraceCore.EmbraceSetupError.Type) -> (Swift.String, Swift.String?) -> EmbraceCore.EmbraceSetupError",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(Swift.String) -> EmbraceCore.EmbraceSetupError",
+                    "printedName": "(Swift.String, Swift.String?) -> EmbraceCore.EmbraceSetupError",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -6125,9 +6414,30 @@
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
+                        "name": "Tuple",
+                        "printedName": "(partitionId: Swift.String, appGroupId: Swift.String?)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Optional",
+                            "printedName": "Swift.String?",
+                            "children": [
+                              {
+                                "kind": "TypeNominal",
+                                "name": "String",
+                                "printedName": "Swift.String",
+                                "usr": "s:SS"
+                              }
+                            ],
+                            "usr": "s:Sq"
+                          }
+                        ]
                       }
                     ]
                   },
@@ -6148,8 +6458,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11EmbraceCore0A10SetupErrorO21failedStorageCreationyACSScACmF",
-            "mangledName": "$s11EmbraceCore0A10SetupErrorO21failedStorageCreationyACSScACmF",
+            "usr": "s:11EmbraceCore0A10SetupErrorO21failedStorageCreationyACSS_SSSgtcACmF",
+            "mangledName": "$s11EmbraceCore0A10SetupErrorO21failedStorageCreationyACSS_SSSgtcACmF",
             "moduleName": "EmbraceCore"
           },
           {
@@ -8477,13 +8787,20 @@
       },
       {
         "kind": "Import",
-        "name": "EmbraceStorageInternal",
-        "printedName": "EmbraceStorageInternal",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "EmbraceCore",
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceStorageInternal",
+        "printedName": "EmbraceStorageInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
       },
       {
         "kind": "Import",
@@ -9338,6 +9655,30 @@
       },
       {
         "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -9357,6 +9698,13 @@
         "kind": "Import",
         "name": "EmbraceOTelInternal",
         "printedName": "EmbraceOTelInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceCore"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceSemantics",
+        "printedName": "EmbraceSemantics",
         "declKind": "Import",
         "moduleName": "EmbraceCore"
       },
@@ -14512,30 +14860,702 @@
   },
   "ConstValues": [
     {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 747,
+      "length": 13,
+      "value": "\"http-method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 787,
+      "length": 12,
+      "value": "\"start-time\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 823,
+      "length": 10,
+      "value": "\"end-time\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 861,
+      "length": 13,
+      "value": "\"matched-url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 900,
+      "length": 12,
+      "value": "\"session-id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 941,
+      "length": 14,
+      "value": "\"request-body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 987,
+      "length": 19,
+      "value": "\"request-body-size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1035,
+      "length": 15,
+      "value": "\"request-query\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1081,
+      "length": 17,
+      "value": "\"request-headers\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1128,
+      "length": 15,
+      "value": "\"response-body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1176,
+      "length": 20,
+      "value": "\"response-body-size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1228,
+      "length": 18,
+      "value": "\"response-headers\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1277,
+      "length": 17,
+      "value": "\"response-status\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1324,
+      "length": 15,
+      "value": "\"error-message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 747,
+      "length": 13,
+      "value": "\"http-method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 787,
+      "length": 12,
+      "value": "\"start-time\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 823,
+      "length": 10,
+      "value": "\"end-time\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 861,
+      "length": 13,
+      "value": "\"matched-url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 900,
+      "length": 12,
+      "value": "\"session-id\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 941,
+      "length": 14,
+      "value": "\"request-body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 987,
+      "length": 19,
+      "value": "\"request-body-size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1035,
+      "length": 15,
+      "value": "\"request-query\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1081,
+      "length": 17,
+      "value": "\"request-headers\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1128,
+      "length": 15,
+      "value": "\"response-body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1176,
+      "length": 20,
+      "value": "\"response-body-size\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1228,
+      "length": 18,
+      "value": "\"response-headers\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1277,
+      "length": 17,
+      "value": "\"response-status\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1324,
+      "length": 15,
+      "value": "\"error-message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "Dictionary",
+      "offset": 2388,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "Dictionary",
+      "offset": 2782,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 4054,
+      "length": 74,
+      "value": "\"Error encoding `EncryptedNetworkPayload`:\n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 4127,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 4348,
+      "length": 28,
+      "value": "\"Error with AES encryption!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 4652,
+      "length": 28,
+      "value": "\"Error with RSA encryption!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 4778,
+      "length": 8,
+      "value": "\"hybrid\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptedNetworkPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 5325,
+      "length": 8,
+      "value": "\"%02hhx\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 758,
+      "length": 11,
+      "value": "\"RSA.PKCS1\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1405,
+      "length": 61,
+      "value": "\"Error creating public key \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1444,
+      "length": 1,
+      "value": "\"!:\n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1465,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1526,
+      "length": 41,
+      "value": "\"Error creating public key \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1565,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1827,
+      "length": 33,
+      "value": "\"PKCS1 encryption not supported!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1881,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1913,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2282,
+      "length": 29,
+      "value": "\"Encryption error:\n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2310,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2471,
+      "length": 13,
+      "value": "\"aes-256-cbc\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3112,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3157,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3701,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4814,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/EncryptionHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4941,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "BooleanLiteral",
+      "offset": 300,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "Array",
+      "offset": 368,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "Dictionary",
+      "offset": 432,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1898,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2069,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 3162,
+      "length": 54,
+      "value": "\"Couldn't generate payload for task \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 3214,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 3405,
+      "length": 53,
+      "value": "\"Couldn't encrypt payload for task \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 3456,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 3570,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/NetworkPayloadCaptureHandler.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4403,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 687,
+      "length": 103,
+      "value": "\"Error trying to create regex \"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 735,
+      "length": 1,
+      "value": "\"\" for rule \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 757,
+      "length": 1,
+      "value": "\"!\n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 789,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1193,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1418,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1558,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1729,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2003,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2048,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2265,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2304,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2336,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2459,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2546,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2600,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2726,
+      "length": 28,
+      "value": "\"-----BEGIN PUBLIC KEY-----\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2762,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2804,
+      "length": 26,
+      "value": "\"-----END PUBLIC KEY-----\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2838,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2880,
+      "length": 32,
+      "value": "\"-----BEGIN RSA PUBLIC KEY-----\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2920,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 2962,
+      "length": 30,
+      "value": "\"-----END RSA PUBLIC KEY-----\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3000,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3042,
+      "length": 4,
+      "value": "\"\r\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3054,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3096,
+      "length": 4,
+      "value": "\"\n\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3108,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3150,
+      "length": 4,
+      "value": "\"\t\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3162,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3204,
+      "length": 3,
+      "value": "\" \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/NetworkPayloadCapture\/URLSessionTaskCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 3215,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/Proxy\/URLSessionDelegateProxy.swift",
       "kind": "BooleanLiteral",
-      "offset": 608,
+      "offset": 832,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/Proxy\/URLSessionDelegateProxy.swift",
       "kind": "BooleanLiteral",
-      "offset": 734,
+      "offset": 958,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/Proxy\/URLSessionDelegateProxy.swift",
       "kind": "BooleanLiteral",
-      "offset": 764,
+      "offset": 988,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/Proxy\/URLSessionDelegateProxy.swift",
       "kind": "BooleanLiteral",
-      "offset": 1279,
+      "offset": 1503,
       "length": 5,
       "value": "false"
     },
@@ -14591,21 +15611,21 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionCaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 2367,
+      "offset": 2368,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionCaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 2398,
+      "offset": 2399,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionCaptureService.swift",
       "kind": "BooleanLiteral",
-      "offset": 4843,
+      "offset": 5242,
       "length": 4,
       "value": "true"
     },
@@ -14639,8 +15659,22 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTask+Extension.swift",
+      "kind": "IntegerLiteral",
+      "offset": 286,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTask+Extension.swift",
+      "kind": "IntegerLiteral",
+      "offset": 331,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTask+Extension.swift",
       "kind": "BooleanLiteral",
-      "offset": 473,
+      "offset": 565,
       "length": 5,
       "value": "false"
     },
@@ -14661,84 +15695,84 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 1340,
+      "offset": 1498,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 1627,
+      "offset": 1630,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 2102,
+      "offset": 2384,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "Dictionary",
-      "offset": 2219,
+      "offset": 2501,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 2316,
+      "offset": 2598,
       "length": 5,
       "value": "\"N\/A\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 2374,
+      "offset": 2656,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 3710,
+      "offset": 3992,
       "length": 27,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 3724,
+      "offset": 4006,
       "length": 1,
       "value": "\" \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 3736,
+      "offset": 4018,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 4512,
+      "offset": 4794,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 6363,
+      "offset": 7252,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Capture\/Network\/URLSessionTaskHandler.swift",
       "kind": "StringLiteral",
-      "offset": 7002,
+      "offset": 7891,
       "length": 35,
       "value": "\"com.embrace.URLSessionTaskHandler\""
     },
@@ -15095,161 +16129,203 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 2292,
+      "offset": 2293,
       "length": 24,
       "value": "\"com.embrace.processing\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 2458,
+      "offset": 2459,
       "length": 29,
       "value": "\"com.embrace.synchronization\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 3481,
+      "offset": 3482,
       "length": 42,
       "value": "\"Embrace must be setup on the main thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 3651,
+      "offset": 3652,
       "length": 51,
       "value": "\"Embrace cannot be initialized on SwiftUI Previews\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 3878,
+      "offset": 3879,
       "length": 34,
       "value": "\"Embrace was already initialized!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 4301,
+      "offset": 4255,
       "length": 37,
       "value": "\"Unable to initialize Embrace.client\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 4420,
+      "offset": 4374,
       "length": 28,
       "value": "\"Use init(options:) instead\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "BooleanLiteral",
-      "offset": 4698,
+      "offset": 4652,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 6816,
+      "offset": 6770,
       "length": 44,
       "value": "\"Embrace must be started on the main thread\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "BooleanLiteral",
-      "offset": 6946,
+      "offset": 6900,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 6998,
+      "offset": 6952,
       "length": 30,
       "value": "\"Embrace was already started!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
+      "kind": "BooleanLiteral",
+      "offset": 7081,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 7152,
+      "offset": 7132,
       "length": 36,
       "value": "\"Embrace can't start when disabled!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "StringLiteral",
-      "offset": 7363,
+      "offset": 7343,
       "length": 15,
       "value": "\"emb-sdk-start\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
       "kind": "BooleanLiteral",
-      "offset": 7459,
+      "offset": 7439,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Embrace.swift",
+      "kind": "BooleanLiteral",
+      "offset": 8519,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "StringLiteral",
-      "offset": 644,
+      "offset": 663,
       "length": 9,
       "value": "\"Embrace\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 767,
+      "offset": 786,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 817,
+      "offset": 836,
       "length": 2,
       "value": "-2"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 868,
+      "offset": 887,
       "length": 2,
       "value": "-3"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 920,
+      "offset": 939,
       "length": 2,
       "value": "-4"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 979,
+      "offset": 998,
       "length": 2,
       "value": "-5"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1035,
+      "offset": 1054,
       "length": 2,
       "value": "-6"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "IntegerLiteral",
-      "offset": 1097,
+      "offset": 1116,
       "length": 2,
       "value": "-7"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
       "kind": "StringLiteral",
-      "offset": 1852,
+      "offset": 1684,
+      "length": 101,
+      "value": "\"Failed to create Storage Directory. partitionId: '\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
+      "kind": "StringLiteral",
+      "offset": 1749,
+      "length": 15,
+      "value": "\"' appGroupId: '\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
+      "kind": "StringLiteral",
+      "offset": 1780,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
+      "kind": "StringLiteral",
+      "offset": 1783,
+      "length": 2,
+      "value": "\"'\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/ErrorManagement\/EmbraceSetupError.swift",
+      "kind": "StringLiteral",
+      "offset": 1977,
       "length": 19,
       "value": "\"No Matching Error\""
     },
@@ -15332,113 +16408,85 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/FileSystem\/EmbraceFileSystem.swift",
+      "kind": "StringLiteral",
+      "offset": 449,
+      "length": 9,
+      "value": "\"default\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/FileSystem\/EmbraceFileSystem.swift",
       "kind": "BooleanLiteral",
-      "offset": 1890,
+      "offset": 1937,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/FileSystem\/EmbraceFileSystem.swift",
       "kind": "StringLiteral",
-      "offset": 2710,
+      "offset": 2915,
       "length": 3,
       "value": "\"\/\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Config.swift",
       "kind": "StringLiteral",
-      "offset": 463,
+      "offset": 666,
       "length": 20,
       "value": "\"com.embrace.config\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Config.swift",
       "kind": "StringLiteral",
-      "offset": 599,
+      "offset": 794,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 604,
+      "offset": 668,
       "length": 11,
       "value": "\"db.sqlite\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 877,
-      "length": 33,
-      "value": "\"Failed to create EmbraceStorage\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
-      "kind": "StringLiteral",
-      "offset": 1001,
-      "length": 109,
-      "value": "\"Failed to create Storage Directory with appId: '\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
-      "kind": "StringLiteral",
-      "offset": 1066,
-      "length": 15,
-      "value": "\"' appGroupId: '\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
-      "kind": "StringLiteral",
-      "offset": 1105,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
-      "kind": "StringLiteral",
-      "offset": 1108,
-      "length": 3,
-      "value": "\"'\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
-      "kind": "StringLiteral",
-      "offset": 1544,
+      "offset": 1552,
       "length": 33,
       "value": "\"Failed to initialize endpoints!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 2005,
+      "offset": 2025,
       "length": 36,
       "value": "\"Failed to initialize upload cache!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 2465,
+      "offset": 2483,
       "length": 20,
       "value": "\"com.embrace.upload\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 2657,
+      "offset": 2675,
       "length": 37,
       "value": "\"Error initializing Embrace Upload: \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 3252,
+      "offset": 3270,
       "length": 20,
       "value": "\"emb-process-launch\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Embrace+Setup.swift",
       "kind": "StringLiteral",
-      "offset": 3697,
+      "offset": 3715,
       "length": 11,
       "value": "\"emb-setup\""
     },
@@ -15613,49 +16661,49 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4189,
+      "offset": 4231,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4394,
+      "offset": 4436,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4404,
+      "offset": 4446,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4413,
+      "offset": 4455,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4425,
+      "offset": 4467,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 4435,
+      "offset": 4477,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/Logs\/DefaultInternalLogger.swift",
       "kind": "IntegerLiteral",
-      "offset": 5251,
+      "offset": 5293,
       "length": 1,
       "value": "0"
     },
@@ -16340,17 +17388,24 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/ResourceStorageExporter\/ResourceStorageExporter.swift",
-      "kind": "Array",
-      "offset": 632,
-      "length": 2,
+      "kind": "Dictionary",
+      "offset": 843,
+      "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/ResourceStorageExporter\/ResourceStorageExporter.swift",
-      "kind": "Array",
-      "offset": 735,
-      "length": 2,
-      "value": "[]"
+      "kind": "StringLiteral",
+      "offset": 1179,
+      "length": 3,
+      "value": "\":\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/ResourceStorageExporter\/ResourceStorageExporter.swift",
+      "kind": "StringLiteral",
+      "offset": 1447,
+      "length": 7,
+      "value": "\"swift\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Internal\/SpanStorageExporter\/Validation\/SpanDataValidation.swift",
@@ -16432,23 +17487,30 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Options\/Embrace+Options.swift",
       "kind": "IntegerLiteral",
-      "offset": 2466,
+      "offset": 3921,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Options\/Embrace+Options.swift",
       "kind": "StringLiteral",
-      "offset": 2519,
-      "length": 39,
-      "value": "\"App Id must be 5 characters in length\""
+      "offset": 3974,
+      "length": 52,
+      "value": "\"`appId` must be 5 characters in length if provided\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Options\/Embrace+Options.swift",
       "kind": "StringLiteral",
-      "offset": 2747,
-      "length": 40,
-      "value": "\"group id must not be empty if provided\""
+      "offset": 4240,
+      "length": 44,
+      "value": "\"`appGroupId` must not be empty if provided\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Options\/Embrace+Options.swift",
+      "kind": "StringLiteral",
+      "offset": 4434,
+      "length": 66,
+      "value": "\"`OpenTelemetryExport` must be provided when not using an `appId`\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Options\/Platform.swift",
@@ -17739,58 +18801,93 @@
       "value": "[]"
     },
     {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 521,
+      "length": 55,
+      "value": "\"No crash reporter is available to append information.\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 648,
+      "length": 58,
+      "value": "\"Cannot add extra information to the given crash reporter\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 792,
+      "length": 9,
+      "value": "\"Embrace\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 935,
+      "length": 4,
+      "value": "1000"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1011,
+      "length": 4,
+      "value": "1001"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+CrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 1156,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "Dictionary",
-      "offset": 1219,
+      "offset": 1243,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "StringLiteral",
-      "offset": 2975,
+      "offset": 3022,
       "length": 46,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "StringLiteral",
-      "offset": 2988,
+      "offset": 3035,
       "length": 6,
       "value": "\" failed: No current session span\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "StringLiteral",
-      "offset": 3759,
+      "offset": 3806,
       "length": 42,
       "value": "\"Tried to flush a non-ReadableSpan object\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "Dictionary",
-      "offset": 4186,
-      "length": 3,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
-      "kind": "Array",
-      "offset": 4977,
-      "length": 2,
-      "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
-      "kind": "Dictionary",
-      "offset": 6643,
+      "offset": 4233,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
       "kind": "Dictionary",
-      "offset": 8264,
+      "offset": 6963,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Public\/Embrace+OTel.swift",
+      "kind": "Dictionary",
+      "offset": 8584,
       "length": 3,
       "value": "[]"
     },
@@ -18343,189 +19440,189 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 3710,
+      "offset": 3726,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4464,
+      "offset": 4480,
       "length": 82,
       "value": "\"Error trying to upload crash report \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4513,
+      "offset": 4529,
       "length": 1,
       "value": "\":\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4545,
+      "offset": 4561,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4634,
+      "offset": 4650,
       "length": 97,
       "value": "\"Error encoding crash report \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4675,
+      "offset": 4691,
       "length": 3,
       "value": "\" for session \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 4727,
+      "offset": 4743,
       "length": 1,
       "value": "\":\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "Dictionary",
-      "offset": 5120,
+      "offset": 5152,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 5414,
+      "offset": 5446,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 6105,
+      "offset": 6179,
       "length": 64,
       "value": "\"Error fetching unsent sessions:\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 6168,
+      "offset": 6242,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 6500,
+      "offset": 6574,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "BooleanLiteral",
-      "offset": 6807,
+      "offset": 6881,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 7096,
+      "offset": 7170,
       "length": 50,
       "value": "\"Error encoding session \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 7142,
+      "offset": 7216,
       "length": 1,
       "value": "\":\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 7949,
+      "offset": 8023,
       "length": 78,
       "value": "\"Error trying to remove session \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 7994,
+      "offset": 8068,
       "length": 1,
       "value": "\":\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8026,
+      "offset": 8100,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8125,
+      "offset": 8199,
       "length": 78,
       "value": "\"Error trying to upload session \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8170,
+      "offset": 8244,
       "length": 1,
       "value": "\":\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8202,
+      "offset": 8276,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8878,
+      "offset": 8952,
       "length": 58,
       "value": "\"Error cleaning old spans:\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 8935,
+      "offset": 9009,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 9665,
+      "offset": 9739,
       "length": 58,
       "value": "\"Error closing open spans:\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 9722,
+      "offset": 9796,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 10105,
+      "offset": 10179,
       "length": 60,
       "value": "\"Error cleaning up metadata:\n\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCore\/Session\/DataRecovery\/UnsentDataHandler.swift",
       "kind": "StringLiteral",
-      "offset": 10164,
+      "offset": 10238,
       "length": 2,
       "value": "\"\""
     },

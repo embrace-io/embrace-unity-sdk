@@ -175,13 +175,15 @@ namespace EmbraceSDK.Demo
             
             var endTime = GetCurrentMillisecondsPosix();
             
-            Embrace.Instance.RecordCompletedSpan(
+            var result = Embrace.Instance.RecordCompletedSpan(
                 DemoConstants.COMPLETED_SPAN, 
                 startTime, 
                 endTime, 
                 0, 
                 attributes, 
                 spanEvent);
+            
+            print($"completed span result: {result}");
         }
 
         private long GetCurrentMillisecondsPosix()

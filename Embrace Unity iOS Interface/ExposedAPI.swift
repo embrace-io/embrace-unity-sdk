@@ -43,6 +43,29 @@ public func embrace_sdk_is_started() -> Bool {
     return EmbraceManager.isStarted();
 }
 
+@_cdecl("crash")
+public func crash() {
+    EmbraceManager.crash()
+}
+
+@_cdecl("set_unity_metadata")
+public func set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buildGuid: UnsafePointer<CChar>?, sdkVersion: UnsafePointer<CChar>?) {
+    guard let unityVersion, let buildGuid, let sdkVersion else {
+        return
+    }
+    
+    if let _unityVersion = String(validatingUTF8: unityVersion), let _buildGuid = String(validatingUTF8: buildGuid), let _sdkVersion = String(validatingUTF8: sdkVersion) {
+        EmbraceManager.addResource(key: "hosted_platform_version", value: _unityVersion, lifespan: .process)
+        EmbraceManager.addResource(key: "unity_build_id", value: _buildGuid, lifespan: .process)
+        EmbraceManager.addResource(key: "hosted_sdk_version", value: _sdkVersion, lifespan: .process)
+    }
+}
+
+@_cdecl("end_session")
+public func end_session() {
+    EmbraceManager.endCurrentSession()
+}
+
 @_cdecl("get_device_id")
 public func get_device_id() -> UnsafeMutablePointer<Int8>? {
     return convert_str_to_cstr_pointer(str: EmbraceManager.getDeviceId())
@@ -148,14 +171,16 @@ public func clear_all_user_personas() {
 }
 
 @_cdecl("add_session_property")
-public func add_session_property(key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?, permanent: Bool) {
+public func add_session_property(key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?, permanent: Bool) -> Bool {
     guard let key, let value else {
-        return
+        return false
     }
     
     if let _key = String(validatingUTF8: key), let _value = String(validatingUTF8: value) {
-        EmbraceManager.addSessionProperty(key: _key, value: _value, permanent: permanent)
+        return EmbraceManager.addSessionProperty(key: _key, value: _value, permanent: permanent)
     }
+    
+    return false
 }
 
 @_cdecl("remove_session_property")
@@ -212,14 +237,16 @@ public func start_view(viewName: UnsafePointer<CChar>?) -> UnsafeMutablePointer<
 }
 
 @_cdecl("end_view")
-public func end_view(viewId: UnsafePointer<CChar>?) {
+public func end_view(viewId: UnsafePointer<CChar>?) -> Bool {
     guard let viewId else {
-        return
+        return false
     }
     
     if let _viewId = String(validatingUTF8: viewId) {
-        EmbraceManager.endView(spanId: _viewId)
+        return EmbraceManager.endView(spanId: _viewId)
     }
+    
+    return false
 }
 
 @_cdecl("log_network_request")
@@ -229,19 +256,32 @@ public func log_network_request(url: UnsafePointer<CChar>?,
                                 endInMillis: Double,
                                 bytesSent: Double,
                                 bytesReceived: Double,
-                                statusCode: Double) {
+                                statusCode: Double,
+                                error: UnsafePointer<CChar>?) {
     guard let url, let httpMethod else {
         return
     }
     
     if let _url = String(validatingUTF8: url), let _httpMethod = String(validatingUTF8: httpMethod) {
-        EmbraceManager.logNetworkRequest(url: _url,
-                                         httpMethod: _httpMethod,
-                                         startInMillis: startInMillis,
-                                         endInMillis: endInMillis,
-                                         bytesSent: bytesSent,
-                                         bytesReceived: bytesReceived,
-                                         statusCode: statusCode)
+        if let error, let _error = String(validatingUTF8: error) {
+            EmbraceManager.logNetworkRequest(url: _url,
+                                             httpMethod: _httpMethod,
+                                             startInMillis: startInMillis,
+                                             endInMillis: endInMillis,
+                                             bytesSent: bytesSent,
+                                             bytesReceived: bytesReceived,
+                                             statusCode: statusCode,
+                                             error: _error)
+        } else {
+            EmbraceManager.logNetworkRequest(url: _url,
+                                             httpMethod: _httpMethod,
+                                             startInMillis: startInMillis,
+                                             endInMillis: endInMillis,
+                                             bytesSent: bytesSent,
+                                             bytesReceived: bytesReceived,
+                                             statusCode: statusCode,
+                                             error: nil)
+        }
     }
 }
 
@@ -284,43 +324,48 @@ public func start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<
 }
 
 @_cdecl("stop_span")
-public func stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePointer<CChar>?, endTimeMs: Double) {
+public func stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePointer<CChar>?, endTimeMs: Double) -> Bool {
     guard let spanId, let errorCodeString else {
-        return
+        return false
     }
     
     if let _spanid = String(validatingUTF8: spanId), let _errorCodeString = String(validatingUTF8: errorCodeString) {
-        EmbraceManager.stopSpan(spanId: _spanid, errorCodeString: _errorCodeString, endTimeMs: endTimeMs)
+        return EmbraceManager.stopSpan(spanId: _spanid, errorCodeString: _errorCodeString, endTimeMs: endTimeMs)
     }
+    
+    return false
 }
 
 @_cdecl("add_span_event_to_span")
-public func add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: UnsafePointer<CChar>?, time: Double, attributesJson: UnsafePointer<CChar>?) {
+public func add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: UnsafePointer<CChar>?, time: Double, attributesJson: UnsafePointer<CChar>?) -> Bool {
     guard let spanId, let name, let attributesJson else {
-        return
+        return false
     }
     
     if let _spanid = String(validatingUTF8: spanId),
-        let _name = String(validatingUTF8: name),
-       let _attributesJson = String(validatingUTF8: attributesJson) {
-        EmbraceManager.addSpanEventToSpan(spanId: _spanid,
+        let _name = String(validatingUTF8: name) {
+        return EmbraceManager.addSpanEventToSpan(spanId: _spanid,
                                           name: _name,
                                           time: time,
                                           attributes: unpack_json_to_typed_dictionary(
                                             jsonStr: attributesJson,
                                             converter: { (str: String) -> AttributeValue in AttributeValue(str) } ))
     }
+    
+    return false
 }
 
 @_cdecl("add_span_attribute_to_span")
-public func add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?) {
+public func add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?) -> Bool {
     guard let spanId, let key, let value else {
-        return
+        return false
     }
     
     if let _spanId = String(validatingUTF8: spanId), let _key = String(validatingUTF8: key), let _value = String(validatingUTF8: value) {
-        EmbraceManager.addSpanAttributeToSpan(spanId: _spanId, key: _key, value: _value)
+        return EmbraceManager.addSpanAttributeToSpan(spanId: _spanId, key: _key, value: _value)
     }
+    
+    return false
 }
 
 @_cdecl("record_completed_span")
@@ -331,9 +376,9 @@ public func record_completed_span(
     errorCodeString: UnsafePointer<CChar>?,
     parentSpanId: UnsafePointer<CChar>?,
     attributesJson: UnsafePointer<CChar>?,
-    eventsJson: UnsafePointer<CChar>?) {
+    eventsJson: UnsafePointer<CChar>?) -> Bool {
         guard let name, let errorCodeString else {
-            return
+            return false
         }
         
         var _parentSpanId: String = "";
@@ -361,7 +406,7 @@ public func record_completed_span(
             var attributes = unpack_json_to_typed_dictionary(
                 jsonStr: attributesJson,
                 converter: { (str: String) -> String in str })
-            EmbraceManager.recordCompletedSpan(name: _name,
+            return EmbraceManager.recordCompletedSpan(name: _name,
                                                startTimeMs: startTimeMs,
                                                endTimeMs: endTimeMs,
                                                errorCodeString: _errorCodeString,
@@ -369,6 +414,8 @@ public func record_completed_span(
                                                attributes: &attributes,
                                                events: events ?? [])
         }
+        
+        return false
 }
 
 @_cdecl("log_handled_exception")
@@ -401,12 +448,18 @@ public func log_unhandled_exception(name: UnsafePointer<CChar>?,
     }
 }
 
-// TODO: Remove the following function before shipping
-@_cdecl("test_string")
-public func test_string() -> UnsafeMutablePointer<Int8>? {
-    print("Fair enough")
-    let string = "This is a test string from Swift iOS Native. Hi Alyssa!"
-    return strdup(string)
+@_cdecl("log_push_notification")
+public func log_push_notification(title: UnsafePointer<CChar>?, body: UnsafePointer<CChar>?, subtitle: UnsafePointer<CChar>?, badge: Int, category: UnsafePointer<CChar>?) {
+    guard let title, let body, let subtitle, let category else {
+        return
+    }
+    
+    if let _title = String(validatingUTF8: title),
+       let _body = String(validatingUTF8: body),
+       let _subtitle = String(validatingUTF8: subtitle),
+       let _category = String(validatingUTF8: category) {
+        EmbraceManager.logPushNotification(title: _title, body: _body, subtitle: _subtitle, badge: badge, category: _category)
+    }
 }
 
 private func unpack_event_array_to_event_object_array(events: [[String: Any]]) -> [RecordingSpanEvent] {

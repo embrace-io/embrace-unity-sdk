@@ -482,6 +482,40 @@
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "appendCrashInfo",
+            "printedName": "appendCrashInfo(key:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:25EmbraceCrashlyticsSupport0B8ReporterC15appendCrashInfo3key5valueySS_SStF",
+            "mangledName": "$s25EmbraceCrashlyticsSupport0B8ReporterC15appendCrashInfo3key5valueySS_SStF",
+            "moduleName": "EmbraceCrashlyticsSupport",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -557,6 +591,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExtendableCrashReporter",
+            "printedName": "ExtendableCrashReporter",
+            "usr": "s:21EmbraceCommonInternal23ExtendableCrashReporterP",
+            "mangledName": "$s21EmbraceCommonInternal23ExtendableCrashReporterP"
           }
         ]
       },
@@ -675,14 +716,14 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
-      "offset": 3182,
+      "offset": 3174,
       "length": 9,
       "value": "\"emb-sid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/ThirdParty\/EmbraceCrashlyticsSupport\/CrashlyticsWrapper.swift",
       "kind": "StringLiteral",
-      "offset": 3370,
+      "offset": 3362,
       "length": 9,
       "value": "\"emb-sdk\""
     }

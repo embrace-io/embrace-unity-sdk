@@ -19,11 +19,11 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log("InitializeSDK");
         }
 
-        void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args, bool enableIntegrationTesting)
         {
             EmbraceLogger.Log("StartSDK");
         }
-
+        
         void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
         {
             EmbraceLogger.Log("EndAppStartup");

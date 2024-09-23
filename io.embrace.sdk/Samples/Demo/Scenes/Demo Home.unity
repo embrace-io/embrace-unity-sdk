@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1955315880}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9033333
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1147,7 +1147,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 29.000004}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1554642189
@@ -1294,3 +1294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9e3eb6ea5aa3046a5f4df5e855c2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppId: abcde
+  AppGroupId: 
+  BaseUrl: http://127.0.0.1:8989/api
+  DevBaseUrl: http://127.0.0.1:8989/api
+  ConfigBaseUrl: http://127.0.0.1:8989/api

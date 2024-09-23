@@ -25,3 +25,6 @@ import _SwiftConcurrencyShims
   @objc override dynamic public init()
   @objc deinit
 }
+extension EmbraceCrash.EmbraceCrashReporter : EmbraceCommonInternal.ExtendableCrashReporter {
+  final public func appendCrashInfo(key: Swift.String, value: Swift.String)
+}

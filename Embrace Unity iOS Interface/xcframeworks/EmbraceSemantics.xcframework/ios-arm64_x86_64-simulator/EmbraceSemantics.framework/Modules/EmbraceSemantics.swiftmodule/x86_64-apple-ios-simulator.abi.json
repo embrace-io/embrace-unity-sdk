@@ -25,6 +25,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "EmbraceSemantics",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "LogSemantics",
         "printedName": "LogSemantics",
@@ -461,6 +471,347 @@
             "declKind": "Struct",
             "usr": "s:16EmbraceSemantics03LogB0V5CrashV",
             "mangledName": "$s16EmbraceSemantics03LogB0V5CrashV",
+            "moduleName": "EmbraceSemantics",
+            "isFromExtension": true
+          },
+          {
+            "kind": "TypeDecl",
+            "name": "NetworkCapture",
+            "printedName": "NetworkCapture",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "keyUrl",
+                "printedName": "keyUrl",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV6keyUrlSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV6keyUrlSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV6keyUrlSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV6keyUrlSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyEncryptionMechanism",
+                "printedName": "keyEncryptionMechanism",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV22keyEncryptionMechanismSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV22keyEncryptionMechanismSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV22keyEncryptionMechanismSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV22keyEncryptionMechanismSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyEncryptedPayload",
+                "printedName": "keyEncryptedPayload",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV19keyEncryptedPayloadSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV19keyEncryptedPayloadSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV19keyEncryptedPayloadSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV19keyEncryptedPayloadSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyPayloadAlgorithm",
+                "printedName": "keyPayloadAlgorithm",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV19keyPayloadAlgorithmSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV19keyPayloadAlgorithmSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV19keyPayloadAlgorithmSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV19keyPayloadAlgorithmSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyEncryptedKey",
+                "printedName": "keyEncryptedKey",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV15keyEncryptedKeySSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV15keyEncryptedKeySSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV15keyEncryptedKeySSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV15keyEncryptedKeySSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyKeyAlgorithm",
+                "printedName": "keyKeyAlgorithm",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV15keyKeyAlgorithmSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV15keyKeyAlgorithmSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV15keyKeyAlgorithmSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV15keyKeyAlgorithmSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "keyAesIv",
+                "printedName": "keyAesIv",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV8keyAesIvSSvpZ",
+                "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV8keyAesIvSSvpZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl"
+                ],
+                "isLet": true,
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV8keyAesIvSSvgZ",
+                    "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV8keyAesIvSSvgZ",
+                    "moduleName": "EmbraceSemantics",
+                    "static": true,
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16EmbraceSemantics03LogB0V14NetworkCaptureV",
+            "mangledName": "$s16EmbraceSemantics03LogB0V14NetworkCaptureV",
             "moduleName": "EmbraceSemantics",
             "isFromExtension": true
           }
@@ -3118,6 +3469,55 @@
           },
           {
             "kind": "Var",
+            "name": "networkCapture",
+            "printedName": "networkCapture",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "LogType",
+                "printedName": "EmbraceCommonInternal.LogType",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE14networkCaptureACvpZ",
+            "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE14networkCaptureACvpZ",
+            "moduleName": "EmbraceSemantics",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "LogType",
+                    "printedName": "EmbraceCommonInternal.LogType",
+                    "usr": "s:21EmbraceCommonInternal7LogTypeV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal7LogTypeV0A9SemanticsE14networkCaptureACvgZ",
+                "mangledName": "$s21EmbraceCommonInternal7LogTypeV0A9SemanticsE14networkCaptureACvgZ",
+                "moduleName": "EmbraceSemantics",
+                "static": true,
+                "implicit": true,
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "message",
             "printedName": "message",
             "children": [
@@ -3906,30 +4306,86 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
       "kind": "StringLiteral",
-      "offset": 230,
+      "offset": 229,
       "length": 11,
       "value": "\"ios.crash\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
       "kind": "StringLiteral",
-      "offset": 332,
+      "offset": 331,
       "length": 16,
       "value": "\"log.record.uid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
       "kind": "StringLiteral",
-      "offset": 389,
+      "offset": 388,
       "length": 14,
       "value": "\"emb.provider\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+Crash.swift",
       "kind": "StringLiteral",
-      "offset": 443,
+      "offset": 442,
       "length": 13,
       "value": "\"emb.payload\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 176,
+      "length": 17,
+      "value": "\"network_capture\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 294,
+      "length": 5,
+      "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 351,
+      "length": 22,
+      "value": "\"encryption-mechanism\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 19,
+      "value": "\"encrypted-payload\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 490,
+      "length": 19,
+      "value": "\"payload-algorithm\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 554,
+      "length": 15,
+      "value": "\"encrypted-key\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 614,
+      "length": 15,
+      "value": "\"key-algorithm\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics+NetworkCapture.swift",
+      "kind": "StringLiteral",
+      "offset": 667,
+      "length": 8,
+      "value": "\"aes-iv\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceSemantics\/Logs\/LogSemantics.swift",

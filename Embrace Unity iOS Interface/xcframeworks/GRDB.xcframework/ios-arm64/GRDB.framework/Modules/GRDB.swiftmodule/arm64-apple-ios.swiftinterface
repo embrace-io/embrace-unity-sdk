@@ -4,6 +4,7 @@
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Combine
 import CoreGraphics
+import Darwin
 import Dispatch
 import Foundation
 @_exported import GRDB
@@ -23,6 +24,19 @@ extension GRDB.SQLOrdering : GRDB.SQLOrderingTerm {
   public var sqlOrdering: GRDB.SQLOrdering {
     get
   }
+}
+public struct ListDumpFormat : Swift.Sendable {
+  public var header: Swift.Bool
+  public var separator: Swift.String
+  public var nullValue: Swift.String
+  public init(header: Swift.Bool = false, separator: Swift.String = "|", nullValue: Swift.String = "")
+}
+extension GRDB.ListDumpFormat : GRDB.DumpFormat {
+  public mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+  public mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+extension GRDB.DumpFormat where Self == GRDB.ListDumpFormat {
+  public static func list(header: Swift.Bool = false, separator: Swift.String = "|", nullValue: Swift.String = "") -> Self
 }
 extension Swift.Optional : GRDB.StatementBinding where Wrapped : GRDB.StatementBinding {
   public func bind(to sqliteStatement: GRDB.SQLiteStatement, at index: Swift.CInt) -> Swift.CInt
@@ -145,6 +159,7 @@ extension GRDB.AssociationAggregate {
   public static func ?? (lhs: GRDB.AssociationAggregate<RowDecoder>, rhs: some SQLExpressible) -> GRDB.AssociationAggregate<RowDecoder>
 }
 public func abs<RowDecoder>(_ aggregate: GRDB.AssociationAggregate<RowDecoder>) -> GRDB.AssociationAggregate<RowDecoder>
+public func cast<RowDecoder>(_ aggregate: GRDB.AssociationAggregate<RowDecoder>, as storageClass: GRDB.Database.StorageClass) -> GRDB.AssociationAggregate<RowDecoder>
 public func length<RowDecoder>(_ aggregate: GRDB.AssociationAggregate<RowDecoder>) -> GRDB.AssociationAggregate<RowDecoder>
 #if compiler(>=5.3) && $PrimaryAssociatedTypes2
 public protocol TypedRequest<RowDecoder> {
@@ -215,6 +230,7 @@ public protocol OrderedRequest {
   func orderWhenConnected(_ orderings: @escaping (GRDB.Database) throws -> [any GRDB.SQLOrderingTerm]) -> Self
   func reversed() -> Self
   func unordered() -> Self
+  func withStableOrder() -> Self
 }
 extension GRDB.OrderedRequest {
   public func order(_ orderings: any GRDB.SQLOrderingTerm...) -> Self
@@ -330,6 +346,9 @@ extension GRDB.FetchRequest {
 public struct PreparedRequest {
   public var statement: GRDB.Statement
   public var adapter: (any GRDB.RowAdapter)?
+}
+@available(*, unavailable)
+extension GRDB.PreparedRequest : Swift.Sendable {
 }
 extension GRDB.FetchRequest {
   public func adapted(_ adapter: @escaping (GRDB.Database) throws -> any GRDB.RowAdapter) -> GRDB.AdaptedFetchRequest<Self>
@@ -457,7 +476,7 @@ extension GRDB.ValueObservation {
   @available(*, unavailable, renamed: "tracking(_:)")
   public static func trackingVaryingRegion<Value>(_ fetch: @escaping (GRDB.Database) throws -> Value) -> GRDB.ValueObservation<Reducer> where Reducer == GRDB.ValueReducers.Fetch<Value>
 }
-public struct Inflections {
+public struct Inflections : Swift.Sendable {
   public init()
   public mutating func plural(_ pattern: Swift.String, options: Foundation.NSRegularExpression.Options = [.caseInsensitive], _ template: Swift.String)
   public mutating func singular(_ pattern: Swift.String, options: Foundation.NSRegularExpression.Options = [.caseInsensitive], _ template: Swift.String)
@@ -479,6 +498,9 @@ extension GRDB.Database {
 @_hasMissingDesignatedInitializers public class SQLStatementCursor {
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.SQLStatementCursor : Swift.Sendable {
+}
 extension GRDB.SQLStatementCursor : GRDB.Cursor {
   public func next() throws -> GRDB.Statement?
   public typealias Element = GRDB.Statement
@@ -494,24 +516,24 @@ extension GRDB.Database {
 extension GRDB.Database {
   final public func schemaVersion() throws -> Swift.Int32
   final public func clearSchemaCache()
-  final public func tableExists(_ name: Swift.String) throws -> Swift.Bool
+  final public func tableExists(_ name: Swift.String, in schemaName: Swift.String? = nil) throws -> Swift.Bool
   public static func isSQLiteInternalTable(_ tableName: Swift.String) -> Swift.Bool
   public static func isGRDBInternalTable(_ tableName: Swift.String) -> Swift.Bool
-  final public func viewExists(_ name: Swift.String) throws -> Swift.Bool
-  final public func triggerExists(_ name: Swift.String) throws -> Swift.Bool
-  final public func primaryKey(_ tableName: Swift.String) throws -> GRDB.PrimaryKeyInfo
-  final public func indexes(on tableName: Swift.String) throws -> [GRDB.IndexInfo]
+  final public func viewExists(_ name: Swift.String, in schemaName: Swift.String? = nil) throws -> Swift.Bool
+  final public func triggerExists(_ name: Swift.String, in schemaName: Swift.String? = nil) throws -> Swift.Bool
+  final public func primaryKey(_ tableName: Swift.String, in schemaName: Swift.String? = nil) throws -> GRDB.PrimaryKeyInfo
+  final public func indexes(on tableName: Swift.String, in schemaName: Swift.String? = nil) throws -> [GRDB.IndexInfo]
   final public func table<Columns>(_ tableName: Swift.String, hasUniqueKey columns: Columns) throws -> Swift.Bool where Columns : Swift.Sequence, Columns.Element == Swift.String
-  final public func foreignKeys(on tableName: Swift.String) throws -> [GRDB.ForeignKeyInfo]
+  final public func foreignKeys(on tableName: Swift.String, in schemaName: Swift.String? = nil) throws -> [GRDB.ForeignKeyInfo]
   final public func foreignKeyViolations() throws -> GRDB.RecordCursor<GRDB.ForeignKeyViolation>
-  final public func foreignKeyViolations(in tableName: Swift.String) throws -> GRDB.RecordCursor<GRDB.ForeignKeyViolation>
+  final public func foreignKeyViolations(in tableName: Swift.String, in schemaName: Swift.String? = nil) throws -> GRDB.RecordCursor<GRDB.ForeignKeyViolation>
   final public func checkForeignKeys() throws
-  final public func checkForeignKeys(in tableName: Swift.String) throws
+  final public func checkForeignKeys(in tableName: Swift.String, in schemaName: Swift.String? = nil) throws
 }
 extension GRDB.Database {
-  final public func columns(in tableName: Swift.String) throws -> [GRDB.ColumnInfo]
+  final public func columns(in tableName: Swift.String, in schemaName: Swift.String? = nil) throws -> [GRDB.ColumnInfo]
 }
-public struct ColumnInfo : GRDB.FetchableRecord {
+public struct ColumnInfo : GRDB.FetchableRecord, Swift.Sendable {
   public let name: Swift.String
   public let type: Swift.String
   public let isNotNull: Swift.Bool
@@ -519,8 +541,8 @@ public struct ColumnInfo : GRDB.FetchableRecord {
   public let primaryKeyIndex: Swift.Int
   public init(row: GRDB.Row)
 }
-public struct IndexInfo {
-  public struct Origin : Swift.RawRepresentable, Swift.Equatable, GRDB.DatabaseValueConvertible {
+public struct IndexInfo : Swift.Sendable {
+  public struct Origin : Swift.RawRepresentable, Swift.Equatable, GRDB.DatabaseValueConvertible, Swift.Sendable {
     public var rawValue: Swift.String
     public init(rawValue: Swift.String)
     public static let createIndex: GRDB.IndexInfo.Origin
@@ -533,7 +555,7 @@ public struct IndexInfo {
   public let isUnique: Swift.Bool
   public let origin: GRDB.IndexInfo.Origin
 }
-public struct ForeignKeyViolation {
+public struct ForeignKeyViolation : Swift.Sendable {
   public var originTable: Swift.String
   public var originRowID: Swift.Int64?
   public var destinationTable: Swift.String
@@ -549,7 +571,7 @@ extension GRDB.ForeignKeyViolation : Swift.CustomStringConvertible {
     get
   }
 }
-public struct PrimaryKeyInfo {
+public struct PrimaryKeyInfo : Swift.Sendable {
   public var columns: [Swift.String] {
     get
   }
@@ -560,7 +582,7 @@ public struct PrimaryKeyInfo {
     get
   }
 }
-public struct ForeignKeyInfo {
+public struct ForeignKeyInfo : Swift.Sendable {
   public var id: Swift.Int
   public let destinationTable: Swift.String
   public let mapping: [(origin: Swift.String, destination: Swift.String)]
@@ -598,7 +620,7 @@ extension GRDB.CommonTableExpression {
   public func association<Destination>(to destination: GRDB.Table<Destination>, on condition: @escaping (_ left: GRDB.TableAlias, _ right: GRDB.TableAlias) -> any GRDB.SQLExpressible) -> GRDB.JoinAssociation<RowDecoder, Destination>
   public func association<Destination>(to destination: GRDB.Table<Destination>) -> GRDB.JoinAssociation<RowDecoder, Destination>
 }
-public struct Table<RowDecoder> {
+public struct Table<RowDecoder> : Swift.Sendable {
   public var tableName: Swift.String
   public init(_ tableName: Swift.String)
 }
@@ -819,7 +841,7 @@ extension GRDB.DatabaseSnapshot : GRDB.DatabaseSnapshotReader {
   final public func unsafeReentrantRead<T>(_ value: (GRDB.Database) throws -> T) throws -> T
   final public func _add<Reducer>(observation: GRDB.ValueObservation<Reducer>, scheduling scheduler: some ValueObservationScheduler, onChange: @escaping (Reducer.Value) -> Swift.Void) -> GRDB.AnyDatabaseCancellable where Reducer : GRDB.ValueReducer
 }
-public struct DatabaseRegion {
+public struct DatabaseRegion : Swift.Sendable {
   public var isEmpty: Swift.Bool {
     get
   }
@@ -863,6 +885,7 @@ public protocol FetchableRecord {
   init(row: GRDB.Row) throws
   static var databaseDecodingUserInfo: [Swift.CodingUserInfoKey : Any] { get }
   static func databaseJSONDecoder(for column: Swift.String) -> Foundation.JSONDecoder
+  static var databaseDataDecodingStrategy: GRDB.DatabaseDataDecodingStrategy { get }
   static var databaseDateDecodingStrategy: GRDB.DatabaseDateDecodingStrategy { get }
   static var databaseColumnDecodingStrategy: GRDB.DatabaseColumnDecodingStrategy { get }
 }
@@ -871,6 +894,9 @@ extension GRDB.FetchableRecord {
     get
   }
   public static func databaseJSONDecoder(for column: Swift.String) -> Foundation.JSONDecoder
+  public static var databaseDataDecodingStrategy: GRDB.DatabaseDataDecodingStrategy {
+    get
+  }
   public static var databaseDateDecodingStrategy: GRDB.DatabaseDateDecodingStrategy {
     get
   }
@@ -921,6 +947,13 @@ extension GRDB.FetchRequest where Self.RowDecoder : GRDB.FetchableRecord, Self.R
         try Record(row: _row)
     }
 }
+@available(*, unavailable)
+extension GRDB.RecordCursor : Swift.Sendable {
+}
+public enum DatabaseDataDecodingStrategy {
+  case deferredToData
+  case custom((GRDB.DatabaseValue) -> Foundation.Data?)
+}
 public enum DatabaseDateDecodingStrategy {
   case deferredToDate
   case timeIntervalSinceReferenceDate
@@ -960,6 +993,7 @@ extension GRDB.QueryInterfaceRequest : GRDB.OrderedRequest {
   public func orderWhenConnected(_ orderings: @escaping (GRDB.Database) throws -> [any GRDB.SQLOrderingTerm]) -> GRDB.QueryInterfaceRequest<RowDecoder>
   public func reversed() -> GRDB.QueryInterfaceRequest<RowDecoder>
   public func unordered() -> GRDB.QueryInterfaceRequest<RowDecoder>
+  public func withStableOrder() -> GRDB.QueryInterfaceRequest<RowDecoder>
 }
 extension GRDB.QueryInterfaceRequest : GRDB.AggregatingRequest {
   public func groupWhenConnected(_ expressions: @escaping (GRDB.Database) throws -> [any GRDB.SQLExpressible]) -> GRDB.QueryInterfaceRequest<RowDecoder>
@@ -1002,6 +1036,8 @@ extension GRDB.QueryInterfaceRequest {
   public func deleteAndFetchAll(_ db: GRDB.Database) throws -> [RowDecoder] where RowDecoder : GRDB.FetchableRecord, RowDecoder : GRDB.TableRecord
   @available(iOS 15, macOS 12, tvOS 15, watchOS 8, *)
   public func deleteAndFetchSet(_ db: GRDB.Database) throws -> Swift.Set<RowDecoder> where RowDecoder : GRDB.FetchableRecord, RowDecoder : GRDB.TableRecord, RowDecoder : Swift.Hashable
+  @available(iOS 15, macOS 12, tvOS 15, watchOS 8, *)
+  public func deleteAndFetchIds(_ db: GRDB.Database) throws -> Swift.Set<RowDecoder.ID> where RowDecoder : GRDB.TableRecord, RowDecoder : Swift.Identifiable, RowDecoder.ID : GRDB.DatabaseValueConvertible, RowDecoder.ID : GRDB.StatementColumnConvertible
 }
 extension GRDB.QueryInterfaceRequest {
   @discardableResult
@@ -1125,7 +1161,7 @@ extension GRDB.SQLSelection : GRDB.SQLSelectable {
     get
   }
 }
-public struct AllColumns {
+public struct AllColumns : Swift.Sendable {
   public init()
 }
 extension GRDB.AllColumns : GRDB.SQLSelectable {
@@ -1144,7 +1180,7 @@ extension GRDB.Database {
   final public func add(transactionObserver: some TransactionObserver, extent: GRDB.Database.TransactionObservationExtent = .observerLifetime)
   final public func remove(transactionObserver: some TransactionObserver)
   final public func afterNextTransaction(onCommit: @escaping (GRDB.Database) -> Swift.Void, onRollback: @escaping (GRDB.Database) -> Swift.Void = { _ in })
-  public enum TransactionObservationExtent {
+  public enum TransactionObservationExtent : Swift.Sendable {
     case observerLifetime
     case nextTransaction
     case databaseLifetime
@@ -1157,6 +1193,7 @@ extension GRDB.Database {
 }
 public protocol TransactionObserver : AnyObject {
   func observes(eventsOfKind eventKind: GRDB.DatabaseEventKind) -> Swift.Bool
+  func databaseDidChange()
   func databaseDidChange(with event: GRDB.DatabaseEvent)
   func databaseWillCommit() throws
   func databaseDidCommit(_ db: GRDB.Database)
@@ -1166,9 +1203,10 @@ public protocol TransactionObserver : AnyObject {
 extension GRDB.TransactionObserver {
   public func databaseWillCommit() throws
   public func databaseWillChange(with event: GRDB.DatabasePreUpdateEvent)
+  public func databaseDidChange()
   public func stopObservingDatabaseChangesUntilNextTransaction()
 }
-@frozen public enum DatabaseEventKind {
+@frozen public enum DatabaseEventKind : Swift.Sendable {
   case insert(tableName: Swift.String)
   case delete(tableName: Swift.String)
   case update(tableName: Swift.String, columnNames: Swift.Set<Swift.String>)
@@ -1179,7 +1217,7 @@ extension GRDB.DatabaseEventKind {
   }
 }
 public struct DatabaseEvent {
-  public enum Kind : Swift.CInt {
+  public enum Kind : Swift.CInt, Swift.Sendable {
     case insert
     case delete
     case update
@@ -1198,6 +1236,9 @@ public struct DatabaseEvent {
   }
   public let rowID: Swift.Int64
   public func copy() -> GRDB.DatabaseEvent
+}
+@available(*, unavailable)
+extension GRDB.DatabaseEvent : Swift.Sendable {
 }
 public struct DatabasePreUpdateEvent {
   public enum Kind : Swift.CInt {
@@ -1324,7 +1365,7 @@ extension GRDB.SQLSpecificExpressible {
   public func like(_ pattern: some SQLExpressible, escape: (any GRDB.SQLExpressible)? = nil) -> GRDB.SQLExpression
 }
 public struct FTS3 {
-  public enum Diacritics {
+  public enum Diacritics : Swift.Sendable {
     case keep
     case removeLegacy
     @available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
@@ -1351,6 +1392,9 @@ extension GRDB.FTS3 : GRDB.VirtualTableModule {
   final public var tokenizer: GRDB.FTS3TokenizerDescriptor?
   final public func column(_ name: Swift.String)
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.FTS3TableDefinition : Swift.Sendable {
 }
 extension GRDB.MutablePersistableRecord {
   @inline(__always) @inlinable public func willDelete(_ db: GRDB.Database) throws { }
@@ -1416,7 +1460,7 @@ extension GRDB.FTS5CustomTokenizer {
 extension GRDB.Database {
   final public func add(tokenizer: (some FTS5CustomTokenizer).Type)
 }
-public struct IndexOptions : Swift.OptionSet {
+public struct IndexOptions : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.Int
   public init(rawValue: Swift.Int)
   public static let ifNotExists: GRDB.IndexOptions
@@ -1549,6 +1593,16 @@ public struct Configuration {
   public mutating func prepareDatabase(_ setup: @escaping (GRDB.Database) throws -> Swift.Void)
   public var defaultTransactionKind: GRDB.Database.TransactionKind
   public var allowsUnsafeTransactions: Swift.Bool
+  public enum JournalModeConfiguration : Swift.Sendable {
+    case `default`
+    case wal
+    public static func == (a: GRDB.Configuration.JournalModeConfiguration, b: GRDB.Configuration.JournalModeConfiguration) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var journalMode: GRDB.Configuration.JournalModeConfiguration
   public var busyMode: GRDB.Database.BusyMode
   public var maximumReaderCount: Swift.Int
   public var qos: Dispatch.DispatchQoS
@@ -1636,16 +1690,27 @@ extension GRDB.PersistableRecord {
     }
 }
 public func abs(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+@available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
+public func average(_ value: some SQLSpecificExpressible, filter: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func average(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+public func cast(_ expression: some SQLSpecificExpressible, as storageClass: GRDB.Database.StorageClass) -> GRDB.SQLExpression
 public func count(_ counted: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func count(distinct value: some SQLSpecificExpressible) -> GRDB.SQLExpression
 extension GRDB.SQLSpecificExpressible {
   public static func ?? (lhs: Self, rhs: some SQLExpressible) -> GRDB.SQLExpression
 }
 public func length(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+@available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
+public func max(_ value: some SQLSpecificExpressible, filter: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func max(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+@available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
+public func min(_ value: some SQLSpecificExpressible, filter: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func min(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+@available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
+public func sum(_ value: some SQLSpecificExpressible, filter: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func sum(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
+@available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
+public func total(_ value: some SQLSpecificExpressible, filter: some SQLSpecificExpressible) -> GRDB.SQLExpression
 public func total(_ value: some SQLSpecificExpressible) -> GRDB.SQLExpression
 extension GRDB.SQLSpecificExpressible {
   public var capitalized: GRDB.SQLExpression {
@@ -1669,7 +1734,7 @@ extension GRDB.SQLSpecificExpressible {
     get
   }
 }
-public enum SQLDateModifier : GRDB.SQLSpecificExpressible {
+public enum SQLDateModifier : GRDB.SQLSpecificExpressible, Swift.Sendable {
   case second(Swift.Double)
   case minute(Swift.Int)
   case hour(Swift.Int)
@@ -1689,7 +1754,7 @@ public enum SQLDateModifier : GRDB.SQLSpecificExpressible {
 }
 public func julianDay(_ value: some SQLSpecificExpressible, _ modifiers: GRDB.SQLDateModifier...) -> GRDB.SQLExpression
 public func dateTime(_ value: some SQLSpecificExpressible, _ modifiers: GRDB.SQLDateModifier...) -> GRDB.SQLExpression
-public struct FTS3Pattern {
+public struct FTS3Pattern : Swift.Sendable {
   public let rawPattern: Swift.String
   public init(rawPattern: Swift.String) throws
   public init?(matchingAnyTokenIn string: Swift.String)
@@ -1746,6 +1811,13 @@ extension GRDB.DatabasePublishers {
     public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == any Swift.Error, S.Input == GRDB.Database
   }
 }
+extension GRDB.DatabaseReader {
+  public func dumpSQL(_ sql: GRDB.SQL, format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  public func dumpRequest(_ request: some FetchRequest, format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  public func dumpTables(_ tables: [Swift.String], format: some DumpFormat = .debug(), tableHeader: GRDB.DumpTableHeaderOptions = .automatic, stableOrder: Swift.Bool = false, to stream: (any Swift.TextOutputStream)? = nil) throws
+  public func dumpContent(format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  public func dumpSchema(to stream: (any Swift.TextOutputStream)? = nil) throws
+}
 public protocol ValueObservationScheduler {
   func immediateInitialValue() -> Swift.Bool
   func schedule(_ action: @escaping () -> Swift.Void)
@@ -1758,7 +1830,7 @@ public struct AsyncValueObservationScheduler : GRDB.ValueObservationScheduler {
 extension GRDB.ValueObservationScheduler where Self == GRDB.AsyncValueObservationScheduler {
   public static func async(onQueue queue: Dispatch.DispatchQueue) -> GRDB.AsyncValueObservationScheduler
 }
-public struct ImmediateValueObservationScheduler : GRDB.ValueObservationScheduler {
+public struct ImmediateValueObservationScheduler : GRDB.ValueObservationScheduler, Swift.Sendable {
   public init()
   public func immediateInitialValue() -> Swift.Bool
   public func schedule(_ action: @escaping () -> Swift.Void)
@@ -1877,13 +1949,14 @@ extension GRDB.Database {
   final public func drop(view name: Swift.String) throws
   @_disfavoredOverload final public func create(index name: Swift.String, on table: Swift.String, columns: [Swift.String], unique: Swift.Bool = false, ifNotExists: Swift.Bool = false, condition: (any GRDB.SQLExpressible)? = nil) throws
   final public func create(index name: Swift.String, on table: Swift.String, columns: [Swift.String], options: GRDB.IndexOptions = [], condition: (any GRDB.SQLExpressible)? = nil) throws
+  final public func create(index name: Swift.String, on table: Swift.String, expressions: [any GRDB.SQLExpressible], options: GRDB.IndexOptions = [], condition: (any GRDB.SQLExpressible)? = nil) throws
   final public func create(indexOn table: Swift.String, columns: [Swift.String], options: GRDB.IndexOptions = [], condition: (any GRDB.SQLExpressible)? = nil) throws
   final public func drop(index name: Swift.String) throws
   final public func drop(indexOn table: Swift.String, columns: [Swift.String]) throws
   final public func reindex(collation: GRDB.Database.CollationName) throws
   final public func reindex(collation: GRDB.DatabaseCollation) throws
 }
-public struct ViewOptions : Swift.OptionSet {
+public struct ViewOptions : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.Int
   public init(rawValue: Swift.Int)
   public static let ifNotExists: GRDB.ViewOptions
@@ -1927,19 +2000,19 @@ public protocol RowAdapter {
 extension GRDB.RowAdapter {
   public func addingScopes(_ scopes: [Swift.String : any GRDB.RowAdapter]) -> any GRDB.RowAdapter
 }
-public struct EmptyRowAdapter : GRDB.RowAdapter {
+public struct EmptyRowAdapter : GRDB.RowAdapter, Swift.Sendable {
   public init()
   public func _layoutedAdapter(from layout: some _RowLayout) throws -> any GRDB._LayoutedRowAdapter
 }
-public struct ColumnMapping : GRDB.RowAdapter {
+public struct ColumnMapping : GRDB.RowAdapter, Swift.Sendable {
   public init(_ mapping: [Swift.String : Swift.String])
   public func _layoutedAdapter(from layout: some _RowLayout) throws -> any GRDB._LayoutedRowAdapter
 }
-public struct SuffixRowAdapter : GRDB.RowAdapter {
+public struct SuffixRowAdapter : GRDB.RowAdapter, Swift.Sendable {
   public init(fromIndex index: Swift.Int)
   public func _layoutedAdapter(from layout: some _RowLayout) throws -> any GRDB._LayoutedRowAdapter
 }
-public struct RangeRowAdapter : GRDB.RowAdapter {
+public struct RangeRowAdapter : GRDB.RowAdapter, Swift.Sendable {
   public init(_ range: Swift.CountableRange<Swift.Int>)
   public init(_ range: Swift.CountableClosedRange<Swift.Int>)
   public func _layoutedAdapter(from layout: some _RowLayout) throws -> any GRDB._LayoutedRowAdapter
@@ -2031,6 +2104,9 @@ extension GRDB.AnyDatabaseWriter : GRDB.DatabaseReader {
   final public var configuration: GRDB.Configuration {
     get
   }
+  final public var path: Swift.String {
+    get
+  }
   final public func close() throws
   final public func interrupt()
   @_disfavoredOverload final public func read<T>(_ value: (GRDB.Database) throws -> T) throws -> T
@@ -2058,6 +2134,7 @@ public protocol EncodableRecord {
   func encode(to container: inout GRDB.PersistenceContainer) throws
   static var databaseEncodingUserInfo: [Swift.CodingUserInfoKey : Any] { get }
   static func databaseJSONEncoder(for column: Swift.String) -> Foundation.JSONEncoder
+  static var databaseDataEncodingStrategy: GRDB.DatabaseDataEncodingStrategy { get }
   static var databaseDateEncodingStrategy: GRDB.DatabaseDateEncodingStrategy { get }
   static var databaseUUIDEncodingStrategy: GRDB.DatabaseUUIDEncodingStrategy { get }
   static var databaseColumnEncodingStrategy: GRDB.DatabaseColumnEncodingStrategy { get }
@@ -2067,6 +2144,9 @@ extension GRDB.EncodableRecord {
     get
   }
   public static func databaseJSONEncoder(for column: Swift.String) -> Foundation.JSONEncoder
+  public static var databaseDataEncodingStrategy: GRDB.DatabaseDataEncodingStrategy {
+    get
+  }
   public static var databaseDateEncodingStrategy: GRDB.DatabaseDateEncodingStrategy {
     get
   }
@@ -2103,6 +2183,11 @@ public struct PersistenceContainer {
   @usableFromInline
   internal func changesIterator(from container: GRDB.PersistenceContainer) -> Swift.AnyIterator<(Swift.String, GRDB.DatabaseValue)>
 }
+public enum DatabaseDataEncodingStrategy {
+  case deferredToData
+  case text
+  case custom((Foundation.Data) -> (any GRDB.DatabaseValueConvertible)?)
+}
 public enum DatabaseDateEncodingStrategy {
   case deferredToDate
   case timeIntervalSinceReferenceDate
@@ -2113,7 +2198,7 @@ public enum DatabaseDateEncodingStrategy {
   case formatted(Foundation.DateFormatter)
   case custom((Foundation.Date) -> (any GRDB.DatabaseValueConvertible)?)
 }
-public enum DatabaseUUIDEncodingStrategy {
+public enum DatabaseUUIDEncodingStrategy : Swift.Sendable {
   case deferredToUUID
   case uppercaseString
   case lowercaseString
@@ -2128,8 +2213,8 @@ public enum DatabaseColumnEncodingStrategy {
   case convertToSnakeCase
   case custom((any Swift.CodingKey) -> Swift.String)
 }
-public typealias FTS5TokenCallback = @convention(c) (_ context: Swift.UnsafeMutableRawPointer?, _ flags: Swift.CInt, _ pToken: Swift.UnsafePointer<Swift.Int8>?, _ nToken: Swift.CInt, _ iStart: Swift.CInt, _ iEnd: Swift.CInt) -> Swift.CInt
-public struct FTS5Tokenization : Swift.OptionSet {
+public typealias FTS5TokenCallback = @convention(c) (_ context: Swift.UnsafeMutableRawPointer?, _ flags: Swift.CInt, _ pToken: Swift.UnsafePointer<Swift.CChar>?, _ nToken: Swift.CInt, _ iStart: Swift.CInt, _ iEnd: Swift.CInt) -> Swift.CInt
+public struct FTS5Tokenization : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.CInt
   public init(rawValue: Swift.CInt)
   public static let query: GRDB.FTS5Tokenization
@@ -2141,7 +2226,7 @@ public struct FTS5Tokenization : Swift.OptionSet {
   public typealias RawValue = Swift.CInt
 }
 public protocol FTS5Tokenizer : AnyObject {
-  func tokenize(context: Swift.UnsafeMutableRawPointer?, tokenization: GRDB.FTS5Tokenization, pText: Swift.UnsafePointer<Swift.Int8>?, nText: Swift.CInt, tokenCallback: GRDB.FTS5TokenCallback) -> Swift.CInt
+  func tokenize(context: Swift.UnsafeMutableRawPointer?, tokenization: GRDB.FTS5Tokenization, pText: Swift.UnsafePointer<Swift.CChar>?, nText: Swift.CInt, tokenCallback: GRDB.FTS5TokenCallback) -> Swift.CInt
 }
 extension GRDB.FTS5Tokenizer {
   public func tokenize(document string: Swift.String) throws -> [(token: Swift.String, flags: GRDB.FTS5TokenFlags)]
@@ -2150,14 +2235,14 @@ extension GRDB.FTS5Tokenizer {
 extension GRDB.Database {
   final public func makeTokenizer(_ descriptor: GRDB.FTS5TokenizerDescriptor) throws -> any GRDB.FTS5Tokenizer
 }
-public struct FTS5TokenizerDescriptor {
+public struct FTS5TokenizerDescriptor : Swift.Sendable {
   public let components: [Swift.String]
   public init(components: [Swift.String])
   public static func ascii(separators: Swift.Set<Swift.Character> = [], tokenCharacters: Swift.Set<Swift.Character> = []) -> GRDB.FTS5TokenizerDescriptor
   public static func porter(wrapping base: GRDB.FTS5TokenizerDescriptor? = nil) -> GRDB.FTS5TokenizerDescriptor
   public static func unicode61(diacritics: GRDB.FTS5.Diacritics = .removeLegacy, categories: Swift.String = "", separators: Swift.Set<Swift.Character> = [], tokenCharacters: Swift.Set<Swift.Character> = []) -> GRDB.FTS5TokenizerDescriptor
 }
-public struct DatabaseBackupProgress {
+public struct DatabaseBackupProgress : Swift.Sendable {
   public let remainingPageCount: Swift.Int
   public let totalPageCount: Swift.Int
   public var completedPageCount: Swift.Int {
@@ -2174,6 +2259,9 @@ public enum DatabasePublishers {
   @discardableResult
   final public func unique() -> Self
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.ForeignKeyDefinition : Swift.Sendable {
 }
 extension GRDB.MutablePersistableRecord {
   @available(iOS 15, macOS 12, tvOS 15, watchOS 8, *)
@@ -2258,6 +2346,8 @@ public protocol DatabaseValueConvertible : GRDB.SQLExpressible, GRDB.StatementBi
   var databaseValue: GRDB.DatabaseValue { get }
   static func fromDatabaseValue(_ dbValue: GRDB.DatabaseValue) -> Self?
   static func fromMissingColumn() -> Self?
+  static func databaseJSONDecoder() -> Foundation.JSONDecoder
+  static func databaseJSONEncoder() -> Foundation.JSONEncoder
 }
 extension GRDB.DatabaseValueConvertible {
   public var sqlExpression: GRDB.SQLExpression {
@@ -2265,6 +2355,8 @@ extension GRDB.DatabaseValueConvertible {
   }
   public func bind(to sqliteStatement: GRDB.SQLiteStatement, at index: Swift.CInt) -> Swift.CInt
   public static func fromMissingColumn() -> Self?
+  public static func databaseJSONDecoder() -> Foundation.JSONDecoder
+  public static func databaseJSONEncoder() -> Foundation.JSONEncoder
 }
 extension GRDB.DatabaseValueConvertible {
   @usableFromInline
@@ -2278,6 +2370,9 @@ extension GRDB.DatabaseValueConvertible {
   final public var _isDone: Swift.Bool
   @objc deinit
   final public func _element(sqliteStatement: GRDB.SQLiteStatement) throws -> Value
+}
+@available(*, unavailable)
+extension GRDB.DatabaseValueCursor : Swift.Sendable {
 }
 extension GRDB.DatabaseValueConvertible {
   public static func fetchCursor(_ statement: GRDB.Statement, arguments: GRDB.StatementArguments? = nil, adapter: (any GRDB.RowAdapter)? = nil) throws -> GRDB.DatabaseValueCursor<Self>
@@ -2371,12 +2466,18 @@ extension GRDB.FTS4 : GRDB.VirtualTableModule {
   final public func synchronize(withTable tableName: Swift.String)
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.FTS4TableDefinition : Swift.Sendable {
+}
 @_hasMissingDesignatedInitializers final public class FTS4ColumnDefinition {
   @discardableResult
   final public func notIndexed() -> Self
   @discardableResult
   final public func asLanguageId() -> Self
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.FTS4ColumnDefinition : Swift.Sendable {
 }
 extension GRDB.Database {
   final public func dropFTS4SynchronizationTriggers(forTable tableName: Swift.String) throws
@@ -2501,6 +2602,20 @@ public struct HasOneThroughAssociation<Origin, Destination> {
 extension GRDB.HasOneThroughAssociation : GRDB.AssociationToOne {
   public typealias OriginRowDecoder = Origin
   public typealias RowDecoder = Destination
+}
+public struct JSONDumpFormat : Swift.Sendable {
+  public static var defaultEncoder: Foundation.JSONEncoder {
+    get
+  }
+  public var encoder: Foundation.JSONEncoder
+  public init(encoder: Foundation.JSONEncoder = JSONDumpFormat.defaultEncoder)
+}
+extension GRDB.JSONDumpFormat : GRDB.DumpFormat {
+  public mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream) throws
+  public mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+extension GRDB.DumpFormat where Self == GRDB.JSONDumpFormat {
+  public static func json(encoder: Foundation.JSONEncoder = JSONDumpFormat.defaultEncoder) -> Self
 }
 public struct ResultCode : Swift.RawRepresentable, Swift.Equatable {
   public let rawValue: Swift.CInt
@@ -2773,7 +2888,7 @@ extension GRDB.DatabaseError : Foundation.CustomNSError {
     get
   }
 }
-public struct ForeignKey : Swift.Equatable {
+public struct ForeignKey : Swift.Equatable, Swift.Sendable {
   public init(_ originColumns: [Swift.String], to destinationColumns: [Swift.String]? = nil)
   public init(_ originColumns: [any GRDB.ColumnExpression], to destinationColumns: [any GRDB.ColumnExpression]? = nil)
   public static func == (a: GRDB.ForeignKey, b: GRDB.ForeignKey) -> Swift.Bool
@@ -2848,6 +2963,7 @@ extension GRDB.Association {
   public func orderWhenConnected(_ orderings: @escaping (GRDB.Database) throws -> [any GRDB.SQLOrderingTerm]) -> Self
   public func reversed() -> Self
   public func unordered() -> Self
+  public func withStableOrder() -> Self
 }
 extension GRDB.Association {
   public var databaseTableName: Swift.String {
@@ -2889,6 +3005,7 @@ public struct DatabaseValue : Swift.Hashable {
   public var isNull: Swift.Bool {
     get
   }
+  public init(sqliteStatement: GRDB.SQLiteStatement, index: Swift.CInt)
   public var hashValue: Swift.Int {
     get
   }
@@ -2925,7 +3042,7 @@ extension GRDB.DatabaseValue : Swift.CustomStringConvertible {
     get
   }
 }
-public struct FTS3TokenizerDescriptor {
+public struct FTS3TokenizerDescriptor : Swift.Sendable {
   public static let simple: GRDB.FTS3TokenizerDescriptor
   public static let porter: GRDB.FTS3TokenizerDescriptor
   public static func unicode61(diacritics: GRDB.FTS3.Diacritics = .removeLegacy, separators: Swift.Set<Swift.Character> = [], tokenCharacters: Swift.Set<Swift.Character> = []) -> GRDB.FTS3TokenizerDescriptor
@@ -2973,6 +3090,18 @@ extension GRDB.Record : GRDB.PersistableRecord {
 }
 extension GRDB.Record : GRDB.FetchableRecord {
 }
+public struct QuoteDumpFormat : Swift.Sendable {
+  public var header: Swift.Bool
+  public var separator: Swift.String
+  public init(header: Swift.Bool = false, separator: Swift.String = ",")
+}
+extension GRDB.QuoteDumpFormat : GRDB.DumpFormat {
+  public mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+  public mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+extension GRDB.DumpFormat where Self == GRDB.QuoteDumpFormat {
+  public static func quote(header: Swift.Bool = false, separator: Swift.String = ",") -> Self
+}
 public protocol ColumnExpression : GRDB.SQLSpecificExpressible {
   var name: Swift.String { get }
 }
@@ -2989,7 +3118,7 @@ extension GRDB.ColumnExpression where Self == GRDB.Column {
     get
   }
 }
-public struct Column {
+public struct Column : Swift.Sendable {
   public static let rowID: GRDB.Column
   public var name: Swift.String
   public init(_ name: Swift.String)
@@ -3099,6 +3228,10 @@ extension Swift.Dictionary {
 extension Swift.Set {
   public init(_ cursor: some Cursor<Element>) throws
   public init(_ cursor: some Cursor<Element>, minimumCapacity: Swift.Int) throws
+  public func union(_ cursor: some Cursor<Element>) throws -> Swift.Set<Element>
+  public mutating func formUnion(_ cursor: some Cursor<Element>) throws
+  public func intersection(_ cursor: some Cursor<Element>) throws -> Swift.Set<Element>
+  public mutating func formIntersection(_ cursor: some Cursor<Element>) throws
 }
 extension Swift.Sequence {
   public func flatMap<SegmentOfResult>(_ transform: @escaping (Self.Iterator.Element) throws -> SegmentOfResult) -> GRDB.FlattenCursor<GRDB.MapCursor<GRDB.AnyCursor<Self.Iterator.Element>, SegmentOfResult>> where SegmentOfResult : GRDB.Cursor
@@ -3168,8 +3301,14 @@ final public class AnyCursor<Element> : GRDB.Cursor {
   final public func next() throws -> Element?
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.AnyCursor : Swift.Sendable {
+}
 @_hasMissingDesignatedInitializers final public class DropFirstCursor<Base> where Base : GRDB.Cursor {
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.DropFirstCursor : Swift.Sendable {
 }
 extension GRDB.DropFirstCursor : GRDB.Cursor {
   final public func next() throws -> Base.Element?
@@ -3178,12 +3317,18 @@ extension GRDB.DropFirstCursor : GRDB.Cursor {
 @_hasMissingDesignatedInitializers final public class DropWhileCursor<Base> where Base : GRDB.Cursor {
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.DropWhileCursor : Swift.Sendable {
+}
 extension GRDB.DropWhileCursor : GRDB.Cursor {
   final public func next() throws -> Base.Element?
   public typealias Element = Base.Element
 }
 @_hasMissingDesignatedInitializers final public class EnumeratedCursor<Base> where Base : GRDB.Cursor {
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.EnumeratedCursor : Swift.Sendable {
 }
 extension GRDB.EnumeratedCursor : GRDB.Cursor {
   final public func next() throws -> (Swift.Int, Base.Element)?
@@ -3201,12 +3346,18 @@ extension GRDB.FilterCursor : GRDB.Cursor {
 @_hasMissingDesignatedInitializers final public class FlattenCursor<Base> where Base : GRDB.Cursor, Base.Element : GRDB.Cursor {
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.FlattenCursor : Swift.Sendable {
+}
 extension GRDB.FlattenCursor : GRDB.Cursor {
   final public func next() throws -> Base.Element.Element?
   public typealias Element = Base.Element.Element
 }
 @_hasMissingDesignatedInitializers final public class MapCursor<Base, Element> where Base : GRDB.Cursor {
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.MapCursor : Swift.Sendable {
 }
 extension GRDB.MapCursor : GRDB.Cursor {
   final public func next() throws -> Element?
@@ -3215,12 +3366,18 @@ extension GRDB.MapCursor : GRDB.Cursor {
 @_hasMissingDesignatedInitializers final public class PrefixCursor<Base> where Base : GRDB.Cursor {
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.PrefixCursor : Swift.Sendable {
+}
 extension GRDB.PrefixCursor : GRDB.Cursor {
   final public func next() throws -> Base.Element?
   public typealias Element = Base.Element
 }
 @_hasMissingDesignatedInitializers final public class PrefixWhileCursor<Base> where Base : GRDB.Cursor {
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.PrefixWhileCursor : Swift.Sendable {
 }
 extension GRDB.PrefixWhileCursor : GRDB.Cursor {
   final public func next() throws -> Base.Element?
@@ -3346,6 +3503,9 @@ public typealias SQLiteStatement = Swift.OpaquePointer
   final internal func forEachStep(_ body: (GRDB.SQLiteStatement) throws -> Swift.Void) throws
   @usableFromInline
   final internal func step<T>(_ body: (GRDB.SQLiteStatement) throws -> T) throws -> T?
+}
+@available(*, unavailable)
+extension GRDB.Statement : Swift.Sendable {
 }
 extension GRDB.Statement : Swift.CustomStringConvertible {
   final public var description: Swift.String {
@@ -3669,8 +3829,18 @@ public func databaseQuestionMarks(count: Swift.Int) -> Swift.String
         fatalError(message(), file: file, line: line)
     }
 }
+public protocol DumpFormat {
+  mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream) throws
+  mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+public struct DumpStream {
+  public mutating func margin()
+}
+extension GRDB.DumpStream : Swift.TextOutputStream {
+  public mutating func write(_ string: Swift.String)
+}
 public struct DatabaseMigrator {
-  public enum ForeignKeyChecks {
+  public enum ForeignKeyChecks : Swift.Sendable {
     case deferred
     case immediate
     public static func == (a: GRDB.DatabaseMigrator.ForeignKeyChecks, b: GRDB.DatabaseMigrator.ForeignKeyChecks) -> Swift.Bool
@@ -3707,8 +3877,36 @@ extension GRDB.DatabasePublishers {
     public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == any Swift.Error, S.Input == ()
   }
 }
+public protocol SQLJSONExpressible : GRDB.SQLSpecificExpressible {
+}
+extension GRDB.ColumnExpression where Self : GRDB.SQLJSONExpressible {
+  public var sqlExpression: GRDB.SQLExpression {
+    get
+  }
+}
+public struct AnySQLJSONExpressible : GRDB.SQLJSONExpressible {
+  public let sqlExpression: GRDB.SQLExpression
+  public init(_ base: some SQLJSONExpressible)
+}
+extension GRDB.SQLSpecificExpressible {
+  public var asJSON: GRDB.AnySQLJSONExpressible {
+    get
+  }
+}
+extension GRDB.SQLJSONExpressible {
+  @available(iOS 16, macOS 13.2, tvOS 17, watchOS 9, *)
+  public subscript(path: some SQLExpressible) -> GRDB.SQLExpression {
+    get
+  }
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public func jsonExtract(atPath path: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public func jsonExtract<C>(atPaths paths: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element : GRDB.SQLExpressible
+  @available(iOS 16, macOS 13.2, tvOS 17, watchOS 9, *)
+  public func jsonRepresentation(atPath path: some SQLExpressible) -> GRDB.SQLExpression
+}
 @_hasMissingDesignatedInitializers final public class ColumnDefinition {
-  public enum GeneratedColumnQualification {
+  public enum GeneratedColumnQualification : Swift.Sendable {
     case virtual
     case stored
     public static func == (a: GRDB.ColumnDefinition.GeneratedColumnQualification, b: GRDB.ColumnDefinition.GeneratedColumnQualification) -> Swift.Bool
@@ -3747,6 +3945,9 @@ extension GRDB.DatabasePublishers {
   final public func references(_ table: Swift.String, column: Swift.String? = nil, onDelete deleteAction: GRDB.Database.ForeignKeyAction? = nil, onUpdate updateAction: GRDB.Database.ForeignKeyAction? = nil, deferred isDeferred: Swift.Bool = false) -> Self
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.ColumnDefinition : Swift.Sendable {
+}
 public struct JoinAssociation<Origin, Destination> {
   public var _sqlAssociation: GRDB._SQLAssociation
 }
@@ -3754,7 +3955,7 @@ extension GRDB.JoinAssociation : GRDB.AssociationToOne {
   public typealias OriginRowDecoder = Origin
   public typealias RowDecoder = Destination
 }
-public enum SharedValueObservationExtent {
+public enum SharedValueObservationExtent : Swift.Sendable {
   case observationLifetime
   case whileObserved
   public static func == (a: GRDB.SharedValueObservationExtent, b: GRDB.SharedValueObservationExtent) -> Swift.Bool
@@ -3787,8 +3988,8 @@ public struct SQLInterpolation : Swift.StringInterpolationProtocol {
   public mutating func appendInterpolation(literal sqlLiteral: GRDB.SQL)
   public typealias StringLiteralType = Swift.String
 }
-public struct DatabaseDateComponents {
-  public enum Format : Swift.String {
+public struct DatabaseDateComponents : Swift.Sendable {
+  public enum Format : Swift.String, Swift.Sendable {
     case YMD
     case YMD_HM
     case YMD_HMS
@@ -3813,7 +4014,7 @@ extension GRDB.DatabaseDateComponents : GRDB.StatementColumnConvertible {
         }
         let length = Int(sqlite3_column_bytes(sqliteStatement, index)) // avoid an strlen
         let components = cString.withMemoryRebound(
-            to: Int8.self,
+            to: CChar.self,
             capacity: length + 1 /* trailing \0 */) { cString in
             SQLiteDateParser().components(cString: cString, length: length)
         }
@@ -3870,7 +4071,10 @@ internal let _posixLocale: Foundation.Locale
   final public func drop(column name: Swift.String)
   @objc deinit
 }
-public struct FTS5Pattern {
+@available(*, unavailable)
+extension GRDB.TableAlteration : Swift.Sendable {
+}
+public struct FTS5Pattern : Swift.Sendable {
   public let rawPattern: Swift.String
   public init?(matchingAnyTokenIn string: Swift.String)
   public init?(matchingAllTokensIn string: Swift.String)
@@ -3917,6 +4121,7 @@ extension GRDB.SQLRequest : Swift.ExpressibleByStringInterpolation {
 }
 public protocol DatabaseReader : AnyObject, Swift.Sendable {
   var configuration: GRDB.Configuration { get }
+  var path: Swift.String { get }
   func close() throws
   func interrupt()
   @_disfavoredOverload func read<T>(_ value: (GRDB.Database) throws -> T) throws -> T
@@ -3957,6 +4162,9 @@ final public class AnyDatabaseReader {
 }
 extension GRDB.AnyDatabaseReader : GRDB.DatabaseReader {
   final public var configuration: GRDB.Configuration {
+    get
+  }
+  final public var path: Swift.String {
     get
   }
   final public func close() throws
@@ -4112,7 +4320,9 @@ public typealias SQLiteConnection = Swift.OpaquePointer
   final public func remove(function: GRDB.DatabaseFunction)
   final public func add(collation: GRDB.DatabaseCollation)
   final public func remove(collation: GRDB.DatabaseCollation)
+  final public func readOnly<T>(_ value: () throws -> T) throws -> T
   final public func registerAccess(to region: @autoclosure () -> some DatabaseRegionConvertible) throws
+  final public func notifyChanges(in region: some DatabaseRegionConvertible) throws
   final public func trace(options: GRDB.Database.TracingOptions = .statement, _ trace: ((GRDB.Database.TraceEvent) -> Swift.Void)? = nil)
   @discardableResult
   final public func checkpoint(_ kind: GRDB.Database.CheckpointMode = .passive, on dbName: Swift.String? = "main") throws -> (walFrameCount: Swift.Int, checkpointedFrameCount: Swift.Int)
@@ -4126,6 +4336,9 @@ public typealias SQLiteConnection = Swift.OpaquePointer
   final public func releaseMemory()
   final public func backup(to destDb: GRDB.Database, pagesPerStep: Swift.CInt = -1, progress: ((GRDB.DatabaseBackupProgress) throws -> Swift.Void)? = nil) throws
 }
+@available(*, unavailable)
+extension GRDB.Database : Swift.Sendable {
+}
 extension GRDB.Database {
   public typealias BusyCallback = (_ numberOfTries: Swift.Int) -> Swift.Bool
   public enum BusyMode {
@@ -4133,7 +4346,7 @@ extension GRDB.Database {
     case timeout(Foundation.TimeInterval)
     case callback(GRDB.Database.BusyCallback)
   }
-  public enum CheckpointMode : Swift.CInt {
+  public enum CheckpointMode : Swift.CInt, Swift.Sendable {
     case passive
     case full
     case restart
@@ -4144,7 +4357,7 @@ extension GRDB.Database {
       get
     }
   }
-  public struct CollationName : Swift.RawRepresentable, Swift.Hashable {
+  public struct CollationName : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
     public let rawValue: Swift.String
     public init(rawValue: Swift.String)
     public static let binary: GRDB.Database.CollationName
@@ -4152,10 +4365,11 @@ extension GRDB.Database {
     public static let rtrim: GRDB.Database.CollationName
     public typealias RawValue = Swift.String
   }
-  public struct ColumnType : Swift.RawRepresentable, Swift.Hashable {
+  public struct ColumnType : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
     public let rawValue: Swift.String
     public init(rawValue: Swift.String)
     public static let text: GRDB.Database.ColumnType
+    public static let jsonText: GRDB.Database.ColumnType
     public static let integer: GRDB.Database.ColumnType
     public static let double: GRDB.Database.ColumnType
     public static let real: GRDB.Database.ColumnType
@@ -4167,7 +4381,7 @@ extension GRDB.Database {
     public static let any: GRDB.Database.ColumnType
     public typealias RawValue = Swift.String
   }
-  public enum ConflictResolution : Swift.String {
+  public enum ConflictResolution : Swift.String, Swift.Sendable {
     case rollback
     case abort
     case fail
@@ -4179,7 +4393,7 @@ extension GRDB.Database {
       get
     }
   }
-  public enum ForeignKeyAction : Swift.String {
+  public enum ForeignKeyAction : Swift.String, Swift.Sendable {
     case cascade
     case restrict
     case setNull
@@ -4191,7 +4405,16 @@ extension GRDB.Database {
     }
   }
   public typealias LogErrorFunction = (_ resultCode: GRDB.ResultCode, _ message: Swift.String) -> Swift.Void
-  public struct TracingOptions : Swift.OptionSet {
+  public struct StorageClass : Swift.RawRepresentable, Swift.Hashable, Swift.Sendable {
+    public let rawValue: Swift.String
+    public init(rawValue: Swift.String)
+    public static let integer: GRDB.Database.StorageClass
+    public static let real: GRDB.Database.StorageClass
+    public static let text: GRDB.Database.StorageClass
+    public static let blob: GRDB.Database.StorageClass
+    public typealias RawValue = Swift.String
+  }
+  public struct TracingOptions : Swift.OptionSet, Swift.Sendable {
     public let rawValue: Swift.CInt
     public init(rawValue: Swift.CInt)
     public static let statement: GRDB.Database.TracingOptions
@@ -4221,7 +4444,7 @@ extension GRDB.Database {
       get
     }
   }
-  @frozen public enum TransactionCompletion {
+  @frozen public enum TransactionCompletion : Swift.Sendable {
     case commit
     case rollback
     public static func == (a: GRDB.Database.TransactionCompletion, b: GRDB.Database.TransactionCompletion) -> Swift.Bool
@@ -4230,7 +4453,7 @@ extension GRDB.Database {
       get
     }
   }
-  public enum TransactionKind : Swift.String {
+  public enum TransactionKind : Swift.String, Swift.Sendable {
     case deferred
     case immediate
     case exclusive
@@ -4241,7 +4464,13 @@ extension GRDB.Database {
     }
   }
 }
-public struct TableOptions : Swift.OptionSet {
+@available(*, unavailable)
+extension GRDB.Database.TraceEvent : Swift.Sendable {
+}
+@available(*, unavailable)
+extension GRDB.Database.TraceEvent.Statement : Swift.Sendable {
+}
+public struct TableOptions : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.Int
   public init(rawValue: Swift.Int)
   public static let ifNotExists: GRDB.TableOptions
@@ -4275,6 +4504,9 @@ public struct TableOptions : Swift.OptionSet {
   final public func constraint(sql: Swift.String)
   final public func constraint(literal: GRDB.SQL)
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.TableDefinition : Swift.Sendable {
 }
 extension GRDB.MutablePersistableRecord {
   @inline(__always) @inlinable public mutating func willInsert(_ db: GRDB.Database) throws { }
@@ -4411,7 +4643,7 @@ extension GRDB.RowDecodingError : Swift.CustomStringConvertible {
     get
   }
 }
-public struct FTS5TokenFlags : Swift.OptionSet {
+public struct FTS5TokenFlags : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.CInt
   public init(rawValue: Swift.CInt)
   public static let colocated: GRDB.FTS5TokenFlags
@@ -4425,7 +4657,12 @@ public protocol FTS5WrapperTokenizer : GRDB.FTS5CustomTokenizer {
   func accept(token: Swift.String, flags: GRDB.FTS5TokenFlags, for tokenization: GRDB.FTS5Tokenization, tokenCallback: (_ token: Swift.String, _ flags: GRDB.FTS5TokenFlags) throws -> Swift.Void) throws
 }
 extension GRDB.FTS5WrapperTokenizer {
-  public func tokenize(context: Swift.UnsafeMutableRawPointer?, tokenization: GRDB.FTS5Tokenization, pText: Swift.UnsafePointer<Swift.Int8>?, nText: Swift.CInt, tokenCallback: GRDB.FTS5TokenCallback) -> Swift.CInt
+  public func tokenize(context: Swift.UnsafeMutableRawPointer?, tokenization: GRDB.FTS5Tokenization, pText: Swift.UnsafePointer<Swift.CChar>?, nText: Swift.CInt, tokenCallback: GRDB.FTS5TokenCallback) -> Swift.CInt
+}
+public struct JSONColumn : GRDB.ColumnExpression, GRDB.SQLJSONExpressible, Swift.Sendable {
+  public var name: Swift.String
+  public init(_ name: Swift.String)
+  public init(_ codingKey: some CodingKey)
 }
 final public class DatabaseQueue {
   final public var configuration: GRDB.Configuration {
@@ -4463,6 +4700,21 @@ extension GRDB.DatabaseQueue : GRDB.DatabaseWriter {
   final public func inDatabase<T>(_ updates: (GRDB.Database) throws -> T) rethrows -> T
   final public func unsafeReentrantWrite<T>(_ updates: (GRDB.Database) throws -> T) rethrows -> T
   final public func asyncWriteWithoutTransaction(_ updates: @escaping (GRDB.Database) -> Swift.Void)
+}
+extension GRDB.DatabaseQueue {
+  public static func inMemoryCopy(fromPath path: Swift.String, configuration: GRDB.Configuration = Configuration()) throws -> GRDB.DatabaseQueue
+  public static func temporaryCopy(fromPath path: Swift.String, configuration: GRDB.Configuration = Configuration()) throws -> GRDB.DatabaseQueue
+}
+public struct LineDumpFormat : Swift.Sendable {
+  public var nullValue: Swift.String
+  public init(nullValue: Swift.String = "")
+}
+extension GRDB.LineDumpFormat : GRDB.DumpFormat {
+  public mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+  public mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+extension GRDB.DumpFormat where Self == GRDB.LineDumpFormat {
+  public static func line(nullValue: Swift.String = "") -> Self
 }
 extension Foundation.NSNumber : GRDB.DatabaseValueConvertible {
   public var databaseValue: GRDB.DatabaseValue {
@@ -4515,6 +4767,48 @@ extension GRDB.SQL : Swift.ExpressibleByStringInterpolation {
   public typealias StringLiteralType = Swift.String
   public typealias UnicodeScalarLiteralType = Swift.String
 }
+extension GRDB.Database {
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func json(_ value: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonArray<C>(_ values: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element : GRDB.SQLExpressible
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonArray<C>(_ values: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element == any GRDB.SQLExpressible
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonArrayLength(_ value: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonArrayLength(_ value: some SQLExpressible, atPath path: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonExtract(_ value: some SQLExpressible, atPath path: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonExtract<C>(_ value: some SQLExpressible, atPaths paths: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element : GRDB.SQLExpressible
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonInsert<C>(_ value: some SQLExpressible, _ assignments: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element == (key: Swift.String, value: any GRDB.SQLExpressible)
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonReplace<C>(_ value: some SQLExpressible, _ assignments: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element == (key: Swift.String, value: any GRDB.SQLExpressible)
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonSet<C>(_ value: some SQLExpressible, _ assignments: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element == (key: Swift.String, value: any GRDB.SQLExpressible)
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonObject<C>(_ elements: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element == (key: Swift.String, value: any GRDB.SQLExpressible)
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonPatch(_ value: some SQLExpressible, with patch: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonRemove(_ value: some SQLExpressible, atPath path: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonRemove<C>(_ value: some SQLExpressible, atPaths paths: C) -> GRDB.SQLExpression where C : Swift.Collection, C.Element : GRDB.SQLExpressible
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonType(_ value: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonType(_ value: some SQLExpressible, atPath path: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonIsValid(_ value: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonQuote(_ value: some SQLExpressible) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonGroupArray(_ value: some SQLExpressible, filter: (any GRDB.SQLSpecificExpressible)? = nil) -> GRDB.SQLExpression
+  @available(iOS 16, macOS 10.15, tvOS 17, watchOS 9, *)
+  public static func jsonGroupObject(key: some SQLExpressible, value: some SQLExpressible, filter: (any GRDB.SQLSpecificExpressible)? = nil) -> GRDB.SQLExpression
+}
 @usableFromInline
 internal struct SQLiteDateParser {
   @usableFromInline
@@ -4534,6 +4828,9 @@ internal struct SQLiteDateParser {
   convenience public init?(_ dictionary: [Swift.AnyHashable : Any])
   final public func copy() -> GRDB.Row
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.Row : Swift.Sendable {
 }
 extension GRDB.Row {
   final public var columnNames: Swift.LazyMapCollection<GRDB.Row, Swift.String> {
@@ -4675,6 +4972,9 @@ extension GRDB.Row {
   @objc deinit
   @inlinable final public func _element(sqliteStatement: GRDB.SQLiteStatement) -> GRDB.Row { _row }
 }
+@available(*, unavailable)
+extension GRDB.RowCursor : Swift.Sendable {
+}
 extension GRDB.Row {
   public static func fetchCursor(_ statement: GRDB.Statement, arguments: GRDB.StatementArguments? = nil, adapter: (any GRDB.RowAdapter)? = nil) throws -> GRDB.RowCursor
   public static func fetchAll(_ statement: GRDB.Statement, arguments: GRDB.StatementArguments? = nil, adapter: (any GRDB.RowAdapter)? = nil) throws -> [GRDB.Row]
@@ -4739,7 +5039,7 @@ extension GRDB.Row : Swift.ExpressibleByDictionaryLiteral {
   public typealias Value = (any GRDB.DatabaseValueConvertible)?
 }
 extension GRDB.Row {
-  public struct Index {
+  public struct Index : Swift.Sendable {
   }
 }
 extension GRDB.Row.Index : Swift.Equatable {
@@ -4982,6 +5282,9 @@ extension GRDB.DatabaseCollation {
   public subscript(expression: some SQLSpecificExpressible & SQLSelectable & SQLOrderingTerm) -> GRDB.SQLExpression {
     get
   }
+  public subscript(expression: some SQLJSONExpressible & SQLSpecificExpressible & SQLSelectable & SQLOrderingTerm) -> GRDB.AnySQLJSONExpressible {
+    get
+  }
   public subscript(ordering: some SQLOrderingTerm) -> GRDB.SQLOrdering {
     get
   }
@@ -5027,7 +5330,7 @@ extension GRDB.MutablePersistableRecord {
 extension GRDB.MutablePersistableRecord {
   public func exists(_ db: GRDB.Database) throws -> Swift.Bool
 }
-public struct PersistenceConflictPolicy {
+public struct PersistenceConflictPolicy : Swift.Sendable {
   public let conflictResolutionForInsert: GRDB.Database.ConflictResolution
   public let conflictResolutionForUpdate: GRDB.Database.ConflictResolution
   public init(insert: GRDB.Database.ConflictResolution = .abort, update: GRDB.Database.ConflictResolution = .abort)
@@ -5111,6 +5414,9 @@ extension GRDB.DatabaseValueConvertible where Self : GRDB.StatementColumnConvert
             context: RowDecodingContext(statement: _statement, index: Int(columnIndex)))
     }
 }
+@available(*, unavailable)
+extension GRDB.FastDatabaseValueCursor : Swift.Sendable {
+}
 extension GRDB.DatabaseValueConvertible where Self : GRDB.StatementColumnConvertible {
   public static func fetchCursor(_ statement: GRDB.Statement, arguments: GRDB.StatementArguments? = nil, adapter: (any GRDB.RowAdapter)? = nil) throws -> GRDB.FastDatabaseValueCursor<Self>
   public static func fetchAll(_ statement: GRDB.Statement, arguments: GRDB.StatementArguments? = nil, adapter: (any GRDB.RowAdapter)? = nil) throws -> [Self]
@@ -5143,8 +5449,24 @@ extension GRDB.FetchRequest where Self.RowDecoder : GRDB.DatabaseValueConvertibl
 extension GRDB.FetchRequest where Self.RowDecoder : GRDB.DatabaseValueConvertible, Self.RowDecoder : GRDB.StatementColumnConvertible, Self.RowDecoder : Swift.Hashable {
   public func fetchSet(_ db: GRDB.Database) throws -> Swift.Set<Self.RowDecoder>
 }
+extension GRDB.Database {
+  final public func dumpSQL(_ sql: GRDB.SQL, format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  final public func dumpRequest(_ request: some FetchRequest, format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  final public func dumpTables(_ tables: [Swift.String], format: some DumpFormat = .debug(), tableHeader: GRDB.DumpTableHeaderOptions = .automatic, stableOrder: Swift.Bool = false, to stream: (any Swift.TextOutputStream)? = nil) throws
+  final public func dumpContent(format: some DumpFormat = .debug(), to stream: (any Swift.TextOutputStream)? = nil) throws
+  final public func dumpSchema(to stream: (any Swift.TextOutputStream)? = nil) throws
+}
+public enum DumpTableHeaderOptions : Swift.Sendable {
+  case automatic
+  case always
+  public static func == (a: GRDB.DumpTableHeaderOptions, b: GRDB.DumpTableHeaderOptions) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public struct SQLExpression {
-  public struct AssociativeBinaryOperator : Swift.Hashable {
+  public struct AssociativeBinaryOperator : Swift.Hashable, Swift.Sendable {
     public static let add: GRDB.SQLExpression.AssociativeBinaryOperator
     public static let multiply: GRDB.SQLExpression.AssociativeBinaryOperator
     public static let and: GRDB.SQLExpression.AssociativeBinaryOperator
@@ -5213,8 +5535,21 @@ extension GRDB.SQLSpecificExpressible {
   public func collating(_ collation: GRDB.Database.CollationName) -> GRDB.SQLExpression
   public func collating(_ collation: GRDB.DatabaseCollation) -> GRDB.SQLExpression
 }
+public struct DebugDumpFormat : Swift.Sendable {
+  public var header: Swift.Bool
+  public var separator: Swift.String
+  public var nullValue: Swift.String
+  public init(header: Swift.Bool = false, separator: Swift.String = "|", nullValue: Swift.String = "")
+}
+extension GRDB.DebugDumpFormat : GRDB.DumpFormat {
+  public mutating func writeRow(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+  public mutating func finalize(_ db: GRDB.Database, statement: GRDB.Statement, to stream: inout GRDB.DumpStream)
+}
+extension GRDB.DumpFormat where Self == GRDB.DebugDumpFormat {
+  public static func debug(header: Swift.Bool = false, separator: Swift.String = "|", nullValue: Swift.String = "") -> Self
+}
 public struct FTS5 {
-  public enum Diacritics {
+  public enum Diacritics : Swift.Sendable {
     case keep
     case removeLegacy
     @available(iOS 14, macOS 11.0, tvOS 14, watchOS 7, *)
@@ -5255,10 +5590,16 @@ extension GRDB.FTS5 : GRDB.VirtualTableModule {
   final public func synchronize(withTable tableName: Swift.String)
   @objc deinit
 }
+@available(*, unavailable)
+extension GRDB.FTS5TableDefinition : Swift.Sendable {
+}
 @_hasMissingDesignatedInitializers final public class FTS5ColumnDefinition {
   @discardableResult
   final public func notIndexed() -> Self
   @objc deinit
+}
+@available(*, unavailable)
+extension GRDB.FTS5ColumnDefinition : Swift.Sendable {
 }
 extension GRDB.Column {
   public static let rank: GRDB.Column
@@ -5270,7 +5611,6 @@ extension GRDB.DatabaseUUIDEncodingStrategy : Swift.Equatable {}
 extension GRDB.DatabaseUUIDEncodingStrategy : Swift.Hashable {}
 extension GRDB.Database.TransactionObservationExtent : Swift.Equatable {}
 extension GRDB.Database.TransactionObservationExtent : Swift.Hashable {}
-extension GRDB.DatabaseEventKind : Swift.Sendable {}
 extension GRDB.DatabaseEvent.Kind : Swift.Equatable {}
 extension GRDB.DatabaseEvent.Kind : Swift.Hashable {}
 extension GRDB.DatabaseEvent.Kind : Swift.RawRepresentable {}
@@ -5279,6 +5619,8 @@ extension GRDB.DatabasePreUpdateEvent.Kind : Swift.Hashable {}
 extension GRDB.DatabasePreUpdateEvent.Kind : Swift.RawRepresentable {}
 extension GRDB.FTS3.Diacritics : Swift.Equatable {}
 extension GRDB.FTS3.Diacritics : Swift.Hashable {}
+extension GRDB.Configuration.JournalModeConfiguration : Swift.Equatable {}
+extension GRDB.Configuration.JournalModeConfiguration : Swift.Hashable {}
 extension GRDB.DatabaseMigrator.ForeignKeyChecks : Swift.Equatable {}
 extension GRDB.DatabaseMigrator.ForeignKeyChecks : Swift.Hashable {}
 extension GRDB.ColumnDefinition.GeneratedColumnQualification : Swift.Equatable {}
@@ -5299,9 +5641,10 @@ extension GRDB.Database.ForeignKeyAction : Swift.Hashable {}
 extension GRDB.Database.ForeignKeyAction : Swift.RawRepresentable {}
 extension GRDB.Database.TransactionCompletion : Swift.Equatable {}
 extension GRDB.Database.TransactionCompletion : Swift.Hashable {}
-extension GRDB.Database.TransactionCompletion : Swift.Sendable {}
 extension GRDB.Database.TransactionKind : Swift.Equatable {}
 extension GRDB.Database.TransactionKind : Swift.Hashable {}
 extension GRDB.Database.TransactionKind : Swift.RawRepresentable {}
+extension GRDB.DumpTableHeaderOptions : Swift.Equatable {}
+extension GRDB.DumpTableHeaderOptions : Swift.Hashable {}
 extension GRDB.FTS5.Diacritics : Swift.Equatable {}
 extension GRDB.FTS5.Diacritics : Swift.Hashable {}

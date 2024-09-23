@@ -1,0 +1,2344 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "OSLog",
+        "printedName": "OSLog",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceIO",
+        "printedName": "EmbraceIO",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCrash",
+        "printedName": "EmbraceCrash",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceCommonInternal",
+        "printedName": "EmbraceCommonInternal",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceOTelInternal",
+        "printedName": "EmbraceOTelInternal",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EmbraceManager",
+        "printedName": "EmbraceManager",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EmbraceManager",
+                "printedName": "Embrace_Unity_iOS_Interface.EmbraceManager",
+                "usr": "c:@M@Embrace_Unity_iOS_Interface@objc(cs)EmbraceManager"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@Embrace_Unity_iOS_Interface@objc(cs)EmbraceManager(im)init",
+            "mangledName": "$s27Embrace_Unity_iOS_Interface0A7ManagerCACycfc",
+            "moduleName": "Embrace_Unity_iOS_Interface",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@Embrace_Unity_iOS_Interface@objc(cs)EmbraceManager",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface0A7ManagerC",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "OSLog",
+        "printedName": "OSLog",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "OpenTelemetryApi",
+        "printedName": "OpenTelemetryApi",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Import",
+        "name": "EmbraceOTelInternal",
+        "printedName": "EmbraceOTelInternal",
+        "declKind": "Import",
+        "moduleName": "Embrace_Unity_iOS_Interface"
+      },
+      {
+        "kind": "Function",
+        "name": "embrace_sdk_start_native",
+        "printedName": "embrace_sdk_start_native(appId:appGroupId:baseUrl:devBaseUrl:configBaseUrl:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)embrace_sdk_start_nativeWithAppId:appGroupId:baseUrl:devBaseUrl:configBaseUrl:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface24embrace_sdk_start_native5appId0i5GroupJ07baseUrl07devBaseM006configoM0SbSPys4Int8VGSg_A4KtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "embrace_sdk_is_started",
+        "printedName": "embrace_sdk_is_started()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)embrace_sdk_is_started",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface22embrace_sdk_is_startedSbyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "crash",
+        "printedName": "crash()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)crash",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface5crashyyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "set_unity_metadata",
+        "printedName": "set_unity_metadata(unityVersion:buildGuid:sdkVersion:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)set_unity_metadataWithUnityVersion:buildGuid:sdkVersion:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface18set_unity_metadata0F7Version9buildGuid03sdkH0ySPys4Int8VGSg_A2ItF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "end_session",
+        "printedName": "end_session()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)end_session",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface11end_sessionyyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "get_device_id",
+        "printedName": "get_device_id()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)get_device_id",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface13get_device_idSpys4Int8VGSgyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "get_session_id",
+        "printedName": "get_session_id()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)get_session_id",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface14get_session_idSpys4Int8VGSgyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "get_last_run_end_state",
+        "printedName": "get_last_run_end_state()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Int",
+            "printedName": "Swift.Int",
+            "usr": "s:Si"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)get_last_run_end_state",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface22get_last_run_end_stateSiyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "set_user_identifier",
+        "printedName": "set_user_identifier(userIdentifier:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)set_user_identifierWithUserIdentifier:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface19set_user_identifier0F10IdentifierySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_user_identifier",
+        "printedName": "clear_user_identifier()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_user_identifier",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface21clear_user_identifieryyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "add_breadcrumb",
+        "printedName": "add_breadcrumb(event:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)add_breadcrumbWithEvent:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface14add_breadcrumb5eventySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "set_username",
+        "printedName": "set_username(username:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)set_usernameWithUsername:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface12set_username0F0ySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_username",
+        "printedName": "clear_username()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_username",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface14clear_usernameyyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "set_user_email",
+        "printedName": "set_user_email(email:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)set_user_emailWithEmail:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface14set_user_email0G0ySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_user_email",
+        "printedName": "clear_user_email(email:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_user_emailWithEmail:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface16clear_user_email0G0ySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "add_user_persona",
+        "printedName": "add_user_persona(persona:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)add_user_personaWithPersona:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface16add_user_persona0G0ySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_user_persona",
+        "printedName": "clear_user_persona(persona:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_user_personaWithPersona:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface18clear_user_persona0G0ySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_all_user_personas",
+        "printedName": "clear_all_user_personas()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_all_user_personas",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface23clear_all_user_personasyyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "add_session_property",
+        "printedName": "add_session_property(key:value:permanent:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)add_session_propertyWithKey:value:permanent:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface20add_session_property3key5value9permanentSbSPys4Int8VGSg_AISbtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "remove_session_property",
+        "printedName": "remove_session_property(key:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)remove_session_propertyWithKey:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface23remove_session_property3keyySPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_message_with_severity_and_properties",
+        "printedName": "log_message_with_severity_and_properties(message:severity:propsJson:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_message_with_severity_and_propertiesWithMessage:severity:propsJson:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface40log_message_with_severity_and_properties0F00H09propsJsonySPys4Int8VGSg_A2ItF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "set_user_as_payer",
+        "printedName": "set_user_as_payer()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)set_user_as_payer",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface17set_user_as_payeryyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "clear_user_as_payer",
+        "printedName": "clear_user_as_payer()",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)clear_user_as_payer",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface19clear_user_as_payeryyF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "start_view",
+        "printedName": "start_view(viewName:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)start_viewWithViewName:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface10start_view0F4NameSpys4Int8VGSgSPyAEGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "end_view",
+        "printedName": "end_view(viewId:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)end_viewWithViewId:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface8end_view0F2IdSbSPys4Int8VGSg_tF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_network_request",
+        "printedName": "log_network_request(url:httpMethod:startInMillis:endInMillis:bytesSent:bytesReceived:statusCode:error:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_network_requestWithUrl:httpMethod:startInMillis:endInMillis:bytesSent:bytesReceived:statusCode:error:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface19log_network_request3url10httpMethod13startInMillis03endlM09bytesSent0O8Received10statusCode5errorySPys4Int8VGSg_ANS5dANtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_network_client_error",
+        "printedName": "log_network_client_error(url:httpMethod:startInMillis:endInMillis:errorType:errorMessage:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_network_client_errorWithUrl:httpMethod:startInMillis:endInMillis:errorType:errorMessage:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface24log_network_client_error3url10httpMethod13startInMillis03endmN00H4Type0H7MessageySPys4Int8VGSg_ALS2dA2LtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "start_span",
+        "printedName": "start_span(name:parentSpanId:startTimeMs:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafeMutablePointer",
+                "printedName": "Swift.UnsafeMutablePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:Sp"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)start_spanWithName:parentSpanId:startTimeMs:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface10start_span4name12parentSpanId0E6TimeMsSpys4Int8VGSgSPyAGGSg_AKSdtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "stop_span",
+        "printedName": "stop_span(spanId:errorCodeString:endTimeMs:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)stop_spanWithSpanId:errorCodeString:endTimeMs:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface9stop_span0F2Id15errorCodeString9endTimeMsSbSPys4Int8VGSg_AISdtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "add_span_event_to_span",
+        "printedName": "add_span_event_to_span(spanId:name:time:attributesJson:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)add_span_event_to_spanWithSpanId:name:time:attributesJson:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface018add_span_event_to_F00F2Id4name4time14attributesJsonSbSPys4Int8VGSg_AJSdAJtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "add_span_attribute_to_span",
+        "printedName": "add_span_attribute_to_span(spanId:key:value:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)add_span_attribute_to_spanWithSpanId:key:value:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface022add_span_attribute_to_F00F2Id3key5valueSbSPys4Int8VGSg_A2ItF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "record_completed_span",
+        "printedName": "record_completed_span(name:startTimeMs:endTimeMs:errorCodeString:parentSpanId:attributesJson:eventsJson:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Bool",
+            "printedName": "Swift.Bool",
+            "usr": "s:Sb"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Double",
+            "printedName": "Swift.Double",
+            "usr": "s:Sd"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)record_completed_spanWithName:startTimeMs:endTimeMs:errorCodeString:parentSpanId:attributesJson:eventsJson:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface21record_completed_span4name11startTimeMs03endjK015errorCodeString12parentSpanId14attributesJson06eventsT0SbSPys4Int8VGSg_S2dA4MtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_handled_exception",
+        "printedName": "log_handled_exception(name:message:stacktrace:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_handled_exceptionWithName:message:stacktrace:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface21log_handled_exception4name7message10stacktraceySPys4Int8VGSg_A2ItF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_unhandled_exception",
+        "printedName": "log_unhandled_exception(name:message:stacktrace:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_unhandled_exceptionWithName:message:stacktrace:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface23log_unhandled_exception4name7message10stacktraceySPys4Int8VGSg_A2ItF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      },
+      {
+        "kind": "Function",
+        "name": "log_push_notification",
+        "printedName": "log_push_notification(title:body:subtitle:badge:category:)",
+        "children": [
+          {
+            "kind": "TypeNominal",
+            "name": "Void",
+            "printedName": "()"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Int",
+            "printedName": "Swift.Int",
+            "usr": "s:Si"
+          },
+          {
+            "kind": "TypeNominal",
+            "name": "Optional",
+            "printedName": "Swift.UnsafePointer<Swift.Int8>?",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UnsafePointer",
+                "printedName": "Swift.UnsafePointer<Swift.Int8>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int8",
+                    "printedName": "Swift.Int8",
+                    "usr": "s:s4Int8V"
+                  }
+                ],
+                "usr": "s:SP"
+              }
+            ],
+            "usr": "s:Sq"
+          }
+        ],
+        "declKind": "Func",
+        "usr": "c:(cm)log_push_notificationWithTitle:body:subtitle:badge:category:",
+        "mangledName": "$s27Embrace_Unity_iOS_Interface21log_push_notification5title4body8subtitle5badge8categoryySPys4Int8VGSg_A2KSiAKtF",
+        "moduleName": "Embrace_Unity_iOS_Interface",
+        "declAttributes": [
+          "AccessControl",
+          "CDecl"
+        ],
+        "funcSelfKind": "NonMutating"
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/EmbraceManager.swift",
+      "kind": "StringLiteral",
+      "offset": 207,
+      "length": 9,
+      "value": "\"Embrace\""
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/EmbraceManager.swift",
+      "kind": "StringLiteral",
+      "offset": 228,
+      "length": 30,
+      "value": "\"UnityiOSNativeEmbraceManager\""
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/SpanRepository.swift",
+      "kind": "IntegerLiteral",
+      "offset": 233,
+      "length": 5,
+      "value": "10000"
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/SpanRepository.swift",
+      "kind": "StringLiteral",
+      "offset": 319,
+      "length": 30,
+      "value": "\"io.embrace.Unity.activeSpans\""
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/SpanRepository.swift",
+      "kind": "StringLiteral",
+      "offset": 485,
+      "length": 33,
+      "value": "\"io.embrace.Unity.completedSpans\""
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/SpanRepository.swift",
+      "kind": "StringLiteral",
+      "offset": 734,
+      "length": 9,
+      "value": "\"Embrace\""
+    },
+    {
+      "filePath": "\/Users\/alyssasyharath\/embrace_workspace\/embrace-unity-sdk-internal\/public_sdk\/Embrace Unity iOS Interface\/SpanRepository.swift",
+      "kind": "StringLiteral",
+      "offset": 755,
+      "length": 16,
+      "value": "\"SpanRepository\""
+    }
+  ]
+}

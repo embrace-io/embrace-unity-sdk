@@ -46,7 +46,23 @@ public class EmbraceConfig {
   public var internalLogsErrorLimit: Swift.Int {
     get
   }
+  public var networkPayloadCaptureRules: [EmbraceConfigInternal.NetworkPayloadCaptureRule] {
+    get
+  }
   @discardableResult
   public func updateIfNeeded() -> Swift.Bool
   public func update()
+}
+public struct NetworkPayloadCaptureRule : Swift.Decodable, Swift.Equatable {
+  public let id: Swift.String
+  public let urlRegex: Swift.String
+  public let statusCodes: [Swift.Int]?
+  public let methods: [Swift.String]?
+  public let expiration: Swift.Double
+  public let publicKey: Swift.String
+  public var expirationDate: Foundation.Date {
+    get
+  }
+  public static func == (a: EmbraceConfigInternal.NetworkPayloadCaptureRule, b: EmbraceConfigInternal.NetworkPayloadCaptureRule) -> Swift.Bool
+  public init(from decoder: any Swift.Decoder) throws
 }

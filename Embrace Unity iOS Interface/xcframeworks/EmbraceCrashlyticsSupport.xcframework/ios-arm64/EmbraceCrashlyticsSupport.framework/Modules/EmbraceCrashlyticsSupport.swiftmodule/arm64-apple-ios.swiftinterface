@@ -21,3 +21,6 @@ import _SwiftConcurrencyShims
   @objc final public func fetchUnsentCrashReports(completion: @escaping ([EmbraceCommonInternal.CrashReport]) -> Swift.Void)
   @objc final public func deleteCrashReport(id: Swift.Int)
 }
+extension EmbraceCrashlyticsSupport.CrashlyticsReporter : EmbraceCommonInternal.ExtendableCrashReporter {
+  final public func appendCrashInfo(key: Swift.String, value: Swift.String)
+}

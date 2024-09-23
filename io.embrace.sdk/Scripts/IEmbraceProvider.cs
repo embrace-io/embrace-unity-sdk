@@ -20,8 +20,7 @@ namespace EmbraceSDK.Internal
         /// </summary>
         void InitializeSDK();
         // Public API
-        void StartSDK(bool enableIntegrationTesting);
-        void EndAppStartup(Dictionary<string, string> properties);
+        void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false);
         LastRunEndState GetLastRunEndState();
         void SetUserIdentifier(string identifier);
         void ClearUserIdentifier();
@@ -31,15 +30,12 @@ namespace EmbraceSDK.Internal
         void ClearUserEmail();
         void SetUserAsPayer();
         void ClearUserAsPayer();
-        void SetUserPersona(string persona);
         void AddUserPersona(string persona);
         void ClearUserPersona(string persona);
         void ClearAllUserPersonas();
         bool AddSessionProperty(string key, string value, bool permanent);
         void RemoveSessionProperty(string key);
         Dictionary<string, string> GetSessionProperties();
-        void StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties);
-        void EndMoment(string name, string identifier, Dictionary<string, string> properties);
         void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties);
         void LogBreadcrumb(string message);
         void AddBreadcrumb(string message);
@@ -71,7 +67,18 @@ namespace EmbraceSDK.Internal
         void setShakeListener(UnityShakeListener listener);
         #endif
         #endif
+        
+        [Obsolete("SetUserPersona is deprecated and will be removed from a future release. Use AddPersona instead", false)]
+        void SetUserPersona(string persona);
+        
+        [Obsolete("Moments are deprecated. This function will be removed in a future release. Use Spans instead.", false)]
+        void StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties);
+        [Obsolete("Moments are deprecated. This function will be removed in a future release. Use Spans instead.", false)]
+        void EndMoment(string name, string identifier, Dictionary<string, string> properties);
 
+        [Obsolete("EndAppStartup is deprecated and will be removed in a future release.", false)]
+        void EndAppStartup(Dictionary<string, string> properties);
+        
         [Obsolete("InitNativeSdkConnection is deprecated and will be removed from a future release.", false)]
         void InitNativeSdkConnection();
 

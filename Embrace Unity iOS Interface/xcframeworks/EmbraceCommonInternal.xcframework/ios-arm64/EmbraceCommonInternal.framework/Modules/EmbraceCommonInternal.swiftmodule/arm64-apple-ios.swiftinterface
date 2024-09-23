@@ -24,6 +24,9 @@ import _SwiftConcurrencyShims
   @objc func deleteCrashReport(id: Swift.Int)
   @objc var onNewReport: ((EmbraceCommonInternal.CrashReport) -> Swift.Void)? { get set }
 }
+public protocol ExtendableCrashReporter : EmbraceCommonInternal.CrashReporter {
+  func appendCrashInfo(key: Swift.String, value: Swift.String)
+}
 @objc public class CrashReport : ObjectiveC.NSObject {
   public var id: Foundation.UUID {
     get
@@ -47,11 +50,11 @@ import _SwiftConcurrencyShims
   @objc deinit
 }
 @objc final public class CrashReporterContext : ObjectiveC.NSObject {
-  final public let appId: Swift.String
+  final public let appId: Swift.String?
   final public let sdkVersion: Swift.String
   final public let filePathProvider: any EmbraceCommonInternal.FilePathProvider
   final public let notificationCenter: Foundation.NotificationCenter
-  public init(appId: Swift.String, sdkVersion: Swift.String, filePathProvider: any EmbraceCommonInternal.FilePathProvider, notificationCenter: Foundation.NotificationCenter)
+  public init(appId: Swift.String?, sdkVersion: Swift.String, filePathProvider: any EmbraceCommonInternal.FilePathProvider, notificationCenter: Foundation.NotificationCenter)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class EmbraceMeta {
@@ -167,6 +170,15 @@ public enum SessionState : Swift.String {
 }
 extension EmbraceCommonInternal.SessionState {
   public init?(appState: UIKit.UIApplication.State)
+}
+public enum StackTraceBehavior : Swift.Int {
+  case notIncluded
+  case `default`
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
 }
 public enum EmbraceSwizzableError : Swift.Error, Swift.Equatable {
   case methodNotFound(selectorName: Swift.String, className: Swift.String)
@@ -362,6 +374,9 @@ extension EmbraceCommonInternal.LogSeverity : Swift.RawRepresentable {}
 extension EmbraceCommonInternal.SessionState : Swift.Equatable {}
 extension EmbraceCommonInternal.SessionState : Swift.Hashable {}
 extension EmbraceCommonInternal.SessionState : Swift.RawRepresentable {}
+extension EmbraceCommonInternal.StackTraceBehavior : Swift.Equatable {}
+extension EmbraceCommonInternal.StackTraceBehavior : Swift.Hashable {}
+extension EmbraceCommonInternal.StackTraceBehavior : Swift.RawRepresentable {}
 extension EmbraceCommonInternal.LogLevel : Swift.Equatable {}
 extension EmbraceCommonInternal.LogLevel : Swift.Hashable {}
 extension EmbraceCommonInternal.LogLevel : Swift.RawRepresentable {}

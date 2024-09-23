@@ -741,6 +741,45 @@
           {
             "kind": "Constructor",
             "name": "init",
+            "printedName": "init(export:logLevel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Options",
+                "printedName": "EmbraceCore.Embrace.Options",
+                "usr": "s:11EmbraceCore0A0C7OptionsC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OpenTelemetryExport",
+                "printedName": "EmbraceCore.OpenTelemetryExport",
+                "usr": "c:@M@EmbraceCore@objc(cs)EMBOpenTelemetryExport"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "LogLevel",
+                "printedName": "EmbraceCommonInternal.LogLevel",
+                "hasDefaultArg": true,
+                "usr": "c:@M@EmbraceCommonInternal@E@LogLevel"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11EmbraceCore0A0C7OptionsC0A2IOE6export8logLevelAeA19OpenTelemetryExportC_0A14CommonInternal03LogG0Otcfc",
+            "mangledName": "$s11EmbraceCore0A0C7OptionsC0A2IOE6export8logLevelAeA19OpenTelemetryExportC_0A14CommonInternal03LogG0Otcfc",
+            "moduleName": "EmbraceIO",
+            "objc_name": "initWithExport:logLevel:",
+            "declAttributes": [
+              "Dynamic",
+              "Convenience",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
             "printedName": "init(stringLiteral:)",
             "children": [
               {

@@ -250,7 +250,7 @@ namespace EmbraceSDK.Internal
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
         }
 
-        void IEmbraceProvider.StartSDK(bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args, bool enableIntegrationTesting)
         {
             if (!ReadyForCalls()) { return; }
             EmbraceSharedInstance?.Call(_StartMethod, applicationInstance, enableIntegrationTesting, unityAppFramework);

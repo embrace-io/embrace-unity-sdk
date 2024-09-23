@@ -553,6 +553,40 @@
               "Override"
             ],
             "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "appendCrashInfo",
+            "printedName": "appendCrashInfo(key:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12EmbraceCrash0aB8ReporterC06appendB4Info3key5valueySS_SStF",
+            "mangledName": "$s12EmbraceCrash0aB8ReporterC06appendB4Info3key5valueySS_SStF",
+            "moduleName": "EmbraceCrash",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
           }
         ],
         "declKind": "Class",
@@ -627,6 +661,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ExtendableCrashReporter",
+            "printedName": "ExtendableCrashReporter",
+            "usr": "s:21EmbraceCommonInternal23ExtendableCrashReporterP",
+            "mangledName": "$s21EmbraceCommonInternal23ExtendableCrashReporterP"
           }
         ]
       }
@@ -664,106 +705,127 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "Dictionary",
+      "offset": 1130,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "Dictionary",
+      "offset": 1478,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 1917,
+      "offset": 2187,
       "length": 41,
       "value": "\"EmbraceCrashReporter already installed!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 2151,
+      "offset": 2391,
       "length": 24,
       "value": "\"embrace_crash_reporter\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 2466,
+      "length": 9,
+      "value": "\"default\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "Array",
-      "offset": 2619,
+      "offset": 2917,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "Array",
-      "offset": 2783,
+      "offset": 3081,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "Array",
-      "offset": 2905,
+      "offset": 3203,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 3603,
+      "offset": 3901,
       "length": 49,
       "value": "\"Error serializing raw crash report \""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 3650,
+      "offset": 3948,
       "length": 1,
       "value": "\"!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 3744,
+      "offset": 4042,
       "length": 49,
       "value": "\"Error serializing raw crash report \""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
-      "kind": "StringLiteral",
-      "offset": 3791,
-      "length": 1,
-      "value": "\"!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
       "offset": 4089,
+      "length": 1,
+      "value": "\"!\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
+      "kind": "StringLiteral",
+      "offset": 4387,
       "length": 6,
       "value": "\"user\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 4355,
+      "offset": 4653,
       "length": 8,
       "value": "\"report\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 4438,
+      "offset": 4736,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 5400,
+      "offset": 5698,
       "length": 35,
       "value": "\"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 5482,
+      "offset": 5780,
       "length": 13,
       "value": "\"en_US_POSIX\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCrash\/EmbraceCrashReporter.swift",
       "kind": "IntegerLiteral",
-      "offset": 5598,
+      "offset": 5896,
       "length": 1,
       "value": "0"
     }

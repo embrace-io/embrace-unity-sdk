@@ -6,7 +6,11 @@
 	<dict>
 		<key>Resources/Info.plist</key>
 		<data>
-		hu5E3xA4qEMzmlI0IhKOuCGhZNQ=
+		zO09shrFndY2iJCE1uKVMkQC2RY=
+		</data>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<data>
+		i2zNyphI3cwDK8HqlLaPer5jSNE=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -36,70 +40,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5zbry00rZKWlRI5BoMkUT6KgsKaOWS4Jp+QqkuWyp4I=
+			THWnMyCt8zColZ/3rT4EEhOue83AhXhoS/Uw+uzxiwM=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/arm64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			vNJfGUWlyZfobvN69UhhAkdsfEWQ3lGDpZ2RoquHWOM=
+			1k+dhKjHf8t/wmrJVvmE0bMaxROK26YSvvdJJ1JF/+M=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/arm64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BgHIQ0M6rMR34XNJoSgnelpKAfKhtoHpN240gGCROVc=
+			du4RgkDZBUeuK886az+KlLKBwJFLf9Wklf+2kqZzD9o=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/arm64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			vNJfGUWlyZfobvN69UhhAkdsfEWQ3lGDpZ2RoquHWOM=
+			1k+dhKjHf8t/wmrJVvmE0bMaxROK26YSvvdJJ1JF/+M=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6xLylFjPkWhv7Nd8hmVQNk21Sawc1TVBO54PN/rPsIk=
+			8+D1ANgwbvuBME3VM8rk21TOz8TV3zs0wO5ARYEDhvI=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5zbry00rZKWlRI5BoMkUT6KgsKaOWS4Jp+QqkuWyp4I=
+			THWnMyCt8zColZ/3rT4EEhOue83AhXhoS/Uw+uzxiwM=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O8clr6ru/mW0ZM9CQ8Ctpyuw2lobd9tE7EgTjoPw/CU=
+			PqLPrRBzT5hVzV3VMYgZPuAohQfv6DtWIJdQYv2XUlk=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			alkx1iiqRy0h0QHYEg2Nr6A8TSu6QkW3wBpP5Mhtw9w=
+			sFCb5diTp3EHXGRK9u8bAEBoXB/o+fiZJs65YJJQK64=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O8clr6ru/mW0ZM9CQ8Ctpyuw2lobd9tE7EgTjoPw/CU=
+			PqLPrRBzT5hVzV3VMYgZPuAohQfv6DtWIJdQYv2XUlk=
 			</data>
 		</dict>
 		<key>Modules/GRDB.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rU35AGtArrypIT0VWGWXa/Rbiua/S/Wqe3Dw/D4HXAs=
+			pHlmwRZdEWVoR3m+Ys+w2Sd+Xxlvj3xP8JXRm8LWoyw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -120,7 +124,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ScxaPq3DLPk6XfgY+Al592eMdlx5BkYxvZYpJqpzfzo=
+			kVlcNx6t6m4iGVW6z/ul1ugmGdNGT5cgkC1WJ4NJPF0=
+			</data>
+		</dict>
+		<key>Resources/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			F3hNpi5R90xYWd8y/kAuAeJc3295ekrdBuKjzhXJEfQ=
 			</data>
 		</dict>
 	</dict>

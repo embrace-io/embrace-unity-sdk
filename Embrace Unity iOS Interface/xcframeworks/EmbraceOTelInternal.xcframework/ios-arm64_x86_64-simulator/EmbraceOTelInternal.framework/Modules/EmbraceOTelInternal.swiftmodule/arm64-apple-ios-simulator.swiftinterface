@@ -27,8 +27,8 @@ public protocol EmbraceOpenTelemetry : AnyObject {
   func recordCompletedSpan(name: Swift.String, type: EmbraceCommonInternal.SpanType, parent: (any OpenTelemetryApi.Span)?, startTime: Foundation.Date, endTime: Foundation.Date, attributes: [Swift.String : Swift.String], events: [EmbraceOTelInternal.RecordingSpanEvent], errorCode: EmbraceOTelInternal.ErrorCode?)
   func add(events: [any EmbraceOTelInternal.SpanEvent])
   func add(event: any EmbraceOTelInternal.SpanEvent)
-  func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType, attributes: [Swift.String : Swift.String])
-  func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType, timestamp: Foundation.Date, attributes: [Swift.String : Swift.String])
+  func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType, attributes: [Swift.String : Swift.String], stackTraceBehavior: EmbraceCommonInternal.StackTraceBehavior)
+  func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType, timestamp: Foundation.Date, attributes: [Swift.String : Swift.String], stackTraceBehavior: EmbraceCommonInternal.StackTraceBehavior)
 }
 public protocol EmbraceLoggerConfig : Swift.Equatable {
   var batchLifetimeInSeconds: Swift.Int { get }
@@ -71,26 +71,23 @@ public protocol EmbraceResource {
   var value: EmbraceOTelInternal.ResourceValue { get }
 }
 public protocol EmbraceResourceProvider {
-  func getResources() -> [any EmbraceOTelInternal.EmbraceResource]
+  func getResource() -> EmbraceOTelInternal.Resource
 }
-extension EmbraceOTelInternal.EmbraceResourceProvider {
-  public func getResource() -> EmbraceOTelInternal.Resource
-}
-public enum ErrorCode {
+public enum ErrorCode : Swift.String {
   case failure
   case userAbandon
   case unknown
-  public static func == (a: EmbraceOTelInternal.ErrorCode, b: EmbraceOTelInternal.ErrorCode) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
     get
   }
 }
 extension OpenTelemetryApi.Span {
   public func markAsKeySpan()
   public func markAsPrivate()
-  public func end(errorCode: EmbraceOTelInternal.SpanErrorCode? = nil, time: Foundation.Date = Date())
-  public func end(error: (any Swift.Error)?, errorCode: EmbraceOTelInternal.SpanErrorCode? = nil, time: Foundation.Date = Date())
+  public func end(errorCode: EmbraceOTelInternal.ErrorCode? = nil, time: Foundation.Date = Date())
+  public func end(error: (any Swift.Error)?, errorCode: EmbraceOTelInternal.ErrorCode? = nil, time: Foundation.Date = Date())
 }
 extension OpenTelemetryApi.Span {
   public func add(events: [any EmbraceOTelInternal.SpanEvent])
@@ -101,23 +98,13 @@ extension OpenTelemetrySdk.SpanData {
   }
   public func toJSON() throws -> Foundation.Data
 }
-public enum SpanErrorCode : Swift.String {
-  case failure
-  case userAbandon
-  case unknown
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
 extension OpenTelemetryApi.SpanBuilder {
   @discardableResult
   public func markAsPrivate() -> Self
   @discardableResult
   public func markAsKeySpan() -> Self
   @discardableResult
-  public func error(errorCode: EmbraceOTelInternal.SpanErrorCode) -> Self
+  public func error(errorCode: EmbraceOTelInternal.ErrorCode) -> Self
 }
 public typealias Tracer = OpenTelemetryApi.Tracer
 public typealias TraceId = OpenTelemetryApi.TraceId
@@ -126,12 +113,14 @@ public typealias SpanContext = OpenTelemetryApi.SpanContext
 public typealias TraceFlags = OpenTelemetryApi.TraceFlags
 public typealias TraceState = OpenTelemetryApi.TraceState
 public typealias Span = OpenTelemetryApi.Span
+public typealias Status = OpenTelemetryApi.Status
 public typealias SpanBuilder = OpenTelemetryApi.SpanBuilder
 public typealias AttributeValue = OpenTelemetryApi.AttributeValue
 public typealias SpanData = OpenTelemetrySdk.SpanData
 public typealias ReadableSpan = OpenTelemetrySdk.ReadableSpan
 public typealias SpanExporterResultCode = OpenTelemetrySdk.SpanExporterResultCode
 public typealias SpanProcessor = OpenTelemetrySdk.SpanProcessor
+public typealias ResourceAttributes = OpenTelemetrySdk.ResourceAttributes
 public protocol EmbraceSpanExporter : OpenTelemetrySdk.SpanExporter {
 }
 public typealias BatchSpanProcessor = OpenTelemetrySdk.BatchSpanProcessor
@@ -180,6 +169,4 @@ extension OpenTelemetrySdk.SpanData.Link : EmbraceOTelInternal.SpanLink {
 }
 extension EmbraceOTelInternal.ErrorCode : Swift.Equatable {}
 extension EmbraceOTelInternal.ErrorCode : Swift.Hashable {}
-extension EmbraceOTelInternal.SpanErrorCode : Swift.Equatable {}
-extension EmbraceOTelInternal.SpanErrorCode : Swift.Hashable {}
-extension EmbraceOTelInternal.SpanErrorCode : Swift.RawRepresentable {}
+extension EmbraceOTelInternal.ErrorCode : Swift.RawRepresentable {}

@@ -588,6 +588,62 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "networkPayloadCaptureRules",
+            "printedName": "networkPayloadCaptureRules",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[EmbraceConfigInternal.NetworkPayloadCaptureRule]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NetworkPayloadCaptureRule",
+                    "printedName": "EmbraceConfigInternal.NetworkPayloadCaptureRule",
+                    "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal0aB0C26networkPayloadCaptureRulesSayAA07NetworkeF4RuleVGvp",
+            "mangledName": "$s21EmbraceConfigInternal0aB0C26networkPayloadCaptureRulesSayAA07NetworkeF4RuleVGvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[EmbraceConfigInternal.NetworkPayloadCaptureRule]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NetworkPayloadCaptureRule",
+                        "printedName": "EmbraceConfigInternal.NetworkPayloadCaptureRule",
+                        "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal0aB0C26networkPayloadCaptureRulesSayAA07NetworkeF4RuleVGvg",
+                "mangledName": "$s21EmbraceConfigInternal0aB0C26networkPayloadCaptureRulesSayAA07NetworkeF4RuleVGvg",
+                "moduleName": "EmbraceConfigInternal",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "updateIfNeeded",
             "printedName": "updateIfNeeded()",
@@ -732,6 +788,472 @@
         "moduleName": "EmbraceConfigInternal",
         "declAttributes": [
           "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceConfigInternal",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "NetworkPayloadCaptureRule",
+        "printedName": "NetworkPayloadCaptureRule",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2idSSvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2idSSvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2idSSvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2idSSvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "urlRegex",
+            "printedName": "urlRegex",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV8urlRegexSSvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV8urlRegexSSvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV8urlRegexSSvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV8urlRegexSSvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "statusCodes",
+            "printedName": "statusCodes",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.Int]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.Int]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV11statusCodesSaySiGSgvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV11statusCodesSaySiGSgvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.Int]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.Int]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV11statusCodesSaySiGSgvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV11statusCodesSaySiGSgvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "methods",
+            "printedName": "methods",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV7methodsSaySSGSgvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV7methodsSaySSGSgvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.String]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.String]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV7methodsSaySSGSgvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV7methodsSaySSGSgvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "expiration",
+            "printedName": "expiration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV10expirationSdvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV10expirationSdvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV10expirationSdvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV10expirationSdvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "publicKey",
+            "printedName": "publicKey",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV9publicKeySSvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV9publicKeySSvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV9publicKeySSvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV9publicKeySSvg",
+                "moduleName": "EmbraceConfigInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "expirationDate",
+            "printedName": "expirationDate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Date",
+                "printedName": "Foundation.Date",
+                "usr": "s:10Foundation4DateV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV14expirationDate10Foundation0I0Vvp",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV14expirationDate10Foundation0I0Vvp",
+            "moduleName": "EmbraceConfigInternal",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Date",
+                    "printedName": "Foundation.Date",
+                    "usr": "s:10Foundation4DateV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV14expirationDate10Foundation0I0Vvg",
+                "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV14expirationDate10Foundation0I0Vvg",
+                "moduleName": "EmbraceConfigInternal",
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "NetworkPayloadCaptureRule",
+                "printedName": "EmbraceConfigInternal.NetworkPayloadCaptureRule",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "EmbraceConfigInternal",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NetworkPayloadCaptureRule",
+                "printedName": "EmbraceConfigInternal.NetworkPayloadCaptureRule",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "NetworkPayloadCaptureRule",
+                "printedName": "EmbraceConfigInternal.NetworkPayloadCaptureRule",
+                "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2eeoiySbAC_ACtFZ",
+            "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV2eeoiySbAC_ACtFZ",
+            "moduleName": "EmbraceConfigInternal",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:21EmbraceConfigInternal25NetworkPayloadCaptureRuleV",
+        "mangledName": "$s21EmbraceConfigInternal25NetworkPayloadCaptureRuleV",
+        "moduleName": "EmbraceConfigInternal",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          }
         ]
       },
       {
@@ -967,51 +1489,107 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2924,
+      "offset": 3054,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2973,
+      "offset": 3103,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 3038,
+      "offset": 3168,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 3100,
+      "offset": 3230,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 3557,
+      "offset": 3688,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3883,
+      "offset": 4014,
       "length": 2,
       "value": "16"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/EmbraceConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 3951,
+      "offset": 4082,
       "length": 3,
       "value": "100"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 531,
+      "length": 5,
+      "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 564,
+      "length": 13,
+      "value": "\"status_code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 601,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 659,
+      "length": 12,
+      "value": "\"public_key\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 531,
+      "length": 5,
+      "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 564,
+      "length": 13,
+      "value": "\"status_code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 601,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/NetworkPayloadCaptureRule.swift",
+      "kind": "StringLiteral",
+      "offset": 659,
+      "length": 12,
+      "value": "\"public_key\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigFetcher.swift",
@@ -1184,114 +1762,135 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 554,
+      "offset": 619,
       "length": 11,
       "value": "\"threshold\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 722,
+      "offset": 787,
       "length": 25,
       "value": "\"network_span_forwarding\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 843,
+      "offset": 908,
       "length": 13,
       "value": "\"pct_enabled\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 843,
+      "offset": 908,
       "length": 13,
       "value": "\"pct_enabled\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 901,
+      "offset": 966,
       "length": 21,
       "value": "\"internal_log_limits\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 554,
+      "offset": 1214,
+      "length": 25,
+      "value": "\"network_payload_capture\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 619,
       "length": 11,
       "value": "\"threshold\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 722,
+      "offset": 787,
       "length": 25,
       "value": "\"network_span_forwarding\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "StringLiteral",
-      "offset": 901,
+      "offset": 966,
       "length": 21,
       "value": "\"internal_log_limits\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "kind": "StringLiteral",
+      "offset": 1214,
+      "length": 25,
+      "value": "\"network_payload_capture\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
-      "offset": 4774,
+      "offset": 5155,
       "length": 5,
       "value": "100.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
-      "offset": 4817,
+      "offset": 5198,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "FloatLiteral",
-      "offset": 4863,
+      "offset": 5244,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
-      "offset": 4901,
+      "offset": 5282,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
-      "offset": 4936,
+      "offset": 5317,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
-      "offset": 4970,
+      "offset": 5351,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
-      "offset": 5007,
+      "offset": 5388,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
       "kind": "IntegerLiteral",
-      "offset": 5042,
+      "offset": 5423,
       "length": 1,
       "value": "3"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceConfigInternal\/RemoteConfigPayload.swift",
+      "kind": "Array",
+      "offset": 5463,
+      "length": 2,
+      "value": "[]"
     }
   ]
 }

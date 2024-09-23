@@ -13,6 +13,7 @@ public class EmbraceManager: NSObject {
             var embraceOptions: Embrace.Options {
                 var _crashReporter: CrashReporter? = EmbraceCrashReporter()
                 let _servicesBuilder = CaptureServiceBuilder().addDefaults()
+                _servicesBuilder.add(.pushNotification()) // Add the PushNotificationCaptureService by default for Unity
                 var _endpoints: Embrace.Endpoints? = nil;
                 
                 if let endpoints {
@@ -48,6 +49,14 @@ public class EmbraceManager: NSObject {
             return embraceStarted
         }
         return false
+    }
+    
+    static func crash() {
+        Embrace.client?.crash()
+    }
+    
+    static func endCurrentSession() {
+        Embrace.client?.endCurrentSession()
     }
     
     static func getDeviceId() -> String? {
@@ -126,6 +135,18 @@ public class EmbraceManager: NSObject {
         }
     }
     
+    static func addResource(key: String, value: String, lifespan: MetadataLifespan) -> Bool {
+        do {
+            try Embrace.client?.metadata.addResource(
+                key: key, value: value, lifespan: lifespan)
+            return true
+        } catch let error {
+            
+        }
+        
+        return false
+    }
+    
     static func addSessionProperty(key: String, value: String, permanent: Bool) -> Bool {
         do {
             let lifespan: MetadataLifespan = permanent ? .permanent : .session
@@ -187,8 +208,8 @@ public class EmbraceManager: NSObject {
         return spanRepository.spanStarted(span: span)
     }
     
-    static func endView(spanId: String) {
-        stopSpan(spanId: spanId, errorCodeString: "", endTimeMs: 0.0)
+    static func endView(spanId: String) -> Bool {
+        return stopSpan(spanId: spanId, errorCodeString: "", endTimeMs: 0.0)
     }
     
     static func logNetworkRequest(url: String,
@@ -197,7 +218,8 @@ public class EmbraceManager: NSObject {
                                   endInMillis: Double,
                                   bytesSent: Double,
                                   bytesReceived: Double,
-                                  statusCode: Double) {
+                                  statusCode: Double,
+                                  error: String?) {
         var attributes = [
             "http.request.method": httpMethod.uppercased(),
             "url.full": url
@@ -213,6 +235,10 @@ public class EmbraceManager: NSObject {
 
         if bytesReceived >= 0 {
             attributes["http.response.body.size"] = String(Int(bytesReceived))
+        }
+        
+        if let error {
+            attributes["error.message"] = error
         }
         
         Embrace.client?.recordCompletedSpan(name: createNetworkSpanName(url: url, httpMethod: httpMethod),
@@ -231,8 +257,7 @@ public class EmbraceManager: NSObject {
                                       endInMillis: Double,
                                       errorType: String,
                                       errorMessage: String) {
-        // TODO: TBD: Should we guard or fail silently? If think that if we guard, we should guard on every call to Embrace.client?
-        // Because we could do as below:
+        // In case it matters, if we stylistically prefer to guard rather than letting optional chaning handling things we could do as below:
         /*
          guard let Embrace.client else {
             // Possibly log the issue
@@ -251,7 +276,7 @@ public class EmbraceManager: NSObject {
                                                 "error.type": errorType
                                             ],
                                             events: [],
-                                            errorCode: nil)
+                                            errorCode: .failure)
     }
     
     static func startSpan(name: String, parentSpanId: String, startTimeMs: Double) -> String? {
@@ -277,24 +302,26 @@ public class EmbraceManager: NSObject {
         return spanRepository.spanStarted(span: span)
     }
     
-    static func stopSpan(spanId: String, errorCodeString: String, endTimeMs: Double) {
+    static func stopSpan(spanId: String, errorCodeString: String, endTimeMs: Double) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
-            return
+            return false
         }
         
         if endTimeMs <= 0.0 {
-            span.end(errorCode: convertStringToSpanErrorCode(str: errorCodeString))
+            span.end(errorCode: convertStringToErrorCode(str: errorCodeString))
         } else {
-            span.end(errorCode: convertStringToSpanErrorCode(str: errorCodeString),
+            span.end(errorCode: convertStringToErrorCode(str: errorCodeString),
                       time: convertDoubleToDate(ms: endTimeMs))
         }
         
         spanRepository.spanEnded(span: span)
+        
+        return true
     }
     
-    static func addSpanEventToSpan(spanId: String, name: String, time: Double, attributes: [String: AttributeValue]) {
+    static func addSpanEventToSpan(spanId: String, name: String, time: Double, attributes: [String: AttributeValue]) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
-            return
+            return false
         }
         
         if attributes.isEmpty {
@@ -305,15 +332,18 @@ public class EmbraceManager: NSObject {
                           timestamp: convertDoubleToDate(ms: time))
         }
         
+        return true
     }
     
-    static func addSpanAttributeToSpan(spanId: String, key: String, value: String) {
+    static func addSpanAttributeToSpan(spanId: String, key: String, value: String) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
-            return
+            return false
         }
         
         span.setAttribute(key: key, value: value)
         Embrace.client?.flush(span)
+        
+        return true
     }
     
     static func recordCompletedSpan(
@@ -323,9 +353,15 @@ public class EmbraceManager: NSObject {
         errorCodeString: String,
         parentSpanId: String,
         attributes: inout [String: String],
-        events: [RecordingSpanEvent]) {
+        events: [RecordingSpanEvent]) -> Bool {
+            
             var parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
             attributes.updateValue("true", forKey: "emb.key")
+            
+            if Embrace.client == nil {
+                return false
+            }
+            
             Embrace.client?.recordCompletedSpan(name: name,
                                                 type: .performance,
                                                 parent: parent,
@@ -334,34 +370,62 @@ public class EmbraceManager: NSObject {
                                                 attributes: attributes,
                                                 events: events,
                                                 errorCode: convertStringToErrorCode(str: errorCodeString))
+            return true
     }
     
+    // TODO: Reduce code duplication between handled and unhandled exceptions
     static func logHandledException(name: String, message: String, stacktrace: String) {
-        // TODO: Complete this function; ("name")?
         var attributes = [
-            "exception.stacktrace": stacktrace
+            "exception.stacktrace": stacktrace,
+            "emb.exception_handling": "handled",
+            "emb.type": "sys.exception",
+            "exception.message": message,
+            "exception.type": name
         ]
         
-        // TODO: Check our attribute properties; otherwise this is identical to below
-        
-        Embrace.client?.log(message,
+        Embrace.client?.log("Unity exception",
                             severity: .error,
                             timestamp: Date(), // Should we let users input their own exception timestamp?
                             attributes: attributes)
     }
     
     static func logUnhandledException(name: String, message: String, stacktrace: String) {
-        // TODO: Complete this function; ("name")?
         var attributes = [
-            "exception.stacktrace": stacktrace
+            "exception.stacktrace": stacktrace,
+            "emb.exception_handling": "unhandled",
+            "emb.type": "sys.exception",
+            "exception.message": message,
+            "exception.type": name
         ]
         
-        // TODO: Check our attribute properties; otherwise this is identical to above
-        
-        Embrace.client?.log(message,
+        Embrace.client?.log("Unity exception",
                             severity: .error,
-                            timestamp: Date(), // Should we let users input their own exception timestamp?
+                            timestamp: Date(), // Should we let users input their own exception timestamp? That would create an API mismatch among the Hosted SDKs. Let's not.
                             attributes: attributes)
+    }
+    
+    static func logPushNotification(title: String, body: String, subtitle: String, badge: Int, category: String) -> Bool {
+        
+        // Borrowed from Embrace Flutter SDK
+        let pushData: [AnyHashable: Any?] = [
+                        "aps": [
+                            "alert" : [
+                                "title" : title,
+                                "subtitle" : subtitle,
+                                "body" : body
+                            ],
+                            "badge" : badge as Any,
+                            "category" : category as Any
+                        ]
+                    ]
+        do {
+            try Embrace.client?.add(event: .push(userInfo: pushData as [AnyHashable: Any]))
+            return true
+        } catch let error {
+            // We should probably log this error
+        }
+        
+        return false
     }
     
     private static func transferKVPs(dest: inout [String:String], src: NSDictionary) {
@@ -379,7 +443,7 @@ public class EmbraceManager: NSObject {
             if let key = key as? String, let value = value as? String {
                 swiftDict.updateValue(converter(value), forKey: key)
             } else {
-                // TODO: TBD: Should the whole operation fail or should we just log the issue?
+                // Should the whole operation fail or should we just log the issue?
                 // We probably should not let the whole operation fail. We can skip the value
             }
         }
@@ -405,18 +469,7 @@ public class EmbraceManager: NSObject {
         return Date(timeIntervalSince1970: TimeInterval(ms / 1000.0))
     }
     
-    // TODO: TBD: Why are the following two functions identical in everything except return type?
-    
     private static func convertStringToErrorCode(str: String) -> ErrorCode? {
-        switch str {
-        case "Failure": return .failure
-        case "UserAbandon": return .userAbandon
-        case "Unknown": return .unknown
-        default: return nil
-        }
-    }
-    
-    private static func convertStringToSpanErrorCode(str: String) -> SpanErrorCode? {
         switch str {
         case "Failure": return .failure
         case "UserAbandon": return .userAbandon

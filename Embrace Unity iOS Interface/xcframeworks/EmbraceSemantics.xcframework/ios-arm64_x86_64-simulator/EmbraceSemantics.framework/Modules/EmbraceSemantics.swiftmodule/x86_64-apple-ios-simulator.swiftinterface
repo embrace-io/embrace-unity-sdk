@@ -17,6 +17,20 @@ extension EmbraceSemantics.LogSemantics {
     public static let keyPayload: Swift.String
   }
 }
+extension EmbraceCommonInternal.LogType {
+  public static let networkCapture: EmbraceCommonInternal.LogType
+}
+extension EmbraceSemantics.LogSemantics {
+  public struct NetworkCapture {
+    public static let keyUrl: Swift.String
+    public static let keyEncryptionMechanism: Swift.String
+    public static let keyEncryptedPayload: Swift.String
+    public static let keyPayloadAlgorithm: Swift.String
+    public static let keyEncryptedKey: Swift.String
+    public static let keyKeyAlgorithm: Swift.String
+    public static let keyAesIv: Swift.String
+  }
+}
 public struct LogSemantics {
   public static let keyEmbraceType: Swift.String
   public static let keyId: Swift.String

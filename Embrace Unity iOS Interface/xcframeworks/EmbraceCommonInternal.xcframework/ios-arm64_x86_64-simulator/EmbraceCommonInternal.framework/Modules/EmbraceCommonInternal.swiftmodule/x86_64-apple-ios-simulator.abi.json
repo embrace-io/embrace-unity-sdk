@@ -666,6 +666,65 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "ExtendableCrashReporter",
+        "printedName": "ExtendableCrashReporter",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "appendCrashInfo",
+            "printedName": "appendCrashInfo(key:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:21EmbraceCommonInternal23ExtendableCrashReporterP06appendE4Info3key5valueySS_SStF",
+            "mangledName": "$s21EmbraceCommonInternal23ExtendableCrashReporterP06appendE4Info3key5valueySS_SStF",
+            "moduleName": "EmbraceCommonInternal",
+            "genericSig": "<τ_0_0 where τ_0_0 : EmbraceCommonInternal.ExtendableCrashReporter>",
+            "sugared_genericSig": "<Self where Self : EmbraceCommonInternal.ExtendableCrashReporter>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:21EmbraceCommonInternal23ExtendableCrashReporterP",
+        "mangledName": "$s21EmbraceCommonInternal23ExtendableCrashReporterP",
+        "moduleName": "EmbraceCommonInternal",
+        "genericSig": "<τ_0_0 : EmbraceCommonInternal.CrashReporter>",
+        "sugared_genericSig": "<Self : EmbraceCommonInternal.CrashReporter>",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "CrashReporter",
+            "printedName": "CrashReporter",
+            "usr": "c:@M@EmbraceCommonInternal@objc(pl)CrashReporter",
+            "mangledName": "$s21EmbraceCommonInternal13CrashReporterP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "CrashReport",
         "printedName": "CrashReport",
         "children": [
@@ -1175,14 +1234,22 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Var",
-            "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appIdSSvp",
-            "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appIdSSvp",
+            "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appIdSSSgvp",
+            "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appIdSSSgvp",
             "moduleName": "EmbraceCommonInternal",
             "declAttributes": [
               "Final",
@@ -1199,14 +1266,22 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appIdSSvg",
-                "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appIdSSvg",
+                "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appIdSSSgvg",
+                "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appIdSSSgvg",
                 "moduleName": "EmbraceCommonInternal",
                 "implicit": true,
                 "declAttributes": [
@@ -1373,9 +1448,17 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
               },
               {
                 "kind": "TypeNominal",
@@ -1397,8 +1480,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appId10sdkVersion16filePathProvider18notificationCenterACSS_SSAA04FilelM0_pSo014NSNotificationO0Ctcfc",
-            "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appId10sdkVersion16filePathProvider18notificationCenterACSS_SSAA04FilelM0_pSo014NSNotificationO0Ctcfc",
+            "usr": "s:21EmbraceCommonInternal20CrashReporterContextC5appId10sdkVersion16filePathProvider18notificationCenterACSSSg_SSAA04FilelM0_pSo014NSNotificationO0Ctcfc",
+            "mangledName": "$s21EmbraceCommonInternal20CrashReporterContextC5appId10sdkVersion16filePathProvider18notificationCenterACSSSg_SSAA04FilelM0_pSo014NSNotificationO0Ctcfc",
             "moduleName": "EmbraceCommonInternal",
             "declAttributes": [
               "AccessControl"
@@ -4260,6 +4343,222 @@
         "printedName": "UIKit",
         "declKind": "Import",
         "moduleName": "EmbraceCommonInternal"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "StackTraceBehavior",
+        "printedName": "StackTraceBehavior",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "notIncluded",
+            "printedName": "notIncluded",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceCommonInternal.StackTraceBehavior.Type) -> EmbraceCommonInternal.StackTraceBehavior",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StackTraceBehavior",
+                    "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                    "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceCommonInternal.StackTraceBehavior.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StackTraceBehavior",
+                        "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                        "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO11notIncludedyA2CmF",
+            "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO11notIncludedyA2CmF",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "default",
+            "printedName": "default",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(EmbraceCommonInternal.StackTraceBehavior.Type) -> EmbraceCommonInternal.StackTraceBehavior",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StackTraceBehavior",
+                    "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                    "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "EmbraceCommonInternal.StackTraceBehavior.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StackTraceBehavior",
+                        "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                        "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO7defaultyA2CmF",
+            "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO7defaultyA2CmF",
+            "moduleName": "EmbraceCommonInternal",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "EmbraceCommonInternal.StackTraceBehavior?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StackTraceBehavior",
+                    "printedName": "EmbraceCommonInternal.StackTraceBehavior",
+                    "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO8rawValueACSgSi_tcfc",
+            "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO8rawValueACSgSi_tcfc",
+            "moduleName": "EmbraceCommonInternal",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO8rawValueSivp",
+            "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO8rawValueSivp",
+            "moduleName": "EmbraceCommonInternal",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO8rawValueSivg",
+                "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO8rawValueSivg",
+                "moduleName": "EmbraceCommonInternal",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:21EmbraceCommonInternal18StackTraceBehaviorO",
+        "mangledName": "$s21EmbraceCommonInternal18StackTraceBehaviorO",
+        "moduleName": "EmbraceCommonInternal",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "enumRawTypeName": "Int",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -8206,7 +8505,7 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/CrashReporter\/CrashReporter.swift",
       "kind": "StringLiteral",
-      "offset": 605,
+      "offset": 1036,
       "length": 11,
       "value": "\"EmbraceCommonInternal.CrashReport\""
     },
@@ -8220,9 +8519,9 @@
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceMeta.swift",
       "kind": "StringLiteral",
-      "offset": 241,
+      "offset": 237,
       "length": 7,
-      "value": "\"6.3.0\""
+      "value": "\"6.4.0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/EmbraceType\/EmbraceType.swift",
@@ -8489,6 +8788,27 @@
       "offset": 248,
       "length": 2,
       "value": "24"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/StackTraceBehavior.swift",
+      "kind": "IntegerLiteral",
+      "offset": 352,
+      "length": 9,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/StackTraceBehavior.swift",
+      "kind": "IntegerLiteral",
+      "offset": 352,
+      "length": 9,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Enums\/StackTraceBehavior.swift",
+      "kind": "IntegerLiteral",
+      "offset": 352,
+      "length": 9,
+      "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/embrace-apple-sdk\/embrace-apple-sdk\/Sources\/EmbraceCommonInternal\/Error Management\/EmbraceSwizzableError.swift",

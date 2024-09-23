@@ -35,6 +35,7 @@ import _SwiftConcurrencyShims
 extension EmbraceCore.Embrace.Options {
   @objc convenience dynamic public init(appId: Swift.String, appGroupId: Swift.String? = nil, platform: EmbraceCore.Platform = .default, endpoints: EmbraceCore.Embrace.Endpoints? = nil, logLevel: EmbraceCommonInternal.LogLevel = .default, export: EmbraceCore.OpenTelemetryExport? = nil)
   @objc convenience dynamic public init(appId: Swift.String, appGroupId: Swift.String? = nil, platform: EmbraceCore.Platform = .default)
+  @objc convenience dynamic public init(export: EmbraceCore.OpenTelemetryExport, logLevel: EmbraceCommonInternal.LogLevel = .default)
 }
 extension EmbraceCore.Embrace.Options : Swift.ExpressibleByStringLiteral {
   convenience public init(stringLiteral value: Swift.String)

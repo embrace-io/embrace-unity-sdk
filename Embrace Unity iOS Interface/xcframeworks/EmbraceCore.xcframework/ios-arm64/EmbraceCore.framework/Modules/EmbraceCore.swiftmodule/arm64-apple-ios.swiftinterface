@@ -2,6 +2,8 @@
 // swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
 // swift-module-flags: -target arm64-apple-ios17.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name EmbraceCore
 // swift-module-flags-ignorable: -enable-bare-slash-regex
+import CommonCrypto
+import CryptoKit
 import EmbraceCaptureService
 import EmbraceCommonInternal
 import EmbraceConfigInternal
@@ -161,14 +163,13 @@ extension EmbraceCore.WebViewCaptureService {
   @objc public func currentDeviceId() -> Swift.String?
   @objc public func startNewSession()
   @objc public func endCurrentSession()
-  @objc public func lastRunEndState() -> EmbraceCore.LastRunEndState
 }
 public enum EmbraceSetupError : Swift.Error, Swift.Equatable {
   case invalidAppId(_: Swift.String)
   case invalidAppGroupId(_: Swift.String)
   case invalidThread(_: Swift.String)
   case invalidOptions(_: Swift.String)
-  case failedStorageCreation(_: Swift.String)
+  case failedStorageCreation(partitionId: Swift.String, appGroupId: Swift.String?)
   case unableToInitialize(_: Swift.String)
   case initializationNotAllowed(_: Swift.String)
   public static func == (a: EmbraceCore.EmbraceSetupError, b: EmbraceCore.EmbraceSetupError) -> Swift.Bool
@@ -251,15 +252,16 @@ extension EmbraceCore.Embrace {
 }
 extension EmbraceCore.Embrace {
   @objc(EMBOptions) final public class Options : ObjectiveC.NSObject {
-    @objc final public let appId: Swift.String
+    @objc final public let appId: Swift.String?
     @objc final public let appGroupId: Swift.String?
     @objc final public let platform: EmbraceCore.Platform
-    @objc final public let endpoints: EmbraceCore.Embrace.Endpoints
+    @objc final public let endpoints: EmbraceCore.Embrace.Endpoints?
     @objc final public let services: [EmbraceCaptureService.CaptureService]
     @objc final public let crashReporter: (any EmbraceCommonInternal.CrashReporter)?
     @objc final public let logLevel: EmbraceCommonInternal.LogLevel
     @objc final public let export: EmbraceCore.OpenTelemetryExport?
     @objc public init(appId: Swift.String, appGroupId: Swift.String? = nil, platform: EmbraceCore.Platform = .default, endpoints: EmbraceCore.Embrace.Endpoints? = nil, captureServices: [EmbraceCaptureService.CaptureService], crashReporter: (any EmbraceCommonInternal.CrashReporter)?, logLevel: EmbraceCommonInternal.LogLevel = .default, export: EmbraceCore.OpenTelemetryExport? = nil)
+    @objc public init(export: EmbraceCore.OpenTelemetryExport, platform: EmbraceCore.Platform = .default, captureServices: [EmbraceCaptureService.CaptureService], crashReporter: (any EmbraceCommonInternal.CrashReporter)?, logLevel: EmbraceCommonInternal.LogLevel = .default)
     @objc deinit
   }
 }
@@ -278,6 +280,10 @@ extension EmbraceCore.Embrace {
 extension EmbraceCore.Embrace {
   public func crash(type: EmbraceCore.ExampleCrash = .fatalError) -> Swift.Never
 }
+@objc extension EmbraceCore.Embrace {
+  @objc dynamic public func appendCrashInfo(key: Swift.String, value: Swift.String) throws
+  @objc dynamic public func lastRunEndState() -> EmbraceCore.LastRunEndState
+}
 extension EmbraceCore.Embrace : EmbraceOTelInternal.EmbraceOpenTelemetry {
   public func tracer(instrumentationName: Swift.String) -> any OpenTelemetryApi.Tracer
   public func buildSpan(name: Swift.String, type: EmbraceCommonInternal.SpanType = .performance, attributes: [Swift.String : Swift.String] = [:]) -> any OpenTelemetryApi.SpanBuilder
@@ -285,8 +291,8 @@ extension EmbraceCore.Embrace : EmbraceOTelInternal.EmbraceOpenTelemetry {
   public func add(events: [any EmbraceOTelInternal.SpanEvent])
   public func add(event: any EmbraceOTelInternal.SpanEvent)
   public func flush(_ span: any OpenTelemetryApi.Span)
-  public func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType = .message, attributes: [Swift.String : Swift.String] = [:])
-  public func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType = .message, timestamp: Foundation.Date, attributes: [Swift.String : Swift.String])
+  public func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType = .message, attributes: [Swift.String : Swift.String] = [:], stackTraceBehavior: EmbraceCommonInternal.StackTraceBehavior = .default)
+  public func log(_ message: Swift.String, severity: EmbraceCommonInternal.LogSeverity, type: EmbraceCommonInternal.LogType = .message, timestamp: Foundation.Date, attributes: [Swift.String : Swift.String], stackTraceBehavior: EmbraceCommonInternal.StackTraceBehavior = .default)
 }
 extension EmbraceCore.Embrace {
   public static func recordSpan<T>(name: Swift.String, parent: (any OpenTelemetryApi.Span)? = nil, type: EmbraceCommonInternal.SpanType = .performance, attributes: [Swift.String : Swift.String] = [:], block: ((any OpenTelemetryApi.Span)?) throws -> T) rethrows -> T
