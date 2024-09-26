@@ -6,4 +6,4 @@ Open the project in XCode to edit and expose files. To expose functions to unity
 
 As a result of this, we can only pass primitives back and forth.
 
-Noted here -> Current Embrace iOS SDK version: 6.3.0
+Noted here -> Current Embrace iOS SDK version: 6.4.0
