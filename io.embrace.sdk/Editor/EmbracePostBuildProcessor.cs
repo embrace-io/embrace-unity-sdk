@@ -188,7 +188,6 @@ namespace EmbraceSDK.EditorView
                 string embraceRunSHSrc = sdkDirectory + "/iOS/run.sh";
                 string embraceRunSHDest = pathToBuiltProject + "/" + EmbraceRunFileName;
                 
-                // TODO: We may want to deal with different file endings here. It's not vital though.
                 string embraceUploadSrc = sdkDirectory + "/iOS/embrace_symbol_upload.darwin";
                 string embraceUploadDest = pathToBuiltProject + "/" + "embrace_symbol_upload.darwin";
 
