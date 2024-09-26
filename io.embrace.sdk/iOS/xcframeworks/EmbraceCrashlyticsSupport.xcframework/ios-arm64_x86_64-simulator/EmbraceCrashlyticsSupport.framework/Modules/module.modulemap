@@ -1,4 +1,0 @@
-framework module EmbraceCrashlyticsSupport {
-  header "EmbraceCrashlyticsSupport-Swift.h"
-  requires objc
-}

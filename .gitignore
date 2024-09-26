@@ -118,3 +118,5 @@ InitTestScene*.unity
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,macos
 /**/Assets/Plugins/EmbraceSDK/Resources/EditorImages/embrace_color_logo.png
+
+*/xcframeworks/*

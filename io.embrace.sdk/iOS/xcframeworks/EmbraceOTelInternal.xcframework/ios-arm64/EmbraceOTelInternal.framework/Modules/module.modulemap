@@ -1,4 +1,0 @@
-framework module EmbraceOTelInternal {
-  header "EmbraceOTelInternal-Swift.h"
-  requires objc
-}

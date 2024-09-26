@@ -1,4 +1,0 @@
-framework module EmbraceCaptureService {
-  header "EmbraceCaptureService-Swift.h"
-  requires objc
-}
