@@ -1,4 +1,0 @@
-framework module EmbraceCommonInternal {
-  header "EmbraceCommonInternal-Swift.h"
-  requires objc
-}

@@ -1,6 +1,0 @@
-framework module KSCrashInstallations {
-  umbrella header "KSCrashInstallations.h"
-  export *
-
-  module * { export * }
-}

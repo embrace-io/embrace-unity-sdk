@@ -1,6 +1,0 @@
-framework module KSCrashFilters {
-  umbrella header "KSCrashFilters.h"
-  export *
-
-  module * { export * }
-}

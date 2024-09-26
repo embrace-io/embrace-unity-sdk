@@ -1,4 +1,0 @@
-framework module EmbraceIO {
-  header "EmbraceIO-Swift.h"
-  requires objc
-}

@@ -1,6 +1,0 @@
-framework module KSCrashCore {
-  umbrella header "KSCrashCore.h"
-  export *
-
-  module * { export * }
-}

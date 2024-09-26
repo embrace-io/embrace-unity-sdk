@@ -1,4 +1,0 @@
-framework module EmbraceUploadInternal {
-  header "EmbraceUploadInternal-Swift.h"
-  requires objc
-}

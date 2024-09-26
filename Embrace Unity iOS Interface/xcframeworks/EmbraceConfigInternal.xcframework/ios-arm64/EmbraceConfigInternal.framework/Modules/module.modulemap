@@ -1,4 +1,0 @@
-framework module EmbraceConfigInternal {
-  header "EmbraceConfigInternal-Swift.h"
-  requires objc
-}
