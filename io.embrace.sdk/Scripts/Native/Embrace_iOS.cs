@@ -420,7 +420,7 @@ namespace EmbraceSDK.Internal
             return record_completed_span(spanName,
                 startTimeMs, 
                 endTimeMs, 
-                errorCode.ToString(), 
+                (errorCode ?? 0).ToString(), 
                 parentSpanId, 
                 JsonConvert.SerializeObject(attributes), 
                 JsonConvert.SerializeObject(events));

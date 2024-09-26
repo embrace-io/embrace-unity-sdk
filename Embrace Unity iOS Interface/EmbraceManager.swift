@@ -386,7 +386,8 @@ public class EmbraceManager: NSObject {
         Embrace.client?.log("Unity exception",
                             severity: .error,
                             timestamp: Date(), // Should we let users input their own exception timestamp?
-                            attributes: attributes)
+                            attributes: attributes,
+                            stackTraceBehavior: .notIncluded)
     }
     
     static func logUnhandledException(name: String, message: String, stacktrace: String) {
@@ -401,7 +402,8 @@ public class EmbraceManager: NSObject {
         Embrace.client?.log("Unity exception",
                             severity: .error,
                             timestamp: Date(), // Should we let users input their own exception timestamp? That would create an API mismatch among the Hosted SDKs. Let's not.
-                            attributes: attributes)
+                            attributes: attributes,
+                            stackTraceBehavior: .notIncluded)
     }
     
     static func logPushNotification(title: String, body: String, subtitle: String, badge: Int, category: String) -> Bool {

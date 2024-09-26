@@ -236,16 +236,24 @@ namespace EmbraceSDK.EditorView
                 case 1: // iOS
                     GUILayout.Space(styleConfigs.space);
                     
-                    if (!Validator.ValidateID(iOSConfiguration.AppId))
-                    {
-                        InsertAppIDFetchBlock();
-                    }
-                    
                     GUILayout.BeginHorizontal();
                     var iOSStyle = new GUIStyle(styleConfigs.defaultTextStyle.guiStyle);
                     iOSStyle.alignment = TextAnchor.MiddleCenter;
-                    GUILayout.Label("AppId and Symbol Upload API Token are now configured via code on iOS.",
+                    GUILayout.Label("AppId is now configured via code on iOS.",
                         iOSStyle);
+                    GUILayout.EndHorizontal();
+                    
+                    if (!Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken))
+                    {
+                        InsertAPITokenFetchBlock();
+                    }
+                    
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label(
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAPIToken).content,
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAPIToken).style);
+                    iOSConfiguration.SymbolUploadApiToken =
+                        EditorGUILayout.TextField(iOSConfiguration.SymbolUploadApiToken);
                     GUILayout.EndHorizontal();
 
                     if (iOSConfiguration.AppId.Length == 0 && iOSConfiguration.SymbolUploadApiToken.Length == 0)
@@ -359,6 +367,11 @@ namespace EmbraceSDK.EditorView
                     GUILayout.Toggle(
                         Validator.ValidateID(androidConfiguration.AppId) && Validator.ValidateToken(androidConfiguration.SymbolUploadApiToken),
                         "App ID and API Token of Valid Format");
+                    break;
+                case 1: // iOS
+                    GUILayout.Toggle(
+                        Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken),
+                        "API Token of Valid Format");
                     break;
             }
 
