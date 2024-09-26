@@ -3,5 +3,6 @@
 ./build/*.xcframework
 *.xcframework
 *.xcodeproj
+Embrace\ Unity\ iOS\ Interface/*
 
 **xcuserdata/
