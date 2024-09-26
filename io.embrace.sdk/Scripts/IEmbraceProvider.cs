@@ -68,7 +68,7 @@ namespace EmbraceSDK.Internal
         #endif
         #endif
         
-        [Obsolete("SetUserPersona is deprecated and will be removed from a future release. Use AddPersona instead", false)]
+        [Obsolete("SetUserPersona is deprecated and will be removed from a future release. Use AddUserPersona instead", false)]
         void SetUserPersona(string persona);
         
         [Obsolete("Moments are deprecated. This function will be removed in a future release. Use Spans instead.", false)]
