@@ -61,10 +61,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func getDeviceId() -> String? {
-        if let deviceId = Embrace.client?.currentDeviceId() {
-            return deviceId
-        }
-        return nil
+        return Embrace.client?.currentDeviceId()
     }
     
     static func getCurrentSessionId() -> String? {
