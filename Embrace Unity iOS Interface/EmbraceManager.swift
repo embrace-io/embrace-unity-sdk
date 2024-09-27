@@ -45,10 +45,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func isStarted() -> Bool {
-        if let embraceStarted = Embrace.client?.started {
-            return embraceStarted
-        }
-        return false
+        return Embrace.client?.started ?? false
     }
     
     static func sdkVersion() -> String {
