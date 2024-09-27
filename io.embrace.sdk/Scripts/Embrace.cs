@@ -8,10 +8,6 @@ using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
 using UnityEngine.SceneManagement;
 
-#if EMBRACE_ENABLE_BUGSHAKE_FORM
-using EmbraceSDK.Bugshake;
-#endif
-
 namespace EmbraceSDK
 {
     public class Embrace : MonoBehaviour, IEmbraceUnityApi
@@ -108,13 +104,6 @@ namespace EmbraceSDK
                 // As a result, the StartView and EndView clauses here should forcibly capture
                 // the view information we need for this feature.
                 scenesToViewReporter?.StartViewFromScene(SceneManager.GetActiveScene());
-                    
-                #if EMBRACE_ENABLE_BUGSHAKE_FORM
-                // We should attempt to register the shake listener whenever the app is resumed
-                // Because the internal behavior of the Android SDK is such that it contains a ShakeListener singleton
-                // we will not cause issues by registering it multiple times.
-                BugshakeService.Instance.RegisterShakeListener();
-#endif
 #endif
             } else
             {
@@ -169,30 +158,6 @@ namespace EmbraceSDK
                 sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
             
                 Provider?.InitializeSDK();
-                
-#if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
-            
-            #if EMBRACE_USE_BUGSHAKE_SCENE_MANAGER_OVERRIDE
-            if (SceneManagerAPI.overrideAPI == null)
-            {
-                SceneManagerAPI.overrideAPI = new EmbraceSceneManagerOverride(
-                    BugshakeService.Instance.MarkBugReportFormSwapUnsafe, BugshakeService.Instance.MarkBugReportFormSwapSafe);
-            }
-            else
-            {
-                // The only ways to handle this are to either invoke reflection at runtime or use a weaver to capture the user's SceneManagerAPI override and weave into that.
-                EmbraceLogger.LogWarning("User requested to use the EmbraceSceneManagerOverride, but the override API is already set. EmbraceSceneManagerOverride assignment skipped.");
-            }
-            #endif
-            
-            // We should allow the user to configure if this is enabled or not by default.
-            // For now we don't have a good way to allow the user to configure this setting.
-            // We could use an instance variable since this is a Monobehaviour, but we don't force
-            // the user to setup the prefab in the scene at edit time.
-            // As a result if the prefab is instantiated dynamically we have no good behavioral assumption.
-            // For now we will enable this by default.
-            BugshakeService.Instance.RegisterShakeListener();
-#endif
             }
             catch (Exception e)
             {
@@ -227,7 +192,7 @@ namespace EmbraceSDK
         }
 
         /// <inheritdoc />
-        public void StartSDK(EmbraceStartupArgs args = null, bool enableIntegrationTesting = false)
+        public void StartSDK(EmbraceStartupArgs args = null)
         {
             if (_started)
             {
@@ -241,7 +206,7 @@ namespace EmbraceSDK
 
             try
             {
-                Provider?.StartSDK(args, enableIntegrationTesting);
+                Provider?.StartSDK(args);
                 Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
 
                 TimeUtil.Clean();
@@ -314,16 +279,16 @@ namespace EmbraceSDK
             }
         }
 
-        /// <inheritdoc />
-        public void EndAppStartup(Dictionary<string, string> properties = null)
-        {
-            if (properties == null)
-            {
-                properties = emptyDictionary;
-            }
-
-            Provider?.EndAppStartup(properties);
-        }
+        // /// <inheritdoc />
+        // public void EndAppStartup(Dictionary<string, string> properties = null)
+        // {
+        //     if (properties == null)
+        //     {
+        //         properties = emptyDictionary;
+        //     }
+        //
+        //     Provider?.EndAppStartup(properties);
+        // }
 
         /// <inheritdoc />
         public LastRunEndState GetLastRunEndState()
@@ -395,12 +360,6 @@ namespace EmbraceSDK
         public void ClearUserAsPayer()
         {
             Provider?.ClearUserAsPayer();
-        }
-
-        [System.Obsolete("Please use AddUserPersona() instead. This method will be removed in a future release.")]
-        public void SetUserPersona(string persona)
-        {
-            AddUserPersona(persona);
         }
         
         /// <inheritdoc />
@@ -474,47 +433,6 @@ namespace EmbraceSDK
 
             return properties;
         }
-
-        /// <inheritdoc />
-        public void StartMoment(string name, string identifier = null, bool allowScreenshot = false, Dictionary<string, string> properties = null)
-        {
-            if (name == null)
-            {
-                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("moment name"));
-                return;
-            }
-
-            if (properties == null)
-            {
-                properties = emptyDictionary;
-            }
-
-            Provider?.StartMoment(name, identifier, allowScreenshot, properties);
-        }
-
-        /// <inheritdoc />
-        public void EndMoment(string name, string identifier = null, Dictionary<string, string> properties = null)
-        {
-            if (name == null)
-            {
-                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("moment name"));
-                return;
-            }
-
-            if (properties == null)
-            {
-                properties = emptyDictionary;
-            }
-
-            Provider?.EndMoment(name, identifier, properties);
-        }
-
-        /// <inheritdoc />
-        [System.Obsolete("Please use LogMessage() without the screenshot argument instead. This method will be removed in a future release.")]
-        public void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null, bool allowScreenshot = false)
-        {
-            LogMessage(message, severity, properties);
-        }
         
         public void LogMessage(string message, EMBSeverity severity)
         {
@@ -554,12 +472,6 @@ namespace EmbraceSDK
         public void LogError(string message)
         {
             LogMessage(message, EMBSeverity.Error);
-        }
-
-        [System.Obsolete("Please use AddBreadcrumb() instead. This method will be removed in a future release.")]
-        public void LogBreadcrumb(string message)
-        {
-            AddBreadcrumb(message);
         }
 
         /// <inheritdoc />
@@ -609,36 +521,6 @@ namespace EmbraceSDK
 
             return Provider?.EndView(name) ?? false;
         }
-
-        /// <summary>
-        /// Causes a crash. Use this for test purposes only.
-        /// </summary>
-        [System.Obsolete("This method will be removed in a future release.")]
-        public void Crash()
-        {
-            Provider?.Crash();
-        }
-
-        /// <inheritdoc />
-        [System.Obsolete("Please use RecordNetworkRequest() instead. This method will be removed in a future release.")]
-        public void LogNetworkRequest(string url, HTTPMethod method, long startms, long endms, int bytesin, int bytesout, int code, string error)
-        {
-            RecordNetworkRequest(url, method, startms, endms, bytesin, bytesout, code, error);
-        }
-        
-        /// <inheritdoc />
-        [System.Obsolete("Please use RecordCompletedNetworkRequest() or RecordIncompleteNetworkRequest() instead. This method will be removed in a future release.")]
-
-        public void RecordNetworkRequest(string url, HTTPMethod method, long startms, long endms, int bytesin, int bytesout, int code, string error = "")
-        {
-            if (!string.IsNullOrEmpty(error))
-            {
-                RecordIncompleteNetworkRequest(url, method, startms, endms, error);
-                return;
-            }
-
-            Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
-        }
         
         /// <inheritdoc />
         public void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
@@ -668,26 +550,6 @@ namespace EmbraceSDK
             }
             
             Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
-        }
-
-        /// <inheritdoc />
-        [Obsolete("Please use LogUnhandledUnityException instead. This method will be removed in a future release.")]
-        public void logUnhandledUnityException(string exceptionMessage, string stack)
-        {
-            if (exceptionMessage == null)
-            {
-                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("exception message"));
-                return;
-            }
-
-            if (stack == null)
-            {
-                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("exception stack"));
-                return;
-            }
-
-            (string splitName, string splitMessage) = UnhandledExceptionUtility.SplitConcatenatedExceptionNameAndMessage(exceptionMessage);
-            Provider?.LogUnhandledUnityException(splitName, splitMessage, stack);
         }
 
         /// <inheritdoc />

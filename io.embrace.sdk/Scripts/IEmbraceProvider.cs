@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using EmbraceSDK.Bugshake;
-using EmbraceSDK.Internal;
 using UnityEngine;
-
-#if EMBRACE_ENABLE_BUGSHAKE_FORM
-using EmbraceSDK.Bugshake;
-#endif
 
 namespace EmbraceSDK.Internal
 {
@@ -20,7 +14,7 @@ namespace EmbraceSDK.Internal
         /// </summary>
         void InitializeSDK();
         // Public API
-        void StartSDK(EmbraceStartupArgs args = null, bool enableIntegrationTesting = false);
+        void StartSDK(EmbraceStartupArgs args = null);
         LastRunEndState GetLastRunEndState();
         void SetUserIdentifier(string identifier);
         void ClearUserIdentifier();
@@ -37,13 +31,11 @@ namespace EmbraceSDK.Internal
         void RemoveSessionProperty(string key);
         Dictionary<string, string> GetSessionProperties();
         void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties);
-        void LogBreadcrumb(string message);
         void AddBreadcrumb(string message);
         void EndSession(bool clearUserInfo);
         string GetDeviceId();
         bool StartView(string name);
         bool EndView(string name);
-        void Crash();
         void SetMetaData(string unityVersion, string guid, string sdkVersion);
         void RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code);
         void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error);
@@ -61,31 +53,6 @@ namespace EmbraceSDK.Internal
         void RecordPushNotification(iOSPushNotificationArgs iosArgs);
         #elif UNITY_ANDROID
         void RecordPushNotification(AndroidPushNotificationArgs androidArgs);
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
-        void ShowBugReportForm();
-        void saveShakeScreenshot(byte[] screenshot);
-        void setShakeListener(UnityShakeListener listener);
         #endif
-        #endif
-        
-        [Obsolete("SetUserPersona is deprecated and will be removed from a future release. Use AddUserPersona instead", false)]
-        void SetUserPersona(string persona);
-        
-        [Obsolete("Moments are deprecated. This function will be removed in a future release. Use Spans instead.", false)]
-        void StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties);
-        [Obsolete("Moments are deprecated. This function will be removed in a future release. Use Spans instead.", false)]
-        void EndMoment(string name, string identifier, Dictionary<string, string> properties);
-
-        [Obsolete("EndAppStartup is deprecated and will be removed in a future release.", false)]
-        void EndAppStartup(Dictionary<string, string> properties);
-        
-        [Obsolete("InitNativeSdkConnection is deprecated and will be removed from a future release.", false)]
-        void InitNativeSdkConnection();
-
-        [Obsolete("logUnhandledUnityException is deprecated and will be removed from a future release, please use LogUnhandledUnityException instead.", false)]
-        void logUnhandledUnityException(string exceptionMessage, string stack);
-        
-        [Obsolete("LogMessage with screenshot argument is deprecated and will be removed from a future release.", false)]
-        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, bool allowScreenshot);
     }
 }

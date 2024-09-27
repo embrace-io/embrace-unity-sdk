@@ -5,10 +5,6 @@ using System.Runtime.InteropServices;
 using EmbraceSDK.Internal;
 using UnityEngine.TestTools;
 
-#if EMBRACE_ENABLE_BUGSHAKE_FORM
-using EmbraceSDK.Bugshake;
-#endif
-
 namespace EmbraceSDK.Internal
 {
     /// <summary>
@@ -250,17 +246,13 @@ namespace EmbraceSDK.Internal
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
         }
 
-        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args, bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args)
         {
             if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_StartMethod, applicationInstance, enableIntegrationTesting, unityAppFramework);
-        }
-
-        void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
-        {
-            if (!ReadyForCalls()) { return; }
-            AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            EmbraceSharedInstance?.Call(_EndAppStartupMethod, javaMap);
+            // enableIntegrationTesting/isDevMode is no longer supported on Android
+            // we hard-code to false as this resolves to a functional method call
+            // TODO: Update this to the appropriate method call at a later date
+            EmbraceSharedInstance?.Call(_StartMethod, applicationInstance, false, unityAppFramework);
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
@@ -291,8 +283,6 @@ namespace EmbraceSDK.Internal
             }
         }
 
-        void IEmbraceProvider.InitNativeSdkConnection() { }
-
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
             if (!ReadyForCalls()) { return; }
@@ -310,18 +300,6 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return; }
             EmbraceSharedInstance?.Call(_SetUsernameMethod, username);
         }
-        
-        #if UNITY_ANDROID && EMBRACE_ENABLE_BUGSHAKE_FORM
-        void IEmbraceProvider.ShowBugReportForm()
-        {
-            if (!ReadyForCalls())
-            {
-                return;
-            }
-
-            EmbraceSharedInstance?.Call("showBugReportForm");
-        }
-        #endif
 
         void IEmbraceProvider.ClearUsername()
         {
@@ -351,12 +329,6 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return; }
             EmbraceSharedInstance?.Call(_ClearUserAsPayerMethod);
-        }
-
-        void IEmbraceProvider.SetUserPersona(string persona)
-        {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_AddUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
@@ -406,20 +378,6 @@ namespace EmbraceSDK.Internal
             return dictionary;
         }
 
-        void IEmbraceProvider.StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties)
-        {
-            if (!ReadyForCalls()) { return; }
-            AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            EmbraceSharedInstance?.Call(_StartEventMethod, name, identifier, javaMap);
-        }
-
-        void IEmbraceProvider.EndMoment(string name, string identifier, Dictionary<string, string> properties)
-        {
-            if (!ReadyForCalls()) { return; }
-            AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
-            EmbraceSharedInstance?.Call(_EndEventMethod, name, identifier, javaMap);
-        }
-
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
             if (!ReadyForCalls()) { return; }
@@ -437,17 +395,8 @@ namespace EmbraceSDK.Internal
                     EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap);
                     break;
             }
-        }
-        
-        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, bool allowScreenshot)
-        {
-            (this as IEmbraceProvider).LogMessage(message, severity, properties);
-        }
-
-        void IEmbraceProvider.LogBreadcrumb(string message)
-        {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_AddBreadcrumbMethod, message);
+            
+            EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
@@ -479,11 +428,6 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return false; }
             return EmbraceSharedInstance?.Call<bool>(_EndFragmentMethod, name) ?? false;
         }
-        
-        void IEmbraceProvider.Crash()
-        {
-            // Removed on Android 6.+ as it is no longer supported
-        }
 
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
@@ -513,11 +457,6 @@ namespace EmbraceSDK.Internal
             if (!ReadyForCalls()) { return; }
             if(!UnityInternalInterfaceReadyForCalls()) { return; }
             _embraceUnityInternalSharedInstance.Call(_installUnityThreadSampler);
-        }
-
-        void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
-        {
-            (this as IEmbraceProvider).LogUnhandledUnityException("", exceptionMessage, stack);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
@@ -626,22 +565,6 @@ namespace EmbraceSDK.Internal
 
             return result;
         }
-        
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
-        void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
-        {
-            if (!ReadyForCalls()) { return;}
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
-            _embraceUnityInternalSharedInstance.Call("setShakeListener", listener);
-        }
-        
-        void IEmbraceProvider.saveShakeScreenshot(byte[] screenshot)
-        {
-            if (!ReadyForCalls()) { return;}
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
-            _embraceUnityInternalSharedInstance.Call("saveScreenshot", screenshot);
-        }
-        #endif
 
         /// <summary>
         /// This method is used to convert a .NET dictionary to a Java map pointer.

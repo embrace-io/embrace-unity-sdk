@@ -2,10 +2,6 @@ using System.Collections.Generic;
 using EmbraceSDK.Internal;
 using UnityEngine;
 
-#if EMBRACE_ENABLE_BUGSHAKE_FORM
-using EmbraceSDK.Bugshake;
-#endif
-
 namespace EmbraceSDK.Editor
 {
     /// <summary>
@@ -19,25 +15,15 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log("InitializeSDK");
         }
 
-        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args, bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args)
         {
             EmbraceLogger.Log("StartSDK");
-        }
-        
-        void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
-        {
-            EmbraceLogger.Log("EndAppStartup");
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
             EmbraceLogger.Log("GetLastRunEndState");
             return LastRunEndState.Invalid;
-        }
-
-        void IEmbraceProvider.InitNativeSdkConnection()
-        {
-            EmbraceLogger.Log("InitUnityCallback");
         }
 
         void IEmbraceProvider.SetUserIdentifier(string identifier)
@@ -80,11 +66,6 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log("ClearUserAsPayer");
         }
 
-        void IEmbraceProvider.SetUserPersona(string persona)
-        {
-            EmbraceLogger.Log($"SetUserPersona {persona}");
-        }
-
         void IEmbraceProvider.AddUserPersona(string persona)
         {
             EmbraceLogger.Log($"AddUserPersona {persona}");
@@ -117,16 +98,6 @@ namespace EmbraceSDK.Editor
             return new Dictionary<string, string>();
         }
 
-        void IEmbraceProvider.StartMoment(string name, string identifier, bool allowScreenshot, Dictionary<string, string> properties)
-        {
-            EmbraceLogger.Log($"StartMoment {name}");
-        }
-
-        void IEmbraceProvider.EndMoment(string name, string identifier, Dictionary<string, string> properties)
-        {
-            EmbraceLogger.Log($"EndMoment {name}");
-        }
-
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
             string severityString = "";
@@ -145,30 +116,6 @@ namespace EmbraceSDK.Editor
             }
 
             EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message}");
-        }
-        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, bool allowScreenshot)
-        {
-            string severityString = "";
-
-            switch (severity)
-            {
-                case EMBSeverity.Info:
-                    severityString = "info";
-                    break;
-                case EMBSeverity.Warning:
-                    severityString = "warning";
-                    break;
-                case EMBSeverity.Error:
-                    severityString = "error";
-                    break;
-            }
-
-            EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message}");
-        }
-
-        void IEmbraceProvider.LogBreadcrumb(string message)
-        {
-            EmbraceLogger.Log($"LogBreadcrumb {message}");
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
@@ -205,11 +152,6 @@ namespace EmbraceSDK.Editor
             return true;
         }
 
-        void IEmbraceProvider.Crash()
-        {
-            EmbraceLogger.Log("Crash");
-        }
-
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
             EmbraceLogger.Log($"Unity Version = {unityVersion} GUID = {guid} Unity-SDK Version= {sdkVersion}");
@@ -230,40 +172,18 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log("InstallUnityThreadSampler");
         }
 
-        void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
-        {
-            EmbraceLogger.Log($"Unhandled Exception: {exceptionMessage} : stack : {stack}");
-        }
-
-#if UNITY_IOS
+        #if UNITY_IOS
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
             EmbraceLogger.Log($"Push Notification: title: {iosArgs.title} subtitle: {iosArgs.subtitle} body: {iosArgs.body} category: {iosArgs.category} badge: {iosArgs.badge}");
         }
         
         #elif UNITY_ANDROID
-
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
-        void IEmbraceProvider.ShowBugReportForm()
-        {
-            EmbraceLogger.Log("Attempted to show the native Bug Report Form");
-        }
-
-        void IEmbraceProvider.setShakeListener(UnityShakeListener listener)
-        {
-            EmbraceLogger.Log("Embrace UnityShakeListener registration attempted");
-        }
-        
-        public void saveShakeScreenshot(byte[] screenshot)
-        {
-            EmbraceLogger.Log($"Tried to take a screenshot as byte array {screenshot}");
-        }
-        #endif
         void IEmbraceProvider.RecordPushNotification(AndroidPushNotificationArgs androidArgs)
         {
             EmbraceLogger.Log($"Push Notification: title: {androidArgs.title} body: {androidArgs.body} topic: {androidArgs.topic} id: {androidArgs.id} notificationPriority: {androidArgs.notificationPriority} messageDeliveredPriority: {androidArgs.messageDeliveredPriority} isNotification: {androidArgs.isNotification} hasData: {androidArgs.hasData}");
         }
-#endif
+        #endif
         
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {

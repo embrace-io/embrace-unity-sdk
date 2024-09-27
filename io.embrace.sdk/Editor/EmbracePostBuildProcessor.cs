@@ -83,7 +83,6 @@ namespace EmbraceSDK.EditorView
 
             Validator.ValidateConfiguration(config);
             EmbraceLogger.Log($"Config Loaded with key: {config.AppId}");
-            EmbraceLogger.Log($"Config has bug shake setting: {config.sdk_config.bug_shake.shake_detect_enabled}");
             embraceConfigString =
                 JsonConvert.SerializeObject(
                     config,

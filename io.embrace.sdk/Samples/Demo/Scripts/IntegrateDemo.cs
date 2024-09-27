@@ -64,24 +64,6 @@ namespace EmbraceSDK.Demo
             UnityEngine.Diagnostics.Utils.ForceCrash(UnityEngine.Diagnostics.ForcedCrashCategory.Abort);
         }
 
-        public void Moments()
-        {
-            Dictionary<string, string> properties = new Dictionary<string, string>();
-
-            Embrace.Instance.StartMoment(
-              DemoConstants.TEST_NAME, // moment name
-              DemoConstants.TEST_ID, // optional id
-              false, // allow screenshot boolean
-              properties // optional properties dictionary
-            );
-
-            Embrace.Instance.EndMoment(
-              DemoConstants.TEST_NAME, // moment name
-              DemoConstants.TEST_ID, // optional id
-              properties // optional properties dictionary
-            );
-        }
-
         public void PushNotifications()
         {
 #if UNITY_ANDROID

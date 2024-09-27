@@ -60,5 +60,22 @@ namespace EmbraceSDK
             DevBaseUrl = devBaseUrl;
             ConfigBaseUrl = configBaseUrl;
         }
+
+        /// <summary>
+        /// Override equality to force comparison by data members.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            EmbraceStartupArgs other = (EmbraceStartupArgs) obj;
+            return AppId == other.AppId && AppGroupId == other.AppGroupId && BaseUrl == other.BaseUrl && DevBaseUrl == other.DevBaseUrl && ConfigBaseUrl == other.ConfigBaseUrl;
+            
+        }
     }
 }

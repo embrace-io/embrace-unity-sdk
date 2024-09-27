@@ -32,16 +32,8 @@ namespace EmbraceSDK.EditorView
         private const string VERSION_GROUP_NAME = "version";
 
         // Dependencies
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
-        public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-bug-shake-gradle-plugin";
-        #else
         public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-swazzler";
-        #endif
-        #if EMBRACE_ENABLE_BUGSHAKE_FORM
-        public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-bug-shake-gradle-plugin";
-        #else
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-android-sdk";
-        #endif
 
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
         public static string LauncherTemplatePath { get; } = Path.Combine(Application.dataPath, LAUNCHER_TEMPLATE_PATH);

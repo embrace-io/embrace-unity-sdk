@@ -8,10 +8,6 @@ namespace EmbraceSDK.Validators
     {
         private static Regex dependenciesRegex = new Regex(@"dependencies\s*{([^}]*?)}");
         private static Regex classpathRegex = new Regex(@"classpath\s*[""|']io.embrace:embrace-swazzler:\d+.\d+.\d+[""|']");
-
-        // TODO: This regex will need to be updated to whatever the bug shake plugin version ends up being.
-        private static Regex bugshakeRegex =
-            new Regex(@"classpath\s*[""|']io.embrace:embrace-bug-shake-gradle-plugin:\d+.\d+.\d+[""|']");
         
         #if !UNITY_2022_2_OR_NEWER
         private static Regex repositoriesRegex = new Regex(@"repositories\s*{.*(\s+.+\s+)+}");

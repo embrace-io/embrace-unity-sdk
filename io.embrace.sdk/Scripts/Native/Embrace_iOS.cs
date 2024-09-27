@@ -142,7 +142,7 @@ namespace EmbraceSDK.Internal
             EmbraceLogger.Log("initializing Objc objects");
         }
 
-        void IEmbraceProvider.StartSDK(EmbraceStartupArgs args, bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
         {
             if (args != null)
             {
@@ -158,20 +158,10 @@ namespace EmbraceSDK.Internal
             }
         }
 
-        void IEmbraceProvider.EndAppStartup(Dictionary<string, string> properties)
-        {
-            #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            Debug.LogWarning("This function is deprecated on iOS. New Feature incoming soon. No-op for now.");
-            #endif
-        }
-
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
             return (LastRunEndState) embrace_get_last_run_end_state();
         }
-        
-        // Deprecated no-op
-        void IEmbraceProvider.InitNativeSdkConnection() { }
 
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
@@ -212,11 +202,6 @@ namespace EmbraceSDK.Internal
         {
             embrace_clear_user_as_payer();
         }
-        
-        void IEmbraceProvider.SetUserPersona(string persona)
-        {
-            embrace_add_user_persona(persona);
-        }
 
         void IEmbraceProvider.AddUserPersona(string persona)
         {
@@ -252,30 +237,6 @@ namespace EmbraceSDK.Internal
             return null;
         }
 
-        // Moments are deprecated. We will turn this function into a no-op with a warning
-        void IEmbraceProvider.StartMoment(string name, string identifier, bool allowScreenshot,
-            Dictionary<string, string> properties)
-        {
-            #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            Debug.LogWarning("Moments are deprecated on iOS");
-            #endif
-            
-        }
-
-        // Moments are deprecated. We will turn this function into a no-op with a warning
-        void IEmbraceProvider.EndMoment(string name, string identifier, Dictionary<string, string> properties)
-        {
-            #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            Debug.LogWarning("Moments are deprecated on iOS");
-            #endif
-        }
-
-        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
-            bool allowScreenshot)
-        {
-            (this as IEmbraceProvider).LogMessage(message, severity, properties);
-        }
-
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
             string severityString = "";
@@ -294,12 +255,6 @@ namespace EmbraceSDK.Internal
             }
             
             embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));
-        }
-
-        // Android redirects LogBreadcrumb to AddBreadcrumb. We will do the same here.
-        void IEmbraceProvider.LogBreadcrumb(string message)
-        {
-            embrace_add_breadcrumb(message);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
@@ -339,11 +294,6 @@ namespace EmbraceSDK.Internal
             return false;
         }
 
-        void IEmbraceProvider.Crash()
-        {
-            embrace_crash();
-        }
-
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
             embrace_set_unity_metadata(unityVersion, guid, sdkVersion);
@@ -365,11 +315,6 @@ namespace EmbraceSDK.Internal
         {
             // not supported on iOS yet
             // No-op
-        }
-
-        void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
-        {
-            embrace_log_unhandled_exception("", exceptionMessage, stack);
         }
 
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
