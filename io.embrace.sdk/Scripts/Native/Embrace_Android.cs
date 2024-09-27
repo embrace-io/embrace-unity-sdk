@@ -227,16 +227,16 @@ namespace EmbraceSDK.Internal
             EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
             CacheJavaMapPointers();
             CacheJavaNativeObjectTypes();
-            AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
+            using AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            using AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
             applicationInstance = activityInstance.Call<AndroidJavaObject>("getApplication");
             embraceClass = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace");
             EmbraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
             // get the app framework object
-            AndroidJavaClass appFramework = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace$AppFramework");
+            using AndroidJavaClass appFramework = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace$AppFramework");
             unityAppFramework = appFramework.GetStatic<AndroidJavaObject>("UNITY");
             // get the log severity objects
-            AndroidJavaClass logSeverity = new AndroidJavaClass("io.embrace.android.embracesdk.Severity");
+            using AndroidJavaClass logSeverity = new AndroidJavaClass("io.embrace.android.embracesdk.Severity");
             logInfo = logSeverity.GetStatic<AndroidJavaObject>("INFO");
             logWarning = logSeverity.GetStatic<AndroidJavaObject>("WARNING");
             logError = logSeverity.GetStatic<AndroidJavaObject>("ERROR");
@@ -261,7 +261,7 @@ namespace EmbraceSDK.Internal
 
             try
             {
-                AndroidJavaObject lastRunStateObject = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
+                using AndroidJavaObject lastRunStateObject = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
                 int lastRunStateInt = lastRunStateObject.Call<int>(_LastRunEndStateGetValueMethod);
 
                 switch (lastRunStateInt)
@@ -365,7 +365,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return null; }
 
-            AndroidJavaObject javaMap = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
+            using AndroidJavaObject javaMap = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
 
             // The Android SDK can return null if this function is called before the SDK is initialized, or if SDK
             // initialization fails. In this case, return an empty dictionary to match behavior on iOS.
@@ -381,7 +381,7 @@ namespace EmbraceSDK.Internal
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
             if (!ReadyForCalls()) { return; }
-            AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
+            using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
 
             switch (severity)
             {
@@ -483,13 +483,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return; }
 
-            var jNotificationPriority =
+            using AndroidJavaObject jNotificationPriority =
                 integerClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.notificationPriority);
-            var jMessageDeliveredPriority = 
+            using AndroidJavaObject jMessageDeliveredPriority = 
                 integerClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.messageDeliveredPriority);
             
-            var jIsNotification = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.isNotification);
-            var jHasData = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.hasData);
+            using AndroidJavaObject jIsNotification = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.isNotification);
+            using AndroidJavaObject jHasData = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.hasData);
             
             EmbraceSharedInstance?.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
@@ -549,7 +549,10 @@ namespace EmbraceSDK.Internal
             var spanEvents = new List<Dictionary<string, object>>();
             foreach (var embraceSpanEvent in embraceSpanEvents)
             {
-                spanEvents.Add(embraceSpanEvent.SpanEventToDictionary());
+                if (embraceSpanEvent != null)
+                {
+                    spanEvents.Add(embraceSpanEvent.SpanEventToDictionary());
+                }
             }
 
             var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
