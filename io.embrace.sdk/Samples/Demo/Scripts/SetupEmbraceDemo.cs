@@ -1,5 +1,4 @@
-﻿using EmbraceSDK.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EmbraceSDK.Demo
 {

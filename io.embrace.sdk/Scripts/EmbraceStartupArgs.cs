@@ -7,7 +7,7 @@ namespace EmbraceSDK
     /// As a result, this is REQUIRED for iOS.
     /// It is IGNORED for Android.
     /// </summary>
-    public struct EmbraceStartupArgs
+    public class EmbraceStartupArgs
     {
         /// <summary>
         /// The AppId for the app you are integrating with Embrace
@@ -39,7 +39,12 @@ namespace EmbraceSDK
         public string ConfigBaseUrl;
         
         /// <summary>
-        /// The default constructor for the EmbraceStartupArgs.
+        /// Default constructor provided primarily for internal testing purposes.
+        /// </summary>
+        public EmbraceStartupArgs() {}
+        
+        /// <summary>
+        /// The recommended constructor for the EmbraceStartupArgs.
         /// Null values are provided for all optional parameters.
         /// </summary>
         /// <param name="appId"></param>

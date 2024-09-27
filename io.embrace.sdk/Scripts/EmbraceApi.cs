@@ -71,7 +71,7 @@ namespace EmbraceSDK
         /// </summary>
         /// <param name="args">Startup arguments to configure the SDK. REQUIRED on iOS</param>
         /// <param name="enableIntegrationTesting">If true, debug sessions (those which are not part of a release APK) will go to the live integration testing tab of the dashboard. If false, they will appear in 'recent sessions'.</param>
-        void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false);
+        void StartSDK(EmbraceStartupArgs args = null, bool enableIntegrationTesting = false);
 
         /// <summary>
         /// Logs a breadcrumb.

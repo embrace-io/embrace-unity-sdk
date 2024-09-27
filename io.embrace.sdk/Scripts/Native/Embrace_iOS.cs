@@ -139,16 +139,15 @@ namespace EmbraceSDK.Internal
             EmbraceLogger.Log("initializing Objc objects");
         }
 
-        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args, bool enableIntegrationTesting)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs args, bool enableIntegrationTesting)
         {
             if (args != null)
             {
-                var startupArgs = args.Value;
-                embrace_sdk_start_native(startupArgs.AppId,
-                    startupArgs.AppGroupId,
-                    startupArgs.BaseUrl,
-                    startupArgs.DevBaseUrl,
-                    startupArgs.ConfigBaseUrl);
+                embrace_sdk_start_native(args.AppId,
+                    args.AppGroupId,
+                    args.BaseUrl,
+                    args.DevBaseUrl,
+                    args.ConfigBaseUrl);
             }
             else
             {

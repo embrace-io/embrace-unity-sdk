@@ -227,7 +227,7 @@ namespace EmbraceSDK
         }
 
         /// <inheritdoc />
-        public void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false)
+        public void StartSDK(EmbraceStartupArgs args = null, bool enableIntegrationTesting = false)
         {
             if (_started)
             {

@@ -20,7 +20,7 @@ namespace EmbraceSDK.Internal
         /// </summary>
         void InitializeSDK();
         // Public API
-        void StartSDK(EmbraceStartupArgs? args = null, bool enableIntegrationTesting = false);
+        void StartSDK(EmbraceStartupArgs args = null, bool enableIntegrationTesting = false);
         LastRunEndState GetLastRunEndState();
         void SetUserIdentifier(string identifier);
         void ClearUserIdentifier();
