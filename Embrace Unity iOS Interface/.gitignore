@@ -2,7 +2,6 @@
 /build/*.xcarchive
 ./build/*.xcframework
 /xcframeworks/
-Embrace\ Unity\ iOS\ Interface/*
 xcuserdata/
 
 **xcuserdata/
