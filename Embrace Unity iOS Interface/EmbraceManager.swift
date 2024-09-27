@@ -69,10 +69,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func getLastRunEndState() -> LastRunEndState? {
-        if let endState = Embrace.client?.lastRunEndState() {
-            return endState
-        }
-        return nil
+        return Embrace.client?.lastRunEndState()
     }
     
     static func setUserIdentifier(userIdentifier: String) {
