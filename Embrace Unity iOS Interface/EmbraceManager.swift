@@ -348,7 +348,7 @@ public class EmbraceManager: NSObject {
         events: [RecordingSpanEvent]) -> Bool {
             
             var parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
-            attributes.updateValue("true", forKey: "emb.key")
+            attributes.updateValue("true", forKey: SpanSemantics.keyIsKeySpan)
             
             if Embrace.client == nil {
                 return false
