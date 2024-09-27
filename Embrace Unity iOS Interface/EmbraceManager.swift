@@ -183,7 +183,7 @@ public class EmbraceManager: NSObject {
     
     static func setUserAsPayer() -> Bool {
         do {
-            try Embrace.client?.metadata.add(persona: "payer")
+            try Embrace.client?.metadata.add(persona: .payer)
             return true
         } catch let error {
             return false
