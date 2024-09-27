@@ -213,24 +213,24 @@ public class EmbraceManager: NSObject {
                                   statusCode: Double,
                                   error: String?) {
         var attributes = [
-            "http.request.method": httpMethod.uppercased(),
-            "url.full": url
+            SpanSemantics.NetworkRequest.keyMethod: httpMethod.uppercased(),
+            SpanSemantics.NetworkRequest.keyUrl: url
         ]
         
         if statusCode >= 0 {
-            attributes["http.response.status_code"] = String(Int(statusCode))
+            attributes[SpanSemantics.NetworkRequest.keyStatusCode] = String(Int(statusCode))
         }
 
         if bytesSent >= 0 {
-            attributes["http.request.body.size"] = String(Int(bytesSent))
+            attributes[SpanSemantics.NetworkRequest.keyBodySize] = String(Int(bytesSent))
         }
 
         if bytesReceived >= 0 {
-            attributes["http.response.body.size"] = String(Int(bytesReceived))
+            attributes[SpanSemantics.NetworkRequest.keyResponseSize] = String(Int(bytesReceived))
         }
         
         if let error {
-            attributes["error.message"] = error
+            attributes[SpanSemantics.NetworkRequest.keyErrorMessage] = error
         }
         
         Embrace.client?.recordCompletedSpan(name: createNetworkSpanName(url: url, httpMethod: httpMethod),
