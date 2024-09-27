@@ -31,108 +31,108 @@ namespace EmbraceSDK.Internal
         private static extern bool embrace_sdk_is_started();
 
         [DllImport("__Internal")]
-        private static extern void crash();
+        private static extern void embrace_crash();
         
         [DllImport("__Internal")]
-        private static extern void set_unity_metadata(string unityVersion, string guid, string sdkVersion);
+        private static extern void embrace_set_unity_metadata(string unityVersion, string guid, string sdkVersion);
         
         [DllImport("__Internal")]
-        private static extern void end_session();
+        private static extern void embrace_end_session();
 
         [DllImport("__Internal")]
-        private static extern IntPtr get_device_id();
+        private static extern IntPtr embrace_get_device_id();
 
         [DllImport("__Internal")]
-        private static extern IntPtr get_session_id();
+        private static extern IntPtr embrace_get_session_id();
 
         [DllImport("__Internal")]
-        private static extern int get_last_run_end_state();
+        private static extern int embrace_get_last_run_end_state();
 
         [DllImport("__Internal")]
-        private static extern void set_user_identifier(string userIdentifier);
+        private static extern void embrace_set_user_identifier(string userIdentifier);
 
         [DllImport("__Internal")]
-        private static extern void clear_user_identifier();
+        private static extern void embrace_clear_user_identifier();
 
         [DllImport("__Internal")]
-        private static extern void add_breadcrumb(string @event);
+        private static extern void embrace_add_breadcrumb(string @event);
 
         [DllImport("__Internal")]
-        private static extern void set_username(string username);
+        private static extern void embrace_set_username(string username);
 
         [DllImport("__Internal")]
-        private static extern void clear_username();
+        private static extern void embrace_clear_username();
 
         [DllImport("__Internal")]
-        private static extern void set_user_email(string email);
+        private static extern void embrace_set_user_email(string email);
 
         [DllImport("__Internal")]
-        private static extern void clear_user_email();
+        private static extern void embrace_clear_user_email();
 
         [DllImport("__Internal")]
-        private static extern void add_user_persona(string persona);
+        private static extern void embrace_add_user_persona(string persona);
 
         [DllImport("__Internal")]
-        private static extern void clear_user_persona(string persona);
+        private static extern void embrace_clear_user_persona(string persona);
 
         [DllImport("__Internal")]
-        private static extern void clear_all_user_personas();
+        private static extern void embrace_clear_all_user_personas();
 
         [DllImport("__Internal")]
-        private static extern bool add_session_property(string key, string value, bool permanent);
+        private static extern bool embrace_add_session_property(string key, string value, bool permanent);
 
         [DllImport("__Internal")]
-        private static extern void remove_session_property(string key);
+        private static extern void embrace_remove_session_property(string key);
 
         [DllImport("__Internal")]
-        private static extern void log_message_with_severity_and_properties(string message, string severity,
+        private static extern void embrace_log_message_with_severity_and_properties(string message, string severity,
             string propsJson);
 
         [DllImport("__Internal")]
-        private static extern void set_user_as_payer();
+        private static extern void embrace_set_user_as_payer();
 
         [DllImport("__Internal")]
-        private static extern void clear_user_as_payer();
+        private static extern void embrace_clear_user_as_payer();
 
         [DllImport("__Internal")]
-        private static extern IntPtr start_view(string viewName);
+        private static extern IntPtr embrace_start_view(string viewName);
 
         [DllImport("__Internal")]
-        private static extern bool end_view(string viewId);
+        private static extern bool embrace_end_view(string viewId);
 
         [DllImport("__Internal")]
-        private static extern void log_network_request(string url, string httpMethod, double startMs, double endMs,
+        private static extern void embrace_log_network_request(string url, string httpMethod, double startMs, double endMs,
             double bytesSent, double bytesReceived, double statusCode, string error);
 
         [DllImport("__Internal")]
-        private static extern void log_network_client_error(string url, string httpmMethod, double startMs,
+        private static extern void embrace_log_network_client_error(string url, string httpmMethod, double startMs,
             double endMs, string errorType, string errorMessage);
 
         [DllImport("__Internal")]
-        private static extern IntPtr start_span(string name, string parentSpanId, double startMs);
+        private static extern IntPtr embrace_start_span(string name, string parentSpanId, double startMs);
 
         [DllImport("__Internal")]
-        private static extern void stop_span(string spanId, string errorCode, double endMs);
+        private static extern void embrace_stop_span(string spanId, string errorCode, double endMs);
 
         [DllImport("__Internal")]
-        private static extern bool add_span_event_to_span(string spanId, string name, double time,
+        private static extern bool embrace_add_span_event_to_span(string spanId, string name, double time,
             string attributesJson);
 
         [DllImport("__Internal")]
-        private static extern bool add_span_attribute_to_span(string spanId, string key, string value);
+        private static extern bool embrace_add_span_attribute_to_span(string spanId, string key, string value);
 
         [DllImport("__Internal")]
-        private static extern bool record_completed_span(string spanName, double startTime, double endTime,
+        private static extern bool embrace_record_completed_span(string spanName, double startTime, double endTime,
             string errorCodeString, string parentSpanId, string attributesJson, string eventsJson);
 
         [DllImport("__Internal")]
-        private static extern void log_handled_exception(string name, string message, string stacktrace);
+        private static extern void embrace_log_handled_exception(string name, string message, string stacktrace);
 
         [DllImport("__Internal")]
-        private static extern void log_unhandled_exception(string name, string message, string stacktrace);
+        private static extern void embrace_log_unhandled_exception(string name, string message, string stacktrace);
         
         [DllImport("__Internal")]
-        private static extern void log_push_notification(string title, string subtitle, string body, int badge, string category);
+        private static extern void embrace_log_push_notification(string title, string subtitle, string body, int badge, string category);
 
         void IEmbraceProvider.InitializeSDK()
         {
@@ -165,7 +165,7 @@ namespace EmbraceSDK.Internal
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
-            return (LastRunEndState) get_last_run_end_state();
+            return (LastRunEndState) embrace_get_last_run_end_state();
         }
         
         // Deprecated no-op
@@ -173,72 +173,72 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
-            set_user_identifier(identifier);
+            embrace_set_user_identifier(identifier);
         }
 
         void IEmbraceProvider.ClearUserIdentifier()
         {
-            clear_user_identifier();
+            embrace_clear_user_identifier();
         }
 
         void IEmbraceProvider.SetUsername(string username)
         {
-            set_username(username);
+            embrace_set_username(username);
         }
 
         void IEmbraceProvider.ClearUsername()
         {
-            clear_username();
+            embrace_clear_username();
         }
 
         void IEmbraceProvider.SetUserEmail(string email)
         {
-            set_user_email(email);
+            embrace_set_user_email(email);
         }
 
         void IEmbraceProvider.ClearUserEmail()
         {
-            clear_user_email();
+            embrace_clear_user_email();
         }
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            set_user_as_payer();
+            embrace_set_user_as_payer();
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            clear_user_as_payer();
+            embrace_clear_user_as_payer();
         }
         
         void IEmbraceProvider.SetUserPersona(string persona)
         {
-            add_user_persona(persona);
+            embrace_add_user_persona(persona);
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
         {
-            add_user_persona(persona);
+            embrace_add_user_persona(persona);
         }
 
         void IEmbraceProvider.ClearUserPersona(string persona)
         {
-            clear_user_persona(persona);
+            embrace_clear_user_persona(persona);
         }
 
         void IEmbraceProvider.ClearAllUserPersonas()
         {
-            clear_all_user_personas();
+            embrace_clear_all_user_personas();
         }
 
         bool IEmbraceProvider.AddSessionProperty(string key, string value, bool permanent)
         {
-            return add_session_property(key, value, permanent);
+            return embrace_add_session_property(key, value, permanent);
         }
 
         void IEmbraceProvider.RemoveSessionProperty(string key)
         {
-            remove_session_property(key);
+            embrace_remove_session_property(key);
         }
         
         [Obsolete("GetSessionProperties is deprecated on iOS", false)]
@@ -291,34 +291,34 @@ namespace EmbraceSDK.Internal
                     break;
             }
             
-            log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));
+            embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));
         }
 
         // Android redirects LogBreadcrumb to AddBreadcrumb. We will do the same here.
         void IEmbraceProvider.LogBreadcrumb(string message)
         {
-            add_breadcrumb(message);
+            embrace_add_breadcrumb(message);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
-            add_breadcrumb(message);
+            embrace_add_breadcrumb(message);
         }
 
         // iOS doesn't use clearUserInfo
         void IEmbraceProvider.EndSession(bool clearUserInfo)
         {
-            end_session();
+            embrace_end_session();
         }
 
         string IEmbraceProvider.GetDeviceId()
         {
-            return get_device_id().ConvertToString();
+            return embrace_get_device_id().ConvertToString();
         }
 
         bool IEmbraceProvider.StartView(string name)
         {
-            var spanId = start_view(name).ConvertToString();
+            var spanId = embrace_start_view(name).ConvertToString();
             if (spanId != null)
             {
                 _viewDictionary[name] = spanId;
@@ -331,7 +331,7 @@ namespace EmbraceSDK.Internal
         {
             if (_viewDictionary.TryGetValue(name, out var spanId))
             {
-                return end_view(spanId);
+                return embrace_end_view(spanId);
             }
 
             return false;
@@ -339,24 +339,24 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.Crash()
         {
-            crash();
+            embrace_crash();
         }
 
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
-            set_unity_metadata(unityVersion, guid, sdkVersion);
+            embrace_set_unity_metadata(unityVersion, guid, sdkVersion);
         }
 
         void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms,
             long bytesin, long bytesout, int code)
         {
-            log_network_request(url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
+            embrace_log_network_request(url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
         }
 
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms,
             string error)
         {
-            log_network_request(url, method.ToString(), startms, endms, 0, 0, 0, error);
+            embrace_log_network_request(url, method.ToString(), startms, endms, 0, 0, 0, error);
         }
 
         void IEmbraceProvider.InstallUnityThreadSampler()
@@ -367,57 +367,57 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.logUnhandledUnityException(string exceptionMessage, string stack)
         {
-            log_unhandled_exception("", exceptionMessage, stack);
+            embrace_log_unhandled_exception("", exceptionMessage, stack);
         }
 
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
-            log_push_notification(iosArgs.title, iosArgs.subtitle, iosArgs.body, iosArgs.badge, iosArgs.category);
+            embrace_log_push_notification(iosArgs.title, iosArgs.subtitle, iosArgs.body, iosArgs.badge, iosArgs.category);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage,
             string stacktrace)
         {
-            log_unhandled_exception(exceptionName, exceptionMessage, stacktrace);
+            embrace_log_unhandled_exception(exceptionName, exceptionMessage, stacktrace);
         }
 
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stacktrace)
         {
-            log_handled_exception(exceptionName, exceptionMessage, stacktrace);
+            embrace_log_handled_exception(exceptionName, exceptionMessage, stacktrace);
         }
 
         string IEmbraceProvider.GetCurrentSessionId()
         {
-            return get_session_id().ConvertToString();
+            return embrace_get_session_id().ConvertToString();
         }
 
         string IEmbraceProvider.StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
-            return start_span(spanName, parentSpanId, startTimeMs).ConvertToString();
+            return embrace_start_span(spanName, parentSpanId, startTimeMs).ConvertToString();
         }
 
         bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
         {
-            stop_span(spanId, errorCode.ToString(), endTimeMs);
+            embrace_stop_span(spanId, errorCode.ToString(), endTimeMs);
             return false;
         }
 
         bool IEmbraceProvider.AddSpanEvent(string spanName, string spanId, long timestampMs,
             Dictionary<string, string> attributes)
         {
-            return add_span_event_to_span(spanId, spanName, timestampMs, JsonConvert.SerializeObject(attributes));
+            return embrace_add_span_event_to_span(spanId, spanName, timestampMs, JsonConvert.SerializeObject(attributes));
         }
 
         bool IEmbraceProvider.AddSpanAttribute(string spanId, string key, string value)
         {
-            return add_span_attribute_to_span(spanId, key, value);
+            return embrace_add_span_attribute_to_span(spanId, key, value);
         }
 
         bool IEmbraceProvider.RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode,
             string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent[] events)
         {
-            return record_completed_span(spanName,
+            return embrace_record_completed_span(spanName,
                 startTimeMs, 
                 endTimeMs, 
                 (errorCode ?? 0).ToString(), 

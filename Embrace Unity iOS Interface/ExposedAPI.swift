@@ -43,13 +43,13 @@ public func embrace_sdk_is_started() -> Bool {
     return EmbraceManager.isStarted();
 }
 
-@_cdecl("crash")
-public func crash() {
+@_cdecl("embrace_crash")
+public func embrace_crash() {
     EmbraceManager.crash()
 }
 
-@_cdecl("set_unity_metadata")
-public func set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buildGuid: UnsafePointer<CChar>?, sdkVersion: UnsafePointer<CChar>?) {
+@_cdecl("embrace_set_unity_metadata")
+public func embrace_set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buildGuid: UnsafePointer<CChar>?, sdkVersion: UnsafePointer<CChar>?) {
     guard let unityVersion, let buildGuid, let sdkVersion else {
         return
     }
@@ -61,31 +61,31 @@ public func set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buildGuid: U
     }
 }
 
-@_cdecl("end_session")
-public func end_session() {
+@_cdecl("embrace_end_session")
+public func embrace_end_session() {
     EmbraceManager.endCurrentSession()
 }
 
-@_cdecl("get_device_id")
-public func get_device_id() -> UnsafeMutablePointer<Int8>? {
+@_cdecl("embrace_get_device_id")
+public func embrace_get_device_id() -> UnsafeMutablePointer<Int8>? {
     return convert_str_to_cstr_pointer(str: EmbraceManager.getDeviceId())
 }
 
-@_cdecl("get_session_id")
-public func get_session_id() -> UnsafeMutablePointer<Int8>? {
+@_cdecl("embrace_get_session_id")
+public func embrace_get_session_id() -> UnsafeMutablePointer<Int8>? {
     return convert_str_to_cstr_pointer(str: EmbraceManager.getCurrentSessionId())
 }
 
-@_cdecl("get_last_run_end_state")
-public func get_last_run_end_state() -> Int {
+@_cdecl("embrace_get_last_run_end_state")
+public func embrace_get_last_run_end_state() -> Int {
     if let endState = EmbraceManager.getLastRunEndState() {
         return endState.rawValue;
     }
     return 0;
 }
 
-@_cdecl("set_user_identifier")
-public func set_user_identifier(userIdentifier: UnsafePointer<CChar>?) {
+@_cdecl("embrace_set_user_identifier")
+public func embrace_set_user_identifier(userIdentifier: UnsafePointer<CChar>?) {
     guard let userIdentifier else {
         return
     }
@@ -95,13 +95,13 @@ public func set_user_identifier(userIdentifier: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("clear_user_identifier")
-public func clear_user_identifier() {
+@_cdecl("embrace_clear_user_identifier")
+public func embrace_clear_user_identifier() {
     EmbraceManager.clearUserIdentifier()
 }
 
-@_cdecl("add_breadcrumb")
-public func add_breadcrumb(event: UnsafePointer<CChar>?) {
+@_cdecl("embrace_add_breadcrumb")
+public func embrace_add_breadcrumb(event: UnsafePointer<CChar>?) {
     guard let event else {
         return
     }
@@ -111,8 +111,8 @@ public func add_breadcrumb(event: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("set_username")
-public func set_username(username: UnsafePointer<CChar>?) {
+@_cdecl("embrace_set_username")
+public func embrace_set_username(username: UnsafePointer<CChar>?) {
     guard let username else {
         return
     }
@@ -122,13 +122,13 @@ public func set_username(username: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("clear_username")
-public func clear_username() {
+@_cdecl("embrace_clear_username")
+public func embrace_clear_username() {
     EmbraceManager.clearUsername()
 }
 
-@_cdecl("set_user_email")
-public func set_user_email(email: UnsafePointer<CChar>?) {
+@_cdecl("embrace_set_user_email")
+public func embrace_set_user_email(email: UnsafePointer<CChar>?) {
     guard let email else {
         return
     }
@@ -138,13 +138,13 @@ public func set_user_email(email: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("clear_user_email")
-public func clear_user_email(email: UnsafePointer<CChar>?) {
+@_cdecl("embrace_clear_user_email")
+public func embrace_clear_user_email(email: UnsafePointer<CChar>?) {
     EmbraceManager.clearUserEmail()
 }
 
-@_cdecl("add_user_persona")
-public func add_user_persona(persona: UnsafePointer<CChar>?) {
+@_cdecl("embrace_add_user_persona")
+public func embrace_add_user_persona(persona: UnsafePointer<CChar>?) {
     guard let persona else {
         return
     }
@@ -154,8 +154,8 @@ public func add_user_persona(persona: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("clear_user_persona")
-public func clear_user_persona(persona: UnsafePointer<CChar>?) {
+@_cdecl("embrace_clear_user_persona")
+public func embrace_clear_user_persona(persona: UnsafePointer<CChar>?) {
     guard let persona else {
         return
     }
@@ -165,13 +165,13 @@ public func clear_user_persona(persona: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("clear_all_user_personas")
-public func clear_all_user_personas() {
+@_cdecl("embrace_clear_all_user_personas")
+public func embrace_clear_all_user_personas() {
     EmbraceManager.clearAllUserPersonas()
 }
 
-@_cdecl("add_session_property")
-public func add_session_property(key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?, permanent: Bool) -> Bool {
+@_cdecl("embrace_add_session_property")
+public func embrace_add_session_property(key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?, permanent: Bool) -> Bool {
     guard let key, let value else {
         return false
     }
@@ -183,8 +183,8 @@ public func add_session_property(key: UnsafePointer<CChar>?, value: UnsafePointe
     return false
 }
 
-@_cdecl("remove_session_property")
-public func remove_session_property(key: UnsafePointer<CChar>?) {
+@_cdecl("embrace_remove_session_property")
+public func embrace_remove_session_property(key: UnsafePointer<CChar>?) {
     guard let key else {
         return
     }
@@ -194,8 +194,8 @@ public func remove_session_property(key: UnsafePointer<CChar>?) {
     }
 }
 
-@_cdecl("log_message_with_severity_and_properties")
-public func log_message_with_severity_and_properties(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?, propsJson: UnsafePointer<CChar>?) {
+@_cdecl("embrace_log_message_with_severity_and_properties")
+public func embrace_log_message_with_severity_and_properties(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?, propsJson: UnsafePointer<CChar>?) {
     
     guard let message, let severity else {
         return
@@ -212,18 +212,18 @@ public func log_message_with_severity_and_properties(message: UnsafePointer<CCha
     }
 }
 
-@_cdecl("set_user_as_payer")
-public func set_user_as_payer() {
+@_cdecl("embrace_set_user_as_payer")
+public func embrace_set_user_as_payer() {
     EmbraceManager.setUserAsPayer()
 }
 
-@_cdecl("clear_user_as_payer")
-public func clear_user_as_payer() {
+@_cdecl("embrace_clear_user_as_payer")
+public func embrace_clear_user_as_payer() {
     EmbraceManager.clearUserAsPayer()
 }
 
-@_cdecl("start_view")
-public func start_view(viewName: UnsafePointer<CChar>?) -> UnsafeMutablePointer<CChar>? {
+@_cdecl("embrace_start_view")
+public func embrace_start_view(viewName: UnsafePointer<CChar>?) -> UnsafeMutablePointer<CChar>? {
     guard let viewName else {
         return nil
     }
@@ -236,8 +236,8 @@ public func start_view(viewName: UnsafePointer<CChar>?) -> UnsafeMutablePointer<
     return nil
 }
 
-@_cdecl("end_view")
-public func end_view(viewId: UnsafePointer<CChar>?) -> Bool {
+@_cdecl("embrace_end_view")
+public func embrace_end_view(viewId: UnsafePointer<CChar>?) -> Bool {
     guard let viewId else {
         return false
     }
@@ -249,8 +249,8 @@ public func end_view(viewId: UnsafePointer<CChar>?) -> Bool {
     return false
 }
 
-@_cdecl("log_network_request")
-public func log_network_request(url: UnsafePointer<CChar>?,
+@_cdecl("embrace_log_network_request")
+public func embrace_log_network_request(url: UnsafePointer<CChar>?,
                                 httpMethod: UnsafePointer<CChar>?,
                                 startInMillis: Double,
                                 endInMillis: Double,
@@ -285,8 +285,8 @@ public func log_network_request(url: UnsafePointer<CChar>?,
     }
 }
 
-@_cdecl("log_network_client_error")
-public func log_network_client_error(url: UnsafePointer<CChar>?,
+@_cdecl("embrace_log_network_client_error")
+public func embrace_log_network_client_error(url: UnsafePointer<CChar>?,
                                      httpMethod: UnsafePointer<CChar>?,
                                      startInMillis: Double,
                                      endInMillis: Double,
@@ -309,8 +309,8 @@ public func log_network_client_error(url: UnsafePointer<CChar>?,
     }
 }
 
-@_cdecl("start_span")
-public func start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<CChar>?, startTimeMs: Double) -> UnsafeMutablePointer<CChar>? {
+@_cdecl("embrace_start_span")
+public func embrace_start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<CChar>?, startTimeMs: Double) -> UnsafeMutablePointer<CChar>? {
     guard let name, let parentSpanId else {
         return nil
     }
@@ -323,8 +323,8 @@ public func start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<
     return nil
 }
 
-@_cdecl("stop_span")
-public func stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePointer<CChar>?, endTimeMs: Double) -> Bool {
+@_cdecl("embrace_stop_span")
+public func embrace_stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePointer<CChar>?, endTimeMs: Double) -> Bool {
     guard let spanId, let errorCodeString else {
         return false
     }
@@ -336,8 +336,8 @@ public func stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: UnsafePoin
     return false
 }
 
-@_cdecl("add_span_event_to_span")
-public func add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: UnsafePointer<CChar>?, time: Double, attributesJson: UnsafePointer<CChar>?) -> Bool {
+@_cdecl("embrace_add_span_event_to_span")
+public func embrace_add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: UnsafePointer<CChar>?, time: Double, attributesJson: UnsafePointer<CChar>?) -> Bool {
     guard let spanId, let name, let attributesJson else {
         return false
     }
@@ -355,8 +355,8 @@ public func add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: UnsafePo
     return false
 }
 
-@_cdecl("add_span_attribute_to_span")
-public func add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?) -> Bool {
+@_cdecl("embrace_add_span_attribute_to_span")
+public func embrace_add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, key: UnsafePointer<CChar>?, value: UnsafePointer<CChar>?) -> Bool {
     guard let spanId, let key, let value else {
         return false
     }
@@ -368,8 +368,8 @@ public func add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, key: Unsaf
     return false
 }
 
-@_cdecl("record_completed_span")
-public func record_completed_span(
+@_cdecl("embrace_record_completed_span")
+public func embrace_record_completed_span(
     name: UnsafePointer<CChar>?,
     startTimeMs: Double,
     endTimeMs: Double,
@@ -418,8 +418,8 @@ public func record_completed_span(
         return false
 }
 
-@_cdecl("log_handled_exception")
-public func log_handled_exception(name: UnsafePointer<CChar>?,
+@_cdecl("embrace_log_handled_exception")
+public func embrace_log_handled_exception(name: UnsafePointer<CChar>?,
                                   message: UnsafePointer<CChar>?,
                                   stacktrace: UnsafePointer<CChar>?) {
     guard let name, let message, let stacktrace else {
@@ -433,8 +433,8 @@ public func log_handled_exception(name: UnsafePointer<CChar>?,
     }
 }
 
-@_cdecl("log_unhandled_exception")
-public func log_unhandled_exception(name: UnsafePointer<CChar>?,
+@_cdecl("embrace_log_unhandled_exception")
+public func embrace_log_unhandled_exception(name: UnsafePointer<CChar>?,
                                     message: UnsafePointer<CChar>?,
                                     stacktrace: UnsafePointer<CChar>?) {
     guard let name, let message, let stacktrace else {
@@ -448,8 +448,8 @@ public func log_unhandled_exception(name: UnsafePointer<CChar>?,
     }
 }
 
-@_cdecl("log_push_notification")
-public func log_push_notification(title: UnsafePointer<CChar>?, body: UnsafePointer<CChar>?, subtitle: UnsafePointer<CChar>?, badge: Int, category: UnsafePointer<CChar>?) {
+@_cdecl("embrace_log_push_notification")
+public func embrace_log_push_notification(title: UnsafePointer<CChar>?, body: UnsafePointer<CChar>?, subtitle: UnsafePointer<CChar>?, badge: Int, category: UnsafePointer<CChar>?) {
     guard let title, let body, let subtitle, let category else {
         return
     }
