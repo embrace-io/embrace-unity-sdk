@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11077E342C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 11077E332C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11077E3E2C76D80F00CAFD0C /* EmbraceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E3D2C76D80F00CAFD0C /* EmbraceManager.swift */; };
+		11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6C2C77944700CAFD0C /* ExposedAPI.swift */; };
+		11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */; };
+		110F3A4D2CA0D0F200A6BBC3 /* EmbraceSemantics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A372CA0D0D100A6BBC3 /* EmbraceSemantics.xcframework */; };
+		110F3A4E2CA0D0F200A6BBC3 /* EmbraceCaptureService.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A382CA0D0D200A6BBC3 /* EmbraceCaptureService.xcframework */; };
+		110F3A4F2CA0D0F200A6BBC3 /* EmbraceStorageInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A392CA0D0D400A6BBC3 /* EmbraceStorageInternal.xcframework */; };
+		110F3A502CA0D0F200A6BBC3 /* EmbraceCommonInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3A2CA0D0D500A6BBC3 /* EmbraceCommonInternal.xcframework */; };
+		110F3A512CA0D0F200A6BBC3 /* KSCrashInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3B2CA0D0D700A6BBC3 /* KSCrashInstallations.xcframework */; };
+		110F3A522CA0D0F200A6BBC3 /* KSCrashFilters.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3C2CA0D0D800A6BBC3 /* KSCrashFilters.xcframework */; };
+		110F3A532CA0D0F200A6BBC3 /* KSCrashSinks.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3D2CA0D0DA00A6BBC3 /* KSCrashSinks.xcframework */; };
+		110F3A542CA0D0F200A6BBC3 /* EmbraceUploadInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3E2CA0D0DB00A6BBC3 /* EmbraceUploadInternal.xcframework */; };
+		110F3A552CA0D0F200A6BBC3 /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A3F2CA0D0DD00A6BBC3 /* OpenTelemetrySdk.xcframework */; };
+		110F3A562CA0D0F200A6BBC3 /* EmbraceCrashlyticsSupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A402CA0D0DE00A6BBC3 /* EmbraceCrashlyticsSupport.xcframework */; };
+		110F3A572CA0D0F200A6BBC3 /* KSCrashRecording.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A412CA0D0E000A6BBC3 /* KSCrashRecording.xcframework */; };
+		110F3A582CA0D0F200A6BBC3 /* KSCrashRecordingCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A422CA0D0E100A6BBC3 /* KSCrashRecordingCore.xcframework */; };
+		110F3A592CA0D0F200A6BBC3 /* OpenTelemetryApi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A432CA0D0E300A6BBC3 /* OpenTelemetryApi.xcframework */; };
+		110F3A5A2CA0D0F200A6BBC3 /* EmbraceConfigInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A442CA0D0E400A6BBC3 /* EmbraceConfigInternal.xcframework */; };
+		110F3A5B2CA0D0F200A6BBC3 /* GRDB.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A452CA0D0E800A6BBC3 /* GRDB.xcframework */; };
+		110F3A5C2CA0D0F200A6BBC3 /* KSCrashCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A462CA0D0E900A6BBC3 /* KSCrashCore.xcframework */; };
+		110F3A5D2CA0D0F200A6BBC3 /* KSCrashReportingCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A472CA0D0EA00A6BBC3 /* KSCrashReportingCore.xcframework */; };
+		110F3A5E2CA0D0F200A6BBC3 /* EmbraceOTelInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A482CA0D0EC00A6BBC3 /* EmbraceOTelInternal.xcframework */; };
+		110F3A5F2CA0D0F200A6BBC3 /* EmbraceCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A492CA0D0EE00A6BBC3 /* EmbraceCore.xcframework */; };
+		110F3A602CA0D0F200A6BBC3 /* EmbraceObjCUtilsInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4A2CA0D0EF00A6BBC3 /* EmbraceObjCUtilsInternal.xcframework */; };
+		110F3A612CA0D0F200A6BBC3 /* EmbraceCrash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4B2CA0D0F100A6BBC3 /* EmbraceCrash.xcframework */; };
+		110F3A622CA0D0F200A6BBC3 /* EmbraceIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4C2CA0D0F200A6BBC3 /* EmbraceIO.xcframework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11077E302C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Embrace_Unity_iOS_Interface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11077E332C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Embrace_Unity_iOS_Interface.h; sourceTree = "<group>"; };
+		11077E3D2C76D80F00CAFD0C /* EmbraceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbraceManager.swift; sourceTree = "<group>"; };
+		11077E6C2C77944700CAFD0C /* ExposedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposedAPI.swift; sourceTree = "<group>"; };
+		11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanRepository.swift; sourceTree = "<group>"; };
+		110F3A372CA0D0D100A6BBC3 /* EmbraceSemantics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceSemantics.xcframework; sourceTree = "<group>"; };
+		110F3A382CA0D0D200A6BBC3 /* EmbraceCaptureService.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCaptureService.xcframework; sourceTree = "<group>"; };
+		110F3A392CA0D0D400A6BBC3 /* EmbraceStorageInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceStorageInternal.xcframework; sourceTree = "<group>"; };
+		110F3A3A2CA0D0D500A6BBC3 /* EmbraceCommonInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCommonInternal.xcframework; sourceTree = "<group>"; };
+		110F3A3B2CA0D0D700A6BBC3 /* KSCrashInstallations.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashInstallations.xcframework; sourceTree = "<group>"; };
+		110F3A3C2CA0D0D800A6BBC3 /* KSCrashFilters.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashFilters.xcframework; sourceTree = "<group>"; };
+		110F3A3D2CA0D0DA00A6BBC3 /* KSCrashSinks.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashSinks.xcframework; sourceTree = "<group>"; };
+		110F3A3E2CA0D0DB00A6BBC3 /* EmbraceUploadInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceUploadInternal.xcframework; sourceTree = "<group>"; };
+		110F3A3F2CA0D0DD00A6BBC3 /* OpenTelemetrySdk.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetrySdk.xcframework; sourceTree = "<group>"; };
+		110F3A402CA0D0DE00A6BBC3 /* EmbraceCrashlyticsSupport.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCrashlyticsSupport.xcframework; sourceTree = "<group>"; };
+		110F3A412CA0D0E000A6BBC3 /* KSCrashRecording.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashRecording.xcframework; sourceTree = "<group>"; };
+		110F3A422CA0D0E100A6BBC3 /* KSCrashRecordingCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashRecordingCore.xcframework; sourceTree = "<group>"; };
+		110F3A432CA0D0E300A6BBC3 /* OpenTelemetryApi.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTelemetryApi.xcframework; sourceTree = "<group>"; };
+		110F3A442CA0D0E400A6BBC3 /* EmbraceConfigInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceConfigInternal.xcframework; sourceTree = "<group>"; };
+		110F3A452CA0D0E800A6BBC3 /* GRDB.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GRDB.xcframework; sourceTree = "<group>"; };
+		110F3A462CA0D0E900A6BBC3 /* KSCrashCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashCore.xcframework; sourceTree = "<group>"; };
+		110F3A472CA0D0EA00A6BBC3 /* KSCrashReportingCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = KSCrashReportingCore.xcframework; sourceTree = "<group>"; };
+		110F3A482CA0D0EC00A6BBC3 /* EmbraceOTelInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceOTelInternal.xcframework; sourceTree = "<group>"; };
+		110F3A492CA0D0EE00A6BBC3 /* EmbraceCore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCore.xcframework; sourceTree = "<group>"; };
+		110F3A4A2CA0D0EF00A6BBC3 /* EmbraceObjCUtilsInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceObjCUtilsInternal.xcframework; sourceTree = "<group>"; };
+		110F3A4B2CA0D0F100A6BBC3 /* EmbraceCrash.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCrash.xcframework; sourceTree = "<group>"; };
+		110F3A4C2CA0D0F200A6BBC3 /* EmbraceIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceIO.xcframework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11077E2D2C76D7A200CAFD0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				110F3A5F2CA0D0F200A6BBC3 /* EmbraceCore.xcframework in Frameworks */,
+				110F3A512CA0D0F200A6BBC3 /* KSCrashInstallations.xcframework in Frameworks */,
+				110F3A612CA0D0F200A6BBC3 /* EmbraceCrash.xcframework in Frameworks */,
+				110F3A532CA0D0F200A6BBC3 /* KSCrashSinks.xcframework in Frameworks */,
+				110F3A522CA0D0F200A6BBC3 /* KSCrashFilters.xcframework in Frameworks */,
+				110F3A552CA0D0F200A6BBC3 /* OpenTelemetrySdk.xcframework in Frameworks */,
+				110F3A5E2CA0D0F200A6BBC3 /* EmbraceOTelInternal.xcframework in Frameworks */,
+				110F3A5B2CA0D0F200A6BBC3 /* GRDB.xcframework in Frameworks */,
+				110F3A592CA0D0F200A6BBC3 /* OpenTelemetryApi.xcframework in Frameworks */,
+				110F3A5C2CA0D0F200A6BBC3 /* KSCrashCore.xcframework in Frameworks */,
+				110F3A582CA0D0F200A6BBC3 /* KSCrashRecordingCore.xcframework in Frameworks */,
+				110F3A542CA0D0F200A6BBC3 /* EmbraceUploadInternal.xcframework in Frameworks */,
+				110F3A4E2CA0D0F200A6BBC3 /* EmbraceCaptureService.xcframework in Frameworks */,
+				110F3A5D2CA0D0F200A6BBC3 /* KSCrashReportingCore.xcframework in Frameworks */,
+				110F3A4D2CA0D0F200A6BBC3 /* EmbraceSemantics.xcframework in Frameworks */,
+				110F3A602CA0D0F200A6BBC3 /* EmbraceObjCUtilsInternal.xcframework in Frameworks */,
+				110F3A572CA0D0F200A6BBC3 /* KSCrashRecording.xcframework in Frameworks */,
+				110F3A562CA0D0F200A6BBC3 /* EmbraceCrashlyticsSupport.xcframework in Frameworks */,
+				110F3A4F2CA0D0F200A6BBC3 /* EmbraceStorageInternal.xcframework in Frameworks */,
+				110F3A622CA0D0F200A6BBC3 /* EmbraceIO.xcframework in Frameworks */,
+				110F3A5A2CA0D0F200A6BBC3 /* EmbraceConfigInternal.xcframework in Frameworks */,
+				110F3A502CA0D0F200A6BBC3 /* EmbraceCommonInternal.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11077E262C76D7A200CAFD0C = {
+			isa = PBXGroup;
+			children = (
+				11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */,
+				11077E6C2C77944700CAFD0C /* ExposedAPI.swift */,
+				11077E3D2C76D80F00CAFD0C /* EmbraceManager.swift */,
+				11077E552C77935E00CAFD0C /* xcframeworks */,
+				11077E322C76D7A200CAFD0C /* Embrace Unity iOS Interface */,
+				11077E312C76D7A200CAFD0C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		11077E312C76D7A200CAFD0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11077E302C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11077E322C76D7A200CAFD0C /* Embrace Unity iOS Interface */ = {
+			isa = PBXGroup;
+			children = (
+				11077E332C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.h */,
+			);
+			path = "Embrace Unity iOS Interface";
+			sourceTree = "<group>";
+		};
+		11077E552C77935E00CAFD0C /* xcframeworks */ = {
+			isa = PBXGroup;
+			children = (
+				110F3A382CA0D0D200A6BBC3 /* EmbraceCaptureService.xcframework */,
+				110F3A3A2CA0D0D500A6BBC3 /* EmbraceCommonInternal.xcframework */,
+				110F3A442CA0D0E400A6BBC3 /* EmbraceConfigInternal.xcframework */,
+				110F3A492CA0D0EE00A6BBC3 /* EmbraceCore.xcframework */,
+				110F3A4B2CA0D0F100A6BBC3 /* EmbraceCrash.xcframework */,
+				110F3A402CA0D0DE00A6BBC3 /* EmbraceCrashlyticsSupport.xcframework */,
+				110F3A4C2CA0D0F200A6BBC3 /* EmbraceIO.xcframework */,
+				110F3A4A2CA0D0EF00A6BBC3 /* EmbraceObjCUtilsInternal.xcframework */,
+				110F3A482CA0D0EC00A6BBC3 /* EmbraceOTelInternal.xcframework */,
+				110F3A372CA0D0D100A6BBC3 /* EmbraceSemantics.xcframework */,
+				110F3A392CA0D0D400A6BBC3 /* EmbraceStorageInternal.xcframework */,
+				110F3A3E2CA0D0DB00A6BBC3 /* EmbraceUploadInternal.xcframework */,
+				110F3A452CA0D0E800A6BBC3 /* GRDB.xcframework */,
+				110F3A462CA0D0E900A6BBC3 /* KSCrashCore.xcframework */,
+				110F3A3C2CA0D0D800A6BBC3 /* KSCrashFilters.xcframework */,
+				110F3A3B2CA0D0D700A6BBC3 /* KSCrashInstallations.xcframework */,
+				110F3A412CA0D0E000A6BBC3 /* KSCrashRecording.xcframework */,
+				110F3A422CA0D0E100A6BBC3 /* KSCrashRecordingCore.xcframework */,
+				110F3A472CA0D0EA00A6BBC3 /* KSCrashReportingCore.xcframework */,
+				110F3A3D2CA0D0DA00A6BBC3 /* KSCrashSinks.xcframework */,
+				110F3A432CA0D0E300A6BBC3 /* OpenTelemetryApi.xcframework */,
+				110F3A3F2CA0D0DD00A6BBC3 /* OpenTelemetrySdk.xcframework */,
+			);
+			path = xcframeworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		11077E2B2C76D7A200CAFD0C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11077E342C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		11077E2F2C76D7A200CAFD0C /* Embrace Unity iOS Interface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11077E372C76D7A200CAFD0C /* Build configuration list for PBXNativeTarget "Embrace Unity iOS Interface" */;
+			buildPhases = (
+				11077E2B2C76D7A200CAFD0C /* Headers */,
+				11077E2C2C76D7A200CAFD0C /* Sources */,
+				11077E2D2C76D7A200CAFD0C /* Frameworks */,
+				11077E2E2C76D7A200CAFD0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Embrace Unity iOS Interface";
+			packageProductDependencies = (
+			);
+			productName = "Embrace Unity iOS Interface";
+			productReference = 11077E302C76D7A200CAFD0C /* Embrace_Unity_iOS_Interface.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11077E272C76D7A200CAFD0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					11077E2F2C76D7A200CAFD0C = {
+						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
+					};
+				};
+			};
+			buildConfigurationList = 11077E2A2C76D7A200CAFD0C /* Build configuration list for PBXProject "Embrace Unity iOS Interface" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11077E262C76D7A200CAFD0C;
+			packageReferences = (
+			);
+			productRefGroup = 11077E312C76D7A200CAFD0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11077E2F2C76D7A200CAFD0C /* Embrace Unity iOS Interface */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11077E2E2C76D7A200CAFD0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11077E2C2C76D7A200CAFD0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11077E3E2C76D80F00CAFD0C /* EmbraceManager.swift in Sources */,
+				11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */,
+				11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11077E352C76D7A200CAFD0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		11077E362C76D7A200CAFD0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		11077E382C76D7A200CAFD0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.embrace.Embrace-Unity-iOS-Interface";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11077E392C76D7A200CAFD0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.embrace.Embrace-Unity-iOS-Interface";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11077E2A2C76D7A200CAFD0C /* Build configuration list for PBXProject "Embrace Unity iOS Interface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11077E352C76D7A200CAFD0C /* Debug */,
+				11077E362C76D7A200CAFD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11077E372C76D7A200CAFD0C /* Build configuration list for PBXNativeTarget "Embrace Unity iOS Interface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11077E382C76D7A200CAFD0C /* Debug */,
+				11077E392C76D7A200CAFD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11077E272C76D7A200CAFD0C /* Project object */;
+}

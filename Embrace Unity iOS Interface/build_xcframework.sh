@@ -29,4 +29,4 @@ create_xcframework "./build/EmbraceUnityiOS.xcarchive" "./build/EmbraceUnityiOS-
 
 rm -rf ./build/*.xcarchive
 
-echo "XCFramework created at: ./build/EmbraceUnityiOS.xcframework"
+echo "XCFramework created at: ${PWD}/build/EmbraceUnityiOS.xcframework"
