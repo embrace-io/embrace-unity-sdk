@@ -38,6 +38,13 @@ namespace EmbraceSDK.EditorView
             {
                 throw new UnityEditor.Build.BuildFailedException("EmbraceSDK: No config scriptable object found, add the EmbraceSDK component via Component/Scripts and configure it with your API Token via the Unity Inspector");
             }
+            #if !UNITY_IOS
+            // iOS does not require an App ID.
+            if (!ValidateID(config.AppId))
+            {
+                throw new UnityEditor.Build.BuildFailedException(string.Format("EmbraceSDK: APP_ID not correctly formatted, it should be a {0} character string.", AppIDLength));
+            }
+            #endif
             if (!ValidateToken(config.SymbolUploadApiToken))
             {
                 throw new UnityEditor.Build.BuildFailedException(string.Format("EmbraceSDK: API_TOKEN not correctly formatted, it should be a {0} digit hexadecimal number.", ApiTokenLength));
