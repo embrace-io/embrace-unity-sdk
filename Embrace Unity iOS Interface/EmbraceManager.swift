@@ -192,7 +192,7 @@ public class EmbraceManager: NSObject {
     
     static func clearUserAsPayer() -> Bool {
         do {
-            try Embrace.client?.metadata.remove(persona: "payer", lifespan: .session)
+            try Embrace.client?.metadata.remove(persona: .payer, lifespan: .session)
             return true
         } catch let error {
             return false
