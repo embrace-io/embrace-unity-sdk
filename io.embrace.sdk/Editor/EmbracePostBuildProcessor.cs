@@ -197,7 +197,7 @@ namespace EmbraceSDK.EditorView
                 // Add phase for dSYM upload
                 string runScriptName = "Embrace Symbol Upload";
                 string makeRunScriptExecutable = $"chmod +x \"${{PROJECT_DIR}}/{EmbraceRunFileName}\"\n";
-                string makeUploadBinaryExecutable = $"chmod +x \"${{PROJECT_DIR}}/upload\"\n";
+                string makeUploadBinaryExecutable = $"chmod +x \"${{PROJECT_DIR}}/embrace_symbol_upload.darwin\"\n";
                 string runScript = $"EMBRACE_FRAMEWORK_SEARCH_DEPTH=0 \"${{PROJECT_DIR}}/{EmbraceRunFileName}\"";
                 string runScriptPhase = makeRunScriptExecutable + makeUploadBinaryExecutable + runScript;
 
