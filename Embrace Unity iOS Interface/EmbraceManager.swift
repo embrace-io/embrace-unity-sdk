@@ -52,7 +52,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func sdkVersion() -> String {
-        return Embrace.sdkVersion;
+        return Embrace.sdkVersion
     }
     
     static func crash() {
