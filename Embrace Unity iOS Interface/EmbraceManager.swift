@@ -65,10 +65,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func getCurrentSessionId() -> String? {
-        if let sessionId = Embrace.client?.currentSessionId() {
-            return sessionId
-        }
-        return nil
+        return Embrace.client?.currentSessionId()
     }
     
     static func getLastRunEndState() -> LastRunEndState? {
