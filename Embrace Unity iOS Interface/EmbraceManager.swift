@@ -4,9 +4,10 @@ import EmbraceIO
 import EmbraceCrash
 import EmbraceCommonInternal
 import EmbraceOTelInternal
+import EmbraceSemantics
 
 public class EmbraceManager: NSObject {
-    private var os_log = OSLog(subsystem: "Embrace", category: "UnityiOSNativeEmbraceManager")
+    private var log = OSLog(subsystem: "Embrace", category: "UnityiOSNativeEmbraceManager")
     private static var spanRepository = SpanRepository()
     static func startNativeSDK(appId: String, appGroupId: String?, endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?) -> Bool {
         do {
@@ -38,7 +39,7 @@ public class EmbraceManager: NSObject {
             
             return true
         } catch let e {
-            print("Error starting Native Embrace SDK \(e.localizedDescription)")
+            os_log("Error starting Native Embrace SDK \(e.localizedDescription)")
             return false
         }
         
@@ -133,7 +134,7 @@ public class EmbraceManager: NSObject {
                 key: key, value: value, lifespan: lifespan)
             return true
         } catch let error {
-            
+            os_log("Error adding resource to metadata: \(error.localizedDescription)")
         }
         
         return false
@@ -188,9 +189,9 @@ public class EmbraceManager: NSObject {
     }
     
     static func startView(viewName: String) -> String? {
-        let span = Embrace.client?.buildSpan(name: "emb-screen-view")
-            .setAttribute(key: "view.name", value: viewName)
-            .setAttribute(key: "emb.type", value: "ux.view")
+        let span = Embrace.client?.buildSpan(name: SpanSemantics.View.name)
+            .setAttribute(key: SpanSemantics.View.keyViewName, value: viewName)
+            .setAttribute(key: SpanSemantics.keyEmbraceType, value: "ux.view")
             .startSpan()
         
         guard let span else {
@@ -416,10 +417,9 @@ public class EmbraceManager: NSObject {
             try Embrace.client?.add(event: .push(userInfo: pushData as [AnyHashable: Any]))
             return true
         } catch let error {
-            // We should probably log this error
+            os_log("Error logging push notification: \(error.localizedDescription)")
+            return false
         }
-        
-        return false
     }
     
     private static func transferKVPs(dest: inout [String:String], src: NSDictionary) {

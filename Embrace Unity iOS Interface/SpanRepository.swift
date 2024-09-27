@@ -20,7 +20,7 @@ class SpanRepository {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onSessionEnded),
-            name: Notification.Name("embrace.session.will_end"),
+            name: Notification.Name.embraceSessionWillEnd,
             object: nil)
     }
     
