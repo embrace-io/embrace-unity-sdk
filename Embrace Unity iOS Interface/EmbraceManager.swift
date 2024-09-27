@@ -262,10 +262,10 @@ public class EmbraceManager: NSObject {
                                             startTime: convertDoubleToDate(ms: startInMillis),
                                             endTime: convertDoubleToDate(ms: endInMillis),
                                             attributes: [
-                                                "http.request.method": httpMethod.uppercased(),
-                                                "url.full": url,
-                                                "error.message": errorMessage,
-                                                "error.type": errorType
+                                                SpanSemantics.NetworkRequest.keyMethod: httpMethod.uppercased(),
+                                                SpanSemantics.NetworkRequest.keyUrl: url,
+                                                SpanSemantics.NetworkRequest.keyErrorMessage: errorMessage,
+                                                SpanSemantics.NetworkRequest.keyErrorType: errorType
                                             ],
                                             events: [],
                                             errorCode: .failure)
