@@ -51,6 +51,10 @@ public class EmbraceManager: NSObject {
         return false
     }
     
+    static func sdkVersion() -> String {
+        return Embrace.sdkVersion;
+    }
+    
     static func crash() {
         Embrace.client?.crash()
     }

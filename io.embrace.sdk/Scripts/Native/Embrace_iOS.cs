@@ -31,6 +31,9 @@ namespace EmbraceSDK.Internal
         private static extern bool embrace_sdk_is_started();
 
         [DllImport("__Internal")]
+        private static extern IntPtr embrace_ios_sdk_version();
+
+        [DllImport("__Internal")]
         private static extern void embrace_crash();
         
         [DllImport("__Internal")]
@@ -423,6 +426,15 @@ namespace EmbraceSDK.Internal
                 parentSpanId, 
                 JsonConvert.SerializeObject(attributes), 
                 JsonConvert.SerializeObject(events));
+        }
+        
+        /// <summary>
+        /// Provided for internal reference purposes only.
+        /// </summary>
+        /// <returns></returns>
+        public static String GetSDKVersion()
+        {
+            return embrace_ios_sdk_version().ConvertToString();
         }
     }
 

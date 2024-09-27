@@ -43,6 +43,11 @@ public func embrace_sdk_is_started() -> Bool {
     return EmbraceManager.isStarted();
 }
 
+@_cdecl("embrace_ios_sdk_version")
+public func embrace_ios_sdk_version() -> UnsafeMutablePointer<Int8>? {
+    return convert_str_to_cstr_pointer(str: EmbraceManager.sdkVersion());
+}
+
 @_cdecl("embrace_crash")
 public func embrace_crash() {
     EmbraceManager.crash()

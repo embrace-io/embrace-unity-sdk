@@ -3,5 +3,3 @@
 ./build/*.xcframework
 /xcframeworks/
 xcuserdata/
-
-**xcuserdata/
