@@ -119,4 +119,11 @@ InitTestScene*.unity
 # End of https://www.toptal.com/developers/gitignore/api/unity,macos
 /**/Assets/Plugins/EmbraceSDK/Resources/EditorImages/embrace_color_logo.png
 
-io.embrace.sdk/iOS/*
+# Temporarily allowing the iOS xcframework meta files to be uploaded to facilitate release
+# TODO: remove meta files and generate them via CI/CD
+#io.embrace.sdk/iOS/*
+io.embrace.sdk/iOS/xcframeworks/*.xcframework/
+io.embrace.sdk/iOS/embrace_symbol_upload*
+io.embrace.sdk/iOS/run.sh*
+io.embrace.sdk/iOS/upload*
+io.embrace.sdk/iOS/xcframeworks.meta*
