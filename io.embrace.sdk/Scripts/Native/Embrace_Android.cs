@@ -246,7 +246,7 @@ namespace EmbraceSDK.Internal
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
         }
 
-        void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args)
+        void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
         {
             if (!ReadyForCalls()) { return; }
             // enableIntegrationTesting/isDevMode is no longer supported on Android
