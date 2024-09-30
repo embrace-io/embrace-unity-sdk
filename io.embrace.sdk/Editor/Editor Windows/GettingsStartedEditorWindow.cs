@@ -236,12 +236,27 @@ namespace EmbraceSDK.EditorView
                 case 1: // iOS
                     GUILayout.Space(styleConfigs.space);
                     
+                    if (!Validator.ValidateID(iOSConfiguration.AppId))
+                    {
+                        InsertAppIDFetchBlock();
+                    }
+                    
                     GUILayout.BeginHorizontal();
-                    var iOSStyle = new GUIStyle(styleConfigs.defaultTextStyle.guiStyle);
-                    iOSStyle.alignment = TextAnchor.MiddleCenter;
-                    GUILayout.Label("AppId is now configured via code on iOS.",
-                        iOSStyle);
+                    GUILayout.Label(
+                        "WARNING: iOS also requires the App ID be passed in code", 
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).style);
                     GUILayout.EndHorizontal();
+                    
+                    GUILayout.Space(styleConfigs.space);
+                    
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label(
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).content,
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).style);
+                    iOSConfiguration.AppId = EditorGUILayout.TextField(iOSConfiguration.AppId);
+                    GUILayout.EndHorizontal();
+
+                    GUILayout.Space(styleConfigs.space);
                     
                     if (!Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken))
                     {
@@ -346,10 +361,6 @@ namespace EmbraceSDK.EditorView
         [UnityEngine.TestTools.ExcludeFromCoverage]
         private void IntegrationGuide()
         {
-            if (environments.activeDeviceIndex == 1) // We need not show the integration guide for iOS
-            {
-                return;
-            }
             GUILayout.Space(styleConfigs.space);
             GUILayout.Label("Integration Checklist", styleConfigs.labelHeaderStyle.guiStyle);
 
@@ -370,8 +381,8 @@ namespace EmbraceSDK.EditorView
                     break;
                 case 1: // iOS
                     GUILayout.Toggle(
-                        Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken),
-                        "API Token of Valid Format");
+                        Validator.ValidateID(iOSConfiguration.AppId) && Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken),
+                        "App ID and API Token of Valid Format");
                     break;
             }
 
