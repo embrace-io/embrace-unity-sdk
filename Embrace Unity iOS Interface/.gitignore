@@ -1,0 +1,5 @@
+/build/
+/build/*.xcarchive
+./build/*.xcframework
+/xcframeworks/
+xcuserdata/

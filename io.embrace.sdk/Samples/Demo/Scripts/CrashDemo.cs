@@ -13,13 +13,6 @@ namespace EmbraceSDK.Demo
             Embrace.Instance.StartSDK();
         }
 
-        public void NativeCrash()
-        {
-            #pragma warning disable CS0618
-            Embrace.Instance.Crash();
-            #pragma warning restore CS0618
-        }
-
         public void AccessViolation()
         {
             Utils.ForceCrash(ForcedCrashCategory.AccessViolation);

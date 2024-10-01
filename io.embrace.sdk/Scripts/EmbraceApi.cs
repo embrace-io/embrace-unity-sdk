@@ -8,17 +8,6 @@ namespace EmbraceSDK
     /// EmbraceUnityApi directly or implement it in your own custom classes,
     /// as new functions may be added in future. Use the Embrace class instead.
     internal interface IEmbraceUnityApi: IEmbraceApi {
-
-        /// <summary>
-        /// Logs errors originating from your application. Although this method is invoked automatically from internal methods
-        /// capturing errors and exceptions, it can also be invoked manually in case a custom error message and
-        /// stack trace is desired.
-        /// </summary>
-        /// <param name="exceptionMessage">Custom message that will be attached to this error log.</param>
-        /// <param name="stack">Stack trace of the error</param>
-        [Obsolete("Please use LogUnhandledUnityException instead. This method will be removed in a future release.")]
-        void logUnhandledUnityException(string exceptionMessage, string stack);
-
         /// <summary>
         /// Logs an unhandled exception originating from your application. Although this method is invoked automatically from internal methods
         /// capturing exceptions, it can also be invoked manually in case a custom error message and
@@ -57,7 +46,7 @@ namespace EmbraceSDK
     /// Declares the functions that consist of Embrace's public API. You should
     /// not use EmbraceApi directly or implement it in your own custom classes,
     /// as new functions may be added in future. Use the Embrace class instead.
-    internal interface IEmbraceApi: ILogsApi, IMomentsApi, INetworkRequestApi, ISessionApi, IUserApi
+    internal interface IEmbraceApi: ILogsApi, INetworkRequestApi, ISessionApi, IUserApi
     {
         /// <summary>
         /// Returns true if StartSDK has been called on the Embrace instance.
@@ -68,16 +57,8 @@ namespace EmbraceSDK
         /// Starts instrumentation of the application using the Embrace SDK. This should be called during creation of the application, as early as possible.
         /// See Embrace Docs for integration instructions. For compatibility with other SDKs, the Embrace SDK must be initialized after any other SDK.
         /// </summary>
-        /// <param name="enableIntegrationTesting">If true, debug sessions (those which are not part of a release APK) will go to the live integration testing tab of the dashboard. If false, they will appear in 'recent sessions'.</param>
-        void StartSDK(bool enableIntegrationTesting = false);
-
-        /// <summary>
-        /// Logs a breadcrumb.
-        /// Breadcrumbs track a user's journey through the application and will be shown on the timeline.
-        /// </summary>
-        /// <param name="message">the name of the breadcrumb to log</param>
-        [System.Obsolete("Please use AddBreadcrumb() instead. This method will be removed in a future release.")]
-        void LogBreadcrumb(string message);
+        /// <param name="args">Startup arguments to configure the SDK. REQUIRED on iOS</param>
+        void StartSDK(EmbraceStartupArgs args = null);
 
         /// <summary>
         /// Adds a breadcrumb.
@@ -133,7 +114,7 @@ namespace EmbraceSDK
         /// <param name="message">the name of the message, which is how it will show up on the dashboard</param>
         /// <param name="severity">will flag the message as one of info, warning, or error for filtering on the dashboard</param>
         /// <param name="properties">an optional dictionary of up to 10 key/value pairs</param>
-        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null, bool allowScreenshot = false);
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null);
 
         /// <summary>
         /// Logs an INFO event in your application for aggregation and debugging on the Embrace.io dashboard.
@@ -153,40 +134,11 @@ namespace EmbraceSDK
         /// <param name="message">the name of the message, which is how it will show up on the dashboard</param>
         void LogError(string message);
     }
-
-    /// The public API that is used to start & end moments.    
-    internal interface IMomentsApi {
-
-        /// <summary>
-        /// Signals that the app has completed startup. This can be helpful for keeping track of startup times
-        /// through the application's embrace.io dashboard.
-        /// </summary>
-        /// <param name="properties">Properties to include as part of the startup moment</param>
-        void EndAppStartup(Dictionary<string, string> properties = null);
-
-        /// <summary>
-        /// Starts recording data for an app moment with the provided name, optional identifier, and optional key/value metadata
-        /// </summary>
-        /// <param name="name">the name used to identify the moment</param>
-        /// <param name="identifier">an identifier that is combined with the name to create a unique key for the moment (can be null)</param>
-        /// <param name="properties">an optional dictionary containing metadata about the moment to be recorded (limited to 10 keys)</param>
-        void StartMoment(string name, string identifier = null, bool allowScreenshot = false, Dictionary<string, string> properties = null);
-
-        /// <summary>
-        /// Stops recording data for an app moment with the provided name (and identifier), and adds properties to the moment.
-        /// This marks the moment as “completed.” If no moment is found with the provided name (and an empty identifier), this call will be ignored. Additionally, if an app moment was started with a name and identifier, the same identifier must be used to end it.
-        /// </summary>
-        /// <param name="name">the name used to identify the moment</param>
-        /// <param name="identifier">an identifier that is combined with the name to create a unique key for the moment (can be null)</param>
-        /// <param name="properties">an optional dictionary containing metadata about the moment to be recorded (limited to 10 keys)</param>
-        void EndMoment(string name, string identifier = null, Dictionary<string, string> properties = null);
-    }
     
     /// The public API that is used for capturing network requests manually
     internal interface INetworkRequestApi {
-
         /// <summary>
-        /// Logs a network request originating from your application for aggregation and debugging on the Embrace.io dashboard.
+        /// Records a completed network request originating from your application for aggregation and debugging on the Embrace.io dashboard.
         /// </summary>
         /// <param name="url">The url where the request is being sent</param>
         /// <param name="method">The HTTP request method</param>
@@ -195,22 +147,17 @@ namespace EmbraceSDK
         /// <param name="bytesin">The number of bytes returned in response to this network call</param>
         /// <param name="bytesout">The number of bytes sent as part of this network call</param>
         /// <param name="code">The status code returned from the server</param>
-        /// <param name="error">An error returned from the server, if any.</param>
-        [System.Obsolete("Please use RecordNetworkRequest() instead. This method will be removed in a future release.")]
-        void LogNetworkRequest(string url, HTTPMethod method, long startms, long endms, int bytesin, int bytesout, int code, string error);
+        void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code);
 
         /// <summary>
-        /// Records a network request originating from your application for aggregation and debugging on the Embrace.io dashboard.
+        /// Records an incomplete network request originating from your application for aggregation and debugging on the Embrace.io dashboard.
         /// </summary>
         /// <param name="url">The url where the request is being sent</param>
         /// <param name="method">The HTTP request method</param>
         /// <param name="startms">The time that the network call started (Unix Timestamp)</param>
         /// <param name="endms">The time that the network call was completed (Unix Timestamp)</param>
-        /// <param name="bytesin">The number of bytes returned in response to this network call</param>
-        /// <param name="bytesout">The number of bytes sent as part of this network call</param>
-        /// <param name="code">The status code returned from the server</param>
         /// <param name="error">An optional error message describing any non-HTTP errors, such as a connection error or exception.</param>
-        void RecordNetworkRequest(string url, HTTPMethod method, long startms, long endms, int bytesin, int bytesout, int code, string error = "");
+        void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error);
     }
     
     /// The public API that is used to interact with sessions.
@@ -301,13 +248,6 @@ namespace EmbraceSDK
         /// Sets a custom user persona. A persona is a trait associated with a given user.
         /// </summary>
         /// <param name="persona">the persona to set</param>
-        [System.Obsolete("Please use AddUserPersona() instead. This method will be removed in a future release.")]
-        void SetUserPersona(string persona);
-
-        /// <summary>
-        /// Sets a custom user persona. A persona is a trait associated with a given user.
-        /// </summary>
-        /// <param name="persona">the persona to set</param>
         void AddUserPersona(string persona);
 
         /// <summary>
@@ -320,5 +260,64 @@ namespace EmbraceSDK
         /// Clears all custom user personas from the user.
         /// </summary>
         void ClearAllUserPersonas();
+    }
+    internal interface ISpansApi
+    {
+        /// <summary>
+        /// Create and start a new span.
+        /// </summary>
+        /// <param name="spanName">Name of the span</param>
+        /// <param name="startTimeMs">The time that the span started (Unix Timestamp)</param>
+        /// <param name="parentSpanId">The spanId of the parent span for this span</param>
+        /// <returns>Returns the spanId of the new span if both operations are successful, and null if either fails.</returns>
+        string StartSpan(string spanName, long startTimeMs, string parentSpanId = null);
+
+        /// <summary>
+        /// Stop an active span with the given [spanId].
+        /// </summary>
+        /// <param name="spanId">The spanId of the span to stop.</param>
+        /// <param name="endTimeMs">The time that the span ended (Unix Timestamp)</param>
+        /// <param name="errorCode"></param>
+        /// <returns>True if the span is stopped after the method returns and false otherwise.</returns>
+        bool StopSpan(string spanId, long endTimeMs, EmbraceSpanErrorCode? errorCode = null);
+
+        /// <summary>
+        /// Create and add a Span Event with the given parameters to an active span with the given [spanId].
+        /// </summary>
+        /// <param name="spanId"></param>
+        /// <param name="spanName"></param>
+        /// <param name="timestampMs"></param>
+        /// <param name="attributes"></param>
+        /// <returns>False if the event cannot be added.</returns>
+        bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes = null);
+
+        /// <summary>
+        /// Add an attribute to an active span with the given [spanId].
+        /// </summary>
+        /// <param name="spanId"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns>True if the attributed is added and false otherwise.</returns>
+        bool AddSpanAttribute(string spanId, string key, string value);
+
+        /// <summary>
+        /// Record a completed span with the given parameters.
+        /// </summary>
+        /// <param name="spanName"></param>
+        /// <param name="startTimeMs"></param>
+        /// <param name="endTimeMs"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="attributes"></param>
+        /// <param name="embraceSpanEvent"></param>
+        /// <param name="parentSpanId"></param>
+        /// <returns>True if the span is record and false otherwise.</returns>
+        bool RecordCompletedSpan(
+            string spanName, 
+            long startTimeMs, 
+            long endTimeMs,
+            EmbraceSpanErrorCode? errorCode = null, 
+            Dictionary<string, string> attributes = null,
+            EmbraceSpanEvent embraceSpanEvent = null,
+            string parentSpanId = null);
     }
 }

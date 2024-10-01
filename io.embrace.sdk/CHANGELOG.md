@@ -5,6 +5,24 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.0.0
+:::info Important
+This version of the Unity SDK contains several breaking changes to our API, including the removal of deprecated functions.
+
+Additionally, with the update to Embrace Android 6.13, the SDK now requires Gradle 7.5.1, AGP 7.4.2, and API 34 or higher.
+:::
+
+*September 30th, 2024*
+* Updated Embrace Android SDK to 6.13
+* Updated Embrace iOS SDK to 6.4
+* Removed deprecated functions in API
+* Changed StartSDK call to support new EmbraceStartupArgs type
+
+## 1.26.1
+*August 12th, 2024*
+* NPE patch for null EmbraceSpanEvents
+* Improvement of AndroidJavaObject memory disposal
+
 ## 1.26.0
 *July 18, 2024*
 * Addition of Performance Tracing Support

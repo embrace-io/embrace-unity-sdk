@@ -21,8 +21,6 @@ namespace EmbraceSDK.Demo
                 GameObject go = new GameObject("sceneSelector");
                 go.AddComponent(typeof(SceneSelector));
             }
-
-            Embrace.Instance.EndAppStartup();
         }
     }
 }

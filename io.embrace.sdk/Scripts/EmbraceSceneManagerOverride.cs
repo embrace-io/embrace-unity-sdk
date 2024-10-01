@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace EmbraceSDK.Bugshake
+namespace EmbraceSDK
 {
 #if UNITY_2020_2_OR_NEWER
     /// <summary>

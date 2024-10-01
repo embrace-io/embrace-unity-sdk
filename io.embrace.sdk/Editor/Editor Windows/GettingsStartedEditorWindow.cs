@@ -243,6 +243,14 @@ namespace EmbraceSDK.EditorView
                     
                     GUILayout.BeginHorizontal();
                     GUILayout.Label(
+                        "WARNING: iOS also requires the App ID be passed in code", 
+                        GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).style);
+                    GUILayout.EndHorizontal();
+                    
+                    GUILayout.Space(styleConfigs.space);
+                    
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label(
                         GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).content,
                         GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).style);
                     iOSConfiguration.AppId = EditorGUILayout.TextField(iOSConfiguration.AppId);

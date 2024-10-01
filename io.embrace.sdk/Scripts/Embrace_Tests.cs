@@ -17,16 +17,8 @@ namespace EmbraceSDK.Tests
             Embrace.Instance.SetUserAsPayer();
             Embrace.Instance.ClearUserAsPayer();
 
-#pragma warning disable 0618
-            Embrace.Instance.SetUserPersona("embrace_test_persona");
-#pragma warning restore 0618
-
             Embrace.Instance.AddUserPersona("embrace_test_persona");
             EmbraceLogger.Log("running set b");
-
-#pragma warning disable 0618
-            Embrace.Instance.SetUserPersona(null);
-#pragma warning restore 0618
 
             Embrace.Instance.AddUserPersona(null);
             Embrace.Instance.ClearUserPersona("embrace_test_persona");
@@ -53,21 +45,6 @@ namespace EmbraceSDK.Tests
             Embrace.Instance.ClearUsername();
             Dictionary<string, string> properties = new Dictionary<string, string>();
             properties.Add("test_key", "test_value");
-            Embrace.Instance.StartMoment("test_name", "test_id", true, properties);
-            Embrace.Instance.StartMoment("test_name", "test_id", false, properties);
-            Embrace.Instance.StartMoment("test_name", "test_id", true, null);
-            Embrace.Instance.StartMoment("test_name", null, true, properties);
-            Embrace.Instance.StartMoment(null, "test_id", true, properties);
-            Embrace.Instance.StartMoment(null, null, true, properties);
-            Embrace.Instance.EndMoment("test_name", "test_id", properties);
-            Embrace.Instance.EndMoment("test_name", "test_id", null);
-            Embrace.Instance.EndMoment("test_name", null, properties);
-            Embrace.Instance.EndMoment(null, "test_id", properties);
-            Embrace.Instance.EndMoment(null, null, properties);
-            Embrace.Instance.EndAppStartup(null);
-            #pragma warning disable CS0618
-            Embrace.Instance.LogMessage("test_message", EMBSeverity.Info, properties, true);
-            #pragma warning restore CS0618
             Embrace.Instance.LogMessage("test_message", EMBSeverity.Info, properties);
             Embrace.Instance.LogMessage("test_message", EMBSeverity.Info, null);
             Embrace.Instance.LogMessage(null, EMBSeverity.Info, properties);
@@ -81,11 +58,6 @@ namespace EmbraceSDK.Tests
             Embrace.Instance.LogMessage("test_message", EMBSeverity.Error, null);
             Embrace.Instance.LogMessage(null, EMBSeverity.Error, properties);
             Embrace.Instance.LogMessage(null, EMBSeverity.Error, null);
-
-#pragma warning disable 0618
-            Embrace.Instance.LogBreadcrumb("test_message");
-            Embrace.Instance.LogBreadcrumb(null);
-#pragma warning restore 0618
 
             Embrace.Instance.AddBreadcrumb("test_message");
             Embrace.Instance.AddBreadcrumb(null);

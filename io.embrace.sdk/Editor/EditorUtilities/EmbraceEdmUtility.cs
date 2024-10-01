@@ -161,11 +161,7 @@ namespace EmbraceSDK.EditorView
         [UnityEditor.Callbacks.DidReloadScripts]
         public static void GenerateDependenciesFile()
         {
-#if EMBRACE_ENABLE_BUGSHAKE_FORM
-            var dependenciesXMLData = $"\n<dependencies>\n  <androidPackages>\n    <repositories>\n      <repository>https://repo.maven.apache.org/maven2</repository>\n      <repository>https://dl.google.com/dl/android/maven2</repository>\n    </repositories>\n    \n    <androidPackage spec=\"io.embrace:embrace-bug-shake-gradle-plugin:{VersionsRepository.BUGSHAKE_SDK_VERSION}\">\n    </androidPackage>\n    <androidPackage spec=\"io.embrace:embrace-android-okhttp3:{VersionsRepository.ANDROID_SDK_VERSION}\">\n    </androidPackage>\n  </androidPackages>\n</dependencies>\n";
-#else
             var dependenciesXMLData = $"\n<dependencies>\n  <androidPackages>\n    <repositories>\n      <repository>https://repo.maven.apache.org/maven2</repository>\n      <repository>https://dl.google.com/dl/android/maven2</repository>\n    </repositories>\n    \n    <androidPackage spec=\"io.embrace:embrace-android-sdk:{VersionsRepository.ANDROID_SDK_VERSION}\">\n    </androidPackage>\n    <androidPackage spec=\"io.embrace:embrace-android-okhttp3:{VersionsRepository.ANDROID_SDK_VERSION}\">\n    </androidPackage>\n  </androidPackages>\n</dependencies>\n";
-#endif
             var packagePath = Path.Combine("Packages", "io.embrace.sdk", "Editor");
             var filePath = Path.Combine(packagePath, DEPENDENCIES_FILE_NAME);
             

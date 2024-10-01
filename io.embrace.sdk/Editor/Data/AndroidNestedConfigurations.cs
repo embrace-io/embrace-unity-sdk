@@ -20,7 +20,6 @@ namespace EmbraceSDK.EditorView
         public StartupMoment startup_moment;
         public Taps taps;
         public Webview webview;
-        public BugShake bug_shake;
 #if DeveloperMode
         [Tooltip(EmbraceTooltips.BaseUrls)]
         public BaseUrls base_urls;
@@ -35,7 +34,6 @@ namespace EmbraceSDK.EditorView
             startup_moment = new StartupMoment();
             taps = new Taps();
             webview = new Webview();
-            bug_shake = new BugShake();
 #if DeveloperMode
             base_urls = new BaseUrls();
 #endif
@@ -50,8 +48,7 @@ namespace EmbraceSDK.EditorView
                 networking.ShouldSerialize() ||
                 session.ShouldSerialize() ||
                 startup_moment.ShouldSerialize() ||
-                webview.ShouldSerialize() ||
-                bug_shake.ShouldSerialize();
+                webview.ShouldSerialize();
 
 #if DeveloperMode
             shouldSerialize |= base_urls.ShouldSerialize();
@@ -189,26 +186,6 @@ namespace EmbraceSDK.EditorView
         [OverrideBoolean(true)]
         public bool enable;
 
-        public bool ShouldSerialize()
-        {
-            return ReflectionUtil.HasBooleanOverrides(GetType(), this);
-        }
-    }
-
-    [Serializable]
-    public class BugShake : ITooltipPropertiesProvider, IJsonSerializable
-    {
-        [Tooltip("Whether or not the bug shake feature is enabled for the app on startup")]
-        [OverrideBoolean(false)]
-        public bool report_enabled;
-        
-        [Tooltip("Whether or not shake detection is enabled for the app on startup")]
-        [OverrideBoolean(false)]
-        public bool shake_detect_enabled;
-
-        [Tooltip("Whether or not to send all data when a bug report is sent")]
-        [OverrideBoolean(false)]
-        public bool send_all_data;
         public bool ShouldSerialize()
         {
             return ReflectionUtil.HasBooleanOverrides(GetType(), this);
