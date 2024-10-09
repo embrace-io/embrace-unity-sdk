@@ -24,7 +24,7 @@ jobs:
       - name: Get latest iOS SDK release via GH
         id: get_release
         run: |
-          gh release list --repo embrace-io/embrace-apple-sdk --limit 1 --json tagName,name,body,assets --jq '.[] | {tag: .tagName, name: .name, body: .body, assets: .assets}'
+          gh release list --repo embrace-io/embrace-apple-sdk --limit 1 --json tagName,name,publishedAt,isLatest --jq '.[] | {tag: .tagName, name: .name, publishedAt: .publishedAt, isLatest: .isLatest}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print Release Info
