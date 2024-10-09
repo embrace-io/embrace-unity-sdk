@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Public SDK
         uses: actions/checkout@v4
       - name: Install xcpretty
-        run: gem install xcpretty
+        run: sudo gem install xcpretty
       # - name: Get latest iOS SDK release via GH
       #   run: |
       #     curl -L -O
