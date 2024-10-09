@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Install xcpretty
         run: gem install xcpretty
-      - name: Get latest iOS SDK release via GH
-        run: |
-          curl -L -O
+      # - name: Get latest iOS SDK release via GH
+      #   run: |
+      #     curl -L -O
       - name: Install GitHub CLI
         run: sudo apt-get install gh -y
       - name: Authenticate GitHub CLI
