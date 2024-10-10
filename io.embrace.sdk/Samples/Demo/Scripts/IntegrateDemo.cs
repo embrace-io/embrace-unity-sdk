@@ -164,8 +164,6 @@ namespace EmbraceSDK.Demo
                 0, 
                 attributes, 
                 spanEvent);
-            
-            print($"completed span result: {result}");
         }
 
         private long GetCurrentMillisecondsPosix()

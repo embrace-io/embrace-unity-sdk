@@ -1,5 +1,6 @@
 import Foundation
 import EmbraceOTelInternal
+import OpenTelemetryApi
 
 @_cdecl("embrace_sdk_start_native")
 public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?, 
@@ -316,13 +317,19 @@ public func embrace_log_network_client_error(url: UnsafePointer<CChar>?,
 
 @_cdecl("embrace_start_span")
 public func embrace_start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<CChar>?, startTimeMs: Double) -> UnsafeMutablePointer<CChar>? {
-    guard let name, let parentSpanId else {
+    guard let name else {
         return nil
     }
     
-    if let _name = String(validatingUTF8: name), let _parentSpanId = String(validatingUTF8: parentSpanId) {
-        let spanId = EmbraceManager.startSpan(name: _name, parentSpanId: _parentSpanId, startTimeMs: startTimeMs)
-        return convert_str_to_cstr_pointer(str: spanId)
+    if let _name = String(validatingUTF8: name) {
+        if let parentSpanId, let _parentSpanId = String(validatingUTF8: parentSpanId)  {
+            let spanId = EmbraceManager.startSpan(name: _name, parentSpanId: _parentSpanId, startTimeMs: startTimeMs)
+            return convert_str_to_cstr_pointer(str: spanId)
+        }
+        else {
+            let spanId = EmbraceManager.startSpan(name: _name, parentSpanId: nil, startTimeMs: startTimeMs)
+            return convert_str_to_cstr_pointer(str: spanId)
+        }
     }
     
     return nil
