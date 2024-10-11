@@ -5,6 +5,7 @@ import EmbraceCrash
 import EmbraceCommonInternal
 import EmbraceOTelInternal
 import EmbraceSemantics
+import OpenTelemetryApi
 
 public class EmbraceManager: NSObject {
     private var log = OSLog(subsystem: "Embrace", category: "UnityiOSNativeEmbraceManager")
@@ -272,15 +273,17 @@ public class EmbraceManager: NSObject {
                                             errorCode: .failure)
     }
     
-    static func startSpan(name: String, parentSpanId: String, startTimeMs: Double) -> String? {
+    static func startSpan(name: String, parentSpanId: String?, startTimeMs: Double) -> String? {
         let spanBuilder = Embrace.client?.buildSpan(name: name)
         
         guard let spanBuilder else {
             return nil
         }
         
-        if !parentSpanId.isEmpty, let parent = spanRepository.get(spanId: parentSpanId) {
-            spanBuilder.setParent(parent)
+        if let parentSpanId {
+            if !parentSpanId.isEmpty, let parent = spanRepository.get(spanId: parentSpanId) {
+                spanBuilder.setParent(parent)
+            }
         } else {
             spanBuilder.markAsKeySpan()
         }

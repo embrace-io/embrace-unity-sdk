@@ -340,7 +340,8 @@ namespace EmbraceSDK.Internal
 
         string IEmbraceProvider.StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
-            return embrace_start_span(spanName, parentSpanId, startTimeMs).ConvertToString();
+            var spanId = embrace_start_span(spanName, parentSpanId, startTimeMs).ConvertToString();
+            return spanId;
         }
 
         bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
