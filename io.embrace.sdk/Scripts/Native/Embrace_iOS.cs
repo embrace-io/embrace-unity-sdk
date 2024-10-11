@@ -24,7 +24,7 @@ namespace EmbraceSDK.Internal
         ConcurrentDictionary<string, string> _viewDictionary = new ConcurrentDictionary<string, string>(Environment.ProcessorCount * 2, INITIALCAPACITY);
         
         [DllImport("__Internal")]
-        private static extern bool embrace_sdk_start_native(string appId, string appGroupId, string baseUrl,
+        private static extern bool embrace_sdk_start_native(string appId, int config, string appGroupId, string baseUrl,
             string devBaseUrl, string configBaseUrl);
 
         [DllImport("__Internal")]
@@ -147,6 +147,7 @@ namespace EmbraceSDK.Internal
             if (args != null)
             {
                 embrace_sdk_start_native(args.AppId,
+                    (int) args.Config,
                     args.AppGroupId,
                     args.BaseUrl,
                     args.DevBaseUrl,
