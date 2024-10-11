@@ -37,6 +37,11 @@ namespace EmbraceSDK
         /// This is primarily used for testing.
         /// </summary>
         public string ConfigBaseUrl;
+
+        /// <summary>
+        /// The native configuration for the Embrace SDK; currently only applies to iOS.
+        /// </summary>
+        public EmbraceConfig Config;
         
         /// <summary>
         /// Default constructor provided primarily for internal testing purposes.
@@ -48,17 +53,24 @@ namespace EmbraceSDK
         /// Null values are provided for all optional parameters.
         /// </summary>
         /// <param name="appId"></param>
+        /// <param name="config"></param>
         /// <param name="appGroupId"></param>
         /// <param name="baseUrl"></param>
         /// <param name="devBaseUrl"></param>
         /// <param name="configBaseUrl"></param>
-        public EmbraceStartupArgs(string appId, string appGroupId=null, string baseUrl=null, string devBaseUrl=null, string configBaseUrl=null)
+        public EmbraceStartupArgs(string appId,
+            EmbraceConfig config = EmbraceConfig.Default,
+            string appGroupId=null, 
+            string baseUrl=null, 
+            string devBaseUrl=null, 
+            string configBaseUrl=null)
         {
             AppId = appId;
             AppGroupId = appGroupId;
             BaseUrl = baseUrl;
             DevBaseUrl = devBaseUrl;
             ConfigBaseUrl = configBaseUrl;
+            Config = config;
         }
 
         /// <summary>
@@ -74,7 +86,12 @@ namespace EmbraceSDK
             }
 
             EmbraceStartupArgs other = (EmbraceStartupArgs) obj;
-            return AppId == other.AppId && AppGroupId == other.AppGroupId && BaseUrl == other.BaseUrl && DevBaseUrl == other.DevBaseUrl && ConfigBaseUrl == other.ConfigBaseUrl;
+            return AppId == other.AppId 
+                   && AppGroupId == other.AppGroupId 
+                   && BaseUrl == other.BaseUrl 
+                   && DevBaseUrl == other.DevBaseUrl 
+                   && ConfigBaseUrl == other.ConfigBaseUrl
+                   && Config == other.Config;
             
         }
     }

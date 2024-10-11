@@ -29,6 +29,7 @@
 		110F3A602CA0D0F200A6BBC3 /* EmbraceObjCUtilsInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4A2CA0D0EF00A6BBC3 /* EmbraceObjCUtilsInternal.xcframework */; };
 		110F3A612CA0D0F200A6BBC3 /* EmbraceCrash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4B2CA0D0F100A6BBC3 /* EmbraceCrash.xcframework */; };
 		110F3A622CA0D0F200A6BBC3 /* EmbraceIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 110F3A4C2CA0D0F200A6BBC3 /* EmbraceIO.xcframework */; };
+		115421EA2CB9849F00FE171E /* ConfigOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115421E92CB9849500FE171E /* ConfigOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		110F3A4A2CA0D0EF00A6BBC3 /* EmbraceObjCUtilsInternal.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceObjCUtilsInternal.xcframework; sourceTree = "<group>"; };
 		110F3A4B2CA0D0F100A6BBC3 /* EmbraceCrash.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceCrash.xcframework; sourceTree = "<group>"; };
 		110F3A4C2CA0D0F200A6BBC3 /* EmbraceIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = EmbraceIO.xcframework; sourceTree = "<group>"; };
+		115421E92CB9849500FE171E /* ConfigOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		11077E262C76D7A200CAFD0C = {
 			isa = PBXGroup;
 			children = (
+				115421E92CB9849500FE171E /* ConfigOptions.swift */,
 				11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */,
 				11077E6C2C77944700CAFD0C /* ExposedAPI.swift */,
 				11077E3D2C76D80F00CAFD0C /* EmbraceManager.swift */,
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11077E3E2C76D80F00CAFD0C /* EmbraceManager.swift in Sources */,
+				115421EA2CB9849F00FE171E /* ConfigOptions.swift in Sources */,
 				11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */,
 				11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */,
 			);

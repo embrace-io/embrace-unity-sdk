@@ -10,12 +10,18 @@ import OpenTelemetryApi
 public class EmbraceManager: NSObject {
     private var log = OSLog(subsystem: "Embrace", category: "UnityiOSNativeEmbraceManager")
     private static var spanRepository = SpanRepository()
-    static func startNativeSDK(appId: String, appGroupId: String?, endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?) -> Bool {
+    static func startNativeSDK(appId: String, config: ConfigOptions, appGroupId: String?, endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?) -> Bool {
         do {
             var embraceOptions: Embrace.Options {
-                var _crashReporter: CrashReporter? = EmbraceCrashReporter()
+                var _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter();
                 let _servicesBuilder = CaptureServiceBuilder().addDefaults()
-                _servicesBuilder.add(.pushNotification()) // Add the PushNotificationCaptureService by default for Unity
+                if (config.contains(.DisableEmbraceNativeViewCaptureService)) {
+                    _servicesBuilder.remove(ofType: ViewCaptureService.self)
+                }
+                if (!config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce)) {
+                    // Add the PushNotificationCaptureService by default for Unity
+                    _servicesBuilder.add(.pushNotification())
+                }
                 var _endpoints: Embrace.Endpoints? = nil;
                 
                 if let endpoints {
