@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EmbraceSDK.Internal;
+using UnityEngine;
 
 namespace EmbraceSDK.Demo
 {
@@ -28,11 +29,15 @@ namespace EmbraceSDK.Demo
                 ConfigBaseUrl.Length > 0 ? ConfigBaseUrl : null));
             #elif UNITY_IOS
             // This setup is for Embrace on iOS only.
-            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, null, null, null, null));
+            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, EmbraceConfig.Default, null, null, null, null));
             #else
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
             #endif
+
+            var andr = new Embrace_Android();
+            
+            andr.RecordCompletedSpan(null, 0, 0, null, null, null, null);
         }
     }
 }
