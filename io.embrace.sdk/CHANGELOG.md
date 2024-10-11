@@ -5,6 +5,13 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.0.1
+*October 11th, 2024*
+* Android patch of null map argument
+* Upgrade of Embrace iOS SDK to 6.4.2
+* Patch of issue when starting spans
+* Added new config options for Unity iOS to EmbraceStartupArgs
+
 ## 2.0.0
 :::info Important
 This version of the Unity SDK contains several breaking changes to our API, including the removal of deprecated functions.
