@@ -3,7 +3,8 @@ import EmbraceOTelInternal
 import OpenTelemetryApi
 
 @_cdecl("embrace_sdk_start_native")
-public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?, 
+public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
+                                     config: Int,
                                      appGroupId: UnsafePointer<CChar>?,
                                      baseUrl: UnsafePointer<CChar>?,
                                      devBaseUrl: UnsafePointer<CChar>?,
@@ -32,6 +33,7 @@ public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
     
     if let _appId = String(validatingUTF8: appId) {
         return EmbraceManager.startNativeSDK(appId: _appId,
+                                             config: ConfigOptions(rawValue: config),
                                              appGroupId: _appGroupId,
                                              endpoints: endpoints)
     }
