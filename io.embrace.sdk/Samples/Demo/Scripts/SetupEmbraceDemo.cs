@@ -34,10 +34,6 @@ namespace EmbraceSDK.Demo
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
             #endif
-
-            var andr = new Embrace_Android();
-            
-            andr.RecordCompletedSpan(null, 0, 0, null, null, null, null);
         }
     }
 }
