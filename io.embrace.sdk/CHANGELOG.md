@@ -5,6 +5,10 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.0.2
+*DATE*
+* Patch regarding Unity interaction with disabled Android Native SDK and sampling rate
+
 ## 2.0.1
 *October 11th, 2024*
 * Android patch of null map argument
