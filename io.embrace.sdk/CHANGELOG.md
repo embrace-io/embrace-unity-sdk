@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Unity SDK Changelog
 ## 2.0.2
-*DATE*
+*October 22, 2024*
 * Patch regarding Unity interaction with disabled Android Native SDK and sampling rate
 
 ## 2.0.1
