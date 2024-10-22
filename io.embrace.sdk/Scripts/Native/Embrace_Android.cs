@@ -43,11 +43,6 @@ namespace EmbraceSDK.Internal
                     if (embraceSharedInstance != null)
                     {
                         embraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
-                    
-                        if (embraceSharedInstance == null)
-                        {
-                            EmbraceLogger.LogError("Embrace Unity - Android SDK connection failed to initialize.");
-                        }
                     }
                 }
 
@@ -177,17 +172,10 @@ namespace EmbraceSDK.Internal
 
         private bool ReadyForCalls()
         {
-            bool result = true;
-            
-            if (embraceSharedInstance == null)
-            {
-                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, ensure the prefab is added to the scene.");
-                result = false;
-            }
+            bool result = embraceSharedInstance != null;
             
             if (result == true && emb_jniIsAttached() == false && AndroidJNI.AttachCurrentThread() != 0)
             {
-                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the current thread did not attach to the Java (Dalvik) VM.");
                 result = false;
             }
             
@@ -196,30 +184,12 @@ namespace EmbraceSDK.Internal
 
         private bool UnityInternalInterfaceReadyForCalls()
         {
-            bool result = true;
-            
-            if (_embraceUnityInternalSharedInstance == null)
-            {
-                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the internal interface is null. " +
-                                       "Check if the SDK is enabled or ensure the prefab is added to the scene.");
-                result = false;
-            }
-            
-            return result;
+            return  _embraceUnityInternalSharedInstance != null;
         }
         
         private bool InternalInterfaceReadyForCalls()
         {
-            bool result = true;
-            
-            if (_embraceInternalSharedInstance == null)
-            {
-                EmbraceLogger.LogError("Embrace Unity SDK did not initialize, the embrace internal interface is null. " +
-                                       "Check if the SDK is enabled or ensure the prefab is added to the scene.");
-                result = false;
-            }
-            
-            return result;
+            return  _embraceInternalSharedInstance != null;
         }
         
         void IEmbraceProvider.InitializeSDK()
@@ -440,7 +410,6 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return; }
             if(!UnityInternalInterfaceReadyForCalls()) { return; }
-            EmbraceLogger.Log($"Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout}");
             _embraceUnityInternalSharedInstance.Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
         }
         
@@ -448,7 +417,6 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls()) { return; }
             if(!UnityInternalInterfaceReadyForCalls()) { return; }
-            EmbraceLogger.Log($"Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
             _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
         }
 
