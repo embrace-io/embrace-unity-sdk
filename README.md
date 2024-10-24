@@ -18,6 +18,11 @@ The Unity documentation can be found [here](https://embrace.io/docs/unity/).
 - [Go to our dashboard](https://dash.embrace.io/signup/) to create an account and get your API key
 - Check our [guide](https://embrace.io/docs/unity/integration/) to integrate the SDK into your Unity project
 
+## Building
+It is important to note that the Unity SDK WILL NOT COMPILE after pulling down. This is because it depends directly on the [Apple SDK](https://github.com/embrace-io/embrace-apple-sdk), and statically links to the xcframeworks as part of the build process.
+
+To build, download the latest SUPPORTED release of the Apple SDK and place the xcframeworks in the `Embrace Unity iOS Interface/xcframeworks/`. Then run the script `build_xcframework.sh` to construct the missing Unity specific xcframework. You can then import all of these xcframeworks, including the newly generated xcframework, into your Unity project.
+
 ## Usage
 
 - Refer to our [Features page](https://embrace.io/docs/unity/features/) to learn about the features Embrace SDK provides
