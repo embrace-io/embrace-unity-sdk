@@ -31,6 +31,17 @@ Finally, make sure to mark all xcframeworks as iOS only plugins (to avoid build 
 
 If you run into any issues building the SDK locally, please reach out on our [community Slack](https://embraceio-community.slack.com/archives/C078WQ3DJMC)!
 
+Unfortunately, it is not currently possible to invoke the required iOS specific commands on Windows. However, for ease of use we have provided a bash script to do all of this for you on Apple devices: setup_iOS_build_environment.sh 
+
+This pipeline requires: xcpretty, xcodebuild, and create_xcframework
+To install XCode Build Tools however works best for you and your team
+Then invoke the following commands in your shell/terminal:
+
+```
+brew install segment-integrations/formulae/swift-create-xcframework
+gem install xcpretty
+```
+
 ## Usage
 
 - Refer to our [Features page](https://embrace.io/docs/unity/features/) to learn about the features Embrace SDK provides
