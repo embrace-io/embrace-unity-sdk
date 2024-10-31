@@ -5,6 +5,10 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.0.3
+*DATE*
+* Upgrade of Embrace iOS SDK to 6.5.1
+
 ## 2.0.2
 *October 22, 2024*
 * Patch regarding Unity interaction with disabled Android Native SDK and sampling rate
