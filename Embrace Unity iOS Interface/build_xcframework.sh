@@ -1,14 +1,19 @@
+# # Set the toolchain path (replace with the actual path to your toolchain)
+# TOOLCHAIN_PATH="/Library/Developer/Toolchains/swift-5.10.1-RELEASE.xctoolchain"
+
+# # Select the toolchain
+# sudo xcode-select -s "$TOOLCHAIN_PATH"
+
 function archive {
     echo "Archiving: \n- scheme: $1 \n- destination: $2;\n- archivePath: $3.xcarchive"
-    IS_ARCHIVE=1 xcodebuild archive \
+    IS_ARCHIVE=1 xcodebuild -toolchain org.swift.5101202406041a archive \
         -project "Embrace Unity iOS Interface.xcodeproj" \
         -scheme "$1" \
         -destination "$2" \
         -archivePath "$3" \
         SKIP_INSTALL=NO \
         BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-        ONLY_ACTIVE_ARCH=NO \
-    | xcpretty
+        ONLY_ACTIVE_ARCH=NO 
 }
 
 function create_xcframework {
@@ -23,9 +28,9 @@ function create_xcframework {
 }
 
 archive "Embrace Unity iOS Interface" "generic/platform=iOS" "./build/EmbraceUnityiOS"
-archive "Embrace Unity iOS Interface" "generic/platform=iOS Simulator" "./build/EmbraceUnityiOS-simulator"
+# archive "Embrace Unity iOS Interface" "generic/platform=iOS Simulator" "./build/EmbraceUnityiOS-simulator"
 
-create_xcframework "./build/EmbraceUnityiOS.xcarchive" "./build/EmbraceUnityiOS-simulator.xcarchive" "./build/EmbraceUnityiOS.xcframework"
+# create_xcframework "./build/EmbraceUnityiOS.xcarchive" "./build/EmbraceUnityiOS-simulator.xcarchive" "./build/EmbraceUnityiOS.xcframework"
 
 rm -rf ./build/*.xcarchive
 
