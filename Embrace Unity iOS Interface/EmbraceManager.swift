@@ -46,7 +46,11 @@ public class EmbraceManager: NSObject {
             
             return true
         } catch let e {
-            os_log("Error starting Native Embrace SDK \(e.localizedDescription)")
+            if #available(iOS 14.0, *) {
+                os_log("Error starting Native Embrace SDK \(e.localizedDescription)")
+            } else {
+                print("Error starting Native Embrace SDK \(e.localizedDescription)")
+            }
             return false
         }
         
@@ -141,7 +145,11 @@ public class EmbraceManager: NSObject {
                 key: key, value: value, lifespan: lifespan)
             return true
         } catch let error {
-            os_log("Error adding resource to metadata: \(error.localizedDescription)")
+            if #available(iOS 14.0, *) {
+                os_log("Error adding resource to metadata: \(error.localizedDescription)")
+            } else {
+                print("Error adding resource to metadata: \(error.localizedDescription)")
+            }
         }
         
         return false
@@ -426,7 +434,11 @@ public class EmbraceManager: NSObject {
             try Embrace.client?.add(event: .push(userInfo: pushData as [AnyHashable: Any]))
             return true
         } catch let error {
-            os_log("Error logging push notification: \(error.localizedDescription)")
+            if #available(iOS 14.0, *) {
+                os_log("Error logging push notification: \(error.localizedDescription)")
+            } else {
+                print("Error logging push notification: \(error.localizedDescription)")
+            }
             return false
         }
     }
