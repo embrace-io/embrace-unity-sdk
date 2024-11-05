@@ -1,0 +1,19 @@
+name: EmbraceUnityiOS
+options:
+  deploymentTarget:
+    iOS: "13.0"
+targets:
+  EmbraceUnityiOS:
+    type: framework
+    platform: iOS
+    sources: [Sources]
+    settings:
+      base:
+        SKIP_INSTALL: YES
+        MACH_O_TYPE: staticlib
+        BUILD_LIBRARY_FOR_DISTRIBUTION: YES
+schemes:
+  EmbraceUnityiOS:
+    build:
+      targets:
+        EmbraceUnityiOS: all
