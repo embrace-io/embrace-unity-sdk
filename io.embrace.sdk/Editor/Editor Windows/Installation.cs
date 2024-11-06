@@ -4,6 +4,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using EmbraceSDK.Internal;
 using Newtonsoft.Json;
 using UnityEditor.Build;
@@ -114,10 +115,8 @@ namespace EmbraceSDK.EditorView
                 }
             }
 
-            if (!EmbraceProjectSettings.User.GetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup)))
-            {
-                SetupManifest(sdkInfo);
-            }
+            SetupManifest(sdkInfo); // TODO: For later, this is inefficient as we should only do this once. But it's fine as this deals specifically with upgrading.
+            // We're removing a field that is no longer relevant, and may cause trouble.
 
             CleanUpDeprecatedItems();
         }
@@ -171,7 +170,12 @@ namespace EmbraceSDK.EditorView
                 }
             }
 
-            // Add Scoped Registry
+// We actually want to remove the scoped registry now with the latest versions of Unity.
+            // This is because Unity hides access to previous versions in the latest versions of the package manager.
+            // As a result a scoped registry access to previous versions is moot.
+            // Additionally the scoped registry functionality has caused issues for various customers
+            // and we want to remove it to avoid any potential issues. -- Alyssa
+            
             bool hasEmbraceScopedRegistry = false;
             if (parsedJson["scopedRegistries"] is JArray scopedRegistries)
             {
@@ -184,36 +188,29 @@ namespace EmbraceSDK.EditorView
                     }
                 }
 
-                if (!hasEmbraceScopedRegistry)
+                if (hasEmbraceScopedRegistry)
                 {
-                    List<string> scopes = new List<string>() { "io.embrace" };
-                    ScopedRegistry embraceRegistry = new ScopedRegistry(package.name, embraceSdkInfo.npmAPIEndpoint, scopes.ToArray());
+                    // We have the scoped registry.
+                    // We now need to remove it
+                    var embraceScopedRegistryEntry = scopedRegistries.FirstOrDefault(content => (string)content["name"] == "io.embrace");
+                    if (embraceScopedRegistryEntry != null)
+                    {
+                        scopedRegistries.Remove(embraceScopedRegistryEntry);
+                    }
+                    
+                    var regex = new Regex(@"(?<=""scopedRegistries"": \[\s*(?:\{[^{}]*\},?\s*)*)\{[^{}]*io\.embrace[^{}]*\},?\s*\n?");
 
-                    scopedRegistries.AddFirst(JToken.Parse(JsonUtility.ToJson(embraceRegistry)));
+                    var json = parsedJson.ToString(Formatting.Indented);
+                    var newJson = regex.Replace(json, string.Empty);
+                    
+                    parsedJson = JObject.Parse(newJson);
                 }
-            }
-            else
-            {
-                // If the manifest file does not have a scopedRegistries property we need to add this property.
-                // We do this by manually creating a scopedRegistries string and adding it before the dependencies property.
-                List<string> scopes = new List<string>() { "io.embrace" };
-                ScopedRegistry embraceRegistry = new ScopedRegistry(package.name, embraceSdkInfo.npmAPIEndpoint, scopes.ToArray());
-                ScopedRegistries registries = new ScopedRegistries(embraceRegistry);
-
-                string registriesJson = JsonUtility.ToJson(registries, true);
-                registriesJson = registriesJson.Remove(0, 1);
-                registriesJson = registriesJson.Remove(registriesJson.Length - 2, 2);
-                registriesJson += "," + System.Environment.NewLine;
-
-                string json = parsedJson.ToString((Newtonsoft.Json.Formatting)Formatting.Indented);
-                int index = json.IndexOf("\"dependencies\": {");
-                parsedJson = JObject.Parse(json.Insert(index, registriesJson));
             }
 
             EmbraceProjectSettings.User.SetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup), true);
             EmbraceProjectSettings.User.Save();
-
-            File.WriteAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json", parsedJson.ToString((Newtonsoft.Json.Formatting)Formatting.Indented));
+            
+            File.WriteAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json", parsedJson.ToString(Formatting.Indented));
         }
 
         private static void CleanUpDeprecatedItems()
