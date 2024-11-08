@@ -1,19 +1,40 @@
 name: EmbraceUnityiOS
 options:
   deploymentTarget:
-    iOS: "13.0"
-targets:
-  EmbraceUnityiOS:
-    type: framework
-    platform: iOS
-    sources: [Sources]
-    settings:
-      base:
-        SKIP_INSTALL: YES
-        MACH_O_TYPE: staticlib
-        BUILD_LIBRARY_FOR_DISTRIBUTION: YES
+    iOS: '13.0'
 schemes:
   EmbraceUnityiOS:
     build:
       targets:
         EmbraceUnityiOS: all
+targets:
+  EmbraceUnityiOS:
+    platform: iOS
+    settings:
+      base:
+        BUILD_LIBRARY_FOR_DISTRIBUTION: true
+        MACH_O_TYPE: staticlib
+        SKIP_INSTALL: true
+    sources:
+      - Sources
+    type: framework
+    dependencies:
+      - framework: ./xcframeworks/EmbraceCaptureService.xcframework
+      - framework: ./xcframeworks/EmbraceCommonInternal.xcframework
+      - framework: ./xcframeworks/EmbraceConfigInternal.xcframework
+      - framework: ./xcframeworks/EmbraceConfiguration.xcframework
+      - framework: ./xcframeworks/EmbraceCore.xcframework
+      - framework: ./xcframeworks/EmbraceCrash.xcframework
+      - framework: ./xcframeworks/EmbraceCrashlyticsSupport.xcframework
+      - framework: ./xcframeworks/EmbraceIO.xcframework
+      - framework: ./xcframeworks/EmbraceOTelInternal.xcframework
+      - framework: ./xcframeworks/EmbraceObjCUtilsInternal.xcframework
+      - framework: ./xcframeworks/EmbraceSemantics.xcframework
+      - framework: ./xcframeworks/EmbraceStorageInternal.xcframework
+      - framework: ./xcframeworks/EmbraceUploadInternal.xcframework
+      - framework: ./xcframeworks/GRDB.xcframework
+      - framework: ./xcframeworks/KSCrashCore.xcframework
+      - framework: ./xcframeworks/KSCrashRecording.xcframework
+      - framework: ./xcframeworks/KSCrashRecordingCore.xcframework
+      - framework: ./xcframeworks/OpenTelemetryApi.xcframework
+      - framework: ./xcframeworks/OpenTelemetrySdk.xcframework
