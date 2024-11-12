@@ -16,6 +16,7 @@ on:
   workflow_call:
   branch:
     - alyssa/iOS/6.5.1
+    - non-existent-branch
 
 jobs:
   generate_iOS_xcframeworks:
