@@ -23,6 +23,7 @@ TEMP_YML=$(mktemp)
 echo "dependencies:" > "$TEMP_YML"
 for xcframework in "${xcframeworks_list[@]}"; do
   echo "  - framework: $xcframework" >> "$TEMP_YML"
+  echo "    embed: true" >> "$TEMP_YML"
 done
 
 # Replace the dependencies block in the project.yml file

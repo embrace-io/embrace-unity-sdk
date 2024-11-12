@@ -15,26 +15,47 @@ targets:
         BUILD_LIBRARY_FOR_DISTRIBUTION: true
         MACH_O_TYPE: staticlib
         SKIP_INSTALL: true
+        CODE_SIGNING_ALLOWED: NO
+        GENERATE_INFOPLIST_FILE: YES
     sources:
       - Sources
     type: framework
     dependencies:
       - framework: ./xcframeworks/EmbraceCaptureService.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceCommonInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceConfigInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceConfiguration.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceCore.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceCrash.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceCrashlyticsSupport.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceIO.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceOTelInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceObjCUtilsInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceSemantics.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceStorageInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/EmbraceUploadInternal.xcframework
+        embed: true
       - framework: ./xcframeworks/GRDB.xcframework
+        embed: true
       - framework: ./xcframeworks/KSCrashCore.xcframework
+        embed: true
       - framework: ./xcframeworks/KSCrashRecording.xcframework
+        embed: true
       - framework: ./xcframeworks/KSCrashRecordingCore.xcframework
+        embed: true
       - framework: ./xcframeworks/OpenTelemetryApi.xcframework
+        embed: true
       - framework: ./xcframeworks/OpenTelemetrySdk.xcframework
+        embed: true
