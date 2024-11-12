@@ -12,8 +12,6 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
-  workflow_dispatch:
-  workflow_call:
   branch:
     - alyssa/iOS/6.5.1
     - non-existent-branch
