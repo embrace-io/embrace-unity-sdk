@@ -2,10 +2,10 @@ name: Publish Unity SDK from Public Repo
 
 env:
   PACKAGE_REPO_PATH: 'embrace-unity-sdk-internal'
-  PACKAGE_DIRECTORY: 'public_sdk/io.embrace.sdk'
-  PACKAGE_JSON_PATH: 'public_sdk/io.embrace.sdk/package.json'
-  PACKAGE_CHANGELOG_PATH: 'public_sdk/io.embrace.sdk/CHANGELOG.md'
-  EDM_DEPENDENCIES_PATH: 'public_sdk/io.embrace.sdk/Editor/EmbraceSDKDependencies.xml'
+  PACKAGE_DIRECTORY: './io.embrace.sdk'
+  PACKAGE_JSON_PATH: './io.embrace.sdk/package.json'
+  PACKAGE_CHANGELOG_PATH: './io.embrace.sdk/CHANGELOG.md'
+  EDM_DEPENDENCIES_PATH: './io.embrace.sdk/Editor/EmbraceSDKDependencies.xml'
   DOCS_REPO_PATH: 'embrace-docs'
   DOCS_CHANGELOG_PATH: 'docs/unity/changelog.md'
   DOCS_CONFIG_PATH: 'embrace.json'
@@ -24,31 +24,29 @@ jobs:
     name: Generate Unity iOS XCFramework
     runs-on: macos-latest
     steps:
-      - name: Checkout internal SDK
+      - name: Checkout SDK
         uses: actions/checkout@v4
         with:
-          repository: embrace-io/embrace-unity-sdk-internal
-          submodules: recursive
           lfs: true
       - name: Install xcpretty
         run: gem install xcpretty
       - name: Download iOS SDK
         run: |
           curl -L -O https://github.com/embrace-io/embrace-apple-sdk/releases/download/6.4.0/embrace_6.4.0.zip
-          unzip embrace_6.4.0.zip -d public_sdk/Embrace\ Unity\ iOS\ Interface/
+          unzip embrace_6.4.0.zip -d ./Embrace\ Unity\ iOS\ Interface/
           rm embrace_6.4.0.zip
       - name: Generate iOS XCFrameworks
         run: |
-          cd public_sdk/Embrace\ Unity\ iOS\ Interface/
+          cd ./Embrace\ Unity\ iOS\ Interface/
           ./build_xcframework.sh
       - name: Upload XCFrameworks
         uses: actions/upload-artifact@v4
         with:
           name: EmbraceUnityXCFramework
-          path: public_sdk/Embrace\ Unity\ iOS\ Interface/build/EmbraceUnityiOS.xcframework
+          path: ./Embrace\ Unity\ iOS\ Interface/build/EmbraceUnityiOS.xcframework
           retention-days: 1
-  publish:
-    name: Publish Embrace Unity SDK
+  create_package:
+    name: Create Unity Test Package
     runs-on: ubuntu-latest
     needs: 
       - generate_iOS_xcframeworks
@@ -77,13 +75,13 @@ jobs:
       - name: Fetch Embrace iOS SDK XCFrameworks
         run: | 
           curl -L -O https://github.com/embrace-io/embrace-apple-sdk/releases/download/6.4.0/embrace_6.4.0.zip
-          unzip embrace_6.4.0.zip -d public_sdk/io.embrace.sdk/iOS
+          unzip embrace_6.4.0.zip -d ./io.embrace.sdk/iOS
           rm embrace_6.4.0.zip
       - name: Fetch Unity iOS SDK XCFramework
         uses: actions/download-artifact@v4
         with:
           name: EmbraceUnityXCFramework
-          path: public_sdk/io.embrace.sdk/iOS/xcframeworks/EmbraceUnityiOS.xcframework/
+          path: ./io.embrace.sdk/iOS/xcframeworks/EmbraceUnityiOS.xcframework/
       - name: Enforce Publish Public SDK version
         run: |
           ./enforce_publish_sdk.sh
