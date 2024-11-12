@@ -1,7 +1,7 @@
 function archive {
     echo "Archiving: \n- scheme: $1 \n- destination: $2;\n- archivePath: $3.xcarchive"
     IS_ARCHIVE=1 xcodebuild archive \
-        -project "Embrace Unity iOS Interface.xcodeproj" \
+        -project "EmbraceUnityiOS.xcodeproj" \
         -scheme "$1" \
         -destination "$2" \
         -archivePath "$3" \
@@ -22,8 +22,8 @@ function create_xcframework {
     | xcpretty
 }
 
-archive "Embrace Unity iOS Interface" "generic/platform=iOS" "./build/EmbraceUnityiOS"
-archive "Embrace Unity iOS Interface" "generic/platform=iOS Simulator" "./build/EmbraceUnityiOS-simulator"
+archive "EmbraceUnityiOS" "generic/platform=iOS" "./build/EmbraceUnityiOS"
+archive "EmbraceUnityiOS" "generic/platform=iOS Simulator" "./build/EmbraceUnityiOS-simulator"
 
 create_xcframework "./build/EmbraceUnityiOS.xcarchive" "./build/EmbraceUnityiOS-simulator.xcarchive" "./build/EmbraceUnityiOS.xcframework"
 
