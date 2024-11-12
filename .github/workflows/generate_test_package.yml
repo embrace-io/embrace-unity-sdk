@@ -12,9 +12,12 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
-  branch:
-    - alyssa/iOS/6.5.1
-    - non-existent-branch
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - alyssa/iOS/6.5.1
+      - non-existent-branch
 
 jobs:
   generate_iOS_xcframeworks:
