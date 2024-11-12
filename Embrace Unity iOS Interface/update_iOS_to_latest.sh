@@ -14,3 +14,5 @@ fi
 unzip -o embrace_*.zip
 
 rm -rf embrace_*.zip run.sh *.darwin
+
+xcodegen
