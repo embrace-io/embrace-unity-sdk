@@ -15,8 +15,7 @@ unzip -o embrace_*.zip
 
 rm -rf embrace_*.zip run.sh *.darwin
 
-if ["$2" == "skip"]; then
-  exit 0
-else
+if [ "$2" != "skip" ]; then
+  echo "Updating the EmbraceUnityiOS.xcodeproj file"
   xcodegen
 fi
