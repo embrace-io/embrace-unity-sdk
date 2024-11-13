@@ -15,9 +15,9 @@ function create_xcframework {
     echo "Creating XCFramework: \n- archive_one: $1 \n- archive_two: $2 \n- output: $3"
     xcodebuild -create-xcframework \
         -archive "$1" \
-        -framework "Embrace_Unity_iOS_Interface.framework" \
+        -framework "EmbraceUnityiOS.framework" \
         -archive "$2" \
-        -framework "Embrace_Unity_iOS_Interface.framework" \
+        -framework "EmbraceUnityiOS.framework" \
         -output "$3" \
     | xcpretty
 }
