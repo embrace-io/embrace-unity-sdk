@@ -15,4 +15,8 @@ unzip -o embrace_*.zip
 
 rm -rf embrace_*.zip run.sh *.darwin
 
-xcodegen
+if ["$2" == "skip"]; then
+  exit 0
+else
+  xcodegen
+fi
