@@ -176,34 +176,23 @@ namespace EmbraceSDK.EditorView
             // Additionally the scoped registry functionality has caused issues for various customers
             // and we want to remove it to avoid any potential issues. -- Alyssa
             
-            bool hasEmbraceScopedRegistry = false;
             if (parsedJson["scopedRegistries"] is JArray scopedRegistries)
             {
                 foreach (JToken content in scopedRegistries)
                 {
                     if ((string)content["name"] == package.name)
                     {
-                        hasEmbraceScopedRegistry = true;
-                        break;
-                    }
-                }
-
-                if (hasEmbraceScopedRegistry)
-                {
-                    // We have the scoped registry.
-                    // We now need to remove it
-                    var embraceScopedRegistryEntry = scopedRegistries.FirstOrDefault(content => (string)content["name"] == "io.embrace");
-                    if (embraceScopedRegistryEntry != null)
-                    {
-                        scopedRegistries.Remove(embraceScopedRegistryEntry);
-                    }
+                        // We have the scoped registry.
+                        // We now need to remove it
+                        scopedRegistries.Remove(content);
                     
-                    var regex = new Regex(@"(?<=""scopedRegistries"": \[\s*(?:\{[^{}]*\},?\s*)*)\{[^{}]*io\.embrace[^{}]*\},?\s*\n?");
+                        var regex = new Regex(@"(?<=""scopedRegistries"": \[\s*(?:\{[^{}]*\},?\s*)*)\{[^{}]*io\.embrace[^{}]*\},?\s*\n?");
 
-                    var json = parsedJson.ToString(Formatting.Indented);
-                    var newJson = regex.Replace(json, string.Empty);
+                        var json = parsedJson.ToString(Formatting.Indented);
+                        var newJson = regex.Replace(json, string.Empty);
                     
-                    parsedJson = JObject.Parse(newJson);
+                        parsedJson = JObject.Parse(newJson);
+                    }
                 }
             }
 
