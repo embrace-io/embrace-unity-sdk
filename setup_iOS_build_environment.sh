@@ -8,13 +8,11 @@ rm -rf ./io.embrace.sdk/iOS/xcframeworks/*.xcframework
 rm -rf ./Embrace\ Unity\ iOS\ Interface/xcframeworks/*.xcframework
 
 # Pull down the target iOS release
-gh release download "$RELEASE_VERSION" --repo embrace-io/embrace-apple-sdk --pattern 'embrace_*.zip' --dir ./
-
-# Copy into Swift Interface
-unzip -o embrace_*.zip -d ./Embrace\ Unity\ iOS\ Interface
-rm -rf ./Embrace\ Unity\ iOS\ Interface/run.sh ./Embrace\ Unity\ iOS\ Interface/*.darwin
+cd Embrace\ Unity\ iOS\ Interface
+./update_iOS_to_latest.sh "$RELEASE_VERSION"
 
 # Build Unity SDK xcframework
+cd ..
 ./upgrade_iOS_interface.sh True
 
 # Remove downloaded files
