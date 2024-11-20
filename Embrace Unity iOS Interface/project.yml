@@ -10,13 +10,17 @@ schemes:
 targets:
   EmbraceUnityiOS:
     platform: iOS
+    info:
+      path: Info.plist
+      properties:
+        CFBundleIdentifier: com.embraceio.unityios
+        CFBundleName: EmbraceUnityiOS
     settings:
       base:
         BUILD_LIBRARY_FOR_DISTRIBUTION: true
         MACH_O_TYPE: staticlib
         SKIP_INSTALL: true
         CODE_SIGNING_ALLOWED: NO
-        GENERATE_INFOPLIST_FILE: YES
     sources:
       - Sources
     type: framework
