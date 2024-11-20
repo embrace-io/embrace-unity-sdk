@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the release version to download, default to current supported if not provided
-RELEASE_VERSION=${1:-6.5.1}
+RELEASE_VERSION=${1:-6.5.2}
 
 # Remove the old xcframeworks
 rm -rf ./io.embrace.sdk/iOS/xcframeworks/*.xcframework
