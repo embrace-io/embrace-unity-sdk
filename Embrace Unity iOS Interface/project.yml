@@ -12,6 +12,7 @@ targets:
     platform: iOS
     info:
       path: Info.plist
+      deploymentTarget: "13.0"
       properties:
         CFBundleIdentifier: com.embraceio.unityios
         CFBundleName: EmbraceUnityiOS
