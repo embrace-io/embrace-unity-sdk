@@ -18,7 +18,8 @@ mv *.darwin "../io.embrace.sdk/iOS/"
 
 rm -rf embrace_*.zip
 
-if [ "$2" != "skip" ]; then
-  echo "Updating the EmbraceUnityiOS.xcodeproj file"
-  xcodegen
-fi
+# Commented out temporarily until we can figure out how to get the xcodeproj file to update properly
+# if [ "$2" != "skip" ]; then
+#   echo "Updating the EmbraceUnityiOS.xcodeproj file"
+#   xcodegen
+# fi

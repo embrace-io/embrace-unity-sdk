@@ -32,4 +32,4 @@ cp -rf \
 
 echo "Cleaning up"
 
-rm -rf ./"Embrace Unity iOS Interface"/build
+# rm -rf ./"Embrace Unity iOS Interface"/build

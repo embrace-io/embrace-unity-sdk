@@ -21,6 +21,7 @@ targets:
         BUILD_LIBRARY_FOR_DISTRIBUTION: true
         SKIP_INSTALL: true
         CODE_SIGNING_ALLOWED: NO
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(PROJECT_DIR)/<Path-to-dependency>"
     sources:
       - Sources
     type: framework
