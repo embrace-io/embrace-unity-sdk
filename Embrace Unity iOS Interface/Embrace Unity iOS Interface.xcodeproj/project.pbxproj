@@ -12,25 +12,44 @@
 		11077E6D2C77944700CAFD0C /* ExposedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6C2C77944700CAFD0C /* ExposedAPI.swift */; };
 		11077E6F2C7AA31800CAFD0C /* SpanRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11077E6E2C7AA31800CAFD0C /* SpanRepository.swift */; };
 		115421EA2CB9849F00FE171E /* ConfigOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115421E92CB9849500FE171E /* ConfigOptions.swift */; };
-		11C9C7732CF5A38E00F34E3B /* EmbraceStorageInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76B2CF5A38E00F34E3B /* EmbraceStorageInternal.xcframework */; };
-		11C9C7742CF5A38E00F34E3B /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7722CF5A38E00F34E3B /* OpenTelemetrySdk.xcframework */; };
-		11C9C7752CF5A38E00F34E3B /* EmbraceConfigInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7622CF5A38E00F34E3B /* EmbraceConfigInternal.xcframework */; };
-		11C9C7762CF5A38E00F34E3B /* EmbraceCrash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7652CF5A38E00F34E3B /* EmbraceCrash.xcframework */; };
-		11C9C7772CF5A38E00F34E3B /* EmbraceCommonInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7612CF5A38E00F34E3B /* EmbraceCommonInternal.xcframework */; };
-		11C9C7782CF5A38E00F34E3B /* EmbraceUploadInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76C2CF5A38E00F34E3B /* EmbraceUploadInternal.xcframework */; };
-		11C9C7792CF5A38E00F34E3B /* OpenTelemetryApi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7712CF5A38E00F34E3B /* OpenTelemetryApi.xcframework */; };
-		11C9C77A2CF5A38E00F34E3B /* EmbraceObjCUtilsInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7682CF5A38E00F34E3B /* EmbraceObjCUtilsInternal.xcframework */; };
-		11C9C77B2CF5A38E00F34E3B /* KSCrashRecording.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76F2CF5A38E00F34E3B /* KSCrashRecording.xcframework */; };
-		11C9C77C2CF5A38E00F34E3B /* EmbraceOTelInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7692CF5A38E00F34E3B /* EmbraceOTelInternal.xcframework */; };
-		11C9C77D2CF5A38E00F34E3B /* KSCrashCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76E2CF5A38E00F34E3B /* KSCrashCore.xcframework */; };
-		11C9C77E2CF5A38E00F34E3B /* KSCrashRecordingCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7702CF5A38E00F34E3B /* KSCrashRecordingCore.xcframework */; };
-		11C9C77F2CF5A38E00F34E3B /* EmbraceCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7642CF5A38E00F34E3B /* EmbraceCore.xcframework */; };
-		11C9C7802CF5A38E00F34E3B /* EmbraceCrashlyticsSupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7662CF5A38E00F34E3B /* EmbraceCrashlyticsSupport.xcframework */; };
-		11C9C7812CF5A38E00F34E3B /* EmbraceSemantics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76A2CF5A38E00F34E3B /* EmbraceSemantics.xcframework */; };
-		11C9C7822CF5A38E00F34E3B /* GRDB.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76D2CF5A38E00F34E3B /* GRDB.xcframework */; };
-		11C9C7832CF5A38E00F34E3B /* EmbraceConfiguration.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7632CF5A38E00F34E3B /* EmbraceConfiguration.xcframework */; };
-		11C9C7842CF5A38E00F34E3B /* EmbraceCaptureService.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7602CF5A38E00F34E3B /* EmbraceCaptureService.xcframework */; };
-		11C9C7852CF5A38E00F34E3B /* EmbraceIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7672CF5A38E00F34E3B /* EmbraceIO.xcframework */; };
+		11FD9D6B2CF5B3DA00D85C82 /* EmbraceCaptureService.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7602CF5A38E00F34E3B /* EmbraceCaptureService.xcframework */; };
+		11FD9D6C2CF5B3DA00D85C82 /* EmbraceCaptureService.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7602CF5A38E00F34E3B /* EmbraceCaptureService.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D6D2CF5B3DD00D85C82 /* EmbraceCommonInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7612CF5A38E00F34E3B /* EmbraceCommonInternal.xcframework */; };
+		11FD9D6E2CF5B3DD00D85C82 /* EmbraceCommonInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7612CF5A38E00F34E3B /* EmbraceCommonInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D6F2CF5B3E100D85C82 /* EmbraceConfigInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7622CF5A38E00F34E3B /* EmbraceConfigInternal.xcframework */; };
+		11FD9D702CF5B3E100D85C82 /* EmbraceConfigInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7622CF5A38E00F34E3B /* EmbraceConfigInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D712CF5B3E100D85C82 /* EmbraceConfiguration.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7632CF5A38E00F34E3B /* EmbraceConfiguration.xcframework */; };
+		11FD9D722CF5B3E100D85C82 /* EmbraceConfiguration.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7632CF5A38E00F34E3B /* EmbraceConfiguration.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D732CF5B3E100D85C82 /* EmbraceCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7642CF5A38E00F34E3B /* EmbraceCore.xcframework */; };
+		11FD9D742CF5B3E100D85C82 /* EmbraceCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7642CF5A38E00F34E3B /* EmbraceCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D752CF5B3E100D85C82 /* EmbraceCrash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7652CF5A38E00F34E3B /* EmbraceCrash.xcframework */; };
+		11FD9D762CF5B3E100D85C82 /* EmbraceCrash.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7652CF5A38E00F34E3B /* EmbraceCrash.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D772CF5B3E100D85C82 /* EmbraceCrashlyticsSupport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7662CF5A38E00F34E3B /* EmbraceCrashlyticsSupport.xcframework */; };
+		11FD9D782CF5B3E100D85C82 /* EmbraceCrashlyticsSupport.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7662CF5A38E00F34E3B /* EmbraceCrashlyticsSupport.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D792CF5B3E100D85C82 /* EmbraceIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7672CF5A38E00F34E3B /* EmbraceIO.xcframework */; };
+		11FD9D7A2CF5B3E100D85C82 /* EmbraceIO.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7672CF5A38E00F34E3B /* EmbraceIO.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D7B2CF5B3E100D85C82 /* EmbraceObjCUtilsInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7682CF5A38E00F34E3B /* EmbraceObjCUtilsInternal.xcframework */; };
+		11FD9D7C2CF5B3E100D85C82 /* EmbraceObjCUtilsInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7682CF5A38E00F34E3B /* EmbraceObjCUtilsInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D7D2CF5B3E100D85C82 /* EmbraceOTelInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7692CF5A38E00F34E3B /* EmbraceOTelInternal.xcframework */; };
+		11FD9D7E2CF5B3E100D85C82 /* EmbraceOTelInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7692CF5A38E00F34E3B /* EmbraceOTelInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D7F2CF5B3E100D85C82 /* EmbraceSemantics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76A2CF5A38E00F34E3B /* EmbraceSemantics.xcframework */; };
+		11FD9D802CF5B3E100D85C82 /* EmbraceSemantics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76A2CF5A38E00F34E3B /* EmbraceSemantics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D812CF5B3E100D85C82 /* EmbraceStorageInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76B2CF5A38E00F34E3B /* EmbraceStorageInternal.xcframework */; };
+		11FD9D822CF5B3E100D85C82 /* EmbraceStorageInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76B2CF5A38E00F34E3B /* EmbraceStorageInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D832CF5B3E100D85C82 /* EmbraceUploadInternal.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76C2CF5A38E00F34E3B /* EmbraceUploadInternal.xcframework */; };
+		11FD9D842CF5B3E100D85C82 /* EmbraceUploadInternal.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76C2CF5A38E00F34E3B /* EmbraceUploadInternal.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D852CF5B3E100D85C82 /* GRDB.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76D2CF5A38E00F34E3B /* GRDB.xcframework */; };
+		11FD9D862CF5B3E100D85C82 /* GRDB.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76D2CF5A38E00F34E3B /* GRDB.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D872CF5B3E100D85C82 /* KSCrashCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76E2CF5A38E00F34E3B /* KSCrashCore.xcframework */; };
+		11FD9D882CF5B3E100D85C82 /* KSCrashCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76E2CF5A38E00F34E3B /* KSCrashCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D892CF5B3E100D85C82 /* KSCrashRecording.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76F2CF5A38E00F34E3B /* KSCrashRecording.xcframework */; };
+		11FD9D8A2CF5B3E100D85C82 /* KSCrashRecording.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C76F2CF5A38E00F34E3B /* KSCrashRecording.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D8B2CF5B3E100D85C82 /* KSCrashRecordingCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7702CF5A38E00F34E3B /* KSCrashRecordingCore.xcframework */; };
+		11FD9D8C2CF5B3E100D85C82 /* KSCrashRecordingCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7702CF5A38E00F34E3B /* KSCrashRecordingCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D8D2CF5B3E100D85C82 /* OpenTelemetryApi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7712CF5A38E00F34E3B /* OpenTelemetryApi.xcframework */; };
+		11FD9D8E2CF5B3E100D85C82 /* OpenTelemetryApi.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7712CF5A38E00F34E3B /* OpenTelemetryApi.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		11FD9D8F2CF5B3E100D85C82 /* OpenTelemetrySdk.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7722CF5A38E00F34E3B /* OpenTelemetrySdk.xcframework */; };
+		11FD9D902CF5B3E100D85C82 /* OpenTelemetrySdk.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 11C9C7722CF5A38E00F34E3B /* OpenTelemetrySdk.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +59,25 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				11FD9D782CF5B3E100D85C82 /* EmbraceCrashlyticsSupport.xcframework in Embed Frameworks */,
+				11FD9D902CF5B3E100D85C82 /* OpenTelemetrySdk.xcframework in Embed Frameworks */,
+				11FD9D742CF5B3E100D85C82 /* EmbraceCore.xcframework in Embed Frameworks */,
+				11FD9D822CF5B3E100D85C82 /* EmbraceStorageInternal.xcframework in Embed Frameworks */,
+				11FD9D882CF5B3E100D85C82 /* KSCrashCore.xcframework in Embed Frameworks */,
+				11FD9D7C2CF5B3E100D85C82 /* EmbraceObjCUtilsInternal.xcframework in Embed Frameworks */,
+				11FD9D842CF5B3E100D85C82 /* EmbraceUploadInternal.xcframework in Embed Frameworks */,
+				11FD9D722CF5B3E100D85C82 /* EmbraceConfiguration.xcframework in Embed Frameworks */,
+				11FD9D7A2CF5B3E100D85C82 /* EmbraceIO.xcframework in Embed Frameworks */,
+				11FD9D8C2CF5B3E100D85C82 /* KSCrashRecordingCore.xcframework in Embed Frameworks */,
+				11FD9D6C2CF5B3DA00D85C82 /* EmbraceCaptureService.xcframework in Embed Frameworks */,
+				11FD9D8E2CF5B3E100D85C82 /* OpenTelemetryApi.xcframework in Embed Frameworks */,
+				11FD9D802CF5B3E100D85C82 /* EmbraceSemantics.xcframework in Embed Frameworks */,
+				11FD9D6E2CF5B3DD00D85C82 /* EmbraceCommonInternal.xcframework in Embed Frameworks */,
+				11FD9D862CF5B3E100D85C82 /* GRDB.xcframework in Embed Frameworks */,
+				11FD9D702CF5B3E100D85C82 /* EmbraceConfigInternal.xcframework in Embed Frameworks */,
+				11FD9D7E2CF5B3E100D85C82 /* EmbraceOTelInternal.xcframework in Embed Frameworks */,
+				11FD9D762CF5B3E100D85C82 /* EmbraceCrash.xcframework in Embed Frameworks */,
+				11FD9D8A2CF5B3E100D85C82 /* KSCrashRecording.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,25 +117,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11C9C7732CF5A38E00F34E3B /* EmbraceStorageInternal.xcframework in Frameworks */,
-				11C9C7742CF5A38E00F34E3B /* OpenTelemetrySdk.xcframework in Frameworks */,
-				11C9C7752CF5A38E00F34E3B /* EmbraceConfigInternal.xcframework in Frameworks */,
-				11C9C7762CF5A38E00F34E3B /* EmbraceCrash.xcframework in Frameworks */,
-				11C9C7772CF5A38E00F34E3B /* EmbraceCommonInternal.xcframework in Frameworks */,
-				11C9C7782CF5A38E00F34E3B /* EmbraceUploadInternal.xcframework in Frameworks */,
-				11C9C7792CF5A38E00F34E3B /* OpenTelemetryApi.xcframework in Frameworks */,
-				11C9C77A2CF5A38E00F34E3B /* EmbraceObjCUtilsInternal.xcframework in Frameworks */,
-				11C9C77B2CF5A38E00F34E3B /* KSCrashRecording.xcframework in Frameworks */,
-				11C9C77C2CF5A38E00F34E3B /* EmbraceOTelInternal.xcframework in Frameworks */,
-				11C9C77D2CF5A38E00F34E3B /* KSCrashCore.xcframework in Frameworks */,
-				11C9C77E2CF5A38E00F34E3B /* KSCrashRecordingCore.xcframework in Frameworks */,
-				11C9C77F2CF5A38E00F34E3B /* EmbraceCore.xcframework in Frameworks */,
-				11C9C7802CF5A38E00F34E3B /* EmbraceCrashlyticsSupport.xcframework in Frameworks */,
-				11C9C7812CF5A38E00F34E3B /* EmbraceSemantics.xcframework in Frameworks */,
-				11C9C7822CF5A38E00F34E3B /* GRDB.xcframework in Frameworks */,
-				11C9C7832CF5A38E00F34E3B /* EmbraceConfiguration.xcframework in Frameworks */,
-				11C9C7842CF5A38E00F34E3B /* EmbraceCaptureService.xcframework in Frameworks */,
-				11C9C7852CF5A38E00F34E3B /* EmbraceIO.xcframework in Frameworks */,
+				11FD9D732CF5B3E100D85C82 /* EmbraceCore.xcframework in Frameworks */,
+				11FD9D8F2CF5B3E100D85C82 /* OpenTelemetrySdk.xcframework in Frameworks */,
+				11FD9D872CF5B3E100D85C82 /* KSCrashCore.xcframework in Frameworks */,
+				11FD9D812CF5B3E100D85C82 /* EmbraceStorageInternal.xcframework in Frameworks */,
+				11FD9D7D2CF5B3E100D85C82 /* EmbraceOTelInternal.xcframework in Frameworks */,
+				11FD9D7B2CF5B3E100D85C82 /* EmbraceObjCUtilsInternal.xcframework in Frameworks */,
+				11FD9D832CF5B3E100D85C82 /* EmbraceUploadInternal.xcframework in Frameworks */,
+				11FD9D792CF5B3E100D85C82 /* EmbraceIO.xcframework in Frameworks */,
+				11FD9D6B2CF5B3DA00D85C82 /* EmbraceCaptureService.xcframework in Frameworks */,
+				11FD9D892CF5B3E100D85C82 /* KSCrashRecording.xcframework in Frameworks */,
+				11FD9D852CF5B3E100D85C82 /* GRDB.xcframework in Frameworks */,
+				11FD9D6F2CF5B3E100D85C82 /* EmbraceConfigInternal.xcframework in Frameworks */,
+				11FD9D752CF5B3E100D85C82 /* EmbraceCrash.xcframework in Frameworks */,
+				11FD9D8D2CF5B3E100D85C82 /* OpenTelemetryApi.xcframework in Frameworks */,
+				11FD9D8B2CF5B3E100D85C82 /* KSCrashRecordingCore.xcframework in Frameworks */,
+				11FD9D6D2CF5B3DD00D85C82 /* EmbraceCommonInternal.xcframework in Frameworks */,
+				11FD9D7F2CF5B3E100D85C82 /* EmbraceSemantics.xcframework in Frameworks */,
+				11FD9D772CF5B3E100D85C82 /* EmbraceCrashlyticsSupport.xcframework in Frameworks */,
+				11FD9D712CF5B3E100D85C82 /* EmbraceConfiguration.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
