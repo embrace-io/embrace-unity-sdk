@@ -115,9 +115,6 @@ namespace EmbraceSDK.EditorView
                 }
             }
 
-            SetupManifest(sdkInfo); // TODO: For later, this is inefficient as we should only do this once. But it's fine as this deals specifically with upgrading.
-            // We're removing a field that is no longer relevant, and may cause trouble.
-
             CleanUpDeprecatedItems();
         }
 
@@ -127,79 +124,6 @@ namespace EmbraceSDK.EditorView
             AssetDatabase.DeleteAsset($"{AssetDatabaseUtil.SDKDirectory}/Resources/Settings");
             AssetDatabase.Refresh();
             WelcomeEditorWindow.Init();
-        }
-
-        public static void SetupManifest(EmbraceSdkInfo embraceSdkInfo)
-        {
-            string manifestJson = "";
-            Package package = null;
-            try
-            {
-                string packageJson = File.ReadAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/io.embrace.sdk/package.json");
-                package = JsonUtility.FromJson<Package>(packageJson);
-
-                manifestJson = File.ReadAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json");
-            }
-            catch (FileNotFoundException)
-            {
-                EmbraceLogger.LogWarning($"Unable to load manifest json file from : {Application.dataPath.Replace("/Assets", "")}/Packages");
-            }
-
-            JObject parsedJson = JObject.Parse(manifestJson);
-
-            // add Embrace dependency
-            if (parsedJson["dependencies"] == null)
-            {
-                EmbraceLogger.LogWarning(
-                    $"Your Manifest.json file is missing a dependencies property, you will need to add io.embrace.sdk as a dependency to your manifest manually. {Application.dataPath.Replace("/Assets", "")}/Packages/manifest.json");
-                return;
-            }
-
-            if (parsedJson["dependencies"][package.name] == null)
-            {
-                JProperty newProperty = new JProperty(package.name, package.version);
-                parsedJson["dependencies"].First.AddBeforeSelf(newProperty);
-            }
-            else
-            {
-                string parsedVersion = (string)parsedJson["dependencies"][package.name];
-                // Write package version if existing version does not match and is not a local package
-                if (parsedVersion != package.version && !parsedVersion.StartsWith("file"))
-                {
-                    parsedJson["dependencies"][package.name] = package.version;
-                }
-            }
-
-// We actually want to remove the scoped registry now with the latest versions of Unity.
-            // This is because Unity hides access to previous versions in the latest versions of the package manager.
-            // As a result a scoped registry access to previous versions is moot.
-            // Additionally the scoped registry functionality has caused issues for various customers
-            // and we want to remove it to avoid any potential issues. -- Alyssa
-            
-            if (parsedJson["scopedRegistries"] is JArray scopedRegistries)
-            {
-                foreach (JToken content in scopedRegistries)
-                {
-                    if ((string)content["name"] == package.name)
-                    {
-                        // We have the scoped registry.
-                        // We now need to remove it
-                        scopedRegistries.Remove(content);
-                    
-                        var regex = new Regex(@"(?<=""scopedRegistries"": \[\s*(?:\{[^{}]*\},?\s*)*)\{[^{}]*io\.embrace[^{}]*\},?\s*\n?");
-
-                        var json = parsedJson.ToString(Formatting.Indented);
-                        var newJson = regex.Replace(json, string.Empty);
-                    
-                        parsedJson = JObject.Parse(newJson);
-                    }
-                }
-            }
-
-            EmbraceProjectSettings.User.SetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup), true);
-            EmbraceProjectSettings.User.Save();
-            
-            File.WriteAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json", parsedJson.ToString(Formatting.Indented));
         }
 
         private static void CleanUpDeprecatedItems()
