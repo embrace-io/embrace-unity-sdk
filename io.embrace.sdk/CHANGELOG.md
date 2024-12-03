@@ -5,11 +5,21 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
-## 2.1
-*November 21, 2024*
-* Upgrade of Embrace Android dependency to 6.14.0
-* Upgrade of Embrace iOS dependency to 6.5.2
-* Removal of Scoped Registry functionality, as well as included automation to remove it from existing projects. This was causing immutability issues with the package in some cases.
+## 2.1.2
+*December 3, 2024*
+:::warning Info
+To upgrade to this version of the Unity SDK from any previous version, users will need to manually remove the Embrace Scoped Registry entry. Please refer to the following documentation for instructions: https://docs.unity3d.com/2021.3/Documentation/Manual/class-PackageManager.html
+:::
+* Removal of automated scoped registry functionality
+
+## 2.1.1
+*November 26, 2024*
+:::warning Info
+Our Apple SDK and the Unity iOS SDK use Swift, which has a known issue with the current Unity build pipeline. To handle this issue, after creating your XCode project, add a Dummy Swift file to the UnityFramework target. This will adjust the linker pipeline to invoke Swift appropriately.
+
+For further information, please refer to this discussion: https://github.com/CocoaPods/CocoaPods/issues/11960
+:::
+* Restoration of meta files and patch to local asset path issues
 
 ## 2.0.2
 *October 22, 2024*
