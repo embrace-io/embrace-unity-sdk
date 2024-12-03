@@ -115,6 +115,11 @@ namespace EmbraceSDK.EditorView
                 }
             }
 
+            if (!EmbraceProjectSettings.User.GetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup)))
+            {
+                SetupManifest(sdkInfo);
+            }
+
             CleanUpDeprecatedItems();
         }
 
@@ -124,6 +129,53 @@ namespace EmbraceSDK.EditorView
             AssetDatabase.DeleteAsset($"{AssetDatabaseUtil.SDKDirectory}/Resources/Settings");
             AssetDatabase.Refresh();
             WelcomeEditorWindow.Init();
+        }
+
+        public static void SetupManifest(EmbraceSdkInfo embraceSdkInfo)
+        {
+            string manifestJson = "";
+            Package package = null;
+            try
+            {
+                string packageJson = File.ReadAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/io.embrace.sdk/package.json");
+                package = JsonUtility.FromJson<Package>(packageJson);
+
+                manifestJson = File.ReadAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json");
+            }
+            catch (FileNotFoundException)
+            {
+                EmbraceLogger.LogWarning($"Unable to load manifest json file from : {Application.dataPath.Replace("/Assets", "")}/Packages");
+            }
+
+            JObject parsedJson = JObject.Parse(manifestJson);
+
+            // add Embrace dependency
+            if (parsedJson["dependencies"] == null)
+            {
+                EmbraceLogger.LogWarning(
+                    $"Your Manifest.json file is missing a dependencies property, you will need to add io.embrace.sdk as a dependency to your manifest manually. {Application.dataPath.Replace("/Assets", "")}/Packages/manifest.json");
+                return;
+            }
+
+            if (parsedJson["dependencies"][package.name] == null)
+            {
+                JProperty newProperty = new JProperty(package.name, package.version);
+                parsedJson["dependencies"].First.AddBeforeSelf(newProperty);
+            }
+            else
+            {
+                string parsedVersion = (string)parsedJson["dependencies"][package.name];
+                // Write package version if existing version does not match and is not a local package
+                if (parsedVersion != package.version && !parsedVersion.StartsWith("file"))
+                {
+                    parsedJson["dependencies"][package.name] = package.version;
+                }
+            }
+
+            EmbraceProjectSettings.User.SetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup), true);
+            EmbraceProjectSettings.User.Save();
+            
+            File.WriteAllText(Application.dataPath.Replace("/Assets", "") + "/Packages/manifest.json", parsedJson.ToString(Formatting.Indented));
         }
 
         private static void CleanUpDeprecatedItems()
