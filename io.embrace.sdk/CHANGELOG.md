@@ -11,6 +11,8 @@ sidebar_position: 4
 To upgrade to this version of the Unity SDK from any previous version, users will need to manually remove the Embrace Scoped Registry entry. Please refer to the following documentation for instructions: https://docs.unity3d.com/2021.3/Documentation/Manual/class-PackageManager.html
 :::
 * Removal of automated scoped registry functionality
+* Removal of integration guide steps in lieu of documentation
+* Patch of extraneous embedding of iOS framework elements
 
 ## 2.1.1
 *November 26, 2024*
