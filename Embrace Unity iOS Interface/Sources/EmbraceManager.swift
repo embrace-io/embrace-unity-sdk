@@ -204,7 +204,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func startView(viewName: String) -> String? {
-        let span = Embrace.client?.buildSpan(name: SpanSemantics.View.name)
+        let span = Embrace.client?.buildSpan(name: SpanSemantics.View.screenName)
             .setAttribute(key: SpanSemantics.View.keyViewName, value: viewName)
             .setAttribute(key: SpanSemantics.keyEmbraceType, value: "ux.view")
             .startSpan()
@@ -366,7 +366,6 @@ public class EmbraceManager: NSObject {
         events: [RecordingSpanEvent]) -> Bool {
             
             var parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
-            attributes.updateValue("true", forKey: SpanSemantics.keyIsKeySpan)
             
             if Embrace.client == nil {
                 return false
@@ -484,7 +483,7 @@ public class EmbraceManager: NSObject {
         return Date(timeIntervalSince1970: TimeInterval(ms / 1000.0))
     }
     
-    private static func convertStringToErrorCode(str: String) -> ErrorCode? {
+    private static func convertStringToErrorCode(str: String) -> SpanErrorCode? {
         switch str {
         case "Failure": return .failure
         case "UserAbandon": return .userAbandon
