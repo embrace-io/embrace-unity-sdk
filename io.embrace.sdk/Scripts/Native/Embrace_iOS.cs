@@ -347,7 +347,14 @@ namespace EmbraceSDK.Internal
 
         bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
         {
-            embrace_stop_span(spanId, errorCode.ToString(), endTimeMs);
+            string errCodeString = "";
+            switch (errorCode)
+            {
+                case 1: errCodeString = "Failure"; break;
+                case 2: errCodeString = "UserAbandon"; break;
+                case 3: errCodeString = "Unknown"; break;
+            }
+            embrace_stop_span(spanId, errCodeString, endTimeMs);
             return false;
         }
 
