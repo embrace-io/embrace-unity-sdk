@@ -347,7 +347,7 @@ namespace EmbraceSDK.Internal
 
         bool IEmbraceProvider.StopSpan(string spanId, int errorCode, long endTimeMs)
         {
-            embrace_stop_span(spanId, errorCode.ToString(), endTimeMs);
+            embrace_stop_span(spanId, IntToStringErrorCode(errorCode), endTimeMs);
             return false;
         }
 
@@ -369,7 +369,7 @@ namespace EmbraceSDK.Internal
             return embrace_record_completed_span(spanName,
                 startTimeMs, 
                 endTimeMs, 
-                (errorCode ?? 0).ToString(), 
+                IntToStringErrorCode(errorCode ?? 0), 
                 parentSpanId, 
                 JsonConvert.SerializeObject(attributes), 
                 JsonConvert.SerializeObject(events));
@@ -382,6 +382,19 @@ namespace EmbraceSDK.Internal
         public static String GetSDKVersion()
         {
             return embrace_ios_sdk_version().ConvertToString();
+        }
+
+        private static string IntToStringErrorCode(int errorCode)
+        {
+            string errCodeString = "";
+            switch (errorCode)
+            {
+                case 1: errCodeString = "Failure"; break;
+                case 2: errCodeString = "UserAbandon"; break;
+                case 3: errCodeString = "Unknown"; break;
+            }
+
+            return errCodeString;
         }
     }
 
