@@ -41,6 +41,16 @@ namespace EmbraceSDK.EditorView
 
         public bool ShouldSerialize()
         {
+            // TODO: This is a workaround for a bug in the Embrace Android SDK
+            // version 6.14.0. We would normally omit sdk_config if none of
+            // the values have changed, but in 6.14.0 omitting sdk_config causes
+            // the ndk_enabled property to also be ignored. For now, force the
+            // sdk_config property to always serialize.
+            //
+            // This should be removed when the underlying bug is fixed in 7.0.
+            return true;
+
+            /*
             var shouldSerialize =
                 app.ShouldSerialize() ||
                 anr.ShouldSerialize() ||
@@ -55,6 +65,7 @@ namespace EmbraceSDK.EditorView
 #endif
 
             return shouldSerialize;
+            */
         }
     }
 
