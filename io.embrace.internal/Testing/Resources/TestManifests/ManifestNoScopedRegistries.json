@@ -1,0 +1,14 @@
+{
+  "registry": "https://my.registry.com",
+  "dependencies": {
+    "com.unity.package-1": "1.0.0",
+    "com.unity.package-2": "2.0.0",
+    "com.company.my-package": "3.0.0",
+    "com.unity.my-local-package": "file:<path>/my_package_folder",
+    "com.unity.my-local-tarball": "file:<path>/my_package_tarball.tgz",
+    "com.unity.my-git-package": "https://my.repository/my-package.git#v1.2.3"
+  },
+  "enableLockFile": true,
+  "resolutionStrategy": "highestMinor",
+  "testables": [ "com.unity.package-1", "com.unity.package-2" ]
+}

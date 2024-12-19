@@ -1,0 +1,42 @@
+{
+    "name": "Embrace.EditTests",
+    "rootNamespace": "",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "Embrace.SDK",
+        "Embrace.SDK.Editor",
+        "Embrace.Testing",
+        "Embrace.SDK.Networking",
+        "Embrace.SDK.Editor.Weaver"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "NSubstitute.dll",
+        "Newtonsoft.Json.dll",
+        "System.Threading.Tasks.Extensions.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework",
+            "expression": "",
+            "define": "EMBRACE_WEAVER_INCLUDE_EDITOR_ASSEMBLY"
+        },
+        {
+            "name": "com.unity.test-framework",
+            "expression": "",
+            "define": "EMBRACE_WEAVER_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}
