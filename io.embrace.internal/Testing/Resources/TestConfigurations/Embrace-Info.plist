@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>12345</string>
+	<key>API_TOKEN</key>
+	<string>test27e891ad45853949004eb7y5b9fr</string>
+	<key>CRASH_REPORT_PROVIDER</key>
+	<string>Embrace</string>
+	<key>STARTUP_MOMENT_SCREENSHOT_ENABLED</key>
+	<true/>
+	<key>CAPTURE_COORDINATES</key>
+	<true/>
+	<key>CAPTURE_TAPPED_ELEMENTS</key>
+	<true/>
+	<key>BACKGROUND_FETCH_CAPTURE_ENABLE</key>
+	<true/>
+	<key>COLLECT_NETWORK_REQUEST_METRICS</key>
+	<true/>
+	<key>ENABLE_AUTOMATIC_VIEW_CAPTURE</key>
+	<true/>
+	<key>ENABLE_WK_AUTO_RELOAD</key>
+	<true/>
+	<key>DISABLED_URL_PATTERNS</key>
+	<array>
+		<string>url-pattern</string>
+	</array>
+	<key>URLSESSION_CAPTURE_FILTERS</key>
+	<array>
+		<string>url-filter</string>
+	</array>
+	<key>STARTUP_AUTOEND_SECONDS</key>
+	<integer>10</integer>
+	<key>WEBVIEW_STRIP_QUERYPARAMS</key>
+	<true/>
+	<key>WEBVIEW_ENABLE</key>
+	<true/>
+	<key>NETWORK</key>
+	<dict>
+		<key>DEFAULT_CAPTURE_LIMIT</key>
+		<integer>10</integer>
+		<key>DOMAINS</key>
+		<dict>
+			<key>domain-key</key>
+			<integer>10</integer>
+		</dict>
+		<key>CAPTURE_PUBLIC_KEY</key>
+		<string>public-key</string>
+	</dict>
+	<key>NSURLCONNECTION_PROXY_ENABLE</key>
+	<true/>
+	<key>MAX_SESSION_SECONDS</key>
+	<integer>10</integer>
+	<key>TRACE_ID_HEADER_NAME</key>
+	<string>trace-id-header</string>
+	<key>CUSTOM_PATH_HEADER_INFO</key>
+	<dict>
+		<key>header-info-key</key>
+		<string>header-info-value</string>
+	</dict>
+</dict>
+</plist>
