@@ -1,0 +1,54 @@
+# Runs tests on all PRs. Additionally dispatches publishing dry-runs on PRs
+# with the `release-candidate` label.
+name: Dispatch PR Actions
+
+on: pull_request
+
+permissions: write-all
+
+jobs:
+  # Included on publishing dry-runs for release candidate PRs, this job confirms
+  # that the rc branch is not behind main.
+  rc-check-branch:
+    name: Verify branch is up to date
+    if: contains(github.event.pull_request.labels.*.name, 'release-candidate')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify branch is up to date
+        run: |
+          git merge-base --is-ancestor origin/${{ github.event.repository.default_branch }} HEAD
+
+      - name: Write Job Status
+        if: ${{ failure() }}
+        run: |
+          echo "::error title=Error::Release candidate branches must be up to date on the default branch. Please rebase your branch on the default and try again."
+
+  rc-publish-dry-run:
+    name: Publish (dry-run)
+    needs: rc-check-branch
+    uses: ./.github/workflows/publish.yml
+    with:
+      npm_push_mode: dry-run
+      aws_push_mode: dry-run
+      tags_push_mode: dry-run
+    secrets: inherit
+
+    # Temporarily cut for now to prevent extraneous testing as we work on other elements of the workflow
+  # run-tests:
+  #   name: Test Project
+  #   uses: ./.github/workflows/new_test_main.yml
+  #   secrets: inherit
+  #   with:
+  #     includeWindows: ${{ contains(github.event.pull_request.labels.*.name, 'test-windows') }}
+  #     includeMac: ${{ contains(github.event.pull_request.labels.*.name, 'test-mac') }}
+
+  generate-ios-meta-files:
+    name: Generate iOS SDK Meta Files
+    if: (github.event.action == 'opened') && contains(github.event.pull_request.labels.*.name, 'rc-available') && contains(github.event.pull_request.labels.*.name, 'ios')
+    uses: ./.github/workflows/generate_ios_meta_files.yml
+    secrets: inherit

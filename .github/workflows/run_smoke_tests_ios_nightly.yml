@@ -1,0 +1,230 @@
+# Runs Unity smoke tests for iOS nightly builds
+name: Run Smoke Test for iOS, nightly
+
+env:
+  PROJECT_PATH: 'UnityProjects/2021'
+  PORT: 8989
+
+on:
+  workflow_call:
+    inputs:
+      ios_branch:
+        type: string
+        description: iOS SDK branch. It must exist.
+        required: true
+      unity_branch:
+        type: string
+        description: Unity SDK branch name. Will be created by the workflow.
+        required: true
+      app_id:
+        type: string
+        description: Embrace app_id
+        required: true
+        default: '12345'
+      symbols_api_token:
+        type: string
+        description: Embrace symbols API token
+        required: true
+        default: '13f327e891ad45858949004eb755b9f1'
+      unity_version:
+        type: string
+        description: Unity version
+        required: true
+        default: '2021.3.16f1'
+
+  workflow_dispatch:
+    inputs:
+      ios_branch:
+        type: string
+        description: iOS SDK branch. It must exist.
+        required: true
+      unity_branch:
+        type: string
+        description: Unity SDK branch name. Will be created by the workflow.
+        required: true
+      app_id:
+        type: string
+        description: Embrace app_id
+        required: true
+        default: '12345'
+      symbols_api_token:
+        type: string
+        description: Embrace symbols API token
+        required: true
+        default: '13f327e891ad45858949004eb755b9f1'
+      unity_version:
+        type: string
+        description: Unity version
+        required: true
+        default: '2021.3.16f1'
+
+permissions:
+  contents: write
+
+jobs:
+  # This job is used to run the smoke tests for iOS. The iOS branch that must exists, the Unity SDK branch, created 
+  # by the workflow, the app_id, and the symbols API token.
+  # It runs the smoke test script provided by the Unity SDK.
+  # Currently, only the Unity 2021 project is supported.
+  run_smoke_tests_for_ios:
+    env:
+      IOS_BRANCH: ${{ inputs.ios_branch }}
+      UNITY_BRANCH: ${{ inputs.unity_branch }}
+      APP_ID: ${{ inputs.app_id }}
+      API_TOKEN: ${{ inputs.symbols_api_token }}
+      UNITY_EDITOR_PATH: '/Applications/Unity/Hub/Editor/${{ inputs.unity_version }}/Unity.app/Contents/MacOS/Unity'
+    name:   Prepare the Unity SDK to run Smoke Tests for iOS
+    runs-on: [ self-hosted, macos ]
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout iOS SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-ios-sdk
+          branch: ${{ env.IOS_BRANCH }}
+          fetch-depth: 0
+          lfs: true
+          clean: true
+          submodules: true
+          token: ${{ secrets.GH_EMBRACE_UNITY_SDK_TOKEN }}
+
+      # Note: M1's Mac minies have XCcode 14 installed by default. Reach DevOps if you need a different version.
+      - name: Build XCFramework
+        run: ./bin/build_xcframework.sh
+
+      - name: Zip Build Artifacts
+        run: zip -r xcframework.zip release
+
+      - name: Store Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Embrace-Universal Build Artifacts
+          path: xcframework.zip
+
+      - name: Checkout Unity SDK & Create Branch ${{ env.UNITY_BRANCH }}
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+          lfs: true
+          clean: true
+
+      - name: Create Branch for Unity
+        run: |
+          git checkout -b $UNITY_BRANCH
+          git push -u origin $UNITY_BRANCH
+
+      - name: Remove existing xcframework from Unity SDK
+        run: |
+          rm -rf $GITHUB_WORKSPACE/io.embrace.sdk/iOS/Embrace.xcframework
+
+      - name: Download Embrace-Universal Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Embrace-Universal Build Artifacts
+
+      - name: Unzip Embrace-Universal Build Artifacts
+        run: unzip xcframework.zip
+
+      - name: Echo what is in $GITHUB_WORKSPACE
+        run: |
+          echo $GITHUB_WORKSPACE
+          echo | ls -a $GITHUB_WORKSPACE
+          echo | ls -a $GITHUB_WORKSPACE/release
+
+      - name: Move xcframework to Unity SDK
+        run: |
+          mv $GITHUB_WORKSPACE/release/universal/Embrace.xcframework $GITHUB_WORKSPACE/io.embrace.sdk/iOS/Embrace.xcframework
+
+      - name: Cache Unity SDK Library
+        uses: actions/cache@v4
+        with:
+            path: ${{ env.PROJECT_PATH }}/Library
+            key: Library-${{ env.PROJECT_PATH }}-macos-android
+
+      - name: Generate Meta Files
+        run: |
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - \
+          -projectPath $GITHUB_WORKSPACE/${{ env.PROJECT_PATH }}/ \
+          -buildTarget Android \
+          -executeMethod EmbraceSDK.CIPublishTool.ConfigureiOSFrameworkPlatformMatrix
+
+      - uses: actions/setup-python@v5
+
+      - name: Build XCode Project from Unity
+        run: |
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - \
+          -projectPath $GITHUB_WORKSPACE/${{ env.PROJECT_PATH }}/ \
+          -buildTarget iOS \
+          -executeMethod Embrace.Internal.SmokeTests.SmokeTestBuild.Create
+
+      - name: Output Environment ls Post-Unity-Build
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          echo | ls -a
+
+      - name: Edit Embrace-Info.plist
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          plutil -insert CONFIG_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert DATA_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert DATA_DEV_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert IMAGES_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert TEST_BASE_URL -string "http://localhost:$PORT/test" ./Embrace-Info.plist
+          plutil -p ./Embrace-Info.plist
+
+      - name: Create XCode Build from SmokeTest
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          xcodebuild
+          echo | ls -a
+          zip -r build_for_inspection.zip ./build
+
+      # TOOD: This was supposed to be replaced by https://www.notion.so/embraceio/Using-the-Hosted-mock-api-Service-1d5ecd40eaa0474297287cbfe69b2af8
+      # since embrace-mock-api repo was deprecated and archived in July 2023
+      - name: Checkout embrace-mock-api
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-mock-api
+          fetch-depth: 0
+          path: embrace-mock-api
+          token: ${{ secrets.GH_EMBRACE_MOCK_API_RO_TOKEN }}
+
+      # Note: For some reason, the public directory must be created by hand
+      - name: Run mock server
+        working-directory: ./embrace-mock-api
+        run: |
+          mkdir $GITHUB_WORKSPACE/embrace-mock-api/app/public
+          brew install go
+          /opt/homebrew/bin/go run . &
+          sleep 20
+
+      - name: Run smoke tests
+        working-directory: ./
+        run: |
+          echo | ls -a
+          echo | pwd
+          echo | python3 --version
+          python3 ./smoke_test_components/python_test_driver/basic_autorun.py \
+          --simulator "iPhone 14 Pro" \
+          --appPath /${{ env.PROJECT_PATH }}/Builds/SmokeTest/build/Release-iphonesimulator/embraceunitysdk.app \
+          --bundleId com.DefaultCompany.embrace-unity-sdk \
+          --serverPath $GITHUB_WORKSPACE/embrace-mock-api \
+          --appId ${{ env.APP_ID }} \
+          --resultsPath $GITHUB_WORKSPACE/testResults/ \
+          --payloadCheckPath $GITHUB_WORKSPACE/smoke_test_components/CI-Validation-Scripts/PayloadCheck.py \
+          --aggregationPath $GITHUB_WORKSPACE/aggregateResult.txt
+
+      - name: Upload test results artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test results directory
+          path: $GITHUB_WORKSPACE/testResults/
+          retention-days: 7
+
+      - name: Validate CI Job Result
+        run: |
+          if [[ $(cat aggregateResult.txt) == "Failed" ]]; then
+            echo "Smoke Tests Failed"
+            exit 1

@@ -1,0 +1,98 @@
+# Generating a test Github pages doc
+name: Generate Docs
+
+on:
+  workflow_dispatch:
+    inputs:
+      is_dry_run:
+        type: boolean
+        description: 'Whether or not the job is a dry-run'
+  workflow_call:
+    inputs:
+      is_dry_run:
+        type: boolean
+        required: true
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Environment
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        lfs: true
+
+    - name: Build Documentation
+      uses: embrace-io/docfx-action@v1.0.0 # Branched from nikeee/docfx-action
+      with:
+        args: docfx_project/docfx.json
+
+    - name: Add Date as Version Info
+      run: |
+        date > version.txt
+        sudo mv version.txt docfx_project/_site
+
+    - name: Checkout gh-pages
+      run: |
+        git fetch
+        git switch gh-pages
+
+    - name: Output variable status
+      run: |
+        echo "Variable Value"
+        echo "$is_dry_run"
+
+    - name: Dry Run Flow - Zip _site
+      if: ${{ inputs.is_dry_run }}
+      run: |
+        zip -r new_docs.zip docfx_project/_site
+        echo | ls -a
+
+    - name: Dry Run Flow - Upload Artifact
+      if: ${{ inputs.is_dry_run }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: dry-run-docs
+        path: new_docs.zip
+        retention-days: 1
+
+    - name: Publish Flow - Remove Old Docs
+      run: |
+        rm -rf api/
+        rm -rf articles/
+        rm favicon.ico
+        rm -rf fonts/
+        rm -rf images/
+        rm index.html
+        rm logo.svg
+        rm manifest.json
+        rm search-stopwords.json
+        rm -rf styles/
+        rm toc.html
+        rm xrefmap.yml
+
+    - name: Publish Flow - Add New Docs # Is there a way to not have to use sudo?
+      run: |
+        sudo mv docfx_project/_site/* .
+        git add api/
+        git add articles/
+        git add favicon.ico
+        git add fonts/
+        git add index.html
+        git add logo.svg
+        git add manifest.json
+        git add search-stopwords.json
+        git add styles
+        git add toc.html
+        git add xrefmap.yml
+        git add version.txt
+
+    - name: Publish Flow - Configure git and push to gh-pages
+      if: ${{ !inputs.is_dry_run }}
+      run: |
+        git config --global user.name "embrace-ci"
+        git config --global user.email "embrace-ci@users.noreply.github.com"
+        git commit --author "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>" --allow-empty --message 'CI/CD: Automatically generated documentation for ${{ github.event.release.tag_name }}'
+        git push --force origin gh-pages

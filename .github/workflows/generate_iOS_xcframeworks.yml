@@ -1,0 +1,46 @@
+name: Generate iOS XCFrameworks
+
+on:
+  push:
+    branches:
+      # - alyssa/embrace-sdk-plugin-upgrade
+      - nonexistent-branch
+
+# Basic algorithm
+# 1. Checkout the internal SDK
+# 2. Install dependencies 
+# 3. Download the target version of the iOS SDK, unzip it, and put it in the correct location
+# 3. Generate the iOS XCFrameworks using xcodebuild
+# 4. Upload the artifact for inspection; ideally this would actually be stuffed into the Unity SDK build
+# 4. We pass inspection; we need to plug this into baking out the SDK for a dry-run
+
+# TODO: Replace the hard-coded path with a different file reference
+
+jobs:
+  generate_iOS_xcframeworks:
+    name: Generate Unity iOS XCFramework
+    runs-on: macos-latest
+    steps:
+      - name: Checkout internal SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk-internal
+          submodules: recursive
+          lfs: true
+      - name: Install xcpretty
+        run: gem install xcpretty
+      - name: Download iOS SDK
+        run: |
+          curl -L -O https://github.com/embrace-io/embrace-apple-sdk/releases/download/6.4.0/embrace_6.4.0.zip
+          unzip embrace_6.4.0.zip -d public_sdk/Embrace\ Unity\ iOS\ Interface/
+      - name: Generate iOS XCFrameworks
+        run: |
+          cd public_sdk/Embrace\ Unity\ iOS\ Interface/
+          ./build_xcframework.sh
+      - name: Upload XCFrameworks
+        uses: actions/upload-artifact@v4
+        with:
+          name: EmbraceUnityXCFramework
+          path: public_sdk/Embrace\ Unity\ iOS\ Interface/xcframeworks/EmbraceUnityiOS.xcframework
+          retention-days: 1
+  

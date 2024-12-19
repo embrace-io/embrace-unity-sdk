@@ -1,0 +1,16 @@
+# Didspatches a test run whenever there is a new push to main.
+name: Test Main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-tests:
+    name: Test Project
+    uses: ./.github/workflows/new_test_main.yml
+    secrets: inherit
+    with:
+      includeMac: true
+      includeLinux: true
+

@@ -1,0 +1,38 @@
+name: Run Tests on Public Repository Nightly
+
+on:
+  schedule:
+    - cron: "15 10 * * *"
+
+jobs:
+  check_date:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_for_new_commits.outputs.should_run }}
+    steps:
+      - name: Checkout public SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk
+          ref: "test-edits"
+          token: ${{ secrets.GH_EMBRACE_UNITY_SDK_TOKEN }}
+          lfs: true
+          sparse-checkout: io.embrace.sdk/
+
+      - name: Print Latest Commit
+        run: echo ${{ github.sha }}
+
+      - name: Check for New Commits
+        id: check_for_new_commits
+        continue-on-error: true
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+          should_run=$(test -n "$(git rev-list --after='24 hours' ${{ github.sha }})" && echo 'true' || echo 'false')
+          echo "should_run=$should_run"
+          echo "should_run=$should_run" >> $GITHUB_OUTPUT
+
+  run_tests:
+    needs: check_date
+    if: $${{ needs.check_date.outputs.should_run == 'true' }}
+    uses: ./.github/workflows/new_test_main.yml
+    secrets: inherit

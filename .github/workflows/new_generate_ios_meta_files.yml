@@ -1,0 +1,78 @@
+name: Generate iOS Framework Meta Files
+
+env:
+  PROJECT_PATH: 'UnityProjects/2021'
+  UNITY_EDITOR_PATH: '/Applications/Unity/Hub/Editor/2021.3.16f1/Unity.app/Contents/MacOS/Unity'
+
+# on: [ workflow_dispatch, workflow_call ]
+on:
+  push:
+    branches:
+      #- embr-2481-github-actions-update
+      - non-existent-branch
+
+jobs:
+  generate-meta-files:
+    name: Generate iOS Framework Meta Files
+    runs-on: [ self-hosted, macos ]
+    env:
+      CI_KEYCHAIN: ${{ secrets.CI_KEYCHAIN }}
+      CI_KEYCHAIN_PASSWORD: ${{ secrets.CI_KEYCHAIN_PASSWORD }}
+      CERT: ${{ secrets.CERT }}
+      CERT_PASS: ${{ secrets.CERT_PASS}}
+      CERT_IDENTITY: ${{ secrets.CERT_IDENTITY }}
+
+    steps:
+      - name: Checkout internal SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk-internal
+      - name: Removing internal SDK version
+        run: |
+          rm -rf io.embrace.sdk
+      - name: Checkout public SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk
+          ref: "test-edits"
+          token: ${{ secrets.GH_EMBRACE_UNITY_SDK_TOKEN }}
+          lfs: true
+          sparse-checkout: io.embrace.sdk/
+          path: publicSDK/
+      - name: Move contents of the new folder up one level
+        run: |
+          mv publicSDK/* .
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-${{ env.PROJECT_PATH }}-macos-android
+      - name: ls workspace
+        run: |
+          ls $GITHUB_WORKSPACE/io.embrace.sdk/iOS/
+      - name: Generate Meta Files
+        run: |
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - \
+          -projectPath $GITHUB_WORKSPACE/${{ env.PROJECT_PATH }}/ \
+          -buildTarget Android \
+          -executeMethod EmbraceSDK.CIPublishTool.ConfigureiOSFrameworkPlatformMatrix
+      - name: Remove Signature from Embrace.xcframework
+        run: |
+          # Remove Signature from Embrace.xcframework
+          codesign --timestamp -f -v --remove-signature $GITHUB_WORKSPACE/io.embrace.sdk/iOS/Embrace.xcframework
+      - name: Move sdk back to publicSDK folder
+        run: |
+          mv io.embrace.sdk publicSDK
+      - name: Commit Changes
+        run: |
+            cd publicSDK
+            git config --local user.name "embrace-ci"
+            git config --local user.email "embrace-ci@users.noreply.github.com"
+            git add io.embrace.sdk/iOS/\*.meta
+            git commit -m "regenerated iOS framework meta files"
+            git push
+      - name: Cleanup Git Config
+        if: ${{ always() }}
+        run: |
+          git config --local --get user.name && git config --local --unset-all user.name || echo "No such key"
+          git config --local --get user.email && git config --local --unset-all user.email || echo "No such key"

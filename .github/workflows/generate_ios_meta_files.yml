@@ -1,0 +1,143 @@
+name: Generate iOS Framework Meta Files
+
+env:
+  PROJECT_PATH: 'UnityProjects/2021'
+  UNITY_EDITOR_PATH: '/Applications/Unity/Hub/Editor/2021.3.37f1/Unity.app/Contents/MacOS/Unity'
+
+on: 
+  workflow_dispatch: 
+  workflow_call:
+  push:
+    branches:
+      - non-existent-branch
+      # - alyssa/embrace-sdk-plugin-upgrade
+
+permissions:
+  contents: write
+
+jobs:
+  generate-meta-files:
+    name: Generate iOS Framework Meta Files
+    runs-on: [ self-hosted, macos ]
+    env:
+      CI_KEYCHAIN: ${{ secrets.CI_KEYCHAIN }}
+      CI_KEYCHAIN_PASSWORD: ${{ secrets.CI_KEYCHAIN_PASSWORD }}
+      CERT: ${{ secrets.CERT }}
+      CERT_PASS: ${{ secrets.CERT_PASS}}
+      CERT_IDENTITY: ${{ secrets.CERT_IDENTITY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+          clean: true
+      
+      # We can't do this because this loses the branch context
+      # - name: Manually fetch public sdk
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: embrace-io/embrace-unity-sdk
+      #     lfs: true
+      #     path: public_sdk/
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-${{ env.PROJECT_PATH }}-macos-android
+
+      - name: Clear out old SDK
+        run: rm -rf public_sdk/io.embrace.sdk/iOS
+
+      - name: Fetch Embrace iOS SDK XCFrameworks
+        run: | 
+          curl -L -O https://github.com/embrace-io/embrace-apple-sdk/releases/download/6.4.0/embrace_6.4.0.zip
+          unzip embrace_6.4.0.zip -d public_sdk/io.embrace.sdk/iOS
+          rm embrace_6.4.0.zip
+
+      # excluded for temporary testing purposes
+      # - name: Fetch Unity iOS SDK XCFramework
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: EmbraceUnityXCFramework
+      #     path: public_sdk/io.embrace.sdk/iOS/xcframeworks/EmbraceUnityiOS.xcframework/
+
+      - name: Generate Unity iOS xcframework manifest
+        run: |
+          ./list_subdirectories.sh \
+            ./public_sdk/io.embrace.sdk/iOS/xcframeworks/ \
+            > ./public_sdk/io.embrace.sdk/iOS/xcframework_manifest.txt
+
+      - name: Generate Meta Files
+        run: |
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - \
+          -projectPath $GITHUB_WORKSPACE/${{ env.PROJECT_PATH }}/ \
+          -buildTarget Android \
+          -executeMethod EmbraceSDK.CIPublishTool.ConfigureiOSFrameworkPlatformMatrix
+      
+      - name: Collect Meta Files
+        run: |
+          # Create a directory to store the meta files
+          mkdir -p xcframework_meta_files/
+
+          # Find and copy all .meta files to the new directory
+          find public_sdk/io.embrace.sdk/iOS/xcframeworks/ -name "*.meta" -type f -exec cp {} xcframework_meta_files/ \;
+
+          # Zip the collected .meta files
+          cd xcframework_meta_files/
+          zip -r ../xcframework_meta_files.zip .
+
+      - name: Upload Meta Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: XCFrameworkMetaFiles
+          path: xcframework_meta_files.zip
+      
+      # Signature is now deprecated
+      # - name: Resign Embrace.xcframework
+      #   run: |
+      #     # Importing certificate from environment
+      #     CERT_PATH=$RUNNER_TEMP/distribution_certificate.p12
+      #     echo -n "$CERT" | base64 --decode -o $CERT_PATH
+
+      #     # Preparation steps
+      #     security list-keychains -d user -s login.keychain
+      #     security delete-keychain "$CI_KEYCHAIN" || true
+
+      #     # Create temporary keychain
+      #     security create-keychain -p "$CI_KEYCHAIN_PASSWORD" "$CI_KEYCHAIN"
+      #     security list-keychains -d user -s "$CI_KEYCHAIN" $(security list-keychains -d user | sed s/\"//g)
+      #     security set-keychain-settings "$CI_KEYCHAIN"
+      #     security unlock-keychain -p "$CI_KEYCHAIN_PASSWORD" "$CI_KEYCHAIN"
+
+      #     # Add certificate to keychain and allow codesign to use it
+      #     security import "$CERT_PATH" -t cert -f pkcs12 -k "$CI_KEYCHAIN" -P "$CERT_PASS" -A -T "/usr/bin/codesign"
+      #     security set-key-partition-list -S apple-tool:,apple:, -s -k $CI_KEYCHAIN_PASSWORD -D "${CERT_IDENTITY}" -t private $CI_KEYCHAIN
+
+      #     # Sign Embrace.xcframework
+      #     codesign --timestamp -f -v --sign "${CERT_IDENTITY}" ${{ env.PROJECT_PATH }}/iOS/Embrace.xcframework
+
+      # - name: Post Sign XCFramework
+      #   run: |
+      #     # Verify signature
+      #     codesign -dv --verbose=4 ${{ env.PROJECT_PATH }}/iOS/Embrace.xcframework
+
+      #     # Cleanup temporary keychain
+      #     security list-keychains -d user -s login.keychain
+      #     security delete-keychain "$CI_KEYCHAIN" || true
+
+      # - name: Commit Changes
+      #   run: |
+      #     git config --local user.name "embrace-ci"
+      #     git config --local user.email "embrace-ci@users.noreply.github.com"
+      #     git add io.embrace.sdk/iOS/\*.meta
+      #     git commit -m "regenerated iOS framework meta files"
+      #     git push
+
+      # - name: Cleanup Git Config
+      #   if: ${{ always() }}
+      #   run: |
+      #     git config --local --unset-all user.name
+      #     git config --local --unset-all user.email

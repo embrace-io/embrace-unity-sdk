@@ -1,0 +1,42 @@
+name: Nightly
+
+on:
+  workflow_dispatch:
+  # Below cron is commented out to prevent nightly runs until we have a better solution
+  # schedule: 
+  #   - cron: "15 10 * * *"
+
+# Runs full test suite (including Windows) nightly if main branch contains a commit
+# that is less than 24 hours old.
+jobs:
+  check_date:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_for_new_commits.outputs.should_run }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Print Latest Commit
+        run: echo ${{ github.sha }}
+
+      - name: Check for New Commits
+        id: check_for_new_commits
+        continue-on-error: true
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+          should_run=$(test -n "$(git rev-list --after='24 hours' ${{ github.sha }})" && echo 'true' || echo 'false')
+          echo "should_run=$should_run"
+          echo "should_run=$should_run" >> $GITHUB_OUTPUT
+
+  run_tests:
+    needs: check_date
+    if: $${{ needs.check_date.outputs.should_run == 'true' }}
+    uses: ./.github/workflows/test_project.yml
+    secrets: inherit
+    with:
+      includeLinux: true
+      includeWindows: true
+      includeMac: true

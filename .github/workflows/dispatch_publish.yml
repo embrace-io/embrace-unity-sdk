@@ -1,0 +1,26 @@
+# Dispatches a full publish workflow whenever a PR that has been merged and
+# has the 'release-candidate' label is closed.
+name: Dispatch Publish
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  publish:
+    if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
+    name: Publish
+    uses: ./.github/workflows/publish.yml
+    with:
+      npm_push_mode: publish
+      aws_push_mode: publish
+      tags_push_mode: publish
+    secrets: inherit
+  update-docs:
+    if: contains(github.event.pull_request.labels.*.name, 'release-candidate') && github.event.pull_request.merged == true
+    name: Update Docs
+    uses: ./.github/workflows/docs.yml
+    with:
+      is_dry_run: false
+    secrets: inherit

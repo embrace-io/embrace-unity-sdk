@@ -1,0 +1,358 @@
+name: Test Unity SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      includeLinux:
+        type: boolean
+        required: false
+        default: true
+      includeWindows:
+        type: boolean
+        required: false
+        default: false
+      includeMac:
+        type: boolean
+        required: false
+        default: false
+
+  workflow_call:
+    inputs:
+      includeLinux:
+        type: boolean
+        required: false
+        default: true
+      includeWindows:
+        type: boolean
+        required: false
+        default: false
+      includeMac:
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  ################################################################################
+  #                                                                              #
+  #                               Linux Tests                                    #
+  #                                                                              #
+  ################################################################################
+  # This job runs tests in multiple Unity versions using docker images and actions provided by game.ci. We're currently
+  # only using this test job for Linux. Since the Linux docker images all use the same machine ID, we can run as many 
+  # instances of this job as we like in parallel without using additional Unity license activations. All matrix combinations
+  # are also run in parallel, meaning this is the fastest version of the test job.
+  testSDKProjectInDocker:
+    name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode}} tests on ${{ matrix.buildTarget.unity }} (${{ matrix.os.image }})
+    if: ${{ inputs.includeLinux == true }}
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        testMode: [ editmode, playmode ]
+
+        # The operating system the tests will run on
+        # host: the github action runner os
+        # image: the os tag of the Unity docker image to use
+        os: [
+          { host: ubuntu-22.04-4cores, image: ubuntu }
+        ]
+
+        # Selects the active build target in the editor while running the tests
+        # unity: the argument passed to the Unity command line
+        # image: the tag of the docker image used for this build target
+        buildTarget: [
+          { unity: Android, image: android },
+          { unity: iOS, image: ios }
+        ]
+
+        # Add new Unity versions/projects here
+        # displayName: used in the GitHub actions UI and artifact names
+        # unityVersion: the full version number of the Unity version to test
+        # path: the path of the Unity project to test. Make sure to include the trailing '/'
+        testProject: [
+          { displayName: '2023', unityVersion: 2023.1.11f1, path: UnityProjects/2023/ },
+          { displayName: '2022', unityVersion: 2022.3.8f1, path: UnityProjects/2022/ },
+          { displayName: '2021', unityVersion: 2021.3.16f1, path: UnityProjects/2021/ },
+          { displayName: 'EDM', unityVersion: 2021.3.16f1, path: UnityProjects/EDM/ },
+        ]
+
+    runs-on: ${{ matrix.os.host }}
+
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ matrix.testProject.path }}Library
+          key: Library-${{ matrix.testProject.path }}-${{ matrix.os.host }}-${{ matrix.buildTarget.image }}
+
+      # Sometimes activating the Unity license can fail if we have many jobs hitting the license server at once, so
+      # we use this step to offset those requests a bit.
+      - name: Stagger Unity activation
+        run: sleep ${{ strategy.job-index }}s
+        shell: bash
+
+      - name: Run ${{ matrix.testMode }} tests
+        uses: game-ci/unity-test-runner@v3.1.0
+        id: tests
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          projectPath: ${{ matrix.testProject.path }}
+          customImage: 'unityci/editor:${{ matrix.os.image }}-${{ matrix.testProject.unityVersion }}-${{ matrix.buildTarget.image }}-2.0.0'
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.buildTarget.image }}-${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName:  ${{ matrix.testProject.displayName }} ${{ matrix.buildTarget.unity }} ${{ matrix.testMode}} Test Results
+          customParameters: -buildTarget ${{ matrix.buildTarget.unity }}
+          coverageOptions: 'generationAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Embrace,+Embrace.*,-Embrace.SDK.Editor.Tests,-Embrace.EditTests'
+
+      - name: Upload test results artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode }} test results for ${{ matrix.buildTarget.unity }}
+          path: ${{ steps.tests.outputs.artifactsPath }}
+          retention-days: 14
+
+      - name: Upload coverage reports to codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ steps.tests.outputs.coveragePath }}/**/*.xml
+          name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode }} test results for ${{ matrix.buildTarget.unity }}
+
+  ################################################################################
+  #                                                                              #
+  #                               MacOS Tests                                    #
+  #                                                                              #
+  ################################################################################
+  # Docker images are not available for testing on Mac, so we use a separate job to run these tests. We use (3) dedicated runners, so
+  # we run at most 3 test runs in parallel. Those dedicated runners have dedicated license activations, so this job does not do any 
+  # license activation or return. 
+  testSDKProjectOnMac:
+    name: ${{ matrix.testProject.displayName }} tests on ${{ matrix.buildTarget.unity }} (MacOS)
+    if: ${{ inputs.includeMac == true }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Selects the active build target in the editor while running the tests
+        # unity: the argument passed to the Unity command line
+        # image: used for consistency with the docker job above
+        buildTarget: [
+          { unity: Android, image: android },
+          { unity: iOS, image: ios }
+        ]
+
+        # Add new Unity versions/projects here
+        # displayName: used in the GitHub actions UI and artifact names
+        # unityVersion: the full version number of the Unity version to test
+        # path: the path of the Unity project to test. Make sure to include the trailing '/'
+        testProject: [
+          # The 2023 non-LTS version is excluded on Mac because our hosted runners do not have enough space to install 5 versions of Unity
+          # { displayName: '2023', unityVersion: 2023.1.11f1, path: UnityProjects/2023/ },
+          { displayName: '2022', unityVersion: 2022.3.8f1, path: UnityProjects/2022/ },
+          { displayName: '2021', unityVersion: 2021.3.16f1, path: UnityProjects/2021/ },
+          { displayName: 'EDM', unityVersion: 2021.3.16f1, path: UnityProjects/EDM/ },
+        ]
+
+    runs-on: [self-hosted, macos]
+    env:
+      CODE_COVERAGE_PATH: ${{ github.workspace }}/${{ matrix.testProject.path }}CI_CodeCoverage
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          clean: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ matrix.testProject.path }}Library
+          key: Library-${{ matrix.testProject.path }}-macos-${{ matrix.buildTarget.image }}
+
+      - name: Run Play Mode Tests
+        env:
+          UNITY_TEST_MODE: 'playmode'
+          UNITY_BUILD_TARGET: ${{ matrix.buildTarget.unity }}
+          UNITY_ADDITIONAL_ARGS: '-coverageResultsPath ${{ env.CODE_COVERAGE_PATH }}'
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Run Edit Mode Tests
+        env:
+          UNITY_TEST_MODE: 'editmode'
+          UNITY_BUILD_TARGET: ${{ matrix.buildTarget.unity }}
+          UNITY_ADDITIONAL_ARGS: '-coverageResultsPath ${{ env.CODE_COVERAGE_PATH }}'
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Combine Coverage Results
+        env:
+          UNITY_EDITOR_PATH: /Applications/Unity/Hub/Editor/${{ matrix.testProject.unityVersion }}/Unity.app/Contents/MacOS/Unity
+          CODE_COVERAGE_OPTIONS: 'generationAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Embrace,+Embrace.*,-Embrace.SDK.Editor.Tests,-Embrace.EditTests'
+        run: |
+          echo "$GITHUB_WORKSPACE/${{ matrix.testProject.path }}"
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - -projectPath $GITHUB_WORKSPACE/${{ matrix.testProject.path }} -enableCodeCoverage -debugCodeOptimization -coverageResultsPath ${{ env.CODE_COVERAGE_PATH }} -coverageOptions '${{ env.CODE_COVERAGE_OPTIONS }}'
+
+      - name: Upload Test Results Artifacts
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: MacOS test results for ${{ matrix.testProject.displayName }}
+          path: ${{ github.workspace }}/${{ matrix.testProject.path }}/*results.xml
+          retention-days: 14
+
+      - name: Upload coverage reports to codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ env.CODE_COVERAGE_PATH }}/**/*.xml
+          name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode }} test results for ${{ matrix.buildTarget.unity }}
+
+  ################################################################################
+  #                                                                              #
+  #                              Windows Tests                                   #
+  #                                                                              #
+  ################################################################################
+  # We found that installing Unity directly onto GitHub's hosted runners was actually faster than pulling a Windows docker image,
+  # so this job does that rather than just adding a new os to the matrix in the Docker job above. These tests run in hosted runners,
+  # and each run uses a separate license activation. This means we can only perform one test run at a time. To reduce the amount of time,
+  # spent waiting for Unity to install, this job runs iOS and Android tests in a single job rather than as separate jobs defined in a
+  # matrix as the jobs above do. 
+  #
+  # This all means that this job is very slow, so we use a concurrency group to guarantee that there is only ever one instance of it running.
+  testSDKProjectOnWin:
+    name: ${{ matrix.testProject.displayName }} tests (Windows)
+    if: ${{ inputs.includeWindows == true }}
+    needs: testSDKProjectInDocker
+    concurrency:
+      group: 'Unity-Windows-Tests-${{ matrix.testProject.displayName }}'
+      cancel-in-progress: true
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        # Add new Unity versions/projects here
+        # displayName: used in the GitHub actions UI and artifact names
+        # unityVersion: the full version number of the Unity version to test
+        # unityChangeset: the changeset value of the Unity version (found in release notes or ProjectVersion.txt)
+        # path: the path of the Unity project to test. Make sure to include the trailing '\'
+        testProject: [
+          { displayName: '2023', unityVersion: 2023.1.11f1, unityChangeset: fbf46ad88f3d, path: UnityProjects\2023\ },
+          { displayName: '2022', unityVersion: 2022.3.8f1, unityChangeset: b5eafc012955, path: UnityProjects\2022\ },
+          { displayName: '2021', unityVersion: 2021.3.16f1, unityChangeset: 4016570cf34f, path: UnityProjects\2021\ },
+          { displayName: '2020', unityVersion: 2020.3.35f1, unityChangeset: 18e4db7a9996, path: UnityProjects\2020\ },
+          { displayName: '2019', unityVersion: 2019.4.39f1, unityChangeset: 78d14dfa024b, path: UnityProjects\2019\ },
+          { displayName: 'EDM', unityVersion: 2021.3.16f1, unityChangeset: 4016570cf34f, path: UnityProjects\EDM\ },
+        ]
+
+    runs-on: windows-2019
+    timeout-minutes: 65
+    env:
+      CODE_COVERAGE_PATH: ${{ github.workspace }}/${{ matrix.testProject.path }}CI_CodeCoverage
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          clean: true
+
+      - name: Install Unity Hub
+        shell: cmd
+        run: |
+          choco install unity-hub --no-progress -y
+
+      - name: Install Unity Editor
+        shell: cmd
+        run: |
+          "C:/Program Files/Unity Hub/Unity Hub.exe" -- --headless install --version ${{ matrix.testProject.unityVersion }} --changeset ${{ matrix.testProject.unityChangeset }}
+
+      - name: Install Android Build module
+        shell: cmd
+        run: |
+          "C:/Program Files/Unity Hub/Unity Hub.exe" -- --headless install-modules --version ${{ matrix.testProject.unityVersion }} --module android --childModules
+
+      - name: Activate Unity License
+        id: activate
+        timeout-minutes: 5
+        shell: cmd
+        run: |
+          "C:Program Files/Unity/Hub/Editor/${{ matrix.testProject.unityVersion }}/Editor/Unity.exe" -quit -batchmode -nographics -logFile - -serial ${{ secrets.UNITY_SERIAL }} -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }}
+
+      - name: Run Play Mode Tests (Android)
+        env:
+          UNITY_TEST_MODE: 'playmode'
+          UNITY_BUILD_TARGET: 'Android'
+        shell: bash
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Run Edit Mode Tests (Android)
+        env:
+          UNITY_TEST_MODE: 'editmode'
+          UNITY_BUILD_TARGET: 'Android'
+        shell: bash
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Upload Test Results Artifacts
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: Windows test results for ${{ matrix.testProject.displayName }}
+          path: |
+            ${{ github.workspace }}\${{ matrix.testProject.path }}android-editmoderesults.xml
+            ${{ github.workspace }}\${{ matrix.testProject.path }}android-playmoderesults.xml
+          retention-days: 14
+
+      - name: Clean Repo
+        run: git checkout . && git clean -fd
+
+      - name: Install iOS Build module
+        shell: cmd
+        run: |
+          "C:/Program Files/Unity Hub/Unity Hub.exe" -- --headless install-modules --version ${{ matrix.testProject.unityVersion }} --module ios --childModules
+
+      - name: Run Play Mode Tests (iOS)
+        env:
+          UNITY_TEST_MODE: 'playmode'
+          UNITY_BUILD_TARGET: 'iOS'
+        shell: bash
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Run Edit Mode Tests (iOS)
+        env:
+          UNITY_TEST_MODE: 'editmode'
+          UNITY_BUILD_TARGET: 'iOS'
+        shell: bash
+        run: |
+          ./run_tests.sh ${{ matrix.testProject.displayName }}
+
+      - name: Upload Test Results Artifacts
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: Windows test results for ${{ matrix.testProject.displayName }}
+          path: |
+            ${{ github.workspace }}\${{ matrix.testProject.path }}ios-editmoderesults.xml
+            ${{ github.workspace }}\${{ matrix.testProject.path }}ios-playmoderesults.xml
+          retention-days: 14
+
+      - name: Return Unity License
+        if: always()
+        timeout-minutes: 5
+        shell: cmd
+        run: |
+          "C:Program Files/Unity/Hub/Editor/${{ matrix.testProject.unityVersion }}/Editor/Unity.exe" -quit -batchmode -nographics -logFile - -returnlicense -username ${{ secrets.UNITY_EMAIL }} -password ${{ secrets.UNITY_PASSWORD }}

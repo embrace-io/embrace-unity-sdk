@@ -1,0 +1,19 @@
+name: Dispatch Publish on Public Repo
+
+on:
+  repository_dispatch:
+    types: [publish-dry-run]
+  push:
+    branches:
+      - non-existent-branch
+      # - release/2.0.1
+
+jobs:
+  exec-publish:
+    name: Execute Command
+    uses: ./.github/workflows/publish.yml
+    with:
+      npm_push_mode: dry-run
+      aws_push_mode: dry-run
+      tags_push_mode: dry-run
+    secrets: inherit

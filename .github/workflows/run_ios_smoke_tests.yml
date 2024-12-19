@@ -1,0 +1,110 @@
+name: Run Smoke Tests
+
+env:
+  PROJECT_PATH: "UnityProjects/2021"
+  UNITY_EDITOR_PATH: "/Applications/Unity/Hub/Editor/2021.3.16f1/Unity.app/Contents/MacOS/Unity"
+  PORT: 8989
+  APP_ID: 12345
+  APP_PATH_SUFFIX: "Builds/SmokeTest/build/Release-iphonesimulator/embraceunitysdk.app"
+  SERVER_PATH_SUFFIX: "embrace-mock-api"
+  RESULTS_PATH_SUFFIX: "testResults/"
+  PAYLOAD_CHECK_PATH_SUFFIX: "smoke_test_components/CI-Validation-Scripts/PayloadCheck.py"
+  AGGREGATION_PATH_SUFFIX: "aggregateResult.txt"
+  IOS_SMOKE_TEST_AUTORUN_PATH: "./smoke_test_components/python_test_driver/ios_smoke_test_autorun.py"
+  BUNDLE_ID: "com.DefaultCompany.embrace-unity-sdk"
+
+on:
+  push:
+    branches:
+      - EMB-12390-orchestrating-build
+  workflow_dispatch:
+
+jobs:
+  run-smoke-tests:
+    name: Run 2021.3.16f1 Smoke Tests
+    runs-on: [ self-hosted, macos ]
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Environment
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          lfs: true
+
+      - uses: actions/setup-python@v5
+
+      - name: Build XCode Project from Unity
+        run: |
+          ${{ env.UNITY_EDITOR_PATH }} -batchmode -quit -logFile - \
+          -projectPath $GITHUB_WORKSPACE/${{ env.PROJECT_PATH }}/ \
+          -buildTarget iOS \
+          -executeMethod Embrace.Internal.SmokeTests.SmokeTestBuild.Create
+
+      - name: Output Environment ls Post-Unity-Build
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          echo | ls -a
+
+      - name: Edit Embrace-Info.plist
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          plutil -insert CONFIG_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert DATA_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert DATA_DEV_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert IMAGES_BASE_URL -string "http://localhost:$PORT/api" ./Embrace-Info.plist
+          plutil -insert TEST_BASE_URL -string "http://localhost:$PORT/test" ./Embrace-Info.plist
+          plutil -p ./Embrace-Info.plist
+
+      - name: Create XCode Build from SmokeTest
+        working-directory: ${{ env.PROJECT_PATH }}/Builds/SmokeTest
+        run: |
+          xcodebuild
+
+      # TOOD: This was supposed to be replaced by https://www.notion.so/embraceio/Using-the-Hosted-mock-api-Service-1d5ecd40eaa0474297287cbfe69b2af8
+      # since embrace-mock-api repo was deprecated and archived in July 2023
+      - name: Checkout embrace-mock-api
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-mock-api
+          fetch-depth: 0
+          path: embrace-mock-api
+          token: ${{ secrets.GH_EMBRACE_MOCK_API_RO_TOKEN }}
+
+      - name: Run server
+        working-directory: ./embrace-mock-api
+        run: |
+          brew install go
+          /opt/homebrew/bin/go run . &
+          sleep 20
+
+      - name: Run tests
+        working-directory: ./
+        run: |
+          echo | ls -a
+          echo | pwd
+          echo | python3 --version
+          python3 ${{ env.IOS_SMOKE_TEST_AUTORUN_PATH }} \
+          --simulator "iPhone 14 Pro" \
+          --appPath ${{ github.workspace }}/${{ env.PROJECT_PATH }}/${{ env.APP_PATH_SUFFIX }} \
+          --bundleId ${{ env.BUNDLE_ID }} \
+          --serverPath ${{ github.workspace }}/${{ env.SERVER_PATH_SUFFIX }} \
+          --appId ${{ env.APP_ID}} \
+          --resultsPath ${{ github.workspace }}/${{ env.RESULTS_PATH_SUFFIX }} \
+          --payloadCheckPath ${{ github.workspace }}/${{ env.PAYLOAD_CHECK_PATH_SUFFIX }} \
+          --aggregationPath ${{ github.workspace }}/${{ env.AGGREGATION_PATH_SUFFIX }}
+
+      - name: Upload test results artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test results directory
+          path: ${{ github.workspace }}/${{ env.RESULTS_PATH_SUFFIX }}
+          retention-days: 7
+
+      - name: Validate CI Job Result
+        run: |
+          if [[ $(cat aggregateResult.txt) == "Failed" ]]; then
+            echo "Smoke Tests Failed"
+            exit 1
+          fi
