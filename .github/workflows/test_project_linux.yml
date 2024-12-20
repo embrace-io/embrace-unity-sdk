@@ -1,0 +1,85 @@
+name: Test Project Workflow - Another Repo
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - non-existent-branch
+
+jobs:
+  runTests:
+    name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode}} tests on ${{ matrix.buildTarget.unity }} (${{ matrix.os.image }})
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        testMode: ["editmode", "playmode"]
+        os:
+          - { host: ubuntu-22.04-4cores, image: ubuntu }
+        buildTarget:
+          - { unity: "Android", image: "android" }
+          - { unity: "iOS", image: "ios" }
+        testProject:
+          - {
+              displayName: "2023",
+              unityVersion: "2023.2.20f1",
+              path: UnityProjects/2023/,
+            }
+          - {
+              displayName: "2022",
+              unityVersion: "2022.3.42f1",
+              path: UnityProjects/2022/,
+            }
+          - {
+              displayName: "2021",
+              unityVersion: "2021.3.42f1",
+              path: UnityProjects/2021/,
+            }
+          - {
+              displayName: "EDM",
+             unityVersion: "2021.3.42f1",
+              path: UnityProjects/EDM/,
+            }
+    runs-on: ${{ matrix.os.host }}
+    timeout-minutes: 35
+    steps:
+      - name: Checkout internal SDK
+        uses: actions/checkout@v4
+        with:
+          repository: embrace-io/embrace-unity-sdk-internal
+          submodules: recursive
+          lfs: true
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ matrix.testProject.path }}Library
+          key: Library-${{ matrix.testProject.path }}-${{ matrix.os.host }}-${{ matrix.buildTarget.image }}
+      # Staggering the Unity activation to avoid overloading the license server, which can cause test failures
+      - name: Stagger Unity Activation
+        run: |
+          sleep ${{ strategy.job-index }}s
+        shell: bash
+      - name: Run ${{ matrix.testMode }} tests
+        uses: game-ci/unity-test-runner@v4
+        id: tests
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          projectPath: ${{ matrix.testProject.path }}
+          customImage: 'unityci/editor:${{ matrix.os.image }}-${{ matrix.testProject.unityVersion }}-${{ matrix.buildTarget.image }}-3.1.0'
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.buildTarget.image }}-${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName:  ${{ matrix.testProject.displayName }} ${{ matrix.buildTarget.unity }} ${{ matrix.testMode}} Test Results
+          customParameters: -buildTarget ${{ matrix.buildTarget.unity }}
+          coverageOptions: 'generationAdditionalMetrics;generateHtmlReport;generateBadgeReport;assemblyFilters:+Embrace,+Embrace.*,-Embrace.SDK.Editor.Tests,-Embrace.EditTests'
+      - name: Upload test results artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.testProject.displayName }} ${{ matrix.testMode }} test results for ${{ matrix.buildTarget.unity }}
+          path: ${{ steps.tests.outputs.artifactsPath }}
+          retention-days: 1
