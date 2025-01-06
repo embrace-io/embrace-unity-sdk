@@ -6,11 +6,10 @@ env:
   AWS_CLOUDFRONT_ID: "E153CHTELJDE1S" # repo.embrace.io
   AWS_DEFAULT_REGION: "${{ vars.AWS_DEFAULT_REGION }}"
   PACKAGE_REPO_PATH: 'embrace-unity-sdk-internal'
-  PACKAGE_DIRECTORY: 'public_sdk/io.embrace.sdk'
-  PACKAGE_JSON_PATH: 'public_sdk/io.embrace.sdk/package.json'
-  PACKAGE_CHANGELOG_PATH: 'public_sdk/io.embrace.sdk/CHANGELOG.md'
-  PUBLIC_REPO: 'public_sdk/'
-  EDM_DEPENDENCIES_PATH: 'public_sdk/io.embrace.sdk/Editor/EmbraceSDKDependencies.xml'
+  PACKAGE_DIRECTORY: 'io.embrace.sdk'
+  PACKAGE_JSON_PATH: 'io.embrace.sdk/package.json'
+  PACKAGE_CHANGELOG_PATH: 'io.embrace.sdk/CHANGELOG.md'
+  EDM_DEPENDENCIES_PATH: 'io.embrace.sdk/Editor/EmbraceSDKDependencies.xml'
   DOCS_REPO_PATH: 'embrace-docs'
   DOCS_CHANGELOG_PATH: 'docs/unity/changelog.md'
   DOCS_CONFIG_PATH: 'embrace.json'
@@ -84,17 +83,17 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
       - name: Update iOS to Latest Supported
         run: |
-          cd public_sdk/Embrace\ Unity\ iOS\ Interface/
+          cd Embrace\ Unity\ iOS\ Interface/
           ./update_iOS_to_latest.sh 6.6.0
       - name: Generate iOS XCFrameworks
         run: |
-          cd public_sdk/Embrace\ Unity\ iOS\ Interface/
+          cd Embrace\ Unity\ iOS\ Interface/
           ./build_xcframework.sh
       - name: Upload XCFrameworks
         uses: actions/upload-artifact@v4
         with:
           name: EmbraceUnityXCFramework
-          path: public_sdk/Embrace\ Unity\ iOS\ Interface/build/EmbraceUnityiOS.xcframework
+          path: Embrace\ Unity\ iOS\ Interface/build/EmbraceUnityiOS.xcframework
           if-no-files-found: error
           retention-days: 1
   publish:
@@ -129,14 +128,14 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
       - name: Fetch Embrace iOS SDK XCFrameworks
         run: | 
-          gh release download 6.6.0 --repo embrace-io/embrace-apple-sdk --pattern 'embrace_*.zip' --dir public_sdk/io.embrace.sdk/iOS
-          unzip -o public_sdk/io.embrace.sdk/iOS/embrace_*.zip -d public_sdk/io.embrace.sdk/iOS
-          rm public_sdk/io.embrace.sdk/iOS/embrace_*.zip
+          gh release download 6.6.0 --repo embrace-io/embrace-apple-sdk --pattern 'embrace_*.zip' --dir io.embrace.sdk/iOS
+          unzip -o io.embrace.sdk/iOS/embrace_*.zip -d io.embrace.sdk/iOS
+          rm io.embrace.sdk/iOS/embrace_*.zip
       - name: Fetch Unity iOS SDK XCFramework
         uses: actions/download-artifact@v4
         with:
           name: EmbraceUnityXCFramework
-          path: public_sdk/io.embrace.sdk/iOS/xcframeworks/EmbraceUnityiOS.xcframework/
+          path: io.embrace.sdk/iOS/xcframeworks/EmbraceUnityiOS.xcframework/
       - name: Enforce Publish Public SDK version
         run: |
           ./enforce_publish_sdk.sh
@@ -149,14 +148,12 @@ jobs:
       # - name: Tag commit
       #   if: ${{ inputs.tags_push_mode != 'none'}}
       #   run: |
-      #     cd ${{ env.PUBLIC_REPO }}
       #     git config --global user.name "embrace-ci"
       #     git config --global user.email "embrace-ci@users.noreply.github.com"
       #     git tag -a ${{ env.PACKAGE_VERSION}} -m "${{ env.PACKAGE_VERSION }}"
       - name: Push Tag
         if: ${{ inputs.tags_push_mode == 'publish' }}
         run: |
-          cd ${{ env.PUBLIC_REPO }}
           git push --tags
       - name: Cache Library
         uses: actions/cache@v4

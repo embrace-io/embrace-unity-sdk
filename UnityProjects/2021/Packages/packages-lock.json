@@ -120,7 +120,7 @@
       }
     },
     "io.embrace.sdk": {
-      "version": "file:../../../public_sdk/io.embrace.sdk/",
+      "version": "file:../../../io.embrace.sdk/",
       "depth": 0,
       "source": "local",
       "dependencies": {

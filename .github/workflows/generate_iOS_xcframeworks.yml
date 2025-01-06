@@ -32,15 +32,15 @@ jobs:
       - name: Download iOS SDK
         run: |
           curl -L -O https://github.com/embrace-io/embrace-apple-sdk/releases/download/6.4.0/embrace_6.4.0.zip
-          unzip embrace_6.4.0.zip -d public_sdk/Embrace\ Unity\ iOS\ Interface/
+          unzip embrace_6.4.0.zip -d Embrace\ Unity\ iOS\ Interface/
       - name: Generate iOS XCFrameworks
         run: |
-          cd public_sdk/Embrace\ Unity\ iOS\ Interface/
+          cd Embrace\ Unity\ iOS\ Interface/
           ./build_xcframework.sh
       - name: Upload XCFrameworks
         uses: actions/upload-artifact@v4
         with:
           name: EmbraceUnityXCFramework
-          path: public_sdk/Embrace\ Unity\ iOS\ Interface/xcframeworks/EmbraceUnityiOS.xcframework
+          path: Embrace\ Unity\ iOS\ Interface/xcframeworks/EmbraceUnityiOS.xcframework
           retention-days: 1
   
