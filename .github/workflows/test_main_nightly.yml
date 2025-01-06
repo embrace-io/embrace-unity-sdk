@@ -34,5 +34,5 @@ jobs:
   run_tests:
     needs: check_date
     if: $${{ needs.check_date.outputs.should_run == 'true' }}
-    uses: ./.github/workflows/new_test_main.yml
+    uses: ./.github/workflows/test_main.yml
     secrets: inherit
