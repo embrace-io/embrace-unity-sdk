@@ -8,7 +8,7 @@ on:
 jobs:
   run-tests:
     name: Test Project
-    uses: ./.github/workflows/new_test_main.yml
+    uses: ./.github/workflows/test_main.yml
     secrets: inherit
     with:
       includeMac: true
