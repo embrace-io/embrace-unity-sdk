@@ -10,29 +10,10 @@ BUILD_PROJECT := $(or $(BUILD_PROJECT),./UnityProjects/$(UNITY_YEAR))
 
 UNITY_SDK_VERSION = $(shell jq -r '.version' io.embrace.sdk/package.json)
 UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
-UNITY_SDK_XCFRAMEWORK = build/EmbraceUnityiOS.xcframework
 
 APPLE_SDK_VERSION ?= 6.6.0
 APPLE_SDK_DIR = build/embrace_$(APPLE_SDK_VERSION)
 APPLE_SDK_ZIP = build/embrace_$(APPLE_SDK_VERSION).zip
-
-# Build an intermediate xcarchive, which is used to create the final xcframework.
-# Arguments:
-# $(1) - destination (e.g. generic/platform=iOS)
-# $(2) - output path (e.g. build/EmbraceUnityiOS)
-define build_xcarchive
-	echo "Building xcarchive for $(1) -> $(2)..."
-	env IS_ARCHIVE=1 xcodebuild \
-		archive \
-		-project "./Embrace Unity iOS Interface/EmbraceUnityiOS.xcodeproj" \
-		-scheme "EmbraceUnityiOS" \
-		-destination "$(1)" \
-		-archivePath "$(2)" \
-		SKIP_INSTALL=NO \
-		BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
-		ONLY_ACTIVE_ARCH=NO \
-		| xcpretty
-endef
 
 # Run Unity tests.
 # Arguments:
@@ -66,13 +47,9 @@ define run_tests_year
 	-$(call run_tests,$(1),$(UNITY_VERSION_$(1)),android,playmode)
 endef
 
-.PHONY: build build_ios_dependencies clean download_apple_sdk github_env_vars install_ios_dependencies test test_all version
+.PHONY: build clean download_apple_sdk github_env_vars install_ios_dependencies test test_all version
 
 build: $(UNITY_SDK_UNITYPACKAGE)
-
-build_ios_dependencies: $(APPLE_SDK_DIR) $(UNITY_SDK_XCFRAMEWORK)
-
-download_apple_sdk: $(APPLE_SDK_DIR)
 
 clean:
 	-rm -r build
@@ -89,15 +66,12 @@ github_env_vars:
 	@echo "UNITY_VERSION_2022=$(UNITY_VERSION_2022)"
 	@echo "UNITY_VERSION_2023=$(UNITY_VERSION_2023)"
 
-# Install the Embrace Apple SDK dependencies and built Unity xcframework into
-# the Unity project. This is run before building the Unity package.
-install_ios_dependencies: $(APPLE_SDK_DIR) $(UNITY_SDK_XCFRAMEWORK)
-	-rm -r ./io.embrace.sdk/iOS/xcframeworks/*.xcframework
+# Install the Embrace Apple SDK dependencies into the Unity project. This is
+# run before building the Unity package.
+install_ios_dependencies: $(APPLE_SDK_DIR)
 	-rm ./io.embrace.sdk/iOS/embrace_symbol_upload.darwin
 	-rm ./io.embrace.sdk/iOS/run.sh
-	cp -r $(APPLE_SDK_DIR)/xcframeworks/*.xcframework ./io.embrace.sdk/iOS/xcframeworks/
 	cp $(APPLE_SDK_DIR)/embrace_symbol_upload.darwin $(APPLE_SDK_DIR)/run.sh ./io.embrace.sdk/iOS/
-	cp -r $(UNITY_SDK_XCFRAMEWORK) ./io.embrace.sdk/iOS/xcframeworks/
 
 test:
 	$(call run_tests_year,$(UNITY_YEAR))
@@ -117,23 +91,6 @@ $(APPLE_SDK_ZIP):
 # Unzip the Embrace Apple SDK release.
 $(APPLE_SDK_DIR): $(APPLE_SDK_ZIP)
 	unzip -q -o $(APPLE_SDK_ZIP) -d $(APPLE_SDK_DIR)
-
-# Build the XCFramework for the Unity Swift wrapper around the Embrace Apple SDK.
-$(UNITY_SDK_XCFRAMEWORK): $(APPLE_SDK_DIR)
-	-rm -r './Embrace Unity iOS Interface/xcframeworks'
-	cp -r $(APPLE_SDK_DIR)/xcframeworks './Embrace Unity iOS Interface/xcframeworks'
-	$(call build_xcarchive,generic/platform=iOS,$(basename $@))
-	$(call build_xcarchive,generic/platform=iOS Simulator,$(basename $@)-simulator)
-	xcodebuild \
-		-create-xcframework \
-		-archive $(basename $@).xcarchive \
-		-framework EmbraceUnityiOS.framework \
-		-archive $(basename $@)-simulator.xcarchive \
-		-framework EmbraceUnityiOS.framework \
-		-output $@ \
-		| xcpretty
-	rm -r $(basename $@).xcarchive
-	rm -r $(basename $@)-simulator.xcarchive
 
 # Build the Unity package for the Embrace Unity SDK.
 $(UNITY_SDK_UNITYPACKAGE): install_ios_dependencies

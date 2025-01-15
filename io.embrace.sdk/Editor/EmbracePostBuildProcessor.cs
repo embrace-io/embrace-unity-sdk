@@ -117,7 +117,6 @@ namespace EmbraceSDK.EditorView
         public const string PBXBuildSettingKey_EmbraceId = "EMBRACE_ID";
         public const string PBXBuildSettingKey_EmbraceToken = "EMBRACE_TOKEN";
         public static string PackagePath => Path.GetFullPath("Packages/io.embrace.sdk");
-        public const string EmbraceXCFramework = "Embrace.xcframework";
 
         // In Unity 2019.3 the iOS target was split into two targets, a launcher and the framework.
         // We have to be able to integrate with both target setups.
@@ -168,7 +167,7 @@ namespace EmbraceSDK.EditorView
             project.ReadFromFile(projectPath);
             var targetGuids = GetProjectNames(project);
             var appTargetGuid = targetGuids[0];
-            
+
             // Enable dSYM
             foreach (string targetGuid in targetGuids)
             {
@@ -186,7 +185,7 @@ namespace EmbraceSDK.EditorView
                 // Copy run.sh script and upload binary
                 string embraceRunSHSrc = sdkDirectory + "/iOS/run.sh";
                 string embraceRunSHDest = pathToBuiltProject + "/" + EmbraceRunFileName;
-                
+
                 string embraceUploadSrc = sdkDirectory + "/iOS/embrace_symbol_upload.darwin";
                 string embraceUploadDest = pathToBuiltProject + "/" + "embrace_symbol_upload.darwin";
 
@@ -237,29 +236,10 @@ namespace EmbraceSDK.EditorView
             var resourcesBuildPhase = project.GetResourcesBuildPhaseByTarget(appTargetGuid);
             var resourcesFilesGuid = project.AddFile(EmbracePlistName, "/" + EmbracePlistName, PBXSourceTree.Source);
             project.AddFileToBuildSection(appTargetGuid, resourcesBuildPhase, resourcesFilesGuid);
-            
-            // Embed iOS frameworks
-            
-            /*
-             * It is worth noting that Unity *has* changed the default behavior of how xcframeworks are handled.
-             * Previously we needed to add the files to the project, add them to the linker phase, and then embed them.
-             * Now, Unity will automatically add the xcframeworks to the project and the linker phase, but we still need
-             * to embed them. This behavior is not documented, but it is consistent with the behavior we have observed.
-             * As a result, this code is fragile and may need to be updated in the future.
-             */
-            
-            string xcFrameworkSource = Path.Combine(PackagePath, "iOS", "xcframeworks");
-            string xcFrameworkProjectPath = "Frameworks/io.embrace.sdk/iOS/xcframeworks";
-            
-            var xcFrameworks = Directory.GetDirectories(xcFrameworkSource, "*.xcframework", SearchOption.TopDirectoryOnly);
-            
-            foreach (var xcFramework in xcFrameworks)
-            {
-                var xcFrameworkGuid = project.FindFileGuidByProjectPath(
-                    $"{xcFrameworkProjectPath}/{Path.GetFileName(xcFramework)}");
-                
-                project.AddFileToEmbedFrameworks(appTargetGuid, xcFrameworkGuid);
-            }
+
+            // Add SPM dependency
+            var packageGuid = project.AddRemotePackageReferenceAtBranch("https://github.com/embrace-io/embrace-unity-sdk", "nathan.ostgard/spm");
+            project.AddRemotePackageFrameworkToProject(project.GetUnityFrameworkTargetGuid(), "EmbraceUnityiOS", packageGuid, weak: false);
 
             project.WriteToFile(projectPath);
         }

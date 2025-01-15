@@ -133,3 +133,12 @@ io.embrace.sdk/iOS/xcframeworks.meta
 io.embrace.sdk/iOS/embrace_symbol_upload*
 io.embrace.sdk/iOS/run.sh*
 io.embrace.sdk/iOS/upload*
+
+# These were added by Xcode's Swift package template.
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
