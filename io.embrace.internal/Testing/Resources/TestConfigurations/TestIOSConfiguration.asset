@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a5ccebd89d4f75933b41e87cf62b31, type: 3}
+  m_Name: TestIOSConfiguration
+  m_EditorClassIdentifier: 
+  API_KEY: 12345
+  API_TOKEN: test27e891ad45853949004eb7y5b9fr
+  CRASH_REPORT_ENABLED: 1
+  STARTUP_MOMENT_SCREENSHOT_ENABLED: 1
+  CAPTURE_COORDINATES: 0
+  CAPTURE_TAPPED_ELEMENTS: 0
+  BACKGROUND_FETCH_CAPTURE_ENABLE: 1
+  COLLECT_NETWORK_REQUEST_METRICS: 0
+  ENABLE_AUTOMATIC_VIEW_CAPTURE: 0
+  ENABLE_WK_AUTO_RELOAD: 1
+  DISABLED_URL_PATTERNS:
+  - url-pattern
+  URLSESSION_CAPTURE_FILTERS:
+  - url-filter
+  STARTUP_AUTOEND_SECONDS: 10
+  WEBVIEW_STRIP_QUERYPARAMS: 1
+  WEBVIEW_ENABLE: 0
+  NETWORK:
+    CAPTURE_PUBLIC_KEY: public-key
+    DEFAULT_CAPTURE_LIMIT: 10
+    DOMAINS:
+      keys:
+      - domain-key
+      values: 0a000000
+  NSURLCONNECTION_PROXY_ENABLE: 0
+  MAX_SESSION_SECONDS: 10
+  TRACE_ID_HEADER_NAME: trace-id-header
+  CUSTOM_PATH_HEADER_INFO:
+    keys:
+    - header-info-key
+    values:
+    - header-info-value

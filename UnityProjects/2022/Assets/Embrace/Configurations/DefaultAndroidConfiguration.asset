@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a670acc537be4b72964abaa6f4074487, type: 3}
+  m_Name: DefaultAndroidConfiguration
+  m_EditorClassIdentifier: 
+  app_id: 
+  api_token: 
+  ndk_enabled: 1
+  sdk_config:
+    app:
+      report_disk_usage: 1
+    crash_handler:
+      enabled: 1
+    networking:
+      capture_request_content_length: 1
+      disabled_url_patterns: []
+      enable_native_monitoring: 1
+      track_id_header: 
+    session:
+      async_end: 0
+      max_session_seconds: 0
+    startup_moment:
+      automatically_end: 1
+      take_screenshot: 0
+    taps:
+      capture_coordinates: 1
+    webview:
+      capture_query_params: 1
+      enable: 1

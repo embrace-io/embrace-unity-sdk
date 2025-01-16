@@ -1,0 +1,36 @@
+{
+  "app_id": "12345",
+  "api_token": "test27e891ad45853949004eb7y5b9fr",
+  "ndk_enabled": true,
+  "sdk_config": {
+    "app": {
+      "report_disk_usage": true
+    },
+    "crash_handler": {
+      "enabled": true
+    },
+    "networking": {
+      "capture_request_content_length": true,
+      "disabled_url_patterns": [
+        "test-url"
+      ],
+      "enable_native_monitoring": true,
+      "track_id_header": "track-id"
+    },
+    "session": {
+      "async_end": true,
+      "max_session_seconds": 10
+    },
+    "startup_moment": {
+      "automatically_end": true,
+      "take_screenshot": true
+    },
+    "taps": {
+      "capture_coordinates": true
+    },
+    "webview": {
+      "capture_query_params": true,
+      "enable": true
+    }
+  }
+}
