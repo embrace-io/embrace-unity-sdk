@@ -63,9 +63,9 @@ public func embrace_set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buil
     }
     
     if let _unityVersion = String(validatingUTF8: unityVersion), let _buildGuid = String(validatingUTF8: buildGuid), let _sdkVersion = String(validatingUTF8: sdkVersion) {
-        EmbraceManager.addResource(key: "hosted_platform_version", value: _unityVersion, lifespan: .process)
-        EmbraceManager.addResource(key: "unity_build_id", value: _buildGuid, lifespan: .process)
-        EmbraceManager.addResource(key: "hosted_sdk_version", value: _sdkVersion, lifespan: .process)
+        _ = EmbraceManager.addResource(key: "hosted_platform_version", value: _unityVersion, lifespan: .process)
+        _ = EmbraceManager.addResource(key: "unity_build_id", value: _buildGuid, lifespan: .process)
+        _ = EmbraceManager.addResource(key: "hosted_sdk_version", value: _sdkVersion, lifespan: .process)
     }
 }
 
@@ -158,7 +158,7 @@ public func embrace_add_user_persona(persona: UnsafePointer<CChar>?) {
     }
     
     if let _persona = String(validatingUTF8: persona) {
-        EmbraceManager.addUserPersona(persona: _persona)
+        _ = EmbraceManager.addUserPersona(persona: _persona)
     }
 }
 
@@ -169,13 +169,13 @@ public func embrace_clear_user_persona(persona: UnsafePointer<CChar>?) {
     }
     
     if let _persona = String(validatingUTF8: persona) {
-        EmbraceManager.clearUserPersona(persona: _persona)
+        _ = EmbraceManager.clearUserPersona(persona: _persona)
     }
 }
 
 @_cdecl("embrace_clear_all_user_personas")
 public func embrace_clear_all_user_personas() {
-    EmbraceManager.clearAllUserPersonas()
+    _ = EmbraceManager.clearAllUserPersonas()
 }
 
 @_cdecl("embrace_add_session_property")
@@ -198,7 +198,7 @@ public func embrace_remove_session_property(key: UnsafePointer<CChar>?) {
     }
     
     if let _key = String(validatingUTF8: key) {
-        EmbraceManager.removeSessionProperty(key: _key)
+        _ = EmbraceManager.removeSessionProperty(key: _key)
     }
 }
 
@@ -222,12 +222,12 @@ public func embrace_log_message_with_severity_and_properties(message: UnsafePoin
 
 @_cdecl("embrace_set_user_as_payer")
 public func embrace_set_user_as_payer() {
-    EmbraceManager.setUserAsPayer()
+    _ = EmbraceManager.setUserAsPayer()
 }
 
 @_cdecl("embrace_clear_user_as_payer")
 public func embrace_clear_user_as_payer() {
-    EmbraceManager.clearUserAsPayer()
+    _ = EmbraceManager.clearUserAsPayer()
 }
 
 @_cdecl("embrace_start_view")
@@ -472,7 +472,7 @@ public func embrace_log_push_notification(title: UnsafePointer<CChar>?, body: Un
        let _body = String(validatingUTF8: body),
        let _subtitle = String(validatingUTF8: subtitle),
        let _category = String(validatingUTF8: category) {
-        EmbraceManager.logPushNotification(title: _title, body: _body, subtitle: _subtitle, badge: badge, category: _category)
+        _ = EmbraceManager.logPushNotification(title: _title, body: _body, subtitle: _subtitle, badge: badge, category: _category)
     }
 }
 
