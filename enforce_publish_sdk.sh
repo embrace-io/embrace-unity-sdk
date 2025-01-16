@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the source and destination directories
-src_dir="./public_sdk/io.embrace.sdk"
+src_dir="./io.embrace.sdk"
 dest_dir="./UnityProjects/2021/Packages"
 
 # Check if the source directory exists
