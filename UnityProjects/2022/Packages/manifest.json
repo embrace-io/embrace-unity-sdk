@@ -30,7 +30,7 @@
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.0",
     "io.embrace.internal": "file:../../../io.embrace.internal/",
-    "io.embrace.sdk": "file:../../../public_sdk/io.embrace.sdk/",
+    "io.embrace.sdk": "file:../../../io.embrace.sdk/",
     "net.tnrd.nsubstitute": "4.2.2",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",

@@ -13,7 +13,7 @@ public class EmbraceManager: NSObject {
     static func startNativeSDK(appId: String, config: ConfigOptions, appGroupId: String?, endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?) -> Bool {
         do {
             var embraceOptions: Embrace.Options {
-                var _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter();
+                let _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter();
                 let _servicesBuilder = CaptureServiceBuilder().addDefaults()
                 if (config.contains(.DisableEmbraceNativeViewCaptureService)) {
                     _servicesBuilder.remove(ofType: ViewCaptureService.self)
@@ -116,7 +116,7 @@ public class EmbraceManager: NSObject {
         do {
             try Embrace.client?.metadata.add(persona: persona, lifespan: .session)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -125,7 +125,7 @@ public class EmbraceManager: NSObject {
         do {
             try Embrace.client?.metadata.remove(persona: PersonaTag(persona), lifespan: .session)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -134,7 +134,7 @@ public class EmbraceManager: NSObject {
         do {
             try Embrace.client?.metadata.removeAllPersonas()
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -160,7 +160,7 @@ public class EmbraceManager: NSObject {
             let lifespan: MetadataLifespan = permanent ? .permanent : .session
             try Embrace.client?.metadata.addProperty(key: key, value: value, lifespan: lifespan)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -170,7 +170,7 @@ public class EmbraceManager: NSObject {
             try Embrace.client?.metadata.removeProperty(key: key, lifespan: .permanent)
             try Embrace.client?.metadata.removeProperty(key: key, lifespan: .session)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -189,7 +189,7 @@ public class EmbraceManager: NSObject {
         do {
             try Embrace.client?.metadata.add(persona: .payer)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -198,7 +198,7 @@ public class EmbraceManager: NSObject {
         do {
             try Embrace.client?.metadata.remove(persona: .payer, lifespan: .session)
             return true
-        } catch let error {
+        } catch {
             return false
         }
     }
@@ -365,7 +365,7 @@ public class EmbraceManager: NSObject {
         attributes: inout [String: String],
         events: [RecordingSpanEvent]) -> Bool {
             
-            var parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
+            let parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
             
             if Embrace.client == nil {
                 return false
@@ -384,7 +384,7 @@ public class EmbraceManager: NSObject {
     
     // TODO: Reduce code duplication between handled and unhandled exceptions
     static func logHandledException(name: String, message: String, stacktrace: String) {
-        var attributes = [
+        let attributes = [
             "exception.stacktrace": stacktrace,
             "emb.exception_handling": "handled",
             "emb.type": "sys.exception",
@@ -400,7 +400,7 @@ public class EmbraceManager: NSObject {
     }
     
     static func logUnhandledException(name: String, message: String, stacktrace: String) {
-        var attributes = [
+        let attributes = [
             "exception.stacktrace": stacktrace,
             "emb.exception_handling": "unhandled",
             "emb.type": "sys.exception",
