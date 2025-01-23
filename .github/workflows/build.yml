@@ -7,6 +7,11 @@ on:
         description: Git commit to build.
         required: false
         type: string
+      package_folder_artifact:
+        description: "Whether to upload the Unity package folder artifact."
+        required: false
+        default: false
+        type: boolean
 
 env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,13 +29,13 @@ jobs:
       - name: Install dependencies
         run: |
           gem install xcpretty
-      - name: Build .xcframework
+      - name: Build xcframework
         run: |
           make build_ios_dependencies
-      - name: Upload artifacts
+      - name: Upload xcframework artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ios-dependencies
+          name: EmbraceUnityiOS.xcframework
           path: build/EmbraceUnityiOS.xcframework
           retention-days: 1
   build_unity_package:
@@ -55,7 +60,7 @@ jobs:
       - name: Fetch iOS dependencies
         uses: actions/download-artifact@v4
         with:
-          name: ios-dependencies
+          name: EmbraceUnityiOS.xcframework
           path: build/EmbraceUnityiOS.xcframework
       # Passing the Embrace Apple SDK xcframework files from the previous job
       # inflates the size of the artifact quite a bit, so just download it again
@@ -86,12 +91,19 @@ jobs:
           projectPath: ${{ env.BUILD_PROJECT }}
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
-          customImage:
-            "unityci/editor:ubuntu-${{ env.UNITY_VERSION }}-android-3.1.0"
+          customImage: "unityci/editor:ubuntu-${{ env.UNITY_VERSION }}-android-3.1.0"
           customParameters: -buildTarget Android
           versioning: None
           buildMethod: ${{ env.BUILD_METHOD }}
-      - name: Upload artifact
+      - name: Upload package folder artifact
+        if: ${{ inputs.package_folder_artifact }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: io_embrace_sdk_${{ env.UNITY_SDK_VERSION }}
+          path: io.embrace.sdk
+          if-no-files-found: error
+          retention-days: 1
+      - name: Upload unitypackage artifact
         uses: actions/upload-artifact@v4
         with:
           name: EmbraceSDK_${{ env.UNITY_SDK_VERSION }}.unitypackage
