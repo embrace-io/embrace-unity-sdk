@@ -1,13 +1,12 @@
 {
-  "originHash" : "29450dfc2bfc797b239a476ba44d018fb41575d28d9cfe0f933bdb48d711e6c6",
   "pins" : [
     {
       "identity" : "embrace-apple-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/embrace-io/embrace-apple-sdk.git",
       "state" : {
-        "revision" : "7256f34d2b29c16a4b740ca5b95685527790a251",
-        "version" : "6.7.0"
+        "revision" : "2d36b95420e7b4fdb0d75ebde34abf5f75cc0e66",
+        "version" : "6.6.0"
       }
     },
     {
@@ -173,5 +172,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
