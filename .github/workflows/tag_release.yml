@@ -1,0 +1,75 @@
+name: Tag Release
+
+on:
+  push:
+    branches:
+      - release/v*
+  workflow_dispatch:
+    inputs:
+      release:
+        description: >
+          If false, only a release candidate will be published. Once the final
+          release is ready, set this to true. No further release candidates will
+          be allowed after finalizing the release.
+        required: true
+        default: false
+        type: boolean
+
+env:
+  COMMIT_USER_NAME: embrace-ci
+  COMMIT_USER_EMAIL: embrace-ci@users.noreply.github.com
+
+jobs:
+  # Increment the release candidate suffix for the version number. If the
+  # release input is true, this will just write out the actual version number
+  # without the release candidate suffix instead.
+  bump_version:
+    name: Bump version
+    runs-on: ubuntu-22.04
+    outputs:
+      release_version: ${{ steps.bump_version.outputs.release_version }}
+      release_commit_sha: ${{ steps.bump_version.outputs.release_commit_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Bump version
+        id: bump_version
+        run: |
+          python3 .github/scripts/release.py bump ${{ inputs.release && '--release' || ''}}
+  # Build the release to ensure that the release is ready to be tagged.
+  # The build will be recreated in the tag's workflow, but this step ensures
+  # we don't tag something that will fail to build.
+  build_release:
+    name: Build release
+    needs:
+      - bump_version
+    uses: ./.github/workflows/build.yml
+    with:
+      ref: ${{ needs.bump_version.outputs.release_commit_sha }}
+    secrets: inherit
+  # Tag the release with the version number and push the tag to the repository.
+  # This will kick off the release workflow to build the release artifacts.
+  tag_release:
+    name: Tag release
+    needs:
+      - bump_version
+      - build_release
+    runs-on: ubuntu-22.04
+    env:
+      RELEASE_VERSION: ${{ needs.bump_version.outputs.release_version }}
+      RELEASE_COMMIT_SHA: ${{ needs.bump_version.outputs.release_commit_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ needs.bump_version.outputs.release_commit_sha }}
+          token: ${{ secrets.PUSH_GH_TOKEN }}
+      - name: Tag the release
+        run: |
+          git config --global user.name "$COMMIT_USER_NAME"
+          git config --global user.email "$COMMIT_USER_EMAIL"
+          git tag -a "v${RELEASE_VERSION}" -m "Release v${RELEASE_VERSION}" "${RELEASE_COMMIT_SHA}"
+          git push origin "v${RELEASE_VERSION}"

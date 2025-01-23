@@ -6,7 +6,7 @@ UNITY_VERSION = $(UNITY_VERSION_$(UNITY_YEAR))
 UNITY_PATH ?= /Applications/Unity/Hub/Editor/$(UNITY_VERSION)/Unity.app/Contents/MacOS/Unity
 BATCH_ARGS ?= -batchmode -logFile - -nographics -timestamps
 BUILD_METHOD = EmbraceSDK.CIPublishTool.ExportUnityPackage
-BUILD_PROJECT ?= ./UnityProjects/$(UNITY_YEAR)
+BUILD_PROJECT := $(or $(BUILD_PROJECT),./UnityProjects/$(UNITY_YEAR))
 
 UNITY_SDK_VERSION = $(shell jq -r '.version' io.embrace.sdk/package.json)
 UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
@@ -82,7 +82,7 @@ github_env_vars:
 	@echo "APPLE_SDK_VERSION=$(APPLE_SDK_VERSION)"
 	@echo "BUILD_METHOD=$(BUILD_METHOD)"
 	@echo "BUILD_PROJECT=$(BUILD_PROJECT)"
-	@echo "BUILD_UNITYPACKAGE=$(BUILD_PROJECT)/$(notdir $(UNITY_SDK_UNITYPACKAGE))"
+	@echo "GAMECI_UNITYPACKAGE=$(BUILD_PROJECT)/$(notdir $(UNITY_SDK_UNITYPACKAGE))"
 	@echo "UNITY_SDK_VERSION=$(UNITY_SDK_VERSION)"
 	@echo "UNITY_VERSION=$(UNITY_VERSION)"
 	@echo "UNITY_VERSION_2021=$(UNITY_VERSION_2021)"
@@ -95,9 +95,9 @@ install_ios_dependencies: $(APPLE_SDK_DIR) $(UNITY_SDK_XCFRAMEWORK)
 	-rm -r ./io.embrace.sdk/iOS/xcframeworks/*.xcframework
 	-rm ./io.embrace.sdk/iOS/embrace_symbol_upload.darwin
 	-rm ./io.embrace.sdk/iOS/run.sh
-	cp -rv $(APPLE_SDK_DIR)/xcframeworks/*.xcframework ./io.embrace.sdk/iOS/xcframeworks/
-	cp -v $(APPLE_SDK_DIR)/embrace_symbol_upload.darwin $(APPLE_SDK_DIR)/run.sh ./io.embrace.sdk/iOS/
-	cp -rv $(UNITY_SDK_XCFRAMEWORK) ./io.embrace.sdk/iOS/xcframeworks/
+	cp -r $(APPLE_SDK_DIR)/xcframeworks/*.xcframework ./io.embrace.sdk/iOS/xcframeworks/
+	cp $(APPLE_SDK_DIR)/embrace_symbol_upload.darwin $(APPLE_SDK_DIR)/run.sh ./io.embrace.sdk/iOS/
+	cp -r $(UNITY_SDK_XCFRAMEWORK) ./io.embrace.sdk/iOS/xcframeworks/
 
 test:
 	$(call run_tests_year,$(UNITY_YEAR))
@@ -116,12 +116,12 @@ $(APPLE_SDK_ZIP):
 
 # Unzip the Embrace Apple SDK release.
 $(APPLE_SDK_DIR): $(APPLE_SDK_ZIP)
-	unzip -o $(APPLE_SDK_ZIP) -d $(APPLE_SDK_DIR)
+	unzip -q -o $(APPLE_SDK_ZIP) -d $(APPLE_SDK_DIR)
 
 # Build the XCFramework for the Unity Swift wrapper around the Embrace Apple SDK.
 $(UNITY_SDK_XCFRAMEWORK): $(APPLE_SDK_DIR)
 	-rm -r './Embrace Unity iOS Interface/xcframeworks'
-	cp -rv $(APPLE_SDK_DIR)/xcframeworks './Embrace Unity iOS Interface/xcframeworks'
+	cp -r $(APPLE_SDK_DIR)/xcframeworks './Embrace Unity iOS Interface/xcframeworks'
 	$(call build_xcarchive,generic/platform=iOS,$(basename $@))
 	$(call build_xcarchive,generic/platform=iOS Simulator,$(basename $@)-simulator)
 	xcodebuild \
