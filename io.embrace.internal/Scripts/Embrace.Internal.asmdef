@@ -1,0 +1,22 @@
+{
+    "name": "Embrace.Internal",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6fde6807ec2a448e5a2cd810ee81a054"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Select...",
+            "expression": "",
+            "define": "EMBRACE_WEAVER_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
+}

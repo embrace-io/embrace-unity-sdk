@@ -1,0 +1,19 @@
+{
+    "name": "Embrace.Internal.SmokeTests.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6fde6807ec2a448e5a2cd810ee81a054",
+        "GUID:1a0a96818017d30419590047d969f39b"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

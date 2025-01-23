@@ -1,0 +1,32 @@
+{
+  "excludedAssemblyNames": [
+    "Unity.Services.Core.Telemetry",
+    "Unity.Services.Core.Internal",
+    "Unity.Timeline",
+    "Unity.TextMeshPro",
+    "Unity.Services.Core.Environments.Internal",
+    "Unity.Services.Core.Configuration",
+    "Unity.Services.Core",
+    "Unity.Services.Core.Environments",
+    "Unity.Services.Core.Networking",
+    "Unity.Services.Core.Analytics",
+    "Unity.Services.Core.Scheduler",
+    "Unity.Services.Core.Registration",
+    "Unity.Services.Core.Device",
+    "Unity.Services.Core.Threading",
+    "Unity.PlasticSCM.Editor",
+    "Unity.Timeline.Editor",
+    "Unity.VisualStudio.Editor",
+    "Unity.TextMeshPro.Editor",
+    "Unity.CollabProxy.Editor",
+    "Unity.Services.Core.Editor",
+    "Unity.TestTools.CodeCoverage.Editor",
+    "Unity.Mobile.AndroidLogcat.Editor",
+    "Unity.Rider.Editor",
+    "Unity.TestTools.CodeCoverage.Editor.OpenCover.Model",
+    "Unity.VSCode.Editor",
+    "Unity.Settings.Editor",
+    "Unity.Services.Core.Configuration.Editor",
+    "Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection"
+  ]
+}
