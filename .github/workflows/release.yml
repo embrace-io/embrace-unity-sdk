@@ -28,8 +28,6 @@ jobs:
     needs:
       - verify_release
     uses: ./.github/workflows/build.yml
-    with:
-      package_folder_artifact: true
     secrets: inherit
   create_github_release:
     name: Create GitHub release
@@ -66,43 +64,6 @@ jobs:
             PRERELEASE="--prerelease"
           fi
           gh release create "$RELEASE_TAG" "$PACKAGE_NAME" $PRERELEASE --draft --title "$RELEASE_TAG" --repo embrace-io/embrace-unity-sdk --verify-tag
-  create_npm_release:
-    name: Create NPM release
-    needs:
-      - verify_release
-      - build_release
-    runs-on: ubuntu-22.04
-    env:
-      NPM_REGISTRY: https://repo.embrace.io/repository/unity/
-      IS_RELEASE_CANDIDATE: ${{ needs.verify_release.outputs.is_release_candidate }}
-    steps:
-      - name: Fetch package folder
-        uses: actions/download-artifact@v4
-        with:
-          name: io_embrace_sdk_${{ needs.verify_release.outputs.release_version }}
-          path: io.embrace.sdk
-      - name: Setup NPM
-        uses: actions/setup-node@v4
-        with:
-          registry-url: ${{ env.NPM_REGISTRY }}
-          always-auth: true
-      - name: Publish NPM Package
-        env:
-          # By default, the setup-node action creates an .npmrc which expects the auth token in NODE_AUTH_TOKEN
-          NODE_AUTH_TOKEN: ${{ secrets.NEXUS_NPM_TOKEN }}
-        run: |
-          DRY_RUN=""
-          if [ "${{ env.IS_RELEASE_CANDIDATE }}" == "true" ]; then
-            DRY_RUN="--dry-run"
-          fi
-          cd io.embrace.sdk
-          npm publish $DRY_RUN --registry=${{ env.NPM_REGISTRY }}
-      - name: Upload NPM Logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm_logs
-          path: "~/.npm/_logs/*.log"
-          if-no-files-found: warn
   create_internal_release:
     name: Create internal release
     runs-on: ubuntu-22.04
