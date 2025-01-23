@@ -110,6 +110,7 @@ def set_github_outputs(version: str, commit_sha: str) -> None:
     outputs = {
         "release_version": version,
         "release_commit_sha": commit_sha,
+        "is_release_candidate": str("-rc" in version).lower(),
     }
     logger.info("Writing outputs: %s", outputs)
     with open(output_file, "a") as f:

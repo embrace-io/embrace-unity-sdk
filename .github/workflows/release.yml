@@ -13,6 +13,7 @@ jobs:
     outputs:
       release_version: ${{ steps.verify_release.outputs.release_version }}
       release_commit_sha: ${{ steps.verify_release.outputs.release_commit_sha }}
+      is_release_candidate: ${{ steps.verify_release.outputs.is_release_candidate }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,13 +29,38 @@ jobs:
     needs:
       - verify_release
     secrets: inherit
-  upload_release_to_aws:
-    name: Upload Release to AWS
-    uses: ./.github/workflows/upload_release_to_aws.yml
+  create_github_release:
+    name: Create GitHub release
     needs:
       - verify_release
       - build_release
-    with:
-      dry_run: true
-      version: ${{ needs.verify_release.outputs.release_version }}
-    secrets: inherit
+    runs-on: ubuntu-22.04
+    env:
+      PACKAGE_NAME: EmbraceSDK_${{ needs.verify_release.outputs.release_version }}.unitypackage
+      RELEASE_TAG: v${{ needs.verify_release.outputs.release_version }}
+      RELEASE_VERSION: ${{ needs.verify_release.outputs.release_version }}
+      IS_RELEASE_CANDIDATE: ${{ needs.verify_release.outputs.is_release_candidate }}
+    steps:
+      - name: Fetch the unitypackage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+      - name: Disable GitHub CLI Prompt if Enabled
+        run: |
+          if [ "$(gh config get prompt)" = "enabled" ]; then
+            gh config set prompt disabled
+          fi
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view --repo embrace-io/embrace-unity-sdk $RELEASE_TAG > /dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists"
+            exit 1
+          fi
+          echo "Creating release $RELEASE_TAG"
+          PRERELEASE=""
+          if [ "$IS_RELEASE_CANDIDATE" == "true" ]; then
+            PRERELEASE="--prerelease"
+          fi
+          gh release create "$RELEASE_TAG" "$PACKAGE_NAME" $PRERELEASE --draft --title "$RELEASE_TAG" --repo embrace-io/embrace-unity-sdk --verify-tag
