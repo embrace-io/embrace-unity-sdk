@@ -1,15 +1,68 @@
-# Embrace Internal Docs
-These are the internal docs for working on the Embrace SDK. The structure of this repository is that this is the test repository for the open source Embrace SDK.
+<p align="center">
+  <a href="https://embrace.io/?utm_source=github&utm_medium=logo" target="_blank">
+    <picture>
+      <source srcset="https://embrace.io/docs/images/embrace_logo_white-text_transparent-bg_400x200.svg" media="(prefers-color-scheme: dark)" />
+      <source srcset="https://embrace.io/docs/images/embrace_logo_black-text_transparent-bg_400x200.svg" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+      <img src="https://embrace.io/docs/images/embrace_logo_black-text_transparent-bg_400x200.svg" alt="Embrace">
+    </picture>
+  </a>
+</p>
 
-## Structure
-This project will not have in it the code that ships with the Embrace SDK. Instead, you will need to pull down the open source SDK separately.
+Embrace's Unity SDK lets you bring the deep, introspective and native debugging
+power of Embrace into your Unity game or application.
 
-## Workflows
-To handle workflows properly between both the open source and the private internal repositories, we use the Repository Dispatch strategy. Essentially, recipient repositories implement the repository dispatch signal receiver, an example of which can be found on any of the dispatch trigger files. In the open source SDK, workflows then construct a REST request that targets that signal receiver's specific repository dispatch signal. Any of the workflows in the open source SDK will have an example of this.
+[![codecov](https://codecov.io/gh/embrace-io/embrace-unity-sdk-internal/graph/badge.svg?token=1g3DrYjacn)](https://codecov.io/gh/embrace-io/embrace-unity-sdk-internal)
 
-## Workflow Key
-Important to note: the above strategy requires a Bearer Authorization token that is stored in the Github configuration of the open source SDK. That expires once each year and will need to be renewed in: February (as of 2024).
+## Getting Started
 
-## Submodules
-This repository has a submodule dependency on the public SDK. As a result, you will need to run `git submodule update --init --recursive` on the root folder before you're fully able to work in the repository.
-Refer to https://git-scm.com/book/en/v2/Git-Tools-Submodules for more information for working with submodules.
+The Unity documentation can be found [here](https://embrace.io/docs/unity/).
+
+- [Go to our dashboard](https://dash.embrace.io/signup/) to create an account
+  and get your API key
+- Check our [guide](https://embrace.io/docs/unity/integration/) to integrate the
+  SDK into your Unity project
+
+## Building
+
+It is important to note that the Unity SDK is not usable immediately after
+cloning the repository. This is because it depends directly on the
+[Apple SDK](https://github.com/embrace-io/embrace-apple-sdk), and statically
+links to the xcframeworks as part of the build process.
+
+To build the SDK, run the following command from the root of the project:
+
+```bash
+make
+```
+
+This will automatically pull down the dependencies and build the Unity
+xcframeworks, and copy everything into the io.embrace.sdk folder. Unfortunately,
+it is not currently possible to invoke the required iOS specific commands on
+Windows. This pipeline requires xcpretty (`gem install xcpretty`) and the XCode
+Build Tools to be installed.
+
+If you run into any issues building the SDK locally, please reach out on our
+[community Slack](https://embraceio-community.slack.com/archives/C078WQ3DJMC)!
+
+## Usage
+
+- Refer to our [Features page](https://embrace.io/docs/unity/features/) to learn
+  about the features Embrace SDK provides
+
+## Support & Contributions
+
+Embrace does not currently accept pull requests from external contributors. If
+you have a feature suggestion or have spotted something that doesn't look right
+please reach out in our
+[Community Slack](https://join.slack.com/t/embraceio-community/shared_invite/zt-ywr4jhzp-DLROX0ndN9a0soHMf6Ksow)
+for direct, faster assistance.
+
+## License
+
+[![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-orange)](./LICENSE.txt)
+
+Embrace Unity SDK is published under the Apache-2.0 license.
+
+See the
+[LICENSE](https://github.com/embrace-io/embrace-unity-sdk/blob/main/LICENSE.txt)
+for full details.
