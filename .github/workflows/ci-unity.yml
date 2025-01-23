@@ -1,11 +1,9 @@
 name: CI
 
-env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 on:
   pull_request:
     branches:
+      - main
     types:
       - opened
       - ready_for_review
@@ -14,80 +12,9 @@ on:
   push:
     branches:
       - main
-  release:
-    types:
-      - released
-  workflow_dispatch:
 
 jobs:
-  build_xcframework:
-    name: Build XCFramework
-    runs-on: macos-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-      - name: Install dependencies
-        run: |
-          gem install xcpretty
-      - name: Build .xcframework
-        run: |
-          make build_ios_dependencies
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-dependencies
-          path: build/EmbraceUnityiOS.xcframework
-          retention-days: 1
-  build_unity_package:
-    name: Build Unity package
-    needs:
-      - build_xcframework
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-      - name: Fetch iOS dependencies
-        uses: actions/download-artifact@v4
-        with:
-          name: ios-dependencies
-          path: build/EmbraceUnityiOS.xcframework
-      # Passing the Embrace Apple SDK xcframework files from the previous job
-      # inflates the size of the artifact quite a bit, so just download it again
-      # instead. We need to touch the files in the build folder afterwards so
-      # the install step doesn't try to rebuild the Unity xcframework.
-      - name: Install iOS dependencies
-        run: |
-          make download_apple_sdk
-          # Touch the files again so the install step doesn't try to rebuild
-          # the Unity xcframework.
-          touch build/*
-          make install_ios_dependencies
-      - name: Set build environment variables
-        run: |
-          make github_env_vars >> $GITHUB_ENV
-      - name: Build .unitypackage
-        uses: game-ci/unity-builder@v4
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          projectPath: ${{ env.BUILD_PROJECT }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          targetPlatform: Android
-          customImage:
-            "unityci/editor:ubuntu-${{ env.UNITY_VERSION }}-android-3.1.0"
-          customParameters: -buildTarget Android
-          versioning: None
-          buildMethod: ${{ env.BUILD_METHOD }}
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: EmbraceSDK_${{ env.UNITY_SDK_VERSION }}.unitypackage.zip
-          path: ${{ env.BUILD_UNITYPACKAGE }}
-          if-no-files-found: error
-          retention-days: 1
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yml
+    secrets: inherit

@@ -1,0 +1,57 @@
+name: Upload Release to AWS
+
+on:
+  workflow_call:
+    inputs:
+      dry_run:
+        description: "Whether to perform a dry-run of the upload."
+        required: false
+        default: true
+        type: boolean
+      version:
+        description: "The version of the SDK to upload."
+        required: true
+        type: string
+
+env:
+  AWS_BUCKET: "${{ secrets.AWS_BUCKET}}}"
+  AWS_CLOUDFRONT_ID: "${{ secrets.AWS_CLOUDFRONT_ID }}" # repo.embrace.io
+  AWS_DEFAULT_REGION: "${{ vars.AWS_DEFAULT_REGION }}"
+  PACKAGE_NAME: EmbraceSDK_${{ inputs.version }}.unitypackage
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  upload:
+    name: Upload
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Fetch the unitypackage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.PACKAGE_NAME }}
+      # See https://github.com/organizations/embrace-io/settings/variables/actions/AWS_ACCOUNT_IDS
+      - name: Set AWS identifiers
+        run: |
+          echo AWS_LOGIN_ROLE=arn:aws:iam::$(echo '${{ vars.AWS_ACCOUNT_IDS }}' | jq .login):role/login-embrace-unity-sdk >> $GITHUB_ENV
+          echo AWS_ASSUME_ROLE=arn:aws:iam::$(echo '${{ vars.AWS_ACCOUNT_IDS }}' | jq .production):role/production-embrace-unity-sdk >> $GITHUB_ENV
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_LOGIN_ROLE }}
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+      - name: Assume AWS role
+        run: |
+          pip install --upgrade awscli
+          credentials=$(aws sts assume-role --role-arn "${{ env.AWS_ASSUME_ROLE }}" --role-session-name "`echo $GITHUB_REPOSITORY | tr "/" "-"`" --duration-seconds 900)
+          echo "AWS_ACCESS_KEY_ID=`echo $credentials | jq -r .Credentials.AccessKeyId`" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=`echo $credentials | jq -r .Credentials.SecretAccessKey`" >> $GITHUB_ENV
+          echo "AWS_SESSION_TOKEN=`echo $credentials | jq -r .Credentials.SessionToken`" >> $GITHUB_ENV
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ env.AWS_CLOUDFRONT_ID }} --paths '/*'
+      - name: Upload to S3
+        run: |
+          aws s3 cp --acl=public-read ${{ env.PACKAGE_NAME }} ${{ env.AWS_BUCKET }} ${{ inputs.dry_run && '--dryrun' || '' }}

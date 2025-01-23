@@ -1,0 +1,40 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+
+jobs:
+  verify_release:
+    name: Verify release
+    runs-on: ubuntu-22.04
+    outputs:
+      release_version: ${{ steps.verify_release.outputs.release_version }}
+      release_commit_sha: ${{ steps.verify_release.outputs.release_commit_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Verify the release
+        id: verify_release
+        run: |
+          python3 .github/scripts/release.py verify
+  build_release:
+    name: Build release
+    uses: ./.github/workflows/build.yml
+    needs:
+      - verify_release
+    secrets: inherit
+  upload_release_to_aws:
+    name: Upload Release to AWS
+    uses: ./.github/workflows/upload_release_to_aws.yml
+    needs:
+      - verify_release
+      - build_release
+    with:
+      dry_run: true
+      version: ${{ needs.verify_release.outputs.release_version }}
+    secrets: inherit
