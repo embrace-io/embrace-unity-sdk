@@ -1,6 +1,5 @@
 {
-  "version": "2.1.2",
-  "swiftRef": "branch:main",
+  "version": "2.2.0-rc1",
   "npmAPIEndpoint": "https://repo.embrace.io/repository/unity",
   "wAnnouncementTitle": "Welcome to Embrace Unity SDK 2.0",
   "wAnnouncementMessage": "Now supporting the Otel compliant Embrace Android and Embrace iOS SDKs"
