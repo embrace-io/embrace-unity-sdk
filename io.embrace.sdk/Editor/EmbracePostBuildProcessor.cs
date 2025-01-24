@@ -105,7 +105,9 @@ namespace EmbraceSDK.EditorView
 
 
 #if UNITY_IOS || UNITY_TVOS
+    using System.Collections;
     using System.Diagnostics;
+    using System.Reflection;
     using UnityEditor.iOS.Xcode;
     using UnityEditor.iOS.Xcode.Extensions;
     using UnityEditor.Callbacks;
@@ -114,6 +116,8 @@ namespace EmbraceSDK.EditorView
     {
         public const string EmbracePlistName = "Embrace-Info.plist";
         public const string EmbraceRunFileName = "embrace_run.sh";
+        public const string EmbraceSwiftPackageUrl = "https://github.com/embrace-io/embrace-unity-sdk";
+        public const string EmbraceSwiftPackageProductName = "EmbraceUnityiOS";
         public static readonly string[] Configs = { "Debug", "ReleaseForRunning" };
         public const string PBXBuildSettingKey_EmbraceId = "EMBRACE_ID";
         public const string PBXBuildSettingKey_EmbraceToken = "EMBRACE_TOKEN";
@@ -241,16 +245,119 @@ namespace EmbraceSDK.EditorView
             // Add SPM dependency
             var sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(Resources.Load<TextAsset>("Info/EmbraceSdkInfo").text);
             var (swiftRefType, swiftRefValue) = sdkInfo.SwiftRef();
-            var packageUrl = "https://github.com/embrace-io/embrace-unity-sdk";
-            var packageGuid = swiftRefType switch {
-                SwiftRefType.Branch => project.AddRemotePackageReferenceAtBranch(packageUrl, swiftRefValue),
-                SwiftRefType.Revision => project.AddRemotePackageReferenceAtRevision(packageUrl, swiftRefValue),
-                SwiftRefType.Version => project.AddRemotePackageReferenceAtVersion(packageUrl, swiftRefValue),
-                _ => project.AddRemotePackageReferenceAtVersion(packageUrl, sdkInfo.version)
-            };
-            project.AddRemotePackageFrameworkToProject(project.GetUnityFrameworkTargetGuid(), "EmbraceUnityiOS", packageGuid, weak: false);
+            SafelyAddRemotePackage(
+                project,
+                project.GetUnityFrameworkTargetGuid(),
+                EmbraceSwiftPackageUrl,
+                EmbraceSwiftPackageProductName,
+                swiftRefType,
+                swiftRefValue,
+                sdkInfo.version
+            );
 
             project.WriteToFile(projectPath);
+        }
+
+        /// <summary>
+        /// Safely adds a remote Swift package to the Xcode project.
+        /// </summary>
+        /// <param name="project">The PBXProject instance representing the Xcode project.</param>
+        /// <param name="targetGuid">The target GUID that the remote package will be added to.</param>
+        /// <param name="repositoryURL">The URL of the remote Swift package repository.</param>
+        /// <param name="productDependencyName">The name of the product dependency to be added.</param>
+        /// <param name="refType">The type of reference for the Swift package (Branch, Revision, Version).</param>
+        /// <param name="refValue">The value of the reference (e.g., branch name, revision hash, version number).</param>
+        /// <param name="defaultVersion">The version of the Swift package to use if refType is not valid.</param>
+        internal static void SafelyAddRemotePackage(PBXProject project, string targetGuid, string repositoryURL, string productDependencyName, SwiftRefType refType, string refValue, string defaultVersion)
+        {
+            try
+            {
+                RemoveRemotePackage(project, project.GetUnityFrameworkTargetGuid(), EmbraceSwiftPackageUrl);
+                var packageGuid = refType switch
+                {
+                    SwiftRefType.Branch => project.AddRemotePackageReferenceAtBranch(EmbraceSwiftPackageUrl, refValue),
+                    SwiftRefType.Revision => project.AddRemotePackageReferenceAtRevision(EmbraceSwiftPackageUrl, refValue),
+                    SwiftRefType.Version => project.AddRemotePackageReferenceAtVersion(EmbraceSwiftPackageUrl, refValue),
+                    _ => project.AddRemotePackageReferenceAtVersion(EmbraceSwiftPackageUrl, defaultVersion)
+                };
+                project.AddRemotePackageFrameworkToProject(project.GetUnityFrameworkTargetGuid(), productDependencyName, packageGuid, weak: false);
+            }
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogErrorFormat("Failed to add Embrace SDK package to Xcode project: {0}", e);
+            }
+        }
+
+        /// <summary>
+        /// Removes a remote Swift package from the Xcode project.
+        /// </summary>
+        /// <param name="project">The PBXProject instance representing the Xcode project.</param>
+        /// <param name="targetGuid">The target GUID that the remove package was added to.</param>
+        /// <param name="expectedRepositoryURL">The expected repository URL of the Swift package to be removed.</param>
+        /// <remarks>
+        /// This is required because the public functions for adding a remote
+        /// dependency are not idempotent, and Unity does not expose the
+        /// types necessary to remove it. We need to use reflection to ensure
+        /// we don't add the same package multiple times.
+        /// </remarks>
+        internal static void RemoveRemotePackage(PBXProject project, string targetGuid, string expectedRepositoryURL)
+        {
+            var packageGuids = FindSectionBaseEntries(project, "remoteSwiftPackage", obj =>
+            {
+                return expectedRepositoryURL == obj.GetType().GetField("repositoryURL").GetValue(obj) as string;
+            });
+            var dependencyGuids = FindSectionBaseEntries(project, "swiftPackageDependency", obj =>
+            {
+                var packageGuid = obj.GetType().GetField("package").GetValue(obj) as string;
+                return packageGuids.Contains(packageGuid);
+            });
+            var buildFileGuids = FindSectionBaseEntries(project, "buildFiles", obj =>
+            {
+                var dependencyGuid = obj.GetType().GetField("productRef").GetValue(obj) as string;
+                return dependencyGuids.Contains(dependencyGuid);
+            });
+            foreach (var buildFileGuid in buildFileGuids)
+            {
+                project.RemoveFileFromBuild(targetGuid, buildFileGuid);
+            }
+            foreach (var dependencyGuid in dependencyGuids)
+            {
+                RemoveSectionBaseEntry(project, "swiftPackageDependency", dependencyGuid);
+            }
+            foreach (var packageGuid in packageGuids)
+            {
+                RemoveSectionBaseEntry(project, "remoteSwiftPackage", packageGuid);
+            }
+        }
+
+        internal static List<string> FindSectionBaseEntries(PBXProject project, string sectionFieldName, System.Func<object, bool> predicate)
+        {
+            var guids = new List<string>();
+            BindingFlags bindingFlags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
+            var projectData = project.GetType().GetField("m_Data", bindingFlags).GetValue(project);
+            var section = projectData.GetType().GetField(sectionFieldName, bindingFlags).GetValue(projectData);
+            var objects = section.GetType().GetMethod("GetObjects", bindingFlags).Invoke(section, null) as IEnumerable;
+            foreach (var obj in objects)
+            {
+                if (predicate(obj))
+                {
+                    guids.Add(obj.GetType().GetField("guid", bindingFlags).GetValue(obj) as string);
+                }
+            }
+            return guids;
+        }
+
+        internal static string RemoveSectionBaseEntry(PBXProject project, string sectionFieldName, string guid)
+        {
+            if (guid == null)
+            {
+                return null;
+            }
+            var bindingFlags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance;
+            var projectData = project.GetType().GetField("m_Data", bindingFlags).GetValue(project);
+            var section = projectData.GetType().GetField(sectionFieldName, bindingFlags).GetValue(projectData);
+            section.GetType().GetMethod("RemoveEntry", bindingFlags).Invoke(section, new object[] { guid });
+            return guid;
         }
     }
 #endif
