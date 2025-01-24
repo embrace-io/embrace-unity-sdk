@@ -11,7 +11,7 @@ BUILD_PROJECT := $(or $(BUILD_PROJECT),./UnityProjects/$(UNITY_YEAR))
 UNITY_SDK_VERSION = $(shell jq -r '.version' io.embrace.sdk/package.json)
 UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
 
-APPLE_SDK_VERSION ?= 6.6.0
+APPLE_SDK_VERSION ?= $(shell jq -r '.pins[] | select(.identity == "embrace-apple-sdk") | .state.version' Package.resolved)
 APPLE_SDK_DIR = build/embrace_$(APPLE_SDK_VERSION)
 APPLE_SDK_ZIP = build/embrace_$(APPLE_SDK_VERSION).zip
 
