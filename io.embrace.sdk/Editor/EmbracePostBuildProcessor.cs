@@ -302,18 +302,18 @@ namespace EmbraceSDK.EditorView
         /// </remarks>
         internal static void RemoveRemotePackage(PBXProject project, string targetGuid, string expectedRepositoryURL)
         {
-            var packageGuids = FindSectionBaseEntries(project, "remoteSwiftPackage", obj =>
+            var packageGuids = FindSectionBaseEntries(project, "remoteSwiftPackage", package =>
             {
-                return expectedRepositoryURL == obj.GetType().GetField("repositoryURL").GetValue(obj) as string;
+                return expectedRepositoryURL == package.GetType().GetField("repositoryURL").GetValue(package) as string;
             });
-            var dependencyGuids = FindSectionBaseEntries(project, "swiftPackageDependency", obj =>
+            var dependencyGuids = FindSectionBaseEntries(project, "swiftPackageDependency", dependency =>
             {
-                var packageGuid = obj.GetType().GetField("package").GetValue(obj) as string;
+                var packageGuid = dependency.GetType().GetField("package").GetValue(dependency) as string;
                 return packageGuids.Contains(packageGuid);
             });
-            var buildFileGuids = FindSectionBaseEntries(project, "buildFiles", obj =>
+            var buildFileGuids = FindSectionBaseEntries(project, "buildFiles", buildFile =>
             {
-                var dependencyGuid = obj.GetType().GetField("productRef").GetValue(obj) as string;
+                var dependencyGuid = buildFile.GetType().GetField("productRef").GetValue(buildFile) as string;
                 return dependencyGuids.Contains(dependencyGuid);
             });
             foreach (var buildFileGuid in buildFileGuids)
