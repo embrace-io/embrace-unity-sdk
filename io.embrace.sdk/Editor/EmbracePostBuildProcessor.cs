@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 using Newtonsoft.Json;
+using EmbraceSDK.Internal;
 
 namespace EmbraceSDK.EditorView
 {
@@ -238,7 +239,15 @@ namespace EmbraceSDK.EditorView
             project.AddFileToBuildSection(appTargetGuid, resourcesBuildPhase, resourcesFilesGuid);
 
             // Add SPM dependency
-            var packageGuid = project.AddRemotePackageReferenceAtBranch("https://github.com/embrace-io/embrace-unity-sdk", "nathan.ostgard/spm");
+            var sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(Resources.Load<TextAsset>("Info/EmbraceSdkInfo").text);
+            var (swiftRefType, swiftRefValue) = sdkInfo.SwiftRef();
+            var packageUrl = "https://github.com/embrace-io/embrace-unity-sdk";
+            var packageGuid = swiftRefType switch {
+                SwiftRefType.Branch => project.AddRemotePackageReferenceAtBranch(packageUrl, swiftRefValue),
+                SwiftRefType.Revision => project.AddRemotePackageReferenceAtRevision(packageUrl, swiftRefValue),
+                SwiftRefType.Version => project.AddRemotePackageReferenceAtVersion(packageUrl, swiftRefValue),
+                _ => project.AddRemotePackageReferenceAtVersion(packageUrl, sdkInfo.version)
+            };
             project.AddRemotePackageFrameworkToProject(project.GetUnityFrameworkTargetGuid(), "EmbraceUnityiOS", packageGuid, weak: false);
 
             project.WriteToFile(projectPath);
