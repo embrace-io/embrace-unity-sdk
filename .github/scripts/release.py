@@ -123,6 +123,8 @@ def update_json_version(filename: str, version: str) -> None:
     with open(filename) as f:
         package = json.loads(f.read())
     package["version"] = version
+    if "swiftRef" in package:
+        del package["swiftRef"]
     with open(filename, "w") as f:
         f.write(json.dumps(package, indent=2))
     run(["git", "add", filename], check=True)

@@ -23,14 +23,13 @@ public class EmbraceManager: NSObject {
                     _servicesBuilder.add(.pushNotification())
                 }
                 var _endpoints: Embrace.Endpoints? = nil;
-                
                 if let endpoints {
                     _endpoints = Embrace.Endpoints(
                         baseURL: endpoints.baseUrl,
                         developmentBaseURL: endpoints.devBaseUrl,
                         configBaseURL: endpoints.configBaseUrl)
                 }
-                
+
                 return .init(
                     appId: appId,
                     appGroupId: appGroupId,
@@ -40,10 +39,10 @@ public class EmbraceManager: NSObject {
                     crashReporter: _crashReporter
                 )
             }
-            
+
             try Embrace.setup(options: embraceOptions)
                 .start()
-            
+
             return true
         } catch let e {
             if #available(iOS 14.0, *) {
@@ -53,65 +52,65 @@ public class EmbraceManager: NSObject {
             }
             return false
         }
-        
+
     }
-    
+
     static func isStarted() -> Bool {
         return Embrace.client?.started ?? false
     }
-    
+
     static func sdkVersion() -> String {
         return Embrace.sdkVersion
     }
-    
+
     static func crash() {
         Embrace.client?.crash()
     }
-    
+
     static func endCurrentSession() {
         Embrace.client?.endCurrentSession()
     }
-    
+
     static func getDeviceId() -> String? {
         return Embrace.client?.currentDeviceId()
     }
-    
+
     static func getCurrentSessionId() -> String? {
         return Embrace.client?.currentSessionId()
     }
-    
+
     static func getLastRunEndState() -> LastRunEndState? {
         return Embrace.client?.lastRunEndState()
     }
-    
+
     static func setUserIdentifier(userIdentifier: String) {
         Embrace.client?.metadata.userIdentifier = userIdentifier
     }
-    
+
     static func clearUserIdentifier() {
         Embrace.client?.metadata.userIdentifier = nil
     }
-    
+
     static func addBreadCrumb(event: String) {
         Embrace.client?.add(event: .breadcrumb(event))
     }
-    
+
     static func setUsername(userName: String) {
         Embrace.client?.metadata.userName = userName
     }
-    
+
     static func clearUsername() {
         Embrace.client?.metadata.userName = nil
     }
-    
+
     static func setUserEmail(userEmail: String) {
         Embrace.client?.metadata.userEmail = userEmail;
     }
-    
+
     static func clearUserEmail() {
         Embrace.client?.metadata.userEmail = nil
     }
-    
+
     static func addUserPersona(persona: String) -> Bool {
         do {
             try Embrace.client?.metadata.add(persona: persona, lifespan: .session)
@@ -120,7 +119,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func clearUserPersona(persona: String) -> Bool {
         do {
             try Embrace.client?.metadata.remove(persona: PersonaTag(persona), lifespan: .session)
@@ -129,7 +128,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func clearAllUserPersonas() -> Bool {
         do {
             try Embrace.client?.metadata.removeAllPersonas()
@@ -138,7 +137,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func addResource(key: String, value: String, lifespan: MetadataLifespan) -> Bool {
         do {
             try Embrace.client?.metadata.addResource(
@@ -151,10 +150,10 @@ public class EmbraceManager: NSObject {
                 print("Error adding resource to metadata: \(error.localizedDescription)")
             }
         }
-        
+
         return false
     }
-    
+
     static func addSessionProperty(key: String, value: String, permanent: Bool) -> Bool {
         do {
             let lifespan: MetadataLifespan = permanent ? .permanent : .session
@@ -164,7 +163,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func removeSessionProperty(key: String) -> Bool {
         do {
             try Embrace.client?.metadata.removeProperty(key: key, lifespan: .permanent)
@@ -174,7 +173,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func logMessageWithSeverityAndProperties(
         message: String,
         severity: String,
@@ -184,7 +183,7 @@ public class EmbraceManager: NSObject {
                 attributes: properties
             )
     }
-    
+
     static func setUserAsPayer() -> Bool {
         do {
             try Embrace.client?.metadata.add(persona: .payer)
@@ -193,7 +192,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func clearUserAsPayer() -> Bool {
         do {
             try Embrace.client?.metadata.remove(persona: .payer, lifespan: .session)
@@ -202,24 +201,24 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     static func startView(viewName: String) -> String? {
         let span = Embrace.client?.buildSpan(name: SpanSemantics.View.screenName)
             .setAttribute(key: SpanSemantics.View.keyViewName, value: viewName)
             .setAttribute(key: SpanSemantics.keyEmbraceType, value: "ux.view")
             .startSpan()
-        
+
         guard let span else {
             return nil
         }
-        
+
         return spanRepository.spanStarted(span: span)
     }
-    
+
     static func endView(spanId: String) -> Bool {
         return stopSpan(spanId: spanId, errorCodeString: "", endTimeMs: 0.0)
     }
-    
+
     static func logNetworkRequest(url: String,
                                   httpMethod: String,
                                   startInMillis: Double,
@@ -232,7 +231,7 @@ public class EmbraceManager: NSObject {
             SpanSemantics.NetworkRequest.keyMethod: httpMethod.uppercased(),
             SpanSemantics.NetworkRequest.keyUrl: url
         ]
-        
+
         if statusCode >= 0 {
             attributes[SpanSemantics.NetworkRequest.keyStatusCode] = String(Int(statusCode))
         }
@@ -244,11 +243,11 @@ public class EmbraceManager: NSObject {
         if bytesReceived >= 0 {
             attributes[SpanSemantics.NetworkRequest.keyResponseSize] = String(Int(bytesReceived))
         }
-        
+
         if let error {
             attributes[SpanSemantics.NetworkRequest.keyErrorMessage] = error
         }
-        
+
         Embrace.client?.recordCompletedSpan(name: createNetworkSpanName(url: url, httpMethod: httpMethod),
                                             type: .networkRequest,
                                             parent: nil,
@@ -258,7 +257,7 @@ public class EmbraceManager: NSObject {
                                             events: [],
                                             errorCode: nil)
     }
-    
+
     static func logNetworkClientError(url: String,
                                       httpMethod: String,
                                       startInMillis: Double,
@@ -286,14 +285,14 @@ public class EmbraceManager: NSObject {
                                             events: [],
                                             errorCode: .failure)
     }
-    
+
     static func startSpan(name: String, parentSpanId: String?, startTimeMs: Double) -> String? {
         let spanBuilder = Embrace.client?.buildSpan(name: name)
-        
+
         guard let spanBuilder else {
             return nil
         }
-        
+
         if let parentSpanId {
             if !parentSpanId.isEmpty, let parent = spanRepository.get(spanId: parentSpanId) {
                 spanBuilder.setParent(parent)
@@ -301,39 +300,39 @@ public class EmbraceManager: NSObject {
         } else {
             spanBuilder.markAsKeySpan()
         }
-        
+
         if startTimeMs > 0.0 {
             spanBuilder.setStartTime(time: convertDoubleToDate(ms: startTimeMs))
         }
-        
+
         let span = spanBuilder.startSpan()
-        
+
         // Return the spanId
         return spanRepository.spanStarted(span: span)
     }
-    
+
     static func stopSpan(spanId: String, errorCodeString: String, endTimeMs: Double) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
             return false
         }
-        
+
         if endTimeMs <= 0.0 {
             span.end(errorCode: convertStringToErrorCode(str: errorCodeString))
         } else {
             span.end(errorCode: convertStringToErrorCode(str: errorCodeString),
                       time: convertDoubleToDate(ms: endTimeMs))
         }
-        
+
         spanRepository.spanEnded(span: span)
-        
+
         return true
     }
-    
+
     static func addSpanEventToSpan(spanId: String, name: String, time: Double, attributes: [String: AttributeValue]) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
             return false
         }
-        
+
         if attributes.isEmpty {
             span.addEvent(name: name, timestamp: convertDoubleToDate(ms: time))
         } else {
@@ -341,21 +340,21 @@ public class EmbraceManager: NSObject {
                           attributes: attributes,
                           timestamp: convertDoubleToDate(ms: time))
         }
-        
+
         return true
     }
-    
+
     static func addSpanAttributeToSpan(spanId: String, key: String, value: String) -> Bool {
         guard let span = spanRepository.get(spanId: spanId) else {
             return false
         }
-        
+
         span.setAttribute(key: key, value: value)
         Embrace.client?.flush(span)
-        
+
         return true
     }
-    
+
     static func recordCompletedSpan(
         name: String,
         startTimeMs: Double,
@@ -364,13 +363,13 @@ public class EmbraceManager: NSObject {
         parentSpanId: String,
         attributes: inout [String: String],
         events: [RecordingSpanEvent]) -> Bool {
-            
+
             let parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
-            
+
             if Embrace.client == nil {
                 return false
             }
-            
+
             Embrace.client?.recordCompletedSpan(name: name,
                                                 type: .performance,
                                                 parent: parent,
@@ -381,7 +380,7 @@ public class EmbraceManager: NSObject {
                                                 errorCode: convertStringToErrorCode(str: errorCodeString))
             return true
     }
-    
+
     // TODO: Reduce code duplication between handled and unhandled exceptions
     static func logHandledException(name: String, message: String, stacktrace: String) {
         let attributes = [
@@ -391,14 +390,14 @@ public class EmbraceManager: NSObject {
             "exception.message": message,
             "exception.type": name
         ]
-        
+
         Embrace.client?.log("Unity exception",
                             severity: .error,
                             timestamp: Date(), // Should we let users input their own exception timestamp?
                             attributes: attributes,
                             stackTraceBehavior: .notIncluded)
     }
-    
+
     static func logUnhandledException(name: String, message: String, stacktrace: String) {
         let attributes = [
             "exception.stacktrace": stacktrace,
@@ -407,16 +406,16 @@ public class EmbraceManager: NSObject {
             "exception.message": message,
             "exception.type": name
         ]
-        
+
         Embrace.client?.log("Unity exception",
                             severity: .error,
                             timestamp: Date(), // Should we let users input their own exception timestamp? That would create an API mismatch among the Hosted SDKs. Let's not.
                             attributes: attributes,
                             stackTraceBehavior: .notIncluded)
     }
-    
+
     static func logPushNotification(title: String, body: String, subtitle: String, badge: Int, category: String) -> Bool {
-        
+
         // Borrowed from Embrace Flutter SDK
         let pushData: [AnyHashable: Any?] = [
                         "aps": [
@@ -441,7 +440,7 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
-    
+
     private static func transferKVPs(dest: inout [String:String], src: NSDictionary) {
         for (key, value) in src {
             if let key = key as? String, let value = value as? String {
@@ -449,10 +448,10 @@ public class EmbraceManager: NSObject {
             }
         }
     }
-    
+
     private static func convertNSDictToSwiftDict<T>(nsDict: NSDictionary, converter: (String) -> T) -> [String: T] {
         var swiftDict = [String: T]()
-        
+
         for (key, value) in nsDict {
             if let key = key as? String, let value = value as? String {
                 swiftDict.updateValue(converter(value), forKey: key)
@@ -461,28 +460,28 @@ public class EmbraceManager: NSObject {
                 // We probably should not let the whole operation fail. We can skip the value
             }
         }
-        
+
         return swiftDict
     }
-    
+
     private static func createNetworkSpanName(url: String, httpMethod: String) -> String {
         var name = "emb-" + httpMethod.uppercased()
-        
+
         if let fullUrl = URL(string: url) {
             let path = fullUrl.path
             if (!path.isEmpty && path != "/") {
                 name += " " + path
             }
         }
-        
+
         return name
     }
-    
+
     // Assumes values in Unix Epoch time
     private static func convertDoubleToDate(ms: Double) -> Date {
         return Date(timeIntervalSince1970: TimeInterval(ms / 1000.0))
     }
-    
+
     private static func convertStringToErrorCode(str: String) -> SpanErrorCode? {
         switch str {
         case "Failure": return .failure
@@ -491,7 +490,7 @@ public class EmbraceManager: NSObject {
         default: return nil
         }
     }
-    
+
     private static func convertStringToLogSeverity(from inputString: String) -> LogSeverity {
         switch inputString {
         case "info": return .info
