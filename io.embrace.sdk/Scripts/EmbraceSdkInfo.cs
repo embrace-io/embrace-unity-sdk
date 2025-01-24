@@ -15,8 +15,8 @@
 
         public (SwiftRefType type, string value) SwiftRef()
         {
-            var parts = swiftRef.Split(':');
-            if (parts.Length != 2 || string.IsNullOrEmpty(parts[1]))
+            var parts = swiftRef?.Split(':');
+            if (parts == null || parts.Length != 2 || string.IsNullOrEmpty(parts[1]))
             {
                 return (SwiftRefType.Version, version);
             }
