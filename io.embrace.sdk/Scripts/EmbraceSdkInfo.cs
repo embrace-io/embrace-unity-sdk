@@ -15,18 +15,29 @@
 
         public (SwiftRefType type, string value) SwiftRef()
         {
-            var parts = swiftRef.Split(':');
-            if (parts.Length != 2 || string.IsNullOrEmpty(parts[1]))
+            var parts = swiftRef?.Split(':');
+            if (parts == null)
             {
+                // Default to the version of the Unity package.
                 return (SwiftRefType.Version, version);
             }
-            return parts[0] switch
+            if (parts.Length != 2 || string.IsNullOrEmpty(parts[1]))
             {
-                "branch" => (SwiftRefType.Branch, parts[1]),
-                "revision" => (SwiftRefType.Revision, parts[1]),
-                "version" => (SwiftRefType.Version, parts[1]),
-                _ => (SwiftRefType.Version, version)
-            };
+                EmbraceLogger.LogFormat(UnityEngine.LogType.Warning, "Invalid swiftRef {0}. Defaulting to package version.", swiftRef);
+                return (SwiftRefType.Version, version);
+            }
+            switch (parts[0])
+            {
+                case "branch":
+                    return (SwiftRefType.Branch, parts[1]);
+                case "revision":
+                    return (SwiftRefType.Revision, parts[1]);
+                case "version":
+                    return (SwiftRefType.Version, parts[1]);
+                default:
+                    EmbraceLogger.LogFormat(UnityEngine.LogType.Warning, "Invalid type {0} for swiftRef {1}. Defaulting to package version.", parts[0], swiftRef);
+                    return (SwiftRefType.Version, version);
+            }
         }
     }
 
