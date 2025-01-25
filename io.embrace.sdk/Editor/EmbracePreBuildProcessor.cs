@@ -1,5 +1,4 @@
 #if UNITY_ANDROID || UNITY_IOS
-using System.Drawing.Printing;
 using System.IO;
 using UnityEditor;
 using UnityEditor.Build;
