@@ -1,13 +1,16 @@
 #if UNITY_ANDROID || UNITY_IOS
+using System.IO;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
+using UnityEngine;
 
 namespace EmbraceSDK.EditorView
 {
     internal class EmbracePreBuildProcessor : IPreprocessBuildWithReport
     {
         public int callbackOrder => 0;
+        private static string DIR_PATH_XCFRAMEWORKS = "Packages/io.embrace.sdk/iOS/xcframeworks";
 
         public void OnPreprocessBuild(BuildReport report)
         {
@@ -23,8 +26,26 @@ namespace EmbraceSDK.EditorView
                     EmbraceIl2CppSymbolUtility.OnPreprocessBuild(report);
                     break;
                 case BuildTarget.iOS:
+                    RemoveXCFrameworkDirectories();
                     EmbraceIl2CppSymbolUtility.OnPreprocessBuild(report);
                     break;
+            }
+        }
+
+        private void RemoveXCFrameworkDirectories()
+        {
+            var xcframeworksPath = Path.GetFullPath(DIR_PATH_XCFRAMEWORKS);
+            if (Directory.Exists(xcframeworksPath))
+            {
+                try
+                {
+                    Directory.Delete(xcframeworksPath, true);
+                }
+                catch (System.Exception exc)
+                {
+                    Debug.LogError($"Error deleting xcframework directories: {exc}");
+                }
+                
             }
         }
     }

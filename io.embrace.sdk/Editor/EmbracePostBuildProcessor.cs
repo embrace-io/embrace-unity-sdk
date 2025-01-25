@@ -107,6 +107,7 @@ namespace EmbraceSDK.EditorView
 #if UNITY_IOS || UNITY_TVOS
     using System.Collections;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using UnityEditor.iOS.Xcode;
     using UnityEditor.iOS.Xcode.Extensions;
@@ -242,6 +243,9 @@ namespace EmbraceSDK.EditorView
             var resourcesFilesGuid = project.AddFile(EmbracePlistName, "/" + EmbracePlistName, PBXSourceTree.Source);
             project.AddFileToBuildSection(appTargetGuid, resourcesBuildPhase, resourcesFilesGuid);
 
+            // Remove any Embrace XCFrameworks left over from previous versions
+            RemoveEmbraceXCFrameworks(project);
+
             // Add SPM dependency
             var sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(Resources.Load<TextAsset>("Info/EmbraceSdkInfo").text);
             var (swiftRefType, swiftRefValue) = sdkInfo.SwiftRef();
@@ -256,6 +260,32 @@ namespace EmbraceSDK.EditorView
             );
 
             project.WriteToFile(projectPath);
+        }
+
+        /// <summary>
+        /// Removes any Embrace XCFrameworks from the Xcode project. These
+        /// were used by previous versions of the Embrace Unity SDK, but will
+        /// cause conflicts with the Swift package if they are not removed.
+        /// </summary>
+        /// <param name="project">The PBXProject instance representing the Xcode project.</param>
+        internal static void RemoveEmbraceXCFrameworks(PBXProject project)
+        {
+            try
+            {
+                var xcframeworkPath = "Frameworks/io.embrace.sdk/iOS/xcframeworks";
+                var xcframeworkGuids = project
+                    .GetRealPathsOfAllFiles(PBXSourceTree.Source)
+                    .Where(file => file.StartsWith(xcframeworkPath))
+                    .Select(file => (file, project.FindFileGuidByProjectPath(file)));
+                foreach (var (file, guid) in xcframeworkGuids)
+                {
+                    project.RemoveFile(guid);
+                }
+            }
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogErrorFormat("Failed to remove Embrace XCFrameworks from Xcode project: {0}", e);
+            }
         }
 
         /// <summary>
