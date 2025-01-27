@@ -8,9 +8,7 @@ on:
     inputs:
       release:
         description: >
-          If false, only a release candidate will be published. Once the final
-          release is ready, set this to true. No further release candidates will
-          be allowed after finalizing the release.
+          Finalize the release. No further release candidates will be allowed.
         required: true
         default: false
         type: boolean
@@ -37,7 +35,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          python3 .github/scripts/release.py bump ${{ inputs.release && '--release' || ''}}
+          python3 .github/scripts/release.py bump ${{ inputs.release && '--release=true' || ''}}
   # Build the release to ensure that the release is ready to be tagged.
   # The build will be recreated in the tag's workflow, but this step ensures
   # we don't tag something that will fail to build.
