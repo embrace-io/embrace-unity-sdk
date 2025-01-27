@@ -16,7 +16,7 @@ logger = logging.getLogger("release")
 RefType = Literal["branch", "tag"]
 ref_name_version_re: dict[RefType, re.Pattern[str]] = {
     "branch": re.compile(r"^release/v(\d+\.\d+\.\d+)$"),
-    "tag": re.compile(r"^v(\d+\.\d+\.\d+(-rc\d+))?$"),
+    "tag": re.compile(r"^v(\d+\.\d+\.\d+(-rc\d+)?)$"),
 }
 release_candidate_re = re.compile(r"^v\d+\.\d+\.\d+-rc(\d+)$")
 
