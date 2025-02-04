@@ -5,23 +5,41 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
-## 2.1.2
-*December 3, 2024*
-:::warning Info
-To upgrade to this version of the Unity SDK from any previous version, users will need to manually remove the Embrace Scoped Registry entry. Please refer to the following documentation for instructions: https://docs.unity3d.com/2021.3/Documentation/Manual/class-PackageManager.html
-:::
-* Removal of automated scoped registry functionality
-* Removal of integration guide steps in lieu of documentation
-* Patch of extraneous embedding of iOS framework elements
+## 2.2.0
+*January 27, 2025*
+- Upgraded Embrace iOS dependency to 6.7.1
+- Swapped iOS dependency map method from xcframeworks to SPM
 
-## 2.1.1
-*November 26, 2024*
+## 2.1.2
+*December 12, 2024*
 :::warning Info
 Our Apple SDK and the Unity iOS SDK use Swift, which has a known issue with the current Unity build pipeline. To handle this issue, after creating your XCode project, add a Dummy Swift file to the UnityFramework target. This will adjust the linker pipeline to invoke Swift appropriately.
 
 For further information, please refer to this discussion: https://github.com/CocoaPods/CocoaPods/issues/11960
 :::
+
+:::warning Info
+You should [remove the Embrace scoped registry](/unity/upgrade-guide/#remove-scoped-registry) from your project if it was added by a previous version of the Embrace SDK.
+:::
+* Upgrade of Embrace iOS dependency to 6.6.0
+* Removal of automated scoped registry functionality
+* Removal of integration guide steps in lieu of documentation
+* Patch of extraneous embedding of iOS framework elements
+* Patch of StopSpan error code handling
+* Patch of Android Crash Handling when dealing with default `config.json` values
+
+## 2.1.1
+*November 26, 2024*
 * Restoration of meta files and patch to local asset path issues
+
+## 2.1.0
+*November 21, 2024*
+:::warning Important
+This version of the SDK has been retracted due to local mapping issues with the export.
+:::
+* Upgrade of Embrace Android dependency to 6.14.0
+* Upgrade of Embrace iOS dependency to 6.5.2
+* Removal of Scoped Registry functionality, as well as included automation to remove it from existing projects. This was causing immutability issues with the package in some cases.
 
 ## 2.0.2
 *October 22, 2024*
@@ -35,13 +53,13 @@ For further information, please refer to this discussion: https://github.com/Coc
 * Added new config options for Unity iOS to EmbraceStartupArgs
 
 ## 2.0.0
+*September 30th, 2024*
 :::info Important
 This version of the Unity SDK contains several breaking changes to our API, including the removal of deprecated functions.
 
 Additionally, with the update to Embrace Android 6.13, the SDK now requires Gradle 7.5.1, AGP 7.4.2, and API 34 or higher.
 :::
 
-*September 30th, 2024*
 * Updated Embrace Android SDK to 6.13
 * Updated Embrace iOS SDK to 6.4
 * Removed deprecated functions in API
@@ -54,7 +72,17 @@ Additionally, with the update to Embrace Android 6.13, the SDK now requires Grad
 
 ## 1.26.0
 *July 18, 2024*
-* Addition of Performance Tracing Support
+:::warning Important
+This version of the Unity SDK requires desugaring if the required min Android API level is less than 24 and AGP < 7.4.2
+Additionally, for built APKs directly out of Unity, AGP 4.0.1 may be required for desugaring to function correctly.
+This is a simple, well-supported process by Android build tooling that backports certain Java 8 language features onto older Android versions that didn't have support. For more information, please see [Google's documentation here](https://developer.android.com/studio/write/java8-support#library-desugaring).
+
+Please be sure to match the appropriate desugaring library with your version of Unity LTS.
+For 2021, please see [this](https://docs.unity3d.com/2021.3/Documentation/Manual/android-gradle-overview.html).
+For 2022, please see [this](https://docs.unity3d.com/2022.3/Documentation/Manual/android-gradle-overview.html)
+:::
+* Addition of Traces Support
+* Upgrade of Embrace iOS SDK dependency to 5.25.3
 * Update Embrace Android SDK dependency to 6.8.3
 * Update of min Android SDK dependency to 24
 * Patch reducing crash rate on SDK startup
@@ -70,10 +98,10 @@ Additionally, with the update to Embrace Android 6.13, the SDK now requires Grad
 
 ## 1.25.1
 *April 25, 2024*
-* Patch of issue on newer versions of Unity iOS that involved double injecting into the linker phase
+* Patch of issue on newer versions of Unity iOS that involved double injecting into the linker phase.
 
 ## 1.25.0
-*April 19, 2024*
+*April 24, 2024*
 :::warning Important
 This version of the Unity SDK requires a later version than 2021.3.16f1. It is tested working on 2021.3.37f1 (the latest LTS version at time of writing). If you receive a "transformer returned null" error of some kind during your build process, please upgrade your LTS engine version.
 :::
@@ -82,8 +110,10 @@ This version of the Unity SDK requires a later version than 2021.3.16f1. It is t
 
 ## 1.24.0
 *March 17, 2024*
-:::warning Important
+:::info Important
 This version of Unity has a number of changes to internal namespaces to streamline internal APIs and alignment. We have endeavored to avoid breaking changes. However, if you have subscribed to any existing APIs they may have changed. Please be aware of this when upgrading.
+
+This version also has an issue on newer versions of Unity iOS where the linker phase has the SDK injected twice. Please upgrade to 1.25.1 if this occurs.
 :::
 
 * Upgrade Embrace iOS Plugin to 5.25.0
@@ -127,6 +157,15 @@ This version of Unity has a number of changes to internal namespaces to streamli
 * Updated Android SDK to 6.1.0 (Bug Shake uses the Bug Shake Plugin version 0.9.0)
 * Patched iOS SDK specific issue involving Current Session ID API
 * Patched code signature issue on iOS for XCode 15
+* Increase our minSdkVersion to API 21
+* Increase our minimum AGP to 4.0.0
+* Increase our minimum Gradle version to 6.1.1
+* Set our minimum Unity version to 2020.3.15f1
+* Set the minimum OkHttp version to 4.0.0
+
+:::info Important
+We strongly recommend that Embrace customers ensure their apps meet the criteria above.
+:::
 
 ## 1.18.2
 *December 7th 2023*
