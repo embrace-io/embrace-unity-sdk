@@ -5,6 +5,7 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace EmbraceSDK.Tests
 {
@@ -41,6 +42,12 @@ namespace EmbraceSDK.Tests
         ///   and cannot be changed any further.
         /// </summary>
         [Test]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void BuildSucceeds_WhenAllTasksRealizedImmediately()
         {
             // Adding this to the gradle file causes all tasks to be realized immediately, which was found to trigger
@@ -72,7 +79,7 @@ namespace EmbraceSDK.Tests
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
 
-            Assert.AreEqual(summary.result, BuildResult.Succeeded);
+            Assert.AreEqual(BuildResult.Succeeded, summary.result);
 
             // The reference to the config instance will not always survive the build, so we'll reload it here before
             // restoring its values.
