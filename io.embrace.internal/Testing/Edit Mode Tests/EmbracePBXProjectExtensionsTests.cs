@@ -72,7 +72,7 @@ namespace EmbraceSDK.Tests
             new SafelyAddRemotePackageData{
                 ProjectFile = "project.pbxproj",
                 RefType = SwiftRefType.Version,
-                RefValue = "2.2.0",
+                RefValue = "4.5.6",
                 ExpectedProjectFile = "SafelyAddRemotePackage_version.project.pbxproj"
             },
             new SafelyAddRemotePackageData{
@@ -84,7 +84,7 @@ namespace EmbraceSDK.Tests
             new SafelyAddRemotePackageData{
                 ProjectFile = "project_with_remote_package.pbxproj",
                 RefType = SwiftRefType.Version,
-                RefValue = "2.2.0",
+                RefValue = "4.5.6",
                 ExpectedProjectFile = "SafelyAddRemotePackage_removed.project.pbxproj"
             }
         };
@@ -96,11 +96,11 @@ namespace EmbraceSDK.Tests
             pbxProject.ReadFromFile(GetPBXProjectPath(data.ProjectFile));
             pbxProject.SafelyAddRemotePackage(
                 targetGuid: pbxProject.GetUnityFrameworkTargetGuid(),
-                repositoryURL: "https://github.com/embrace-io/embrace-unity-sdk.git",
-                productDependencyName: "EmbraceUnityiOS",
+                repositoryURL: "https://github.com/example-organization/example-package.git",
+                productDependencyName: "ExampleDependencyName",
                 data.RefType,
                 data.RefValue,
-                defaultVersion: "2.2.0"
+                defaultVersion: "1.2.3"
             );
             AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
         }
@@ -138,12 +138,19 @@ namespace EmbraceSDK.Tests
 
         private Int32 deterministicGuidIndex = 1;
 
-        private string DeterministicGuidGenerator(string path)
+        // Method for Unity 2021 (no parameters)
+        private string DeterministicGuidGenerator()
         {
             var b = BitConverter.GetBytes(deterministicGuidIndex);
             var guid = new Guid(0, 0, 0, new byte[8] { 0, 0, 0, 0, b[3], b[2], b[1], b[0] });
             deterministicGuidIndex++;
             return guid.ToString("N").Substring(8).ToUpper();
+        }
+
+        // Method for Unity 2022+ (takes an identifier)
+        private string DeterministicGuidGeneratorWithIdentifier(string identifier)
+        {
+            return DeterministicGuidGenerator();
         }
 
         [SetUp]
@@ -152,7 +159,10 @@ namespace EmbraceSDK.Tests
             deterministicGuidIndex = 1;
             var pbxGuidType = typeof(PBXProject).Assembly.GetType("UnityEditor.iOS.Xcode.PBX.PBXGUID");
             var guidGeneratorType = pbxGuidType.GetNestedType("GuidGenerator", BindingFlags.NonPublic);
-            var fn = Delegate.CreateDelegate(guidGeneratorType, this, nameof(DeterministicGuidGenerator));
+            var fnName = guidGeneratorType.GetMethod("Invoke").GetParameters().Length == 0
+                    ? nameof(DeterministicGuidGenerator)
+                    : nameof(DeterministicGuidGeneratorWithIdentifier);
+            var fn = Delegate.CreateDelegate(guidGeneratorType, this, fnName);
             var setGuidGeneratorMethod = pbxGuidType
                 .GetMethod("SetGuidGenerator", BindingFlags.NonPublic | BindingFlags.Static);
             setGuidGeneratorMethod.Invoke(null, new object[] { fn });

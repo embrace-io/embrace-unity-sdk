@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000000000000000000000003 /* EmbraceUnityiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000002 /* EmbraceUnityiOS */; };
+		000000000000000000000003 /* ExampleDependencyName in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000002 /* ExampleDependencyName */; };
 		00000000008063A1000160D3 /* libiPhone-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A1C72A0E8063A1000160D3 /* libiPhone-lib.a */; };
 		1076A32A2D49BC20004EF596 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1076A3282D49BC20004EF596 /* Dummy.swift */; };
 		1A8BC6645C4E9D09FC15AEA0 /* UnityNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B62D936329D31FD4C60205B /* UnityNotificationManager.h */; };
@@ -628,7 +628,7 @@
 				63ACF7178776C648B96974EB /* baselib.a in Frameworks */,
 				574A8D1BFDF4103B13A6538A /* GameController.framework in Frameworks */,
 				6B094C47B846A9F4D744D90F /* UserNotifications.framework in Frameworks */,
-				000000000000000000000003 /* EmbraceUnityiOS in Frameworks */,
+				000000000000000000000003 /* ExampleDependencyName in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,7 +1294,7 @@
 			);
 			name = UnityFramework;
 			packageProductDependencies = (
-				000000000000000000000002 /* EmbraceUnityiOS */,
+				000000000000000000000002 /* ExampleDependencyName */,
 			);
 			productName = UnityFramework;
 			productReference = 9D25AB9D213FB47800354C27 /* UnityFramework.framework */;
@@ -1345,7 +1345,7 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			packageReferences = (
-				000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */,
+				000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -2580,9 +2580,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */ = {
+		000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/embrace-io/embrace-unity-sdk.git";
+			repositoryURL = "https://github.com/example-organization/example-package.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -2591,10 +2591,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		000000000000000000000002 /* EmbraceUnityiOS */ = {
+		000000000000000000000002 /* ExampleDependencyName */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */;
-			productName = EmbraceUnityiOS;
+			package = 000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */;
+			productName = ExampleDependencyName;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

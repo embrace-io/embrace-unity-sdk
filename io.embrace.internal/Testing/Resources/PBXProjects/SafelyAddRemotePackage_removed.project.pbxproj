@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000000000000000000000003 /* EmbraceUnityiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000002 /* EmbraceUnityiOS */; };
+		000000000000000000000003 /* ExampleDependencyName in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000000000002 /* ExampleDependencyName */; };
 		00000000008063A1000160D3 /* libiPhone-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8A1C72A0E8063A1000160D3 /* libiPhone-lib.a */; };
 		1076A32A2D49BC20004EF596 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1076A3282D49BC20004EF596 /* Dummy.swift */; };
 		1A8BC6645C4E9D09FC15AEA0 /* UnityNotificationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B62D936329D31FD4C60205B /* UnityNotificationManager.h */; };
@@ -100,6 +100,7 @@
 		9DFA7F9D21410F2E00C2880E /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D82DCFBB0E8000A5005D6AD8 /* main.mm */; };
 		9E277B346B541C2D072C5489 /* IUnityGraphicsMetal.h in Headers */ = {isa = PBXBuildFile; fileRef = 894C1B251937BE1BC2B4D36C /* IUnityGraphicsMetal.h */; };
 		ADE846A287BB69CBA8E34CFA /* Embrace-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E654008AA63F47361563948 /* Embrace-Info.plist */; };
+		BD714A2ABA3A1A739360F5C9 /* EmbraceUnityiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 25F2483DBBFC5EA42007311D /* EmbraceUnityiOS */; };
 		BEE3E21D322649C83B0DD4DC /* LaunchScreen-iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A3A1B4C3FB1FC90023B942E /* LaunchScreen-iPhone.storyboard */; };
 		C88064DCABB5774674576FB0 /* UnityNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF8ED7723F5F14F525382C2 /* UnityNotificationManager.m */; };
 		D085C06443DB1B1B5C6637B6 /* LaunchScreen-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = D556450C3DBEECE838996A3D /* LaunchScreen-iPad.png */; };
@@ -628,7 +629,8 @@
 				63ACF7178776C648B96974EB /* baselib.a in Frameworks */,
 				574A8D1BFDF4103B13A6538A /* GameController.framework in Frameworks */,
 				6B094C47B846A9F4D744D90F /* UserNotifications.framework in Frameworks */,
-				000000000000000000000003 /* EmbraceUnityiOS in Frameworks */,
+				BD714A2ABA3A1A739360F5C9 /* EmbraceUnityiOS in Frameworks */,
+				000000000000000000000003 /* ExampleDependencyName in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,8 +1296,8 @@
 			);
 			name = UnityFramework;
 			packageProductDependencies = (
-				25F2483DBBFC5EA42007311D,
-				000000000000000000000002 /* EmbraceUnityiOS */,
+				25F2483DBBFC5EA42007311D /* EmbraceUnityiOS */,
+				000000000000000000000002 /* ExampleDependencyName */,
 			);
 			productName = UnityFramework;
 			productReference = 9D25AB9D213FB47800354C27 /* UnityFramework.framework */;
@@ -1346,8 +1348,8 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			packageReferences = (
-				91F44DD5BEE05EA51FE729A0,
-				000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */,
+				91F44DD5BEE05EA51FE729A0 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */,
+				000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -2582,7 +2584,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */ = {
+		000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/example-organization/example-package.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.5.6;
+			};
+		};
+		91F44DD5BEE05EA51FE729A0 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/embrace-io/embrace-unity-sdk.git";
 			requirement = {
@@ -2593,9 +2603,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		000000000000000000000002 /* EmbraceUnityiOS */ = {
+		000000000000000000000002 /* ExampleDependencyName */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 000000000000000000000001 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */;
+			package = 000000000000000000000001 /* XCRemoteSwiftPackageReference "example-package" */;
+			productName = ExampleDependencyName;
+		};
+		25F2483DBBFC5EA42007311D /* EmbraceUnityiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91F44DD5BEE05EA51FE729A0 /* XCRemoteSwiftPackageReference "embrace-unity-sdk" */;
 			productName = EmbraceUnityiOS;
 		};
 /* End XCSwiftPackageProductDependency section */
