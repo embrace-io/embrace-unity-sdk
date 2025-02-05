@@ -1,0 +1,116 @@
+name: Test
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Git commit to test
+        required: false
+        type: string
+      linux:
+        description: Run tests on Linux editor
+        required: false
+        type: boolean
+        default: true
+      macos:
+        description: Run tests on macOS editor
+        required: false
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git commit to test
+        required: false
+        type: string
+      linux:
+        description: Run tests on Linux editor
+        required: false
+        type: boolean
+        default: true
+      macos:
+        description: Run tests on macOS editor
+        required: false
+        type: boolean
+        default: false
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test_linux:
+    if: ${{ inputs.linux == true }}
+    strategy:
+      fail-fast: false
+      matrix:
+        build_target: [android, ios]
+        editor:
+          - project: "2021"
+            version: "2021.3.48f1"
+            changeset: "563f33a39012"
+    name: Test Linux (${{ matrix.editor.project}}, ${{ matrix.build_target }})
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.ref }}
+      - name: Run tests
+        uses: ./.github/actions/unity-test
+        with:
+          build_target: ${{ matrix.build_target }}
+          editor_version: ${{ matrix.editor.version }}
+          editor_changeset: ${{ matrix.editor.changeset }}
+          license_email: ${{ secrets.UNITY_EMAIL }}
+          license_password: ${{ secrets.UNITY_PASSWORD }}
+          license_serial: ${{ secrets.UNITY_SERIAL }}
+          project: ${{ matrix.editor.project }}
+  test_macos:
+    if: ${{ inputs.macos == true }}
+    strategy:
+      matrix:
+        editor:
+          - project: "2021"
+            version: "2021.3.48f1"
+            changeset: "563f33a39012"
+    name: Test macOS (${{ matrix.editor.project }})
+    needs: test_linux
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.ref }}
+      - name: Run tests
+        uses: ./.github/actions/unity-test
+        with:
+          editor_version: ${{ matrix.editor.version }}
+          editor_changeset: ${{ matrix.editor.changeset }}
+          license_email: ${{ secrets.UNITY_EMAIL }}
+          license_password: ${{ secrets.UNITY_PASSWORD }}
+          license_serial: ${{ secrets.UNITY_SERIAL }}
+          project: ${{ matrix.editor.project }}
+  report:
+    name: Test Report
+    runs-on: ubuntu-22.04
+    needs:
+      - test_linux
+      - test_macos
+    if: ${{ !failure() && !cancelled() }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.ref }}
+      - name: Download test results
+        uses: actions/download-artifact@v4
+        with:
+          path: ./build
+          pattern: test-results-*
+          merge-multiple: true
+      - name: Render test report
+        run: |
+          python3 .github/scripts/report.py --output "$GITHUB_STEP_SUMMARY" --append
