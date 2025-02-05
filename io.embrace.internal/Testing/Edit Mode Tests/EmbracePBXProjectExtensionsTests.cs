@@ -43,7 +43,7 @@ namespace EmbraceSDK.Tests
             pbxProject.ReadFromFile(GetPBXProjectPath(data.ProjectFile));
             pbxProject.AddLocalPackage(
                 pathToBuiltProject: "Temp/TestAddLocalPackage",
-                sourcePath: Path.GetFullPath("Packages/io.embrace.sdk/iOS/EmbraceUnityIOS"),
+                sourcePath: Path.GetFullPath("Packages/io.embrace.sdk/iOS/EmbraceUnityiOS"),
                 projectPath: "EmbraceUnityiOS",
                 productName: "EmbraceUnityiOS"
             );
