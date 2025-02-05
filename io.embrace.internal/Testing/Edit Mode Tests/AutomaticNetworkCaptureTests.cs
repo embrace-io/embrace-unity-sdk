@@ -16,6 +16,12 @@ using NUnit.Framework;
 
 namespace EmbraceSDK.Tests
 {
+#if UNITY_EDITOR_OSX
+    // CPU lightmapping is not supported on macOS arm64, and recompiling
+    // scripts seems to trigger this to happen, causing an error which causes
+    // test failures on CI (which has no GPU).
+    [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
     public class AutomaticNetworkCaptureTests
     {
         private bool _waitingForRequest;
@@ -54,7 +60,7 @@ namespace EmbraceSDK.Tests
 
         #region UnityWebRequest
         // Data processing errors were treated as exceptions in 2019 and earlier
-        #if UNITY_2020_1_OR_NEWER 
+#if UNITY_2020_1_OR_NEWER
         [UnityTest]
         public IEnumerator UnityWebRequestAssetBundle_LogsDataProcessingErrors_SeparatelyFromSuccessfulRequest()
         {
@@ -71,14 +77,14 @@ namespace EmbraceSDK.Tests
                 bytesOut = (long)request.uploadedBytes;
                 properties.Add("Download Handler", request.downloadHandler.GetType().Name);
                 properties.Add("URL", request.url);
-                properties.Add("Response Code", request.responseCode.ToString() );
+                properties.Add("Response Code", request.responseCode.ToString());
                 properties.Add("Bytes In", request.downloadedBytes.ToString());
                 properties.Add("Bytes Out", request.uploadedBytes.ToString());
                 result = request.result;
             }
 
             // On iOS the native SDK captures UnityWebRequests, so we wouldn't expect to capture it here
-            #if !UNITY_IOS
+#if !UNITY_IOS
             _embraceInstance.provider.Received()
                 .RecordCompletedNetworkRequest(SVG_URL,
                     HTTPMethod.GET,
@@ -87,9 +93,9 @@ namespace EmbraceSDK.Tests
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
                     200);
-            #endif
+#endif
 
-            #if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
+#if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
             if (result == UnityWebRequest.Result.DataProcessingError)
             {
                 _embraceInstance.provider.Received(1)
@@ -98,7 +104,7 @@ namespace EmbraceSDK.Tests
                         Arg.Is<Dictionary<string, string>>(val => DictionariesAreEqual(properties, val)));
             }
             else
-            #endif
+#endif
             {
                 _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                     .LogMessage(expectedErrorMessage,
@@ -123,14 +129,14 @@ namespace EmbraceSDK.Tests
                 bytesOut = (long)request.uploadedBytes;
                 properties.Add("Download Handler", request.downloadHandler.GetType().Name);
                 properties.Add("URL", request.url);
-                properties.Add("Response Code", request.responseCode.ToString() );
+                properties.Add("Response Code", request.responseCode.ToString());
                 properties.Add("Bytes In", request.downloadedBytes.ToString());
                 properties.Add("Bytes Out", request.uploadedBytes.ToString());
                 result = request.result;
             }
 
             // On iOS the native SDK captures UnityWebRequests, so we wouldn't expect to capture it here
-            #if !UNITY_IOS
+#if !UNITY_IOS
             _embraceInstance.provider.Received()
                 .RecordCompletedNetworkRequest(SVG_URL,
                     HTTPMethod.GET,
@@ -139,9 +145,9 @@ namespace EmbraceSDK.Tests
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
                     200);
-            #endif
+#endif
 
-            #if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
+#if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
             if (result == UnityWebRequest.Result.DataProcessingError)
             {
                 _embraceInstance.provider.Received(1)
@@ -150,7 +156,7 @@ namespace EmbraceSDK.Tests
                         Arg.Is<Dictionary<string, string>>(val => DictionariesAreEqual(properties, val)));
             }
             else
-            #endif
+#endif
             {
                 _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                     .LogMessage(expectedErrorMessage,
@@ -174,7 +180,7 @@ namespace EmbraceSDK.Tests
             }
 
             // On iOS the native SDK captures UnityWebRequests, so we wouldn't expect to capture it here
-            #if !UNITY_IOS
+#if !UNITY_IOS
             _embraceInstance.provider.Received(1)
                 .RecordCompletedNetworkRequest(PNG_URL,
                     HTTPMethod.GET,
@@ -183,7 +189,7 @@ namespace EmbraceSDK.Tests
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
                     200);
-            #endif
+#endif
 
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                 .LogMessage(default, default, default);
@@ -197,7 +203,7 @@ namespace EmbraceSDK.Tests
                 return false;
             }
 
-            foreach(KeyValuePair<TKey, TValue> entry in expected)
+            foreach (KeyValuePair<TKey, TValue> entry in expected)
             {
                 if (!actual.TryGetValue(entry.Key, out TValue value) || !value.Equals(entry.Value))
                 {
@@ -207,10 +213,10 @@ namespace EmbraceSDK.Tests
 
             return true;
         }
-        #endif
+#endif
 
         // UnityWebRequests are capture by the native SDK on iOS, so we do not capture them in the Unity SDK on that platform.
-        #if !UNITY_IOS && !UNITY_TVOS
+#if !UNITY_IOS && !UNITY_TVOS
         [EmbraceWeaverExclude]
         [UnityTest]
         public IEnumerator UnityWebRequest_IsNotCapturedWhenExcludedFromWeaving()
@@ -228,7 +234,7 @@ namespace EmbraceSDK.Tests
                     default,
                     default,
                     default);
-            
+
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                 .RecordIncompleteNetworkRequest(default,
                     default,
@@ -269,14 +275,14 @@ namespace EmbraceSDK.Tests
                 isSuccess = (request.responseCode / 100) == 2;
             }
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            
+
             if (isSuccess)
             {
                 _embraceInstance.provider.Received()
                     .RecordCompletedNetworkRequest(GET_URL,
                         HTTPMethod.GET,
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
-                        Arg.Is<long>(t => t >= sendTime && t <= endTime), 
+                        Arg.Is<long>(t => t >= sendTime && t <= endTime),
                         Arg.Any<long>(),
                         Arg.Any<long>(),
                         Arg.Any<int>());
@@ -651,26 +657,21 @@ namespace EmbraceSDK.Tests
             (obj as UnityWebRequestAsyncOperation)?.webRequest.Dispose();
             _waitingForRequest = false;
         }
-        #endif
+#endif
         #endregion UnityWebRequest
 
         #region HttpClient
 
-        [UnityTest]
-        public IEnumerator HttpClient_ConstructedWithNoParams_GetAsyncIsLogged()
+        [Test]
+        public async Task HttpClient_ConstructedWithNoParams_GetAsyncIsLogged()
         {
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             int statusCode;
             using (HttpClient client = new HttpClient())
             {
-                Task<HttpResponseMessage> task = client.GetAsync(GET_URL);
+                var response = await client.GetAsync(GET_URL);
 
-                while (!task.IsCompleted)
-                {
-                    yield return null;
-                }
-
-                statusCode = (int)task.Result.StatusCode;
+                statusCode = (int)response.StatusCode;
             }
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
@@ -684,21 +685,15 @@ namespace EmbraceSDK.Tests
                     statusCode);
         }
 
-        [UnityTest]
-        public IEnumerator HttpClient_PassesEmptyString_AsErrorMessage_WhenStatusIsSuccess()
+        [Test]
+        public async Task HttpClient_PassesEmptyString_AsErrorMessage_WhenStatusIsSuccess()
         {
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             int statusCode;
             using (HttpClient client = new HttpClient())
             {
-                Task<HttpResponseMessage> task = client.GetAsync(GET_URL);
-
-                while (!task.IsCompleted)
-                {
-                    yield return null;
-                }
-
-                statusCode = (int)task.Result.StatusCode;
+                var response = await client.GetAsync(GET_URL);
+                statusCode = (int)response.StatusCode;
             }
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
@@ -726,21 +721,15 @@ namespace EmbraceSDK.Tests
             }
         }
 
-        [UnityTest]
-        public IEnumerator HttpClient_ConstructedWithHandlerParam_GetAsyncIsLogged()
+        [Test]
+        public async Task HttpClient_ConstructedWithHandlerParam_GetAsyncIsLogged()
         {
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             int statusCode;
             using (HttpClient client = new HttpClient(new HttpClientHandler()))
             {
-                Task<HttpResponseMessage> task = client.GetAsync(GET_URL);
-
-                while (!task.IsCompleted)
-                {
-                    yield return null;
-                }
-
-                statusCode = (int)task.Result.StatusCode;
+                var response = await client.GetAsync(GET_URL);
+                statusCode = (int)response.StatusCode;
             }
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
@@ -754,21 +743,15 @@ namespace EmbraceSDK.Tests
                     statusCode);
         }
 
-        [UnityTest]
-        public IEnumerator HttpClient_ConstructedWithHandlerAndBoolParams_GetAsyncIsLogged()
+        [Test]
+        public async Task HttpClient_ConstructedWithHandlerAndBoolParams_GetAsyncIsLogged()
         {
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             int statusCode;
             using (HttpClient client = new HttpClient(new HttpClientHandler(), true))
             {
-                Task<HttpResponseMessage> task = client.GetAsync(GET_URL);
-
-                while (!task.IsCompleted)
-                {
-                    yield return null;
-                }
-
-                statusCode = (int)task.Result.StatusCode;
+                var response = await client.GetAsync(GET_URL);
+                statusCode = (int)response.StatusCode;
             }
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
@@ -782,43 +765,25 @@ namespace EmbraceSDK.Tests
                     statusCode);
         }
 
-        [UnityTest]
-        public IEnumerator HttpClient_IsNotCapturedWhenExcludedFromWeaving()
+        [Test]
+        public async Task HttpClient_IsNotCapturedWhenExcludedFromWeaving()
         {
-            Task<HttpResponseMessage> task = SendHttpClientAsync();
-
-            while (!task.IsCompleted)
-            {
-                yield return null;
-            }
-
+            await SendHttpClientAsync();
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                 .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                 .RecordIncompleteNetworkRequest(default, default, default, default, default);
         }
 
-        [UnityTest]
-        public IEnumerator HttpClient_IsCapturedWhenMethodOverloadsAnExcludedMethodButNotExcludedItself([ValueSource(nameof(_urlSource))] string url)
+        [Test]
+        public async Task HttpClient_IsCapturedWhenMethodOverloadsAnExcludedMethodButNotExcludedItself([ValueSource(nameof(_urlSource))] string url)
         {
-            Task<HttpResponseMessage> excludedTask = SendHttpClientAsync();
-
-            while (!excludedTask.IsCompleted)
-            {
-                yield return null;
-            }
-
+            await SendHttpClientAsync();
             Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
             Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
 
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            Task<HttpResponseMessage> task = SendHttpClientAsync(GET_URL);
-
-            while (!task.IsCompleted)
-            {
-                yield return null;
-            }
-
+            await SendHttpClientAsync(GET_URL);
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             _embraceInstance.provider.Received(1)
