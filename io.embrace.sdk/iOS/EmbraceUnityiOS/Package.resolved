@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/embrace-io/embrace-apple-sdk.git",
       "state" : {
-        "revision" : "14ff0a36ee42bb23036d33564d013b81a8ca1140",
-        "version" : "6.7.1"
+        "revision" : "64ae00d1686d54bcedec47fa280e70e09f3d9db9",
+        "version" : "6.8.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/open-telemetry/opentelemetry-swift",
       "state" : {
-        "revision" : "f2315d8646432c02338960e85b5fe20417ad6d8d",
-        "version" : "1.12.1"
+        "revision" : "2ffffae2a027e2159dbf3fd53de1f25ba6d2d11d",
+        "version" : "1.13.0"
       }
     },
     {

@@ -115,6 +115,43 @@ namespace EmbraceSDK
         /// <param name="severity">will flag the message as one of info, warning, or error for filtering on the dashboard</param>
         /// <param name="properties">an optional dictionary of up to 10 key/value pairs</param>
         void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null);
+        
+        #if UNITY_ANDROID
+        /// <summary>
+        /// Logs an event in your application for aggregation and debugging on the Embrace.io dashboard with:
+        /// - an optional dictionary of up to 10 properties
+        /// - an optional binary blob of up to 1 megabyte
+        /// </summary>
+        /// <param name="message">the name of the message, which is how it will show up on the dashboard</param>
+        /// <param name="severity">will flag the message as one of info, warning, or error for filtering on the dashboard</param>
+        /// <param name="properties">an optional dictionary of up to 10 key/value pairs</param>
+        /// <param name="attachment">an optional binary blob of up to 1 megabyte</param>
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null, sbyte[] attachment = null);
+        #elif UNITY_IOS
+        /// <summary>
+        /// Logs an event in your application for aggregation and debugging on the Embrace.io dashboard with:
+        /// - an optional dictionary of up to 10 properties
+        /// - an optional binary blob of up to 1 megabyte
+        /// </summary>
+        /// <param name="message">the name of the message, which is how it will show up on the dashboard</param>
+        /// <param name="severity">will flag the message as one of info, warning, or error for filtering on the dashboard</param>
+        /// <param name="properties">an optional dictionary of up to 10 key/value pairs</param>
+        /// <param name="attachment">an optional binary blob of up to 1 megabyte</param>
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null, byte[] attachment = null);
+        #endif
+        
+        /// <summary>
+        /// Logs an event in your application for aggregation and debugging on the Embrace.io dashboard with:
+        /// - an optional dictionary of up to 10 properties
+        /// - a link to an attachment hosted somewhere else
+        /// </summary>
+        /// <param name="message">the name of the message, which is how it will show up on the dashboard</param>
+        /// <param name="severity">will flag the message as one of info, warning, or error for filtering on the dashboard</param>
+        /// <param name="properties">an optional dictionary of up to 10 key/value pairs</param>
+        /// <param name="attachmentId">an optional unique guid for the attachment</param>
+        /// <param name="attachmentUrl">an optional reference url for the dashboard to link the download to</param>
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null,
+            string attachmentId = null, string attachmentUrl = null);
 
         /// <summary>
         /// Logs an INFO event in your application for aggregation and debugging on the Embrace.io dashboard.

@@ -31,6 +31,14 @@ namespace EmbraceSDK.Internal
         void RemoveSessionProperty(string key);
         Dictionary<string, string> GetSessionProperties();
         void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties);
+        #if UNITY_ANDROID
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            sbyte[] attachment);
+        #elif UNITY_IOS
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties = null, byte[] attachment = null);
+        #endif
+        void LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            string attachmentId, string attachmentUrl);
         void AddBreadcrumb(string message);
         void EndSession(bool clearUserInfo);
         string GetDeviceId();
