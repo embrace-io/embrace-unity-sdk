@@ -38,16 +38,30 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
+  get_editor_versions:
+    # Use the Makefile to get the editor versions to use in subsequent job matrix values.
+    name: Get editor versions
+    runs-on: ubuntu-22.04
+    outputs:
+      editor_versions: ${{ steps.get_editor_versions.outputs.editor_versions }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.ref }}
+      - id: get_editor_versions
+        name: Get editor versions
+        run: |
+          echo "editor_versions=$(python3 .github/scripts/vars.py versions)" | tee -a "$GITHUB_OUTPUT"
   test_linux:
+    needs: get_editor_versions
     if: ${{ inputs.linux == true }}
     strategy:
       fail-fast: false
       matrix:
         build_target: [android, ios]
-        editor:
-          - project: "2021"
-            version: "2021.3.48f1"
-            changeset: "563f33a39012"
+        editor: ${{ fromJSON(needs.get_editor_versions.outputs.editor_versions) }}
     name: Test Linux (${{ matrix.editor.project}}, ${{ matrix.build_target }})
     runs-on: ubuntu-22.04
     steps:
@@ -67,15 +81,15 @@ jobs:
           license_serial: ${{ secrets.UNITY_SERIAL }}
           project: ${{ matrix.editor.project }}
   test_macos:
+    needs:
+      - get_editor_versions
+      - test_linux
     if: ${{ inputs.macos == true }}
     strategy:
+      max-parallel: 1
       matrix:
-        editor:
-          - project: "2021"
-            version: "2021.3.48f1"
-            changeset: "563f33a39012"
+        editor: ${{ fromJSON(needs.get_editor_versions.outputs.editor_versions) }}
     name: Test macOS (${{ matrix.editor.project }})
-    needs: test_linux
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -94,11 +108,11 @@ jobs:
           project: ${{ matrix.editor.project }}
   report:
     name: Test Report
-    runs-on: ubuntu-22.04
     needs:
       - test_linux
       - test_macos
     if: ${{ !failure() && !cancelled() }}
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

@@ -29,6 +29,7 @@ logger = logging.getLogger("unity")
 
 
 def get_platform() -> Literal["darwin", "linux", "win32"]:
+    """Get a string representing the current platform."""
     if sys.platform == "darwin":
         return "darwin"
     elif sys.platform == "win32":
@@ -366,7 +367,9 @@ class Runner:
             self.logger.info("Tests passed for %s", run_id)
         return return_code
 
-    def run_tests(self, coverage: bool, build_targets: list[str]) -> None:
+    def run_tests(
+        self, coverage: bool, build_targets: list[Literal["android", "ios"]]
+    ) -> None:
         """Run all the types of tests for this version of Unity.
 
         This will run tests for both Android and iOS in EditMode and PlayMode.
@@ -424,8 +427,6 @@ def main() -> None:
 
     _uninstall_parser = subparsers.add_parser("uninstall")
 
-    _platform_parser = subparsers.add_parser("platform")
-
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument(
         "--skip-coverage",
@@ -464,8 +465,6 @@ def main() -> None:
         runner.install(args.changeset, args.module or ["android", "ios"])
     elif args.command == "uninstall":
         runner.uninstall()
-    elif args.command == "platform":
-        print(get_platform())
     elif args.command == "test":
         license = License.from_env() if args.license else None
         if license is not None:
