@@ -120,8 +120,8 @@ namespace EmbraceSDK
         /// <returns></returns>
         public static Embrace Create()
         {
-            #if UNITY_2022_3_OR_NEWER
-            var embraceInstance = FindObjectOfType<Embrace>();
+            #if UNITY_2023_1_OR_NEWER
+            var embraceInstance = FindFirstObjectByType<Embrace>();
             #else
             var embraceInstance = FindObjectOfType<Embrace>();
             #endif

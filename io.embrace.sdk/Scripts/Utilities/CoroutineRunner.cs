@@ -34,7 +34,11 @@ namespace EmbraceSDK.Utilities
             {
                 if (instance == null)
                 {
+#if UNITY_2023_1_OR_NEWER
+                    instance = FindFirstObjectByType<CoroutineRunner>();
+#else
                     instance = FindObjectOfType<CoroutineRunner>();
+#endif
 
                     if (instance == null)
                     {
