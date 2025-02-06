@@ -12,7 +12,7 @@ import tempfile
 import time
 from contextlib import contextmanager
 from os import path
-from typing import Callable, Generator, Literal, Optional
+from typing import Callable, Generator, Literal
 
 if sys.platform == "win32":
     # Force UTF-8 encoding for sys.stdout and sys.stderr
@@ -26,6 +26,16 @@ if sys.platform == "win32":
         )
 
 logger = logging.getLogger("unity")
+
+
+def get_platform() -> Literal["darwin", "linux", "win32"]:
+    """Get a string representing the current platform."""
+    if sys.platform == "darwin":
+        return "darwin"
+    elif sys.platform == "win32":
+        return "win32"
+    else:
+        return "linux"
 
 
 def run(
@@ -153,36 +163,38 @@ class Runner:
     prefixed with things like xvfb-run on Linux.
     """
 
-    hub_path: str
-    """The path to the Unity Hub executable."""
-
     logger: logging.Logger
     """The logger to use for logging messages."""
 
     version: str
     """The version of Unity to use."""
 
-    def __init__(
-        self,
-        version: str,
-        hub_path: str,
-        editor_path: str,
-        editor_binary_path: str,
-        editor_binary_args: Optional[list[str]] = None,
-    ) -> None:
-        self.version = version
-        self.hub_path = hub_path
-        self.editor_path = editor_path
-        self.editor_binary_path = editor_binary_path
-        self.editor_binary_args = [editor_binary_path]
+    def __init__(self, version: str) -> None:
         self.dummy_project_path = get_dummy_project_path()
         self.logger = logging.getLogger(f"unity-{version}")
+        self.version = version
+        if sys.platform == "darwin":
+            self.editor_path = path.join("/Applications/Unity/Hub/Editor", version)
+            self.editor_binary_path = path.join(
+                self.editor_path, "Unity.app/Contents/MacOS/Unity"
+            )
+            self.editor_binary_args = [self.editor_binary_path]
+        elif sys.platform == "win32":
+            raise NotImplementedError("Windows is not supported yet")
+        else:
+            self.editor_path = path.join("/opt/unity/editors", version)
+            self.editor_binary_path = path.join(self.editor_path, "Editor/Unity")
+            self.editor_binary_args = [
+                "xvfb-run",
+                "--auto-servernum",
+                self.editor_binary_path,
+            ]
 
     def is_installed(self) -> bool:
         """Check if the Unity editor is installed."""
         return path.exists(self.editor_binary_path)
 
-    def install(self, changeset: str) -> None:
+    def install(self, changeset: str, modules: list[str]) -> None:
         """Install the Unity editor."""
         if self.is_installed():
             self.logger.info("Editor is already installed")
@@ -191,27 +203,26 @@ class Runner:
         architecture = "x86_64"
         if sys.platform == "darwin" and platform.machine() == "arm64":
             architecture = "arm64"
-        run(
-            [
-                self.hub_path,
-                "--",
-                "--headless",
-                "install",
-                "--version",
-                self.version,
-                "--changeset",
-                changeset,
-                "--module",
-                "android",
-                "--module",
-                "ios",
-                "--childModules",
-                "--architecture",
-                architecture,
-            ],
-            self.logger,
-            raise_on_error=True,
-        )
+        if sys.platform == "darwin":
+            args = ["/Applications/Unity Hub.app/Contents/MacOS/Unity Hub", "--"]
+        elif sys.platform == "win32":
+            raise NotImplementedError("Windows is not supported yet")
+        else:
+            args = ["/usr/bin/unity-hub"]
+        args += [
+            "--headless",
+            "install",
+            "--version",
+            self.version,
+            "--changeset",
+            changeset,
+            "--architecture",
+            architecture,
+            "--childModules",
+        ]
+        for module in modules:
+            args += ["--module", module]
+        run(args, self.logger, raise_on_error=True)
         self.logger.info("Installed editor")
 
     def uninstall(self) -> None:
@@ -272,7 +283,8 @@ class Runner:
 
     def return_license(self, license: License) -> None:
         """Deactivate a Unity license."""
-        run(
+        self.logger.info("Returning Unity license")
+        return_code = run(
             self.editor_binary_args
             + [
                 "-batchmode",
@@ -290,8 +302,12 @@ class Runner:
             ],
             self.logger,
             logger_filter=lambda line: "[Licensing::Client]" in line,
-            raise_on_error=True,
+            raise_on_error=False,
         )
+        if return_code != 0:
+            self.logger.warning("Error returning license (%d), ignoring", return_code)
+        else:
+            self.logger.info("Returned Unity license")
 
     def run_test(
         self,
@@ -352,8 +368,7 @@ class Runner:
         return return_code
 
     def run_tests(
-        self,
-        coverage: bool,
+        self, coverage: bool, build_targets: list[Literal["android", "ios"]]
     ) -> None:
         """Run all the types of tests for this version of Unity.
 
@@ -366,23 +381,12 @@ class Runner:
         if not path.exists(project_path):
             raise FileNotFoundError(f"Unity project not found: {project_path}")
         self.logger.info("Running tests for %s", year)
-        for build_target in ("android", "ios"):
+        for build_target in build_targets:
             for test_platform in ("editmode", "playmode"):
-                run_id = f"{year}-{build_target}-{test_platform}"
+                run_id = f"{year}-{get_platform()}-{build_target}-{test_platform}"
                 self.run_test(
                     run_id, project_path, build_target, test_platform, coverage
                 )
-
-    @classmethod
-    def create_for_platform(cls, version: str) -> "Runner":
-        """Create a Runner for the current platform."""
-        editor_path = path.join("/Applications/Unity/Hub/Editor", version)
-        return cls(
-            version,
-            hub_path="/Applications/Unity Hub.app/Contents/MacOS/Unity Hub",
-            editor_path=path.join("/Applications/Unity/Hub/Editor", version),
-            editor_binary_path=path.join(editor_path, "Unity.app/Contents/MacOS/Unity"),
-        )
 
 
 class ColorFormatter(logging.Formatter):
@@ -413,10 +417,15 @@ def main() -> None:
 
     install_parser = subparsers.add_parser("install")
     install_parser.add_argument("--changeset", type=str, required=True)
+    install_parser.add_argument(
+        "--module",
+        type=str,
+        action="append",
+        choices=["android", "ios"],
+        help="Which modules to install",
+    )
 
     _uninstall_parser = subparsers.add_parser("uninstall")
-
-    _platform_parser = subparsers.add_parser("platform")
 
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument(
@@ -433,6 +442,13 @@ def main() -> None:
         default=True,
         help="Skip activating the Unity license",
     )
+    test_parser.add_argument(
+        "--build-target",
+        type=str,
+        action="append",
+        choices=["android", "ios"],
+        help="The build targets to run tests for",
+    )
 
     args = parser.parse_args(sys.argv[1:])
 
@@ -444,26 +460,25 @@ def main() -> None:
     root_logger.addHandler(console_handler)
     root_logger.setLevel(console_handler.level)
 
-    runner = Runner.create_for_platform(args.version)
+    runner = Runner(args.version)
     if args.command == "install":
-        runner.install(args.changeset)
+        runner.install(args.changeset, args.module or ["android", "ios"])
     elif args.command == "uninstall":
         runner.uninstall()
-    elif args.command == "platform":
-        if sys.platform == "darwin":
-            print("darwin")
-        elif sys.platform == "win32":
-            print("win32")
-        else:
-            print("linux")
     elif args.command == "test":
         license = License.from_env() if args.license else None
         if license is not None:
             with runner.license(license):
-                runner.run_tests(coverage=args.coverage)
+                runner.run_tests(
+                    coverage=args.coverage,
+                    build_targets=(args.build_target or ["android", "ios"]),
+                )
         else:
             logger.info("Skipping Unity license activation")
-            runner.run_tests(coverage=args.coverage)
+            runner.run_tests(
+                coverage=args.coverage,
+                build_targets=(args.build_target or ["android", "ios"]),
+            )
     else:
         raise ValueError(f"Invalid command: {args.command}")
 
