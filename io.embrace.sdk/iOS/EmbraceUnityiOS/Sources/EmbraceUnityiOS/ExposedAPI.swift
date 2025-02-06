@@ -227,7 +227,7 @@ public func embrace_log_message_with_severity_and_properties(message: UnsafePoin
 }
 
 @_cdecl("embrace_log_message_with_attachment")
-public func embrace_log_message_with_attachment(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?, 
+public func embrace_log_message_with_attachment(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?,
     propsJson: UnsafePointer<CChar>?, attachment: UnsafePointer<UInt8>?, length: Int) {
     guard let message, let severity else {
         return
@@ -239,20 +239,19 @@ public func embrace_log_message_with_attachment(message: UnsafePointer<CChar>?, 
 
     let attachmentData = Data(bytes: data, count: length)
 
-    if let _message = String(validatingUTF8: message), 
+    if let _message = String(validatingUTF8: message),
         let _severity = String(validatingUTF8: severity) {
         EmbraceManager.logMessageWithAttachment(message: _message,
-                                                           severity: _severity,
-                                                           properties: 
-                                                            unpack_json_to_typed_dictionary(
+                                                severity: _severity,
+                                                attributes: unpack_json_to_typed_dictionary(
                                                                 jsonStr: propsJson,
                                                                 converter: { (str: String) -> String in str }),
-                                                           attachment: attachmentData)
+                                                attachment: attachmentData)
     }
 }
 
 @_cdecl("embrace_log_message_with_attachment_url")
-public func embrace_log_message_with_attachment_url(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?, 
+public func embrace_log_message_with_attachment_url(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?,
     propsJson: UnsafePointer<CChar>?, attachmentId: UnsafePointer<CChar>?, attachmentUrl: UnsafePointer<CChar>?) {
     guard let message, let severity else {
         return
@@ -263,18 +262,17 @@ public func embrace_log_message_with_attachment_url(message: UnsafePointer<CChar
         return
     }
 
-    if let _message = String(validatingUTF8: message), 
+    if let _message = String(validatingUTF8: message),
         let _severity = String(validatingUTF8: severity),
         let _attachmentId = String(validatingUTF8: attachmentId),
         let _attachmentUrl = String(validatingUTF8: attachmentUrl) {
         EmbraceManager.logMessageWithAttachmentUrl(message: _message,
-                                                           severity: _severity,
-                                                           properties: 
-                                                            unpack_json_to_typed_dictionary(
-                                                                jsonStr: propsJson,
-                                                                converter: { (str: String) -> String in str }),
-                                                           attachmentId: _attachmentId,
-                                                           attachmentUrl: _attachmentUrl)
+                                                   severity: _severity,
+                                                   attributes: unpack_json_to_typed_dictionary(
+                                                                   jsonStr: propsJson,
+                                                                   converter: { (str: String) -> String in str }),
+                                                   attachmentId: _attachmentId,
+                                                   attachmentUrl: _attachmentUrl)
     }
 }
 
