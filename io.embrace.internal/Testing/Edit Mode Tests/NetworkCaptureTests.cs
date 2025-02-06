@@ -14,6 +14,12 @@ using UnityEngine.TestTools;
 namespace EmbraceSDK.Tests
 {
     [EmbraceWeaverExclude]
+#if UNITY_EDITOR_OSX
+    // CPU lightmapping is not supported on macOS arm64, and recompiling
+    // scripts seems to trigger this to happen, causing an error which causes
+    // test failures on CI (which has no GPU).
+    [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
     public class NetworkCaptureTests
     {
         private const string GET_URL = "https://embrace-io.github.io/embrace-unity-sdk/index.html";
@@ -30,7 +36,7 @@ namespace EmbraceSDK.Tests
         }
 
         // NetworkCapture does not log requests on iOS because the native SDK captures them
-        #if !UNITY_IOS
+#if !UNITY_IOS
         [Test]
         public void NetworkCapture_SendWebRequest_ThrowIfRequestIsNull()
         {
@@ -67,7 +73,7 @@ namespace EmbraceSDK.Tests
             NetworkCapture.DisposeWebRequest(postStartRequest);
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            
+
             AssertAgainstNetworkRequestProvider(GET_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
@@ -93,7 +99,7 @@ namespace EmbraceSDK.Tests
             }
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            
+
             AssertAgainstNetworkRequestProvider(GET_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
@@ -119,40 +125,40 @@ namespace EmbraceSDK.Tests
             }
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            
+
             AssertAgainstNetworkRequestProvider(PROTOCOL_ERROR_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
         [UnityTest]
         public IEnumerator NetworkCapture_IncludesErrorMessage_OnConnectionErrors()
         {
-             Embrace.Instance.StartSDK();
+            Embrace.Instance.StartSDK();
 
-             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-             long bytesin, bytesout;
-             int statusCode;
-             string error;
+            long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            long bytesin, bytesout;
+            int statusCode;
+            string error;
 
-             using (UnityWebRequest request = UnityWebRequest.Get(INVALID_URL))
-             {
-                 yield return NetworkCapture.SendWebRequest(request);
+            using (UnityWebRequest request = UnityWebRequest.Get(INVALID_URL))
+            {
+                yield return NetworkCapture.SendWebRequest(request);
 
-                 bytesin = (long)request.downloadedBytes;
-                 bytesout = (long)request.uploadedBytes;
-                 statusCode = (int)request.responseCode;
-                 error = request.error;
+                bytesin = (long)request.downloadedBytes;
+                bytesout = (long)request.uploadedBytes;
+                statusCode = (int)request.responseCode;
+                error = request.error;
 
-                 yield return new WaitForSecondsRealtime(1f);
-             }
+                yield return new WaitForSecondsRealtime(1f);
+            }
 
-             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-             
-             AssertAgainstNetworkRequestProvider(INVALID_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
+            long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+
+            AssertAgainstNetworkRequestProvider(INVALID_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
-        
+
         private void AssertAgainstNetworkRequestProvider(string url, HTTPMethod method, long startTime, long endTime, long bytesin, long bytesout, int statusCode, string error)
         {
-            if(error != string.Empty)
+            if (error != string.Empty)
             {
                 Embrace.Instance.provider.Received()
                     .RecordIncompleteNetworkRequest(url,
@@ -173,7 +179,7 @@ namespace EmbraceSDK.Tests
                         statusCode);
             }
         }
-        #endif
+#endif
 
         [UnityTest]
         public IEnumerator EmbraceLoggingHttpMessageHandler_LogsOnException()
@@ -187,7 +193,7 @@ namespace EmbraceSDK.Tests
 
             var task = client.GetAsync(badUrl);
 
-            while(!task.IsCompleted)
+            while (!task.IsCompleted)
             {
                 yield return null;
             }
@@ -205,29 +211,29 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator EmbraceLoggingHttpMessageHandler_OmitsErrorMessage_OnProtocolErrors()
         {
-             HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler();
+            HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler();
 
-             Embrace.Instance.StartSDK();
+            Embrace.Instance.StartSDK();
 
-             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-             var task = client.GetAsync(PROTOCOL_ERROR_URL);
+            var task = client.GetAsync(PROTOCOL_ERROR_URL);
 
-             while(!task.IsCompleted)
-             {
-                 yield return null;
-             }
-             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+            long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
-             Embrace.Instance.provider.Received()
-                 .RecordCompletedNetworkRequest(
-                     Arg.Is<string>(PROTOCOL_ERROR_URL),
-                     HTTPMethod.GET,
-                     Arg.Is<long>(t => t >= startTime && t <= endTime),
-                     Arg.Is<long>(t => t >= startTime && t <= endTime),
-                     Arg.Any<long>(),
-                     Arg.Any<long>(),
-                     Arg.Is<int>(500));
+            Embrace.Instance.provider.Received()
+                .RecordCompletedNetworkRequest(
+                    Arg.Is<string>(PROTOCOL_ERROR_URL),
+                    HTTPMethod.GET,
+                    Arg.Is<long>(t => t >= startTime && t <= endTime),
+                    Arg.Is<long>(t => t >= startTime && t <= endTime),
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Is<int>(500));
         }
 
         [UnityTest]
@@ -237,7 +243,7 @@ namespace EmbraceSDK.Tests
 
             var task = client.GetAsync(GET_URL);
 
-            while(!task.IsCompleted)
+            while (!task.IsCompleted)
             {
                 yield return null;
             }
@@ -258,7 +264,7 @@ namespace EmbraceSDK.Tests
 
             var task = client.GetAsync(GET_URL);
 
-            while(!task.IsCompleted)
+            while (!task.IsCompleted)
             {
                 yield return null;
             }
@@ -286,7 +292,7 @@ namespace EmbraceSDK.Tests
 
             var task = client.GetAsync(GET_URL);
 
-            while(!task.IsCompleted)
+            while (!task.IsCompleted)
             {
                 yield return null;
             }
@@ -305,7 +311,7 @@ namespace EmbraceSDK.Tests
 
         private string GetExpectedErrorMessage(UnityWebRequest request)
         {
-            #if UNITY_2020_1_OR_NEWER
+#if UNITY_2020_1_OR_NEWER
             switch (request.result)
             {
                 case UnityWebRequest.Result.ConnectionError:
@@ -313,9 +319,9 @@ namespace EmbraceSDK.Tests
 
                 default: return string.Empty;
             }
-            #else
+#else
             return request.isNetworkError ? (request.error ?? string.Empty) : string.Empty;
-            #endif
+#endif
         }
 
         private string GetExpectedErrorMessage(Task<HttpResponseMessage> task)

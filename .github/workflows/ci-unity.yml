@@ -18,3 +18,47 @@ jobs:
     name: Build
     uses: ./.github/workflows/build.yml
     secrets: inherit
+  test-macos:
+    name: Test macOS
+    runs-on: macos-latest
+    needs:
+      - build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Install Unity Hub
+        run: |
+          brew install --cask unity-hub
+      - name: Install Unity
+        run: |
+          python3 .github/scripts/unity.py --version 2021.3.48f1 install --changeset 563f33a39012
+      - name: Run tests
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        run: |
+          python3 .github/scripts/unity.py --version 2021.3.48f1 test
+      - name: Uninstall Unity
+        run: |
+          python3 .github/scripts/unity.py --version 2021.3.48f1 uninstall
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./build/test-results
+      - name: Upload test logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: ./build/test-logs
+      - name: Upload coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-results
+          path: ./build/coverage-results
+      - name: Render test report
+        run: |
+          python3 .github/scripts/report.py | tee -a $GITHUB_STEP_SUMMARY

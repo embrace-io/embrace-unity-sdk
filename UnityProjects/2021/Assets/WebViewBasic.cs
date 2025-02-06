@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WebViewBasic : MonoBehaviour
 {
+#if UNITY_IOS
     void Start()
     {
         _embrace_basic_open_web_view("meow");
@@ -12,4 +13,5 @@ public class WebViewBasic : MonoBehaviour
 
     [DllImport("__Internal")]
     static extern void _embrace_basic_open_web_view(string url);
+#endif
 }

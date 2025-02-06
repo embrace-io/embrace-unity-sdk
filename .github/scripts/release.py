@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Automates the process of tagging and verifying releases."""
 
 import argparse
 import json

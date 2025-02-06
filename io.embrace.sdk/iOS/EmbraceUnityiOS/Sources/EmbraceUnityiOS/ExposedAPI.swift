@@ -1,3 +1,9 @@
+//
+// Copyright © 2025 Embrace Mobile, Inc. All rights reserved.
+//
+// Created for internal use by the Embrace Unity SDK. Edit at your own risk.
+//
+
 import Foundation
 import EmbraceOTelInternal
 import OpenTelemetryApi
@@ -12,14 +18,14 @@ public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
     guard let appId else {
         return false;
     }
-    
+
     var _appGroupId: String?
     if let appGroupId {
         _appGroupId = String(validatingUTF8: appGroupId)
     } else {
         _appGroupId = nil;
     }
-    
+
     var endpoints: (baseUrl: String,
                      devBaseUrl: String,
                      configBaseUrl: String)? = nil;
@@ -30,14 +36,14 @@ public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
             endpoints = (_baseUrl, _devBaseUrl, _configBaseUrl)
         }
     }
-    
+
     if let _appId = String(validatingUTF8: appId) {
         return EmbraceManager.startNativeSDK(appId: _appId,
                                              config: ConfigOptions(rawValue: config),
                                              appGroupId: _appGroupId,
                                              endpoints: endpoints)
     }
-    
+
     return false;
 }
 
@@ -61,7 +67,7 @@ public func embrace_set_unity_metadata(unityVersion: UnsafePointer<CChar>?, buil
     guard let unityVersion, let buildGuid, let sdkVersion else {
         return
     }
-    
+
     if let _unityVersion = String(validatingUTF8: unityVersion), let _buildGuid = String(validatingUTF8: buildGuid), let _sdkVersion = String(validatingUTF8: sdkVersion) {
         _ = EmbraceManager.addResource(key: "hosted_platform_version", value: _unityVersion, lifespan: .process)
         _ = EmbraceManager.addResource(key: "unity_build_id", value: _buildGuid, lifespan: .process)
@@ -97,7 +103,7 @@ public func embrace_set_user_identifier(userIdentifier: UnsafePointer<CChar>?) {
     guard let userIdentifier else {
         return
     }
-    
+
     if let _userIdentifier = String(validatingUTF8: userIdentifier) {
         EmbraceManager.setUserIdentifier(userIdentifier: _userIdentifier)
     }
@@ -113,7 +119,7 @@ public func embrace_add_breadcrumb(event: UnsafePointer<CChar>?) {
     guard let event else {
         return
     }
-    
+
     if let _event = String(validatingUTF8: event) {
         EmbraceManager.addBreadCrumb(event: _event)
     }
@@ -124,7 +130,7 @@ public func embrace_set_username(username: UnsafePointer<CChar>?) {
     guard let username else {
         return
     }
-    
+
     if let _username = String(validatingUTF8: username) {
         EmbraceManager.setUsername(userName: _username)
     }
@@ -140,7 +146,7 @@ public func embrace_set_user_email(email: UnsafePointer<CChar>?) {
     guard let email else {
         return
     }
-    
+
     if let _email = String(validatingUTF8: email) {
         EmbraceManager.setUserEmail(userEmail: _email)
     }
@@ -156,7 +162,7 @@ public func embrace_add_user_persona(persona: UnsafePointer<CChar>?) {
     guard let persona else {
         return
     }
-    
+
     if let _persona = String(validatingUTF8: persona) {
         _ = EmbraceManager.addUserPersona(persona: _persona)
     }
@@ -167,7 +173,7 @@ public func embrace_clear_user_persona(persona: UnsafePointer<CChar>?) {
     guard let persona else {
         return
     }
-    
+
     if let _persona = String(validatingUTF8: persona) {
         _ = EmbraceManager.clearUserPersona(persona: _persona)
     }
@@ -183,11 +189,11 @@ public func embrace_add_session_property(key: UnsafePointer<CChar>?, value: Unsa
     guard let key, let value else {
         return false
     }
-    
+
     if let _key = String(validatingUTF8: key), let _value = String(validatingUTF8: value) {
         return EmbraceManager.addSessionProperty(key: _key, value: _value, permanent: permanent)
     }
-    
+
     return false
 }
 
@@ -196,7 +202,7 @@ public func embrace_remove_session_property(key: UnsafePointer<CChar>?) {
     guard let key else {
         return
     }
-    
+
     if let _key = String(validatingUTF8: key) {
         _ = EmbraceManager.removeSessionProperty(key: _key)
     }
@@ -204,16 +210,16 @@ public func embrace_remove_session_property(key: UnsafePointer<CChar>?) {
 
 @_cdecl("embrace_log_message_with_severity_and_properties")
 public func embrace_log_message_with_severity_and_properties(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?, propsJson: UnsafePointer<CChar>?) {
-    
+
     guard let message, let severity else {
         return
     }
-    
-    if let _message = String(validatingUTF8: message), 
+
+    if let _message = String(validatingUTF8: message),
         let _severity = String(validatingUTF8: severity) {
         EmbraceManager.logMessageWithSeverityAndProperties(message: _message,
                                                            severity: _severity,
-                                                           properties: 
+                                                           properties:
                                                             unpack_json_to_typed_dictionary(
                                                                 jsonStr: propsJson,
                                                                 converter: { (str: String) -> String in str }))
@@ -235,12 +241,12 @@ public func embrace_start_view(viewName: UnsafePointer<CChar>?) -> UnsafeMutable
     guard let viewName else {
         return nil
     }
-    
+
     if let _viewName = String(validatingUTF8: viewName) {
         let viewId = EmbraceManager.startView(viewName: _viewName)
         return convert_str_to_cstr_pointer(str: viewId)
     }
-    
+
     return nil
 }
 
@@ -249,11 +255,11 @@ public func embrace_end_view(viewId: UnsafePointer<CChar>?) -> Bool {
     guard let viewId else {
         return false
     }
-    
+
     if let _viewId = String(validatingUTF8: viewId) {
         return EmbraceManager.endView(spanId: _viewId)
     }
-    
+
     return false
 }
 
@@ -269,7 +275,7 @@ public func embrace_log_network_request(url: UnsafePointer<CChar>?,
     guard let url, let httpMethod else {
         return
     }
-    
+
     if let _url = String(validatingUTF8: url), let _httpMethod = String(validatingUTF8: httpMethod) {
         if let error, let _error = String(validatingUTF8: error) {
             EmbraceManager.logNetworkRequest(url: _url,
@@ -303,7 +309,7 @@ public func embrace_log_network_client_error(url: UnsafePointer<CChar>?,
     guard let url, let httpMethod, let errorType, let errorMessage else {
         return
     }
-    
+
     if let _url = String(validatingUTF8: url),
        let _httpMethod = String(validatingUTF8: httpMethod),
        let _errorType = String(validatingUTF8: errorType),
@@ -322,7 +328,7 @@ public func embrace_start_span(name: UnsafePointer<CChar>?, parentSpanId: Unsafe
     guard let name else {
         return nil
     }
-    
+
     if let _name = String(validatingUTF8: name) {
         if let parentSpanId, let _parentSpanId = String(validatingUTF8: parentSpanId)  {
             let spanId = EmbraceManager.startSpan(name: _name, parentSpanId: _parentSpanId, startTimeMs: startTimeMs)
@@ -333,7 +339,7 @@ public func embrace_start_span(name: UnsafePointer<CChar>?, parentSpanId: Unsafe
             return convert_str_to_cstr_pointer(str: spanId)
         }
     }
-    
+
     return nil
 }
 
@@ -342,11 +348,11 @@ public func embrace_stop_span(spanId: UnsafePointer<CChar>?, errorCodeString: Un
     guard let spanId, let errorCodeString else {
         return false
     }
-    
+
     if let _spanid = String(validatingUTF8: spanId), let _errorCodeString = String(validatingUTF8: errorCodeString) {
         return EmbraceManager.stopSpan(spanId: _spanid, errorCodeString: _errorCodeString, endTimeMs: endTimeMs)
     }
-    
+
     return false
 }
 
@@ -355,7 +361,7 @@ public func embrace_add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: 
     guard let spanId, let name, let attributesJson else {
         return false
     }
-    
+
     if let _spanid = String(validatingUTF8: spanId),
         let _name = String(validatingUTF8: name) {
         return EmbraceManager.addSpanEventToSpan(spanId: _spanid,
@@ -365,7 +371,7 @@ public func embrace_add_span_event_to_span(spanId: UnsafePointer<CChar>?, name: 
                                             jsonStr: attributesJson,
                                             converter: { (str: String) -> AttributeValue in AttributeValue(str) } ))
     }
-    
+
     return false
 }
 
@@ -374,11 +380,11 @@ public func embrace_add_span_attribute_to_span(spanId: UnsafePointer<CChar>?, ke
     guard let spanId, let key, let value else {
         return false
     }
-    
+
     if let _spanId = String(validatingUTF8: spanId), let _key = String(validatingUTF8: key), let _value = String(validatingUTF8: value) {
         return EmbraceManager.addSpanAttributeToSpan(spanId: _spanId, key: _key, value: _value)
     }
-    
+
     return false
 }
 
@@ -394,12 +400,12 @@ public func embrace_record_completed_span(
         guard let name, let errorCodeString else {
             return false
         }
-        
+
         var _parentSpanId: String = "";
         if let parentSpanId {
             _parentSpanId = String(validatingUTF8: parentSpanId) ?? ""
         }
-        
+
         var events: [RecordingSpanEvent]? = nil;
         if let eventsJson,
            let jsonData = String(validatingUTF8: eventsJson)?.data(using: .utf8) {
@@ -414,7 +420,7 @@ public func embrace_record_completed_span(
                 print("Error decoding JSON array: \(e.localizedDescription)")
             }
         }
-        
+
         if let _name = String(validatingUTF8: name),
            let _errorCodeString = String(validatingUTF8: errorCodeString) {
             var attributes = unpack_json_to_typed_dictionary(
@@ -428,7 +434,7 @@ public func embrace_record_completed_span(
                                                attributes: &attributes,
                                                events: events ?? [])
         }
-        
+
         return false
 }
 
@@ -439,7 +445,7 @@ public func embrace_log_handled_exception(name: UnsafePointer<CChar>?,
     guard let name, let message, let stacktrace else {
         return
     }
-    
+
     if let _name = String(validatingUTF8: name),
        let _message = String(validatingUTF8: message),
        let _stacktrace = String(validatingUTF8: stacktrace) {
@@ -454,7 +460,7 @@ public func embrace_log_unhandled_exception(name: UnsafePointer<CChar>?,
     guard let name, let message, let stacktrace else {
         return
     }
-    
+
     if let _name = String(validatingUTF8: name),
        let _message = String(validatingUTF8: message),
        let _stacktrace = String(validatingUTF8: stacktrace) {
@@ -467,7 +473,7 @@ public func embrace_log_push_notification(title: UnsafePointer<CChar>?, body: Un
     guard let title, let body, let subtitle, let category else {
         return
     }
-    
+
     if let _title = String(validatingUTF8: title),
        let _body = String(validatingUTF8: body),
        let _subtitle = String(validatingUTF8: subtitle),
@@ -489,18 +495,18 @@ private func unpack_event_array_to_event_object_array(events: [[String: Any]]) -
 }
 
 private func unpack_event_to_tuple(event: [String:Any]) -> (name: String, date: Date, attributes: [String: AttributeValue]) {
-    
+
     // This conversion is pretty fragile. Is there anything we can do to limit impact?
     let name = event["name"] as? String ?? ""
     let timestamp = Double(event["timestampMs"] as? Int64 ?? 0)
     let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000.0))
     let attributes = event["attributes"] as? [String: String] ?? [:]
-    
+
     var conv_attr = [String: AttributeValue]()
     for (key, value) in attributes {
         conv_attr[key] = AttributeValue(value)
     }
-    
+
     return (name, date, conv_attr)
 }
 
@@ -511,18 +517,18 @@ private func unpack_json_to_typed_dictionary<T>(jsonStr: UnsafePointer<CChar>?,
         do {
             if let string_dict = try JSONSerialization.jsonObject(with: jsonData) as? [String: String] {
                 var typed_dict: [String: T] = [:]
-                
+
                 for (key, value) in string_dict {
                     typed_dict[key] = converter(value)
                 }
-                
+
                 return typed_dict
             }
         } catch let e {
             print("Failed to deserialize JSON \(e.localizedDescription)")
         }
     }
-    
+
     return [String: T]()
 }
 

@@ -6,9 +6,11 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.TestTools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Object = UnityEngine.Object;
+using System;
 #if UNITY_IOS || UNITY_TVOS
 using UnityEditor.iOS.Xcode;
 #endif
@@ -47,9 +49,15 @@ namespace EmbraceSDK.Tests
             //   3. root property "ndk_enabled"
             var defaultConfigJson = JsonConvert.SerializeObject(androidConfig, new JsonSerializerSettings { ContractResolver = new SDKConfigContractResolver() });
             var defaultConfigJObject = JObject.Parse(defaultConfigJson);
-            var defaultRootProperties = defaultConfigJObject.Properties().Count();
+            var defaultRootProperties = defaultConfigJObject.Properties().Select(p => p.Name).ToList();
+            defaultRootProperties.Sort();
 
-            Assert.AreEqual(3, defaultRootProperties);
+            // TODO: This should be 3 instead of 4 once we are not forcing
+            // sdk_config to be included. See SdkConfig#ShouldSerialize comment.
+            Assert.AreEqual(
+                new List<string>() { "api_token", "app_id", "ndk_enabled", "sdk_config" },
+                defaultRootProperties
+            );
 
             // Override 3 nested properties in the "sdk_config" object of type boolean, int, string, and List<T> respectively.
             androidConfig.sdk_config.app.report_disk_usage = false;
@@ -59,9 +67,13 @@ namespace EmbraceSDK.Tests
 
             var overrideConfigJson = JsonConvert.SerializeObject(androidConfig, new JsonSerializerSettings { ContractResolver = new SDKConfigContractResolver() });
             var overrideConfigJObject = JObject.Parse(overrideConfigJson);
-            var overrideNestedProperties = overrideConfigJObject["sdk_config"].Children().Count();
+            var overrideNestedProperties = overrideConfigJObject["sdk_config"].Children().Select(t => t.Path).ToList();
+            overrideNestedProperties.Sort();
 
-            Assert.AreEqual(3, overrideNestedProperties);
+            Assert.AreEqual(
+                new List<string>() { "sdk_config.app", "sdk_config.networking", "sdk_config.session" },
+                overrideNestedProperties
+            );
 
             // Clear all nested overrides. Root nodes should be 3 ("app_id", "api_token", and "ndk_enabled").
             androidConfig.sdk_config.app.report_disk_usage = true;
@@ -71,8 +83,15 @@ namespace EmbraceSDK.Tests
 
             overrideConfigJson = JsonConvert.SerializeObject(androidConfig, new JsonSerializerSettings { ContractResolver = new SDKConfigContractResolver() });
             overrideConfigJObject = JObject.Parse(overrideConfigJson);
+            var overrideRootProperties = overrideConfigJObject.Properties().Select(p => p.Name).ToList();
+            overrideRootProperties.Sort();
 
-            Assert.AreEqual(3, overrideConfigJObject.Properties().Count());
+            // TODO: This should be 3 instead of 4 once we are not forcing
+            // sdk_config to be included. See SdkConfig#ShouldSerialize comment.
+            Assert.AreEqual(
+                new List<string>() { "api_token", "app_id", "ndk_enabled", "sdk_config" },
+                overrideRootProperties
+            );
 
             //cleanup
             Object.DestroyImmediate(androidConfig);
@@ -120,6 +139,12 @@ namespace EmbraceSDK.Tests
         /// Test Android build.
         /// </summary>
         [Test, Order(1)]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void BuildAndroidTest()
         {
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
@@ -176,6 +201,12 @@ namespace EmbraceSDK.Tests
         /// Test iOS build.
         /// </summary>
         [Test, Order(1)]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void BuildiOSTest()
         {
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
@@ -267,6 +298,12 @@ namespace EmbraceSDK.Tests
         /// Test if plist has deserializedConfig values from EmbraceConfiguration.
         /// </summary>
         [Test, Order(2)]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void ConfigToPlistDocumentTest()
         {
             if (!_hasBuiltIOS)
@@ -426,6 +463,12 @@ namespace EmbraceSDK.Tests
         /// Test if .pbxproj file is created.
         /// </summary>
         [Test, Order(2)]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void PBXProjectTest()
         {
             if (!_hasBuiltIOS)
@@ -438,6 +481,12 @@ namespace EmbraceSDK.Tests
         }
 
         [Test, Order(500)] // The intention is for this test to go last
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void BuildiOSSimulatorTest()
         {
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
@@ -449,7 +498,7 @@ namespace EmbraceSDK.Tests
 
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
-            
+
             Assert.DoesNotThrow(() => BuildiOS(true));
 
             // This is an issue with 2019 where the defaultConfig does not survive the build process
@@ -458,14 +507,20 @@ namespace EmbraceSDK.Tests
             {
                 defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
             }
-            
+
             //cleanup
             TestHelper.ConfigRestore(defaultConfig);
         }
 
-         #if UNITY_2020_1_OR_NEWER && !EMBRACE_DISABLE_IL2CPP_SYMBOL_MAPPING
+#if UNITY_2020_1_OR_NEWER && !EMBRACE_DISABLE_IL2CPP_SYMBOL_MAPPING
         // Unity 2019 does not generate this file properly, so we can only test if it matches ours in 2020+
         [Test, Order(501)]
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
         public void EmbraceIl2CppUtility_ParseLineMappingsFromSourceInfo_ReturnsSameResult_AsUnityDefault()
         {
             if (!_hasBuiltIOS)
@@ -510,9 +565,9 @@ namespace EmbraceSDK.Tests
                 }
             }
         }
-        #endif
+#endif
 
-        private T GetAttribute<T>(System.Reflection.MemberInfo member, bool inherit) 
+        private T GetAttribute<T>(System.Reflection.MemberInfo member, bool inherit)
             where T : System.Attribute
         {
             object[] attributes = member.GetCustomAttributes(inherit);
@@ -525,7 +580,7 @@ namespace EmbraceSDK.Tests
             }
             return null;
         }
-        
+
         // In Unity 2019.3 the iOS target was split into two targets, a launcher and the framework.
         // We have to be able to integrate with both target setups.
 #if UNITY_2019_3_OR_NEWER
@@ -557,7 +612,7 @@ namespace EmbraceSDK.Tests
 
             BuildReport report = default;
             BuildSummary summary = default;
-            
+
             if (buildSimulator)
             {
                 var userSdkVersion = PlayerSettings.iOS.sdkVersion;
@@ -565,7 +620,7 @@ namespace EmbraceSDK.Tests
 
                 report = BuildPipeline.BuildPlayer(buildPlayerOptions);
                 summary = report.summary;
-            
+
                 PlayerSettings.iOS.sdkVersion = userSdkVersion;
             }
             else
