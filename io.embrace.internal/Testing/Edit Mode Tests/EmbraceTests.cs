@@ -327,8 +327,11 @@ namespace EmbraceSDK.Tests
             embrace.provider = Substitute.For<IEmbraceProvider>();
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
-            byte[] attachment = new byte[1024 * 1024]; // 1 MiB
-            
+#if UNITY_IOS
+            byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
+#elif UNITY_ANDROID
+            sbyte[] attachment = new sbyte[1024 * 1025]; // > 1 MiB
+#endif
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachment);
@@ -341,8 +344,11 @@ namespace EmbraceSDK.Tests
             embrace.provider = Substitute.For<IEmbraceProvider>();
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
+            #if UNITY_IOS
             byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
-            
+            #elif UNITY_ANDROID
+            sbyte[] attachment = new sbyte[1024 * 1025]; // > 1 MiB
+            #endif
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().AddBreadcrumb($"Embrace Attachment failure. Attachment size too large. Message: {message}");
