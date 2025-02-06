@@ -15,6 +15,8 @@ class UnityBuild:
 
     year: str
     """The year of the Unity version used to run the tests."""
+    platform: str
+    """The platform ("darwin", "linux", or "win32")."""
     build_target: str
     """Build target ("android" or "ios") used for the test run."""
     test_platform: str
@@ -24,7 +26,7 @@ class UnityBuild:
     def create_from_filename(cls, filename: str) -> "UnityBuild":
         """Parse a UnityBuild out of the test results filename."""
         parts = path.splitext(path.basename(filename))[0].split("-")
-        if len(parts) != 3:
+        if len(parts) != 4:
             raise ValueError(f"Invalid test result filename: {filename}")
         return cls(*parts)
 
@@ -84,6 +86,12 @@ def main() -> None:
     base_dir = path.abspath(path.join(path.dirname(__file__), "..", ".."))
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--output", default="/dev/stdout", type=str, help="Write to this output file"
+    )
+    parser.add_argument(
+        "--append", action="store_true", help="Append to the output file"
+    )
+    parser.add_argument(
         "--test-results",
         default=path.join(base_dir, "build", "test-results"),
         type=str,
@@ -105,7 +113,11 @@ def main() -> None:
         num_failed += int(test_suite.attrib["failed"])
         num_skipped += int(test_suite.attrib["skipped"])
         failures.extend(Failure.create_all_from_test_results(unity_build, tree))
-    print(render_markdown(num_passed, num_failed, num_skipped, failures))
+    md = render_markdown(num_passed, num_failed, num_skipped, failures)
+    print(md)
+    if args.output:
+        with open(args.output, "a" if args.append else "w") as f:
+            f.write(md)
     if num_failed > 0:
         sys.exit(1)
 
