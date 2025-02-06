@@ -92,6 +92,14 @@ namespace EmbraceSDK.Internal
             string propsJson);
 
         [DllImport("__Internal")]
+        private static extern void embrace_log_message_with_attachment(string message, string severity,
+            string propsJson, byte[] attachment, int length);
+
+        [DllImport("__Internal")]
+        private static extern void embrace_log_message_with_attachment_url(string message, string severity,
+            string propsJson, string attachmentId, string attachmentUrl);
+
+        [DllImport("__Internal")]
         private static extern void embrace_set_user_as_payer();
 
         [DllImport("__Internal")]
@@ -256,6 +264,49 @@ namespace EmbraceSDK.Internal
             }
             
             embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));
+        }
+        
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, byte[] attachment)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+            
+            // function here
+            embrace_log_message_with_attachment(message, severityString, JsonConvert.SerializeObject(properties), attachment, attachment.Length);
+        }
+
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            string attachmentId, string attachmentUrl)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+            
+            // function here
+            embrace_log_message_with_attachment_url(message, severityString, JsonConvert.SerializeObject(properties), attachmentId, attachmentUrl);
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)

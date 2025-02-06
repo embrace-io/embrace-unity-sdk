@@ -190,6 +190,36 @@ public class EmbraceManager: NSObject {
             )
     }
 
+    static func logMessageWithAttachment(
+        message: String,
+        severity: String,
+        attributes: [String: String],
+        attachment: Data) {
+            Embrace.client?.log(message,
+                severity: convertStringToLogSeverity(from: severity),
+                attachment: attachment,
+                attributes: attributes
+                
+            )
+    }
+
+    static func logMessageWithAttachmentUrl(
+        message: String,
+        severity: String,
+        attributes: [String: String],
+        attachmentId: String,
+        attachmentUrl: String) {
+            if let url = URL(string: attachmentUrl) {
+                Embrace.client?.log(message,
+                    severity: convertStringToLogSeverity(from: severity),
+                    attachmentId: attachmentId,
+                    attachmentUrl: url,
+                    attributes: attributes
+                )
+            }
+            
+    }
+
     static func setUserAsPayer() -> Bool {
         do {
             try Embrace.client?.metadata.add(persona: .payer)

@@ -118,6 +118,70 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message}");
         }
 
+        #if UNITY_ANDROID
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            sbyte[] attachment)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+
+            EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message} bytes: {attachment.Length}");
+        }
+        #elif UNITY_IOS
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            byte[] attachment)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+
+            EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message} bytes: {attachment.Length}");
+        }
+        #endif
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            string attachmentId, string attachmentUrl)
+        {
+            string severityString = "";
+
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    severityString = "info";
+                    break;
+                case EMBSeverity.Warning:
+                    severityString = "warning";
+                    break;
+                case EMBSeverity.Error:
+                    severityString = "error";
+                    break;
+            }
+            
+            EmbraceLogger.Log($"LogMessage severity: {severityString} message: {message} attachmentId: {attachmentId} attachmentUrl: {attachmentUrl}");
+        }
+
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
             EmbraceLogger.Log($"AddBreadcrumb {message}");

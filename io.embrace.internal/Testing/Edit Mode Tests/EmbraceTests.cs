@@ -321,6 +321,48 @@ namespace EmbraceSDK.Tests
         }
 
         [Test]
+        public void LogMessage_With_Attachment()
+        {
+            Embrace embrace = Embrace.Create();
+            embrace.provider = Substitute.For<IEmbraceProvider>();
+            string message = "test message";
+            EMBSeverity severity = EMBSeverity.Info;
+            byte[] attachment = new byte[1024 * 1024]; // 1 MiB
+            
+            
+            Embrace.Instance.LogMessage(message, severity, null, attachment);
+            embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachment);
+        }
+
+        [Test]
+        public void LogMessage_With_Attachment_Rejects_Large_Size()
+        {
+            Embrace embrace = Embrace.Create();
+            embrace.provider = Substitute.For<IEmbraceProvider>();
+            string message = "test message";
+            EMBSeverity severity = EMBSeverity.Info;
+            byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
+            
+            
+            Embrace.Instance.LogMessage(message, severity, null, attachment);
+            embrace.provider.Received().AddBreadcrumb($"Embrace Attachment failure. Attachment size too large. Message: {message}");
+        }
+
+        [Test]
+        public void LogMessageWithAttachmentUrl()
+        {
+            Embrace embrace = Embrace.Create();
+            embrace.provider = Substitute.For<IEmbraceProvider>();
+            string message = "test message";
+            EMBSeverity severity = EMBSeverity.Info;
+            string attachmentId = new Guid().ToString();
+            string attachmentUrl = "http://www.example.com";
+            
+            Embrace.Instance.LogMessage(message, severity, null, attachmentId, attachmentUrl);
+            embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachmentId, attachmentUrl);
+        }
+
+        [Test]
         public void LogInfoProviderTest()
         {
             Embrace embrace = Embrace.Create();
