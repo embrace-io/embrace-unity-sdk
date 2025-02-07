@@ -434,10 +434,10 @@ namespace EmbraceSDK.Internal
             switch (severity)
             {
                 case EMBSeverity.Info:
-                    str = "Info";
+                    str = "info";
                     return true;
                 case EMBSeverity.Warning:
-                    str = "Warning";
+                    str = "warning";
                     return true;
                 case EMBSeverity.Error:
                     str = "error";
