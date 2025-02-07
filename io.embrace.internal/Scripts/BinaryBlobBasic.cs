@@ -25,8 +25,7 @@ public class BinaryBlobBasic : MonoBehaviour
 
     IEnumerator Start()
     {
-        EmbraceSDK.Embrace.Instance.StartSDK();
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         #if UNITY_ANDROID
         var blob = GenerateSbyteBlob(1024 * 1024); // 1MiB
         #elif UNITY_IOS
