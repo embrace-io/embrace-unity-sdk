@@ -327,7 +327,7 @@ namespace EmbraceSDK.Tests
             embrace.provider = Substitute.For<IEmbraceProvider>();
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
-#if UNITY_IOS
+#if UNITY_IOS || UNITY_TVOS
             byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);
@@ -347,7 +347,7 @@ namespace EmbraceSDK.Tests
             embrace.provider = Substitute.For<IEmbraceProvider>();
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
-            #if UNITY_IOS
+            #if UNITY_IOS || UNITY_TVOS
             byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);

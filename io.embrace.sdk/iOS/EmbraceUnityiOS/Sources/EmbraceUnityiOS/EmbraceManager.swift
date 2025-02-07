@@ -7,6 +7,7 @@
 import Foundation
 import OSLog
 import EmbraceIO
+import EmbraceCore
 import EmbraceCrash
 import EmbraceCommonInternal
 import EmbraceOTelInternal
@@ -199,7 +200,6 @@ public class EmbraceManager: NSObject {
                 severity: convertStringToLogSeverity(from: severity),
                 attachment: attachment,
                 attributes: attributes
-                
             )
     }
 
@@ -216,8 +216,9 @@ public class EmbraceManager: NSObject {
                     attachmentUrl: url,
                     attributes: attributes
                 )
+            } else {
+                EmbraceManager.addBreadCrumb(event: "Attachment Url conversion failed for \(attachmentUrl) and \(message)")
             }
-            
     }
 
     static func setUserAsPayer() -> Bool {
