@@ -328,12 +328,12 @@ namespace EmbraceSDK.Tests
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
 #if UNITY_IOS || UNITY_TVOS
-            byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
+            byte[] attachment = new byte[1024 * 1024]; // > 1 MiB
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachment);
 #elif UNITY_ANDROID
-            sbyte[] attachment = new sbyte[1024 * 1025]; // > 1 MiB
+            sbyte[] attachment = new sbyte[1024 * 1024]; // > 1 MiB
             
             Embrace.Instance.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachment);
