@@ -1,5 +1,0 @@
-/Users/chris/repos/embrace-unity-sdk/UnityProjects/2023/.utmp/RelWithDebInfo/5w4p2e1f/arm64-v8a/CMakeFiles/edit_cache.dir
-/Users/chris/repos/embrace-unity-sdk/UnityProjects/2023/.utmp/RelWithDebInfo/5w4p2e1f/arm64-v8a/CMakeFiles/rebuild_cache.dir
-/Users/chris/repos/embrace-unity-sdk/UnityProjects/2023/.utmp/RelWithDebInfo/5w4p2e1f/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
-/Users/chris/repos/embrace-unity-sdk/UnityProjects/2023/.utmp/RelWithDebInfo/5w4p2e1f/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
-/Users/chris/repos/embrace-unity-sdk/UnityProjects/2023/.utmp/RelWithDebInfo/5w4p2e1f/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir

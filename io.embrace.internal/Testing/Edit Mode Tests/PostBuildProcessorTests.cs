@@ -138,7 +138,7 @@ namespace EmbraceSDK.Tests
         /// <summary>
         /// Test Android build.
         /// </summary>
-        [Test, Order(1), MaxTime(300_000)]
+        [Test, Order(1), Timeout(300_000)]
 #if UNITY_EDITOR_OSX
         // CPU lightmapping is not supported on macOS arm64, and recompiling
         // scripts seems to trigger this to happen, causing an error which causes
