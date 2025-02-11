@@ -296,14 +296,12 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUserAsPayerMethod);
+            (this as IEmbraceProvider).AddUserPersona("payer");
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserAsPayerMethod);
+            (this as IEmbraceProvider).ClearUserPersona("payer");
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
