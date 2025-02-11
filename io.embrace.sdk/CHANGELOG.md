@@ -6,7 +6,7 @@ sidebar_position: 4
 
 # Unity SDK Changelog
 ## 2.3.0
-*February 10, 2025*
+*February 11, 2025*
 - Upgraded Embrace Android dependency to 7.1.0
 - Upgraded Embrace iOS dependency to 6.8.0
 - Changed Unity Swift code to local Swift Package
