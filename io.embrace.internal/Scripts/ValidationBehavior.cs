@@ -1,24 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using UnityEngine;
-using UnityEngine.Networking;
 using EmbraceSDK;
-using System;
 using EmbraceSDK.Demo;
+using UnityEngine;
+using UnityEngine.Diagnostics;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-
-namespace EmbraceSDK.Internal {
-    public class EmbraceBehavior : MonoBehaviour
+namespace EmbraceSDK.Internal
+{
+    public class ValidationBehavior : MonoBehaviour
     {
         [DllImport("__Internal")]
-        static extern void _embrace_basic_open_web_view(string url);
+        private static extern void _embrace_basic_open_web_view(string url);
 
-        private string startSpanId = "";
+        private string _startSpanId = "";
+
+        public string appID = "3Ynor";
+        public Button crashButton;
+        public Button exceptionButton;
 
         void Awake()
         {
-            EmbraceStartupArgs args = new EmbraceStartupArgs("3Ynor");
+            EmbraceStartupArgs args = new EmbraceStartupArgs(appID);
             Embrace.Instance.StartSDK(args);
 
             Embrace.Instance.SetUsername("test_username");
@@ -30,23 +37,38 @@ namespace EmbraceSDK.Internal {
             Embrace.Instance.LogInfo("test log info");
             Embrace.Instance.LogWarning("test log warning");
             Embrace.Instance.LogError("test log error");
-            Embrace.Instance.LogMessage("test log message", EMBSeverity.Info, new() {
-                { "key1", "value1" },
-                { "key2", "value2" }
-            });
-            startSpanId = Embrace.Instance.StartSpan("start", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            Embrace.Instance.LogMessage(
+                "test log message",
+                EMBSeverity.Info,
+                new Dictionary<string, string> { { "key1", "value1" }, { "key2", "value2" } }
+            );
+            _startSpanId = Embrace.Instance.StartSpan(
+                "start",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            );
+
+            if (crashButton != null)
+            {
+                crashButton.onClick.AddListener(DoCrash);
+            }
+
+            if (exceptionButton != null)
+            {
+                exceptionButton.onClick.AddListener(DoLogException);
+            }
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            Embrace.Instance.StopSpan(startSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            Embrace.Instance.StopSpan(_startSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             StartCoroutine(DoBreadcrumb());
             StartCoroutine(DoRequests());
             StartCoroutine(DoSpans());
             StartCoroutine(DoView());
             DoPushNotification();
             DoGetLastRunEndState();
+            DoFileAttachment();
         }
 
         private IEnumerator DoBreadcrumb()
@@ -55,7 +77,12 @@ namespace EmbraceSDK.Internal {
             Embrace.Instance.AddBreadcrumb("test");
         }
 
-        private void DoException()
+        private void DoCrash()
+        {
+            Utils.ForceCrash(ForcedCrashCategory.FatalError);
+        }
+
+        private void DoLogException()
         {
             try
             {
@@ -80,7 +107,7 @@ namespace EmbraceSDK.Internal {
 
         private void DoPushNotification()
         {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
             var androidArgs = new AndroidPushNotificationArgs(
                 DemoConstants.TEST_PN_TITLE,
                 DemoConstants.TEST_PN_BODY,
@@ -89,18 +116,20 @@ namespace EmbraceSDK.Internal {
                 DemoConstants.TEST_PN_NOTIFICATION_PRIORITY,
                 DemoConstants.TEST_PN_MESSAGE_DELIVERED_PRIORITY,
                 DemoConstants.TEST_PN_IS_NOTIFICATION,
-                DemoConstants.TEST_PN_HAS_DATA );
+                DemoConstants.TEST_PN_HAS_DATA
+            );
             Embrace.Instance.RecordPushNotification(androidArgs: androidArgs);
-    #elif UNITY_IOS
+#elif UNITY_IOS
             var iosArgs = new iOSPushNotificationArgs(
                 DemoConstants.TEST_PN_TITLE,
                 DemoConstants.TEST_PN_BODY,
                 DemoConstants.TEST_PN_SUBTITLE,
                 DemoConstants.TEST_PN_CATEGORY,
-                DemoConstants.TEST_PN_BADGE);
+                DemoConstants.TEST_PN_BADGE
+            );
             Embrace.Instance.RecordPushNotification(iosArgs);
-    #else
-    #endif
+#else
+#endif
         }
 
         private IEnumerator DoRequests()
@@ -136,39 +165,76 @@ namespace EmbraceSDK.Internal {
 
         private IEnumerator DoSpans()
         {
-            var spanId = Embrace.Instance.StartSpan("test", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            var spanId = Embrace.Instance.StartSpan(
+                "test",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            );
             yield return new WaitForSeconds(1);
-            Embrace.Instance.AddSpanEvent(spanId, "testEvent", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), new() {
-                { "key1", "value1" },
-                { "key2", "value2" }
-            });
+            Embrace.Instance.AddSpanEvent(
+                spanId,
+                "testEvent",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                new Dictionary<string, string> { { "key1", "value1" }, { "key2", "value2" } }
+            );
 
-            var childSpanId = Embrace.Instance.StartSpan("child", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), spanId);
+            var childSpanId = Embrace.Instance.StartSpan(
+                "child",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                spanId
+            );
             Embrace.Instance.AddSpanAttribute(childSpanId, "key1", "value1");
             Embrace.Instance.AddSpanAttribute(childSpanId, "key2", "value2");
 
             yield return new WaitForSeconds(1);
-            var failureSpanId = Embrace.Instance.StartSpan("failure", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), spanId);
+            var failureSpanId = Embrace.Instance.StartSpan(
+                "failure",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                spanId
+            );
             yield return new WaitForSeconds(0.1f);
-            Embrace.Instance.StopSpan(failureSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), EmbraceSpanErrorCode.FAILURE);
+            Embrace.Instance.StopSpan(
+                failureSpanId,
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                EmbraceSpanErrorCode.FAILURE
+            );
 
             Embrace.Instance.StopSpan(childSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-            var userAbandonSpanId = Embrace.Instance.StartSpan("userAbandon", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), spanId);
+            var userAbandonSpanId = Embrace.Instance.StartSpan(
+                "userAbandon",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                spanId
+            );
             yield return new WaitForSeconds(0.1f);
-            Embrace.Instance.StopSpan(userAbandonSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), EmbraceSpanErrorCode.USER_ABANDON);
+            Embrace.Instance.StopSpan(
+                userAbandonSpanId,
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                EmbraceSpanErrorCode.USER_ABANDON
+            );
 
-            var unknownSpanId = Embrace.Instance.StartSpan("unknown", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            var unknownSpanId = Embrace.Instance.StartSpan(
+                "unknown",
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+            );
             yield return new WaitForSeconds(0.1f);
-            Embrace.Instance.StopSpan(unknownSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), EmbraceSpanErrorCode.UNKNOWN);
+            Embrace.Instance.StopSpan(
+                unknownSpanId,
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                EmbraceSpanErrorCode.UNKNOWN
+            );
 
             var startTimeMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             yield return new WaitForSeconds(0.1f);
             var endTimeMs = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            Embrace.Instance.RecordCompletedSpan("completed", startTimeMs, endTimeMs, EmbraceSpanErrorCode.NONE, new() {
-                { "key1", "value1" },
-                { "key2", "value2" }
-            }, null, spanId);
+            Embrace.Instance.RecordCompletedSpan(
+                "completed",
+                startTimeMs,
+                endTimeMs,
+                EmbraceSpanErrorCode.NONE,
+                new Dictionary<string, string> { { "key1", "value1" }, { "key2", "value2" } },
+                null,
+                spanId
+            );
 
             Embrace.Instance.StopSpan(spanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
         }
@@ -187,6 +253,22 @@ namespace EmbraceSDK.Internal {
             var state = Embrace.Instance.GetLastRunEndState();
             EmbraceLogger.Log($"Last run end state: {state}");
         }
+
+        private void DoFileAttachment()
+        {
+            int size = 1024 * 1024;
+#if UNITY_ANDROID
+            var blob = new sbyte[size];
+#elif UNITY_IOS
+            var blob = new byte[size];
+#endif
+            for (int i = 0; i < size; i++)
+            {
+                blob[i] = (byte)Random.Range(0, int.MaxValue);
+            }
+            EmbraceSDK.Embrace.Instance.LogMessage("binary blob", EMBSeverity.Info, null, blob);
+            EmbraceSDK.Embrace.Instance.LogMessage("external attachment", EMBSeverity.Info, null,
+                (new Guid()).ToString(), "https://archive.org/download/sample-video-1280x-720-1mb_202102/SampleVideo_1280x720_1mb.mp4");
+        }
     }
 }
-
