@@ -14,14 +14,15 @@ namespace EmbraceSDK.Internal
 {
     public class ValidationBehavior : MonoBehaviour
     {
+#if UNITY_IOS || UNITY_TVOS
         [DllImport("__Internal")]
         private static extern void _embrace_basic_open_web_view(string url);
+#endif
 
         private string _startSpanId = "";
 
         public string appID = "3Ynor";
         public Button crashButton;
-        public Button exceptionButton;
 
         void Awake()
         {
@@ -47,18 +48,9 @@ namespace EmbraceSDK.Internal
                 DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             );
 
-            if (crashButton != null)
-            {
-                crashButton.onClick.AddListener(DoCrash);
-            }
-
-            if (exceptionButton != null)
-            {
-                exceptionButton.onClick.AddListener(DoLogException);
-            }
+            crashButton.onClick.AddListener(DoCrash);
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             Embrace.Instance.StopSpan(_startSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
@@ -69,11 +61,12 @@ namespace EmbraceSDK.Internal
             DoPushNotification();
             DoGetLastRunEndState();
             DoFileAttachment();
+            DoLogException();
         }
 
         private IEnumerator DoBreadcrumb()
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(1f, 5f));
+            yield return new WaitForSeconds(Random.Range(1f, 5f));
             Embrace.Instance.AddBreadcrumb("test");
         }
 
@@ -119,7 +112,7 @@ namespace EmbraceSDK.Internal
                 DemoConstants.TEST_PN_HAS_DATA
             );
             Embrace.Instance.RecordPushNotification(androidArgs: androidArgs);
-#elif UNITY_IOS
+#elif UNITY_IOS || UNITY_TVOS
             var iosArgs = new iOSPushNotificationArgs(
                 DemoConstants.TEST_PN_TITLE,
                 DemoConstants.TEST_PN_BODY,
@@ -128,7 +121,6 @@ namespace EmbraceSDK.Internal
                 DemoConstants.TEST_PN_BADGE
             );
             Embrace.Instance.RecordPushNotification(iosArgs);
-#else
 #endif
         }
 
@@ -241,11 +233,13 @@ namespace EmbraceSDK.Internal
 
         private IEnumerator DoView()
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1f));
+            yield return new WaitForSeconds(Random.Range(0.5f, 1f));
             Embrace.Instance.StartView("test");
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 1f));
+            yield return new WaitForSeconds(Random.Range(0.5f, 1f));
             Embrace.Instance.EndView("test");
+#if UNITY_IOS || UNITY_TVOS
             _embrace_basic_open_web_view("https://www.google.com");
+#endif
         }
 
         private void DoGetLastRunEndState()
@@ -259,16 +253,18 @@ namespace EmbraceSDK.Internal
             int size = 1024 * 1024;
 #if UNITY_ANDROID
             var blob = new sbyte[size];
-#elif UNITY_IOS
+#elif UNITY_IOS || UNITY_TVOS
             var blob = new byte[size];
 #endif
             for (int i = 0; i < size; i++)
             {
                 blob[i] = (byte)Random.Range(0, int.MaxValue);
             }
-            EmbraceSDK.Embrace.Instance.LogMessage("binary blob", EMBSeverity.Info, null, blob);
-            EmbraceSDK.Embrace.Instance.LogMessage("external attachment", EMBSeverity.Info, null,
-                (new Guid()).ToString(), "https://archive.org/download/sample-video-1280x-720-1mb_202102/SampleVideo_1280x720_1mb.mp4");
+
+            Embrace.Instance.LogMessage("binary blob", EMBSeverity.Info, null, blob);
+            Embrace.Instance.LogMessage("external attachment", EMBSeverity.Info, null,
+                (new Guid()).ToString(),
+                "https://archive.org/download/sample-video-1280x-720-1mb_202102/SampleVideo_1280x720_1mb.mp4");
         }
     }
 }
