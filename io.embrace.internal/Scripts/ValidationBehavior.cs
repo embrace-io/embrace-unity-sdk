@@ -253,13 +253,17 @@ namespace EmbraceSDK.Internal
             int size = 1024 * 1024;
 #if UNITY_ANDROID
             var blob = new sbyte[size];
+            for (int i = 0; i < size; i++)
+            {
+                blob[i] = (sbyte)Random.Range(0, int.MaxValue);
+            }
 #elif UNITY_IOS || UNITY_TVOS
             var blob = new byte[size];
-#endif
             for (int i = 0; i < size; i++)
             {
                 blob[i] = (byte)Random.Range(0, int.MaxValue);
             }
+#endif
 
             Embrace.Instance.LogMessage("binary blob", EMBSeverity.Info, null, blob);
             Embrace.Instance.LogMessage("external attachment", EMBSeverity.Info, null,
