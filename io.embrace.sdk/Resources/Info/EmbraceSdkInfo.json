@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0-rc6",
+  "version": "2.3.0-rc7",
   "npmAPIEndpoint": "https://repo.embrace.io/repository/unity",
   "wAnnouncementTitle": "Welcome to Embrace Unity SDK 2.0",
   "wAnnouncementMessage": "Now exposing the Attachment API"
