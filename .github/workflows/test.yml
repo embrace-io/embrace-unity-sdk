@@ -148,6 +148,7 @@ jobs:
     needs:
       - test_linux
       - test_macos
+      - test_windows
     if: ${{ !failure() && !cancelled() }}
     runs-on: ubuntu-22.04
     steps:
