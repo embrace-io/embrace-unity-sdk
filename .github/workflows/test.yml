@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      windows:
+        description: Run tests on Windows editor
+        required: false
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       ref:
@@ -30,6 +35,11 @@ on:
         default: true
       macos:
         description: Run tests on macOS editor
+        required: false
+        type: boolean
+        default: false
+      windows:
+        description: Run tests on Windows editor
         required: false
         type: boolean
         default: false
@@ -84,13 +94,40 @@ jobs:
     needs:
       - get_editor_versions
       - test_linux
-    if: ${{ inputs.macos == true }}
+    if: ${{ inputs.macos == true && !failure() && !cancelled() }}
     strategy:
       max-parallel: 1
       matrix:
         editor: ${{ fromJSON(needs.get_editor_versions.outputs.editor_versions) }}
     name: Test macOS (${{ matrix.editor.project }})
     runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.ref }}
+      - name: Run tests
+        uses: ./.github/actions/unity-test
+        with:
+          editor_version: ${{ matrix.editor.version }}
+          editor_changeset: ${{ matrix.editor.changeset }}
+          license_email: ${{ secrets.UNITY_EMAIL }}
+          license_password: ${{ secrets.UNITY_PASSWORD }}
+          license_serial: ${{ secrets.UNITY_SERIAL }}
+          project: ${{ matrix.editor.project }}
+  test_windows:
+    needs:
+      - get_editor_versions
+      - test_linux
+      - test_macos
+    if: ${{ inputs.windows == true && !failure() && !cancelled() }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        editor: ${{ fromJSON(needs.get_editor_versions.outputs.editor_versions) }}
+    name: Test Windows (${{ matrix.editor.project }})
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
