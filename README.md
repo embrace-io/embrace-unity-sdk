@@ -51,11 +51,18 @@ If you run into any issues building the SDK locally, please reach out on our
 
 ## Support & Contributions
 
-Embrace does not currently accept pull requests from external contributors. If
-you have a feature suggestion or have spotted something that doesn't look right
-please reach out in our
-[Community Slack](https://join.slack.com/t/embraceio-community/shared_invite/zt-ywr4jhzp-DLROX0ndN9a0soHMf6Ksow)
-for direct, faster assistance.
+We appreciate any feedback you have on the SDK and the APIs that it provides.
+
+To contribute to this project please see our [Contribution Guidelines]. After
+completing the Individual Contributor License Agreement (CLA), you'll be able to
+submit a feature request, create a bug report, or submit a pull request.
+
+For urgent matters (such as outages) or issues concerning the Embrace service or
+UI, reach out in our [Community Slack] for direct, faster assistance.
+
+[Contributing Guidelines]:
+  https://github.com/embrace-io/embrace-unity-sdk/blob/main/CONTRIBUTING.md
+[Community Slack]: https://community.embrace.io
 
 ## License
 
