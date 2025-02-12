@@ -296,14 +296,12 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUserAsPayerMethod);
+            (this as IEmbraceProvider).AddUserPersona("payer");
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserAsPayerMethod);
+            (this as IEmbraceProvider).ClearUserPersona("payer");
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
@@ -514,7 +512,7 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return null; }
             
             var startTime = longClass.CallStatic<AndroidJavaObject>("valueOf", startTimeMs);
-            return _embraceInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
+            return _embraceUnityInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
         }
 
         public bool StopSpan(string spanId, int errorCode, long endTimeMs)
@@ -523,7 +521,7 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
             var endTime = longClass.CallStatic<AndroidJavaObject>("valueOf", endTimeMs);
-            return _embraceInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
+            return _embraceUnityInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
         }
 
         public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes)
@@ -532,13 +530,13 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
             var timestamp = longClass.CallStatic<AndroidJavaObject>("valueOf", timestampMs);
-            return _embraceInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
+            return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
 
         public bool AddSpanAttribute(string spanId, string key, string value)
         {
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
-            return _embraceInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
+            return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
         
         /// <summary>
         /// 
@@ -571,7 +569,7 @@ namespace EmbraceSDK.Internal
             var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
             var attDict = DictionaryToJavaMap(attributes);
             
-            var result = _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
+            var result = _embraceUnityInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
                 endTimeMs, errorCode != null ? GetSpanErrorCode(errorCode.Value) : null, 
                 parentSpanId, attDict, dict);
             

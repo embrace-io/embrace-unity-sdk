@@ -2,7 +2,8 @@
     "name": "Embrace.Internal",
     "rootNamespace": "",
     "references": [
-        "GUID:6fde6807ec2a448e5a2cd810ee81a054"
+        "GUID:6fde6807ec2a448e5a2cd810ee81a054",
+        "GUID:07d06777649b3524f9fd2ea39f914958"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
