@@ -12,7 +12,7 @@ import tempfile
 import time
 from contextlib import contextmanager
 from os import path
-from typing import Callable, Generator, Literal
+from typing import Callable, Generator, Literal, Optional
 
 if sys.platform == "win32":
     # Force UTF-8 encoding for sys.stdout and sys.stderr
@@ -42,7 +42,7 @@ def run(
     args: list[str],
     logger: logging.Logger,
     logger_filter: Callable[[str], bool] = lambda _: True,
-    log_path: str | None = None,
+    log_path: Optional[str] = None,
     raise_on_error: bool = False,
 ) -> int:
     """Run a command and log its output.
@@ -62,7 +62,7 @@ def run(
     )
     if process.stdout is None:
         raise RuntimeError("process stdout is expectedly None")
-    log_file: io.TextIOWrapper | None = None
+    log_file: Optional[io.TextIOWrapper] = None
     if log_path is not None:
         os.makedirs(path.dirname(log_path), exist_ok=True)
         log_file = open(log_path, "w", encoding="utf-8")
@@ -92,8 +92,8 @@ def get_dummy_project_path() -> str:
 def activate_with_retries(
     args: list,
     logger: logging.Logger,
-    retries: int | None = None,
-    delay: int | None = None,
+    retries: Optional[int] = None,
+    delay: Optional[int] = None,
 ) -> None:
     """Activate a Unity license, retrying upon failure."""
     if retries is None:
@@ -180,7 +180,11 @@ class Runner:
             )
             self.editor_binary_args = [self.editor_binary_path]
         elif sys.platform == "win32":
-            raise NotImplementedError("Windows is not supported yet")
+            self.editor_path = path.join(
+                "C:", "Program Files", "Unity", "Hub", "Editor", version
+            )
+            self.editor_binary_path = path.join(self.editor_path, "Editor", "Unity.exe")
+            self.editor_binary_args = [self.editor_binary_path]
         else:
             self.editor_path = path.join("/opt/unity/editors", version)
             self.editor_binary_path = path.join(self.editor_path, "Editor/Unity")
@@ -203,13 +207,7 @@ class Runner:
         architecture = "x86_64"
         if sys.platform == "darwin" and platform.machine() == "arm64":
             architecture = "arm64"
-        if sys.platform == "darwin":
-            args = ["/Applications/Unity Hub.app/Contents/MacOS/Unity Hub", "--"]
-        elif sys.platform == "win32":
-            raise NotImplementedError("Windows is not supported yet")
-        else:
-            args = ["/usr/bin/unity-hub"]
-        args += [
+        hub_args = [
             "--headless",
             "install",
             "--version",
@@ -221,7 +219,28 @@ class Runner:
             "--childModules",
         ]
         for module in modules:
-            args += ["--module", module]
+            hub_args += ["--module", module]
+        if sys.platform == "darwin":
+            args = [
+                "/Applications/Unity Hub.app/Contents/MacOS/Unity Hub",
+                "--",
+            ] + hub_args
+        elif sys.platform == "win32":
+            args = [
+                "powershell.exe",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "Start-Process",
+                "-FilePath",
+                "'C:\\Program Files\\Unity Hub\\Unity Hub.exe'",
+                "-ArgumentList",
+                ",".join([f"'{v}'" for v in ["--"] + hub_args]),
+                "-Wait",
+                "-PassThru",
+            ]
+        else:
+            args = ["/usr/bin/unity-hub"] + hub_args
         run(args, self.logger, raise_on_error=True)
         self.logger.info("Installed editor")
 
@@ -236,7 +255,10 @@ class Runner:
 
     @contextmanager
     def license(
-        self, license: License, retries: int | None = None, delay: int | None = None
+        self,
+        license: License,
+        retries: Optional[int] = None,
+        delay: Optional[int] = None,
     ) -> Generator[None, None, None]:
         """Activate a Unity license for the duration of the context."""
         self.activate_license(license, retries, delay)
@@ -246,7 +268,10 @@ class Runner:
             self.return_license(license)
 
     def activate_license(
-        self, license: License, retries: int | None = None, delay: int | None = None
+        self,
+        license: License,
+        retries: Optional[int] = None,
+        delay: Optional[int] = None,
     ) -> None:
         """Activate a Unity license."""
         print(f"::add-mask::{license.serial[:-4]}XXXX")
