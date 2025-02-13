@@ -138,7 +138,7 @@ namespace EmbraceSDK.Tests
         /// <summary>
         /// Test Android build.
         /// </summary>
-        [Test, Order(1)]
+        [Test, Order(1), Timeout(300_000)]
 #if UNITY_EDITOR_OSX
         // CPU lightmapping is not supported on macOS arm64, and recompiling
         // scripts seems to trigger this to happen, causing an error which causes
@@ -480,41 +480,9 @@ namespace EmbraceSDK.Tests
             Assert.IsTrue(File.Exists(filePath));
         }
 
-        [Test, Order(500)] // The intention is for this test to go last
-#if UNITY_EDITOR_OSX
-        // CPU lightmapping is not supported on macOS arm64, and recompiling
-        // scripts seems to trigger this to happen, causing an error which causes
-        // test failures on CI (which has no GPU).
-        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
-#endif
-        public void BuildiOSSimulatorTest()
-        {
-            var defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
-
-            Assert.NotNull(defaultConfig);
-
-            // NOTE: The test config contains override values for all fields which is used to output a plist with all available config settings.
-            var testConfig = Resources.Load<IOSConfiguration>("TestConfigurations/TestIOSConfiguration");
-
-            TestHelper.ConfigBackup(defaultConfig);
-            TestHelper.CopyConfig(testConfig, defaultConfig);
-
-            Assert.DoesNotThrow(() => BuildiOS(true));
-
-            // This is an issue with 2019 where the defaultConfig does not survive the build process
-            // As a result, we're reinitializing it before restoring.
-            if (defaultConfig == null)
-            {
-                defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
-            }
-
-            //cleanup
-            TestHelper.ConfigRestore(defaultConfig);
-        }
-
 #if UNITY_2020_1_OR_NEWER && !EMBRACE_DISABLE_IL2CPP_SYMBOL_MAPPING
         // Unity 2019 does not generate this file properly, so we can only test if it matches ours in 2020+
-        [Test, Order(501)]
+        [Test, Order(2)]
 #if UNITY_EDITOR_OSX
         // CPU lightmapping is not supported on macOS arm64, and recompiling
         // scripts seems to trigger this to happen, causing an error which causes
@@ -566,6 +534,38 @@ namespace EmbraceSDK.Tests
             }
         }
 #endif
+
+        [Test, Order(500)] // The intention is for this test to go last
+#if UNITY_EDITOR_OSX
+        // CPU lightmapping is not supported on macOS arm64, and recompiling
+        // scripts seems to trigger this to happen, causing an error which causes
+        // test failures on CI (which has no GPU).
+        [ConditionalIgnore(EmbraceTesting.REQUIRE_GRAPHICS_DEVICE, EmbraceTesting.REQUIRE_GRAPHICS_DEVICE_IGNORE_DESCRIPTION)]
+#endif
+        public void BuildiOSSimulatorTest()
+        {
+            var defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
+
+            Assert.NotNull(defaultConfig);
+
+            // NOTE: The test config contains override values for all fields which is used to output a plist with all available config settings.
+            var testConfig = Resources.Load<IOSConfiguration>("TestConfigurations/TestIOSConfiguration");
+
+            TestHelper.ConfigBackup(defaultConfig);
+            TestHelper.CopyConfig(testConfig, defaultConfig);
+
+            Assert.DoesNotThrow(() => BuildiOS(true));
+
+            // This is an issue with 2019 where the defaultConfig does not survive the build process
+            // As a result, we're reinitializing it before restoring.
+            if (defaultConfig == null)
+            {
+                defaultConfig = AssetDatabaseUtil.LoadConfiguration<IOSConfiguration>(ensureNotNull: false);
+            }
+
+            //cleanup
+            TestHelper.ConfigRestore(defaultConfig);
+        }
 
         private T GetAttribute<T>(System.Reflection.MemberInfo member, bool inherit)
             where T : System.Attribute

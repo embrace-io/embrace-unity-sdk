@@ -92,6 +92,14 @@ namespace EmbraceSDK.Internal
             string propsJson);
 
         [DllImport("__Internal")]
+        private static extern void embrace_log_message_with_attachment(string message, string severity,
+            string propsJson, byte[] attachment, int length);
+
+        [DllImport("__Internal")]
+        private static extern void embrace_log_message_with_attachment_url(string message, string severity,
+            string propsJson, string attachmentId, string attachmentUrl);
+
+        [DllImport("__Internal")]
         private static extern void embrace_set_user_as_payer();
 
         [DllImport("__Internal")]
@@ -240,22 +248,27 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
-            string severityString = "";
-
-            switch (severity)
+            if (severity.TryConvertToString(out var severityString))
             {
-                case EMBSeverity.Info:
-                    severityString = "info";
-                    break;
-                case EMBSeverity.Warning:
-                    severityString = "warning";
-                    break;
-                case EMBSeverity.Error:
-                    severityString = "error";
-                    break;
+                embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));    
             }
-            
-            embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));
+        }
+        
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, byte[] attachment)
+        {
+            if (severity.TryConvertToString(out var severityString))
+            {
+                embrace_log_message_with_attachment(message, severityString, JsonConvert.SerializeObject(properties), attachment, attachment.Length);    
+            }
+        }
+
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            string attachmentId, string attachmentUrl)
+        {
+            if (severity.TryConvertToString(out var severityString))
+            {
+                embrace_log_message_with_attachment_url(message, severityString, JsonConvert.SerializeObject(properties), attachmentId, attachmentUrl);
+            }
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
@@ -411,6 +424,28 @@ namespace EmbraceSDK.Internal
             Marshal.FreeHGlobal(ptr);
             
             return str;
+        }
+    }
+
+    public static class EmbSeverityExtensions
+    {
+        public static bool TryConvertToString(this EMBSeverity severity, out string str)
+        {
+            switch (severity)
+            {
+                case EMBSeverity.Info:
+                    str = "info";
+                    return true;
+                case EMBSeverity.Warning:
+                    str = "warning";
+                    return true;
+                case EMBSeverity.Error:
+                    str = "error";
+                    return true;
+                default:
+                    str = null;
+                    return false;
+            }
         }
     }
 #endif

@@ -7,6 +7,7 @@
 import Foundation
 import OSLog
 import EmbraceIO
+import EmbraceCore
 import EmbraceCrash
 import EmbraceCommonInternal
 import EmbraceOTelInternal
@@ -188,6 +189,36 @@ public class EmbraceManager: NSObject {
                 severity: convertStringToLogSeverity(from: severity),
                 attributes: properties
             )
+    }
+
+    static func logMessageWithAttachment(
+        message: String,
+        severity: String,
+        attributes: [String: String],
+        attachment: Data) {
+            Embrace.client?.log(message,
+                severity: convertStringToLogSeverity(from: severity),
+                attachment: attachment,
+                attributes: attributes
+            )
+    }
+
+    static func logMessageWithAttachmentUrl(
+        message: String,
+        severity: String,
+        attributes: [String: String],
+        attachmentId: String,
+        attachmentUrl: String) {
+            if let url = URL(string: attachmentUrl) {
+                Embrace.client?.log(message,
+                    severity: convertStringToLogSeverity(from: severity),
+                    attachmentId: attachmentId,
+                    attachmentUrl: url,
+                    attributes: attributes
+                )
+            } else {
+                EmbraceManager.addBreadCrumb(event: "Attachment Url conversion failed for \(attachmentUrl) and \(message)")
+            }
     }
 
     static func setUserAsPayer() -> Bool {

@@ -24,11 +24,13 @@ namespace EmbraceSDK.Internal
         private AndroidJavaObject embraceUnityInternalSharedInstance;
         private AndroidJavaObject embraceInternalSharedInstance;
         private AndroidJavaObject applicationInstance;
+        private AndroidJavaObject applicationContext;
         private AndroidJavaObject unityAppFramework;
         private AndroidJavaObject logInfo;
         private AndroidJavaObject logWarning;
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
+        private AndroidJavaClass embraceInternalApiClass;
         private AndroidJavaObject spanFailureCode;
         private AndroidJavaObject spanUserAbandonCode;
         private AndroidJavaObject spanUnknownCode;
@@ -63,7 +65,7 @@ namespace EmbraceSDK.Internal
             {
                 if (embraceUnityInternalSharedInstance == null)
                 {
-                    embraceUnityInternalSharedInstance = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
+                    embraceUnityInternalSharedInstance = _embraceInternalSharedInstance.Call<AndroidJavaObject>(_GetUnityInternalInterfaceMethod);
                 }
                 return embraceUnityInternalSharedInstance;
             }
@@ -75,7 +77,7 @@ namespace EmbraceSDK.Internal
             {
                 if (embraceInternalSharedInstance == null)
                 {
-                    embraceInternalSharedInstance = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetInternalInterfaceMethod);
+                    embraceInternalSharedInstance = embraceInternalApiClass.CallStatic<AndroidJavaObject>("getInstance");
                 }
                 return embraceInternalSharedInstance;
             }
@@ -200,10 +202,12 @@ namespace EmbraceSDK.Internal
             using AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             using AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
             applicationInstance = activityInstance.Call<AndroidJavaObject>("getApplication");
+            applicationContext = activityInstance.Call<AndroidJavaObject>("getApplicationContext");
             embraceClass = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace");
+            embraceInternalApiClass = new AndroidJavaClass("io.embrace.android.embracesdk.internal.EmbraceInternalApi");
             EmbraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
             // get the app framework object
-            using AndroidJavaClass appFramework = new AndroidJavaClass("io.embrace.android.embracesdk.Embrace$AppFramework");
+            using AndroidJavaClass appFramework = new AndroidJavaClass("io.embrace.android.embracesdk.AppFramework");
             unityAppFramework = appFramework.GetStatic<AndroidJavaObject>("UNITY");
             // get the log severity objects
             using AndroidJavaClass logSeverity = new AndroidJavaClass("io.embrace.android.embracesdk.Severity");
@@ -222,7 +226,8 @@ namespace EmbraceSDK.Internal
             // enableIntegrationTesting/isDevMode is no longer supported on Android
             // we hard-code to false as this resolves to a functional method call
             // TODO: Update this to the appropriate method call at a later date
-            EmbraceSharedInstance?.Call(_StartMethod, applicationInstance, false, unityAppFramework);
+            // We need to replace the applicationInstance with the Context
+            EmbraceSharedInstance?.Call(_StartMethod, applicationContext, unityAppFramework);
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
@@ -291,14 +296,12 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUserAsPayerMethod);
+            (this as IEmbraceProvider).AddUserPersona("payer");
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserAsPayerMethod);
+            (this as IEmbraceProvider).ClearUserPersona("payer");
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
@@ -355,18 +358,58 @@ namespace EmbraceSDK.Internal
 
             switch (severity)
             {
-                case EMBSeverity.Info:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
-                    break;
                 case EMBSeverity.Warning:
                     EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap);
                     break;
                 case EMBSeverity.Error:
                     EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap);
                     break;
+                default:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
+                    break;
             }
+        }
+
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, sbyte[] attachment)
+        {
+            if (!ReadyForCalls()) { return; }
+            using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
             
-            EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
+            switch (severity)
+            {
+                case EMBSeverity.Warning:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap, attachment);
+                    break;
+                case EMBSeverity.Error:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap, attachment);
+                    break;
+                default:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap, attachment);
+                    break;
+            }
+        }
+
+        void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
+            string attachmentId, string attachmentUrl)
+        {
+            if (!ReadyForCalls()) { return; }
+            using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
+            
+            switch (severity)
+            {
+                case EMBSeverity.Warning:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap, 
+                        attachmentId, attachmentUrl);
+                    break;
+                case EMBSeverity.Error:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap, 
+                        attachmentId, attachmentUrl);
+                    break;
+                default:
+                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap, 
+                        attachmentId, attachmentUrl);
+                    break;
+            }
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
@@ -469,7 +512,7 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return null; }
             
             var startTime = longClass.CallStatic<AndroidJavaObject>("valueOf", startTimeMs);
-            return _embraceInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
+            return _embraceUnityInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
         }
 
         public bool StopSpan(string spanId, int errorCode, long endTimeMs)
@@ -478,7 +521,7 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
             var endTime = longClass.CallStatic<AndroidJavaObject>("valueOf", endTimeMs);
-            return _embraceInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
+            return _embraceUnityInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
         }
 
         public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes)
@@ -487,13 +530,13 @@ namespace EmbraceSDK.Internal
             if (!InternalInterfaceReadyForCalls()) { return false; }
             
             var timestamp = longClass.CallStatic<AndroidJavaObject>("valueOf", timestampMs);
-            return _embraceInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
+            return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
 
         public bool AddSpanAttribute(string spanId, string key, string value)
         {
             if (!ReadyForCalls()) { return false; }
             if (!InternalInterfaceReadyForCalls()) { return false; }
-            return _embraceInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
+            return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
         
         /// <summary>
         /// 
@@ -526,7 +569,7 @@ namespace EmbraceSDK.Internal
             var dict = DictionariesToJavaListOfMaps(spanEvents, out var disposables);
             var attDict = DictionaryToJavaMap(attributes);
             
-            var result = _embraceInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
+            var result = _embraceUnityInternalSharedInstance.Call<bool>(_RecordCompleteSpanMethod, spanName, startTimeMs,
                 endTimeMs, errorCode != null ? GetSpanErrorCode(errorCode.Value) : null, 
                 parentSpanId, attDict, dict);
             

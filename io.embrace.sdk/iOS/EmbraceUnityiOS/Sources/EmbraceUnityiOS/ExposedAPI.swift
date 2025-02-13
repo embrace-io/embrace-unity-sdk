@@ -226,6 +226,56 @@ public func embrace_log_message_with_severity_and_properties(message: UnsafePoin
     }
 }
 
+@_cdecl("embrace_log_message_with_attachment")
+public func embrace_log_message_with_attachment(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?,
+    propsJson: UnsafePointer<CChar>?, attachment: UnsafePointer<UInt8>?, length: Int) {
+    guard let message, let severity else {
+        return
+    }
+
+    guard let data = attachment, length > 0 else {
+        return
+    }
+
+    let attachmentData = Data(bytes: data, count: length)
+
+    if let _message = String(validatingUTF8: message),
+        let _severity = String(validatingUTF8: severity) {
+        EmbraceManager.logMessageWithAttachment(message: _message,
+                                                severity: _severity,
+                                                attributes: unpack_json_to_typed_dictionary(
+                                                                jsonStr: propsJson,
+                                                                converter: { (str: String) -> String in str }),
+                                                attachment: attachmentData)
+    }
+}
+
+@_cdecl("embrace_log_message_with_attachment_url")
+public func embrace_log_message_with_attachment_url(message: UnsafePointer<CChar>?, severity: UnsafePointer<CChar>?,
+    propsJson: UnsafePointer<CChar>?, attachmentId: UnsafePointer<CChar>?, attachmentUrl: UnsafePointer<CChar>?) {
+    guard let message, let severity else {
+        return
+    }
+
+    guard let attachmentId, let attachmentUrl else {
+        embrace_log_message_with_severity_and_properties(message: message, severity: severity, propsJson: propsJson)
+        return
+    }
+
+    if let _message = String(validatingUTF8: message),
+        let _severity = String(validatingUTF8: severity),
+        let _attachmentId = String(validatingUTF8: attachmentId),
+        let _attachmentUrl = String(validatingUTF8: attachmentUrl) {
+        EmbraceManager.logMessageWithAttachmentUrl(message: _message,
+                                                   severity: _severity,
+                                                   attributes: unpack_json_to_typed_dictionary(
+                                                                   jsonStr: propsJson,
+                                                                   converter: { (str: String) -> String in str }),
+                                                   attachmentId: _attachmentId,
+                                                   attachmentUrl: _attachmentUrl)
+    }
+}
+
 @_cdecl("embrace_set_user_as_payer")
 public func embrace_set_user_as_payer() {
     _ = EmbraceManager.setUserAsPayer()

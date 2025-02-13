@@ -1,0 +1,97 @@
+name: Unity Test
+description: Run the Unity SDK tests.
+
+inputs:
+  build_target:
+    description: >
+      Unity build target ("android" or "ios"). If omitted, both build targets
+      will be run.
+  editor_version:
+    description: Version of the Unity editor.
+    required: true
+  editor_changeset:
+    description: Changeset for the Unity editor version.
+    required: true
+  license_email:
+    description: Email to use for Unity activation.
+    required: true
+  license_password:
+    description: Password to use for Unity activation.
+    required: true
+  license_serial:
+    description: Serial to use for Unity activation.
+    required: true
+  project:
+    description: Name of the project folder in UnityProjects
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Cache Library folder
+      uses: actions/cache@v4
+      with:
+        path: ./UnityProjects/${{ inputs.project }}/Library
+        key: Library-${{ inputs.project }}-Android
+        restore-keys: |
+          Library-${{ inputs.project }}-
+          Library-
+    - name: Install iOS dependencies
+      if: ${{ inputs.build_target != 'android' }}
+      shell: bash
+      run: |
+        make install_ios_dependencies
+    - name: Install Unity Hub (Linux)
+      if: ${{ runner.os == 'Linux' }}
+      shell: bash
+      run: |
+        ./.github/scripts/install_hub_linux.sh
+    - name: Install Unity Hub (macOS)
+      if: ${{ runner.os == 'macOS' }}
+      shell: bash
+      run: |
+        brew install --cask unity-hub
+    # These steps handle running for a single build target (used by the Linux
+    # tests, which run in parallel).
+    - name: Install editor
+      if: ${{ inputs.build_target != '' }}
+      shell: bash
+      run: |
+        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} install --changeset ${{ inputs.editor_changeset }} --module ${{ inputs.build_target }}
+    - name: Run tests
+      if: ${{ inputs.build_target != '' }}
+      shell: bash
+      env:
+        UNITY_EMAIL: ${{ inputs.license_email }}
+        UNITY_PASSWORD: ${{ inputs.license_password }}
+        UNITY_SERIAL: ${{ inputs.license_serial }}
+      run: |
+        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} test --build-target ${{ inputs.build_target }}
+    # These steps handle running for all build targets (used by non-Linux tests,
+    # which run a single job since they can't handle multiple activations).
+    - name: Install editor (all build targets)
+      if: ${{ inputs.build_target == '' }}
+      shell: bash
+      run: |
+        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} install --changeset ${{ inputs.editor_changeset }}
+    - name: Run tests (all build targets)
+      if: ${{ inputs.build_target == '' }}
+      shell: bash
+      env:
+        UNITY_EMAIL: ${{ inputs.license_email }}
+        UNITY_PASSWORD: ${{ inputs.license_password }}
+        UNITY_SERIAL: ${{ inputs.license_serial }}
+      run: |
+        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} test
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-${{ runner.os }}-${{ inputs.project }}-${{ inputs.build_target || 'all' }}
+        path: |
+          ./build/test-results
+          ./build/test-logs
+          ./build/coverage-results
+    - name: Uninstall editor
+      shell: bash
+      run: |
+        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} uninstall

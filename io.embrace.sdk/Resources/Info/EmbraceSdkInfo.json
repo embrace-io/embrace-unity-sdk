@@ -1,6 +1,6 @@
 {
-  "version": "2.2.0",
+  "version": "2.3.0",
   "npmAPIEndpoint": "https://repo.embrace.io/repository/unity",
   "wAnnouncementTitle": "Welcome to Embrace Unity SDK 2.0",
-  "wAnnouncementMessage": "Now supporting the Otel compliant Embrace Android and Embrace iOS SDKs"
+  "wAnnouncementMessage": "Now exposing the Attachment API"
 }

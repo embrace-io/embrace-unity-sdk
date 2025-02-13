@@ -279,17 +279,6 @@ namespace EmbraceSDK
             }
         }
 
-        // /// <inheritdoc />
-        // public void EndAppStartup(Dictionary<string, string> properties = null)
-        // {
-        //     if (properties == null)
-        //     {
-        //         properties = emptyDictionary;
-        //     }
-        //
-        //     Provider?.EndAppStartup(properties);
-        // }
-
         /// <inheritdoc />
         public LastRunEndState GetLastRunEndState()
         {
@@ -454,6 +443,74 @@ namespace EmbraceSDK
             }
 
             Provider?.LogMessage(message, severity, properties);
+        }
+
+        #if UNITY_ANDROID
+        /// <inheritdoc />
+        public void LogMessage(string message, EMBSeverity severity, 
+            Dictionary<string, string> properties, sbyte[] attachment)
+        {
+            if (message == null)
+            {
+                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("log message"));
+                return;
+            }
+
+            if (properties == null)
+            {
+                properties = emptyDictionary;
+            }
+
+            if (attachment == null || attachment.Length > 1024 * 1024) // Larger than 1 MiB
+            {
+                AddBreadcrumb($"Embrace Attachment failure. Attachment size too large. Message: {message}");
+                return;
+            }
+            
+            Provider?.LogMessage(message, severity, properties, attachment);
+        }
+        #elif UNITY_IOS
+        /// <inheritdoc />
+        public void LogMessage(string message, EMBSeverity severity, 
+            Dictionary<string, string> properties, byte[] attachment)
+        {
+            if (message == null)
+            {
+                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("log message"));
+                return;
+            }
+
+            if (properties == null)
+            {
+                properties = emptyDictionary;
+            }
+
+            if (attachment == null || attachment.Length > 1024 * 1024) // Larger than 1 MiB
+            {
+                AddBreadcrumb($"Embrace Attachment failure. Attachment size too large. Message: {message}");
+                return;
+            }
+            
+            Provider?.LogMessage(message, severity, properties, attachment);
+        }
+        #endif
+        
+        /// <inheritdoc />
+        public void LogMessage(string message, EMBSeverity severity, 
+            Dictionary<string, string> properties, string attachmentId, string attachmentUrl)
+        {
+            if (message == null)
+            {
+                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("log message"));
+                return;
+            }
+
+            if (properties == null)
+            {
+                properties = emptyDictionary;
+            }
+            
+            Provider?.LogMessage(message, severity, properties, attachmentId, attachmentUrl);
         }
 
         /// <inheritdoc />
