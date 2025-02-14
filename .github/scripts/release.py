@@ -9,7 +9,7 @@ import re
 import sys
 from os import path
 from subprocess import check_output, run
-from typing import get_args, Literal, TypeGuard
+from typing import get_args, Literal, Optional, TypeGuard
 
 
 logger = logging.getLogger("release")
@@ -29,14 +29,14 @@ version_filenames = [
 
 
 class InvalidRefTypeError(ValueError):
-    def __init__(self, ref_type: str | None) -> None:
+    def __init__(self, ref_type: Optional[str]) -> None:
         super().__init__(
             f"GITHUB_REF_TYPE is {ref_type!r}, but expected {get_args(RefType)!r}"
         )
 
 
 class InvalidRefNameError(ValueError):
-    def __init__(self, ref_name: str | None, pattern: str) -> None:
+    def __init__(self, ref_name: Optional[str], pattern: str) -> None:
         super().__init__(
             f"GITHUB_REF_NAME is {ref_name!r}, but expected pattern {pattern}"
         )
@@ -62,7 +62,7 @@ def commit_and_push(ref_name: str, version: str) -> str:
     return check_output(["git", "rev-parse", "HEAD"], text=True).strip()
 
 
-def is_ref_type(ref_type: str | None) -> TypeGuard[RefType]:
+def is_ref_type(ref_type: Optional[str]) -> TypeGuard[RefType]:
     return ref_type in get_args(RefType)
 
 

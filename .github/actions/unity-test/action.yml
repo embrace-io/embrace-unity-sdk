@@ -51,6 +51,11 @@ runs:
       shell: bash
       run: |
         brew install --cask unity-hub
+    - name: Install Unity Hub (Windows)
+      if: ${{ runner.os == 'Windows' }}
+      shell: pwsh
+      run: |
+        powershell.exe -ExecutionPolicy Bypass -File .github/scripts/install_unity_hub.ps1
     # These steps handle running for a single build target (used by the Linux
     # tests, which run in parallel).
     - name: Install editor
