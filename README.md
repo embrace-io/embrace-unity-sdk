@@ -60,7 +60,7 @@ submit a feature request, create a bug report, or submit a pull request.
 For urgent matters (such as outages) or issues concerning the Embrace service or
 UI, reach out in our [Community Slack] for direct, faster assistance.
 
-[Contributing Guidelines]:
+[Contribution Guidelines]:
   https://github.com/embrace-io/embrace-unity-sdk/blob/main/CONTRIBUTING.md
 [Community Slack]: https://community.embrace.io
 
