@@ -31,7 +31,7 @@ github_env_vars:
 	@echo "BUILD_TARGET=$(BUILD_TARGET)"
 	@echo "EDITOR_CHANGESET=$(EDITOR_CHANGESET)"
 	@echo "EDITOR_VERSION=$(EDITOR_VERSION)"
-	@echo "UNITY_SDK_UNITYPACKAGE=$(UNITY_SDK_VERSION)"
+	@echo "UNITY_SDK_UNITYPACKAGE=$(UNITY_SDK_UNITYPACKAGE)"
 	@echo "UNITY_SDK_VERSION=$(UNITY_SDK_VERSION)"
 
 # Install the Unity editor. This is used by the GitHub workflows.
