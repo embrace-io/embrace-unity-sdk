@@ -63,7 +63,7 @@ jobs:
       - id: get_editor_versions
         name: Get editor versions
         run: |
-          echo "editor_versions=$(python3 .github/scripts/vars.py versions)" | tee -a "$GITHUB_OUTPUT"
+          echo "editor_versions=$(python3 .github/scripts/vars.py editor-versions)" | tee -a "$GITHUB_OUTPUT"
   test_linux:
     needs: get_editor_versions
     if: ${{ inputs.linux == true }}
