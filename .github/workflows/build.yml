@@ -23,10 +23,7 @@ jobs:
     env:
       # These environment variables are defined by the `make github_env_vars`
       # command below, but are defined here to satisfy the linter.
-      BUILD_METHOD: # C# method to call in the Unity project to build the .unitypackage.
-      BUILD_PROJECT: # Path to the Unity project to build.
-      GAMECI_UNITYPACKAGE: # Path to the file output by game-ci/unity-builder.
-      UNITY_VERSION: # Unity version to use.
+      UNITY_SDK_UNITYPACKAGE: # Path to the .unitypackage file output by the build.
       UNITY_SDK_VERSION: # Embrace Unity SDK version to build.
     steps:
       - name: Checkout repository
@@ -34,31 +31,30 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
-      - name: Install iOS dependencies
-        run: |
-          make install_ios_dependencies
-      - name: Set build environment variables
+      - name: Get the package version
         run: |
           make github_env_vars | tee -a $GITHUB_ENV
+      - name: Install Unity Hub
+        run: |
+          make install_hub
+      - name: Install editor
+        run: |
+          make install_editor
       - name: Cache Library folder
         uses: actions/cache@v4
         with:
-          path: ${{ env.BUILD_PROJECT }}/Library
-          key: Library-${{ env.UNITY_VERSION }}
+          path: ./UnityProjects/2021/Library
+          key: Library-2021-Android
+          restore-keys: |
+            Library-2021-
+            Library-
       - name: Build .unitypackage
-        uses: game-ci/unity-builder@v4
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-        with:
-          projectPath: ${{ env.BUILD_PROJECT }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          targetPlatform: Android
-          customImage: "unityci/editor:ubuntu-${{ env.UNITY_VERSION }}-android-3.1.0"
-          customParameters: -buildTarget Android
-          versioning: None
-          buildMethod: ${{ env.BUILD_METHOD }}
+        run: |
+          make build
       - name: Upload package folder artifact
         if: ${{ inputs.package_folder_artifact }}
         uses: actions/upload-artifact@v4
@@ -71,6 +67,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: EmbraceSDK_${{ env.UNITY_SDK_VERSION }}.unitypackage
-          path: ${{ env.GAMECI_UNITYPACKAGE }}
+          path: ${{ env.UNITY_SDK_UNITYPACKAGE }}
           if-no-files-found: error
           retention-days: 1
