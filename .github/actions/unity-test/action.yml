@@ -25,14 +25,17 @@ inputs:
     description: Name of the project folder in UnityProjects
     required: true
 
-env:
-  BUILD_TARGET: ${{ inputs.build_target }}
-  EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
-  EDITOR_VERSION: ${{ inputs.editor_version }}
-
 runs:
   using: composite
   steps:
+    - name: Set environment variables from inputs
+      shell: bash
+      env:
+        BUILD_TARGET: ${{ inputs.build_target }}
+        EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
+        EDITOR_VERSION: ${{ inputs.editor_version }}
+      run: |
+        make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
       uses: actions/cache@v4
       with:
