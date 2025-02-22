@@ -491,7 +491,14 @@ def main() -> None:
 
     _uninstall_parser = subparsers.add_parser("uninstall")
 
-    _build_parser = subparsers.add_parser("build")
+    build_parser = subparsers.add_parser("build")
+    build_parser.add_argument(
+        "--skip-license",
+        dest="license",
+        action="store_false",
+        default=True,
+        help="Skip activating the Unity license",
+    )
 
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument(
@@ -532,7 +539,13 @@ def main() -> None:
     elif args.command == "uninstall":
         runner.uninstall()
     elif args.command == "build":
-        runner.build()
+        license = License.from_env() if args.license else None
+        if license is not None:
+            with runner.license(license):
+                runner.build()
+        else:
+            logger.info("Skipping Unity license activation")
+            runner.build()
     elif args.command == "test":
         license = License.from_env() if args.license else None
         if license is not None:

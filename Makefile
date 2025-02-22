@@ -6,6 +6,7 @@ BUILD_TARGET := $(or $(BUILD_TARGET),android)
 EDITOR_VERSION = $(shell python3 .github/scripts/vars.py editor-versions --project 2021 --field version)
 EDITOR_CHANGESET = $(shell python3 .github/scripts/vars.py editor-versions --project 2021 --field changeset)
 endif
+EXTRA_BUILD_ARGS = $(if $(UNITY_SERIAL),, --skip-license)
 EXTRA_INSTALL_ARGS = $(if $(BUILD_TARGET), --module $(BUILD_TARGET),)
 EXTRA_TEST_ARGS = $(if $(BUILD_TARGET), --build-target $(BUILD_TARGET),)$(if $(UNITY_SERIAL),, --skip-license)
 
@@ -76,4 +77,4 @@ $(APPLE_SDK_DIR): $(APPLE_SDK_ZIP)
 
 # Build the Unity package for the Embrace Unity SDK.
 $(UNITY_SDK_UNITYPACKAGE): install_ios_dependencies
-	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build
+	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
