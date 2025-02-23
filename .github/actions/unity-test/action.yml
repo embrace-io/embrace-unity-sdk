@@ -28,6 +28,14 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Set environment variables from inputs
+      shell: bash
+      env:
+        BUILD_TARGET: ${{ inputs.build_target }}
+        EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
+        EDITOR_VERSION: ${{ inputs.editor_version }}
+      run: |
+        make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
       uses: actions/cache@v4
       with:
@@ -41,53 +49,22 @@ runs:
       shell: bash
       run: |
         make install_ios_dependencies
-    - name: Install Unity Hub (Linux)
-      if: ${{ runner.os == 'Linux' }}
+    - name: Install Unity Hub
       shell: bash
       run: |
-        ./.github/scripts/install_hub_linux.sh
-    - name: Install Unity Hub (macOS)
-      if: ${{ runner.os == 'macOS' }}
-      shell: bash
-      run: |
-        brew install --cask unity-hub
-    - name: Install Unity Hub (Windows)
-      if: ${{ runner.os == 'Windows' }}
-      shell: pwsh
-      run: |
-        powershell.exe -ExecutionPolicy Bypass -File .github/scripts/install_unity_hub.ps1
-    # These steps handle running for a single build target (used by the Linux
-    # tests, which run in parallel).
+        make install_hub
     - name: Install editor
-      if: ${{ inputs.build_target != '' }}
       shell: bash
       run: |
-        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} install --changeset ${{ inputs.editor_changeset }} --module ${{ inputs.build_target }}
+        make install_editor
     - name: Run tests
-      if: ${{ inputs.build_target != '' }}
       shell: bash
       env:
         UNITY_EMAIL: ${{ inputs.license_email }}
         UNITY_PASSWORD: ${{ inputs.license_password }}
         UNITY_SERIAL: ${{ inputs.license_serial }}
       run: |
-        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} test --build-target ${{ inputs.build_target }}
-    # These steps handle running for all build targets (used by non-Linux tests,
-    # which run a single job since they can't handle multiple activations).
-    - name: Install editor (all build targets)
-      if: ${{ inputs.build_target == '' }}
-      shell: bash
-      run: |
-        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} install --changeset ${{ inputs.editor_changeset }}
-    - name: Run tests (all build targets)
-      if: ${{ inputs.build_target == '' }}
-      shell: bash
-      env:
-        UNITY_EMAIL: ${{ inputs.license_email }}
-        UNITY_PASSWORD: ${{ inputs.license_password }}
-        UNITY_SERIAL: ${{ inputs.license_serial }}
-      run: |
-        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} test
+        make test
     - name: Upload test results
       uses: actions/upload-artifact@v4
       with:
@@ -99,4 +76,4 @@ runs:
     - name: Uninstall editor
       shell: bash
       run: |
-        python3 .github/scripts/unity.py --version ${{ inputs.editor_version }} uninstall
+        make uninstall_editor
