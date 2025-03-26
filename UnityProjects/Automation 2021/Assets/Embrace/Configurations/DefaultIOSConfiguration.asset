@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a5ccebd89d4f75933b41e87cf62b31, type: 3}
   m_Name: DefaultIOSConfiguration
   m_EditorClassIdentifier: 
-  API_KEY: 
-  API_TOKEN: 
+  appId: 
+  symbolUploadApiToken: 
   CRASH_REPORT_ENABLED: 1
   CRASH_REPORT_PROVIDER: Embrace
   STARTUP_MOMENT_SCREENSHOT_ENABLED: 0

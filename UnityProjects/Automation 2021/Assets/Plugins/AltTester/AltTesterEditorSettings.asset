@@ -17,6 +17,141 @@ MonoBehaviour:
   IProxyPath: /usr/local/bin/iproxy
   XcrunPath: /usr/bin/xcrun
   MyTests:
+  - _selected: 0
+    _testName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/Automation
+      2021/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestAssembly
+    _parentName: 
+    _testCaseCount: 7
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 1
+  - _selected: 0
+    _testName: EmbraceAltTests
+    _testAssembly: Assembly-CSharp-Editor
+    _status: 0
+    _isSuite: 1
+    _type: NUnit.Framework.Internal.TestFixture
+    _parentName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/Automation
+      2021/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+    _testCaseCount: 7
+    _foldOut: 1
+    _testResultMessage: 
+    _testStackTrace: 
+    _testDuration: 0
+    path: 
+    _testSelectedCount: 1
+  - _selected: 1
+    _testName: EmbraceAltTests.AddBreadcrumbTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogErrorTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogInfoTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogInfoWithPropertiesTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogMessageWithAttachmentTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogMessageWithAttachmentUrlTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
+  - _selected: 0
+    _testName: EmbraceAltTests.LogWarningTest
+    _testAssembly: Assembly-CSharp-Editor
+    _status: -1
+    _isSuite: 0
+    _type: NUnit.Framework.Internal.TestMethod
+    _parentName: EmbraceAltTests
+    _testCaseCount: 1
+    _foldOut: 1
+    _testResultMessage: 'OneTimeSetUp: AltTester.AltTesterUnitySDK.Driver.NoAppConnectedException
+      : No app connected that has the given tags.'
+    _testStackTrace: 
+    _testDuration: 0
+    path: Assets/Scripts/Editor/EmbraceAltTests.cs
+    _testSelectedCount: 0
   - _selected: 1
     _testName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/Automation
       2021/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll
@@ -101,7 +236,7 @@ MonoBehaviour:
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
     _testCaseCount: 326
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -130,7 +265,7 @@ MonoBehaviour:
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: EmbraceSDK
     _testCaseCount: 326
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -5274,7 +5409,7 @@ MonoBehaviour:
     _type: NUnit.Framework.Internal.TestAssembly
     _parentName: 
     _testCaseCount: 56
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -5303,7 +5438,7 @@ MonoBehaviour:
     _type: NUnit.Framework.Internal.TestSuite
     _parentName: EmbraceSDK
     _testCaseCount: 54
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -6228,7 +6363,7 @@ MonoBehaviour:
     _parentName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/Automation
       2021/Library/ScriptAssemblies/Embrace.Testing.PlayTests.dll
     _testCaseCount: 2
-    _foldOut: 0
+    _foldOut: 1
     _testResultMessage: 
     _testStackTrace: 
     _testDuration: 0
@@ -6292,7 +6427,7 @@ MonoBehaviour:
     path: 
     _testSelectedCount: 0
   - _selected: 1
-    _testName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/data-0x128060000
+    _testName: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/data-0x132248000
     _testAssembly: JetBrains.Rider.Unity.Editor.Plugin.Net46.Repacked
     _status: 0
     _isSuite: 1
@@ -6307,37 +6442,14 @@ MonoBehaviour:
     _testSelectedCount: 0
   Scenes:
   - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Demo Home.unity
+    _path: Assets/Scenes/SampleScene.unity
     _buildIndex: 0
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Breadcrumb.unity
-    _buildIndex: 1
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Crashes.unity
-    _buildIndex: 2
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Integrate.unity
-    _buildIndex: 3
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Logs.unity
-    _buildIndex: 4
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Moments.unity
-    _buildIndex: 5
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Users.unity
-    _buildIndex: 6
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Network.unity
-    _buildIndex: 7
-  - _toBeBuilt: 1
-    _path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/ANRs.unity
-    _buildIndex: 8
   platform: 0
   StandaloneTarget: -2
   RanInEditor: 0
   ScenePathDisplayed: 0
-  BuildLocationPath: 
+  BuildLocationPath: /Users/benjaminbennett/Documents/GitHub/embrace-unity-sdk/UnityProjects/Automation
+    2021/Builds
   createXMLReport: 0
   xMLFilePath: 
   AltServerPort: 13000

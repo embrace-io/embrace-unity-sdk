@@ -7,13 +7,15 @@
         "Embrace.SDK",
         "Embrace.SDK.Editor",
         "Embrace.SDK.Samples",
-        "Embrace.Testing"
+        "Embrace.Testing",
+        "AltTester.AltTesterUnitySDK",
+        "AltTester.AltTesterUnitySDK.Driver",
+        "AltTester.AltTesterUnitySDK.Editor"
     ],
-    "includePlatforms": [],
-    "excludePlatforms": [
-        "Android",
-        "iOS"
+    "includePlatforms": [
+        "Editor"
     ],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [

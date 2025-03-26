@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a670acc537be4b72964abaa6f4074487, type: 3}
   m_Name: DefaultAndroidConfiguration
   m_EditorClassIdentifier: 
-  app_id: 
-  api_token: 
-  ndk_enabled: 1
+  appId: nkeej
+  symbolUploadApiToken: 48c50305c463ff3a53acbf8d7449a0da
   sdk_config:
     app:
       report_disk_usage: 1
+    anr:
+      capture_google: 0
+      capture_unity_thread: 0
     crash_handler:
       enabled: 1
     networking:
@@ -36,8 +38,3 @@ MonoBehaviour:
     webview:
       capture_query_params: 1
       enable: 1
-    base_urls:
-      config: 
-      data: 
-      dataDev: 
-      images: 

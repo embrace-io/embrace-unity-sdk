@@ -4,8 +4,13 @@ using UnityEngine.UI;
 
 namespace EmbraceSDK.Automation
 {
-    public class Automation : MonoBehaviour
+    public class AutomationUI : MonoBehaviour
     {
+#if UNITY_IOS
+        [DllImport("__Internal")]
+        static extern void _embrace_basic_open_web_view(string url);
+#endif
+        
         [SerializeField] private Button AddBreadcrumbButton;
         [SerializeField] private Button LogInfoButton;
         [SerializeField] private Button LogInfoWithPropertiesButton;
@@ -13,19 +18,6 @@ namespace EmbraceSDK.Automation
         [SerializeField] private Button LogMessageWithAttachmentButton;
         [SerializeField] private Button LogWarningButton;
         [SerializeField] private Button LogErrorButton;
-        
-        private void Awake()
-        {
-            // TODO: Pull app id from the environment variables
-            EmbraceStartupArgs args = new EmbraceStartupArgs("");
-            Embrace.Instance.StartSDK(args);
-
-            Embrace.Instance.SetUsername(AutomationConstants.AUTOMATION_USERNAME);
-            Embrace.Instance.SetUserEmail(AutomationConstants.AUTOMATION_USERNAME);
-            Embrace.Instance.SetUserIdentifier(AutomationConstants.AUTOMATION_USERNAME);
-            Embrace.Instance.AddUserPersona(AutomationConstants.AUTOMATION_USERNAME);
-            Embrace.Instance.SetUserAsPayer();
-        }
 
         private void Start()
         {
@@ -64,6 +56,7 @@ namespace EmbraceSDK.Automation
 
         private void LogMessageWithAttachment()
         {
+#if UNITY_ANDROID || UNITY_IOS
             byte[] attachmentBytes = System.Text.Encoding.UTF8.GetBytes(AutomationConstants.AUTOMATION_ATTACHMENT);
             sbyte[] attachmentSBytes = new sbyte[attachmentBytes.Length];
             
@@ -73,6 +66,7 @@ namespace EmbraceSDK.Automation
             }
             
             Embrace.Instance.LogMessage(AutomationConstants.AUTOMATION_LOG_INFO, EMBSeverity.Info, null, attachmentSBytes);
+#endif
         }
 
         private void LogWarning()
