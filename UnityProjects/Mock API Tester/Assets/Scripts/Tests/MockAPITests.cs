@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Embrace.MockAPI.Models;
 using EmbraceSDK;
 using NUnit.Framework;
-using Newtonsoft.Json;
 
 namespace Embrace.MockAPI.Tests
 {
@@ -29,6 +28,27 @@ namespace Embrace.MockAPI.Tests
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.StatusCode);
             Assert.AreEqual("success", response.Data);
+        }
+
+        /// <summary>
+        /// A config test that grabs a mock config from the API.
+        /// </summary>
+        [Test]
+        public async Task GetConfigTest()
+        {
+            var response = await _mockAPIClient.GetConfig();
+            Assert.IsNotNull(response);
+            Assert.AreEqual(100, response.Ls);
+            Assert.AreEqual(0, response.Offset);
+            Assert.AreEqual(0, response.Personas.Count);
+            Assert.AreEqual(100, response.Ui.Views);
+            Assert.AreEqual(0, response.EventLimits.Count);
+            Assert.AreEqual(100, response.Threshold);
+            Assert.AreEqual(false, response.ScreenshotsEnabled);
+            Assert.AreEqual(true, response.UrlConnectionRequestEnabled);
+            Assert.AreEqual(false, response.DisableSessionControl);
+            Assert.AreEqual(true, response.SessionControl.Enable);
+            Assert.AreEqual(false, response.SessionControl.AsyncEnd);
         }
     
         /// <summary>

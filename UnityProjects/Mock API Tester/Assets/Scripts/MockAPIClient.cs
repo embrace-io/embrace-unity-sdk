@@ -36,6 +36,26 @@ namespace Embrace.MockAPI
         }
 
         /// <summary>
+        /// Gets a mock config from the API.
+        /// </summary>
+        /// <returns>Config model</returns>
+        public async Task<ConfigResponse> GetConfig()
+        {
+            try
+            {
+                string requestUrl = $"{BaseUrl}logs/api/v2/config?appId=abc12";
+                string response = await GetAsync(requestUrl);
+                ConfigResponse config = JsonConvert.DeserializeObject<ConfigResponse>(response);
+                return config;
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Sends a message to the logging endpoint with the specified severity. It will automatically generate a unique log id.
         /// </summary>
         /// <param name="message">Message to send</param>
