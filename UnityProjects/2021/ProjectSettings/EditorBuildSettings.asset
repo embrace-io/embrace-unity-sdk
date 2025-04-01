@@ -29,7 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Network.unity
     guid: 765e04ad846d749919ece90718106caf
-  - enabled: 1
-    path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/ANRs.unity
-    guid: 9f550f48d7b1142e885b3a5593a11315
   m_configObjects: {}

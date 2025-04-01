@@ -91,8 +91,6 @@ namespace EmbraceSDK.Tests
             configuration.AppId = "12345";
             configuration.SymbolUploadApiToken = "0123456789";
             configuration.sdk_config.app.report_disk_usage = true;
-            configuration.sdk_config.anr.capture_google = false;
-            configuration.sdk_config.anr.capture_unity_thread = false;
             configuration.sdk_config.crash_handler.enabled = true;
             configuration.sdk_config.networking.capture_request_content_length = true;
             configuration.sdk_config.networking.enable_native_monitoring = true;
@@ -113,8 +111,6 @@ namespace EmbraceSDK.Tests
             Assert.AreEqual(defaultConfiguration.AppId, configuration.AppId);
             Assert.AreEqual(defaultConfiguration.SymbolUploadApiToken, configuration.SymbolUploadApiToken);
             Assert.AreEqual(defaultConfiguration.sdk_config.app.report_disk_usage, configuration.sdk_config.app.report_disk_usage);
-            Assert.AreEqual(defaultConfiguration.sdk_config.anr.capture_google, configuration.sdk_config.anr.capture_google);
-            Assert.AreEqual(defaultConfiguration.sdk_config.anr.capture_unity_thread, configuration.sdk_config.anr.capture_unity_thread);
             Assert.AreEqual(defaultConfiguration.sdk_config.crash_handler.enabled, configuration.sdk_config.crash_handler.enabled);
             Assert.AreEqual(defaultConfiguration.sdk_config.networking.capture_request_content_length, configuration.sdk_config.networking.capture_request_content_length);
             Assert.AreEqual(defaultConfiguration.sdk_config.networking.enable_native_monitoring, configuration.sdk_config.networking.enable_native_monitoring);

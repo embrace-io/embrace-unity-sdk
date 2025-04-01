@@ -54,8 +54,6 @@ namespace EmbraceSDK.EditorView
             symbolUploadApiToken = string.Empty;
             ndk_enabled = true; // hidden unity-specific non-default value (always true requested by Android team).
             sdk_config.app.report_disk_usage = true;
-            sdk_config.anr.capture_google = false;
-            sdk_config.anr.capture_unity_thread = false;
             sdk_config.crash_handler.enabled = true;
             sdk_config.networking.capture_request_content_length = false;
             sdk_config.networking.enable_native_monitoring = true;

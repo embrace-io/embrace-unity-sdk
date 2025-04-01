@@ -7,8 +7,6 @@ namespace EmbraceSDK.EditorView
         public const string MaxSessionSeconds = "Automate the end of the session every x amount of seconds (Min of 60 sec and Max of 604800)";
         public const string NdkEnabled = "Enable Native Development Kit (NDK) a set of tools that allows you to use C and C++ code with Android.";
         public const string ReportDiskUsage = "Selects whether the SDK collects disk usage for the app.";
-        public const string CaptureGoogle = "Selects whether the SDK captures when Google detects an ANR.";
-        public const string CaptureUnityThread = "Selects whether the SDK captures the Unity thread during an ANR.";
         public const string CrashHandler = "Sets whether to enable the SDK from connecting to the uncaught exception handler.";
         public const string CaptureRequestContentLength = "Disable the gzip encoding for network calls.";
         public const string EnableNativeMonitoring = "Enable to capture network requests done through the Java URLConnection class.";
