@@ -37,7 +37,9 @@ namespace EmbraceSDK.EditorView.iOS.Extensions
                 CopySwiftPackage(sourcePath, destPath);
                 if (project.FindFileGuidByProjectPath(projectPath) == null)
                 {
-                    project.AddFolderReference(destPath, projectPath);
+                    Debug.Log($"destPath: {destPath}");
+                    Debug.Log($"projectPath: {projectPath}");
+                    project.AddFolderReference(projectPath, projectPath);
                 }
                 var unityFrameworkTargetGuid = project.GetUnityFrameworkTargetGuid();
                 var (productDependency, productDependencyGuid) = CreateSwiftPackageProductDependency(productName);
