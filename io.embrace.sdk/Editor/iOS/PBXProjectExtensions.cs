@@ -37,9 +37,11 @@ namespace EmbraceSDK.EditorView.iOS.Extensions
                 CopySwiftPackage(sourcePath, destPath);
                 if (project.FindFileGuidByProjectPath(projectPath) == null)
                 {
-                    Debug.Log($"destPath: {destPath}");
-                    Debug.Log($"projectPath: {projectPath}");
-                    project.AddFolderReference(projectPath, projectPath);
+                    // The Source specification here is called out rather than leaving as implicit.
+                    // Refer to the documentation here: https://docs.unity3d.com/6000.0/Documentation/ScriptReference/iOS.Xcode.PBXSourceTree.html
+                    // The reason for projectPath's usage twice is that the project is copied into the root of the resulting built project.
+                    // As a result we only need to call out the folder itself as a reference.
+                    project.AddFolderReference(projectPath, projectPath, PBXSourceTree.Source); 
                 }
                 var unityFrameworkTargetGuid = project.GetUnityFrameworkTargetGuid();
                 var (productDependency, productDependencyGuid) = CreateSwiftPackageProductDependency(productName);
