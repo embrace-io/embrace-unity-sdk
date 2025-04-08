@@ -157,6 +157,36 @@ namespace EmbraceSDK.Tests
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
 
+            // NOTE: With the swazzler update (7.3.0) the app_id and api_token must actually be valid now
+            // In order to not have these exposed on GitHub, please setup environment variables for them
+            // You can edit your .zprofile file to add them
+            
+            testConfig.AppId = Environment.GetEnvironmentVariable("embrace_test_app_id");
+            testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("embrace_test_api_token");
+            
+            if(testConfig.AppId == null || testConfig.SymbolUploadApiToken == null)
+            {
+                // load the json config
+                string json = Resources.Load<TextAsset>("TestConfigurations/test-config")?.text;
+                
+                if (json == null)
+                {
+                    Assert.Fail("Test config not found");
+                }
+                
+                // deserialize the json into the config
+                var config = JsonConvert.DeserializeObject<EmbraceTestConfig>(json);
+                
+                if (config == null)
+                {
+                    Assert.Fail("Test config not found");
+                }
+                
+                // set the app_id and api_token
+                testConfig.AppId = config.AppId;
+                testConfig.SymbolUploadApiToken = config.ApiToken;
+            }
+            
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";

@@ -2,6 +2,6 @@ namespace EmbraceSDK.EditorView
 {
     public class VersionsRepository
     {
-        public const string ANDROID_SDK_VERSION = "7.1.0";
+        public const string ANDROID_SDK_VERSION = "7.3.0";
     }
 }
