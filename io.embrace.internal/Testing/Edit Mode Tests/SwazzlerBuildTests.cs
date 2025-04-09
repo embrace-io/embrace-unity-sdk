@@ -1,4 +1,5 @@
 #if UNITY_ANDROID
+using System;
 using System.IO;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
@@ -69,6 +70,11 @@ namespace EmbraceSDK.Tests
 
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
+            
+            // NOTE: With the swazzler update (7.3.0) the app_id and api_token must actually be valid now
+            // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
+            testConfig.AppId = Environment.GetEnvironmentVariable("embrace_test_app_id");
+            testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("embrace_test_api_token");
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
