@@ -75,7 +75,9 @@ namespace EmbraceSDK.Tests
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
             testConfig.AppId = Environment.GetEnvironmentVariable("embrace_test_app_id");
             testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("embrace_test_api_token");
-
+            Assert.IsNotNull(testConfig.AppId);
+            Assert.IsNotNull(testConfig.SymbolUploadApiToken);
+            
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";
