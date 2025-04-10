@@ -45,6 +45,8 @@ on:
         default: false
 
 env:
+  EMBRACE_TEST_API_TOKEN: ${{ secrets.EMBRACE_TEST_API_TOKEN }}
+  EMBRACE_TEST_APP_ID: ${{ secrets.EMBRACE_TEST_APP_ID }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
