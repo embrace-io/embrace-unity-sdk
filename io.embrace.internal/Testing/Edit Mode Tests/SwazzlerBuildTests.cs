@@ -73,8 +73,8 @@ namespace EmbraceSDK.Tests
             
             // NOTE: With the swazzler update (7.3.0) the app_id and api_token must actually be valid now
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
-            testConfig.AppId = Environment.GetEnvironmentVariable("embrace_test_app_id");
-            testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("embrace_test_api_token");
+            testConfig.AppId = Environment.GetEnvironmentVariable("EMBRACE_TEST_APP_ID");
+            testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("EMBRACE_TEST_API_TOKEN");
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
             
