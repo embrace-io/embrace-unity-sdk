@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set environment variables
-export app_id="YOUR_APP_ID"
-export api_token="YOUR_API_TOKEN"
+export EMBRACE_TEST_APP_ID="YOUR_APP_ID"
+export EMBRACE_TEST_API_TOKEN="YOUR_API_TOKEN"
 
 # Path to Unity 2021.3.48f1 on macOS
 # Change this to the version of Unity you are using
