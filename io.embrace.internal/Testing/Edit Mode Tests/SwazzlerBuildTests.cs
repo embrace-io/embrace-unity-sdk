@@ -68,15 +68,15 @@ namespace EmbraceSDK.Tests
             // NOTE: The test config contains override values for all fields which are used to output a json file with all available config settings.
             var testConfig = Resources.Load<AndroidConfiguration>("TestConfigurations/TestAndroidConfiguration");
 
-            TestHelper.ConfigBackup(defaultConfig);
-            TestHelper.CopyConfig(testConfig, defaultConfig);
-            
             // NOTE: With the swazzler update (7.3.0) the app_id and api_token must actually be valid now
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
             testConfig.AppId = Environment.GetEnvironmentVariable("EMBRACE_TEST_APP_ID");
             testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("EMBRACE_TEST_API_TOKEN");
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
+            
+            TestHelper.ConfigBackup(defaultConfig);
+            TestHelper.CopyConfig(testConfig, defaultConfig);
             
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
