@@ -114,8 +114,9 @@ namespace EmbraceSDK.EditorView
                     AssetDatabaseUtil.EmbraceDataDirectory = AssetDatabaseUtil.DefaultDataDirectory;
                 }
             }
-
-            if (!EmbraceProjectSettings.User.GetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup)))
+            
+            if (!EmbraceProjectSettings.User.ContainsKey(nameof(DeviceSDKInfo.isManifestSetup)) 
+                || !EmbraceProjectSettings.User.GetValue<bool>(nameof(DeviceSDKInfo.isManifestSetup)))
             {
                 SetupManifest(sdkInfo);
             }
