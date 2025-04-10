@@ -64,7 +64,6 @@ jobs:
         with:
           lfs: true
           ref: ${{ needs.bump_version.outputs.release_commit_sha }}
-          # token: ${{ secrets.PUSH_GH_TOKEN }}
       - name: Tag the release
         run: |
           git config --global user.name "$COMMIT_USER_NAME"
