@@ -50,6 +50,15 @@ namespace Embrace.MockAPI.Tests
             Assert.AreEqual(true, response.SessionControl.Enable);
             Assert.AreEqual(false, response.SessionControl.AsyncEnd);
         }
+        
+        [Test]
+        public async Task SetConfigTest()
+        {
+            EmbraceResponse response = await _mockAPIClient.PostConfig();
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.StatusCode);
+            Assert.AreEqual("success", response.Data);
+        }
     
         /// <summary>
         /// A series of logging tests to ensure that the logging endpoint is working as expected.

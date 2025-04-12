@@ -15,7 +15,7 @@ namespace Embrace.MockAPI.Models
         /// Converts the request to an HttpContent object.
         /// </summary>
         /// <returns>Object as HttpContent</returns>
-        public HttpContent ToHttpContent()
+        public virtual HttpContent ToHttpContent()
         {
             string json = JsonConvert.SerializeObject(this);
             byte[] compressed = Compress(json);
@@ -27,7 +27,7 @@ namespace Embrace.MockAPI.Models
         /// </summary>
         /// <param name="contents">String to compress</param>
         /// <returns>String compressed to byte array</returns>
-        private byte[] Compress(string contents)
+        protected byte[] Compress(string contents)
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(contents);
             using var outputStream = new MemoryStream();

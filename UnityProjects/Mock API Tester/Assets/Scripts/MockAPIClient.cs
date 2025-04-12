@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Embrace.MockAPI.Models;
 using EmbraceSDK;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace Embrace.MockAPI
 {
@@ -55,6 +57,22 @@ namespace Embrace.MockAPI
             }
         }
 
+        public async Task<EmbraceResponse> PostConfig()
+        {
+            try
+            {
+                var requestUrl = $"{BaseUrl}logs/api/v2/config/abc12";
+                var request = new ConfigRequest("key", "value");
+                var response = await PostAsync(requestUrl, request.ToHttpContent());
+                return JsonConvert.DeserializeObject<EmbraceResponse>(response);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Sends a message to the logging endpoint with the specified severity. It will automatically generate a unique log id.
         /// </summary>
@@ -95,19 +113,28 @@ namespace Embrace.MockAPI
         /// <param name="endpoint">URL to POST request</param>
         /// <param name="content">Gzip compressed body to send</param>
         /// <returns>Response string in JSON format</returns>
-        private async Task<string> PostAsync(string endpoint, HttpContent content)
+        private async Task<string> PostAsync(string endpoint, HttpContent content, Dictionary<string, string> headers = null)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
             {
                 Content = content
             };
 
+            if (headers != null)
+            {
+                foreach(var header in headers)
+                {
+                    request.Headers.Add(header.Key, header.Value);
+                }
+            }
+
             request.Headers.Add("X-Em-Aid", "abc12");
             request.Headers.Add("X-Em-Did", "test_device_id");
-            content.Headers.Add("Content-Encoding", "gzip");
-            content.Headers.Add("Content-Type", "application/json");
+            //content.Headers.Add("Content-Encoding", "gzip");
+            //content.Headers.Add("Content-Type", "application/json");
             HttpResponseMessage response = await _httpClient.SendAsync(request);
             string responseBody = await response.Content.ReadAsStringAsync();
+            Debug.Log(responseBody);
             response.EnsureSuccessStatusCode();
             return responseBody;
         }
