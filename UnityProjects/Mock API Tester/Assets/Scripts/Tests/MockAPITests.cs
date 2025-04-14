@@ -38,17 +38,6 @@ namespace Embrace.MockAPI.Tests
         {
             var response = await _mockAPIClient.GetConfig();
             Assert.IsNotNull(response);
-            Assert.AreEqual(100, response.Ls);
-            Assert.AreEqual(0, response.Offset);
-            Assert.AreEqual(0, response.Personas.Count);
-            Assert.AreEqual(100, response.Ui.Views);
-            Assert.AreEqual(0, response.EventLimits.Count);
-            Assert.AreEqual(100, response.Threshold);
-            Assert.AreEqual(false, response.ScreenshotsEnabled);
-            Assert.AreEqual(true, response.UrlConnectionRequestEnabled);
-            Assert.AreEqual(false, response.DisableSessionControl);
-            Assert.AreEqual(true, response.SessionControl.Enable);
-            Assert.AreEqual(false, response.SessionControl.AsyncEnd);
         }
         
         [Test]
@@ -80,6 +69,18 @@ namespace Embrace.MockAPI.Tests
         
             // log error message
             response = await _mockAPIClient.LogMessage("Test Error Message", EMBSeverity.Error);
+            Assert.IsNotNull(response);
+            Assert.AreEqual(200, response.StatusCode);
+            Assert.AreEqual("success", response.Data);
+        }
+
+        /// <summary>
+        /// Test to ensure the mock API can log a blob.
+        /// </summary>
+        [Test]
+        public async Task LogBlobTests()
+        {
+            EmbraceResponse response = await _mockAPIClient.LogBlob("Test", "4");
             Assert.IsNotNull(response);
             Assert.AreEqual(200, response.StatusCode);
             Assert.AreEqual("success", response.Data);

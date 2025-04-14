@@ -85,7 +85,37 @@ namespace Embrace.MockAPI
             {
                 string requestUrl = $"{BaseUrl}logs/api/v1/log/logging";
                 var request = new LogMessageRequest(message, severity);
-                string response = await PostAsync(requestUrl, request.ToHttpContent());
+                string response = await PostAsync(requestUrl, request.ToHttpContent(), new Dictionary<string, string>
+                {
+                    {"Content-Encoding", "gzip"},
+                    {"Content-Type", "application/json"}
+                });
+                return JsonConvert.DeserializeObject<EmbraceResponse>(response);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Makes a call to the logging endpoint with a message a status which gets converted to a byte blob
+        /// </summary>
+        /// <param name="message">Message to send</param>
+        /// <param name="status">Status to send</param>
+        /// <returns>Response from mock API server</returns>
+        public async Task<EmbraceResponse> LogBlob(string message, string status)
+        {
+            try
+            {
+                string requestUrl = $"{BaseUrl}logs/api/v1/log/blobs";
+                var request = new LogBlobRequest(message, status);
+                string response = await PostAsync(requestUrl, request.ToHttpContent(), new Dictionary<string, string>
+                {
+                    {"Content-Encoding", "gzip"},
+                    {"Content-Type", "application/json"}
+                });
                 return JsonConvert.DeserializeObject<EmbraceResponse>(response);
             }
             catch (Exception e)
@@ -112,6 +142,7 @@ namespace Embrace.MockAPI
         /// </summary>
         /// <param name="endpoint">URL to POST request</param>
         /// <param name="content">Gzip compressed body to send</param>
+        /// <param name="headers">Optional headers for request</param>
         /// <returns>Response string in JSON format</returns>
         private async Task<string> PostAsync(string endpoint, HttpContent content, Dictionary<string, string> headers = null)
         {
@@ -124,14 +155,12 @@ namespace Embrace.MockAPI
             {
                 foreach(var header in headers)
                 {
-                    request.Headers.Add(header.Key, header.Value);
+                    content.Headers.Add(header.Key, header.Value);
                 }
             }
 
             request.Headers.Add("X-Em-Aid", "abc12");
             request.Headers.Add("X-Em-Did", "test_device_id");
-            //content.Headers.Add("Content-Encoding", "gzip");
-            //content.Headers.Add("Content-Type", "application/json");
             HttpResponseMessage response = await _httpClient.SendAsync(request);
             string responseBody = await response.Content.ReadAsStringAsync();
             Debug.Log(responseBody);
