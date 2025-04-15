@@ -1,3 +1,6 @@
+
+using System;
+
 namespace EmbraceSDK
 {
     /// <summary>
@@ -13,35 +16,35 @@ namespace EmbraceSDK
         /// The AppId for the app you are integrating with Embrace
         /// This is the only item that is required.
         /// </summary>
-        public string AppId;
+        public readonly string AppId;
         
         /// <summary>
         /// The AppGroupId for the app you are integrating with Embrace
         /// </summary>
-        public string AppGroupId;
+        public readonly string AppGroupId;
         
         /// <summary>
         /// The base url for the Embrace API for redirecting requests.
         /// This is primarily used for testing.
         /// </summary>
-        public string BaseUrl;
+        public readonly string BaseUrl;
         
         /// <summary>
         /// The dev base url for the Embrace API for redirecting requests.
         /// This is primarily used for testing.
         /// </summary>
-        public string DevBaseUrl;
+        public readonly string DevBaseUrl;
         
         /// <summary>
         /// The config base url for the Embrace API for redirecting requests.
         /// This is primarily used for testing.
         /// </summary>
-        public string ConfigBaseUrl;
+        public readonly string ConfigBaseUrl;
 
         /// <summary>
         /// The native configuration for the Embrace SDK; currently only applies to iOS.
         /// </summary>
-        public EmbraceConfig Config;
+        public readonly EmbraceConfig Config;
         
         /// <summary>
         /// Default constructor provided primarily for internal testing purposes.
@@ -93,6 +96,15 @@ namespace EmbraceSDK
                    && ConfigBaseUrl == other.ConfigBaseUrl
                    && Config == other.Config;
             
+        }
+
+        /// <summary>
+        /// Override GetHashCode to use data members for hash code.
+        /// </summary>
+        /// <returns>Hash of object</returns>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AppId, AppGroupId, BaseUrl, DevBaseUrl, ConfigBaseUrl, Config);
         }
     }
 }

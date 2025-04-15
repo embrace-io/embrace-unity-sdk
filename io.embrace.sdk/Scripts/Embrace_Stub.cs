@@ -15,10 +15,12 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log("InitializeSDK");
         }
 
+        #nullable enable
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args)
         {
             EmbraceLogger.Log("StartSDK");
         }
+        #nullable disable
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
