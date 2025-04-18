@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Environments
   m_EditorClassIdentifier: 
   activeEnvironmentIndex: -1
-  activeDeviceIndex: 0
+  activeDeviceIndex: 1
   environmentConfigurations: []
   isDirty: 0
