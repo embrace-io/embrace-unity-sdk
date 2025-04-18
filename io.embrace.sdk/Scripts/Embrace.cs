@@ -688,6 +688,12 @@ namespace EmbraceSDK
             EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
             #endif
         }
+
+        /// <inheritdoc />
+        public void Disable()
+        {
+            Provider?.Disable();
+        }
         
         /// <summary>
         /// Create and start a new span.

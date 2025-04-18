@@ -62,5 +62,6 @@ namespace EmbraceSDK.Internal
         #elif UNITY_ANDROID
         void RecordPushNotification(AndroidPushNotificationArgs androidArgs);
         #endif
+        void Disable();
     }
 }

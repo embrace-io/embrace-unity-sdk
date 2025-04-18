@@ -532,6 +532,11 @@ public func embrace_log_push_notification(title: UnsafePointer<CChar>?, body: Un
     }
 }
 
+@_cdecl("embrace_disable")
+public func embrace_disable() {
+    EmbraceManager.disable();
+}
+
 private func unpack_event_array_to_event_object_array(events: [[String: Any]]) -> [RecordingSpanEvent] {
     var spanEvents = [RecordingSpanEvent]()
     for event in events {
