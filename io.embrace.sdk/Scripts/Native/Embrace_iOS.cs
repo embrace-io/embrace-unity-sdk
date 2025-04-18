@@ -145,6 +145,9 @@ namespace EmbraceSDK.Internal
         [DllImport("__Internal")]
         private static extern void embrace_log_push_notification(string title, string subtitle, string body, int badge, string category);
 
+        [DllImport("__Internal")]
+        private static extern void embrace_disable();
+        
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log("initializing Objc objects");
@@ -489,6 +492,11 @@ namespace EmbraceSDK.Internal
             }
             
             embrace_log_push_notification(iosArgs.title, iosArgs.subtitle, iosArgs.body, iosArgs.badge, iosArgs.category);
+        }
+
+        void IEmbraceProvider.Disable()
+        {
+            embrace_disable();
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage,

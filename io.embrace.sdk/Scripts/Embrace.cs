@@ -917,6 +917,12 @@ namespace EmbraceSDK
                 EmbraceLogger.LogException(e);
             }
         }
+
+        /// <inheritdoc />
+        public void Disable()
+        {
+            Provider?.Disable();
+        }
         
         /// <summary>
         /// Create and start a new span.

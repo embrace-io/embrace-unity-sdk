@@ -34,6 +34,8 @@ namespace EmbraceSDK.Demo
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
             #endif
+            
+            Embrace.Instance.Disable();
         }
     }
 }
