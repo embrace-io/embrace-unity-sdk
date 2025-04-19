@@ -15,7 +15,6 @@ namespace EmbraceSDK.Demo
         private void HandleDisable()
         {
             Embrace.Instance.Disable();
-            Debug.Log("Embrace SDK Disabled");
         }
     }
 }

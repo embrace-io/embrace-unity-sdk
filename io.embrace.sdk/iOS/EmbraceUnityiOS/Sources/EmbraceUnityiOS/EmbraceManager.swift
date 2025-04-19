@@ -479,9 +479,15 @@ public class EmbraceManager: NSObject {
     }
     
     static func disable() {
-        if let client = Embrace.client {
-            client.isSDKEnabled = false
-            print("SDK Enabled: \(client.isSDKEnabled)")
+        do {
+            try Embrace.client?.stop()
+        } catch {
+            print("Failed to stop Embrace: \(error)")
+        }
+        
+        if(Embrace.client != nil) {
+            let enabled = Embrace.client?.isSDKEnabled
+            print("SDK Enabled: \(enabled)")
         }
     }
 
