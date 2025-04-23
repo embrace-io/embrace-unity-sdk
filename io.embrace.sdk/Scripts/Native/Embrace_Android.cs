@@ -201,7 +201,7 @@ namespace EmbraceSDK.Internal
         {
             return  _embraceInternalSharedInstance != null;
         }
-        
+
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
@@ -797,7 +797,14 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            EmbraceSharedInstance?.Call(_DisableMethod);
+            try
+            {
+                EmbraceSharedInstance?.Call(_DisableMethod);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
 
         /// <summary>

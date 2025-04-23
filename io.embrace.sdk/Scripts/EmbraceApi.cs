@@ -51,7 +51,12 @@ namespace EmbraceSDK
         /// <summary>
         /// Returns true if StartSDK has been called on the Embrace instance.
         /// </summary>
-         bool IsStarted { get; }
+        bool IsStarted { get; }
+        
+        /// <summary>
+        /// Returns true if the SDK is enabled and ready to send data.
+        /// </summary>
+        bool IsEnabled { get; }
 
         /// <summary>
         /// Starts instrumentation of the application using the Embrace SDK. This should be called during creation of the application, as early as possible.
