@@ -923,6 +923,7 @@ namespace EmbraceSDK
         public void Disable()
         {
             IsEnabled = false;
+            Provider?.Disable();
         }
         
         /// <inheritdoc />
