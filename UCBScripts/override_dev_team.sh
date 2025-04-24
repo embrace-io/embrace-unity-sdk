@@ -3,7 +3,7 @@
 project_settings=($(find . -name ProjectSettings.asset))
 
 for file in "${project_settings[@]}"; do
-    if grep "appleDeveloperTeamID:" "$file"; then
+    if grep -q "appleDeveloperTeamID:" "$file"; then
         yq eval ".PlayerSettings.appleDeveloperTeamID = \"$APPLE_TEAM_ID\"" -i "$file"
     fi
 done
