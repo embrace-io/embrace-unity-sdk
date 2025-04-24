@@ -1,5 +1,12 @@
 #!/bin/bash
 # This script updates the appleDeveloperTeamID in Unity's ProjectSettings.asset file
+
+if ! command -v yq &> /dev/null; then
+    curl -L https://github.com/mikefarah/yq/releases/latest/download/yq_windows_amd64.exe -o ~/bin/yq
+    chmod +x ~/bin/yq
+    export PATH="$HOME/bin:$PATH"
+fi
+
 project_settings=($(find . -name ProjectSettings.asset))
 
 for file in "${project_settings[@]}"; do
