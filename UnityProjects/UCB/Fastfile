@@ -1,4 +1,6 @@
 lane :pre_build do
     puts "Current directory: #{Dir.pwd}"
     puts "Directory contents: #{Dir.entries(Dir.pwd)}"
+    puts "parent directory: #{File.expand_path('..', Dir.pwd)}"
+    puts "parent contents: #{File.expand_path('..', Dir.pwd)}"
 end
