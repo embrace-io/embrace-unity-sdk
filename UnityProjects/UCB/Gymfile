@@ -1,4 +1,4 @@
-project "./Unity-iPhone.xcodeproj"
+project "../Unity-iPhone.xcodeproj"
 scheme "Unity-iPhone"
 configuration "Release"
 clean true
