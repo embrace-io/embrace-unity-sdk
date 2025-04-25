@@ -1,3 +1,7 @@
 {
-    "gymfile": "./Gymfile"
+    "fastfile": "./Fastfile",
+    "gymfile": "./Gymfile",
+    "lanes": {
+        "pre_build": "pre_build"
+    }
 }

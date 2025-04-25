@@ -1,0 +1,4 @@
+lane :pre_build do
+    puts "Current directory: #{Dir.pwd}"
+    puts "Directory contents: #{Dir.entries(Dir.pwd)}"
+end
