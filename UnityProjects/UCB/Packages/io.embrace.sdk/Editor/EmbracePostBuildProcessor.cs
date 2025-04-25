@@ -174,6 +174,9 @@ namespace EmbraceSDK.EditorView
                 {
                     string configGuid = project.BuildConfigByName(targetGuid, targetConfig);
                     project.SetBuildPropertyForConfig(configGuid, "DEBUG_INFORMATION_FORMAT", "dwarf-with-dsym");
+                    project.SetBuildProperty(targetGuid, "MACH_O_TYPE", "staticlib");
+                    project.SetBuildProperty(targetGuid, "BUILD_LIBRARY_FOR_DISTRIBUTION", "NO");
+
                 }
             }
 
