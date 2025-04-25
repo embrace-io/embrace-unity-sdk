@@ -9,7 +9,7 @@ let package = Package(
         .iOS(.v13), .tvOS(.v13), .macOS(.v13), .watchOS(.v6)
     ],
     products: [
-        .library(name: "EmbraceUnityiOS", targets: ["EmbraceUnityiOS"]),
+        .library(name: "EmbraceUnityiOS", type: .static, targets: ["EmbraceUnityiOS"]),
     ],
     dependencies: [
         .package(url: "https://github.com/embrace-io/embrace-apple-sdk.git", exact: "6.8.4")
