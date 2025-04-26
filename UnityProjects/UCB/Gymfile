@@ -1,17 +1,3 @@
-project "../Unity-iPhone.xcodeproj"
-scheme "Unity-iPhone"
 configuration "Release"
 clean true
-destination "generic/platform=iOS"
-output_directory "./build/ucb"
-output_name "build"
-export_method "ad-hoc"
-export_team_id "L5RVT7J8CV"
-codesigning_identity "Apple Distribution: EMBRACE MOBILE, INC (L5RVT7J8CV)"
 xcargs "-UseModernBuildSystems=YES CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=L5RVT7J8CV"
-skip_profile_detection true
-export_options({
-  provisioningProfiles: {
-    "com.embrace.Unity-UCB" => "5e93fc35-45f4-44db-8af3-e2aa46e5e3a8"
-  }
-})
