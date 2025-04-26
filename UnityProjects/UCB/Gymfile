@@ -1,3 +1,1 @@
-configuration "Release"
-clean true
-xcargs "-UseModernBuildSystems=YES CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=L5RVT7J8CV"
+xcargs "-UseModernBuildSystems=YES CODE_SIGN_STYLE=Manual"
