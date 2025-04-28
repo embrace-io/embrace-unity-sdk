@@ -174,14 +174,22 @@ namespace EmbraceSDK.Internal
 
         private bool ReadyForCalls()
         {
-            bool result = embraceSharedInstance != null;
-            
-            if (result == true && emb_jniIsAttached() == false && AndroidJNI.AttachCurrentThread() != 0)
+            if (EmbraceSharedInstance == null)
             {
-                result = false;
+                return false;
             }
-            
-            return result;
+
+            if (emb_jniIsAttached() == false)
+            {
+                return false;
+            }
+
+            if (AndroidJNI.AttachCurrentThread() != 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private bool UnityInternalInterfaceReadyForCalls()
@@ -222,21 +230,29 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
         {
-            if (!ReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                return;
+            }
+            
             // enableIntegrationTesting/isDevMode is no longer supported on Android
             // we hard-code to false as this resolves to a functional method call
             // TODO: Update this to the appropriate method call at a later date
             // We need to replace the applicationInstance with the Context
-            EmbraceSharedInstance?.Call(_StartMethod, applicationContext, unityAppFramework);
+            EmbraceSharedInstance.Call(_StartMethod, applicationContext, unityAppFramework);
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
-            if (!ReadyForCalls()) { return LastRunEndState.Invalid; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to get last run end state, Embrace SDK not initialized");
+                return LastRunEndState.Invalid;
+            }
 
             try
             {
-                using AndroidJavaObject lastRunStateObject = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
+                using AndroidJavaObject lastRunStateObject = EmbraceSharedInstance.Call<AndroidJavaObject>(_GetLastRunEndStateMethod);
                 int lastRunStateInt = lastRunStateObject.Call<int>(_LastRunEndStateGetValueMethod);
 
                 switch (lastRunStateInt)
@@ -260,38 +276,68 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.SetUserIdentifier(string identifier)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUserIdentifierMethod, identifier);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to set user identifier, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_SetUserIdentifierMethod, identifier);
         }
 
         void IEmbraceProvider.ClearUserIdentifier()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserIdentifierMethod);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to clear user identifier, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_ClearUserIdentifierMethod);
         }
 
         void IEmbraceProvider.SetUsername(string username)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUsernameMethod, username);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to set username, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_SetUsernameMethod, username);
         }
 
         void IEmbraceProvider.ClearUsername()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUsernameMethod);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to clear username, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_ClearUsernameMethod);
         }
 
         void IEmbraceProvider.SetUserEmail(string email)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_SetUserEmailMethod, email);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to set user email, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_SetUserEmailMethod, email);
         }
 
         void IEmbraceProvider.ClearUserEmail()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserEmailMethod);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to clear user email, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_ClearUserEmailMethod);
         }
 
         void IEmbraceProvider.SetUserAsPayer()
@@ -306,39 +352,68 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.AddUserPersona(string persona)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_AddUserPersonaMethod, persona);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add user persona, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_AddUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.ClearUserPersona(string persona)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearUserPersonaMethod, persona);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to clear user persona, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_ClearUserPersonaMethod, persona);
         }
 
         void IEmbraceProvider.ClearAllUserPersonas()
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_ClearAllUserPersonasMethod);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to clear all user personas, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_ClearAllUserPersonasMethod);
         }
 
         bool IEmbraceProvider.AddSessionProperty(string key, string value, bool permanent)
         {
-            if (!ReadyForCalls()) { return false; }
-            return EmbraceSharedInstance?.Call<bool>(_AddSessionPropertyMethod, key, value, permanent) ?? false;
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add session property, Embrace SDK not initialized");
+                return false;
+            }
+
+            return EmbraceSharedInstance.Call<bool>(_AddSessionPropertyMethod, key, value, permanent);
         }
 
         void IEmbraceProvider.RemoveSessionProperty(string key)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call<bool>(_RemoveSessionPropertyMethod, key);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to remove session property, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call<bool>(_RemoveSessionPropertyMethod, key);
         }
 
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
-            if (!ReadyForCalls()) { return null; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to get session properties, Embrace SDK not initialized");
+                return null;
+            }
 
-            using AndroidJavaObject javaMap = EmbraceSharedInstance?.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
+            using AndroidJavaObject javaMap = EmbraceSharedInstance.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
 
             // The Android SDK can return null if this function is called before the SDK is initialized, or if SDK
             // initialization fails. In this case, return an empty dictionary to match behavior on iOS.
@@ -353,38 +428,48 @@ namespace EmbraceSDK.Internal
 
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)
         {
-            if (!ReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                return;
+            }
+            
             using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
 
             switch (severity)
             {
                 case EMBSeverity.Warning:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logWarning, javaMap);
                     break;
                 case EMBSeverity.Error:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logError, javaMap);
                     break;
                 default:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logInfo, javaMap);
                     break;
             }
         }
 
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, sbyte[] attachment)
         {
-            if (!ReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                return;
+            }
+            
             using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
             
             switch (severity)
             {
                 case EMBSeverity.Warning:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap, attachment);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logWarning, javaMap, attachment);
                     break;
                 case EMBSeverity.Error:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap, attachment);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logError, javaMap, attachment);
                     break;
                 default:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap, attachment);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logInfo, javaMap, attachment);
                     break;
             }
         }
@@ -392,107 +477,202 @@ namespace EmbraceSDK.Internal
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties,
             string attachmentId, string attachmentUrl)
         {
-            if (!ReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                return;
+            }
+            
             using AndroidJavaObject javaMap = DictionaryToJavaMap(properties);
             
             switch (severity)
             {
                 case EMBSeverity.Warning:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logWarning, javaMap, 
-                        attachmentId, attachmentUrl);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logWarning, javaMap, attachmentId, attachmentUrl);
                     break;
                 case EMBSeverity.Error:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logError, javaMap, 
-                        attachmentId, attachmentUrl);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logError, javaMap, attachmentId, attachmentUrl);
                     break;
                 default:
-                    EmbraceSharedInstance?.Call(_LogMessageMethod, message, logInfo, javaMap, 
-                        attachmentId, attachmentUrl);
+                    EmbraceSharedInstance.Call(_LogMessageMethod, message, logInfo, javaMap, attachmentId, attachmentUrl);
                     break;
             }
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_AddBreadcrumbMethod, message);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add breadcrumb, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_AddBreadcrumbMethod, message);
         }
 
         void IEmbraceProvider.EndSession(bool clearUserInfo)
         {
-            if (!ReadyForCalls()) { return; }
-            EmbraceSharedInstance?.Call(_EndSessionMethod, clearUserInfo);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to end session, Embrace SDK not initialized");
+                return;
+            }
+            
+            EmbraceSharedInstance.Call(_EndSessionMethod, clearUserInfo);
         }
 
         string IEmbraceProvider.GetDeviceId()
         {
-            if (!ReadyForCalls()) { return null; }
-            return EmbraceSharedInstance?.Call<string>(_GetDeviceIdMethod);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to get device id, Embrace SDK not initialized");
+                return null;
+            }
+            
+            return EmbraceSharedInstance.Call<string>(_GetDeviceIdMethod);
         }
 
         bool IEmbraceProvider.StartView(string name)
         {
-            if (!ReadyForCalls()) { return false; }
-            return EmbraceSharedInstance?.Call<bool>(_StartFragmentMethod, name) ?? false;
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to start view, Embrace SDK not initialized");
+                return false;
+            }
+            
+            return EmbraceSharedInstance.Call<bool>(_StartFragmentMethod, name);
         }
 
         bool IEmbraceProvider.EndView(string name)
         {
-            if (!ReadyForCalls()) { return false; }
-            return EmbraceSharedInstance?.Call<bool>(_EndFragmentMethod, name) ?? false;
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to end view, Embrace SDK not initialized");
+                return false;
+            }
+            
+            return EmbraceSharedInstance.Call<bool>(_EndFragmentMethod, name);
         }
 
         void IEmbraceProvider.SetMetaData(string unityVersion, string guid, string sdkVersion)
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to set meta data, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_SetUnityMetaDataMethod, unityVersion, guid, sdkVersion);
         }
         
         void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record completed network request, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record completed network request, Embrace SDK not initialized");
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
         }
         
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record incomplete network request, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record incomplete network request, Embrace SDK not initialized");
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
         }
 
         void IEmbraceProvider.InstallUnityThreadSampler()
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to install unity thread sampler, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to install unity thread sampler, Embrace SDK not initialized");
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_installUnityThreadSampler);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log unhandled unity exception, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log unhandled unity exception, Embrace SDK not initialized");
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_logUnhandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
         }
 
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stack)
         {
-            if (!ReadyForCalls()) { return; }
-            if(!UnityInternalInterfaceReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log handled unity exception, Embrace SDK not initialized");
+                return;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to log handled unity exception, Embrace SDK not initialized");
+                return;
+            }
+            
             _embraceUnityInternalSharedInstance.Call(_logHandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
         }
         
         string IEmbraceProvider.GetCurrentSessionId()
         {
-            if (!ReadyForCalls()) { return null; }
-            return EmbraceSharedInstance?.Call<string>(_GetCurrentSessionId);
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to get current session id, Embrace SDK not initialized");
+                return null;
+            }
+            
+            return EmbraceSharedInstance.Call<string>(_GetCurrentSessionId);
         }
 
         void IEmbraceProvider.RecordPushNotification(AndroidPushNotificationArgs androidArgs)
         {
-            if (!ReadyForCalls()) { return; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record push notification, Embrace SDK not initialized");
+                return;
+            }
 
             using AndroidJavaObject jNotificationPriority =
                 integerClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.notificationPriority);
@@ -502,14 +682,23 @@ namespace EmbraceSDK.Internal
             using AndroidJavaObject jIsNotification = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.isNotification);
             using AndroidJavaObject jHasData = booleanClass.CallStatic<AndroidJavaObject>("valueOf", androidArgs.hasData);
             
-            EmbraceSharedInstance?.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
+            EmbraceSharedInstance.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
         }
         
         public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
-            if (!ReadyForCalls()) { return null; }
-            if (!InternalInterfaceReadyForCalls()) { return null; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to start span, Embrace SDK not initialized");
+                return null;
+            }
+
+            if (!InternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to start span, Embrace SDK not initialized");
+                return null;
+            }
             
             var startTime = longClass.CallStatic<AndroidJavaObject>("valueOf", startTimeMs);
             return _embraceUnityInternalSharedInstance.Call<string>(_StartSpanMethod, spanName, parentSpanId, startTime);
@@ -517,8 +706,17 @@ namespace EmbraceSDK.Internal
 
         public bool StopSpan(string spanId, int errorCode, long endTimeMs)
         {
-            if (!ReadyForCalls()) { return false; }
-            if (!InternalInterfaceReadyForCalls()) { return false; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to stop span, Embrace SDK not initialized");
+                return false;
+            }
+
+            if (!InternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to stop span, Embrace SDK not initialized");
+                return false;
+            }
             
             var endTime = longClass.CallStatic<AndroidJavaObject>("valueOf", endTimeMs);
             return _embraceUnityInternalSharedInstance.Call<bool>(_StopSpanMethod, spanId, GetSpanErrorCode(errorCode), endTime); 
@@ -526,16 +724,35 @@ namespace EmbraceSDK.Internal
 
         public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes)
         {
-            if (!ReadyForCalls()) { return false; }
-            if (!InternalInterfaceReadyForCalls()) { return false; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add span event, Embrace SDK not initialized");
+                return false;
+            }
+
+            if (!InternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add span event, Embrace SDK not initialized");
+                return false;
+            }
             
             var timestamp = longClass.CallStatic<AndroidJavaObject>("valueOf", timestampMs);
             return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanEventMethod, spanId, spanName, timestamp, DictionaryToJavaMap(attributes)); }
 
         public bool AddSpanAttribute(string spanId, string key, string value)
         {
-            if (!ReadyForCalls()) { return false; }
-            if (!InternalInterfaceReadyForCalls()) { return false; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add span attribute, Embrace SDK not initialized");
+                return false;
+            }
+
+            if (!InternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to add span attribute, Embrace SDK not initialized");
+                return false;
+            }
+            
             return _embraceUnityInternalSharedInstance.Call<bool>(_AddSpanAttributeMethod, spanId, key, value); }
         
         /// <summary>
@@ -554,8 +771,17 @@ namespace EmbraceSDK.Internal
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent[] embraceSpanEvents)
         {
-            if (!ReadyForCalls()) { return false; }
-            if (!InternalInterfaceReadyForCalls()) { return false; }
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record completed span, Embrace SDK not initialized");
+                return false;
+            }
+
+            if (!InternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.Log("Unable to record completed span, Embrace SDK not initialized");
+                return false;
+            }
             
             var spanEvents = new List<Dictionary<string, object>>();
             foreach (var embraceSpanEvent in embraceSpanEvents)
@@ -603,6 +829,7 @@ namespace EmbraceSDK.Internal
                     AndroidJNIHelper.CreateJNIArgArray(new object[] { entry.Key, entry.Value })
                 );
             }
+            
             return map;
         }
         
@@ -613,6 +840,7 @@ namespace EmbraceSDK.Internal
         private static AndroidJavaObject DictionaryWithObjectsToJavaMap(Dictionary<string, object> dictionary, out List<IDisposable> disposables)
         {
             disposables = new List<IDisposable>();
+            
             if (dictionary == null)
             {
                 return null;
@@ -623,12 +851,18 @@ namespace EmbraceSDK.Internal
 
             foreach (var entry in dictionary)
             {
-                if (entry.Key == null) continue;
+                if (entry.Key == null)
+                {
+                    continue;
+                }
 
                 var key = new AndroidJavaObject("java.lang.String", entry.Key);
                 var value = CreateJavaObjectFromNetObject(entry.Value);
 
-                if (value == null) continue;
+                if (value == null)
+                {
+                    continue;
+                }
                             
                 AndroidJNI.CallObjectMethod(
                     map.GetRawObject(),
@@ -640,7 +874,6 @@ namespace EmbraceSDK.Internal
             }
             
             disposables.Add(map);
-
             return map;
         }
         
@@ -651,6 +884,7 @@ namespace EmbraceSDK.Internal
         private static AndroidJavaObject DictionariesToJavaListOfMaps(List<Dictionary<string, object>> dictionaries, out List<IDisposable> disposables)
         {
             disposables = new List<IDisposable>();
+            
             if (dictionaries == null)
             {
                 return null;
@@ -662,6 +896,7 @@ namespace EmbraceSDK.Internal
             foreach (var dictionary in dictionaries)
             {
                 var map = DictionaryWithObjectsToJavaMap(dictionary, out var inner_disposables);
+                
                 if (map != null)
                 {
                     AndroidJNI.CallBooleanMethod(
@@ -669,6 +904,7 @@ namespace EmbraceSDK.Internal
                         listAddMethod,
                         AndroidJNIHelper.CreateJNIArgArray(new object[] { map }));
                 }
+                
                 disposables.AddRange(inner_disposables);
             }
             
@@ -703,10 +939,11 @@ namespace EmbraceSDK.Internal
                 {
                     dict.Add(key, AndroidJNI.CallStringMethod(value, ObjectToString, new jvalue[] { }));
                 }
+                
                 AndroidJNI.DeleteLocalRef(value);
             }
+            
             AndroidJNI.DeleteLocalRef(iterator);
-
             return dict;
         }
 
@@ -749,9 +986,9 @@ namespace EmbraceSDK.Internal
             {
                 return DictionaryToJavaMap(dict);
             }
+            
             // Add more types as needed
             EmbraceLogger.LogError($"Unsupported type: {netObject.GetType()}");
-
             return null;
         }
         
