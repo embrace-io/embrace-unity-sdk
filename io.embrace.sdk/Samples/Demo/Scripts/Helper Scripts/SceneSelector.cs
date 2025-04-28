@@ -21,10 +21,7 @@ namespace EmbraceSDK.Demo
             { "Breadcrumb", "Breadcrumb" },
             { "Moments", "Moments" },
             { "User Data", "Users" },
-            { "Network Capture", "Network" },
-    #if UNITY_ANDROID
-            { "ANRs", "ANRs" }
-    #endif
+            { "Network Capture", "Network" }
         };
 
         public int SceneCount

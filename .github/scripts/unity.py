@@ -3,6 +3,7 @@
 
 import argparse
 import io
+import json
 import logging
 import os
 import platform
@@ -25,6 +26,8 @@ if sys.platform == "win32":
             sys.stderr.buffer, encoding="utf-8", errors="replace"
         )
 
+base_path = path.abspath(path.join(path.dirname(__file__), "..", ".."))
+build_path = path.join(base_path, "build")
 logger = logging.getLogger("unity")
 
 
@@ -194,6 +197,44 @@ class Runner:
                 self.editor_binary_path,
             ]
 
+    def build(self) -> None:
+        """Build the Unity package for the Embrace SDK."""
+        with open(path.join(base_path, "io.embrace.sdk", "package.json"), "r") as f:
+            version = json.load(f)["version"]
+            filename = f"EmbraceSDK_{version}.unitypackage"
+        self.logger.info("Building %s", filename)
+        project_path = path.join(base_path, "UnityProjects", "2021")
+        os.makedirs(build_path, exist_ok=True)
+        run(
+            self.editor_binary_args
+            + [
+                "-batchmode",
+                "-buildTarget",
+                "android",
+                "-executeMethod",
+                "EmbraceSDK.CIPublishTool.ExportUnityPackage",
+                "-logFile",
+                "-",
+                "-nographics",
+                "-projectPath",
+                project_path,
+                "-quit",
+            ],
+            logger=self.logger,
+            log_path=path.join(build_path, "build.log"),
+            raise_on_error=True,
+        )
+        run(
+            [
+                "mv",
+                "-v",
+                path.join(project_path, filename),
+                path.join(build_path, filename),
+            ],
+            logger=self.logger,
+            raise_on_error=True,
+        )
+
     def is_installed(self) -> bool:
         """Check if the Unity editor is installed."""
         return path.exists(self.editor_binary_path)
@@ -347,8 +388,6 @@ class Runner:
         This assumes that a license has been acquired.
         """
         self.logger.info("Running tests for %s", run_id)
-        base_path = path.abspath(path.join(path.dirname(__file__), "..", ".."))
-        build_path = path.join(base_path, "build")
         os.makedirs(build_path, exist_ok=True)
         args = self.editor_binary_args + [
             "-batchmode",
@@ -452,6 +491,15 @@ def main() -> None:
 
     _uninstall_parser = subparsers.add_parser("uninstall")
 
+    build_parser = subparsers.add_parser("build")
+    build_parser.add_argument(
+        "--skip-license",
+        dest="license",
+        action="store_false",
+        default=True,
+        help="Skip activating the Unity license",
+    )
+
     test_parser = subparsers.add_parser("test")
     test_parser.add_argument(
         "--skip-coverage",
@@ -490,6 +538,14 @@ def main() -> None:
         runner.install(args.changeset, args.module or ["android", "ios"])
     elif args.command == "uninstall":
         runner.uninstall()
+    elif args.command == "build":
+        license = License.from_env() if args.license else None
+        if license is not None:
+            with runner.license(license):
+                runner.build()
+        else:
+            logger.info("Skipping Unity license activation")
+            runner.build()
     elif args.command == "test":
         license = License.from_env() if args.license else None
         if license is not None:

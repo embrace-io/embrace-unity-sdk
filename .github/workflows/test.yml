@@ -45,6 +45,8 @@ on:
         default: false
 
 env:
+  EMBRACE_TEST_API_TOKEN: ${{ secrets.EMBRACE_TEST_API_TOKEN }}
+  EMBRACE_TEST_APP_ID: ${{ secrets.EMBRACE_TEST_APP_ID }}
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -63,7 +65,7 @@ jobs:
       - id: get_editor_versions
         name: Get editor versions
         run: |
-          echo "editor_versions=$(python3 .github/scripts/vars.py versions)" | tee -a "$GITHUB_OUTPUT"
+          echo "editor_versions=$(python3 .github/scripts/vars.py editor-versions)" | tee -a "$GITHUB_OUTPUT"
   test_linux:
     needs: get_editor_versions
     if: ${{ inputs.linux == true }}

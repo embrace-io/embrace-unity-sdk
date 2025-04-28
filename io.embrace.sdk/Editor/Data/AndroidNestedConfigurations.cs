@@ -13,7 +13,6 @@ namespace EmbraceSDK.EditorView
     public class SdkConfig : ITooltipPropertiesProvider, IJsonSerializable
     {
         public App app;
-        public Anr anr;
         public CrashHandler crash_handler;
         public Networking networking;
         public Session session;
@@ -27,7 +26,6 @@ namespace EmbraceSDK.EditorView
         public SdkConfig()
         {
             app = new App();
-            anr = new Anr();
             crash_handler = new CrashHandler();
             networking = new Networking();
             session = new Session();
@@ -75,23 +73,6 @@ namespace EmbraceSDK.EditorView
         [Tooltip(EmbraceTooltips.ReportDiskUsage)]
         [OverrideBoolean(true)]
         public bool report_disk_usage;
-
-        public bool ShouldSerialize()
-        {
-            return ReflectionUtil.HasBooleanOverrides(GetType(), this);
-        }
-    }
-
-    [Serializable]
-    public class Anr : ITooltipPropertiesProvider, IJsonSerializable
-    {
-        [Tooltip(EmbraceTooltips.CaptureGoogle)]
-        [OverrideBoolean(false)]
-        public bool capture_google;
-
-        [Tooltip(EmbraceTooltips.CaptureUnityThread)]
-        [OverrideBoolean(false)]
-        public bool capture_unity_thread;
 
         public bool ShouldSerialize()
         {

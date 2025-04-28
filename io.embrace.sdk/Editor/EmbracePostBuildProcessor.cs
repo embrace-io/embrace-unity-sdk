@@ -78,7 +78,6 @@ namespace EmbraceSDK.EditorView
             }
 
             Validator.ValidateConfiguration(config);
-            EmbraceLogger.Log($"Config Loaded with key: {config.AppId}");
             embraceConfigString =
                 JsonConvert.SerializeObject(
                     config,

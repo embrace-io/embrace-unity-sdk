@@ -27,7 +27,6 @@ namespace EmbraceSDK.Demo
         public const string SCENE_NAME_DEMO_HOME = "Demo Home";
         public const string SCENE_NAME_BREADCRUMB = "Breadcrumb";
         public const string SCENE_NAME_CRASHES = "Crashes";
-        public const string SCENE_NAME_ANRS = "ANRs";
         public const string SCENE_NAME_INTEGRATE = "Integrate";
         public const string SCENE_NAME_LOGS = "Logs";
         public const string SCENE_NAME_MOMENTS = "Moments";
