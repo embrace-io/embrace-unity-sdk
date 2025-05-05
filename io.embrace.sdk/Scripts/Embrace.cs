@@ -293,14 +293,28 @@ namespace EmbraceSDK
                 EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("user identifier"));
                 return;
             }
-
-            Provider?.SetUserIdentifier(identifier);
+            
+            try
+            {
+                Provider?.SetUserIdentifier(identifier);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void ClearUserIdentifier()
         {
-            Provider?.ClearUserIdentifier();
+            try
+            {
+                Provider?.ClearUserIdentifier();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -312,13 +326,27 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.SetUsername(username);
+            try
+            {
+                Provider?.SetUsername(username);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void ClearUsername()
         {
-            Provider?.ClearUsername();
+            try
+            {
+                Provider?.ClearUsername();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -330,25 +358,53 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.SetUserEmail(email);
+            try
+            {
+                Provider?.SetUserEmail(email);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void ClearUserEmail()
         {
-            Provider?.ClearUserEmail();
+            try
+            {
+                Provider?.ClearUserEmail();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void SetUserAsPayer()
         {
-            Provider?.SetUserAsPayer();
+            try
+            {
+                Provider?.SetUserAsPayer();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void ClearUserAsPayer()
         {
-            Provider?.ClearUserAsPayer();
+            try
+            {
+                Provider?.ClearUserAsPayer();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         
         /// <inheritdoc />
@@ -360,7 +416,14 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.AddUserPersona(persona);
+            try
+            {
+                Provider?.AddUserPersona(persona);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -372,13 +435,27 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.ClearUserPersona(persona);
+            try
+            {
+                Provider?.ClearUserPersona(persona);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void ClearAllUserPersonas()
         {
-            Provider?.ClearAllUserPersonas();
+            try
+            {
+                Provider?.ClearAllUserPersonas();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -396,7 +473,14 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.AddSessionProperty(key, value, permanent);
+            try
+            {
+                Provider?.AddSessionProperty(key, value, permanent);
+            }
+            catch (Exception e)
+            {
+                Provider?.AddSessionProperty(key, value, permanent);
+            }
         }
 
         /// <inheritdoc />
@@ -408,19 +492,35 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.RemoveSessionProperty(key);
+            try
+            {
+                Provider?.RemoveSessionProperty(key);
+            }
+            catch (Exception e)
+            {
+               EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public Dictionary<string, string> GetSessionProperties()
         {
-            var properties = Provider?.GetSessionProperties();
-            if (properties == null)
+            try
             {
-                properties = emptyDictionary;
-            }
+                var properties = Provider?.GetSessionProperties();
+                
+                if (properties == null)
+                {
+                    properties = emptyDictionary;
+                }
 
-            return properties;
+                return properties;
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return emptyDictionary;
+            }            
         }
         
         public void LogMessage(string message, EMBSeverity severity)
@@ -442,7 +542,14 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
 
-            Provider?.LogMessage(message, severity, properties);
+            try
+            {
+                Provider?.LogMessage(message, severity, properties);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         #if UNITY_ANDROID
@@ -467,7 +574,14 @@ namespace EmbraceSDK
                 return;
             }
             
-            Provider?.LogMessage(message, severity, properties, attachment);
+            try
+            {
+                Provider?.LogMessage(message, severity, properties, attachment);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         #elif UNITY_IOS
         /// <inheritdoc />
@@ -491,7 +605,14 @@ namespace EmbraceSDK
                 return;
             }
             
-            Provider?.LogMessage(message, severity, properties, attachment);
+            try
+            {
+                Provider?.LogMessage(message, severity, properties, attachment);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         #endif
         
@@ -510,7 +631,14 @@ namespace EmbraceSDK
                 properties = emptyDictionary;
             }
             
-            Provider?.LogMessage(message, severity, properties, attachmentId, attachmentUrl);
+            try
+            {
+                Provider?.LogMessage(message, severity, properties, attachmentId, attachmentUrl);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -540,19 +668,41 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.AddBreadcrumb(message);
+            try
+            {
+                Provider?.AddBreadcrumb(message);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void EndSession(bool clearUserInfo = false)
         {
-            Provider?.EndSession(clearUserInfo);
+            try
+            {
+                Provider?.EndSession(clearUserInfo);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public string GetDeviceId()
         {
-            return Provider?.GetDeviceId();
+            try
+            {
+                return Provider?.GetDeviceId();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
         }
 
         /// <inheritdoc />
@@ -564,7 +714,15 @@ namespace EmbraceSDK
                 return false;
             }
 
-            return Provider?.StartView(name) ?? false;
+            try
+            {
+                return Provider?.StartView(name) ?? false;
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
 
         /// <inheritdoc />
@@ -576,7 +734,15 @@ namespace EmbraceSDK
                 return false;
             }
 
-            return Provider?.EndView(name) ?? false;
+            try
+            {
+                return Provider?.EndView(name) ?? false;
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
         
         /// <inheritdoc />
@@ -587,8 +753,15 @@ namespace EmbraceSDK
                 EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("network url"));
                 return;
             }
-            
-            Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
+
+            try
+            {
+                Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         
         /// <inheritdoc />
@@ -606,7 +779,14 @@ namespace EmbraceSDK
                 return;
             }
             
-            Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
+            try
+            {
+                Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -618,7 +798,14 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.LogUnhandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            try
+            {
+                Provider?.LogUnhandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -630,10 +817,17 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.LogUnhandledUnityException(
-                exceptionName: exception.GetType().Name,
-                exceptionMessage: exception.Message ?? "",
-                stack: stack ?? exception.StackTrace ?? "");
+            try
+            {
+                Provider?.LogUnhandledUnityException(
+                    exceptionName: exception.GetType().Name,
+                    exceptionMessage: exception.Message ?? "",
+                    stack: stack ?? exception.StackTrace ?? "");
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -645,7 +839,14 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.LogHandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            try
+            {
+                Provider?.LogHandledUnityException(exceptionName, exceptionMessage ?? "", stack ?? "");
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
@@ -657,36 +858,65 @@ namespace EmbraceSDK
                 return;
             }
 
-            Provider?.LogHandledUnityException(
-                exceptionName: exception.GetType().Name,
-                exceptionMessage: exception.Message ?? "",
-                stack: stack ?? exception.StackTrace ?? "");
+            try
+            {
+                Provider?.LogHandledUnityException(
+                    exceptionName: exception.GetType().Name,
+                    exceptionMessage: exception.Message ?? "",
+                    stack: stack ?? exception.StackTrace ?? "");
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         
         /// <inheritdoc />
         public string GetCurrentSessionId()
         {
-            return Provider?.GetCurrentSessionId();
+            try
+            {
+                return Provider?.GetCurrentSessionId();
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
         }
 
         /// <inheritdoc />
         public void RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
-            #if UNITY_IOS
-            Provider?.RecordPushNotification(iosArgs);
-            #else
-            EmbraceLogger.LogError("Attempting to record iOS push notification on non-iOS platform");
-            #endif
+            try
+            {
+#if UNITY_IOS
+                Provider?.RecordPushNotification(iosArgs);
+#else
+                EmbraceLogger.LogError("Attempting to record iOS push notification on non-iOS platform");
+#endif
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
 
         /// <inheritdoc />
         public void RecordPushNotification(AndroidPushNotificationArgs androidArgs)
         {
-            #if UNITY_ANDROID
-            Provider?.RecordPushNotification(androidArgs);
-            #else
-            EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
-            #endif
+            try
+            {
+#if UNITY_ANDROID
+                Provider?.RecordPushNotification(androidArgs);
+#else
+                EmbraceLogger.LogError("Attempting to record Android push notification on non-Android platform");
+#endif
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+            }
         }
         
         /// <summary>
@@ -695,7 +925,15 @@ namespace EmbraceSDK
         /// <returns>Returns the spanId of the new span if both operations are successful, and null if either fails.</returns>
         public string StartSpan(string spanName, long startTimeMs, string parentSpanId = null)
         {
-            return provider.StartSpan(spanName, parentSpanId, startTimeMs);
+            try
+            {
+                return provider.StartSpan(spanName, parentSpanId, startTimeMs);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return null;
+            }
         }
         
         /// <summary>
@@ -710,7 +948,15 @@ namespace EmbraceSDK
                 return false;
             }
 
-            return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
+            try
+            {
+                return provider.StopSpan(spanId, __BridgedSpanErrorCode(errorCode), endTimeMs);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
         
         /// <summary>
@@ -719,7 +965,15 @@ namespace EmbraceSDK
         /// <returns>Returns false if the event cannot be added.</returns>
         public bool AddSpanEvent(string spanId, string spanName, long timestampMs, Dictionary<string, string> attributes = null)
         {
-            return provider.AddSpanEvent(spanId, spanName, timestampMs, attributes);
+            try
+            {
+                return provider.AddSpanEvent(spanId, spanName, timestampMs, attributes);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
         
         /// <summary>
@@ -728,7 +982,15 @@ namespace EmbraceSDK
         /// <returns>Returns true if the attributed is added and false otherwise</returns>
         public bool AddSpanAttribute(string spanId, string key , string value)
         {
-            return provider.AddSpanAttribute(spanId, key, value);
+            try
+            {
+                return provider.AddSpanAttribute(spanId, key, value);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
         
         /// <summary>
@@ -741,7 +1003,15 @@ namespace EmbraceSDK
             EmbraceSpanErrorCode? errorCode = null, Dictionary<string, string> attributes = null, EmbraceSpanEvent embraceSpanEvent = null, 
             string parentSpanId = null)
         {
-            return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
+            try
+            {
+                return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
         }
 
         /// <summary>
