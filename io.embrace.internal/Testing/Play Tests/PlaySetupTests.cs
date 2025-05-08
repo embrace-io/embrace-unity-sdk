@@ -24,13 +24,16 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator TestSetup()
         {
-            ProviderSetup();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             yield return LoadScene(DemoConstants.SCENE_NAME_DEMO_HOME, waitSeconds: .25f);
             
 #if DeveloperMode && UNITY_IOS
             // This setup is for Embrace Developer Mode on iOS only.
-            Embrace.Instance.provider.Received().StartSDK(new EmbraceStartupArgs(AppId, 
+            embrace.provider.Received().StartSDK(new EmbraceStartupArgs(AppId, 
                 EmbraceConfig.Default,
                 AppGroupId.Length > 0 ? AppGroupId : null, 
                 BaseUrl, 
@@ -38,10 +41,10 @@ namespace EmbraceSDK.Tests
                 ConfigBaseUrl));
 #elif UNITY_IOS
             // This setup is for Embrace on iOS only.
-            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, EmbraceConfig.Default, null, null, null, null));
+            embrace.StartSDK(new EmbraceStartupArgs(AppId, EmbraceConfig.Default, null, null, null, null));
 #else
             // This setup is for Embrace on Android.
-            Embrace.Instance.StartSDK();
+            embrace.StartSDK();
 #endif
 
             Cleanup();

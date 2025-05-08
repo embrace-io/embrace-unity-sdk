@@ -16,9 +16,9 @@ namespace Embrace.Internal.SmokeTests
         [Preserve, SmokeTest]
         public IEnumerator StartSDKTwice()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             yield return null;
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
         }
 
         // Open and close the keyboard multiple times to confirm that the native SDK is not logging internal errors
@@ -32,7 +32,7 @@ namespace Embrace.Internal.SmokeTests
             GameObject canvasInstance = GameObject.Instantiate(canvasPrefab);
             InputField inputField = canvasInstance.GetComponentInChildren<InputField>();
 
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             yield return null;
 
             for (int i = 0; i < iterations; ++i)
@@ -52,7 +52,7 @@ namespace Embrace.Internal.SmokeTests
         [Preserve, SmokeTest]
         public void LogErrorImmediatelyAfterStart()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             EmbraceSDK.Embrace.Instance.LogMessage("Error message", EMBSeverity.Error);
         }
 
@@ -62,7 +62,7 @@ namespace Embrace.Internal.SmokeTests
         [Preserve, SmokeTest]
         public IEnumerator LogErrorOneSecondAfterStart()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             yield return new WaitForSeconds(1f);
             EmbraceSDK.Embrace.Instance.LogMessage("Error message", EMBSeverity.Error);
         }

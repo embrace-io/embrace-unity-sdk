@@ -9,7 +9,7 @@ namespace EmbraceSDK.Demo
     {
         protected void Awake()
         {
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
 
             #if UNITY_2022_3_OR_NEWER
             var sceneSelector = FindAnyObjectByType<SceneSelector>();

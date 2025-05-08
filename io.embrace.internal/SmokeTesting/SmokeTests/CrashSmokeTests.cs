@@ -26,7 +26,7 @@ namespace Embrace.Internal.SmokeTests
         [SmokeTest]
         public void LogExceptionThenSdkCrash()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             EmbraceSDK.Embrace.Instance.LogUnhandledUnityException("TestException", "Test exception message.", "__test_stack_trace__");
         }
 
@@ -37,7 +37,7 @@ namespace Embrace.Internal.SmokeTests
         [SmokeTest]
         public void LogExceptionThenAbort()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             EmbraceSDK.Embrace.Instance.LogUnhandledUnityException("TestException", "Test exception message.", "__test_stack_trace__");
             Utils.ForceCrash(ForcedCrashCategory.Abort);
         }
@@ -49,7 +49,7 @@ namespace Embrace.Internal.SmokeTests
         [SmokeTest]
         public void LogExceptionThenCallPureVirtualFunc()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
             EmbraceSDK.Embrace.Instance.LogUnhandledUnityException("TestException", "Test exception message.", "__test_stack_trace__");
             Utils.ForceCrash(ForcedCrashCategory.PureVirtualFunction);
         }
@@ -60,7 +60,7 @@ namespace Embrace.Internal.SmokeTests
         public void EndSessionBeforeStart()
         {
             EmbraceSDK.Embrace.Instance.EndSession();
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
         }
         
         // Destroy an Embrace instance before starting it again to confirm that it does not crash.
@@ -70,7 +70,7 @@ namespace Embrace.Internal.SmokeTests
         {
             EmbraceSDK.Embrace.Instance.StartView("TestView");
             Object.DestroyImmediate(EmbraceSDK.Embrace.Instance.listener);
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
         }
 
         // Call every function in the public API to validate that none of them lead to a crash.
@@ -78,7 +78,7 @@ namespace Embrace.Internal.SmokeTests
         [SmokeTest]
         public void ExercisePublicApi()
         {
-            EmbraceSDK.Embrace.Instance.StartSDK();
+            EmbraceSDK.Embrace.Start();
 
             // This won't actually create a new session because we're still within the minimum session length,
             // so this test should still expect 2 session payloads.

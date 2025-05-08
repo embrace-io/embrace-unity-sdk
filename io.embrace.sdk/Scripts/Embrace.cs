@@ -148,7 +148,6 @@ namespace EmbraceSDK
         {
             if (_instance != null)
             {
-                EmbraceLogger.LogError("Embrace instance already exists.");
                 return;
             }
             

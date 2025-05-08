@@ -15,7 +15,7 @@ namespace EmbraceSDK.Demo
 
         private void Start()
         {
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             breadcrumbSendButton.onClick.AddListener(HandleBreadcrumbSendClick);
         }
 
