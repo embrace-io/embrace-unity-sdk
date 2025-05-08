@@ -9,6 +9,12 @@ namespace EmbraceSDK.Tests
 {
     public class PlayEmbraceTests : IEmbraceTest
     {
+        [SetUp]
+        public void Setup()
+        {
+            Embrace.Stop();
+        }
+        
         /// <summary>
         /// Test if the provider is setup correctly.
         /// </summary>
@@ -16,7 +22,7 @@ namespace EmbraceSDK.Tests
         [UnityTest, Order(1)]
         public IEnumerator ProviderSetup()
         {
-            Embrace embrace = Embrace.Instance;
+            Embrace.Start();
             yield return new WaitForSeconds(1f);
 
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -24,7 +30,7 @@ namespace EmbraceSDK.Tests
 #elif (UNITY_IOS || UNITY_TVOS) && !UNITY_EDITOR
             Assert.AreEqual(embrace.provider.GetType(), typeof(Embrace_iOS));
 #else
-            Assert.AreEqual(embrace.provider.GetType(), typeof(Embrace_Stub));
+            Assert.AreEqual(Embrace.Instance.provider.GetType(), typeof(Embrace_Stub));
 #endif
             Cleanup();
         }
@@ -36,14 +42,9 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator OnlyOneInstanceAfterCreate()
         {
-            GameObject tempGo = new GameObject();
-            tempGo.AddComponent<Embrace>();
-
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
-
-            Embrace embrace = Embrace.Create();
-
-            Embrace[] components = GameObject.FindObjectsOfType<Embrace>();
+            EmbraceUnityListener[] components = Object.FindObjectsOfType<EmbraceUnityListener>();
             Assert.AreEqual(components.Length, 1);
             Cleanup();
         }
@@ -55,14 +56,9 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator OnlyOneInstanceAfterEmbrace_Instance()
         {
-            GameObject tempGo = new GameObject();
-            tempGo.AddComponent<Embrace>();
-
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
-
-            Embrace embrace = Embrace.Instance;
-
-            Embrace[] components = GameObject.FindObjectsOfType<Embrace>();
+            EmbraceUnityListener[] components = Object.FindObjectsOfType<EmbraceUnityListener>();
             Assert.AreEqual(components.Length, 1);
             Cleanup();
         }
@@ -74,16 +70,15 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator OnlyOneInstance()
         {
-            GameObject tempGo = new GameObject();
-            tempGo.AddComponent<Embrace>();
-
-            GameObject tempGo2 = new GameObject();
-            tempGo2.AddComponent<Embrace>();
-
+            var embrace1 = new Embrace();
+            embrace1.StartSDK();
+            yield return new WaitForSeconds(1f);
+            var embrace2 = new Embrace();
+            embrace2.StartSDK();
             yield return new WaitForSeconds(1f);
 
-            Embrace[] components = GameObject.FindObjectsOfType<Embrace>();
-            Assert.AreEqual(components.Length, 1);
+            EmbraceUnityListener[] components = Object.FindObjectsOfType<EmbraceUnityListener>();
+            Assert.AreEqual(1, components.Length);
             Cleanup();
         }
 
@@ -94,10 +89,8 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator InstanceFromStart()
         {
-            GameObject tempGo = new GameObject();
-            Embrace embrace = tempGo.AddComponent<Embrace>();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
-
             Assert.IsNotNull(Embrace.Instance);
             Cleanup();
         }
@@ -109,6 +102,7 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator EmbraceInstance()
         {
+            Embrace.Start();
             Embrace embrace = Embrace.Instance;
             yield return new WaitForFixedUpdate();
             Assert.IsNotNull(embrace);
@@ -122,17 +116,16 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator StartSDKBeforeInitialize()
         {
-            GameObject tempGo = new GameObject();
-            Embrace embrace = tempGo.AddComponent<Embrace>();
+            Embrace embrace = new Embrace();
             embrace.StartSDK();
             yield return new WaitForFixedUpdate();
-            Assert.IsNotNull(embrace);
+            Assert.IsNotNull(embrace.listener);
             Cleanup();
         }
 
         public void Cleanup()
         {
-            UnityEngine.Object.DestroyImmediate(Embrace.Instance.gameObject);
+            UnityEngine.Object.DestroyImmediate(Embrace.Instance.listener);
         }
     }
 }

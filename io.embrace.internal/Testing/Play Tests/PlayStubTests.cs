@@ -11,11 +11,17 @@ namespace EmbraceSDK.Tests
 
     public class PlayStubTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            Embrace.Stop();
+        }
+        
         [UnityTest]
         public IEnumerator InitializeSDK()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: InitializeSDK");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.provider.InitializeSDK();
         }
@@ -25,7 +31,7 @@ namespace EmbraceSDK.Tests
         {
             string identifier = "test";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: SetUserIdentifier {identifier}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.SetUserIdentifier(identifier);
         }
@@ -34,7 +40,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator ClearUserIdentifier()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearUserIdentifier");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearUserIdentifier();
         }
@@ -44,7 +50,7 @@ namespace EmbraceSDK.Tests
         {
             string username = "username";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: SetUsername {username}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.SetUsername(username);
         }
@@ -53,7 +59,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator ClearUsername()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearUsername");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearUsername();
         }
@@ -63,7 +69,7 @@ namespace EmbraceSDK.Tests
         {
             string email = "email@test.com";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: SetUserEmail {email}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.SetUserEmail(email);
         }
@@ -72,7 +78,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator ClearUserEmail()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearUserEmail");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearUserEmail();
         }
@@ -81,7 +87,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator SetUserAsPayer()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: SetUserAsPayer");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.SetUserAsPayer();
         }
@@ -90,7 +96,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator ClearUserAsPayer()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearUserAsPayer");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearUserAsPayer();
         }
@@ -100,7 +106,7 @@ namespace EmbraceSDK.Tests
         {
             string persona = "test persona";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: AddUserPersona {persona}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.AddUserPersona(persona);
         }
@@ -110,7 +116,7 @@ namespace EmbraceSDK.Tests
         {
             string persona = "test persona";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearUserPersona {persona}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearUserPersona(persona);
         }
@@ -119,7 +125,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator ClearAllUserPersonas()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: ClearAllUserPersonas");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.ClearAllUserPersonas();
         }
@@ -130,7 +136,7 @@ namespace EmbraceSDK.Tests
             string key = "Test Key";
             string value = "Test Value";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: AddSessionProperty key: {key} value: {value}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.AddSessionProperty(key, value, false);
         }
@@ -140,7 +146,7 @@ namespace EmbraceSDK.Tests
         {
             string key = "test key";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: RemoveSessionProperty key: {key}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RemoveSessionProperty(key);
         }
@@ -149,7 +155,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator GetSessionProperties()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: GetSessionProperties");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Dictionary<string, string> dictionary;
             dictionary = Embrace.Instance.GetSessionProperties();
@@ -163,7 +169,7 @@ namespace EmbraceSDK.Tests
             string severityString = "info";
             string message = "Test Message";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: LogMessage severity: {severityString} message: {message}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.LogMessage(message, EMBSeverity.Info);
         }
@@ -174,7 +180,7 @@ namespace EmbraceSDK.Tests
             string severityString = "warning";
             string message = "Test Message";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: LogMessage severity: {severityString} message: {message}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.LogMessage(message, EMBSeverity.Warning);
         }
@@ -185,7 +191,7 @@ namespace EmbraceSDK.Tests
             string severityString = "error";
             string message = "Test Message";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: LogMessage severity: {severityString} message: {message}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.LogMessage(message, EMBSeverity.Error);
         }
@@ -195,7 +201,7 @@ namespace EmbraceSDK.Tests
         {
             string message = "Test Message";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: AddBreadcrumb {message}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.AddBreadcrumb(message);
         }
@@ -204,7 +210,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator EndSession()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: EndSession");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.EndSession();
         }
@@ -213,7 +219,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator GetDeviceId()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: GetDeviceId");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.GetDeviceId();
         }
@@ -222,7 +228,7 @@ namespace EmbraceSDK.Tests
         public IEnumerator GetCurrentSessionId()
         {
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: GetCurrentSessionId");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.GetCurrentSessionId();
         }
@@ -232,7 +238,7 @@ namespace EmbraceSDK.Tests
         {
             string name = "Test Name";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: StartView {name}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.StartView(name);
         }
@@ -242,7 +248,7 @@ namespace EmbraceSDK.Tests
         {
             string name = "Test Name";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: EndView {name}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.EndView(name);
         }
@@ -256,7 +262,7 @@ namespace EmbraceSDK.Tests
             EmbraceSdkInfo sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
 
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Unity Version = {unityVersion} GUID = {guid} Unity-SDK Version= {sdkInfo.version}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.provider.SetMetaData(unityVersion, guid, sdkInfo.version);
         }
@@ -272,7 +278,7 @@ namespace EmbraceSDK.Tests
             int bytesout = 0;
             int code = 0;
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordCompleteNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
         }
@@ -286,7 +292,7 @@ namespace EmbraceSDK.Tests
             long endms = 0;
             string error = "Test Error";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
         }
@@ -298,7 +304,7 @@ namespace EmbraceSDK.Tests
             var iosArgs = new iOSPushNotificationArgs("title", "body", "subtitle", "category", 0);
             var expected = $"Push Notification: title: {iosArgs.title} subtitle: {iosArgs.subtitle} body: {iosArgs.body} category: {iosArgs.category} badge: {iosArgs.badge}";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: {expected}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordPushNotification(iosArgs);
 #elif UNITY_ANDROID
@@ -306,7 +312,7 @@ namespace EmbraceSDK.Tests
                 "id", 0, 0, false, false);
             var expected = $"Push Notification: title: {androidArgs.title} body: {androidArgs.body} topic: {androidArgs.topic} id: {androidArgs.id} notificationPriority: {androidArgs.notificationPriority} messageDeliveredPriority: {androidArgs.messageDeliveredPriority} isNotification: {androidArgs.isNotification} hasData: {androidArgs.hasData}";
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: {expected}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordPushNotification(androidArgs);
 #else
@@ -320,7 +326,7 @@ namespace EmbraceSDK.Tests
             string exceptionMessage = "Test Exception Message";
             string stack = Environment.StackTrace;
             LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Unhandled Exception: Exception : {exceptionMessage} : stack : {stack}");
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.provider.LogUnhandledUnityException("Exception", exceptionMessage, stack);
         }

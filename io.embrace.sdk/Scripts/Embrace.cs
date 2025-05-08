@@ -1,19 +1,21 @@
 using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using EmbraceSDK.Editor;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
+using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace EmbraceSDK
 {
-    public class Embrace : MonoBehaviour, IEmbraceUnityApi
+    public class Embrace : IEmbraceUnityApi
     {
         private static readonly object providerMutex = new object();
         public IEmbraceProvider provider;
+        public EmbraceUnityListener listener { get; private set; }
         
         public IEmbraceProvider Provider
         {
@@ -51,7 +53,7 @@ namespace EmbraceSDK
                 }
             }
         }
-        
+
         private static Embrace _instance;
         private Thread _mainThread;
         private bool _started;
@@ -63,32 +65,19 @@ namespace EmbraceSDK
 
         /// <inheritdoc />
         public bool IsStarted => _started;
-
+        
         public static Embrace Instance
         {
             get
             {
-                // Only initialize in a built player or Play Mode in the Editor
-                if (_instance != null || !Application.isPlaying)
+                if (_instance == null)
                 {
-                    return _instance;
-                }
-
-                #if UNITY_2022_3_OR_NEWER
-                Embrace embrace = FindAnyObjectByType<Embrace>();
-                #else
-                Embrace embrace = FindObjectOfType<Embrace>();
-                #endif
-                if (embrace == null)
-                {
-                    var go = new GameObject { name = "Embrace" };
-                    embrace = go.AddComponent<Embrace>();
-                    DontDestroyOnLoad(go);
+                    Debug.LogWarning("Embrace instance is null. Please call Embrace.StartSDK() first.");
                 }
                 
-                embrace.Initialize();
-                return embrace;
+                return _instance;
             }
+            private set => _instance = value;
         }
 
         void OnApplicationPause(bool pauseStatus)
@@ -118,29 +107,22 @@ namespace EmbraceSDK
         /// Use Embrace.Instance in all other cases.
         /// </summary>
         /// <returns></returns>
-        public static Embrace Create()
+        private static void CreateUnityListener()
         {
-            #if UNITY_2022_3_OR_NEWER
-            var embraceInstance = FindObjectOfType<Embrace>();
-            #else
-            var embraceInstance = FindObjectOfType<Embrace>();
-            #endif
-            if (embraceInstance != null)
+            if (Instance.listener)
             {
-                DestroyImmediate(embraceInstance.gameObject);
+                return;
             }
-
-            var go = new GameObject { name = "Embrace" };
-            embraceInstance = go.AddComponent<Embrace>();
-
-            TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
-            sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
-            embraceInstance.Provider = new Embrace_Stub();
-            _instance = embraceInstance;
             
-            InternalEmbrace.SetInternalInstance(_instance);
-
-            return embraceInstance;
+            var go = new GameObject { name = "Embrace" };
+            Instance.listener = go.AddComponent<EmbraceUnityListener>();
+            
+            Instance.listener.SetOnDestroyCallback(() =>
+            {
+                Instance.scenesToViewReporter?.Dispose();
+            });
+            
+            Object.DontDestroyOnLoad(Instance.listener);
         }
 
         /// <summary>
@@ -150,13 +132,10 @@ namespace EmbraceSDK
         {
             try
             {
-                _instance = this;
-
+                Instance = this;
                 _mainThread = Thread.CurrentThread;
-            
                 TextAsset targetFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
                 sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
-            
                 Provider?.InitializeSDK();
             }
             catch (Exception e)
@@ -164,35 +143,29 @@ namespace EmbraceSDK
                 Debug.LogException(e);
             }
         }
-        
-        // Called by Unity runtime
-        private void Start()
+
+        public static void Start(EmbraceStartupArgs args = null, bool createListener = true)
         {
-            // If some other Game Object gets added to the scene that has an Embrace
-            // component that doesn't match our singleton then get rid of it...
-            if (_instance && _instance != this)
+            if (_instance != null)
             {
-                Destroy(gameObject);
+                EmbraceLogger.LogError("Embrace instance already exists.");
+                return;
             }
-            else if (_instance == null)
-            {
-                // ...otherwise if the singleton instance is null, invoke Initialize() to create it.
-                // This scenario is likely to occur if a user adds the Embrace Monobehaviour to a
-                // game object in a startup scene, but doesn't invoke the StartSDK() method through
-                // the singleton instance until later in the application's startup process.
-                Initialize();
-                DontDestroyOnLoad(gameObject);
-            }
+            
+            new Embrace().StartSDK(args, createListener);
         }
 
-        // Called by Unity runtime
-        private void OnDestroy()
+        public static void Stop()
         {
-            scenesToViewReporter?.Dispose();
+            if (_instance != null)
+            {
+                _instance.StopSDK();
+                _instance = null;
+            }
         }
 
         /// <inheritdoc />
-        public void StartSDK(EmbraceStartupArgs args = null)
+        public void StartSDK(EmbraceStartupArgs args = null, bool createListener = true)
         {
             if (_started)
             {
@@ -203,15 +176,18 @@ namespace EmbraceSDK
             {
                 Initialize();
             }
-
+            
+            if(createListener)
+            {
+                CreateUnityListener();
+            }
+            
             try
             {
                 Provider?.StartSDK(args);
                 Provider?.SetMetaData(Application.unityVersion, Application.buildGUID, sdkInfo.version);
-
                 TimeUtil.Clean();
                 TimeUtil.InitStopWatch();
-
                 Application.logMessageReceived += Embrace_Log_Handler;
 
                 // Scene change registration here
@@ -229,15 +205,19 @@ namespace EmbraceSDK
 #endif
 
                 _started = true;
-            
-                InternalEmbrace.SetInternalInstance(_instance);
-
+                InternalEmbrace.SetInternalInstance(Instance);
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
             }
+        }
+
+        public void StopSDK()
+        {
+            Provider = null;
+            Instance = null;
         }
 
         private bool IsMainThread()

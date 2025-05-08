@@ -25,16 +25,14 @@ namespace EmbraceSDK.Tests
         private const string GET_URL = "https://embrace-io.github.io/embrace-unity-sdk/index.html";
         private const string PROTOCOL_ERROR_URL = "https://httpbin.org/status/500";
         private const string INVALID_URL = "https://not-a-valid-url/";
-
-        [UnitySetUp]
-        [UsedImplicitly]
-        public IEnumerator SetUp()
+        
+        [SetUp]
+        public void SetUp()
         {
-            Embrace.Create();
-            Embrace.Instance.provider = Substitute.For<IEmbraceProvider>();
-            yield return null;
+            // stop the SDK if needed
+            Embrace.Stop();
         }
-
+        
         // NetworkCapture does not log requests on iOS because the native SDK captures them
 #if !UNITY_IOS
         [Test]
@@ -52,13 +50,19 @@ namespace EmbraceSDK.Tests
             UnityWebRequest preStartRequest = UnityWebRequest.Get(GET_URL);
             yield return NetworkCapture.SendWebRequest(preStartRequest);
             NetworkCapture.DisposeWebRequest(preStartRequest);
-
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
+            
+            var embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.provider.DidNotReceiveWithAnyArgs()
                 .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
+            embrace.provider.DidNotReceiveWithAnyArgs()
                 .RecordIncompleteNetworkRequest(default, default, default, default, default);
 
-            Embrace.Instance.StartSDK();
+            // stop the existing SDK instance
+            embrace.StartSDK(null, false);
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             long bytesin, bytesout;
             int statusCode;
@@ -80,7 +84,11 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator NetworkCapture_LogsOnlyFromOnCompleteEvent_IfFiredBeforeRequestDisposed()
         {
-            Embrace.Instance.StartSDK();
+            var embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            embrace.StartSDK(null, false);
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             long bytesin, bytesout;
             int statusCode;
@@ -99,15 +107,17 @@ namespace EmbraceSDK.Tests
             }
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             AssertAgainstNetworkRequestProvider(GET_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
         [UnityTest]
         public IEnumerator NetworkCapture_OmitsErrorMessage_OnProtocolErrors()
         {
-            Embrace.Instance.StartSDK();
-
+            var embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            embrace.StartSDK(null, false);
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             long bytesin, bytesout;
             int statusCode;
@@ -125,15 +135,18 @@ namespace EmbraceSDK.Tests
             }
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             AssertAgainstNetworkRequestProvider(PROTOCOL_ERROR_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
         [UnityTest]
         public IEnumerator NetworkCapture_IncludesErrorMessage_OnConnectionErrors()
         {
-            Embrace.Instance.StartSDK();
-
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK(null, false);
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             long bytesin, bytesout;
             int statusCode;
@@ -152,7 +165,6 @@ namespace EmbraceSDK.Tests
             }
 
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             AssertAgainstNetworkRequestProvider(INVALID_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
@@ -185,20 +197,22 @@ namespace EmbraceSDK.Tests
         public IEnumerator EmbraceLoggingHttpMessageHandler_LogsOnException()
         {
             HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler();
-
-            Embrace.Instance.StartSDK();
-
+            var embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK(null, false);
             string badUrl = "http://fakurl.html/";
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             var task = client.GetAsync(badUrl);
 
             while (!task.IsCompleted)
             {
                 yield return null;
             }
+            
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             Embrace.Instance.provider.Received()
                 .RecordIncompleteNetworkRequest(
                     Arg.Is<string>(badUrl),
@@ -212,11 +226,13 @@ namespace EmbraceSDK.Tests
         public IEnumerator EmbraceLoggingHttpMessageHandler_OmitsErrorMessage_OnProtocolErrors()
         {
             HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler();
-
-            Embrace.Instance.StartSDK();
-
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK(null, false);
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-
             var task = client.GetAsync(PROTOCOL_ERROR_URL);
 
             while (!task.IsCompleted)
@@ -247,18 +263,27 @@ namespace EmbraceSDK.Tests
             {
                 yield return null;
             }
+            
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
+            embrace.provider.DidNotReceiveWithAnyArgs()
                 .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
+            embrace.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
         }
 
         [UnityTest]
         public IEnumerator NetworkCapture_GetHttpClientWithLoggingHandler_DoesNotDuplicateWhenPassedALoggingHandler()
         {
             HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler(new EmbraceLoggingHttpMessageHandler());
-
-            Embrace.Instance.StartSDK();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK(null, false);
 
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
@@ -285,8 +310,12 @@ namespace EmbraceSDK.Tests
         public IEnumerator NetworkCapture_GetHttpClientWithLoggingHandler_DoesNotDuplicateWhenPassedALoggingHandlerAndBoolParameter()
         {
             HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler(new EmbraceLoggingHttpMessageHandler(), true);
-
-            Embrace.Instance.StartSDK();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK(null, false);
 
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 

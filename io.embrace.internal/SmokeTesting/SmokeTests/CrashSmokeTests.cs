@@ -69,25 +69,8 @@ namespace Embrace.Internal.SmokeTests
         public void DestroyEmbraceInstanceBeforeStart()
         {
             EmbraceSDK.Embrace.Instance.StartView("TestView");
-            Object.DestroyImmediate(EmbraceSDK.Embrace.Instance);
+            Object.DestroyImmediate(EmbraceSDK.Embrace.Instance.listener);
             EmbraceSDK.Embrace.Instance.StartSDK();
-        }
-
-        // Intentionally inject a bad provider to confirm that the SDK does not crash.
-        // This specific behavior is definitely not how the SDK is intended to be used.
-        [Preserve]
-        [SmokeTest]
-        public IEnumerator InjectBadProvider()
-        {
-            EmbraceSDK.Embrace.Instance.StartSDK();
-            EmbraceSDK.Embrace.Instance.provider = new Embrace_Stub();
-            Object.DestroyImmediate(EmbraceSDK.Embrace.Instance);
-            var embraceRoot = new GameObject();
-            var instance = embraceRoot.AddComponent<EmbraceSDK.Embrace>();
-            Object.DestroyImmediate(embraceRoot);
-            
-            yield return null;
-            instance.StartSDK();
         }
 
         // Call every function in the public API to validate that none of them lead to a crash.
