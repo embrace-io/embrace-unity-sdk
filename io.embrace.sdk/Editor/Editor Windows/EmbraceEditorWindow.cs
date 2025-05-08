@@ -8,7 +8,7 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// Base class for Embrace Editor Windows. Handles setting up windows and provides base methods.
     /// </summary>
-    public class EmbraceEditorWindow : EditorWindow
+    internal class EmbraceEditorWindow : EditorWindow
     {
         protected static EmbraceSdkInfo sdkInfo;
         protected static StyleConfigs styleConfigs;
@@ -17,19 +17,23 @@ namespace EmbraceSDK.EditorView
         protected static EmbraceConfiguration androidConfiguration;
         protected static EmbraceConfiguration iOSConfiguration;
 
-
         protected static bool isSetup;
         protected Color backgroundColor = new Color(0.2196079f, 0.2196079f, 0.2196079f);
 
         public static void Setup()
         {
-            TextAsset infoFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
-            sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(infoFile.text);
-            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
+            ConstructStyles();
 
             ResetEnvironment();
 
             isSetup = true;
+        }
+
+        private static void ConstructStyles()
+        {
+            TextAsset infoFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
+            sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(infoFile.text);
+            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
         }
 
         private static void ResetEnvironment()

@@ -12,7 +12,7 @@ namespace Embrace.Tools
     /// <summary>
     /// Simple Tool used for debugging SDK during development.
     /// </summary>
-    public class DebuggerTool : ToolEditorWindow
+    internal class DebuggerTool : ToolEditorWindow
     {
         public bool developerMode;
 
