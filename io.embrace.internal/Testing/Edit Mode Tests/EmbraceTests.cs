@@ -108,6 +108,7 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             string identifier = "TestIdentifier";
             embrace.SetUserIdentifier(identifier);
             embrace.provider.Received().SetUserIdentifier(identifier);
@@ -121,6 +122,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.ClearUserIdentifier();
             embrace.provider.Received().ClearUserIdentifier();
         }
@@ -133,6 +135,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.SetUsername("test name");
             embrace.provider.Received().SetUsername("test name");
         }
@@ -145,6 +148,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.ClearUsername();
             embrace.provider.Received().ClearUsername();
         }
@@ -157,6 +161,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string email = "test@email.com";
             embrace.SetUserEmail(email);
             embrace.provider.Received().SetUserEmail(email);
@@ -170,6 +175,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.ClearUserEmail();
             embrace.provider.Received().ClearUserEmail();
         }
@@ -182,6 +188,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.SetUserAsPayer();
             embrace.provider.Received().SetUserAsPayer();
         }
@@ -194,6 +201,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.ClearUserAsPayer();
             embrace.provider.Received().ClearUserAsPayer();
         }
@@ -206,6 +214,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string persona = "Test Persona";
             embrace.AddUserPersona(persona);
             embrace.provider.Received().AddUserPersona(persona);
@@ -219,6 +228,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string persona = "Test Persona";
             embrace.ClearUserPersona(persona);
             embrace.provider.Received().ClearUserPersona(persona);
@@ -232,6 +242,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.ClearAllUserPersonas();
             embrace.provider.Received().ClearAllUserPersonas();
         }
@@ -244,6 +255,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string key = "testKey";
             string value = "testValue";
             bool permanent = true;
@@ -259,6 +271,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string key = "testKey";
             embrace.RemoveSessionProperty(key);
             embrace.provider.Received().RemoveSessionProperty(key);
@@ -272,6 +285,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.GetSessionProperties();
             embrace.provider.Received().GetSessionProperties();
         }
@@ -317,7 +331,7 @@ namespace EmbraceSDK.Tests
             
             embrace.StartSDK(null, false);
             EMBSeverity severity = EMBSeverity.Error;
-            Embrace.Instance.LogMessage(null, severity);
+            embrace.LogMessage(null, severity);
             LogAssert.Expect(LogType.Error, "[Embrace Unity SDK] : null log message is not allowed through the Embrace SDK.");
         }
 
@@ -334,7 +348,7 @@ namespace EmbraceSDK.Tests
             EMBSeverity severity = EMBSeverity.Info;
 #if UNITY_IOS || UNITY_TVOS
             byte[] attachment = new byte[1024 * 1024]; // > 1 MiB
-            Embrace.Instance.LogMessage(message, severity, null, attachment);
+            embrace.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>(), attachment);
 #elif UNITY_ANDROID
             sbyte[] attachment = new sbyte[1024 * 1024]; // > 1 MiB
@@ -350,12 +364,13 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
 #if UNITY_IOS || UNITY_TVOS
             byte[] attachment = new byte[1024 * 1025]; // > 1 MiB
-            Embrace.Instance.LogMessage(message, severity, null, attachment);
+            embrace.LogMessage(message, severity, null, attachment);
             embrace.provider.Received().AddBreadcrumb($"Embrace Attachment failure. Attachment size too large. Message: {message}");
 #elif UNITY_ANDROID
             sbyte[] attachment = new sbyte[1024 * 1025]; // > 1 MiB
@@ -372,6 +387,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
             string attachmentId = new Guid().ToString();
@@ -388,6 +404,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             embrace.LogInfo(message);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Info, Arg.Any<Dictionary<string, string>>());
@@ -401,6 +418,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             embrace.LogWarning(message);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Warning, Arg.Any<Dictionary<string, string>>());
@@ -415,6 +433,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             embrace.LogError(message);
             embrace.provider.Received().LogMessage(message, EMBSeverity.Error, Arg.Any<Dictionary<string, string>>());
@@ -429,6 +448,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             embrace.AddBreadcrumb(message);
             embrace.provider.Received().AddBreadcrumb(message);
@@ -442,6 +462,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.EndSession();
             embrace.provider.Received().EndSession(false);
         }
@@ -454,6 +475,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.GetDeviceId();
             embrace.provider.Received().GetDeviceId();
         }
@@ -466,6 +488,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
 
+            embrace.StartSDK(null, false);
             embrace.GetCurrentSessionId();
             embrace.provider.Received().GetCurrentSessionId();
         }
@@ -483,6 +506,7 @@ namespace EmbraceSDK.Tests
         public void GetCurrentSessionId_IsNotNull_IfSDKNotStarted_Test()
         {
             Embrace embrace = new Embrace();
+            embrace.StartSDK(null, false);
             var sessionId = Embrace.Instance.GetCurrentSessionId();
             Assert.NotNull(sessionId);
             Assert.IsEmpty(sessionId);
@@ -495,6 +519,7 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             
             string message = "test message";
             embrace.StartView(message);
@@ -508,6 +533,7 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             
             string name = "test name";
             embrace.EndView(name);
@@ -521,6 +547,7 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             
             string url = "url";
             HTTPMethod method = HTTPMethod.GET;
@@ -541,13 +568,14 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             HTTPMethod method = HTTPMethod.GET;
             long startms = 1;
             long endms = 3;
             int bytesSent = 100;
             int bytesReceived = 150;
             int code = 200;
-            Embrace.Instance.RecordCompleteNetworkRequest(null, method, startms, endms, bytesReceived, bytesSent, code);
+            embrace.RecordCompleteNetworkRequest(null, method, startms, endms, bytesReceived, bytesSent, code);
             LogAssert.Expect(LogType.Error, $"[Embrace Unity SDK] : null network url is not allowed through the Embrace SDK.");
         }
 
@@ -558,6 +586,7 @@ namespace EmbraceSDK.Tests
             {
                 provider = Substitute.For<IEmbraceProvider>()
             };
+            embrace.StartSDK(null, false);
             
             string url = "url";
             HTTPMethod method = HTTPMethod.GET;
@@ -581,7 +610,7 @@ namespace EmbraceSDK.Tests
             long startms = 1;
             long endms = 2;
             string error = "error";
-            Embrace.Instance.RecordIncompleteNetworkRequest(null, method, startms, endms, error);
+            embrace.RecordIncompleteNetworkRequest(null, method, startms, endms, error);
             LogAssert.Expect(LogType.Error, $"[Embrace Unity SDK] : null network url is not allowed through the Embrace SDK.");
         }
         
@@ -597,7 +626,7 @@ namespace EmbraceSDK.Tests
             HTTPMethod method = HTTPMethod.GET;
             long startms = 1;
             long endms = 2;
-            Embrace.Instance.RecordIncompleteNetworkRequest(url, method, startms, endms, null);
+            embrace.RecordIncompleteNetworkRequest(url, method, startms, endms, null);
             LogAssert.Expect(LogType.Error, $"[Embrace Unity SDK] : null network error is not allowed through the Embrace SDK.");
         }
 
@@ -608,10 +637,12 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
+            
 #if UNITY_IOS
             var iosArgs = new iOSPushNotificationArgs("title", "body", 
                 "subtitle", "category", 0);
-            Embrace.Instance.RecordPushNotification(iosArgs);
+            embrace.RecordPushNotification(iosArgs);
             embrace.provider.Received().RecordPushNotification(iosArgs);
 #elif UNITY_ANDROID
             var androidArgs = new AndroidPushNotificationArgs("title", "body", "topic", 
