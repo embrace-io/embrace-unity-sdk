@@ -48,7 +48,7 @@ namespace EmbraceSDK.Tests
             const string message = "__Test threaded log message__";
 
             Embrace mockEmbrace = Substitute.For<Embrace>();
-            Embrace.Create().StartSDK();
+            mockEmbrace.StartSDK(null, false);
 
             Thread thread = new Thread(() => { Debug.Log(message); });
             thread.Start();

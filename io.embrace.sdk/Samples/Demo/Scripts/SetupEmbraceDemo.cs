@@ -21,7 +21,7 @@ namespace EmbraceSDK.Demo
         {
             #if DeveloperMode && UNITY_IOS
             // This setup is for Embrace Developer Mode on iOS only.
-            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, 
+            Embrace.Instance.Start(new EmbraceStartupArgs(AppId, 
                 EmbraceConfig.Default,
                 AppGroupId.Length > 0 ? AppGroupId : null, 
                 BaseUrl.Length > 0 ? BaseUrl : null, 
@@ -32,8 +32,8 @@ namespace EmbraceSDK.Demo
             Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, EmbraceConfig.Default, null, null, null, null));
             #else
             // This setup is for Embrace on Android.
-            Embrace.Instance.StartSDK();
-            #endif
+            Embrace.Start();
+#endif
         }
     }
 }

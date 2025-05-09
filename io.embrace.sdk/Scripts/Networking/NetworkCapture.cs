@@ -149,11 +149,11 @@ namespace EmbraceSDK.Networking
                 
                 if (error != string.Empty)
                 {
-                    Embrace.Instance.RecordIncompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, error);
+                    Embrace.Instance?.RecordIncompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, error);
                 }
                 else
                 {
-                    Embrace.Instance.RecordCompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, bytesin, bytesout, code);
+                    Embrace.Instance?.RecordCompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, bytesin, bytesout, code);
                 }
                 #endif
 
