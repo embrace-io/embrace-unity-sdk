@@ -5,7 +5,6 @@ using System.Threading;
 using EmbraceSDK.Editor;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
-using JetBrains.Annotations;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -80,7 +79,7 @@ namespace EmbraceSDK
             private set => _instance = value;
         }
 
-        void OnApplicationPause(bool pauseStatus)
+        private void OnApplicationPause(bool pauseStatus)
         {
             if (!pauseStatus) {
                 Provider?.InstallUnityThreadSampler();
@@ -122,6 +121,7 @@ namespace EmbraceSDK
                 Instance.scenesToViewReporter?.Dispose();
             });
             
+            Instance.listener.SetOnApplicationPauseCallback(Instance.OnApplicationPause);
             Object.DontDestroyOnLoad(Instance.listener);
         }
 
