@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading;
-using EmbraceSDK;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
 using NSubstitute;
-using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
-using UnityEditor;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -25,6 +18,7 @@ namespace EmbraceSDK.Tests
         public void EmbraceCreate()
         {
             Embrace embrace = new Embrace();
+            embrace.StartSDK(null, false);
             Assert.IsInstanceOf<Embrace>(embrace);
         }
 
@@ -290,6 +284,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Error;
             Dictionary<string, string> properties = new Dictionary<string, string>();
@@ -305,6 +300,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Error;
             embrace.LogMessage(message, severity);
@@ -319,6 +315,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             EMBSeverity severity = EMBSeverity.Error;
             Embrace.Instance.LogMessage(null, severity);
             LogAssert.Expect(LogType.Error, "[Embrace Unity SDK] : null log message is not allowed through the Embrace SDK.");
@@ -332,6 +329,7 @@ namespace EmbraceSDK.Tests
                 provider = Substitute.For<IEmbraceProvider>()
             };
             
+            embrace.StartSDK(null, false);
             string message = "test message";
             EMBSeverity severity = EMBSeverity.Info;
 #if UNITY_IOS || UNITY_TVOS
