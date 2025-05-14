@@ -55,6 +55,16 @@ namespace EmbraceSDK.Tests
             Assert.IsTrue(embrace.IsStarted);
         }
 
+        [Test]
+        public void EmbraceIsDisabled()
+        {
+            Embrace embrace = Embrace.Create();
+            embrace.StartSDK();
+            Assert.IsTrue(embrace.IsEnabled);
+            embrace.Disable();
+            Assert.IsFalse(embrace.IsEnabled);
+        }
+
         // Test if calls to SDK are passed down to provider.
         // Todo: We need to find a way to run these tests on Android and iOS.
         #region ProviderTests

@@ -21,7 +21,8 @@ namespace EmbraceSDK.Demo
             { "Breadcrumb", "Breadcrumb" },
             { "Moments", "Moments" },
             { "User Data", "Users" },
-            { "Network Capture", "Network" }
+            { "Network Capture", "Network" },
+            { "Disable SDK", "Disable"}
         };
 
         public int SceneCount
