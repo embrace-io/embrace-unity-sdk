@@ -480,13 +480,6 @@ namespace EmbraceSDK.Internal
             embrace_log_network_request(url, method.ToString(), startms, endms, 0, 0, 0, error);
         }
 
-        void IEmbraceProvider.InstallUnityThreadSampler()
-        {
-            // not supported on iOS yet
-            // No-op
-            EmbraceLogger.LogWarning("InstallUnityThreadSampler is not supported on iOS.");
-        }
-
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {
             if (IsReadyForCalls() == false)
