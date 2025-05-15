@@ -49,7 +49,6 @@ namespace EmbraceSDK.Internal
         void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error);
         void LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack);
         void LogHandledUnityException(string exceptionName, string exceptionMessage, string stack);
-        void InstallUnityThreadSampler();
         string GetCurrentSessionId();
         string StartSpan(string spanName, string parentSpanId, long startTimeMs);
         bool StopSpan(string spanId, int errorCode, long endTimeMs);

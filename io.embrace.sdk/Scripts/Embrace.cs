@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using EmbraceSDK.Editor;
@@ -93,8 +92,8 @@ namespace EmbraceSDK
 
         void OnApplicationPause(bool pauseStatus)
         {
-            if (!pauseStatus) {
-                Provider?.InstallUnityThreadSampler();
+            if (!pauseStatus) 
+            {
 #if UNITY_ANDROID
                 // The behaviors of the native Android SDK and the native iOS SDK have been
                 // demonstrated to be different. Namely, the iOS SDK perpetuates the views

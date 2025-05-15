@@ -233,11 +233,6 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log( $"Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
         }
 
-        void IEmbraceProvider.InstallUnityThreadSampler()
-        {
-            EmbraceLogger.Log("InstallUnityThreadSampler");
-        }
-
         #if UNITY_IOS
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)
         {

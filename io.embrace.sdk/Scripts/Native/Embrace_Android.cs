@@ -118,7 +118,6 @@ namespace EmbraceSDK.Internal
         private const string _logUnhandledUnityExceptionMethod = "logUnhandledUnityException";
         private const string _logHandledUnityExceptionMethod = "logHandledUnityException";
         private const string _initUnityAndroidConnection = "initUnityConnection";
-        private const string _installUnityThreadSampler = "installUnityThreadSampler";
         private const string _GetCurrentSessionId = "getCurrentSessionId";
         private const string _StartSpanMethod = "startSpan";
         private const string _StopSpanMethod = "stopSpan";
@@ -602,23 +601,6 @@ namespace EmbraceSDK.Internal
             }
             
             _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
-        }
-
-        void IEmbraceProvider.InstallUnityThreadSampler()
-        {
-            if (!ReadyForCalls())
-            {
-                EmbraceLogger.Log("Unable to install unity thread sampler, Embrace SDK not initialized");
-                return;
-            }
-
-            if (!UnityInternalInterfaceReadyForCalls())
-            {
-                EmbraceLogger.Log("Unable to install unity thread sampler, Embrace SDK not initialized");
-                return;
-            }
-            
-            _embraceUnityInternalSharedInstance.Call(_installUnityThreadSampler);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
