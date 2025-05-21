@@ -287,5 +287,10 @@ namespace EmbraceSDK.Editor
         {
             return true;
         }
+        
+        public void Disable()
+        {
+            EmbraceLogger.Log("Disable");
+        }
     }
 }

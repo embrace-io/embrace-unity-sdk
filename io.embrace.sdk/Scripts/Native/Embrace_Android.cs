@@ -124,6 +124,7 @@ namespace EmbraceSDK.Internal
         private const string _AddSpanEventMethod = "addSpanEvent";
         private const string _AddSpanAttributeMethod = "addSpanAttribute";
         private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
+        private const string _DisableMethod = "disable";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -200,7 +201,7 @@ namespace EmbraceSDK.Internal
         {
             return  _embraceInternalSharedInstance != null;
         }
-        
+
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
@@ -787,6 +788,23 @@ namespace EmbraceSDK.Internal
             }
 
             return result;
+        }
+        
+        public void Disable()
+        {
+            if (!ReadyForCalls())
+            {
+                return;
+            }
+            
+            try
+            {
+                EmbraceSharedInstance?.Call(_DisableMethod);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
 
         /// <summary>
