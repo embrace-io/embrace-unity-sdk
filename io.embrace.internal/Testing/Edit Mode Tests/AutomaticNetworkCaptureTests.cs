@@ -53,9 +53,20 @@ namespace EmbraceSDK.Tests
                 _hasRecompiled = true;
             }
 
-            _embraceInstance = Embrace.Create();
-            _embraceInstance.provider = Substitute.For<IEmbraceProvider>();
-            _embraceInstance.StartSDK();
+            _embraceInstance = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            _embraceInstance.StartSDK(null, false);
+        }
+
+        [UnityTearDown]
+        public IEnumerator TearDown()
+        {
+            _embraceInstance.provider.ClearReceivedCalls();
+            _embraceInstance.StopSDK();
+            yield return null;
         }
 
         #region UnityWebRequest
@@ -639,8 +650,10 @@ namespace EmbraceSDK.Tests
         [UnityTest]
         public IEnumerator UnityWebRequest_NotLoggedIfSDKHasNotStarted()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             using (UnityWebRequest request = UnityWebRequest.Get(GET_URL))
             {

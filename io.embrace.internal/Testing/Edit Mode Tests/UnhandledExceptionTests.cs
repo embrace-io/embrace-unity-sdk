@@ -154,8 +154,10 @@ namespace EmbraceSDK.Tests
         [TestMustExpectAllLogs]
         public void LogUnhandledException_RejectsNullExceptionInstance()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             string stack = Environment.StackTrace;
 
@@ -170,8 +172,10 @@ namespace EmbraceSDK.Tests
         [TestMustExpectAllLogs]
         public void LogUnhandledException_RejectsNullExceptionName()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string message = "exception message";
             string stack = Environment.StackTrace;
@@ -186,8 +190,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogUnhandledException_ReplacesNullMessage_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionName = "Exception";
             string stack = Environment.StackTrace;
@@ -200,8 +206,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogUnhandledException_ReplacesNullMessageProperty_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             Exception exception = Substitute.For<Exception>();
             exception.Message.Returns((_) => null);
@@ -216,8 +224,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogUnhandledException_ReplacesNullStackTrace_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionName = "Exception";
             const string exceptionMessage = "test exception message";
@@ -232,8 +242,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogUnhandledException_ReplacesNullStackTraceParameter_WithStackTraceProperty()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionMessage = "test exception message";
             string stack = Environment.StackTrace;
@@ -251,8 +263,10 @@ namespace EmbraceSDK.Tests
         [TestMustExpectAllLogs]
         public void LogHandledException_RejectsNullExceptionInstance()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             string stack = Environment.StackTrace;
 
@@ -267,8 +281,10 @@ namespace EmbraceSDK.Tests
         [TestMustExpectAllLogs]
         public void LogHandledException_RejectsNullExceptionName()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string message = "exception message";
             string stack = Environment.StackTrace;
@@ -283,8 +299,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogHandledException_ReplacesNullMessage_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionName = "Exception";
             string stack = Environment.StackTrace;
@@ -297,8 +315,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogHandledException_ReplacesNullMessageProperty_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             Exception exception = Substitute.For<Exception>();
             exception.Message.Returns((_) => null);
@@ -313,8 +333,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogHandledException_ReplacesNullStackTrace_WithEmptyString()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionName = "Exception";
             const string exceptionMessage = "test exception message";
@@ -329,8 +351,10 @@ namespace EmbraceSDK.Tests
         [Test]
         public void LogHandledException_ReplacesNullStackTraceParameter_WithStackTraceProperty()
         {
-            Embrace embrace = Embrace.Create();
-            embrace.provider = Substitute.For<IEmbraceProvider>();
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
 
             const string exceptionMessage = "test exception message";
             string stack = Environment.StackTrace;

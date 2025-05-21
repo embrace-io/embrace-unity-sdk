@@ -10,7 +10,7 @@ namespace EmbraceSDK.Demo
     {
         public void Start()
         {
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
         }
 
         public void AccessViolation()

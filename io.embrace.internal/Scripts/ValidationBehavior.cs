@@ -27,7 +27,7 @@ namespace EmbraceSDK.Internal
         void Awake()
         {
             EmbraceStartupArgs args = new EmbraceStartupArgs(appID);
-            Embrace.Instance.StartSDK(args);
+            Embrace.Start(args);
 
             Embrace.Instance.SetUsername("test_username");
             Embrace.Instance.SetUserEmail("test_email@example.com");
