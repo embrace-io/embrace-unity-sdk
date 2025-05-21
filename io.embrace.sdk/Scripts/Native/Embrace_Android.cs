@@ -113,7 +113,7 @@ namespace EmbraceSDK.Internal
         private const string _StartFragmentMethod = "startView";
         private const string _EndFragmentMethod = "endView";
         private const string _SetUnityMetaDataMethod = "setUnityMetaData";
-        private const string _RecordCompletedNetworkRequestMethod = "recordCompletedNetworkRequest";
+        private const string _RecordCompletedNetworkRequestMethod = "recordNetworkRequest-";
         private const string _RecordIncompleteNetworkRequestMethod = "recordIncompleteNetworkRequest";
         private const string _logUnhandledUnityExceptionMethod = "logUnhandledUnityException";
         private const string _logHandledUnityExceptionMethod = "logHandledUnityException";
@@ -583,7 +583,30 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
+            // Reference the EmbraceNetworkRequest class
+            var networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
+
+            // Reference the HttpMethod enum
+            var httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
+            var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
+
+            // Call the static method to get the EmbraceNetworkRequest object
+            AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
+                "fromCompletedRequest",
+                url,
+                httpMethod,
+                startms,
+                endms,
+                bytesin,
+                bytesout,
+                code,
+                null,
+                null,
+                null
+            );
+
+            // Pass it into your SDK method
+            embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
         }
         
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
@@ -600,7 +623,29 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
+            // Reference the EmbraceNetworkRequest class
+            var networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
+
+            // Reference the HttpMethod enum
+            var httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
+            var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
+
+            // Call the static method to get the EmbraceNetworkRequest object
+            AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
+                "fromIncompleteRequest",
+                url,
+                httpMethod,
+                startms,
+                endms,
+                "",
+                error,
+                null,
+                null,
+                null
+            );
+
+            // Pass it into your SDK method
+            embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
