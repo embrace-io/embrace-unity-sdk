@@ -31,6 +31,8 @@ namespace EmbraceSDK.Internal
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
         private AndroidJavaClass embraceInternalApiClass;
+        private AndroidJavaClass networkRequestClass;
+        private AndroidJavaClass httpMethodEnum;
         private AndroidJavaObject spanFailureCode;
         private AndroidJavaObject spanUserAbandonCode;
         private AndroidJavaObject spanUnknownCode;
@@ -223,6 +225,8 @@ namespace EmbraceSDK.Internal
             spanFailureCode = spanErrorCode.GetStatic<AndroidJavaObject>("FAILURE");
             spanUserAbandonCode = spanErrorCode.GetStatic<AndroidJavaObject>("USER_ABANDON");
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
+            networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
+            httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
         }
 
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
@@ -581,11 +585,7 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            // Reference the EmbraceNetworkRequest class
-            var networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
-
-            // Reference the HttpMethod enum
-            var httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
+            // Get the HTTP method enum
             var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
 
             // Call the static method to get the EmbraceNetworkRequest object
@@ -605,6 +605,7 @@ namespace EmbraceSDK.Internal
 
             // Pass it into your SDK method
             embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
+            networkRequest.Dispose();
         }
         
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
@@ -621,11 +622,7 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            // Reference the EmbraceNetworkRequest class
-            var networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
-
-            // Reference the HttpMethod enum
-            var httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
+            // Get the HTTP method enum
             var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
 
             // Call the static method to get the EmbraceNetworkRequest object
@@ -644,6 +641,7 @@ namespace EmbraceSDK.Internal
 
             // Pass it into your SDK method
             embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
+            networkRequest.Dispose();
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
