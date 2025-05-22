@@ -113,8 +113,6 @@ namespace EmbraceSDK.Internal
         private const string _StartFragmentMethod = "startView";
         private const string _EndFragmentMethod = "endView";
         private const string _SetUnityMetaDataMethod = "setUnityMetaData";
-        private const string _RecordCompletedNetworkRequestMethod = "recordNetworkRequest-";
-        private const string _RecordIncompleteNetworkRequestMethod = "recordIncompleteNetworkRequest";
         private const string _logUnhandledUnityExceptionMethod = "logUnhandledUnityException";
         private const string _logHandledUnityExceptionMethod = "logHandledUnityException";
         private const string _initUnityAndroidConnection = "initUnityConnection";
