@@ -124,6 +124,9 @@ namespace EmbraceSDK.Internal
         private const string _AddSpanEventMethod = "addSpanEvent";
         private const string _AddSpanAttributeMethod = "addSpanAttribute";
         private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
+        private const string _RecordNetworkRequestMethod = "recordNetworkRequest";
+        private const string _FromCompletedRequestMethod = "fromCompletedRequest";
+        private const string _FromIncompleteRequestMethod = "fromIncompleteRequest";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -590,7 +593,7 @@ namespace EmbraceSDK.Internal
 
             // Call the static method to get the EmbraceNetworkRequest object
             AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
-                "fromCompletedRequest",
+                _FromCompletedRequestMethod,
                 url,
                 httpMethod,
                 startms,
@@ -604,7 +607,7 @@ namespace EmbraceSDK.Internal
             );
 
             // Pass it into your SDK method
-            embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
+            embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
         }
         
@@ -627,7 +630,7 @@ namespace EmbraceSDK.Internal
 
             // Call the static method to get the EmbraceNetworkRequest object
             AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
-                "fromIncompleteRequest",
+                _FromIncompleteRequestMethod,
                 url,
                 httpMethod,
                 startms,
@@ -640,7 +643,7 @@ namespace EmbraceSDK.Internal
             );
 
             // Pass it into your SDK method
-            embraceSharedInstance.Call("recordNetworkRequest", networkRequest);
+            embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
         }
 
