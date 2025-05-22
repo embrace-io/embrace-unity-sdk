@@ -606,7 +606,6 @@ namespace EmbraceSDK.Internal
                 null
             );
 
-            // Pass it into your SDK method
             embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
         }
@@ -642,7 +641,6 @@ namespace EmbraceSDK.Internal
                 null
             );
 
-            // Pass it into your SDK method
             embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
         }
