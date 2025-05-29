@@ -46,7 +46,7 @@ namespace EmbraceSDK.Tests
         {
             if (!_hasRecompiled)
             {
-                EmbraceLogger.Log("Forcing recompile to guarantee that NetworkCapture code has been weaved before running tests.");
+                EmbraceLogger.Log(EmbraceTestMessages.RECOMPILE_BEFORE_TESTS);
 
                 AssetDatabaseUtil.ForceRecompileScripts();
                 yield return new RecompileScripts();
