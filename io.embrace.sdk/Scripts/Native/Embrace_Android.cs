@@ -31,6 +31,8 @@ namespace EmbraceSDK.Internal
         private AndroidJavaObject logError;
         private AndroidJavaClass embraceClass;
         private AndroidJavaClass embraceInternalApiClass;
+        private AndroidJavaClass networkRequestClass;
+        private AndroidJavaClass httpMethodEnum;
         private AndroidJavaObject spanFailureCode;
         private AndroidJavaObject spanUserAbandonCode;
         private AndroidJavaObject spanUnknownCode;
@@ -113,8 +115,6 @@ namespace EmbraceSDK.Internal
         private const string _StartFragmentMethod = "startView";
         private const string _EndFragmentMethod = "endView";
         private const string _SetUnityMetaDataMethod = "setUnityMetaData";
-        private const string _RecordCompletedNetworkRequestMethod = "recordCompletedNetworkRequest";
-        private const string _RecordIncompleteNetworkRequestMethod = "recordIncompleteNetworkRequest";
         private const string _logUnhandledUnityExceptionMethod = "logUnhandledUnityException";
         private const string _logHandledUnityExceptionMethod = "logHandledUnityException";
         private const string _initUnityAndroidConnection = "initUnityConnection";
@@ -124,6 +124,9 @@ namespace EmbraceSDK.Internal
         private const string _AddSpanEventMethod = "addSpanEvent";
         private const string _AddSpanAttributeMethod = "addSpanAttribute";
         private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
+        private const string _RecordNetworkRequestMethod = "recordNetworkRequest";
+        private const string _FromCompletedRequestMethod = "fromCompletedRequest";
+        private const string _FromIncompleteRequestMethod = "fromIncompleteRequest";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -225,6 +228,8 @@ namespace EmbraceSDK.Internal
             spanFailureCode = spanErrorCode.GetStatic<AndroidJavaObject>("FAILURE");
             spanUserAbandonCode = spanErrorCode.GetStatic<AndroidJavaObject>("USER_ABANDON");
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
+            networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
+            httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
         }
 
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
@@ -583,7 +588,26 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_RecordCompletedNetworkRequestMethod, url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
+            // Get the HTTP method enum
+            var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
+
+            // Call the static method to get the EmbraceNetworkRequest object
+            AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
+                _FromCompletedRequestMethod,
+                url,
+                httpMethod,
+                startms,
+                endms,
+                bytesout,
+                bytesin,
+                code,
+                null,
+                null,
+                null
+            );
+
+            embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
+            networkRequest.Dispose();
         }
         
         void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
@@ -600,7 +624,25 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_RecordIncompleteNetworkRequestMethod, url, method.ToString(), startms, endms, null, error, null);
+            // Get the HTTP method enum
+            var httpMethod = httpMethodEnum.GetStatic<AndroidJavaObject>(method.ToString()); // or POST, PUT, etc.
+
+            // Call the static method to get the EmbraceNetworkRequest object
+            AndroidJavaObject networkRequest = networkRequestClass.CallStatic<AndroidJavaObject>(
+                _FromIncompleteRequestMethod,
+                url,
+                httpMethod,
+                startms,
+                endms,
+                "",
+                error,
+                null,
+                null,
+                null
+            );
+
+            embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
+            networkRequest.Dispose();
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
