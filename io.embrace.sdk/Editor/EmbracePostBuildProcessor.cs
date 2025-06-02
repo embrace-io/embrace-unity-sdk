@@ -1,3 +1,8 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using UnityEngine;
+
 namespace EmbraceSDK.EditorView
 {
 #if UNITY_ANDROID
@@ -10,6 +15,11 @@ namespace EmbraceSDK.EditorView
     public class EmbracePostBuildProcessor : IPostGenerateGradleAndroidProject
     {
         public const string EMBRACE_SYSTEM_ENV_VAR = "EMBRACE_ENVIRONMENTS_INDEX";
+        public const string EMBRACE_CUSTOM_SYMBOLS_PATTERN = @"embrace\s*{[^}]*customSymbolsDirectory\.set\(\s*""(?<path>[^""]*)""\s*\)[^}]*}";
+        public const string SYMBOLS_DIR = "symbols";
+        public const string ARCH_DIR = "arm64-v8a";
+
+        public const string EMBRACE_CUSTOM_SYMBOLS_PROP = @"embrace {{ customSymbolsDirectory.set(""{0}"") }}";
 
         public int callbackOrder
         {
@@ -39,6 +49,70 @@ namespace EmbraceSDK.EditorView
 
             EmbraceGradleUtility.WriteEmbraceGradleProperties(gradleProjectRootPath, gradlePropertiesWriteBuffer);
 
+            // Actually we should assume the path for each Unity version for now and enforce with tests rather than trying to be smart.
+            
+            var matchingParent = Directory.EnumerateDirectories(projectPath, SYMBOLS_DIR, SearchOption.TopDirectoryOnly)
+                .Select(path => path) 
+                .FirstOrDefault();
+
+            if (matchingParent != null)
+            {
+                var archDir = Directory.EnumerateDirectories(matchingParent, ARCH_DIR, SearchOption.TopDirectoryOnly)
+                    .Select(path => path)
+                    .FirstOrDefault();
+
+                if (archDir == null)
+                {
+                    EmbraceLogger.LogError($"No arch folders found: {matchingParent}; double check if you have enabled the Create symbols.zip setting");
+                }
+                else
+                {
+                    // We now check if the path matches
+                    EmbraceGradleUtility.TryReadGradleTemplate(EmbraceGradleUtility.LauncherTemplatePath,
+                        out string launcherTemplate);
+
+                    var match = Regex.Match(launcherTemplate, EMBRACE_CUSTOM_SYMBOLS_PATTERN);
+                    
+                    if (match.Success)
+                    {
+                        // Match found. We should modify the selection if they do not match
+                        if (match.Groups["path"].Success)
+                        {
+                            var templatePath = Path.GetFullPath(match.Groups["path"].Value).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                            var foundPath = Path.GetFullPath(matchingParent).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                            
+                            if (!templatePath.Equals(foundPath))
+                            {
+                                // They don't match. We should override what is present
+                                string original = match.Value;
+                                string updated = String.Format(EMBRACE_CUSTOM_SYMBOLS_PROP, matchingParent);
+
+                                launcherTemplate = launcherTemplate.Replace(original, updated);
+                                
+                                File.WriteAllText(EmbraceGradleUtility.LauncherTemplatePath, launcherTemplate);
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogError($"No path provided, but property overridden. This is a bad state. Please remove the customSymbolsDirectory property from your launcherTemplate.gradle and try again.");
+                        }
+                    }
+                    else
+                    {
+                        // No match found. We should create the section we need
+                        File.AppendAllLines(EmbraceGradleUtility.LauncherTemplatePath, new[]
+                        {
+                            String.Format(EMBRACE_CUSTOM_SYMBOLS_PROP, matchingParent)
+                        });
+                    }
+                    
+                }
+            }
+            else
+            {
+                EmbraceLogger.LogError("No il2cpp symbols found; double check if you have enabled the Create symbols.zip setting");
+            }
+            
 #if UNITY_2020
             if (EditorUserBuildSettings.exportAsGoogleAndroidProject == true)
             {
