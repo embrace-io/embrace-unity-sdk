@@ -32,6 +32,10 @@ namespace EmbraceSDK.EditorView
             // Unity has historically been inconsistent with whether the projectPath is the path to the root of the gradle
             // project or the unityLibrary directory within the project.
             string gradleProjectRootPath = projectPath;
+            #if DeveloperMode
+            // Solely available for internal debugging purposes in case this fails.
+            Debug.Log($"gradle path: {gradleProjectRootPath}");
+            #endif
             DirectoryInfo gradleProjectRootDirectory = new DirectoryInfo(gradleProjectRootPath);
             if (gradleProjectRootDirectory.Name == "unityLibrary")
             {
@@ -81,7 +85,9 @@ namespace EmbraceSDK.EditorView
                             var templatePath = Path.GetFullPath(match.Groups["path"].Value).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
                             var foundPath = Path.GetFullPath(matchingParent).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
                             
-                            if (!templatePath.Equals(foundPath))
+                            // We should probably NOT modify the path if they don't match. This actually means that users can't supply their own path.
+                            // Especially if they've moved that path themselves for some reason.
+                            if (!templatePath.Equals(foundPath)) 
                             {
                                 // They don't match. We should override what is present
                                 string original = match.Value;
