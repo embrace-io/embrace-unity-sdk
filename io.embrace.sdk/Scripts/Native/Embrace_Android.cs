@@ -206,7 +206,7 @@ namespace EmbraceSDK.Internal
         
         void IEmbraceProvider.InitializeSDK()
         {
-            EmbraceLogger.Log("Embrace Unity SDK initializing java objects");
+            EmbraceLogger.Log(EmbraceMessages.ANDROID_SDK_INITIALIZED);
             CacheJavaMapPointers();
             CacheJavaNativeObjectTypes();
             using AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -250,7 +250,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to get last run end state, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LAST_RUN_STATE_ERROR);
                 return LastRunEndState.Invalid;
             }
 
@@ -282,7 +282,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to set user identifier, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USER_IDENTIFIER_ERROR);
                 return;
             }
             
@@ -293,7 +293,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to clear user identifier, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_IDENTIFIER_ERROR);
                 return;
             }
             
@@ -304,7 +304,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to set username, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USERNAME_ERROR);
                 return;
             }
             
@@ -315,7 +315,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to clear username, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USERNAME_ERROR);
                 return;
             }
             
@@ -326,7 +326,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to set user email, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USER_EMAIL_ERROR);
                 return;
             }
             
@@ -337,7 +337,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to clear user email, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_EMAIL_ERROR);
                 return;
             }
             
@@ -358,7 +358,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add user persona, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_USER_PERSONA_ERROR);
                 return;
             }
             
@@ -369,7 +369,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to clear user persona, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_PERSONA_ERROR);
                 return;
             }
             
@@ -380,7 +380,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to clear all user personas, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_ALL_USER_PERSONAS_ERROR);
                 return;
             }
             
@@ -391,7 +391,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add session property, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SESSION_PROPERTY_ERROR);
                 return false;
             }
 
@@ -402,7 +402,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to remove session property, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.REMOVE_SESSION_PROPERTY_ERROR);
                 return;
             }
             
@@ -413,7 +413,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to get session properties, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.GET_SESSION_PROPERTIES_ERROR);
                 return null;
             }
 
@@ -434,7 +434,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
@@ -458,7 +458,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
@@ -483,7 +483,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log message, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
@@ -507,7 +507,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add breadcrumb, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_BREADCRUMB_ERROR);
                 return;
             }
             
@@ -518,7 +518,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to end session, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.END_SESSION_ERROR);
                 return;
             }
             
@@ -529,7 +529,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to get device id, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.GET_DEVICE_ID_ERROR);
                 return null;
             }
             
@@ -540,7 +540,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to start view, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.START_VIEW_ERROR);
                 return false;
             }
             
@@ -551,7 +551,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to end view, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.END_VIEW_ERROR);
                 return false;
             }
             
@@ -562,7 +562,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to set meta data, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.SET_METADATA_ERROR);
                 return;
             }
 
@@ -578,13 +578,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record completed network request, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_NETWORK_REQUEST_ERROR);
                 return;
             }
 
             if (!UnityInternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record completed network request, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_NETWORK_REQUEST_ERROR);
                 return;
             }
             
@@ -614,13 +614,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record incomplete network request, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_INCOMPLETE_NETWORK_REQUEST_ERROR);
                 return;
             }
 
             if (!UnityInternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record incomplete network request, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_INCOMPLETE_NETWORK_REQUEST_ERROR);
                 return;
             }
             
@@ -649,13 +649,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log unhandled unity exception, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_UNHANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
 
             if (!UnityInternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log unhandled unity exception, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_UNHANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
             
@@ -666,13 +666,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log handled unity exception, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_HANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
 
             if (!UnityInternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to log handled unity exception, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_HANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
             
@@ -683,7 +683,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to get current session id, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.GET_CURRENT_SESSION_ID_ERROR);
                 return null;
             }
             
@@ -694,7 +694,7 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record push notification, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_PUSH_NOTIFICATION_ERROR);
                 return;
             }
 
@@ -714,13 +714,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to start span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.START_SPAN_ERROR);
                 return null;
             }
 
             if (!InternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to start span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.START_SPAN_ERROR);
                 return null;
             }
             
@@ -732,13 +732,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to stop span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.STOP_SPAN_ERROR);
                 return false;
             }
 
             if (!InternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to stop span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.STOP_SPAN_ERROR);
                 return false;
             }
             
@@ -750,13 +750,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add span event, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_EVENT_ERROR);
                 return false;
             }
 
             if (!InternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add span event, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_EVENT_ERROR);
                 return false;
             }
             
@@ -767,13 +767,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add span attribute, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_ATTRIBUTE_ERROR);
                 return false;
             }
 
             if (!InternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to add span attribute, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_ATTRIBUTE_ERROR);
                 return false;
             }
             
@@ -797,13 +797,13 @@ namespace EmbraceSDK.Internal
         {
             if (!ReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record completed span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_SPAN_ERROR);
                 return false;
             }
 
             if (!InternalInterfaceReadyForCalls())
             {
-                EmbraceLogger.Log("Unable to record completed span, Embrace SDK not initialized");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_SPAN_ERROR);
                 return false;
             }
             

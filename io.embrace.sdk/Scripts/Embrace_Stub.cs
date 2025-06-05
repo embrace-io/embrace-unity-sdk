@@ -12,19 +12,19 @@ namespace EmbraceSDK.Editor
     {
         void IEmbraceProvider.InitializeSDK()
         {
-            EmbraceLogger.Log("InitializeSDK");
+            EmbraceLogger.Log(EmbraceMessages.STUB_INITIALIZE_SDK);
         }
 
         #nullable enable
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs? args)
         {
-            EmbraceLogger.Log("StartSDK");
+            EmbraceLogger.Log(EmbraceMessages.STUB_START_SDK);
         }
         #nullable disable
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
-            EmbraceLogger.Log("GetLastRunEndState");
+            EmbraceLogger.Log(EmbraceMessages.STUB_GET_LAST_RUN_END_STATE);
             return LastRunEndState.Invalid;
         }
 
@@ -35,7 +35,7 @@ namespace EmbraceSDK.Editor
 
         void IEmbraceProvider.ClearUserIdentifier()
         {
-            EmbraceLogger.Log("ClearUserIdentifier");
+            EmbraceLogger.Log(EmbraceMessages.STUB_CLEAR_USER_IDENTIFIER);
         }
 
         void IEmbraceProvider.SetUsername(string username)
@@ -45,7 +45,7 @@ namespace EmbraceSDK.Editor
 
         void IEmbraceProvider.ClearUsername()
         {
-            EmbraceLogger.Log("ClearUsername");
+            EmbraceLogger.Log(EmbraceMessages.STUB_CLEAR_USERNAME);
         }
 
         void IEmbraceProvider.SetUserEmail(string email)
@@ -55,17 +55,17 @@ namespace EmbraceSDK.Editor
 
         void IEmbraceProvider.ClearUserEmail()
         {
-            EmbraceLogger.Log("ClearUserEmail");
+            EmbraceLogger.Log(EmbraceMessages.STUB_CLEAR_USER_EMAIL);
         }
 
         void IEmbraceProvider.SetUserAsPayer()
         {
-            EmbraceLogger.Log("SetUserAsPayer");
+            EmbraceLogger.Log(EmbraceMessages.STUB_SET_USER_AS_PAYER);
         }
 
         void IEmbraceProvider.ClearUserAsPayer()
         {
-            EmbraceLogger.Log("ClearUserAsPayer");
+            EmbraceLogger.Log(EmbraceMessages.STUB_CLEAR_USER_AS_PAYER);
         }
 
         void IEmbraceProvider.AddUserPersona(string persona)
@@ -80,7 +80,7 @@ namespace EmbraceSDK.Editor
 
         void IEmbraceProvider.ClearAllUserPersonas()
         {
-            EmbraceLogger.Log("ClearAllUserPersonas");
+            EmbraceLogger.Log(EmbraceMessages.STUB_CLEAR_ALL_USER_PERSONAS);
         }
 
         bool IEmbraceProvider.AddSessionProperty(string key, string value, bool permanent)
@@ -96,7 +96,7 @@ namespace EmbraceSDK.Editor
 
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
-            EmbraceLogger.Log("GetSessionProperties");
+            EmbraceLogger.Log(EmbraceMessages.STUB_GET_SESSION_PROPERTIES);
             return new Dictionary<string, string>();
         }
 
@@ -191,18 +191,18 @@ namespace EmbraceSDK.Editor
 
         void IEmbraceProvider.EndSession(bool clearUserInfo)
         {
-            EmbraceLogger.Log("EndSession");
+            EmbraceLogger.Log(EmbraceMessages.STUB_END_SESSION);
         }
 
         string IEmbraceProvider.GetDeviceId()
         {
-            EmbraceLogger.Log("GetDeviceId");
+            EmbraceLogger.Log(EmbraceMessages.STUB_GET_DEVICE_ID);
             return "";
         }
         
         string IEmbraceProvider.GetCurrentSessionId()
         {
-            EmbraceLogger.Log("GetCurrentSessionId");
+            EmbraceLogger.Log(EmbraceMessages.STUB_GET_CURRENT_SESSION_ID);
             return "";
         }
 
