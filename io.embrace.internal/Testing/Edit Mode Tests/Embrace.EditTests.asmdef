@@ -19,8 +19,7 @@
     "precompiledReferences": [
         "nunit.framework.dll",
         "NSubstitute.dll",
-        "Newtonsoft.Json.dll",
-        "System.Threading.Tasks.Extensions.dll"
+        "Newtonsoft.Json.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [

@@ -14,7 +14,7 @@ namespace EmbraceSDK.EditorView
     [Serializable]
     [OrderedEditorItem("Configurations", 2)]
     [UnityEngine.TestTools.ExcludeFromCoverage]
-    public class ConfigurationManager : BaseSettingsManager
+    internal class ConfigurationManager : BaseSettingsManager
     {
         // environments
         private ReorderableList _rList;

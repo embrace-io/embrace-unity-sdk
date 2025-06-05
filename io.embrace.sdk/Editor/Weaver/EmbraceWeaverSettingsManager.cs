@@ -16,7 +16,7 @@ namespace EmbraceSDK.Editor.Weaver
     [Serializable]
     [OrderedEditorItem("Network Capture", 3)]
     [UnityEngine.TestTools.ExcludeFromCoverage]
-    public class EmbraceWeaverSettingsManager : BaseSettingsManager
+    internal class EmbraceWeaverSettingsManager : BaseSettingsManager
     {
         private ScriptingDefineUtil _defineUtil;
 
