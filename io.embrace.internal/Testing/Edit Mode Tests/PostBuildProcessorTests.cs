@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Object = UnityEngine.Object;
 using System;
+using System.Text.RegularExpressions;
 #if UNITY_IOS || UNITY_TVOS
 using UnityEditor.iOS.Xcode;
 #endif
@@ -23,6 +24,20 @@ namespace EmbraceSDK.Tests
     public class PostBuildProcessorTests
     {
 #if UNITY_ANDROID
+        [Test]
+        // <summary>
+        // Test if the regex catches the data we need.
+        // </summary>
+        public void TestEmbraceCustomSymbolsRegex() {
+            var testWithNewlines = @"embrace {
+                customSymbolsDirectory.set(""/test/path"")
+            }";
+
+            var match = Regex.Match(testWithNewlines, EmbracePostBuildProcessor.EMBRACE_CUSTOM_SYMBOLS_PATTERN);
+
+            Assert.IsTrue(match.Success);
+            Assert.AreEqual(match.Groups["path"].Value, "/test/path");            
+        }
         /// <summary>
         /// Test if config fields which override default values are included in the output json.
         /// Override values are based on our public Android SDK documentation.
@@ -130,9 +145,23 @@ namespace EmbraceSDK.Tests
             string builtEmbraceConfigString = File.ReadAllText(tempDirectory.FullName + "/launcher/src/main/embrace-config.json");
             Assert.AreEqual(embraceConfigString, builtEmbraceConfigString);
 
+            TestGradleSymbolsPath();
+
             //cleanup
             TestHelper.ConfigRestore(androidConfig);
             Directory.Delete(tempDirectory.FullName, true);
+        }
+
+        public void TestGradleSymbolsPath() {
+            // We need to check if the expected folder(s) show up in the expected path.
+            var expectedSubPath = "Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/symbols";
+            var targetFolder = Path.Combine(Application.dataPath, expectedSubPath);
+
+            Debug.Log($"path to targetFolder: {targetFolder}");
+            Assert.IsTrue(Directory.Exists(targetFolder));
+            Assert.IsTrue(
+                Directory.EnumerateDirectories(targetFolder, EmbracePostBuildProcessor.ARCH_DIR, SearchOption.TopDirectoryOnly).Any()
+            );
         }
 
         /// <summary>
