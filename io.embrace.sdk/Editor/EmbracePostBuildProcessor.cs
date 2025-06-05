@@ -76,34 +76,7 @@ namespace EmbraceSDK.EditorView
                         out string launcherTemplate);
 
                     var match = Regex.Match(launcherTemplate, EMBRACE_CUSTOM_SYMBOLS_PATTERN);
-                    
-                    if (match.Success)
-                    {
-                        // Match found. We should modify the selection if they do not match
-                        if (match.Groups["path"].Success)
-                        {
-                            var templatePath = Path.GetFullPath(match.Groups["path"].Value).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                            var foundPath = Path.GetFullPath(matchingParent).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                            
-                            // We should probably NOT modify the path if they don't match. This actually means that users can't supply their own path.
-                            // Especially if they've moved that path themselves for some reason.
-                            if (!templatePath.Equals(foundPath)) 
-                            {
-                                // They don't match. We should override what is present
-                                string original = match.Value;
-                                string updated = String.Format(EMBRACE_CUSTOM_SYMBOLS_PROP, matchingParent);
-
-                                launcherTemplate = launcherTemplate.Replace(original, updated);
-                                
-                                File.WriteAllText(EmbraceGradleUtility.LauncherTemplatePath, launcherTemplate);
-                            }
-                        }
-                        else
-                        {
-                            Debug.LogError($"No path provided, but property overridden. This is a bad state. Please remove the customSymbolsDirectory property from your launcherTemplate.gradle and try again.");
-                        }
-                    }
-                    else
+                    if (!match.Success)
                     {
                         // No match found. We should create the section we need
                         File.AppendAllLines(EmbraceGradleUtility.LauncherTemplatePath, new[]
