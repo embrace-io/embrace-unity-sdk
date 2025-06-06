@@ -23,6 +23,15 @@ jobs:
         id: verify_release
         run: |
           python3 .github/scripts/release.py verify
+      - name: Validate access to version data service
+        uses: embrace-io/public-actions/upload-sdk-version@f4229398f257b24dbbe8b873f78e719f9af6cbbb
+        with:
+          platform: 'unity'
+          version: '0.0.0' # Just validating the token, so the version doesn't matter
+          dryRun: true
+          sdkVersionUrl: ${{ vars.SDK_VERSION_URL }}
+        env:
+          SDK_VERSION_TOKEN: ${{ secrets.SDK_VERSION_TOKEN }}
   build_release:
     name: Build release
     needs:
@@ -77,5 +86,11 @@ jobs:
     steps:
       - name: Record SDK version history
         if: needs.verify_release.outputs.is_release_candidate != 'true'
-        run: |
-          curl -f -X POST ${{ vars.SDK_VERSION_URL }}/unity/version/ -H 'X-Embrace-CI: ${{ secrets.SDK_VERSION_TOKEN }}' -H 'Content-Type: application/json' -d '{"version": "${{ env.RELEASE_VERSION }}"}'
+        uses: embrace-io/public-actions/upload-sdk-version@f4229398f257b24dbbe8b873f78e719f9af6cbbb
+        with:
+          platform: 'unity'
+          version: ${{ env.RELEASE_VERSION }}
+          dryRun: false
+          sdkVersionUrl: ${{ vars.SDK_VERSION_URL }}
+        env:
+          SDK_VERSION_TOKEN: ${{ secrets.SDK_VERSION_TOKEN }}

@@ -150,7 +150,7 @@ namespace EmbraceSDK.Internal
         
         void IEmbraceProvider.InitializeSDK()
         {
-            EmbraceLogger.Log("initializing Objc objects");
+            EmbraceLogger.Log(EmbraceMessages.IOS_SDK_INITIALIZED);
         }
 
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
@@ -166,7 +166,7 @@ namespace EmbraceSDK.Internal
             }
             else
             {
-                Debug.LogError("Embrace iOS support requires the use of EmbraceStartupArgs");    
+                Debug.LogError(EmbraceMessages.STARTUP_ARGS_ERROR);    
             }
         }
 
@@ -179,7 +179,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot get last run end state.");
+                EmbraceLogger.LogError(EmbraceMessages.LAST_RUN_STATE_ERROR);
                 return LastRunEndState.Invalid;
             }
             
@@ -190,7 +190,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot set user identifier.");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USER_IDENTIFIER_ERROR);
                 return;
             }
             
@@ -201,7 +201,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear user identifier.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_IDENTIFIER_ERROR);
                 return;
             }
             
@@ -212,7 +212,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot set username.");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USERNAME_ERROR);
                 return;
             }
             
@@ -223,7 +223,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear username.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USERNAME_ERROR);
                 return;
             }
             
@@ -234,7 +234,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot set user email.");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USER_EMAIL_ERROR);
                 return;
             }
             
@@ -245,7 +245,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear user email.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_EMAIL_ERROR);
                 return;
             }
             
@@ -256,7 +256,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot set user as payer.");
+                EmbraceLogger.LogError(EmbraceMessages.SET_USER_AS_PAYER_ERROR);
                 return;
             }
             
@@ -267,7 +267,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear user as payer.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_AS_PAYER_ERROR);
                 return;
             }
             
@@ -278,7 +278,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot add user persona.");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_USER_PERSONA_ERROR);
                 return;
             }
             
@@ -289,7 +289,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear user persona.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_USER_PERSONA_ERROR);
                 return;
             }
             
@@ -300,7 +300,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot clear all user personas.");
+                EmbraceLogger.LogError(EmbraceMessages.CLEAR_ALL_USER_PERSONAS_ERROR);
                 return;
             }
             
@@ -311,7 +311,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot add session property.");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SESSION_PROPERTY_ERROR);
                 return false;
             }
             
@@ -322,7 +322,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot remove session property.");
+                EmbraceLogger.LogError(EmbraceMessages.REMOVE_SESSION_PROPERTY_ERROR);
                 return;
             }
             
@@ -333,7 +333,7 @@ namespace EmbraceSDK.Internal
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
             #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            Debug.LogWarning("GetSessionProperties is deprecated on iOS");
+            Debug.LogWarning(EmbraceMessages.GET_SESSION_PROPERTIES_DEPRECATED);
             #endif
             return null;
         }
@@ -342,7 +342,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot log message.");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
@@ -350,19 +350,27 @@ namespace EmbraceSDK.Internal
             {
                 embrace_log_message_with_severity_and_properties(message, severityString, JsonConvert.SerializeObject(properties));    
             }
+            else
+            {
+                EmbraceLogger.LogError(EmbraceMessages.STRING_CONVERSION_ERROR);
+            }
         }
         
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties, byte[] attachment)
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot log message.");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
             if (severity.TryConvertToString(out var severityString))
             {
                 embrace_log_message_with_attachment(message, severityString, JsonConvert.SerializeObject(properties), attachment, attachment.Length);    
+            }
+            else
+            {
+                EmbraceLogger.LogError(EmbraceMessages.STRING_CONVERSION_ERROR);
             }
         }
 
@@ -371,7 +379,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot log message.");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_MESSAGE_ERROR);
                 return;
             }
             
@@ -379,13 +387,17 @@ namespace EmbraceSDK.Internal
             {
                 embrace_log_message_with_attachment_url(message, severityString, JsonConvert.SerializeObject(properties), attachmentId, attachmentUrl);
             }
+            else
+            {
+                EmbraceLogger.LogError(EmbraceMessages.STRING_CONVERSION_ERROR);
+            }
         }
 
         void IEmbraceProvider.AddBreadcrumb(string message)
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot add breadcrumb.");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_BREADCRUMB_ERROR);
                 return;
             }
             
@@ -397,7 +409,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot end session.");
+                EmbraceLogger.LogError(EmbraceMessages.END_SESSION_ERROR);
                 return;
             }
             
@@ -408,7 +420,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot get device ID.");
+                EmbraceLogger.LogError(EmbraceMessages.GET_DEVICE_ID_ERROR);
                 return null;
             }
             
@@ -419,7 +431,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot start view.");
+                EmbraceLogger.LogError(EmbraceMessages.START_VIEW_ERROR);
                 return false;
             }
             
@@ -436,7 +448,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot end view.");
+                EmbraceLogger.LogError(EmbraceMessages.END_VIEW_ERROR);
                 return false;
             }
             
@@ -452,7 +464,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot set metadata.");
+                EmbraceLogger.LogError(EmbraceMessages.SET_METADATA_ERROR);
                 return;
             }
             
@@ -464,7 +476,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot record network request.");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_NETWORK_REQUEST_ERROR);
                 return;
             }
             
@@ -476,7 +488,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot record incomplete network request.");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_INCOMPLETE_NETWORK_REQUEST_ERROR);
                 return;
             }
             
@@ -487,7 +499,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot record push notification.");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_PUSH_NOTIFICATION_ERROR);
                 return;
             }
             
@@ -504,7 +516,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot log unhandled exception.");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_UNHANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
             
@@ -515,7 +527,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot log handled exception.");
+                EmbraceLogger.LogError(EmbraceMessages.LOG_HANDLED_UNITY_EXCEPTION_ERROR);
                 return;
             }
             
@@ -526,7 +538,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot get current session ID.");
+                EmbraceLogger.LogError(EmbraceMessages.GET_CURRENT_SESSION_ID_ERROR);
                 return null;
             }
             
@@ -537,7 +549,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot start span.");
+                EmbraceLogger.LogError(EmbraceMessages.START_SPAN_ERROR);
                 return null;
             }
             
@@ -549,7 +561,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot stop span.");
+                EmbraceLogger.LogError(EmbraceMessages.STOP_SPAN_ERROR);
                 return false;
             }
             
@@ -562,7 +574,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot add span event.");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_EVENT_ERROR);
                 return false;
             }
             
@@ -573,7 +585,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot add span attribute.");
+                EmbraceLogger.LogError(EmbraceMessages.ADD_SPAN_ATTRIBUTE_ERROR);
                 return false;
             }
             
@@ -586,7 +598,7 @@ namespace EmbraceSDK.Internal
         {
             if (IsReadyForCalls() == false)
             {
-                EmbraceLogger.LogError("Embrace SDK is not started. Cannot record completed span.");
+                EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_SPAN_ERROR);
                 return false;
             }
             
