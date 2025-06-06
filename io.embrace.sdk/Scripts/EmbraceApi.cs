@@ -58,7 +58,8 @@ namespace EmbraceSDK
         /// See Embrace Docs for integration instructions. For compatibility with other SDKs, the Embrace SDK must be initialized after any other SDK.
         /// </summary>
         /// <param name="args">Startup arguments to configure the SDK. REQUIRED on iOS</param>
-        void StartSDK(EmbraceStartupArgs args = null);
+        /// <param name="createListener">If true, creates a unity lifecycle event listener for the SDK. This is required to get info for Unity lifecycle events (Awake, OnDestroy, ect)</param>
+        void StartSDK(EmbraceStartupArgs args = null, bool createListener = true);
 
         /// <summary>
         /// Adds a breadcrumb.

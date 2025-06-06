@@ -9,9 +9,16 @@ namespace EmbraceSDK.Tests
 {
     public class PlayTestBase : IEmbraceTest
     {
-        protected void ProviderSetup(IEmbraceProvider provider = null)
+        protected void ProviderSetup()
         {
-            Embrace.Instance.provider = provider ?? Substitute.For<IEmbraceProvider>();
+            Embrace.Stop();
+            
+            Embrace embrace = new Embrace
+            {
+                provider = Substitute.For<IEmbraceProvider>()
+            };
+            
+            embrace.StartSDK();
         }
 
         protected IEnumerator LoadScene(string sceneName, float waitSeconds = 0f)
@@ -37,7 +44,7 @@ namespace EmbraceSDK.Tests
 
         public void Cleanup()
         {
-            GameObject.DestroyImmediate(Embrace.Instance.gameObject);
+            GameObject.DestroyImmediate(Embrace.Instance.listener);
         }
     }
 }

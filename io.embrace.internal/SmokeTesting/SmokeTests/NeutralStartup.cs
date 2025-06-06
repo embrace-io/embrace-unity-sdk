@@ -18,7 +18,7 @@ namespace Embrace.Internal.SmokeTests
             [Preserve, SmokeTest]
             public void StartSDKForReport()
             {
-                EmbraceSDK.Embrace.Instance.StartSDK();
+                EmbraceSDK.Embrace.Start();
             }
         }
     }
