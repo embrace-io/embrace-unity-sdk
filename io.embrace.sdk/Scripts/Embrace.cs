@@ -228,6 +228,7 @@ namespace EmbraceSDK
 #endif
 
                 _started = true;
+                IsEnabled = true;
             
                 InternalEmbrace.SetInternalInstance(_instance);
 
@@ -917,7 +918,17 @@ namespace EmbraceSDK
                 EmbraceLogger.LogException(e);
             }
         }
+
+        /// <inheritdoc />
+        public void Disable()
+        {
+            IsEnabled = false;
+            Provider?.Disable();
+        }
         
+        /// <inheritdoc />
+        public bool IsEnabled { get; private set; }
+
         /// <summary>
         /// Create and start a new span.
         /// </summary>
