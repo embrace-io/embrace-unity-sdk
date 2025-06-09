@@ -29,7 +29,7 @@ jobs:
           platform: 'unity'
           version: '0.0.0' # Just validating the token, so the version doesn't matter
           dryRun: true
-          sdkVersionUrl: ${{ vars.SDK_VERSION_URL }}
+          uploadUrl: ${{ vars.SDK_VERSION_URL }}
         env:
           SDK_VERSION_TOKEN: ${{ secrets.SDK_VERSION_TOKEN }}
   build_release:
@@ -91,6 +91,6 @@ jobs:
           platform: 'unity'
           version: ${{ env.RELEASE_VERSION }}
           dryRun: false
-          sdkVersionUrl: ${{ vars.SDK_VERSION_URL }}
+          uploadUrl: ${{ vars.SDK_VERSION_URL }}
         env:
           SDK_VERSION_TOKEN: ${{ secrets.SDK_VERSION_TOKEN }}
