@@ -7,7 +7,7 @@ namespace EmbraceSDK.Tests
     {
         public void RunTests()
         {
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             Embrace.Instance.SetUserIdentifier("embrace_test_user");
             Embrace.Instance.SetUserIdentifier(null);
             Embrace.Instance.ClearUserIdentifier();

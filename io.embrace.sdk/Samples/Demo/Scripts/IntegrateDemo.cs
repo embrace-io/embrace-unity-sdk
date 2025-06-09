@@ -29,7 +29,7 @@ namespace EmbraceSDK.Demo
         {
             // Call the start method to enable the SDK. Calling it as early as possible in the launch process ensures capture of the most data possible.
             // Start the SDK
-            Embrace.Instance.StartSDK();
+            Embrace.Start();
             startParentSpanButton.onClick.AddListener(StartParentSpan);
             stopParentSpanButton.onClick.AddListener(StopParentSpan);
             startChildFailureSpanButton.onClick.AddListener(RecordFailureChildSpan);
