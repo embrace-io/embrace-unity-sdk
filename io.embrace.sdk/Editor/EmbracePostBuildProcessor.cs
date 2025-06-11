@@ -67,7 +67,7 @@ namespace EmbraceSDK.EditorView
 
                 if (archDir == null)
                 {
-                    EmbraceLogger.LogError($"No arch folders found: {matchingParent}; double check if you have enabled the Create symbols.zip setting");
+                    EmbraceLogger.LogWarning($"No arch folders found: {matchingParent}; double check if you have enabled the Create symbols.zip setting");
                 }
                 else
                 {
@@ -89,7 +89,7 @@ namespace EmbraceSDK.EditorView
             }
             else
             {
-                EmbraceLogger.LogError("No il2cpp symbols found; double check if you have enabled the Create symbols.zip setting");
+                EmbraceLogger.LogWarning("No il2cpp symbols found; double check if you have enabled the Create symbols.zip setting");
             }
             
 #if UNITY_2020
