@@ -155,7 +155,8 @@ namespace EmbraceSDK.Tests
         public void TestGradleSymbolsPath() {
             // We need to check if the expected folder(s) show up in the expected path.
             var expectedSubPath = "Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/symbols";
-            var targetFolder = Path.Combine(Application.dataPath, expectedSubPath);
+            var targetFolder = Path.Combine(
+                Directory.GetParent(Application.dataPath).FullName, expectedSubPath);
 
             Debug.Log($"path to targetFolder: {targetFolder}");
             Assert.IsTrue(Directory.Exists(targetFolder));
@@ -187,12 +188,17 @@ namespace EmbraceSDK.Tests
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
             testConfig.AppId = Environment.GetEnvironmentVariable("EMBRACE_TEST_APP_ID");
             testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("EMBRACE_TEST_API_TOKEN");
-            
+
+            Debug.Log($"Env vars fetched: ${testConfig.AppId != null}");
+          
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
+
+            var userValue = EditorUserBuildSettings.androidCreateSymbolsZip;
+            EditorUserBuildSettings.androidCreateSymbolsZip = true;
             
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
@@ -208,8 +214,10 @@ namespace EmbraceSDK.Tests
             defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             //cleanup
+            //
 
             TestHelper.ConfigRestore(defaultConfig);
+            EditorUserBuildSettings.androidCreateSymbolsZip = userValue;
         }
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)
