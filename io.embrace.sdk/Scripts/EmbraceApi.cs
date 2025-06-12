@@ -51,7 +51,12 @@ namespace EmbraceSDK
         /// <summary>
         /// Returns true if StartSDK has been called on the Embrace instance.
         /// </summary>
-         bool IsStarted { get; }
+        bool IsStarted { get; }
+        
+        /// <summary>
+        /// Returns true if the SDK is enabled and ready to send data.
+        /// </summary>
+        bool IsEnabled { get; }
 
         /// <summary>
         /// Starts instrumentation of the application using the Embrace SDK. This should be called during creation of the application, as early as possible.
@@ -103,6 +108,11 @@ namespace EmbraceSDK
         /// </summary>
         /// <param name="androidArgs"></param>
         void RecordPushNotification(AndroidPushNotificationArgs androidArgs);
+
+        /// <summary>
+        /// Disables the Embrace SDK. This will stop all data collection and sending of information to the Embrace dashboard.
+        /// </summary>
+        void Disable();
     }
 
     /// The public API that is used to send log messages.

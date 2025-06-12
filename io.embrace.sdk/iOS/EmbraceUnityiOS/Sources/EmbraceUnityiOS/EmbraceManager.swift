@@ -477,6 +477,19 @@ public class EmbraceManager: NSObject {
             return false
         }
     }
+    
+    static func disable() {
+        do {
+            try Embrace.client?.stop()
+        } catch {
+            print("Failed to stop Embrace: \(error)")
+        }
+        
+        if(Embrace.client != nil) {
+            let enabled = Embrace.client?.isSDKEnabled
+            print("SDK Enabled: \(enabled)")
+        }
+    }
 
     private static func transferKVPs(dest: inout [String:String], src: NSDictionary) {
         for (key, value) in src {

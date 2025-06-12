@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Demo Home.unity
     guid: 05f7449bc4cc2bd49bf1cdad9c81f006
   - enabled: 1
-    path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/ANRs.unity
-    guid: 9f550f48d7b1142e885b3a5593a11315
-  - enabled: 1
     path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Breadcrumb.unity
     guid: 8c4e74e4fa4531e4eb48f74d8bb33921
   - enabled: 1
@@ -32,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Users.unity
     guid: cf8da469fc461384f88c8d2a5eba5cd5
+  - enabled: 1
+    path: Packages/io.embrace.sdk/Samples/Demo/Scenes/Modules/Disable.unity
+    guid: b58e8453101a74085af81cce9da4660c
   m_configObjects: {}
