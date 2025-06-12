@@ -60,3 +60,4 @@ android {
         }
     }
 }**SPLITS_VERSION_CODE****LAUNCHER_SOURCE_BUILD_SETUP**
+embrace { customSymbolsDirectory.set("/Users/alyssasyharath/workspaces/embrace-unity-sdk/UnityProjects/2021/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/symbols") }
