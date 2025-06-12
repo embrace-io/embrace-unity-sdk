@@ -12,7 +12,7 @@ namespace EmbraceSDK.EditorView
     /// </summary>
     [Serializable]
     [OrderedEditorItem("General", 1)]
-    public class GeneralManager : BaseSettingsManager
+    internal class GeneralManager : BaseSettingsManager
     {
         private bool _advancedFoldoutExpanded;
         private string _savedDataDir;

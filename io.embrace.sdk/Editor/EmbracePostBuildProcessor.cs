@@ -1,3 +1,8 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using UnityEngine;
+
 namespace EmbraceSDK.EditorView
 {
 #if UNITY_ANDROID
@@ -10,6 +15,11 @@ namespace EmbraceSDK.EditorView
     public class EmbracePostBuildProcessor : IPostGenerateGradleAndroidProject
     {
         public const string EMBRACE_SYSTEM_ENV_VAR = "EMBRACE_ENVIRONMENTS_INDEX";
+        public const string EMBRACE_CUSTOM_SYMBOLS_PATTERN = @"embrace\s*{[^}]*customSymbolsDirectory\.set\(\s*""(?<path>[^""]*)""\s*\)[^}]*}";
+        public const string SYMBOLS_DIR = "symbols";
+        public const string ARCH_DIR = "arm64-v8a";
+
+        public const string EMBRACE_CUSTOM_SYMBOLS_PROP = @"embrace {{ customSymbolsDirectory.set(""{0}"") }}";
 
         public int callbackOrder
         {
@@ -22,6 +32,10 @@ namespace EmbraceSDK.EditorView
             // Unity has historically been inconsistent with whether the projectPath is the path to the root of the gradle
             // project or the unityLibrary directory within the project.
             string gradleProjectRootPath = projectPath;
+            #if DeveloperMode
+            // Solely available for internal debugging purposes in case this fails.
+            Debug.Log($"gradle path: {gradleProjectRootPath}");
+            #endif
             DirectoryInfo gradleProjectRootDirectory = new DirectoryInfo(gradleProjectRootPath);
             if (gradleProjectRootDirectory.Name == "unityLibrary")
             {
@@ -39,6 +53,45 @@ namespace EmbraceSDK.EditorView
 
             EmbraceGradleUtility.WriteEmbraceGradleProperties(gradleProjectRootPath, gradlePropertiesWriteBuffer);
 
+            // Actually we should assume the path for each Unity version for now and enforce with tests rather than trying to be smart.
+            
+            var matchingParent = Directory.EnumerateDirectories(projectPath, SYMBOLS_DIR, SearchOption.TopDirectoryOnly)
+                .Select(path => path) 
+                .FirstOrDefault();
+
+            if (matchingParent != null)
+            {
+                var archDir = Directory.EnumerateDirectories(matchingParent, ARCH_DIR, SearchOption.TopDirectoryOnly)
+                    .Select(path => path)
+                    .FirstOrDefault();
+
+                if (archDir == null)
+                {
+                    EmbraceLogger.LogWarning($"No arch folders found: {matchingParent}; double check if you have enabled the Create symbols.zip setting");
+                }
+                else
+                {
+                    // We now check if the path matches
+                    EmbraceGradleUtility.TryReadGradleTemplate(EmbraceGradleUtility.LauncherTemplatePath,
+                        out string launcherTemplate);
+
+                    var match = Regex.Match(launcherTemplate, EMBRACE_CUSTOM_SYMBOLS_PATTERN);
+                    if (!match.Success)
+                    {
+                        // No match found. We should create the section we need
+                        File.AppendAllLines(EmbraceGradleUtility.LauncherTemplatePath, new[]
+                        {
+                            String.Format(EMBRACE_CUSTOM_SYMBOLS_PROP, matchingParent)
+                        });
+                    }
+                    
+                }
+            }
+            else
+            {
+                EmbraceLogger.LogWarning("No il2cpp symbols found; double check if you have enabled the Create symbols.zip setting");
+            }
+            
 #if UNITY_2020
             if (EditorUserBuildSettings.exportAsGoogleAndroidProject == true)
             {
