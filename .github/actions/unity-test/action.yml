@@ -66,10 +66,12 @@ runs:
       run: |
         make test
     - name: Output Test Results
+      shell: bash
       run: |
         cd ./build/test-results
         cat ./*
     - name: Output Test Logs
+      shell: bash
       run: |
         cd ./build/test-logs
         cat ./*
