@@ -65,14 +65,14 @@ runs:
         UNITY_SERIAL: ${{ inputs.license_serial }}
       run: |
         make test
-    - name: Upload test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results-${{ runner.os }}-${{ inputs.project }}-${{ inputs.build_target || 'all' }}
-        path: |
-          ./build/test-results
-          ./build/test-logs
-          ./build/coverage-results
+    - name: Output Test Results
+      run: |
+        cd ./build/test-results
+        cat ./*
+    - name: Output Test Logs
+      run: |
+        cd ./build/test-logs
+        cat ./*
     - name: Uninstall editor
       shell: bash
       run: |
