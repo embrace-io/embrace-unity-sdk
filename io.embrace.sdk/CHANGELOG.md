@@ -5,6 +5,18 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.5.0
+Embrace Android SDK Version:
+Embrace Apple SDK Version:
+*June 16, 2025*
+- Modified Android SDK interface startup so it is more verbose
+- Modified iOS SDK interface for improved stability and verbosity
+- Patched out two warnings from the Unity SDK
+- Modified platform SDK for improved stability
+- Removed Unity ANR Sampling and Thread Sampling
+- Embrace SDK Log Messages improved for clarity
+- Opt out flag support added
+
 ## 2.4.0
 Embrace Android SDK Version: [7.3.0](https://embrace.io/docs/android/changelog/#730)
 Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
