@@ -6,8 +6,8 @@ sidebar_position: 4
 
 # Unity SDK Changelog
 ## 2.5.0
-Embrace Android SDK Version:
-Embrace Apple SDK Version:
+Embrace Android SDK Version: [7.3.0](https://embrace.io/docs/android/changelog/#730)
+Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
 *June 16, 2025*
 - Modified Android SDK interface startup so it is more verbose
 - Modified iOS SDK interface for improved stability and verbosity
