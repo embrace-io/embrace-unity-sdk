@@ -5,7 +5,7 @@ namespace EmbraceSDK.EditorView
         public const string EMBRACE_SYSTEM_ENV_INDEX = "EMBRACE_ENVIRONMENTS_INDEX";
         public const string EMBRACE_SYSTEM_ENV_NAME = "EMBRACE_ENVIRONMENTS_NAME";
 
-        public static Environments ConfigureForBuild()
+        internal static Environments ConfigureForBuild()
         {
             // Load our Environments.asset object
             var environments = AssetDatabaseUtil.LoadEnvironments();

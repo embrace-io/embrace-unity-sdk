@@ -8,7 +8,7 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// The MainSettingsEditor handles displaying the various parts of the Embrace Settings editor window.
     /// </summary>
-    public class MainSettingsEditor : EmbraceEditorWindow
+    internal class MainSettingsEditor : EmbraceEditorWindow
     {
         private static MainSettingsEditor _window;
         private const float MenuWidth = 135;

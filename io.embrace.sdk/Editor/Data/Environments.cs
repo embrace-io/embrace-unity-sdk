@@ -12,13 +12,14 @@ namespace EmbraceSDK.EditorView
 #if DeveloperMode
     [CreateAssetMenu(fileName = "Data", menuName = "EmbraceSDK/Environments")]
 #endif
-    public class Environments : ScriptableObject
+    internal class Environments : ScriptableObject
     {
         public static readonly string[] DeviceStrings = { "Android", "iOS" };
 
         public Action EnvironmentsReset;
 
         public int activeEnvironmentIndex = -1;
+        public ConfigurationTarget activeEnvironment = ConfigurationTarget.Android;
         public int activeDeviceIndex = 0;
         public List<EnvironmentConfiguration> environmentConfigurations = new List<EnvironmentConfiguration>();
         public bool isDirty;
@@ -77,5 +78,11 @@ namespace EmbraceSDK.EditorView
             guid = null;
             sdkConfigurations.Clear();
         }
+    }
+    
+    internal enum ConfigurationTarget
+    {
+        Android,
+        iOS
     }
 }

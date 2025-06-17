@@ -73,7 +73,7 @@ namespace EmbraceSDK.Tests
         /// <param name="count"></param>
         /// <param name="namePrefix"></param>
         /// <returns></returns>
-        public static Environments CreateTestEnvironments(int count, string namePrefix)
+        internal static Environments CreateTestEnvironments(int count, string namePrefix)
         {
             var environments = AssetDatabaseUtil.CreateEnvironments();
             var envGuids = new string[count];
@@ -125,7 +125,7 @@ namespace EmbraceSDK.Tests
         /// </summary>
         /// <param name="source"></param>
         /// <param name="compare"></param>
-        public static void AssertEnvironmentsAreEqual(Environments source, Environments compare)
+        internal static void AssertEnvironmentsAreEqual(Environments source, Environments compare)
         {
             var sourceEnvConfigs = source.environmentConfigurations;
             var compareEnvConfigs = compare.environmentConfigurations;
