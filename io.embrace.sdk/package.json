@@ -1,6 +1,6 @@
 {
   "name": "io.embrace.sdk",
-  "version": "2.5.0-rc2",
+  "version": "2.5.0-rc3",
   "displayName": "Embrace SDK",
   "description": "Embrace's Unity SDK lets you bring the deep, introspective and native debugging power of Embrace into your Unity game or application.",
   "unity": "2019.1",
