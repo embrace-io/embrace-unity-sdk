@@ -75,7 +75,7 @@ runs:
       with:
         name: ${{ inputs.editor_version }} Tests
         path: ./build/test-results/*.xml
-        reporter: nunit
+        reporter: dotnet-nunit
     - name: Output Test Logs
       shell: bash
       run: |
