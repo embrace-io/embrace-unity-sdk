@@ -24,7 +24,7 @@ jobs:
         run: |
           python3 .github/scripts/release.py verify
       - name: Validate access to version data service
-        uses: embrace-io/public-actions/upload-sdk-version@f4229398f257b24dbbe8b873f78e719f9af6cbbb
+        uses: embrace-io/public-actions/upload-sdk-version@66e5dbf34d2e52027cba72826b55f566de780b22
         with:
           platform: 'unity'
           version: '0.0.0' # Just validating the token, so the version doesn't matter
@@ -86,7 +86,7 @@ jobs:
     steps:
       - name: Record SDK version history
         if: needs.verify_release.outputs.is_release_candidate != 'true'
-        uses: embrace-io/public-actions/upload-sdk-version@f4229398f257b24dbbe8b873f78e719f9af6cbbb
+        uses: embrace-io/public-actions/upload-sdk-version@66e5dbf34d2e52027cba72826b55f566de780b22
         with:
           platform: 'unity'
           version: ${{ env.RELEASE_VERSION }}
