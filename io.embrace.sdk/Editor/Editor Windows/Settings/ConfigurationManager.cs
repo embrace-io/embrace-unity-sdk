@@ -35,11 +35,15 @@ namespace EmbraceSDK.EditorView
             UpdateEmbraceSDKSettings();
             UpdateConfigEditor();
 
-            environments.EnvironmentsReset += OnEnvironmentsReset;
+            if (environments != null)
+                environments.EnvironmentsReset += OnEnvironmentsReset;
         }
 
         private void InitReorderableList()
         {
+            if (environments == null) {
+                return;
+            }
             _rList = new ReorderableList(environments.environmentConfigurations, typeof(EnvironmentConfiguration), true, true, true, true);
             _rList.onAddCallback += OnAddCallback;
             _rList.onRemoveCallback += OnRemoveCallback;
@@ -205,6 +209,8 @@ namespace EmbraceSDK.EditorView
 
         private void UpdateEmbraceSDKSettings()
         {
+            if (environments == null)
+                return;
             for (int i = 0; i < environments.environmentConfigurations.Count; i++)
             {
                 string name = environments.environmentConfigurations[i].name;
@@ -235,6 +241,8 @@ namespace EmbraceSDK.EditorView
 
         private void UpdateConfigEditor()
         {
+            if (environments == null)
+                return;
             if (environments.environmentConfigurations.Count != 0 &&
                 environments.activeEnvironmentIndex > -1)
             {

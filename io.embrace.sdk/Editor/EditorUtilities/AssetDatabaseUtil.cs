@@ -62,8 +62,13 @@ namespace EmbraceSDK.EditorView
         /// </summary>
         public static string EmbraceDataDirectory
         {
+            get => AssetDatabaseUtil.ProjectDirectory;
+            set
+            {}                    
+            /*
             get => EmbraceProjectSettings.Project.GetValue<string>("dataDirectory", string.Empty);
             set => EmbraceProjectSettings.Project.SetValue<string>("dataDirectory", value);
+            //*/
         }
 
         /// <summary>
@@ -114,6 +119,7 @@ namespace EmbraceSDK.EditorView
         /// <returns></returns>
         public static Environments CreateEnvironments()
         {
+            return null; // Temporary patch as we remove environments
             EnsureFolderExists(EmbraceDataDirectory);
             var environments = ScriptableObject.CreateInstance<Environments>();
             AssetDatabase.CreateAsset(environments, $"{EmbraceDataDirectory}/Environments.asset");
@@ -236,7 +242,8 @@ namespace EmbraceSDK.EditorView
                 Debug.LogWarning($"Recovered Environments with {recoveredConfigs} configurations.");
             }
 
-            EditorUtility.SetDirty(environments);
+            if (environments != null)
+                EditorUtility.SetDirty(environments);
         }
 
         #endregion
@@ -278,6 +285,7 @@ namespace EmbraceSDK.EditorView
         /// <returns></returns>
         public static T CreateConfiguration<T>(string guid, string name) where T : EmbraceConfiguration
         {
+            return null; // Temporary
             EnsureFolderExists(ConfigurationsDirectory);
             var config = ScriptableObject.CreateInstance<T>();
             config.SetDefaults(); // Sets default values
@@ -300,7 +308,7 @@ namespace EmbraceSDK.EditorView
         /// <returns>Environment-based configuration, otherwise returns default.</returns>
         public static T LoadConfiguration<T>(Environments environments, bool ensureNotNull = true) where T : EmbraceConfiguration
         {
-            if (environments.environmentConfigurations.Count > 0 &&
+            if (environments != null && environments.environmentConfigurations.Count > 0 &&
                 environments.activeEnvironmentIndex > -1)
             {
                 if (environments.activeEnvironmentIndex >= environments.environmentConfigurations.Count)
