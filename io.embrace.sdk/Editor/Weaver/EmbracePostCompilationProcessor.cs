@@ -310,6 +310,7 @@ namespace EmbraceSDK.Editor.Weaver
 
             public static void SaveSettings(Settings settings)
             {
+                UnityEngine.Debug.Log(AssetDatabaseUtil.EmbraceDataDirectory);
                 string path = Path.Combine(AssetDatabaseUtil.EmbraceDataDirectory, FILE_NAME);
                 string jsonSettings = JsonConvert.SerializeObject(settings, Formatting.Indented);
 

@@ -74,7 +74,7 @@ namespace EmbraceSDK.EditorView
         /// <summary>
         /// Directory where configuration scriptable objects are stored.
         /// </summary>
-        public static string ConfigurationsDirectory => $"{EmbraceDataDirectory}/Configurations";
+        public static string ConfigurationsDirectory => $"{DefaultDataDirectory}/Configurations";
 
         /// <summary>
         /// Checks for existence of a folder within the project Assets folder.
@@ -135,7 +135,7 @@ namespace EmbraceSDK.EditorView
         /// <returns></returns>
         public static Environments LoadEnvironments(string path = null, bool ensureNotNull = true)
         {
-            var environments = AssetDatabase.LoadAssetAtPath<Environments>(path ?? $"{EmbraceDataDirectory}/Environments.asset");
+            var environments = AssetDatabase.LoadAssetAtPath<Environments>(path ?? $"{DefaultDataDirectory}/Environments.asset");
 
             if (ensureNotNull && environments == null)
             {
