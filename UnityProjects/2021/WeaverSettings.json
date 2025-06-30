@@ -1,0 +1,16 @@
+{
+  "excludedAssemblyNames": [
+    "Unity.Timeline",
+    "Unity.TextMeshPro",
+    "Unity.Timeline.Editor",
+    "Unity.VisualStudio.Editor",
+    "Unity.TextMeshPro.Editor",
+    "Unity.TestTools.CodeCoverage.Editor",
+    "Unity.Mobile.AndroidLogcat.Editor",
+    "Unity.Rider.Editor",
+    "Unity.TestTools.CodeCoverage.Editor.OpenCover.Model",
+    "Unity.VSCode.Editor",
+    "Unity.Settings.Editor",
+    "Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection"
+  ]
+}

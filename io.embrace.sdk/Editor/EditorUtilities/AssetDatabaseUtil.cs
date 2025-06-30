@@ -65,7 +65,7 @@ namespace EmbraceSDK.EditorView
             get => AssetDatabaseUtil.ProjectDirectory;
             set
             {}                    
-            /*
+            /* // This is how we should do things actually!
             get => EmbraceProjectSettings.Project.GetValue<string>("dataDirectory", string.Empty);
             set => EmbraceProjectSettings.Project.SetValue<string>("dataDirectory", value);
             //*/

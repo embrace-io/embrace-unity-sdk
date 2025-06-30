@@ -1,6 +1,9 @@
 using UnityEngine;
 using Newtonsoft.Json;
 
+//             get => EmbraceProjectSettings.Project.GetValue<string>("dataDirectory", string.Empty);
+
+
 namespace EmbraceSDK.EditorView
 {
     /// <summary>

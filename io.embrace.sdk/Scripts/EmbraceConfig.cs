@@ -9,7 +9,7 @@ namespace EmbraceSDK
     /// you don't want to use them or because you are using a different service.
     /// </summary>
     [Flags]
-    public enum EmbraceConfig : int
+    public enum EmbraceNativeConfig : int
     {
         Default =  0,
         DisableEmbraceCrashReporter = 1 << 0,

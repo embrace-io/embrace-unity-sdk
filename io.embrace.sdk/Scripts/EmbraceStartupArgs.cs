@@ -44,7 +44,7 @@ namespace EmbraceSDK
         /// <summary>
         /// The native configuration for the Embrace SDK; currently only applies to iOS.
         /// </summary>
-        public readonly EmbraceConfig Config;
+        public readonly EmbraceNativeConfig Config;
         
         /// <summary>
         /// Default constructor provided primarily for internal testing purposes.
@@ -62,7 +62,7 @@ namespace EmbraceSDK
         /// <param name="devBaseUrl"></param>
         /// <param name="configBaseUrl"></param>
         public EmbraceStartupArgs(string appId,
-            EmbraceConfig config = EmbraceConfig.Default,
+            EmbraceNativeConfig config = EmbraceNativeConfig.Default,
             string appGroupId=null, 
             string baseUrl=null, 
             string devBaseUrl=null, 

@@ -247,7 +247,7 @@ namespace EmbraceSDK.EditorView
                 environments.activeEnvironmentIndex > -1)
             {
                 var environment = environments.environmentConfigurations[environments.activeEnvironmentIndex];
-                androidConfiguration = environment.sdkConfigurations[0];
+                androidConfiguration = environment.sdkConfigurations[0]; // If we were going to do this anyways, why have the reorderable list?
                 iOSConfiguration = environment.sdkConfigurations[1];
             }
             else
