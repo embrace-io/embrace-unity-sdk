@@ -92,7 +92,7 @@ namespace EmbraceSDK.Tests
             EmbraceSdkInfo sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(targetFile.text);
 
             EmbraceStartupArgs startupArgs = new EmbraceStartupArgs("AppId",
-                EmbraceConfig.Default,
+                EmbraceNativeConfig.Default,
                 "GroupId",
                 "baseUrl",
                 "devBaseUrl",
