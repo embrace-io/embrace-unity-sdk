@@ -33,7 +33,7 @@ namespace EmbraceSDK
         /// doesn't enable/disable but you still want to capture it's state. For example if you have a sliding view that
         /// only slides in and out, you can use this method to capture the state of the view when it is not visible.
         /// </summary>
-        public void HideView()
+        public virtual void HideView()
         {
             
         }
@@ -43,7 +43,7 @@ namespace EmbraceSDK
         /// doesn't enable/disable but you still want to capture it's state. For example if you have a sliding view that
         /// only slides in and out, you can use this method to capture the state of the view when it is visible.
         /// </summary>
-        public void ShowView()
+        public virtual void ShowView()
         {
             
         }
