@@ -35,7 +35,7 @@ namespace EmbraceSDK
         /// </summary>
         public virtual void HideView()
         {
-            
+            OnDisable();
         }
         
         /// <summary>
@@ -45,7 +45,7 @@ namespace EmbraceSDK
         /// </summary>
         public virtual void ShowView()
         {
-            
+            OnEnable();
         }
     }
 }
