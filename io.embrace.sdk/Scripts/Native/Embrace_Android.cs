@@ -242,9 +242,13 @@ namespace EmbraceSDK.Internal
             
             // enableIntegrationTesting/isDevMode is no longer supported on Android
             // we hard-code to false as this resolves to a functional method call
-            // TODO: Update this to the appropriate method call at a later date
-            // We need to replace the applicationInstance with the Context
-            EmbraceSharedInstance.Call(_StartMethod, applicationContext, unityAppFramework);
+
+            using AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            using AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
+
+            activity.Call("runOnUiThread", new AndroidJavaRunnable(() => {
+                EmbraceSharedInstance.Call(_StartMethod, applicationContext, unityAppFramework);
+            }));
         }
 
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
