@@ -246,7 +246,7 @@ namespace EmbraceSDK.Internal
             using AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             using AndroidJavaObject activityInstance = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
 
-            activity.Call("runOnUiThread", new AndroidJavaRunnable(() => {
+            activityInstance.Call("runOnUiThread", new AndroidJavaRunnable(() => {
                 EmbraceSharedInstance.Call(_StartMethod, applicationContext, unityAppFramework);
             }));
         }
