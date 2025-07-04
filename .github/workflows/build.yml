@@ -13,9 +13,6 @@ on:
         default: false
         type: boolean
 
-env:
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   build_unity_package:
     name: Build Unity package
@@ -31,6 +28,7 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - name: Get the package version
         run: |
           make github_env_vars | tee -a $GITHUB_ENV
@@ -50,6 +48,7 @@ jobs:
             Library-
       - name: Build .unitypackage
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
