@@ -265,7 +265,7 @@ namespace EmbraceSDK.Editor.Weaver
         public class Settings
         {
             private const string FILE_NAME = "WeaverSettings.json";
-
+            private static string WeaverSettingsPath => Directory.GetParent(Application.dataPath).FullName;
             public readonly List<string> excludedAssemblyNames;
 
             private Settings()
@@ -288,7 +288,7 @@ namespace EmbraceSDK.Editor.Weaver
 
             public static Settings LoadSettings()
             {
-                string fullPath = Path.Combine(AssetDatabaseUtil.EmbraceDataDirectory, FILE_NAME);
+                string fullPath = Path.Combine(WeaverSettingsPath, FILE_NAME);
 
                 if (File.Exists(fullPath))
                 {
@@ -310,7 +310,7 @@ namespace EmbraceSDK.Editor.Weaver
 
             public static void SaveSettings(Settings settings)
             {
-                string path = Path.Combine(AssetDatabaseUtil.EmbraceDataDirectory, FILE_NAME);
+                string path = Path.Combine(WeaverSettingsPath, FILE_NAME);
                 string jsonSettings = JsonConvert.SerializeObject(settings, Formatting.Indented);
 
                 File.WriteAllText(path, jsonSettings);
