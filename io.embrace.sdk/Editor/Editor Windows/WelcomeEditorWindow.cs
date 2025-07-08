@@ -8,7 +8,7 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// Editor window that welcomes users, prompts them to configure, and informs them of important changes.
     /// </summary>
-    public class WelcomeEditorWindow : EmbraceEditorWindow
+    internal class WelcomeEditorWindow : EmbraceEditorWindow
     {
         private static bool setup = false;
         private static Vector2 minWindowSize = new Vector2(500f, 165f);

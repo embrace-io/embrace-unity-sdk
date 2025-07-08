@@ -12,7 +12,7 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// Provides functions that helps with accessing assets and performing operations on assets.
     /// </summary>
-    public class AssetDatabaseUtil
+    internal class AssetDatabaseUtil
     {
         #region Directories
 
