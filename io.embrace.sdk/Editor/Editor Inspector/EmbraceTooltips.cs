@@ -43,5 +43,6 @@ namespace EmbraceSDK.EditorView
         public const string AutomatedNetworkCaptureWeaving = "When enabled, Embrace will weave network capture code into script assemblies to automatically capture network calls through UnityWebRequest and HttpClient.";
         public const string WeaverEditorOnly = "When enabled, automated network capture weaving will be skipped while in editor to reduce compile time.";
         public const string CaptureDataProcessingErrors = "When enabled, data processing errors from UnityWebRequest DownloadHandlers will be logged automatically even if the request itself is successful.";
+        public const string StartupSpanCapture = "When enabled, Embrace will capture a span from the time the app starts until the various startup tasks are completed. This is useful for understanding the startup performance of your app.";
     }
 }
