@@ -44,5 +44,9 @@ namespace EmbraceSDK.EditorView
         public const string WeaverEditorOnly = "When enabled, automated network capture weaving will be skipped while in editor to reduce compile time.";
         public const string CaptureDataProcessingErrors = "When enabled, data processing errors from UnityWebRequest DownloadHandlers will be logged automatically even if the request itself is successful.";
         public const string StartupSpanCapture = "When enabled, Embrace will capture a span from the time the app starts until the various startup tasks are completed. This is useful for understanding the startup performance of your app.";
+        public const string StartupSpanEmbraceSDKStart = "When enabled, Embrace will capture a span from the time the application starts until the Embrace SDK is started.";
+        public const string StartupSpanAppReady = "When enabled, Embrace will capture a span from the time the application starts until the developer calls EmbraceStartupSpans.CallAppReady().";
+        public const string StartupSpanFirstSceneLoaded = "When enabled, Embrace will capture a span from the time the application starts until the first scene is loaded.";
+        public const string StartupSpanTimeToInteract = "When enabled, Embrace will capture a span from the time the application starts until the developer calls EmbraceStartupSpans.CallTimeToInteract().";
     }
 }
