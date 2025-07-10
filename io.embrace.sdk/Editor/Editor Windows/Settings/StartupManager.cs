@@ -8,6 +8,12 @@ namespace EmbraceSDK.EditorView
     [OrderedEditorItem("Startup", 4)]
     public class StartupManager : BaseSettingsManager
     {
+        public const string EMBRACE_STARTUP_SPANS_DEFINE = "EMBRACE_STARTUP_SPANS";
+        public const string EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START_DEFINE = "EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START";
+        public const string EMBRACE_STARTUP_SPANS_APP_READY_DEFINE = "EMBRACE_STARTUP_SPANS_APP_READY";
+        public const string EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE = "EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED";
+        public const string EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT_DEFINE = "EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT";
+        
         [Serializable]
         public struct SpanFlags
         {
@@ -40,11 +46,11 @@ namespace EmbraceSDK.EditorView
             
             if(GUILayout.Button("Apply Settings"))
             {
-                _scriptingDefineUtil.ToggleSymbol("EMBRACE_STARTUP_SPANS", _enabled);
-                _scriptingDefineUtil.ToggleSymbol("EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START", _spanFlags.RecordEmbraceSDKStart && _enabled);
-                _scriptingDefineUtil.ToggleSymbol("EMBRACE_STARTUP_SPANS_APP_READY", _spanFlags.RecordAppReady && _enabled);
-                _scriptingDefineUtil.ToggleSymbol("EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED", _spanFlags.RecordFirstSceneLoaded && _enabled);
-                _scriptingDefineUtil.ToggleSymbol("EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT", _spanFlags.RecordTimeToInteract && _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_DEFINE, _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START_DEFINE, _spanFlags.RecordEmbraceSDKStart && _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_APP_READY_DEFINE, _spanFlags.RecordAppReady && _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE, _spanFlags.RecordFirstSceneLoaded && _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT_DEFINE, _spanFlags.RecordTimeToInteract && _enabled);
                 _scriptingDefineUtil.ApplyModifiedProperties();
             }
         }
@@ -53,15 +59,15 @@ namespace EmbraceSDK.EditorView
         {
             base.Initialize(mainSettingsEditor);
             _scriptingDefineUtil = new ScriptingDefineUtil();
-            _enabled = _scriptingDefineUtil.CheckIfSettingIsEnabled("EMBRACE_STARTUP_SPANS");
+            _enabled = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_DEFINE);
             _spanFlags = new SpanFlags
             {
-                RecordEmbraceSDKStart = _scriptingDefineUtil.CheckIfSettingIsEnabled("EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START"),
-                RecordAppReady = _scriptingDefineUtil.CheckIfSettingIsEnabled("EMBRACE_STARTUP_SPANS_APP_READY"),
+                RecordEmbraceSDKStart = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START_DEFINE),
+                RecordAppReady = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_APP_READY_DEFINE),
                 RecordFirstSceneLoaded =
-                    _scriptingDefineUtil.CheckIfSettingIsEnabled("EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED"),
+                    _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE),
                 RecordTimeToInteract =
-                    _scriptingDefineUtil.CheckIfSettingIsEnabled("EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT")
+                    _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT_DEFINE)
             };
         }
     }
