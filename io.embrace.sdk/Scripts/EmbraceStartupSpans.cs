@@ -4,6 +4,11 @@ using UnityEngine;
 namespace EmbraceSDK
 {
     #if EMBRACE_STARTUP_SPANS
+    /// <summary>
+    /// Helper functions to record startup spans in the Embrace SDK.
+    /// StartApplication, FirstSceneLoaded, CallEmbraceSDKStart are all called automatically by the Embrace SDK.
+    /// If you are using the Embrace SDK, you can call CallAppReady and CallTimeToInteract in your code to record those spans.
+    /// </summary>
     public static class EmbraceStartupSpans
     {
         private static DateTimeOffset _appStartTime;

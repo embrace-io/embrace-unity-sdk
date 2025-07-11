@@ -4,9 +4,13 @@ using UnityEngine;
 
 namespace EmbraceSDK.EditorView
 {
+    /// <summary>
+    /// The EmbraceStartupManager contains the settings for managing startup spans in the Embrace SDK.
+    /// Note: Please do not use this class directly in your code. It is intended for use within the Embrace SDK editor settings.
+    /// </summary>
     [Serializable]
     [OrderedEditorItem("Startup", 4)]
-    public class StartupManager : BaseSettingsManager
+    public class EmbraceStartupManager : BaseSettingsManager
     {
         public const string EMBRACE_STARTUP_SPANS_DEFINE = "EMBRACE_STARTUP_SPANS";
         public const string EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START_DEFINE = "EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START";
