@@ -33,10 +33,13 @@ namespace EmbraceSDK.Demo
             #else
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
-            #if EMBRACE_STARTUP_SPANS
+            #endif
+#if EMBRACE_STARTUP_SPANS_APP_READY
             EmbraceStartupSpans.CallAppReady();
-            #endif
-            #endif
+#endif
+#if EMBRACE_STARTUP_SPANS_TIME_TO_INTERACT
+            EmbraceStartupSpans.CallTimeToInteract();
+#endif
         }
     }
 }

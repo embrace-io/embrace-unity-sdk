@@ -232,6 +232,10 @@ namespace EmbraceSDK
             
                 InternalEmbrace.SetInternalInstance(_instance);
 
+#if EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START
+                EmbraceStartupSpans.CallEmbraceSDKStart();
+#endif
+                
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
             }
             catch (Exception e)
@@ -1015,7 +1019,8 @@ namespace EmbraceSDK
         {
             try
             {
-                return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
+                EmbraceSpanEvent[] embraceSpanEvents = embraceSpanEvent != null ? new[] { embraceSpanEvent } : Array.Empty<EmbraceSpanEvent>();
+                return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, embraceSpanEvents);
             }
             catch (Exception e)
             {
