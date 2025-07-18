@@ -602,6 +602,10 @@ namespace EmbraceSDK.Internal
                 return false;
             }
             
+            // because we are serializing the attributes and events to JSON we need to ensure that they are not null
+            attributes ??= new Dictionary<string, string>();
+            events ??= Array.Empty<EmbraceSpanEvent>();
+            
             return embrace_record_completed_span(spanName,
                 startTimeMs, 
                 endTimeMs, 
