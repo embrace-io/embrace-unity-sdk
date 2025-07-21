@@ -226,16 +226,9 @@ namespace EmbraceSDK
                 Application.logMessageReceivedThreaded += Embrace_Threaded_Log_Handler;
                 Debug.LogWarning("THREADED LOGGING ENABLED");
 #endif
-
                 _started = true;
                 IsEnabled = true;
-            
                 InternalEmbrace.SetInternalInstance(_instance);
-
-#if EMBRACE_STARTUP_SPANS_EMBRACE_SDK_START
-                EmbraceStartupSpans.CallEmbraceSDKStart();
-#endif
-                
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
             }
             catch (Exception e)
