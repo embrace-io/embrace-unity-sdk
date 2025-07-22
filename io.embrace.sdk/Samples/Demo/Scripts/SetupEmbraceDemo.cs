@@ -1,4 +1,5 @@
-﻿using EmbraceSDK.Internal;
+﻿using System;
+using EmbraceSDK.Internal;
 using UnityEngine;
 
 namespace EmbraceSDK.Demo
@@ -34,9 +35,20 @@ namespace EmbraceSDK.Demo
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
             #endif
-#if EMBRACE_STARTUP_SPANS
+            
+            #if EMBRACE_STARTUP_SPANS && EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
+            SimulateLoadingComplete();
+            #elif EMBRACE_STARTUP_SPANS
             EmbraceStartupSpans.EndAppStartup();
-#endif
+            #endif
         }
+        
+        #if EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
+        private async void SimulateLoadingComplete()
+        {
+            await System.Threading.Tasks.Task.Delay(2500); // Simulate some loading time
+            EmbraceStartupSpans.EndAppStartup();
+        }
+        #endif
     }
 }
