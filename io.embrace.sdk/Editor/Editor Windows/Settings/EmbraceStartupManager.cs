@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EmbraceSDK.EditorView
 {
@@ -14,13 +15,13 @@ namespace EmbraceSDK.EditorView
     {
         public const string EMBRACE_STARTUP_SPANS_DEFINE = "EMBRACE_STARTUP_SPANS";
         public const string EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE = "EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED";
-        public const string EMBRACE_STARTUP_SPANS_LOADING_TIME_DEFINE = "EMBRACE_STARTUP_SPANS_LOADING_TIME";
+        public const string EMBRACE_STARTUP_SPANS_LOADING_COMPLETE_DEFINE = "EMBRACE_STARTUP_SPANS_LOADING_COMPLETE";
         
         [Serializable]
         public struct SpanFlags
         {
             public bool RecordFirstSceneLoaded;
-            public bool RecordLoadingTime;
+            public bool RecordLoadingComplete;
         }
 
         private ScriptingDefineUtil _scriptingDefineUtil;
@@ -37,7 +38,7 @@ namespace EmbraceSDK.EditorView
             SpanFlags flags = new SpanFlags
             {
                 RecordFirstSceneLoaded = EditorGUILayout.Toggle(new GUIContent("First Scene Loaded", EmbraceTooltips.StartupSpanFirstSceneLoaded), _spanFlags.RecordFirstSceneLoaded),
-                RecordLoadingTime = EditorGUILayout.Toggle(new GUIContent("Loading Time", EmbraceTooltips.StartupSpanTimeToInteract), _spanFlags.RecordLoadingTime)
+                RecordLoadingComplete = EditorGUILayout.Toggle(new GUIContent("Loading Time", EmbraceTooltips.StartupSpanTimeToInteract), _spanFlags.RecordLoadingComplete)
             };
             EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
@@ -50,7 +51,7 @@ namespace EmbraceSDK.EditorView
             {
                 _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_DEFINE, _enabled);
                 _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE, _spanFlags.RecordFirstSceneLoaded && _enabled);
-                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_LOADING_TIME_DEFINE, _spanFlags.RecordLoadingTime && _enabled);
+                _scriptingDefineUtil.ToggleSymbol(EMBRACE_STARTUP_SPANS_LOADING_COMPLETE_DEFINE, _spanFlags.RecordLoadingComplete && _enabled);
                 _scriptingDefineUtil.ApplyModifiedProperties();
             }
         }
@@ -63,7 +64,7 @@ namespace EmbraceSDK.EditorView
             _spanFlags = new SpanFlags
             {
                 RecordFirstSceneLoaded = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE),
-                RecordLoadingTime = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_LOADING_TIME_DEFINE)
+                RecordLoadingComplete = _scriptingDefineUtil.CheckIfSettingIsEnabled(EMBRACE_STARTUP_SPANS_LOADING_COMPLETE_DEFINE)
             };
         }
     }

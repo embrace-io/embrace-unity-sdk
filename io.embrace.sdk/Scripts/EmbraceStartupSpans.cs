@@ -11,9 +11,10 @@ namespace EmbraceSDK
     /// </summary>
     public static class EmbraceStartupSpans
     {
+        public static DateTimeOffset AppStartTime => _appStartTime;
+        
         private static DateTimeOffset _appStartTime;
         private static DateTimeOffset _firstSceneLoadedTime;
-        private static DateTimeOffset _loadingTime;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         public static void StartApplication()
@@ -31,17 +32,16 @@ namespace EmbraceSDK
 
         public static void EndAppStartup()
         {
-            Embrace.Instance.StartSpan("AppStartup", _appStartTime.ToUnixTimeMilliseconds());
+            string parentSpanId = Embrace.Instance.StartSpan("AppStartup", _appStartTime.ToUnixTimeMilliseconds());
+            Embrace.Instance.RecordCompletedSpan("LoadingComplete", _firstSceneLoadedTime.ToUnixTimeMilliseconds(), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), parentSpanId: parentSpanId);
             
 #if EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED
-            Embrace.Instance.StartSpan("FirstSceneLoaded", _appStartTime.ToUnixTimeMilliseconds(), "AppStartup");
-            Embrace.Instance.StopSpan("FirstSceneLoaded", _firstSceneLoadedTime.ToUnixTimeMilliseconds());
+            Embrace.Instance.RecordCompletedSpan("FirstSceneLoaded", _appStartTime.ToUnixTimeMilliseconds(), _firstSceneLoadedTime.ToUnixTimeMilliseconds(), parentSpanId: parentSpanId);
 #endif
-#if EMBRACE_STARTUP_SPANS_LOADING_TIME
-            Embrace.Instance.StartSpan("LoadingTime", _loadingTime.ToUnixTimeMilliseconds(), "AppStartup");
-            Embrace.Instance.StopSpan("LoadingTime", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+#if EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
+            Embrace.Instance.RecordCompletedSpan("LoadingComplete", _firstSceneLoadedTime.ToUnixTimeMilliseconds(), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), parentSpanId: parentSpanId);
 #endif
-            Embrace.Instance.StopSpan("AppStartup", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            Embrace.Instance.StopSpan(parentSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
         }
     }
     #endif
