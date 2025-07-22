@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Object = UnityEngine.Object;
 using System;
+using System.Text.RegularExpressions;
 #if UNITY_IOS || UNITY_TVOS
 using UnityEditor.iOS.Xcode;
 #endif
@@ -23,6 +24,20 @@ namespace EmbraceSDK.Tests
     public class PostBuildProcessorTests
     {
 #if UNITY_ANDROID
+        [Test]
+        // <summary>
+        // Test if the regex catches the data we need.
+        // </summary>
+        public void TestEmbraceCustomSymbolsRegex() {
+            var testWithNewlines = @"embrace {
+                customSymbolsDirectory.set(""/test/path"")
+            }";
+
+            var match = Regex.Match(testWithNewlines, EmbracePostBuildProcessor.EMBRACE_CUSTOM_SYMBOLS_PATTERN);
+
+            Assert.IsTrue(match.Success);
+            Assert.AreEqual(match.Groups["path"].Value, "/test/path");            
+        }
         /// <summary>
         /// Test if config fields which override default values are included in the output json.
         /// Override values are based on our public Android SDK documentation.
@@ -130,9 +145,23 @@ namespace EmbraceSDK.Tests
             string builtEmbraceConfigString = File.ReadAllText(tempDirectory.FullName + "/launcher/src/main/embrace-config.json");
             Assert.AreEqual(embraceConfigString, builtEmbraceConfigString);
 
+            TestGradleSymbolsPath();
+
             //cleanup
             TestHelper.ConfigRestore(androidConfig);
             Directory.Delete(tempDirectory.FullName, true);
+        }
+
+        public void TestGradleSymbolsPath() {
+            // We need to check if the expected folder(s) show up in the expected path.
+            var expectedSubPath = "Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/symbols";
+            var targetFolder = Path.Combine(
+                Directory.GetParent(Application.dataPath).FullName, expectedSubPath);
+            
+            Assert.IsTrue(Directory.Exists(targetFolder));
+            Assert.IsTrue(
+                Directory.EnumerateDirectories(targetFolder, EmbracePostBuildProcessor.ARCH_DIR, SearchOption.TopDirectoryOnly).Any()
+            );
         }
 
         /// <summary>
@@ -158,12 +187,15 @@ namespace EmbraceSDK.Tests
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
             testConfig.AppId = Environment.GetEnvironmentVariable("EMBRACE_TEST_APP_ID");
             testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("EMBRACE_TEST_API_TOKEN");
-            
+          
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
+
+            var userValue = EditorUserBuildSettings.androidCreateSymbolsZip;
+            EditorUserBuildSettings.androidCreateSymbolsZip = true;
             
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
@@ -179,8 +211,10 @@ namespace EmbraceSDK.Tests
             defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             //cleanup
+            //
 
             TestHelper.ConfigRestore(defaultConfig);
+            EditorUserBuildSettings.androidCreateSymbolsZip = userValue;
         }
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)

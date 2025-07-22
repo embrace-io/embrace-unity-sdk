@@ -6,6 +6,9 @@ on:
       - v*
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   verify_release:
     name: Verify release
@@ -19,6 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           lfs: true
+          persist-credentials: false
       - name: Verify the release
         id: verify_release
         run: |
@@ -44,6 +48,8 @@ jobs:
       - verify_release
       - build_release
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     env:
       PACKAGE_NAME: EmbraceSDK_${{ needs.verify_release.outputs.release_version }}.unitypackage
       RELEASE_TAG: v${{ needs.verify_release.outputs.release_version }}

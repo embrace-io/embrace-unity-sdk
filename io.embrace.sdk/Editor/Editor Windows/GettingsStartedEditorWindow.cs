@@ -12,8 +12,10 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// The Gettings Started editor window, allows customers to configure android and IOS, and provides helpful links.
     /// </summary>
-    public class GettingsStartedEditorWindow : EmbraceEditorWindow
+    internal class GettingsStartedEditorWindow : EmbraceEditorWindow
     {
+        private static ConfigurationTarget? selectedBuildTarget = null;
+        
         private static bool? ANDROID_SELECTED = null;
         
         private int environmentIndex = -1;
@@ -62,6 +64,13 @@ namespace EmbraceSDK.EditorView
                 window.minSize = new Vector2(window.minSize.x, window.minSize.y + 15);
                 window.maxSize = window.minSize;
             }
+
+            if (!selectedBuildTarget.HasValue)
+            {
+                selectedBuildTarget = ConfigurationTarget.Android;
+            }
+
+            selectedBuildTarget = ConfigurationTarget.Android;
 
             if (!ANDROID_SELECTED.HasValue)
             {
@@ -171,6 +180,7 @@ namespace EmbraceSDK.EditorView
             if (selectedEnvironment != environments.activeDeviceIndex)
             {
                 environments.activeDeviceIndex = selectedEnvironment;
+                
                 ANDROID_SELECTED = environments.activeEnvironmentIndex == 0; // Android=0 => true, iOS=1 => false 
             }
 
