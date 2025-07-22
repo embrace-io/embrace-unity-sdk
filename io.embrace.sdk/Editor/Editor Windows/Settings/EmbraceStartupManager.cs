@@ -43,9 +43,7 @@ namespace EmbraceSDK.EditorView
             EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
             _spanFlags = flags;
-            EditorGUILayout.HelpBox("The spans 'AppReady' and 'TimeToInteract' will not be automatically recorded. " +
-                                    "You need to call EmbraceStartupSpans.CallAppReady() in your code when the app is ready, " +
-                                    "and EmbraceStartupSpans.CallTimeToInteract() when the user can interact with the app.", MessageType.Info);
+            EditorGUILayout.HelpBox("When your app is finished loading and your user is ready to start interacting with your app you will need to call Embrace.Instance.EndAppStartup() in your code.", MessageType.Info);
             
             if(GUILayout.Button("Apply Settings"))
             {

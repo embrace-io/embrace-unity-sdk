@@ -1057,5 +1057,12 @@ namespace EmbraceSDK
                 default: return 0;
             }
         }
+
+        #if EMBRACE_STARTUP_SPANS
+        public void EndAppStartup()
+        {
+            EmbraceStartupSpans.EndAppStartup();
+        }
+        #endif
     }
 }

@@ -39,7 +39,7 @@ namespace EmbraceSDK.Demo
             #if EMBRACE_STARTUP_SPANS && EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
             SimulateLoadingComplete();
             #elif EMBRACE_STARTUP_SPANS
-            EmbraceStartupSpans.EndAppStartup();
+            Embrace.Instance.EndAppStartup();
             #endif
         }
         
@@ -47,7 +47,7 @@ namespace EmbraceSDK.Demo
         private async void SimulateLoadingComplete()
         {
             await System.Threading.Tasks.Task.Delay(2500); // Simulate some loading time
-            EmbraceStartupSpans.EndAppStartup();
+            Embrace.Instance.EndAppStartup();
         }
         #endif
     }
