@@ -33,7 +33,6 @@ namespace EmbraceSDK
         public static void EndAppStartup()
         {
             string parentSpanId = Embrace.Instance.StartSpan("AppStartup", _appStartTime.ToUnixTimeMilliseconds());
-            Embrace.Instance.RecordCompletedSpan("LoadingComplete", _firstSceneLoadedTime.ToUnixTimeMilliseconds(), DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), parentSpanId: parentSpanId);
             
 #if EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED
             Embrace.Instance.RecordCompletedSpan("FirstSceneLoaded", _appStartTime.ToUnixTimeMilliseconds(), _firstSceneLoadedTime.ToUnixTimeMilliseconds(), parentSpanId: parentSpanId);

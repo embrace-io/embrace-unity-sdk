@@ -11,7 +11,7 @@ namespace EmbraceSDK.EditorView
     /// </summary>
     [Serializable]
     [OrderedEditorItem("Startup", 4)]
-    public class EmbraceStartupManager : BaseSettingsManager
+    internal class EmbraceStartupManager : BaseSettingsManager
     {
         public const string EMBRACE_STARTUP_SPANS_DEFINE = "EMBRACE_STARTUP_SPANS";
         public const string EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE = "EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED";
