@@ -1,5 +1,6 @@
 ﻿using EmbraceSDK.Internal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace EmbraceSDK.Demo
 {
@@ -16,6 +17,14 @@ namespace EmbraceSDK.Demo
         public string DevBaseUrl = "http://your-url.com";
         public string ConfigBaseUrl = "http://your-url.com";
         #endif
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
         
         void Start()
         {
