@@ -193,6 +193,9 @@ namespace EmbraceSDK
         /// <inheritdoc />
         public void StartSDK(EmbraceStartupArgs args = null)
         {
+            #if EMBRACE_STARTUP_SPANS
+            EmbraceStartupSpans.RecordStartSDKTime();
+            #endif
             if (_started)
             {
                 return;
@@ -230,6 +233,10 @@ namespace EmbraceSDK
                 IsEnabled = true;
                 InternalEmbrace.SetInternalInstance(_instance);
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
+                
+                #if EMBRACE_STARTUP_SPANS
+                EmbraceStartupSpans.RecordStopSDKTime();
+                #endif
             }
             catch (Exception e)
             {
