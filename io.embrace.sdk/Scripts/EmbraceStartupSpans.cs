@@ -115,7 +115,7 @@ namespace EmbraceSDK
             // record all child spans
             foreach ((string spanName, var childSpan) in _childSpans)
             {
-                Embrace.Instance.RecordCompletedSpan(spanName, childSpan.StartTime, childSpan.EndTime, parentSpanId: parentSpanId);
+                Embrace.Instance.RecordCompletedSpan(spanName, childSpan.StartTime, childSpan.EndTime, attributes: childSpan.Attributes, parentSpanId: parentSpanId);
             }
             
             _childSpans.Clear();
