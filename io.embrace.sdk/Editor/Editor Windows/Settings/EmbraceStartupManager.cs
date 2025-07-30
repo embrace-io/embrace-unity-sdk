@@ -33,12 +33,12 @@ namespace EmbraceSDK.EditorView
         public override void OnGUI()
         {
             GUILayout.Label("Startup Spans", EditorStyles.boldLabel);
-            _enabled = EditorGUILayout.Toggle(new GUIContent("Enable Startup Spans", EmbraceTooltips.StartupSpanCapture), _enabled);
+            _enabled = EditorGUILayout.Toggle(new GUIContent("emb-app-time-to-interact", EmbraceTooltips.StartupSpanCapture), _enabled);
             EditorGUI.BeginDisabledGroup(!_enabled);
             SpanFlags flags = new SpanFlags
             {
-                RecordFirstSceneLoaded = EditorGUILayout.Toggle(new GUIContent("First Scene Loaded", EmbraceTooltips.StartupSpanFirstSceneLoaded), _spanFlags.RecordFirstSceneLoaded),
-                RecordLoadingComplete = EditorGUILayout.Toggle(new GUIContent("Loading Time", EmbraceTooltips.StartupSpanTimeToInteract), _spanFlags.RecordLoadingComplete)
+                RecordFirstSceneLoaded = EditorGUILayout.Toggle(new GUIContent("emb-app-loaded", EmbraceTooltips.StartupSpanFirstSceneLoaded), _spanFlags.RecordFirstSceneLoaded),
+                RecordLoadingComplete = EditorGUILayout.Toggle(new GUIContent("emb-app-init", EmbraceTooltips.StartupSpanTimeToInteract), _spanFlags.RecordLoadingComplete)
             };
             EditorGUI.EndDisabledGroup();
             EditorGUILayout.Space();
