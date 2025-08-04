@@ -463,6 +463,8 @@ public func embrace_record_completed_span(
                 let jsonBlob = try JSONSerialization.jsonObject(with: jsonData, options: [])
                 if let event_array = jsonBlob as? [[String: Any]] {
                     events = unpack_event_array_to_event_object_array(events: event_array)
+                } else if let emptyArray = jsonBlob as? [Any], emptyArray.isEmpty {
+                    events = []
                 } else {
                     print("Type declaration for array incorrect")
                 }

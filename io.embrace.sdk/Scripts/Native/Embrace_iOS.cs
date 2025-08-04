@@ -123,7 +123,7 @@ namespace EmbraceSDK.Internal
         private static extern IntPtr embrace_start_span(string name, string parentSpanId, double startMs);
 
         [DllImport("__Internal")]
-        private static extern void embrace_stop_span(string spanId, string errorCode, double endMs);
+        private static extern bool embrace_stop_span(string spanId, string errorCode, double endMs);
 
         [DllImport("__Internal")]
         private static extern bool embrace_add_span_event_to_span(string spanId, string name, double time,
@@ -565,8 +565,7 @@ namespace EmbraceSDK.Internal
                 return false;
             }
             
-            embrace_stop_span(spanId, IntToStringErrorCode(errorCode), endTimeMs);
-            return false;
+            return embrace_stop_span(spanId, IntToStringErrorCode(errorCode), endTimeMs);
         }
 
         bool IEmbraceProvider.AddSpanEvent(string spanName, string spanId, long timestampMs,
@@ -601,6 +600,10 @@ namespace EmbraceSDK.Internal
                 EmbraceLogger.LogError(EmbraceMessages.RECORD_COMPLETED_SPAN_ERROR);
                 return false;
             }
+            
+            // because we are serializing the attributes and events to JSON we need to ensure that they are not null
+            attributes ??= new Dictionary<string, string>();
+            events ??= Array.Empty<EmbraceSpanEvent>();
             
             return embrace_record_completed_span(spanName,
                 startTimeMs, 
