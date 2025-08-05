@@ -25,6 +25,7 @@ namespace EmbraceSDK.Utilities
         private float _badFrameTime = 0;
         private int _badFrameCount = 0;
         private bool _isLowFrameRateState;
+        private string _spanId = null;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void OnSceneLoad()
@@ -69,6 +70,7 @@ namespace EmbraceSDK.Utilities
             }
             else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
             {
+                _spanId = Embrace.Instance.StartSpan(_spanName, DateTimeOffset.Now.ToUnixTimeMilliseconds());
                 _mainThreadRecorder.Reset();
                 _mainThreadRecorder.Start();
                 _isLowFrameRateState = true;
@@ -97,19 +99,16 @@ namespace EmbraceSDK.Utilities
         {
             _isLowFrameRateState = false;
                 
-            var attributes = new Dictionary<string, string>
-            {
-                { "AverageFPS", (1 / (_badFrameTime / _badFrameCount)).ToString(CultureInfo.InvariantCulture) }
-            };
+            Embrace.Instance.AddSpanAttribute(_spanId, "AverageFPS", (1 / (_badFrameTime / _badFrameCount)).ToString(CultureInfo.InvariantCulture));
 
             if (_mainThreadRecorder.Count > 0)
             {
                 float averagePlayerLoopTime = GetAverageSample();
                 averagePlayerLoopTime /= 1000000f; // convert to milliseconds
-                attributes.Add("AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
+                Embrace.Instance.AddSpanAttribute(_spanId, "AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
             }
-                
-            Embrace.Instance.RecordCompletedSpan(_spanName, _previousFrameTimeOffset.ToUnixTimeMilliseconds(), currentTime.ToUnixTimeMilliseconds(), attributes: attributes);
+
+            Embrace.Instance.StopSpan(_spanId, DateTimeOffset.Now.ToUnixTimeMilliseconds());
         }
 
         private long GetAverageSample()
