@@ -51,8 +51,7 @@ namespace EmbraceSDK.Utilities
         {
             if (_isLowFrameRateState)
             {
-                DateTimeOffset currentTime = DateTimeOffset.Now;
-                RecordLowFrameState(currentTime);
+                RecordLowFrameState();
             }
             
             _mainThreadRecorder.Dispose();
@@ -60,23 +59,22 @@ namespace EmbraceSDK.Utilities
         
         private void Update()
         {
-            DateTimeOffset currentTime = DateTimeOffset.Now;
             float currentFrameTime = Time.unscaledDeltaTime;
             float frameRate = 1f / currentFrameTime;
             
             if (_isLowFrameRateState && frameRate >= _targetFrameRate)
             {
-                RecordLowFrameState(currentTime);
+                RecordLowFrameState();
             }
             else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
             {
-                _spanId = Embrace.Instance.StartSpan(_spanName, DateTimeOffset.Now.ToUnixTimeMilliseconds());
+                _spanId = Embrace.Instance.StartSpan(_spanName, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
                 _mainThreadRecorder.Reset();
                 _mainThreadRecorder.Start();
                 _isLowFrameRateState = true;
                 _badFrameCount = 0;
                 _badFrameTime = 0;
-                _previousFrameTimeOffset = currentTime;
+                _previousFrameTimeOffset = DateTimeOffset.UtcNow;
             }
 
             if (_isLowFrameRateState)
@@ -95,7 +93,7 @@ namespace EmbraceSDK.Utilities
             }
         }
 
-        private void RecordLowFrameState(DateTimeOffset currentTime)
+        private void RecordLowFrameState()
         {
             _isLowFrameRateState = false;
                 
@@ -108,7 +106,7 @@ namespace EmbraceSDK.Utilities
                 Embrace.Instance.AddSpanAttribute(_spanId, "AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
             }
 
-            Embrace.Instance.StopSpan(_spanId, DateTimeOffset.Now.ToUnixTimeMilliseconds());
+            Embrace.Instance.StopSpan(_spanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
         }
 
         private long GetAverageSample()
