@@ -44,8 +44,7 @@ namespace EmbraceSDK.Utilities
         {
             // get the ProfilerCategory for the value 20 by casting
             ProfilerCategory category = new ProfilerCategory("PlayerLoop");
-            //_mainThreadRecorder = ProfilerRecorder.StartNew(category, "PlayerLoop", 40);
-            _mainThreadRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Internal, "Main Thread", 15);
+            _mainThreadRecorder = ProfilerRecorder.StartNew(category, "PlayerLoop", 40);
         }
 
         private void OnDestroy()
@@ -64,7 +63,6 @@ namespace EmbraceSDK.Utilities
             DateTimeOffset currentTime = DateTimeOffset.Now;
             float currentFrameTime = Time.unscaledDeltaTime;
             float frameRate = 1f / currentFrameTime;
-            Debug.Log(_mainThreadRecorder.Count);
             
             if (_isLowFrameRateState && frameRate >= _targetFrameRate)
             {
@@ -77,9 +75,9 @@ namespace EmbraceSDK.Utilities
 
                 if (_mainThreadRecorder.Count > 0)
                 {
-                    long averagePlayerLoopTime = GetAverageSample();
-                    averagePlayerLoopTime /= 1000; // convert to milliseconds
-                    attributes.Add("AveragePlayerLoopTime", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
+                    float averagePlayerLoopTime = GetAverageSample();
+                    averagePlayerLoopTime /= 1000000f; // convert to milliseconds
+                    attributes.Add("AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
                 }
                 
                 Embrace.Instance.RecordCompletedSpan(_spanName, _previousFrameTimeOffset.ToUnixTimeMilliseconds(), currentTime.ToUnixTimeMilliseconds(), attributes: attributes);
@@ -87,6 +85,7 @@ namespace EmbraceSDK.Utilities
             else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
             {
                 _mainThreadRecorder.Reset();
+                _mainThreadRecorder.Start();
                 _isLowFrameRateState = true;
                 _badFrameCount = 0;
                 _badFrameTime = 0;
