@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace EmbraceSDK.EditorView
 {
@@ -10,8 +9,8 @@ namespace EmbraceSDK.EditorView
     /// Note: Please do not use this class directly in your code. It is intended for use within the Embrace SDK editor settings.
     /// </summary>
     [Serializable]
-    [OrderedEditorItem("Startup", 4)]
-    internal class EmbraceStartupManager : BaseSettingsManager
+    [OrderedEditorItem("Spans", 4)]
+    internal class EmbraceSpansManager : BaseSettingsManager
     {
         public const string EMBRACE_STARTUP_SPANS_DEFINE = "EMBRACE_STARTUP_SPANS";
         public const string EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED_DEFINE = "EMBRACE_STARTUP_SPANS_FIRST_SCENE_LOADED";
@@ -31,6 +30,12 @@ namespace EmbraceSDK.EditorView
         private bool _enabled;
         
         public override void OnGUI()
+        {
+            DrawStartupSpans();
+            EditorGUILayout.Space();
+        }
+
+        private void DrawStartupSpans()
         {
             GUILayout.Label("Startup Spans", EditorStyles.boldLabel);
             _enabled = EditorGUILayout.Toggle(new GUIContent("emb-app-time-to-interact", EmbraceTooltips.StartupSpanCapture), _enabled);
