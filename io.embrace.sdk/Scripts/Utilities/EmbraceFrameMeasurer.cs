@@ -42,7 +42,6 @@ namespace EmbraceSDK.Utilities
 
         private void Start()
         {
-            // get the ProfilerCategory for the value 20 by casting
             ProfilerCategory category = new ProfilerCategory("PlayerLoop");
             _mainThreadRecorder = ProfilerRecorder.StartNew(category, "PlayerLoop", 40);
         }
@@ -52,7 +51,7 @@ namespace EmbraceSDK.Utilities
             if (_isLowFrameRateState)
             {
                 DateTimeOffset currentTime = DateTimeOffset.Now;
-                Embrace.Instance.RecordCompletedSpan(_spanName, _previousFrameTimeOffset.ToUnixTimeMilliseconds(), currentTime.ToUnixTimeMilliseconds());
+                RecordLowFrameState(currentTime);
             }
             
             _mainThreadRecorder.Dispose();
@@ -66,21 +65,7 @@ namespace EmbraceSDK.Utilities
             
             if (_isLowFrameRateState && frameRate >= _targetFrameRate)
             {
-                _isLowFrameRateState = false;
-                
-                var attributes = new Dictionary<string, string>
-                {
-                    { "AverageFPS", (1 / (_badFrameTime / _badFrameCount)).ToString(CultureInfo.InvariantCulture) }
-                };
-
-                if (_mainThreadRecorder.Count > 0)
-                {
-                    float averagePlayerLoopTime = GetAverageSample();
-                    averagePlayerLoopTime /= 1000000f; // convert to milliseconds
-                    attributes.Add("AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
-                }
-                
-                Embrace.Instance.RecordCompletedSpan(_spanName, _previousFrameTimeOffset.ToUnixTimeMilliseconds(), currentTime.ToUnixTimeMilliseconds(), attributes: attributes);
+                RecordLowFrameState(currentTime);
             }
             else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
             {
@@ -106,6 +91,25 @@ namespace EmbraceSDK.Utilities
             {
                 _targetFrameRate = 30f;
             }
+        }
+
+        private void RecordLowFrameState(DateTimeOffset currentTime)
+        {
+            _isLowFrameRateState = false;
+                
+            var attributes = new Dictionary<string, string>
+            {
+                { "AverageFPS", (1 / (_badFrameTime / _badFrameCount)).ToString(CultureInfo.InvariantCulture) }
+            };
+
+            if (_mainThreadRecorder.Count > 0)
+            {
+                float averagePlayerLoopTime = GetAverageSample();
+                averagePlayerLoopTime /= 1000000f; // convert to milliseconds
+                attributes.Add("AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
+            }
+                
+            Embrace.Instance.RecordCompletedSpan(_spanName, _previousFrameTimeOffset.ToUnixTimeMilliseconds(), currentTime.ToUnixTimeMilliseconds(), attributes: attributes);
         }
 
         private long GetAverageSample()
