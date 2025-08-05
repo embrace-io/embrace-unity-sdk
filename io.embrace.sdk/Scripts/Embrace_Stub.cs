@@ -285,6 +285,18 @@ namespace EmbraceSDK.Editor
         public bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, string parentSpanId,
             Dictionary<string, string> attributes, EmbraceSpanEvent[] embraceSpanEvent)
         {
+            var attributesString = "";
+
+            if (attributes != null)
+            {
+                foreach(var kvp in attributes)
+                {
+                    attributesString += $"{kvp.Key}: {kvp.Value}, ";
+                }
+            }
+            
+            EmbraceLogger.Log($"Record Completed Span: span name: {spanName} parent span ID: {parentSpanId}" +
+                              $"Attributes: {attributesString}");
             return true;
         }
         
