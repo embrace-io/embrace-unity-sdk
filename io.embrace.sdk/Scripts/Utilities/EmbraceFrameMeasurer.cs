@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Unity.Profiling;
 using UnityEngine;
 
@@ -86,27 +85,45 @@ namespace EmbraceSDK.Utilities
         }
     }
     
-    /// <summary>
-    /// Measures the difference between the current frame and the previous frame.
-    /// Keeps track of the DateTimeOffset of the previous frame.
-    /// If the frame rate drops below a certain threshold, it will enter a "low frame rate" state.
-    /// Once the low frame state ends we create span that starts with the first frame measured and ends with the last frame measured.
-    /// Note: Hook into OnDestroy to create a span in case the user closes the app before the low frame rate state ends.
-    /// Note2: Crash Handling? Reason for span creation (recovery, app closed by user, crash)
-    /// Profiler markers are grabbed from the Profiler Reporter API and added to the span attributes.
-    /// Note3: Create child spans for GPU and CPU frame time if they are also in low frame rate state.
-    /// </summary>
     public class EmbraceFrameMeasurer : MonoBehaviour
     {
+        public class EmbraceLowFrameRateReport
+        {
+            public Dictionary<string, float> ProfilerMarkers;
+            public float FrameTime;
+            public float AverageFPS => 1f / (FrameTime / FrameCount);
+            public int FrameCount;
+            public int LowFrameRateIncidents;
+
+            public void AddFrameTime(float frameTime)
+            {
+                FrameTime += frameTime;
+                FrameCount++;
+            }
+
+            public void Reset()
+            {
+                FrameTime = 0f;
+                FrameCount = 0;
+                LowFrameRateIncidents = 0;
+                ProfilerMarkers = new Dictionary<string, float>();
+            }
+            
+            public void AddLowFrameRateIncident()
+            {
+                LowFrameRateIncidents++;
+            }
+        }
+        
         private readonly EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
-        private DateTimeOffset _lowFrameStopTime;
-        private const string _spanName = "emb-unity-frame-rate-alert";
+        private readonly EmbraceLowFrameRateReport _frameRateReport = new();
+        private float _totalSessionTime;
         private float _targetFrameRate = 30f; // TODO: Pull this from settings
-        private float _lowFrameTime = 0;
-        private float _cooldownTime = 3.0f;
-        private int _lowFrameCount = 0;
-        private bool _isLowFrameRateState;
-        private string _spanId = null;
+        private float _reportInterval = 30f; // TODO: Pull this from settings
+        private float _previousFrameTime = 0f;
+        private int _totalSessionFrames = 0;
+        
+        public float SessionAverageFPS => 1 / (_totalSessionTime / _totalSessionFrames);
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void OnSceneLoad()
@@ -124,85 +141,51 @@ namespace EmbraceSDK.Utilities
 
         private void Start()
         {
-            ProfilerCategory category = new ProfilerCategory("PlayerLoop");
+            _previousFrameTime = Time.unscaledDeltaTime;
         }
 
         private void OnDestroy()
         {
-            if (_isLowFrameRateState)
-            {
-                RecordLowFrameState();
-            }
-            
             _profilerRecorderHelper.Dispose();
         }
         
         private void Update()
         {
-            float currentFrameTime = Time.unscaledDeltaTime;
-            float frameRate = 1f / currentFrameTime;
+            if (Embrace.Instance.IsStarted == false)
+            {
+                return;
+            }
+            
+            _frameRateReport.AddFrameTime(Time.unscaledDeltaTime);
+            _reportInterval -= Time.unscaledDeltaTime;
+            _totalSessionTime += Time.unscaledDeltaTime;
+            _totalSessionFrames++;
 
-            if (_isLowFrameRateState && frameRate >= _targetFrameRate && _cooldownTime > 0)
+            float difference = Time.unscaledDeltaTime - _previousFrameTime;
+            
+            if (difference > 1f / _targetFrameRate)
             {
-                if (_lowFrameStopTime == default)
-                {
-                    _lowFrameStopTime = DateTimeOffset.UtcNow;
-                }
-                
-                _cooldownTime -= Time.unscaledDeltaTime;
+                _frameRateReport.AddLowFrameRateIncident();
             }
-            else if (_isLowFrameRateState && frameRate >= _targetFrameRate && _cooldownTime <= 0)
+            
+            if (_reportInterval <= 0)
             {
-                RecordLowFrameState();
-            }
-            else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
-            {
-                _spanId = Embrace.Instance.StartSpan(_spanName, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-                _profilerRecorderHelper.Reset();
-                _profilerRecorderHelper.Start();
-                _isLowFrameRateState = true;
-                _lowFrameCount = 0;
-                _lowFrameTime = 0;
-                _cooldownTime = 3.0f;
-                _lowFrameStopTime = default;
-            }
-
-            if (_isLowFrameRateState)
-            {
-                _lowFrameCount++;
-                _lowFrameTime += currentFrameTime;
-            }
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                _targetFrameRate = float.MaxValue;
-            }
-            else
-            {
-                _targetFrameRate = 30f;
+                ReportFrameRate();
+                _reportInterval = 30f;
             }
         }
 
-        private void RecordLowFrameState()
+        private void ReportFrameRate()
         {
-            _isLowFrameRateState = false;
-            Embrace.Instance.AddSpanAttribute(_spanId, "AverageFPS", (1 / (_lowFrameTime / _lowFrameCount)).ToString(CultureInfo.InvariantCulture));
-            var attributes = _profilerRecorderHelper.GenerateAttributes();
-            
-            // sort attributes by value (highest to lowest)
-            var sortedAttributes = new SortedDictionary<float, string>(Comparer<float>.Create((x, y) => y.CompareTo(x)));
-            
-            foreach (var kvp in attributes)
+            Dictionary<string, string> properties = new()
             {
-                sortedAttributes.Add(kvp.Value, kvp.Key);
-            }
+                { "AverageFrameRate", _frameRateReport.AverageFPS.ToString("F2") },
+                { "LowFrameRateIncidents", _frameRateReport.LowFrameRateIncidents.ToString() }
+            };
             
-            foreach (var kvp in sortedAttributes)
-            {
-                Embrace.Instance.AddSpanAttribute(_spanId, kvp.Key.ToString(CultureInfo.InvariantCulture), kvp.Value);
-            }
-
-            Embrace.Instance.StopSpan(_spanId, _lowFrameStopTime.ToUnixTimeMilliseconds());
+            Embrace.Instance.LogMessage("Frame Info", EMBSeverity.Info, properties);
+            Embrace.Instance.AddSessionProperty("FrameRate", SessionAverageFPS.ToString("F2"), false);
+            _frameRateReport.Reset();
         }
     }
 }
