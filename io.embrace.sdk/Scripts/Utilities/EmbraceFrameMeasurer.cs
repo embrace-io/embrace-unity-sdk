@@ -98,7 +98,7 @@ namespace EmbraceSDK.Utilities
     /// </summary>
     public class EmbraceFrameMeasurer : MonoBehaviour
     {
-        private EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
+        private readonly EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
         private DateTimeOffset _lowFrameStopTime;
         private const string _spanName = "emb-unity-frame-rate-alert";
         private float _targetFrameRate = 30f; // TODO: Pull this from settings
