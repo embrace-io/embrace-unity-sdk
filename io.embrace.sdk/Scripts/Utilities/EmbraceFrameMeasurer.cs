@@ -52,7 +52,7 @@ namespace EmbraceSDK.Utilities
                         continue;
                     }
                     
-                    attributes[$"profiler-marker-{name}"] = average;
+                    attributes[$"profiler-marker-{name}-ms"] = average;
                 }
             }
             
