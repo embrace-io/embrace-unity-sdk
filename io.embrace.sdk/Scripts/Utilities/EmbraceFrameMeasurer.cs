@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Profiling;
 using UnityEngine;
 
@@ -51,11 +52,12 @@ namespace EmbraceSDK.Utilities
                         continue;
                     }
                     
-                    attributes[name] = average;
+                    attributes[$"profiler-marker-{name}"] = average;
                 }
             }
-
-            return attributes;
+            
+            var sortedByValue = attributes.OrderBy(kvp => kvp.Value);
+            return sortedByValue.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
         
         public void Dispose()
@@ -89,11 +91,10 @@ namespace EmbraceSDK.Utilities
     {
         public class EmbraceLowFrameRateReport
         {
-            public Dictionary<string, float> ProfilerMarkers;
             public float FrameTime;
             public float AverageFPS => 1f / (FrameTime / FrameCount);
             public int FrameCount;
-            public int LowFrameRateIncidents;
+            public int LowFrameRateCount;
 
             public void AddFrameTime(float frameTime)
             {
@@ -105,13 +106,12 @@ namespace EmbraceSDK.Utilities
             {
                 FrameTime = 0f;
                 FrameCount = 0;
-                LowFrameRateIncidents = 0;
-                ProfilerMarkers = new Dictionary<string, float>();
+                LowFrameRateCount = 0;
             }
             
-            public void AddLowFrameRateIncident()
+            public void AddLowFrameRate()
             {
-                LowFrameRateIncidents++;
+                LowFrameRateCount++;
             }
         }
         
@@ -142,6 +142,8 @@ namespace EmbraceSDK.Utilities
         private void Start()
         {
             _previousFrameTime = Time.unscaledDeltaTime;
+            _profilerRecorderHelper.Reset();
+            _profilerRecorderHelper.Start();
         }
 
         private void OnDestroy()
@@ -165,13 +167,15 @@ namespace EmbraceSDK.Utilities
             
             if (difference > 1f / _targetFrameRate)
             {
-                _frameRateReport.AddLowFrameRateIncident();
+                _frameRateReport.AddLowFrameRate();
             }
             
             if (_reportInterval <= 0)
             {
                 ReportFrameRate();
                 _reportInterval = 30f;
+                _profilerRecorderHelper.Reset();
+                _profilerRecorderHelper.Start();
             }
         }
 
@@ -179,12 +183,19 @@ namespace EmbraceSDK.Utilities
         {
             Dictionary<string, string> properties = new()
             {
-                { "AverageFrameRate", _frameRateReport.AverageFPS.ToString("F2") },
-                { "LowFrameRateIncidents", _frameRateReport.LowFrameRateIncidents.ToString() }
+                { "record-average-fps", _frameRateReport.AverageFPS.ToString("F2") },
+                { "low-frame-rate-count", _frameRateReport.LowFrameRateCount.ToString() }
             };
             
-            Embrace.Instance.LogMessage("Frame Info", EMBSeverity.Info, properties);
-            Embrace.Instance.AddSessionProperty("FrameRate", SessionAverageFPS.ToString("F2"), false);
+            var recordedAttributes = _profilerRecorderHelper.GenerateAttributes();
+            
+            foreach ((string key, float value) in recordedAttributes)
+            {
+                properties[key] = value.ToString("F2");
+            }
+            
+            Embrace.Instance.LogMessage("frame-rate-report", EMBSeverity.Info, properties);
+            Embrace.Instance.AddSessionProperty("session-average-fps", SessionAverageFPS.ToString("F2"), false);
             _frameRateReport.Reset();
         }
     }
