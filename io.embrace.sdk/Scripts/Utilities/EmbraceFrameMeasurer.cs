@@ -184,7 +184,7 @@ namespace EmbraceSDK.Utilities
             Dictionary<string, string> properties = new()
             {
                 { "record-average-fps", _frameRateReport.AverageFPS.ToString("F2") },
-                { "low-frame-rate-count", _frameRateReport.LowFrameRateCount.ToString() }
+                { "low-frame-rate-count", $"{_frameRateReport.LowFrameRateCount} / {_frameRateReport.FrameCount} ({(float)_frameRateReport.LowFrameRateCount / _frameRateReport.FrameCount}%)" }
             };
             
             var recordedAttributes = _profilerRecorderHelper.GenerateAttributes();
