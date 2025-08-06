@@ -6,6 +6,86 @@ using UnityEngine;
 
 namespace EmbraceSDK.Utilities
 {
+    internal class EmbraceProfilerRecorderHelper
+    {
+        private readonly Dictionary<string, ProfilerRecorder> _profileRecords = new();
+
+        private List<(string, string)> _profileRecordNames = new()
+        {
+            ("PlayerLoop", "PlayerLoop"),
+            ("GC", "GC.Collect"),
+            ("Gui", "GUI.Repaint"),
+            ("Render", "Camera.Render"),
+            ("Render", "Canvas.RenderSubBatch")
+        };
+
+        public EmbraceProfilerRecorderHelper()
+        {
+            foreach(var (categoryName, statName) in _profileRecordNames)
+            {
+                ProfilerCategory category = new ProfilerCategory(categoryName);
+                var recorder = ProfilerRecorder.StartNew(category, statName, 40);
+                _profileRecords.Add(statName, recorder);
+            }
+        }
+        
+        public Dictionary<string, float> GenerateAttributes()
+        {
+            Dictionary<string, float> attributes = new();
+            
+            foreach ((string name, var recorder) in _profileRecords)
+            {
+                if (recorder.Count > 0)
+                {
+                    long sum = 0;
+                    for (int i = 0; i < recorder.Count; i++)
+                    {
+                        var sample = recorder.GetSample(i);
+                        sum += sample.Value;
+                    }
+                    
+                    float average = sum / (float)recorder.Count / 1000000f; // convert to milliseconds
+
+                    if (average == 0)
+                    {
+                        // Skip attributes with an average of 0 to avoid cluttering the span
+                        continue;
+                    }
+                    
+                    attributes[name] = average;
+                }
+            }
+
+            return attributes;
+        }
+        
+        public void Dispose()
+        {
+            foreach (var recorder in _profileRecords.Values)
+            {
+                recorder.Dispose();
+            }
+            
+            _profileRecords.Clear();
+        }
+        
+        public void Reset()
+        {
+            foreach (var recorder in _profileRecords.Values)
+            {
+                recorder.Reset();
+            }
+        }
+        
+        public void Start()
+        {
+            foreach (var recorder in _profileRecords.Values)
+            {
+                recorder.Start();
+            }
+        }
+    }
+    
     /// <summary>
     /// Measures the difference between the current frame and the previous frame.
     /// Keeps track of the DateTimeOffset of the previous frame.
@@ -18,12 +98,13 @@ namespace EmbraceSDK.Utilities
     /// </summary>
     public class EmbraceFrameMeasurer : MonoBehaviour
     {
-        private ProfilerRecorder _mainThreadRecorder;
+        private EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
+        private DateTimeOffset _lowFrameStopTime;
         private const string _spanName = "emb-unity-frame-rate-alert";
         private float _targetFrameRate = 30f; // TODO: Pull this from settings
-        private DateTimeOffset _previousFrameTimeOffset;
-        private float _badFrameTime = 0;
-        private int _badFrameCount = 0;
+        private float _lowFrameTime = 0;
+        private float _cooldownTime = 3.0f;
+        private int _lowFrameCount = 0;
         private bool _isLowFrameRateState;
         private string _spanId = null;
         
@@ -44,7 +125,6 @@ namespace EmbraceSDK.Utilities
         private void Start()
         {
             ProfilerCategory category = new ProfilerCategory("PlayerLoop");
-            _mainThreadRecorder = ProfilerRecorder.StartNew(category, "PlayerLoop", 40);
         }
 
         private void OnDestroy()
@@ -54,33 +134,43 @@ namespace EmbraceSDK.Utilities
                 RecordLowFrameState();
             }
             
-            _mainThreadRecorder.Dispose();
+            _profilerRecorderHelper.Dispose();
         }
         
         private void Update()
         {
             float currentFrameTime = Time.unscaledDeltaTime;
             float frameRate = 1f / currentFrameTime;
-            
-            if (_isLowFrameRateState && frameRate >= _targetFrameRate)
+
+            if (_isLowFrameRateState && frameRate >= _targetFrameRate && _cooldownTime > 0)
+            {
+                if (_lowFrameStopTime == default)
+                {
+                    _lowFrameStopTime = DateTimeOffset.UtcNow;
+                }
+                
+                _cooldownTime -= Time.unscaledDeltaTime;
+            }
+            else if (_isLowFrameRateState && frameRate >= _targetFrameRate && _cooldownTime <= 0)
             {
                 RecordLowFrameState();
             }
             else if (!_isLowFrameRateState && frameRate < _targetFrameRate)
             {
                 _spanId = Embrace.Instance.StartSpan(_spanName, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-                _mainThreadRecorder.Reset();
-                _mainThreadRecorder.Start();
+                _profilerRecorderHelper.Reset();
+                _profilerRecorderHelper.Start();
                 _isLowFrameRateState = true;
-                _badFrameCount = 0;
-                _badFrameTime = 0;
-                _previousFrameTimeOffset = DateTimeOffset.UtcNow;
+                _lowFrameCount = 0;
+                _lowFrameTime = 0;
+                _cooldownTime = 3.0f;
+                _lowFrameStopTime = default;
             }
 
             if (_isLowFrameRateState)
             {
-                _badFrameCount++;
-                _badFrameTime += currentFrameTime;
+                _lowFrameCount++;
+                _lowFrameTime += currentFrameTime;
             }
 
             if (Input.GetKey(KeyCode.Space))
@@ -96,30 +186,23 @@ namespace EmbraceSDK.Utilities
         private void RecordLowFrameState()
         {
             _isLowFrameRateState = false;
-                
-            Embrace.Instance.AddSpanAttribute(_spanId, "AverageFPS", (1 / (_badFrameTime / _badFrameCount)).ToString(CultureInfo.InvariantCulture));
-
-            if (_mainThreadRecorder.Count > 0)
-            {
-                float averagePlayerLoopTime = GetAverageSample();
-                averagePlayerLoopTime /= 1000000f; // convert to milliseconds
-                Embrace.Instance.AddSpanAttribute(_spanId, "AveragePlayerLoopTimeMS", averagePlayerLoopTime.ToString(CultureInfo.InvariantCulture));
-            }
-
-            Embrace.Instance.StopSpan(_spanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-        }
-
-        private long GetAverageSample()
-        {
-            long sum = 0;
+            Embrace.Instance.AddSpanAttribute(_spanId, "AverageFPS", (1 / (_lowFrameTime / _lowFrameCount)).ToString(CultureInfo.InvariantCulture));
+            var attributes = _profilerRecorderHelper.GenerateAttributes();
             
-            for(int i = 0; i < _mainThreadRecorder.Count; i++)
+            // sort attributes by value (highest to lowest)
+            var sortedAttributes = new SortedDictionary<float, string>(Comparer<float>.Create((x, y) => y.CompareTo(x)));
+            
+            foreach (var kvp in attributes)
             {
-                var sample = _mainThreadRecorder.GetSample(i);
-                sum += sample.Value;
+                sortedAttributes.Add(kvp.Value, kvp.Key);
             }
             
-            return sum / _mainThreadRecorder.Count;
+            foreach (var kvp in sortedAttributes)
+            {
+                Embrace.Instance.AddSpanAttribute(_spanId, kvp.Key.ToString(CultureInfo.InvariantCulture), kvp.Value);
+            }
+
+            Embrace.Instance.StopSpan(_spanId, _lowFrameStopTime.ToUnixTimeMilliseconds());
         }
     }
 }
