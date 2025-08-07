@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace EmbraceSDK.Utilities
 {
+    /// <summary>
+    /// Helps manage profiler recorder markers
+    /// </summary>
     internal class EmbraceProfilerRecorderHelper
     {
         private readonly Dictionary<string, ProfilerRecorder> _profileRecords = new();
@@ -86,9 +89,17 @@ namespace EmbraceSDK.Utilities
         }
     }
     
+    /// <summary>
+    /// The Frame Measurer is a utility that allows you to measure frame rate over a specified interval.
+    /// It will also report low frame rates based on a target frame rate.
+    /// Optionally you can also set profiler markers to look for specific performance issues.
+    /// </summary>
     public class EmbraceFrameMeasurer : MonoBehaviour
     {
-        public class EmbraceLowFrameRateReport
+        /// <summary>
+        /// Tracks frame rates and low frame rates over a specified interval.
+        /// </summary>
+        public class EmbraceFrameRateReport
         {
             public float FrameTime;
             public float AverageFPS => 1f / (FrameTime / FrameCount);
@@ -115,7 +126,7 @@ namespace EmbraceSDK.Utilities
         }
         
         private readonly EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
-        private readonly EmbraceLowFrameRateReport _frameRateReport = new();
+        private readonly EmbraceFrameRateReport _frameRateReport = new();
         private float _totalSessionTime;
         [SerializeField] private float _targetFrameRate = 30f;
         [SerializeField] private float _reportInterval = 60f;
