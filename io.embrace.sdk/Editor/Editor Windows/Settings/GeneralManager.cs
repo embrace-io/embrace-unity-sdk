@@ -45,6 +45,15 @@ namespace EmbraceSDK.EditorView
                 "Toggling this option allows for the automatic capturing of active scene changes as views in the dashboard."),
             defaultValue = false, // We might want this to be opt-out in the future -Aly
         };
+        
+        private ScriptingDefineSettingsItem _autoInstrumentationFPSCapture = new ScriptingDefineSettingsItem()
+        {
+            symbol = "EMBRACE_AUTO_INSTRUMENTATION_FPS_CAPTURE",
+            guiContent = new GUIContent(
+                "Auto Instrumentation FPS Capture",
+                "Toggling this option allows for automatic instrumentation of FPS capture in the dashboard."),
+            defaultValue = true,
+        };
 
         private string[] _editorSilenceLogSettingsNames;
         
@@ -218,6 +227,7 @@ namespace EmbraceSDK.EditorView
                 _devSilenceLogSettings, _devSilenceLogSettingsNames);
             _defineUtil.GUILayoutSettingsAsFlags(_releaseSilenceLogSettingsContent, 
                 _releaseSilenceLogSettings, _releaseSilenceLogSettingsNames);
+            _defineUtil.GUILayoutSetting(_autoInstrumentationFPSCapture);
 
             // Advanced Settings
             _advancedFoldoutExpanded = EditorGUILayout.Foldout(_advancedFoldoutExpanded, "Advanced");

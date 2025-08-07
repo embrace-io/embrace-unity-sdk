@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Profiling;
@@ -24,7 +23,7 @@ namespace EmbraceSDK.Utilities
             foreach(var (categoryName, statName) in _profileRecordNames)
             {
                 ProfilerCategory category = new ProfilerCategory(categoryName);
-                var recorder = ProfilerRecorder.StartNew(category, statName, 40);
+                var recorder = ProfilerRecorder.StartNew(category, statName, 15);
                 _profileRecords.Add(statName, recorder);
             }
         }
@@ -118,21 +117,33 @@ namespace EmbraceSDK.Utilities
         private readonly EmbraceProfilerRecorderHelper _profilerRecorderHelper = new();
         private readonly EmbraceLowFrameRateReport _frameRateReport = new();
         private float _totalSessionTime;
-        private float _targetFrameRate = 30f; // TODO: Pull this from settings
-        private float _reportInterval = 30f; // TODO: Pull this from settings
+        [SerializeField] private float _targetFrameRate = 30f;
+        [SerializeField] private float _reportInterval = 60f;
+        private float _reportIntervalRemaining = 60f;
         private float _previousFrameTime = 0f;
         private int _totalSessionFrames = 0;
         
         public float SessionAverageFPS => 1 / (_totalSessionTime / _totalSessionFrames);
         
+#if EMBRACE_AUTO_INSTRUMENTATION_FPS_CAPTURE
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void OnSceneLoad()
         {
             if (!FindFirstObjectByType<EmbraceFrameMeasurer>())
             {
-                _ = new GameObject("EmbraceFrameMeasurer", typeof(EmbraceFrameMeasurer));
+                var prefab = Resources.Load<EmbraceFrameMeasurer>("EmbraceFrameMeasurer");
+                
+                if (prefab == null)
+                {
+                    Debug.LogError("EmbraceFrameMeasurer prefab not found in Resources folder.");
+                    return;
+                }
+                
+                var instance = Instantiate(prefab);
+                instance.name = "EmbraceFrameMeasurer";
             }
         }
+#endif
 
         private void Awake()
         {
@@ -142,6 +153,7 @@ namespace EmbraceSDK.Utilities
         private void Start()
         {
             _previousFrameTime = Time.unscaledDeltaTime;
+            _reportIntervalRemaining = _reportInterval;
             _profilerRecorderHelper.Reset();
             _profilerRecorderHelper.Start();
         }
@@ -159,7 +171,7 @@ namespace EmbraceSDK.Utilities
             }
             
             _frameRateReport.AddFrameTime(Time.unscaledDeltaTime);
-            _reportInterval -= Time.unscaledDeltaTime;
+            _reportIntervalRemaining -= Time.unscaledDeltaTime;
             _totalSessionTime += Time.unscaledDeltaTime;
             _totalSessionFrames++;
 
@@ -170,10 +182,10 @@ namespace EmbraceSDK.Utilities
                 _frameRateReport.AddLowFrameRate();
             }
             
-            if (_reportInterval <= 0)
+            if (_reportIntervalRemaining <= 0)
             {
                 ReportFrameRate();
-                _reportInterval = 30f;
+                _reportIntervalRemaining = _reportInterval;
                 _profilerRecorderHelper.Reset();
                 _profilerRecorderHelper.Start();
             }
