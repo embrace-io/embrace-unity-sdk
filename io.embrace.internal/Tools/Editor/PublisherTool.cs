@@ -15,7 +15,7 @@ namespace Embrace.Tools
     /// <summary>
     /// A tool that helps simplify the build process and helps prevent user error when publishing.
     /// </summary>
-    public class PublisherTool : ToolEditorWindow
+    internal class PublisherTool : ToolEditorWindow
     {
         public enum UpdateStatus
         {

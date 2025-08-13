@@ -44,10 +44,12 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+
 env:
   EMBRACE_TEST_API_TOKEN: ${{ secrets.EMBRACE_TEST_API_TOKEN }}
   EMBRACE_TEST_APP_ID: ${{ secrets.EMBRACE_TEST_APP_ID }}
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   get_editor_versions:
@@ -62,6 +64,7 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - id: get_editor_versions
         name: Get editor versions
         run: |
@@ -82,8 +85,11 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - name: Run tests
         uses: ./.github/actions/unity-test
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           build_target: ${{ matrix.build_target }}
           editor_version: ${{ matrix.editor.version }}
@@ -109,6 +115,7 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - name: Run tests
         uses: ./.github/actions/unity-test
         with:
@@ -136,6 +143,7 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - name: Run tests
         uses: ./.github/actions/unity-test
         with:
@@ -159,6 +167,7 @@ jobs:
         with:
           lfs: true
           ref: ${{ inputs.ref }}
+          persist-credentials: false
       - name: Download test results
         uses: actions/download-artifact@v4
         with:

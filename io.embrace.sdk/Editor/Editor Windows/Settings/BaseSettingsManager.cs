@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace EmbraceSDK.EditorView
@@ -7,7 +8,7 @@ namespace EmbraceSDK.EditorView
     /// The BaseSettingsManager is an abstract class which allows for various categories to the drawn to the MainSettingsEditor pane.
     /// </summary>
     [Serializable]
-    public abstract class BaseSettingsManager : ISettingsWindow
+    internal abstract class BaseSettingsManager : ISettingsWindow
     {
         protected MainSettingsEditor mainSettingsEditor;
         protected StyleConfigs styleConfigs;

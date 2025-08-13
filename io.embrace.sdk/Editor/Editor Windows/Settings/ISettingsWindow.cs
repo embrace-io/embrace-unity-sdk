@@ -7,7 +7,7 @@ namespace EmbraceSDK.EditorView
     /// <summary>
     /// Interface used by Settings Windows
     /// </summary>
-    public interface ISettingsWindow
+    internal interface ISettingsWindow
     {
         void OnGUI();
         void Initialize(MainSettingsEditor mainSettingsEditor);

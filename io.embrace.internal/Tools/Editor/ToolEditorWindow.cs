@@ -9,7 +9,7 @@ namespace Embrace.Tools
     /// <summary>
     /// Base class for Embrace tools, used to setup editor windows and get Credentials.
     /// </summary>
-    public class ToolEditorWindow : EmbraceEditorWindow
+    internal class ToolEditorWindow : EmbraceEditorWindow
     {
         public static Credentials credentials;
         public static bool hasCredentials;

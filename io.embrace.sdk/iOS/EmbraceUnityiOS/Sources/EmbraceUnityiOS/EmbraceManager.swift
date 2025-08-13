@@ -401,7 +401,7 @@ public class EmbraceManager: NSObject {
         attributes: inout [String: String],
         events: [RecordingSpanEvent]) -> Bool {
 
-            let parent = parentSpanId.isEmpty ? spanRepository.get(spanId: parentSpanId) : nil
+            let parent = parentSpanId.isEmpty ? nil : spanRepository.get(spanId: parentSpanId)
 
             if Embrace.client == nil {
                 return false
@@ -416,6 +416,10 @@ public class EmbraceManager: NSObject {
                                                 events: events,
                                                 errorCode: convertStringToErrorCode(str: errorCodeString))
             return true
+    }
+    
+    static func spanExists(spanId: String) -> Bool {
+        return spanRepository.get(spanId: spanId) != nil
     }
 
     // TODO: Reduce code duplication between handled and unhandled exceptions

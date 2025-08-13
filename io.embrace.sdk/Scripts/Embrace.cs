@@ -193,6 +193,9 @@ namespace EmbraceSDK
         /// <inheritdoc />
         public void StartSDK(EmbraceStartupArgs args = null)
         {
+            #if EMBRACE_STARTUP_SPANS
+            EmbraceStartupSpans.RecordStartSDKTime();
+            #endif
             if (_started)
             {
                 return;
@@ -226,13 +229,14 @@ namespace EmbraceSDK
                 Application.logMessageReceivedThreaded += Embrace_Threaded_Log_Handler;
                 Debug.LogWarning("THREADED LOGGING ENABLED");
 #endif
-
                 _started = true;
                 IsEnabled = true;
-            
                 InternalEmbrace.SetInternalInstance(_instance);
-
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
+                
+                #if EMBRACE_STARTUP_SPANS
+                EmbraceStartupSpans.RecordStopSDKTime();
+                #endif
             }
             catch (Exception e)
             {
@@ -1015,7 +1019,8 @@ namespace EmbraceSDK
         {
             try
             {
-                return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, new EmbraceSpanEvent[] { embraceSpanEvent });
+                EmbraceSpanEvent[] embraceSpanEvents = embraceSpanEvent != null ? new[] { embraceSpanEvent } : Array.Empty<EmbraceSpanEvent>();
+                return provider.RecordCompletedSpan(spanName, startTimeMs, endTimeMs, __BridgedSpanErrorCode(errorCode), parentSpanId, attributes, embraceSpanEvents);
             }
             catch (Exception e)
             {
@@ -1059,5 +1064,12 @@ namespace EmbraceSDK
                 default: return 0;
             }
         }
+
+        #if EMBRACE_STARTUP_SPANS
+        public void EndAppStartup()
+        {
+            EmbraceStartupSpans.EndAppStartup();
+        }
+        #endif
     }
 }
