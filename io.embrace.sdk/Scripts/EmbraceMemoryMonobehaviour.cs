@@ -37,7 +37,7 @@ namespace EmbraceSDK.Instrumentation
                     throw new ArgumentOutOfRangeException(nameof(id));
             }
         }
-
+        
         private static string IDViolationMax(EmbraceMemoryMonitorId id)
         {
             switch (id)
@@ -147,6 +147,12 @@ namespace EmbraceSDK.Instrumentation
                 logProperties[IDViolationMap(id)] = _violationCounts[i].ToString();
                 logProperties[IDViolationMax(id)] = _maxValues[i].ToString();
             }
+
+            var curGCCollectBytes = _embraceMemoryMonitor.GetCurrentGCCollectBytes();
+            if (curGCCollectBytes != 0)
+            {
+                logProperties.Add("GCCollectBytes", curGCCollectBytes.ToString());
+            }
             
             Embrace.Instance.LogMessage("Memory pressure violations detected in batch", EMBSeverity.Warning, logProperties);
         }
@@ -175,6 +181,7 @@ namespace EmbraceSDK.Instrumentation
         private ProfilerRecorder _gcCollectTimeMonitor = ProfilerRecorder.StartNew(new ProfilerCategory("GC"), "GC.Collect", 60);
         private ProfilerRecorder _totalReservedMonitor = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Total Reserved Memory", 60);
         private ProfilerRecorder _totalUsedMonitor = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Total Used Memory", 60);
+        private ProfilerRecorder _gcCollectMonitor = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC.Collect");
 
         public void Start()
         {
@@ -208,6 +215,8 @@ namespace EmbraceSDK.Instrumentation
                 GCCollectTimeNanos = _gcCollectTimeMonitor.CurrentValue
             };
         }
+
+        public long GetCurrentGCCollectBytes() => _gcCollectMonitor.CurrentValue;
 
         public EmbraceMemorySnapshot GetSnapshotLast()
         {
