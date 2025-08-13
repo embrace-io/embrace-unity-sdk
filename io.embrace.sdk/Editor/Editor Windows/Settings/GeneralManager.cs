@@ -52,7 +52,7 @@ namespace EmbraceSDK.EditorView
             guiContent = new GUIContent(
                 "Auto Instrumentation FPS Capture",
                 "Toggling this option allows for automatic instrumentation of FPS capture in the dashboard."),
-            defaultValue = true,
+            defaultValue = false,
         };
 
         private string[] _editorSilenceLogSettingsNames;
