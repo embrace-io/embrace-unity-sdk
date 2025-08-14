@@ -13,6 +13,7 @@ namespace EmbraceSDK.Instrumentation
 		/// As a default, it is false to prevent accidental PII capture.
 		/// </summary>
 		[Tooltip("This property is vital for enabling and disabling tap capture for the input module in order to prevent ending up with PII.\nAs a default, it is false to prevent accidental PII capture.")]
+		[NonSerialized]
 		public bool EmbraceTapCaptureEnabled = false;
 		
 		const string EMBRACE_TAP_SPAN_ID = "emb-ui-tap";
