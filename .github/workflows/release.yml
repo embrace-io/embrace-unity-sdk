@@ -19,7 +19,7 @@ jobs:
       is_release_candidate: ${{ steps.verify_release.outputs.is_release_candidate }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: true
           persist-credentials: false
@@ -57,7 +57,7 @@ jobs:
       IS_RELEASE_CANDIDATE: ${{ needs.verify_release.outputs.is_release_candidate }}
     steps:
       - name: Fetch the unitypackage artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: ${{ env.PACKAGE_NAME }}
       - name: Disable GitHub CLI Prompt if Enabled
