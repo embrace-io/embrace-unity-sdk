@@ -18,7 +18,7 @@ env:
   COMMIT_USER_EMAIL: embrace-ci@users.noreply.github.com
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   # Increment the release candidate suffix for the version number. If the
@@ -30,6 +30,8 @@ jobs:
     outputs:
       release_version: ${{ steps.bump_version.outputs.release_version }}
       release_commit_sha: ${{ steps.bump_version.outputs.release_commit_sha }}
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
