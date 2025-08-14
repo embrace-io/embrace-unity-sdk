@@ -18,7 +18,7 @@ env:
   COMMIT_USER_EMAIL: embrace-ci@users.noreply.github.com
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   # Increment the release candidate suffix for the version number. If the
