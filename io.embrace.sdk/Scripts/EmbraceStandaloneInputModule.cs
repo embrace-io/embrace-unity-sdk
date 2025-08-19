@@ -12,6 +12,7 @@ namespace EmbraceSDK.Instrumentation
 		/// This property is vital for enabling and disabling tap capture for the input module in order to prevent ending up with PII.
 		/// As a default, it is false to prevent accidental PII capture.
 		/// </summary>
+		[NonSerialized]
 		[Tooltip("This property is vital for enabling and disabling tap capture for the input module in order to prevent ending up with PII.\nAs a default, it is false to prevent accidental PII capture.")]
 		public bool EmbraceTapCaptureEnabled = false;
 		
