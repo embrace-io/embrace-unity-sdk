@@ -5,10 +5,12 @@ using UnityEngine;
 
 namespace EmbraceSDK.Instrumentation
 {
-    public class EmbraceMemoryMonobehaviour : MonoBehaviour
+    public class EmbraceMemoryMonitorMonobehaviour : MonoBehaviour
     {
         private EmbraceMemoryMonitor _embraceMemoryMonitor;
         public EmbraceMemorySnapshot thresholds;
+        public bool markDontDestroyOnLoad = true;
+        public bool autostartMonitoring = true;
         public float logBatchIntervalSeconds = 10.0f;
         private float _lastLogTime;
         private bool[] _hasViolations = new bool[(int) EmbraceMemoryMonitorId._EnumTypeCount];
@@ -16,12 +18,29 @@ namespace EmbraceSDK.Instrumentation
         private long[] _maxValues = new long[(int) EmbraceMemoryMonitorId._EnumTypeCount];
         
         private Dictionary<string, string> _logProperties = new Dictionary<string, string>();
-
-        #if EMBRACE_MEMORY_MONITOR
         
-        private void Awake()
+        #if EMBRACE_AUTO_INSTRUMENTATION_MEMORY_MONITOR
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        public static void OnSceneLoad()
         {
-            InitializeMonitoring();
+            if (!FindFirstObjectByType<EmbraceMemoryMonitorMonobehaviour>())
+            {
+                var prefab = Resources.Load<EmbraceMemoryMonitorMonobehaviour>("EmbraceMemoryMonitor");
+                
+                if (prefab == null)
+                {
+                    Debug.LogError("EmbraceMemoryMonitor prefab not found in Resources folder.");
+                    return;
+                }
+                
+                var instance = Instantiate(prefab);
+                instance.name = "EmbraceMemoryMonitor";
+                
+                if (instance.markDontDestroyOnLoad) instance.MarkExtendedLifetime();
+                instance.InitializeMonitoring();
+                if (instance.autostartMonitoring) instance.StartMonitoring();
+            }
         }
 
         #endif // EMBRACE_MEMORY_MONITOR
