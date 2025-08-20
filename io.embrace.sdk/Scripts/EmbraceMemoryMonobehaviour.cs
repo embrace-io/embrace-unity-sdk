@@ -15,48 +15,43 @@ namespace EmbraceSDK.Instrumentation
         private int[] _violationCounts = new int[(int) EmbraceMemoryMonitorId._EnumTypeCount];
         private long[] _maxValues = new long[(int) EmbraceMemoryMonitorId._EnumTypeCount];
         
-        private Dictionary<string, string> logProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _logProperties = new Dictionary<string, string>();
 
+        #if EMBRACE_MEMORY_MONITOR
+        
+        private void Awake()
+        {
+            InitializeMonitoring();
+        }
+
+        #endif // EMBRACE_MEMORY_MONITOR
+        
         private static string IDViolationMap(EmbraceMemoryMonitorId id)
         {
-            switch (id)
+            return id switch
             {
-                case EmbraceMemoryMonitorId.GCBytesReserved:
-                    return "GCBytesReserved_violation_count";
-                case EmbraceMemoryMonitorId.GCBytesUsed:
-                    return "GCBytesUsed_violation_count";
-                case EmbraceMemoryMonitorId.SystemBytesUsed:
-                    return "SystemBytesUsed_violation_count";
-                case EmbraceMemoryMonitorId.TotalBytesReserved:
-                    return "TotalBytesReserved_violation_count";
-                case EmbraceMemoryMonitorId.TotalBytesUsed:
-                    return "TotalBytesUsed_violation_count";
-                case EmbraceMemoryMonitorId.GCCollectTimeNanos:
-                    return "GCCollectTimeNanos_violation_count";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(id));
-            }
+                EmbraceMemoryMonitorId.GCBytesReserved => "GCBytesReserved_violation_count",
+                EmbraceMemoryMonitorId.GCBytesUsed => "GCBytesUsed_violation_count",
+                EmbraceMemoryMonitorId.SystemBytesUsed => "SystemBytesUsed_violation_count",
+                EmbraceMemoryMonitorId.TotalBytesReserved => "TotalBytesReserved_violation_count",
+                EmbraceMemoryMonitorId.TotalBytesUsed => "TotalBytesUsed_violation_count",
+                EmbraceMemoryMonitorId.GCCollectTimeNanos => "GCCollectTimeNanos_violation_count",
+                _ => throw new ArgumentOutOfRangeException(nameof(id))
+            };
         }
         
         private static string IDViolationMax(EmbraceMemoryMonitorId id)
         {
-            switch (id)
+            return id switch
             {
-                case EmbraceMemoryMonitorId.GCBytesReserved:
-                    return "GCBytesReserved_max_value";
-                case EmbraceMemoryMonitorId.GCBytesUsed:
-                    return "GCBytesUsed_max_value";
-                case EmbraceMemoryMonitorId.SystemBytesUsed:
-                    return "SystemBytesUsed_max_value";
-                case EmbraceMemoryMonitorId.TotalBytesReserved:
-                    return "TotalBytesReserved_max_value";
-                case EmbraceMemoryMonitorId.TotalBytesUsed:
-                    return "TotalBytesUsed_max_value";
-                case EmbraceMemoryMonitorId.GCCollectTimeNanos:
-                    return "GCCollectTimeNanos_max_value";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(id));
-            }
+                EmbraceMemoryMonitorId.GCBytesReserved => "GCBytesReserved_max_value",
+                EmbraceMemoryMonitorId.GCBytesUsed => "GCBytesUsed_max_value",
+                EmbraceMemoryMonitorId.SystemBytesUsed => "SystemBytesUsed_max_value",
+                EmbraceMemoryMonitorId.TotalBytesReserved => "TotalBytesReserved_max_value",
+                EmbraceMemoryMonitorId.TotalBytesUsed => "TotalBytesUsed_max_value",
+                EmbraceMemoryMonitorId.GCCollectTimeNanos => "GCCollectTimeNanos_max_value",
+                _ => throw new ArgumentOutOfRangeException(nameof(id))
+            };
         }
         
         public void InitializeMonitoring()
@@ -67,12 +62,7 @@ namespace EmbraceSDK.Instrumentation
 
         public void MarkExtendedLifetime()
         {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        private void Awake()
-        {
-            InitializeMonitoring();
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Update()
@@ -102,7 +92,7 @@ namespace EmbraceSDK.Instrumentation
             }
             else
             {
-                _embraceMemoryMonitor.Start();
+                _embraceMemoryMonitor?.Start();
             }
         }
 
@@ -137,24 +127,24 @@ namespace EmbraceSDK.Instrumentation
             
             if (!anyViolations) return;
             
-            logProperties.Clear();
+            _logProperties.Clear();
             
             for (int i = 0; i < _hasViolations.Length; i++)
             {
                 if (!_hasViolations[i]) continue;
                 
                 var id = (EmbraceMemoryMonitorId)i;
-                logProperties[IDViolationMap(id)] = _violationCounts[i].ToString();
-                logProperties[IDViolationMax(id)] = _maxValues[i].ToString();
+                _logProperties[IDViolationMap(id)] = _violationCounts[i].ToString();
+                _logProperties[IDViolationMax(id)] = _maxValues[i].ToString();
             }
 
             var curGCCollectBytes = _embraceMemoryMonitor.GetCurrentGCCollectBytes();
             if (curGCCollectBytes != 0)
             {
-                logProperties.Add("GCCollectBytes", curGCCollectBytes.ToString());
+                _logProperties.Add("GCCollectBytes", curGCCollectBytes.ToString());
             }
             
-            Embrace.Instance.LogMessage("Memory pressure violations detected in batch", EMBSeverity.Warning, logProperties);
+            Embrace.Instance.LogMessage("Memory pressure violations detected in batch", EMBSeverity.Warning, _logProperties);
         }
         
         private void ResetViolationTracking()
@@ -169,7 +159,7 @@ namespace EmbraceSDK.Instrumentation
 
         private void OnDestroy()
         {
-            _embraceMemoryMonitor.Dispose();
+            _embraceMemoryMonitor?.Dispose();
         }
     }
     
@@ -249,23 +239,16 @@ namespace EmbraceSDK.Instrumentation
         {
             get
             {
-                switch (index)
+                return index switch
                 {
-                    case EmbraceMemoryMonitorId.SystemBytesUsed:
-                        return SystemBytesUsed;
-                    case EmbraceMemoryMonitorId.TotalBytesReserved:
-                        return TotalBytesReserved;
-                    case EmbraceMemoryMonitorId.TotalBytesUsed:
-                        return TotalBytesUsed;
-                    case EmbraceMemoryMonitorId.GCBytesReserved:
-                        return GCBytesReserved;
-                    case EmbraceMemoryMonitorId.GCBytesUsed:
-                        return GCBytesUsed;
-                    case EmbraceMemoryMonitorId.GCCollectTimeNanos:
-                        return GCCollectTimeNanos;
-                    default:
-                        throw new ArgumentException("Illegal EmbraceMemoryMonitorID given");
-                }
+                    EmbraceMemoryMonitorId.GCBytesReserved => GCBytesReserved,
+                    EmbraceMemoryMonitorId.GCBytesUsed => GCBytesUsed,
+                    EmbraceMemoryMonitorId.SystemBytesUsed => SystemBytesUsed,
+                    EmbraceMemoryMonitorId.TotalBytesReserved => TotalBytesReserved,
+                    EmbraceMemoryMonitorId.TotalBytesUsed => TotalBytesUsed,
+                    EmbraceMemoryMonitorId.GCCollectTimeNanos => GCCollectTimeNanos,
+                    _ => throw new ArgumentException("Illegal EmbraceMemoryMonitorID given")
+                };
             }
         }
         
