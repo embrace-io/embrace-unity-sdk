@@ -54,6 +54,15 @@ namespace EmbraceSDK.EditorView
                 "Toggling this option allows for automatic instrumentation of FPS capture in the dashboard."),
             defaultValue = false,
         };
+        
+        private ScriptingDefineSettingsItem _autoInstrumentationMemoryMonitor = new ScriptingDefineSettingsItem()
+        {
+            symbol = "EMBRACE_AUTO_INSTRUMENTATION_MEMORY_MONITOR",
+            guiContent = new GUIContent(
+                "Auto Instrumentation Memory Monitor",
+                "Toggling this option allows for automatic instrumentation of memory monitoring in the dashboard."),
+            defaultValue = false,
+        };
 
         private string[] _editorSilenceLogSettingsNames;
         
@@ -228,6 +237,7 @@ namespace EmbraceSDK.EditorView
             _defineUtil.GUILayoutSettingsAsFlags(_releaseSilenceLogSettingsContent, 
                 _releaseSilenceLogSettings, _releaseSilenceLogSettingsNames);
             _defineUtil.GUILayoutSetting(_autoInstrumentationFPSCapture);
+            _defineUtil.GUILayoutSetting(_autoInstrumentationMemoryMonitor);
 
             // Advanced Settings
             _advancedFoldoutExpanded = EditorGUILayout.Foldout(_advancedFoldoutExpanded, "Advanced");
