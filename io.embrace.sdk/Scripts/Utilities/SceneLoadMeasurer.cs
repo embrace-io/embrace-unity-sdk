@@ -4,18 +4,11 @@ using UnityEngine.SceneManagement;
 
 namespace EmbraceSDK.Utilities
 {
-    public class SceneLoadMeasurer : MonoBehaviour
+    public static class SceneLoadMeasurer
     {
-        private string _currentSceneLoadSpanId;
+        private static string _currentSceneLoadSpanId;
         
-        private void Awake()
-        {
-            // TODO: Use weaving to determine if the client has already overridden the SceneManagerAPI.
-            // if they have, then add our helper functions to their existing overrides.
-            SceneManagerAPI.overrideAPI = new EmbraceSceneManagerOverride(OnSceneLoadStarted, OnSceneLoadFinished);
-        }
-        
-        private void OnSceneLoadStarted(string sceneName)
+        private static void OnSceneLoadStarted(string sceneName)
         {
             if (Embrace.Instance.IsStarted == false)
             {
@@ -26,7 +19,7 @@ namespace EmbraceSDK.Utilities
             _currentSceneLoadSpanId = Embrace.Instance.StartSpan($"Load Scene: {sceneName}", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
         }
 
-        private void OnSceneLoadFinished(string sceneName)
+        private static void OnSceneLoadFinished(string sceneName)
         {
             if (string.IsNullOrEmpty(_currentSceneLoadSpanId))
             {
@@ -34,6 +27,13 @@ namespace EmbraceSDK.Utilities
             }
             
             Embrace.Instance.StopSpan(_currentSceneLoadSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            _currentSceneLoadSpanId = null;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void OnLoad()
+        {
+            SceneManagerAPI.overrideAPI = new EmbraceSceneManagerOverride(OnSceneLoadStarted, OnSceneLoadFinished);
         }
     }
 }
