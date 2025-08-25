@@ -14,8 +14,8 @@ namespace EmbraceSDK.Tests
         [UnityTest, Order(1)]
         public IEnumerator SceneManagerOverrideMarksSafeAndUnsafe()
         {
-            Action onSceneLoadStarted = Substitute.For<Action>();
-            Action onSceneLoadFinished = Substitute.For<Action>();
+            Action<string> onSceneLoadStarted = Substitute.For<Action<string>>();
+            Action<string> onSceneLoadFinished = Substitute.For<Action<string>>();
             SceneManagerAPI.overrideAPI = new EmbraceSceneManagerOverride(onSceneLoadStarted, onSceneLoadFinished);
             
             yield return new WaitForSeconds(0.25f);
@@ -24,8 +24,8 @@ namespace EmbraceSDK.Tests
             
             yield return new WaitForSeconds(0.25f);
             
-            onSceneLoadStarted.Received().Invoke();
-            onSceneLoadFinished.Received().Invoke();
+            onSceneLoadStarted.Received().Invoke("");
+            onSceneLoadFinished.Received().Invoke("");
         }
     }
     #endif

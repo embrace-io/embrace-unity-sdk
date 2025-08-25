@@ -16,9 +16,9 @@ namespace EmbraceSDK
         private readonly List<(string sceneName, int sceneBuildIndex)> _scenesCurrentlyBeingLoaded =
             new List<(string sceneName, int sceneBuildIndex)>();
 
-        private readonly Action _onSceneLoadStarted;
-        private readonly Action _onSceneLoadFinished;
-        public EmbraceSceneManagerOverride(Action onSceneLoadStarted, Action onSceneLoadFinished)
+        private readonly Action<string> _onSceneLoadStarted;
+        private readonly Action<string> _onSceneLoadFinished;
+        public EmbraceSceneManagerOverride(Action<string> onSceneLoadStarted, Action<string> onSceneLoadFinished)
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
             _onSceneLoadStarted = onSceneLoadStarted;
@@ -32,7 +32,7 @@ namespace EmbraceSDK
 
             if (_scenesCurrentlyBeingLoaded.Count == 0)
             {
-                _onSceneLoadFinished?.Invoke();
+                _onSceneLoadFinished?.Invoke(scene.name);
             }
         }
 
@@ -52,7 +52,7 @@ namespace EmbraceSDK
             bool mustCompleteNextFrame)
         {
             _scenesCurrentlyBeingLoaded.Add((sceneName, sceneBuildIndex));
-            _onSceneLoadStarted?.Invoke();
+            _onSceneLoadStarted?.Invoke(sceneName);
             return base.LoadSceneAsyncByNameOrIndex(sceneName, sceneBuildIndex, parameters, mustCompleteNextFrame);
         }
     }
