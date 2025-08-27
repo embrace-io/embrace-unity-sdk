@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Profiling;
 using UnityEngine;
 
@@ -8,14 +9,25 @@ namespace EmbraceSDK.Instrumentation
     public class EmbraceMemoryMonitorMonobehaviour : MonoBehaviour
     {
         private EmbraceMemoryMonitor _embraceMemoryMonitor;
+        /// <summary>
+        /// This field is intentionally left public so that users are able to set thresholds at runtime based on changing conditions.
+        /// HOWEVER, it is not recommended to change these values frequently as it may lead to inconsistent monitoring behavior.
+        /// Additionally, these values should be set before calling StartMonitoring to ensure accurate tracking from the beginning.
+        /// If necessary call StopMonitoring, adjust thresholds, then call StartMonitoring again.
+        /// Finally, be cautious when modifying these values to have excessively low or high thresholds.
+        /// Such settings may lead to an overwhelming number of violation logs or, conversely, a lack of meaningful monitoring data.
+        /// The defaults provided are intended to offer a balanced starting point for most applications.
+        /// </summary>
         public EmbraceMemorySnapshot thresholds;
         public bool markDontDestroyOnLoad = true;
         public bool autostartMonitoring = true;
-        public float logBatchIntervalSeconds = 10.0f;
+        [Range(10f, 300f)] public float logBatchIntervalSeconds = 10.0f;
         private float _lastLogTime;
         private bool[] _hasViolations = new bool[(int) EmbraceMemoryMonitorId._EnumTypeCount];
         private int[] _violationCounts = new int[(int) EmbraceMemoryMonitorId._EnumTypeCount];
         private long[] _maxValues = new long[(int) EmbraceMemoryMonitorId._EnumTypeCount];
+
+        private EmbraceMemorySnapshot _currentSnapshot = new EmbraceMemorySnapshot();
         
         private Dictionary<string, string> _logProperties = new Dictionary<string, string>();
         
@@ -86,16 +98,16 @@ namespace EmbraceSDK.Instrumentation
 
         private void Update()
         {
-            var currentSnapshot = _embraceMemoryMonitor.GetSnapshotCurrent();
+            _embraceMemoryMonitor.GetSnapshotCurrent(_currentSnapshot);
             
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.SystemBytesUsed);
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.TotalBytesReserved);
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.TotalBytesUsed);
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.GCBytesReserved);
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.GCBytesUsed);
-            CheckViolation(currentSnapshot, EmbraceMemoryMonitorId.GCCollectTimeNanos);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.SystemBytesUsed);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.TotalBytesReserved);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.TotalBytesUsed);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.GCBytesReserved);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.GCBytesUsed);
+            CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.GCCollectTimeNanos);
             
-            if (Time.time - _lastLogTime >= logBatchIntervalSeconds)
+            if (Time.time - _lastLogTime >= Mathf.Clamp(10f, 300f, logBatchIntervalSeconds))
             {
                 LogBatchedViolations();
                 ResetViolationTracking();
@@ -212,17 +224,26 @@ namespace EmbraceSDK.Instrumentation
             _totalUsedMonitor.Stop();
         }
 
-        public EmbraceMemorySnapshot GetSnapshotCurrent()
+        public EmbraceMemorySnapshot GetSnapshotCurrent(EmbraceMemorySnapshot toReuse = null)
         {
-            return new EmbraceMemorySnapshot()
-            {
-                GCBytesReserved = _gcReservedMonitor.CurrentValue,
-                GCBytesUsed = _gcUsedMonitor.CurrentValue,
-                SystemBytesUsed = _systemUsedMonitor.CurrentValue,
-                TotalBytesReserved = _totalReservedMonitor.CurrentValue,
-                TotalBytesUsed = _totalUsedMonitor.CurrentValue,
-                GCCollectTimeNanos = _gcCollectTimeMonitor.CurrentValue
-            };
+            if (toReuse == null)
+                return new EmbraceMemorySnapshot()
+                {
+                    GCBytesReserved = _gcReservedMonitor.CurrentValue,
+                    GCBytesUsed = _gcUsedMonitor.CurrentValue,
+                    SystemBytesUsed = _systemUsedMonitor.CurrentValue,
+                    TotalBytesReserved = _totalReservedMonitor.CurrentValue,
+                    TotalBytesUsed = _totalUsedMonitor.CurrentValue,
+                    GCCollectTimeNanos = _gcCollectTimeMonitor.CurrentValue
+                };
+            
+            toReuse.GCBytesReserved = _gcReservedMonitor.CurrentValue;
+            toReuse.GCBytesUsed = _gcUsedMonitor.CurrentValue;
+            toReuse.SystemBytesUsed = _systemUsedMonitor.CurrentValue;
+            toReuse.TotalBytesReserved = _totalReservedMonitor.CurrentValue;
+            toReuse.TotalBytesUsed = _totalUsedMonitor.CurrentValue;
+            toReuse.GCCollectTimeNanos = _gcCollectTimeMonitor.CurrentValue;
+            return toReuse;
         }
 
         public long GetCurrentGCCollectBytes() => _gcCollectMonitor.CurrentValue;
@@ -252,7 +273,7 @@ namespace EmbraceSDK.Instrumentation
     }
     
     [Serializable]
-    public struct EmbraceMemorySnapshot
+    public class EmbraceMemorySnapshot
     {
         public long this[EmbraceMemoryMonitorId index]
         {
@@ -271,12 +292,26 @@ namespace EmbraceSDK.Instrumentation
             }
         }
         
-        public long GCBytesReserved;
-        public long GCBytesUsed;
-        public long SystemBytesUsed;
-        public long TotalBytesReserved;
-        public long TotalBytesUsed;
-        public long GCCollectTimeNanos;
+        public static (long min, long max) GetValidRange(EmbraceMemoryMonitorId id)
+        {
+            return id switch
+            {
+                EmbraceMemoryMonitorId.GCBytesReserved => (20000000L, 1000000000L), // 20MB to 1GB
+                EmbraceMemoryMonitorId.GCBytesUsed => (10000000L, 1000000000L), // 10MB to 1GB
+                EmbraceMemoryMonitorId.SystemBytesUsed => (50000000L, 1000000000L), // 50MB to 1GB
+                EmbraceMemoryMonitorId.TotalBytesReserved => (80000000L, 1000000000L), // 80MB to 1GB
+                EmbraceMemoryMonitorId.TotalBytesUsed => (60000000L, 1000000000L), // 60MB to 1GB
+                EmbraceMemoryMonitorId.GCCollectTimeNanos => (1000000L, 1000000000L), // 1ms to 1s
+                _ => throw new ArgumentOutOfRangeException(nameof(id), "Illegal EmbraceMemoryMonitorID given")
+            };
+        }
+
+        [Range(0f, 1000000000L)] public long GCBytesReserved = 150000000L; // 150MB
+        [Range(0f, 1000000000L)] public long GCBytesUsed = 100000000L; // 100MB
+        [Range(0f, 1000000000L)] public long SystemBytesUsed = 400000000L; // 400MB
+        [Range(0f, 1000000000L)] public long TotalBytesReserved = 600000000L; // 600MB
+        [Range(0f, 1000000000L)] public long TotalBytesUsed = 450000000L; // 450MB
+        [Range(1, 1000000000L)] public long GCCollectTimeNanos = 5000000L; // 5ms
     }
 
     public enum EmbraceMemoryMonitorId
