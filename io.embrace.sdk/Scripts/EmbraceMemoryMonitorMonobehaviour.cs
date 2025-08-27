@@ -98,6 +98,8 @@ namespace EmbraceSDK.Instrumentation
 
         private void Update()
         {
+            if (_embraceMemoryMonitor == null) return;
+            
             _embraceMemoryMonitor.GetSnapshotCurrent(_currentSnapshot);
             
             CheckViolation(_currentSnapshot, EmbraceMemoryMonitorId.SystemBytesUsed);
@@ -121,10 +123,8 @@ namespace EmbraceSDK.Instrumentation
             {
                 InitializeMonitoring();
             }
-            else
-            {
-                _embraceMemoryMonitor?.Start();
-            }
+            
+            _embraceMemoryMonitor?.Start();
         }
 
         public void StopMonitoring()
