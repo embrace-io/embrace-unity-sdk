@@ -14,7 +14,6 @@ namespace EmbraceSDK.Utilities
     public static class SceneLoadMeasurer
     {
         private static List<string> _sceneAllowList;
-        private static string _currentSceneLoadSpanId;
         
         /// <summary>
         /// Call this function with a list of scenes you want to measure. If this is not called, all scenes will be measured.
@@ -33,23 +32,28 @@ namespace EmbraceSDK.Utilities
                 return;
             }
 
-            if (_sceneAllowList is { Count: > 0 } && _sceneAllowList.Contains(sceneName) == false)
+            // If we have any scenes in the allow list, only measure those scenes.
+            if (_sceneAllowList is { Count: > 0 } && !_sceneAllowList.Contains(sceneName))
             {
                 return;
             }
 
-            _currentSceneLoadSpanId = Embrace.Instance.StartSpan($"Load Scene: {sceneName}", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            string spanName = $"Load Scene: {sceneName}";
+            string spanId = Embrace.Instance.StartSpan($"scene-{sceneName}-loaded", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            EmbraceSpanIdTracker.AddSpanId(spanName, spanId);
         }
 
         private static void OnSceneLoadFinished(string sceneName)
         {
-            if (string.IsNullOrEmpty(_currentSceneLoadSpanId))
+            string spanId = EmbraceSpanIdTracker.GetSpanId($"scene-{sceneName}-loaded");
+            
+            if (string.IsNullOrEmpty(spanId))
             {
                 return;
             }
             
-            Embrace.Instance.StopSpan(_currentSceneLoadSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-            _currentSceneLoadSpanId = null;
+            Embrace.Instance.StopSpan(spanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            EmbraceSpanIdTracker.RemoveSpanId($"scene-{sceneName}-loaded");
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
