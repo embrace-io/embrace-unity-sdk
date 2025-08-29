@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace EmbraceSDK.EditorView
 {
     public static class EmbraceTooltips
@@ -48,5 +50,6 @@ namespace EmbraceSDK.EditorView
         public const string StartupSpanAppReady = "When enabled, Embrace will capture a span from the time the application starts until the developer calls EmbraceStartupSpans.CallAppReady().";
         public const string StartupSpanFirstSceneLoaded = "When enabled, Embrace will capture a span from the time the application starts until the first scene is loaded.";
         public const string StartupSpanTimeToInteract = "When enabled, Embrace will capture a span from the time the application starts until the developer calls EmbraceStartupSpans.CallTimeToInteract().";
+        public const string SceneLoadSpans = "When enabled, Embrace will automatically capture spans for scene load times.";
     }
 }
