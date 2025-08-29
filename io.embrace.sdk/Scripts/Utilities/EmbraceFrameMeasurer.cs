@@ -159,6 +159,7 @@ namespace EmbraceSDK.Utilities
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
+            _reportInterval = Mathf.Max(_reportInterval, 10f); // Minimum of 10 seconds per report
         }
 
         private void Start()
