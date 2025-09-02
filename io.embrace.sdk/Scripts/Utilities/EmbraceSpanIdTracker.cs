@@ -11,6 +11,11 @@ namespace EmbraceSDK.Utilities
             return _nameToSpanId.GetValueOrDefault(name);
         }
         
+        public static bool HasSpanId(string name)
+        {
+            return _nameToSpanId.ContainsKey(name);
+        }
+        
         public static void AddSpanId(string name, string spanId)
         {
             _nameToSpanId[name] = spanId;
