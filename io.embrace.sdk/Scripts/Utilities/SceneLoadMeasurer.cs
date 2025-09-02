@@ -38,8 +38,15 @@ namespace EmbraceSDK.Utilities
                 return;
             }
 
-            string spanName = $"Load Scene: {sceneName}";
-            string spanId = Embrace.Instance.StartSpan($"scene-{sceneName}-loaded", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            string spanName = $"scene-{sceneName}-loaded";
+            
+            if (EmbraceSpanIdTracker.HasSpanId(spanName))
+            {
+                Debug.LogWarning($"A scene load span for scene '{sceneName}' is already in progress. This may indicate that a previous scene of the same name load did not finish properly.");
+                return;
+            }
+            
+            string spanId = Embrace.Instance.StartSpan(spanName, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
             EmbraceSpanIdTracker.AddSpanId(spanName, spanId);
         }
 
