@@ -45,14 +45,14 @@ namespace Embrace.Tools
         {
             base.OnGUI();
 
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
-            GUILayout.Label("Debugger Tool", styleConfigs.labelHeaderStyle.guiStyle);
-            GUILayout.Label("version 1.2.0", styleConfigs.headerTextStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
+            GUILayout.Label("Debugger Tool", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
+            GUILayout.Label("version 1.2.0", StaticStyleConfigs.HeaderTextStyle.guiStyle);
             GUILayout.EndVertical();
 
             tabs = GUILayout.Toolbar(tabs, new string[] { "Sandbox", "Commonly Used" });
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
             switch (tabs)
             {
                 case 0:
@@ -69,16 +69,16 @@ namespace Embrace.Tools
 
         private void SandBox()
         {
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Create json file", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Create json file", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             indexJsonFileType = EditorGUILayout.Popup(indexJsonFileType, new string[] { "None", "EmbraceSdkInfo", "PublisherData" });
             if (GUILayout.Button("Create"))
             {
                 CreateJsonFile(indexJsonFileType);
             }
 
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Show filepath:", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Show filepath:", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             if (GUILayout.Button("path"))
             {
                 Debug.Log(EditorApplication.applicationContentsPath);
@@ -87,7 +87,7 @@ namespace Embrace.Tools
 
         private void Common()
         {
-            GUILayout.Label("Toggle Editor Mode", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Label("Toggle Editor Mode", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             if (developerMode)
             {
                 if (GUILayout.Button("Disable Editor Mode"))
@@ -115,15 +115,15 @@ namespace Embrace.Tools
                 }
             }
 
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Open Welcome Editor", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Open Welcome Editor", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             if (GUILayout.Button("Welcome Editor Window"))
             {
                 WelcomeEditorWindow.Init();
             }
 
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Start Installation process", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Start Installation process", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             if (GUILayout.Button("Install"))
             {
                 Installation.InitializeOnLoad();

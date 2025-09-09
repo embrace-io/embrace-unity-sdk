@@ -19,54 +19,56 @@ namespace EmbraceSDK.EditorView
         }
 
         private static float warningtimer;
-        private static StyleConfigs styleConfigs;
-
-        public static void Setup()
-        {
-            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
-        }
 
         [UnityEngine.TestTools.ExcludeFromCoverage]
         public static void Alert(string message, EditorWindow window, AlertType type, float size = 55)
         {
-            if (styleConfigs == null) Setup();
-            SetColor(type);
+            var alertBoxStyle = GetAlertBoxStyle(type);
 
             warningtimer -= Time.deltaTime;
             if (warningtimer > 0) return;
 
-            GUILayout.BeginArea(new Rect(0, 0, window.maxSize.x, size), styleConfigs.alertBox.guiStyle);
+            GUILayout.BeginArea(new Rect(0, 0, window.maxSize.x, size), alertBoxStyle.guiStyle);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("x", styleConfigs.labelHeaderStyle.guiStyle))
+            if (GUILayout.Button("x", StaticStyleConfigs.LabelHeaderStyle.guiStyle))
             {
                 warningtimer = 2;
             }
             GUILayout.Space(20);
-            GUILayout.Label(type.ToString() + ": " + message, styleConfigs.alertTextStyle.guiStyle);
+            GUILayout.Label(type.ToString() + ": " + message, StaticStyleConfigs.AlertTextStyle.guiStyle);
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
         }
 
 
-        private static void SetColor(AlertType type)
+        private static StaticBoxStyleConfig GetAlertBoxStyle(AlertType type)
         {
+            var alertBoxStyle = new StaticBoxStyleConfig
+            {
+                margin = StaticStyleConfigs.AlertBox.margin,
+                padding = StaticStyleConfigs.AlertBox.padding
+            };
+
             switch (type)
             {
                 case AlertType.Error:
-                    styleConfigs.alertBox.background = new Color(0.9647059f, 0.3921569f, 0.3490196f);
+                    alertBoxStyle.background = new Color(0.9647059f, 0.3921569f, 0.3490196f);
                     break;
                 case AlertType.Success:
-                    styleConfigs.alertBox.background = new Color(0.1843137f, 0.7254902f, 0.5254902f);
+                    alertBoxStyle.background = new Color(0.1843137f, 0.7254902f, 0.5254902f);
                     break;
                 case AlertType.Info:
-                    styleConfigs.alertBox.background = new Color(0.2784314f, 0.6588235f, 0.9607844f);
+                    alertBoxStyle.background = new Color(0.2784314f, 0.6588235f, 0.9607844f);
                     break;
                 case AlertType.Warning:
-                    styleConfigs.alertBox.background = new Color(1, 0.6666667f, 0.172549f);
+                    alertBoxStyle.background = new Color(1, 0.6666667f, 0.172549f);
                     break;
                 default:
+                    alertBoxStyle.background = StaticStyleConfigs.AlertBox.background;
                     break;
             }
+
+            return alertBoxStyle;
         }
     }
 }

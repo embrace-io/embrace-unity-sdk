@@ -11,7 +11,6 @@ namespace EmbraceSDK.EditorView
     internal class EmbraceEditorWindow : EditorWindow
     {
         protected static EmbraceSdkInfo sdkInfo;
-        protected static StyleConfigs styleConfigs;
 
         protected static Environments environments;
         protected static EmbraceConfiguration androidConfiguration;
@@ -33,7 +32,6 @@ namespace EmbraceSDK.EditorView
         {
             TextAsset infoFile = Resources.Load<TextAsset>("Info/EmbraceSdkInfo");
             sdkInfo = JsonUtility.FromJson<EmbraceSdkInfo>(infoFile.text);
-            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
         }
 
         private static void ResetEnvironment()
