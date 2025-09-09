@@ -36,10 +36,6 @@ All are opt-in and low overhead. Please try them out!
 
 - Updated Embrace Android SDK dependency to 7.5.0
 
-- Added support for custom symbols path on Android platforms
-- Auto Instrumentation for: tap capture and frames-per-second logging. Both are opt-in and low overhead. Please try them out!
-- Updated Embrace Android SDK dependency to 7.5.0
-
 ## 2.5.0
 Embrace Android SDK Version: [7.3.0](https://embrace.io/docs/android/changelog/#730)
 Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
