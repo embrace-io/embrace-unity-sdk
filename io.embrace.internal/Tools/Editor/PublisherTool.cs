@@ -88,9 +88,9 @@ namespace Embrace.Tools
         public override void OnGUI()
         {
             base.OnGUI();
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
-            GUILayout.Label("Publisher Tool", styleConfigs.labelHeaderStyle.guiStyle);
-            GUILayout.Label("version 1.4.0", styleConfigs.headerTextStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
+            GUILayout.Label("Publisher Tool", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
+            GUILayout.Label("version 1.4.0", StaticStyleConfigs.HeaderTextStyle.guiStyle);
             GUILayout.EndVertical();
             tabs = GUILayout.Toolbar(tabs, tabsOptions);
 
@@ -110,11 +110,11 @@ namespace Embrace.Tools
             }
 
             GUILayout.FlexibleSpace();
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
-            GUILayout.Label("Release Notes", styleConfigs.labelHeaderStyle.guiStyle);
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
+            GUILayout.Label("Release Notes", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Unity Notes: ", styleConfigs.headerTextStyle.guiStyle);
+            GUILayout.Label("Unity Notes: ", StaticStyleConfigs.HeaderTextStyle.guiStyle);
             if (GUILayout.Button("Notion"))
             {
                 Application.OpenURL("https://www.notion.so/embraceio/Releasing-Unity-SDK-5a92be518f8c431b8fc70fc04290c27a");
@@ -130,25 +130,25 @@ namespace Embrace.Tools
 
         private void Info()
         {
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("SDK Info", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("SDK Info", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Label("SDK Version");
             sdkInfo.version = EditorGUILayout.TextField(sdkInfo.version);
             GUILayout.EndVertical();
 
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("Welcome Window", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("Welcome Window", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Space(10);
-            GUILayout.Label("Announcement Title", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Label("Announcement Title", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             sdkInfo.wAnnouncementTitle = EditorGUILayout.TextArea(sdkInfo.wAnnouncementTitle);
             GUILayout.Space(10);
-            GUILayout.Label("Announcement Message", styleConfigs.defaultTextStyle.guiStyle);
+            GUILayout.Label("Announcement Message", StaticStyleConfigs.DefaultTextStyle.guiStyle);
             sdkInfo.wAnnouncementMessage = EditorGUILayout.TextArea(sdkInfo.wAnnouncementMessage, textAreaStyle);
             GUILayout.EndVertical();
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("Docs", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("Docs", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Label("Changelog");
             publisherData.changelogMessage = EditorGUILayout.TextArea(publisherData.changelogMessage, textAreaStyle);
             GUILayout.EndVertical();
@@ -156,8 +156,8 @@ namespace Embrace.Tools
 
         private void BuildAndPublish()
         {
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("Build SDK", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("Build SDK", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             buildOptionsIndex = EditorGUILayout.Popup("Build Type", buildOptionsIndex, buildOptions);
             if (buildOptionsIndex == 1)
             {
@@ -201,8 +201,8 @@ namespace Embrace.Tools
             {
                 EditorGUILayout.HelpBox("You need to give a path to your embrace-docs repo.", MessageType.Warning);
             }
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("Docs repo path", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("Docs repo path", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Label("path");
             publisherData.docRepoPath = EditorGUILayout.TextArea(publisherData.docRepoPath);
             if (GUILayout.Button("Update path"))
@@ -230,8 +230,8 @@ namespace Embrace.Tools
                 AWScredentialStatusTimer -= Time.deltaTime;
             }
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("AWS Credentials", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("AWS Credentials", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Label("AWS Access Key");
             credentials.awsAccessKey = EditorGUILayout.PasswordField(credentials.awsAccessKey);
             GUILayout.Label("AWS Secret Key");
@@ -272,8 +272,8 @@ namespace Embrace.Tools
                 nexusStatusTimer -= Time.deltaTime;
             }
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("Nexus", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("Nexus", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
             GUILayout.Label("Endpoint for npm API");
             credentials.npmAPIEndpoint = EditorGUILayout.TextField(credentials.npmAPIEndpoint);
             if (GUILayout.Button("Update Endpoint"))

@@ -248,17 +248,6 @@ namespace EmbraceSDK.Tests
         }
 
         /// <summary>
-        /// Test that setting up the GUILayoutUtil does not throw any errors.
-        /// </summary>
-        [Test]
-        public void GUILayoutUtilSetupDoesNotThrow()
-        {
-            GUILayoutUtil.Setup();
-
-            LogAssert.NoUnexpectedReceived();
-        }
-
-        /// <summary>
         /// Test that the GettingStartedEditorWindow.ConfigValidator adds configs to the validation list when appropriate.
         /// </summary>
         [Test]

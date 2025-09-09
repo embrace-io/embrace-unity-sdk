@@ -8,23 +8,6 @@ namespace EmbraceSDK.Tests
     [TestFixture]
     public class GUIContentLibraryTests
     {
-        private StyleConfigs styleConfigs;
-        
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            // We should setup the styleConfigs here.
-            // We're not using mocks because there are a number of internal dependencies within Unity APIs that have certain requirements and expectations.
-            // Basically: mock style configs interface with the Unity APIs somewhere in the various StyleConfigs and this throw unexpected exceptions.
-            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            Resources.UnloadAsset(styleConfigs);
-        }
-
         [Test]
         public void GetContentTuple_ValidIdentifier_ReturnsTuple()
         {
@@ -32,7 +15,7 @@ namespace EmbraceSDK.Tests
             var contentLibrary = new GUIContentLibrary();
 
             // Act
-            var result = contentLibrary.GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId, styleConfigs);
+            var result = contentLibrary.GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId);
 
             // Assert
             Assert.IsNotNull(result);
@@ -49,7 +32,7 @@ namespace EmbraceSDK.Tests
             // Act & Assert
             Assert.Throws<ArgumentException>(() =>
             {
-                contentLibrary.GetContentTuple((GUIContentLibrary.GUIContentIdentifier)100, styleConfigs);
+                contentLibrary.GetContentTuple((GUIContentLibrary.GUIContentIdentifier)100);
             });
         }
 
@@ -63,7 +46,7 @@ namespace EmbraceSDK.Tests
             foreach (GUIContentLibrary.GUIContentIdentifier id in Enum.GetValues(typeof(GUIContentLibrary.GUIContentIdentifier)))
             {
                 // Assert
-                var result = contentLibrary.GetContentTuple(id, styleConfigs);
+                var result = contentLibrary.GetContentTuple(id);
                 Assert.IsNotNull(result);
             }
         }
@@ -76,11 +59,10 @@ namespace EmbraceSDK.Tests
 
             // Act --- This takes advantage of the Lazy Loading paradigm internal to the library
             contentLibrary.GetContentTuple(
-                GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId,
-                styleConfigs);
+                GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId);
 
             // Assert
-            var result = contentLibrary.GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId, styleConfigs);
+            var result = contentLibrary.GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId);
             Assert.IsNotNull(result);
         }
 
@@ -94,7 +76,7 @@ namespace EmbraceSDK.Tests
             Assert.Throws<ArgumentException>(() =>
             {
                 // This takes advantage of the Lazy Loading paradigm internal to the library
-                contentLibrary.GetContentTuple((GUIContentLibrary.GUIContentIdentifier)100, styleConfigs);
+                contentLibrary.GetContentTuple((GUIContentLibrary.GUIContentIdentifier)100);
             });
         }
     }

@@ -76,7 +76,7 @@ namespace EmbraceSDK.EditorView
             {
                 if (_managerTitle == null)
                 {
-                    _managerTitle = new GUIStyle(styleConfigs.defaultTextStyle.guiStyle);
+                    _managerTitle = new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle);
                     _managerTitle.fontSize = 16;
                     _managerTitle.alignment = TextAnchor.MiddleLeft;
                 }
@@ -202,8 +202,8 @@ namespace EmbraceSDK.EditorView
         private void OnManagerGUI()
         {
 
-            if (styleConfigs == null) EmbraceEditorWindow.Setup();
-            GUILayout.BeginArea(new Rect(MenuWidth + 2, 0, position.width - MenuWidth, position.height), styleConfigs.clearBoxStyle.guiStyle);
+            if (!isSetup) EmbraceEditorWindow.Setup();
+            GUILayout.BeginArea(new Rect(MenuWidth + 2, 0, position.width - MenuWidth, position.height), StaticStyleConfigs.ClearBoxStyle.guiStyle);
             GUILayout.Label(_managerNames[_menuSelection], ManagerTitle);
 
             // Changing some settings while recompiling can lead to editor instability, so we disable interaction

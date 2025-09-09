@@ -73,7 +73,7 @@ namespace EmbraceSDK.Editor.Weaver
 
             _excludedAssembliesList = new ReorderableList(_weaverSettings.excludedAssemblyNames, typeof(string), true, true, true, true);
             _excludedAssembliesList.drawHeaderCallback += rect =>
-                EditorGUI.LabelField(rect, "Excluded Assemblies", styleConfigs.headerTextStyle.guiStyle);
+                EditorGUI.LabelField(rect, "Excluded Assemblies", StaticStyleConfigs.HeaderTextStyle.guiStyle);
             _excludedAssembliesList.drawElementCallback += OnDrawExcludedAssemblyListElement;
             _excludedAssembliesList.onAddCallback += l => l.list.Add(string.Empty);
         }
@@ -83,7 +83,7 @@ namespace EmbraceSDK.Editor.Weaver
             var originalLabelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = GetLabelWidth();
 
-            EditorGUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
+            EditorGUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
 
             _defineUtil.GUILayoutSetting(_weavingEnabledSetting);
 
@@ -184,7 +184,7 @@ namespace EmbraceSDK.Editor.Weaver
 
         private float GetLabelWidth()
         {
-            var guiStyle = styleConfigs.defaultToggleStyle.guiStyle;
+            var guiStyle = StaticStyleConfigs.DefaultToggleStyle.guiStyle;
             return guiStyle.CalcSize(new GUIContent(_weavingEnabledSetting.guiContent)).x;
         }
     }
