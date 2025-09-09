@@ -9,7 +9,6 @@ namespace EmbraceSDK.EditorView
     /// </summary>
     public class DataDirectoryWarningWindow : EditorWindow
     {
-        private StyleConfigs _styleConfigs;
         private GUIStyle _messageStyle;
         private GUIStyle _boldStyle;
 
@@ -37,13 +36,11 @@ namespace EmbraceSDK.EditorView
 
         private void OnFocus()
         {
-            _styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
-
-            _messageStyle = new GUIStyle(_styleConfigs.defaultTextStyle.guiStyle);
+            _messageStyle = new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle);
             _messageStyle.wordWrap = true;
             _messageStyle.alignment = TextAnchor.MiddleCenter;
 
-            _boldStyle = new GUIStyle(_styleConfigs.boldTextStyle.guiStyle);
+            _boldStyle = new GUIStyle(StaticStyleConfigs.BoldTextStyle.guiStyle);
             _boldStyle.wordWrap = true;
             _boldStyle.alignment = TextAnchor.MiddleCenter;
 
@@ -54,30 +51,30 @@ namespace EmbraceSDK.EditorView
         [UnityEngine.TestTools.ExcludeFromCoverage]
         public void OnGUI()
         {
-            EditorGUILayout.BeginVertical(_styleConfigs.darkBoxStyle.guiStyle);
+            EditorGUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
 
             EditorGUILayout.TextArea(_message1, _messageStyle);
-            GUILayout.Space(_styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
             EditorGUILayout.TextArea(_message2, _boldStyle);
-            GUILayout.Space(_styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             EditorGUILayout.BeginHorizontal();
-            GUILayout.Space(_styleConfigs.space * 2f);
+            GUILayout.Space(StaticStyleConfigs.Space * 2f);
 
-            if (GUILayout.Button("Cancel", _styleConfigs.defaultButtonStyle.guiStyle))
+            if (GUILayout.Button("Cancel", StaticStyleConfigs.DefaultButtonStyle.guiStyle))
             {
                 Close();
             }
 
             GUILayout.FlexibleSpace();
 
-            if (GUILayout.Button("Continue", _styleConfigs.defaultButtonStyle.guiStyle))
+            if (GUILayout.Button("Continue", StaticStyleConfigs.DefaultButtonStyle.guiStyle))
             {
                 _onContinue?.Invoke();
                 Close();
             }
 
-            GUILayout.Space(_styleConfigs.space * 2f);
+            GUILayout.Space(StaticStyleConfigs.Space * 2f);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();

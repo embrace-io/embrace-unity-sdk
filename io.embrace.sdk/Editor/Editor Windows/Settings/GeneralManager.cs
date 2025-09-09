@@ -199,15 +199,15 @@ namespace EmbraceSDK.EditorView
 
         public override void OnGUI()
         {
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             DrawScriptingSymbolsOptions();
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             DrawEmbraceDirectoryField();
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("Reset To Default"))
@@ -222,8 +222,8 @@ namespace EmbraceSDK.EditorView
             var originalLabelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = GetLabelWidth() + INDENT_WIDTH; // Add INDENT_WIDTH to account for advanced settings indent
 
-            EditorGUILayout.LabelField(new GUIContent("Scripting Define Symbols", EmbraceTooltips.ScriptingDefineSymbols), styleConfigs.boldTextStyle.guiStyle);
-            GUILayout.BeginVertical(styleConfigs.dividerBoxStyle.guiStyle);
+            EditorGUILayout.LabelField(new GUIContent("Scripting Define Symbols", EmbraceTooltips.ScriptingDefineSymbols), StaticStyleConfigs.BoldTextStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.DividerBoxStyle.guiStyle);
 
             // Main Settings
             _defineUtil.GUILayoutSetting(_developerModeSetting);
@@ -262,9 +262,9 @@ namespace EmbraceSDK.EditorView
 
         private void DrawEmbraceDirectoryField()
         {
-            EditorGUILayout.LabelField(new GUIContent("Embrace Data Directory", EmbraceTooltips.DataDir), styleConfigs.boldTextStyle.guiStyle);
+            EditorGUILayout.LabelField(new GUIContent("Embrace Data Directory", EmbraceTooltips.DataDir), StaticStyleConfigs.BoldTextStyle.guiStyle);
 
-            _savedDataDir = EditorGUILayout.TextField(_savedDataDir, styleConfigs.defaultTextFieldStyle.guiStyle);
+            _savedDataDir = EditorGUILayout.TextField(_savedDataDir, StaticStyleConfigs.DefaultTextFieldStyle.guiStyle);
 
             if (_savedDataDir != AssetDatabaseUtil.EmbraceDataDirectory)
             {
@@ -332,7 +332,7 @@ namespace EmbraceSDK.EditorView
 
             settingsItems.AddRange(_advancedSettings);
 
-            var guiStyle = styleConfigs.defaultToggleStyle.guiStyle;
+            var guiStyle = StaticStyleConfigs.DefaultToggleStyle.guiStyle;
             var longestLabelWidth = float.MinValue;
             foreach (var item in settingsItems)
             {

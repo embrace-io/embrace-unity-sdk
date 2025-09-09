@@ -42,7 +42,7 @@ namespace EmbraceSDK.EditorView
 
         private static (GUIContent content, GUIStyle style) GetContentTuple(GUIContentLibrary.GUIContentIdentifier identifier)
         {
-            return guiContentLibrary.GetContentTuple(identifier, styleConfigs);
+            return guiContentLibrary.GetContentTuple(identifier);
         }
 
         [MenuItem("Tools/Embrace/Getting Started")]
@@ -127,12 +127,12 @@ namespace EmbraceSDK.EditorView
         [UnityEngine.TestTools.ExcludeFromCoverage]
         private void Header()
         {
-            GUILayout.BeginHorizontal(styleConfigs.darkBoxStyle.guiStyle, GUILayout.Height(90));
+            GUILayout.BeginHorizontal(StaticStyleConfigs.DarkBoxStyle.guiStyle, GUILayout.Height(90));
             GUI.DrawTexture(new Rect(10, 10, 251, 70), logo, ScaleMode.ScaleToFit, true,
                 logo.width / (float)logo.height);
             GUILayout.FlexibleSpace();
             GUILayout.BeginVertical();
-            GUILayout.Label("Embrace " + sdkInfo.version, styleConfigs.headerTextStyle.guiStyle);
+            GUILayout.Label("Embrace " + sdkInfo.version, StaticStyleConfigs.HeaderTextStyle.guiStyle);
             if (GUILayout.Button("View Changelog"))
             {
                 Application.OpenURL("https://embrace.io/docs/unity/changelog/");
@@ -141,16 +141,16 @@ namespace EmbraceSDK.EditorView
             GUILayout.EndVertical();
             GUILayout.EndHorizontal();
 
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Getting Started", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Getting Started", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
         }
 
         [UnityEngine.TestTools.ExcludeFromCoverage]
         private void Configuration()
         {
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle, GUILayout.Height(160));
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle, GUILayout.Height(160));
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Configuration", styleConfigs.labelTitleStyle.guiStyle);
+            GUILayout.Label("Configuration", StaticStyleConfigs.LabelTitleStyle.guiStyle);
 
             if (environments == null)
             {
@@ -160,7 +160,7 @@ namespace EmbraceSDK.EditorView
             if (environments.environmentConfigurations.Count != 0)
             {
                 GUILayout.BeginVertical();
-                GUILayout.Label("Selected Configuration:", styleConfigs.defaultTextStyle.guiStyle);
+                GUILayout.Label("Selected Configuration:", StaticStyleConfigs.DefaultTextStyle.guiStyle);
 
                 environments.activeEnvironmentIndex = EditorGUILayout.Popup(environments.activeEnvironmentIndex,
                     environments.environmentConfigurations.Select(e => e.name).ToArray());
@@ -175,7 +175,7 @@ namespace EmbraceSDK.EditorView
             }
 
             GUILayout.EndHorizontal();
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
             var selectedEnvironment = GUILayout.Toolbar(environments.activeDeviceIndex, Environments.DeviceStrings);
             if (selectedEnvironment != environments.activeDeviceIndex)
             {
@@ -187,7 +187,7 @@ namespace EmbraceSDK.EditorView
             switch (environments.activeDeviceIndex)
             {
                 case 0: // Android
-                    GUILayout.Space(styleConfigs.space);
+                    GUILayout.Space(StaticStyleConfigs.Space);
                     
                     if (!Validator.ValidateID(androidConfiguration.AppId))
                     {
@@ -206,7 +206,7 @@ namespace EmbraceSDK.EditorView
                         InsertAPITokenFetchBlock();
                     }
 
-                    GUILayout.Space(styleConfigs.space);
+                    GUILayout.Space(StaticStyleConfigs.Space);
                     GUILayout.BeginHorizontal();
                     GUILayout.Label(new GUIContent(
                         GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAPIToken).content),
@@ -240,7 +240,7 @@ namespace EmbraceSDK.EditorView
                     ClearToolbar(0);
                     break;
                 case 1: // iOS
-                    GUILayout.Space(styleConfigs.space);
+                    GUILayout.Space(StaticStyleConfigs.Space);
                     
                     if (!Validator.ValidateID(iOSConfiguration.AppId))
                     {
@@ -253,7 +253,7 @@ namespace EmbraceSDK.EditorView
                         GetContentTuple(GUIContentLibrary.GUIContentIdentifier.GettingStartedLabelAppId).style);
                     GUILayout.EndHorizontal();
                     
-                    GUILayout.Space(styleConfigs.space);
+                    GUILayout.Space(StaticStyleConfigs.Space);
                     
                     GUILayout.BeginHorizontal();
                     GUILayout.Label(
@@ -262,7 +262,7 @@ namespace EmbraceSDK.EditorView
                     iOSConfiguration.AppId = EditorGUILayout.TextField(iOSConfiguration.AppId);
                     GUILayout.EndHorizontal();
 
-                    GUILayout.Space(styleConfigs.space);
+                    GUILayout.Space(StaticStyleConfigs.Space);
                     
                     if (!Validator.ValidateToken(iOSConfiguration.SymbolUploadApiToken))
                     {
@@ -302,7 +302,7 @@ namespace EmbraceSDK.EditorView
                     break;
             }
             
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
             var completeVspRegistration = GUILayout.Button("Complete SDK Initialization");
             if (completeVspRegistration)
             {
@@ -323,7 +323,7 @@ namespace EmbraceSDK.EditorView
                 }
             }
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
             var clicked = GUILayout.Button("Customize SDK Configuration");
             if (clicked)
             {
@@ -337,15 +337,15 @@ namespace EmbraceSDK.EditorView
         [UnityEngine.TestTools.ExcludeFromCoverage]
         private void Demo()
         {
-            GUILayout.Space(styleConfigs.space);
-            GUILayout.Label("Samples", styleConfigs.labelHeaderStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
+            GUILayout.Label("Samples", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
 
-            GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-            GUILayout.Label("SDK Demo", styleConfigs.labelTitleStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+            GUILayout.Label("SDK Demo", StaticStyleConfigs.LabelTitleStyle.guiStyle);
             GUILayout.Label("This demo showcases examples of how to interface with the Embrace SDK.",
-                new GUIStyle(styleConfigs.defaultTextStyle.guiStyle));
+                new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle));
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Import into Project"))
@@ -358,7 +358,7 @@ namespace EmbraceSDK.EditorView
                 AssetDatabase.Refresh();
             }
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
             GUILayout.EndHorizontal();
 
             GUILayout.EndVertical();
@@ -368,9 +368,9 @@ namespace EmbraceSDK.EditorView
         private void Footer()
         {
             GUILayout.FlexibleSpace();
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
-            GUILayout.Label("Online Resources", styleConfigs.labelHeaderStyle.guiStyle);
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
+            GUILayout.Label("Online Resources", StaticStyleConfigs.LabelHeaderStyle.guiStyle);
+            GUILayout.Space(StaticStyleConfigs.Space);
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Docs"))
             {
@@ -442,10 +442,10 @@ namespace EmbraceSDK.EditorView
         [UnityEngine.TestTools.ExcludeFromCoverage]
         private void Divider()
         {
-            GUILayout.BeginHorizontal(styleConfigs.dividerBoxStyle.guiStyle);
+            GUILayout.BeginHorizontal(StaticStyleConfigs.DividerBoxStyle.guiStyle);
             GUILayout.EndHorizontal();
 
-            GUILayout.BeginHorizontal(styleConfigs.highlightBoxStyle.guiStyle);
+            GUILayout.BeginHorizontal(StaticStyleConfigs.HighlightBoxStyle.guiStyle);
             GUILayout.EndHorizontal();
         }
 
@@ -517,13 +517,13 @@ namespace EmbraceSDK.EditorView
         private static void InsertFetchBlock(string warningMessage, string buttonText, string buttonTooltip)
         {
             GUILayout.Label(new GUIContent(warningMessage),
-                new GUIStyle(styleConfigs.warningBoxStyle.guiStyle)
+                new GUIStyle(StaticStyleConfigs.WarningBoxStyle.guiStyle)
                 {
                     alignment = TextAnchor.MiddleCenter, normal =
                         new GUIStyleState()
                         {
                             textColor = new Color(220f/ 255f, 93f/255f, 105f/255f, 1),
-                            background = styleConfigs.defaultTextStyle.guiStyle.normal.background,
+                            background = StaticStyleConfigs.DefaultTextStyle.guiStyle.normal.background,
                         }
                 });
             if (GUILayout.Button(new GUIContent(buttonText, buttonTooltip)))

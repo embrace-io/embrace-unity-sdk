@@ -11,7 +11,6 @@ namespace EmbraceSDK.EditorView
     internal abstract class BaseSettingsManager : ISettingsWindow
     {
         protected MainSettingsEditor mainSettingsEditor;
-        protected StyleConfigs styleConfigs;
         protected Environments environments;
         protected EmbraceConfiguration androidConfiguration;
         protected EmbraceConfiguration iOSConfiguration;
@@ -25,7 +24,6 @@ namespace EmbraceSDK.EditorView
         /// </summary>
         public virtual void Initialize(MainSettingsEditor mainSettingsEditor)
         {
-            styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
             this.mainSettingsEditor = mainSettingsEditor;
             LoadConfigurations();
         }
