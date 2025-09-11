@@ -22,10 +22,10 @@ namespace EmbraceSDK.Tests
             
             SceneManager.LoadScene(1);
             
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(2.25f);
             
-            onSceneLoadStarted.Received().Invoke("");
-            onSceneLoadFinished.Received().Invoke("");
+            onSceneLoadStarted.Received().Invoke("scene-build-index-1");
+            onSceneLoadFinished.Received().Invoke("Breadcrumb");
         }
     }
     #endif
