@@ -70,12 +70,6 @@ runs:
       run: |
         cd ./build/test-results
         cat ./*
-    - name: Render Test Report
-      uses: dorny/test-reporter@v2
-      with:
-        name: ${{ inputs.editor_version }} Tests
-        path: ./build/test-results/*.xml
-        reporter: dotnet-nunit
     - name: Output Test Logs
       shell: bash
       run: |
