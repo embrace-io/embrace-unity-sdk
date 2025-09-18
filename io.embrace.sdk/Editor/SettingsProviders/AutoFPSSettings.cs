@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using EmbraceSDK.EditorView;
 using UnityEditor;
+using UnityEditor.Compilation;
 using UnityEngine;
 
 namespace EmbraceSDK.Editor
@@ -96,6 +97,8 @@ namespace EmbraceSDK.Editor
             EmbraceProjectSettings.Project.SetValue(TargetFramerateKey, settings.targetFramerate, false);
             EmbraceProjectSettings.Project.SetValue(ReportIntervalKey, settings.reportInterval, false);
             EmbraceProjectSettings.Project.Save();
+            
+            CompilationPipeline.RequestScriptCompilation();
         }
     }
 }
