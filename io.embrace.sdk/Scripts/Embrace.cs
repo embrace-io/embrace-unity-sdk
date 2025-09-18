@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using EmbraceSDK.Editor;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
+using UnityEditor.Compilation;
 using UnityEngine.SceneManagement;
 
 namespace EmbraceSDK
