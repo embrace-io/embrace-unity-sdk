@@ -60,7 +60,7 @@ namespace EmbraceSDK.Utilities
             }
             else
             {
-                Debug.LogWarning("EmbraceFrameMeasurer is already loaded");
+                Debug.LogWarning("EmbraceFrameMeasurer already exists in the scene. Duplicate instances are not allowed.");
             }
         }
 
