@@ -8,6 +8,8 @@ namespace EmbraceSDK.Editor
 {
     internal static class AutoFPSSettingsIMGUI
     {
+        private static bool _shouldApply = false;
+        
         [SettingsProvider]
         public static SettingsProvider CreateAutoFPSSettingsProvider()
         {
@@ -43,7 +45,19 @@ namespace EmbraceSDK.Editor
                     
                     if (shouldSave)
                     {
+                        _shouldApply = true;
                         AutoFPSSettings.SaveFPSSettings(settings);
+                    }
+
+                    EditorGUILayout.HelpBox("Always apply changes when done editing configs.", MessageType.Info);
+                    if (_shouldApply)
+                    {
+                        EditorGUILayout.HelpBox("You have unsaved changes. Please apply them to take effect.", MessageType.Warning);
+                    }
+                    if (GUILayout.Button("Apply Changes to Project"))
+                    {
+                        _shouldApply = false;
+                        CompilationPipeline.RequestScriptCompilation();
                     }
                     #else
                     EditorGUILayout.HelpBox("Auto-Instrumentation of FPS capture is currently disabled. To enable it, opt in using the Embrace General Settings Menu.", MessageType.Warning);
@@ -97,8 +111,6 @@ namespace EmbraceSDK.Editor
             EmbraceProjectSettings.Project.SetValue(TargetFramerateKey, settings.targetFramerate, false);
             EmbraceProjectSettings.Project.SetValue(ReportIntervalKey, settings.reportInterval, false);
             EmbraceProjectSettings.Project.Save();
-            
-            CompilationPipeline.RequestScriptCompilation();
         }
     }
 }

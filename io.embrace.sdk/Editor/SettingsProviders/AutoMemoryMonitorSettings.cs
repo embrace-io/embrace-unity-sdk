@@ -9,6 +9,7 @@ namespace EmbraceSDK.Editor
 {
     internal static class AutoMemoryMonitorSettingsIMGUI
     {
+        private static bool _shouldApply = false;
         [SettingsProvider]
         public static SettingsProvider CreateAutoMemoryMonitorSettingsProvider()
         {
@@ -41,6 +42,17 @@ namespace EmbraceSDK.Editor
                     var newBatchIntervalSeconds = Mathf.Clamp(
                         EditorGUILayout.FloatField("Batch Interval (seconds)", settings.BatchIntervalSeconds),
                         AutoMemoryMonitorSettings.BatchIntervalSecondsRange.min, AutoMemoryMonitorSettings.BatchIntervalSecondsRange.max);
+                    
+                    EditorGUILayout.HelpBox("Always apply changes when done editing configs.", MessageType.Info);
+                    if (_shouldApply)
+                    {
+                        EditorGUILayout.HelpBox("You have unsaved changes. Please apply them to take effect.", MessageType.Warning);
+                    }
+                    if (GUILayout.Button("Apply Changes to Project", GUILayout.Height(30)))
+                    {
+                        _shouldApply = false;
+                        CompilationPipeline.RequestScriptCompilation();
+                    }
                     
                     bool shouldSave = false;
                     
@@ -88,6 +100,7 @@ namespace EmbraceSDK.Editor
                     
                     if (shouldSave)
                     {
+                        _shouldApply = true;
                         AutoMemoryMonitorSettings.SaveAutoMemoryMonitorSettings(settings);
                     }
                     #else
@@ -194,8 +207,6 @@ namespace EmbraceSDK.Editor
             EmbraceProjectSettings.Project.SetValue(GCCollectTimeNanosKey, settings.GCCollectTimeMillis * (long) 1e6, false);
             EmbraceProjectSettings.Project.SetValue(BatchIntervalSecondsKey, settings.BatchIntervalSeconds, false);
             EmbraceProjectSettings.Project.Save();
-            
-            CompilationPipeline.RequestScriptCompilation();
         }
     }
 }
