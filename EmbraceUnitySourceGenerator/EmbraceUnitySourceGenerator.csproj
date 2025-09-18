@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8</LangVersion>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -19,9 +19,5 @@
 
   <ItemGroup>
     <EmbeddedResource Include="../io.embrace.internal/Scripts/SourceGeneratorTemplates/*.cs" LinkBase="Templates/" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Analyzer Include="$(OutputPath)$(AssemblyName).dll" />
   </ItemGroup>
 </Project>

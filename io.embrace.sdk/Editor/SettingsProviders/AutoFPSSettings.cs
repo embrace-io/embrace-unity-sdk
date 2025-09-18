@@ -46,7 +46,7 @@ namespace EmbraceSDK.Editor
                         AutoFPSSettings.SaveFPSSettings(settings);
                     }
                     #else
-                    EditorGUILayout.HelpBox("AutoFPS capture is currently disabled. To enable it, please enable it in the Embrace General Settings Menu.", MessageType.Warning);
+                    EditorGUILayout.HelpBox("Auto-Instrumentation of FPS capture is currently disabled. To enable it, opt in using the Embrace General Settings Menu.", MessageType.Warning);
                     #endif
                 },
 

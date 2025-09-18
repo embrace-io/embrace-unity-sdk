@@ -2,30 +2,31 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.CodeAnalysis;
 
-namespace EmbraceUnitySourceGenerator;
-
-[Generator]
-public class AutoInstrGenerator_EmbraceProfilerRecorderHelper : ISourceGenerator
+namespace EmbraceUnitySourceGenerator
 {
-    public void Initialize(GeneratorInitializationContext context) { }
-
-    public void Execute(GeneratorExecutionContext context)
+    [Generator]
+    public class AutoInstrGenerator_EmbraceProfilerRecorderHelper : ISourceGenerator
     {
-        var symbols = context.ParseOptions.PreprocessorSymbolNames;
-        if (!symbols.Contains("EMBRACE_AUTO_INSTRUMENTATION_FPS_CAPTURE"))
-        {
-            return;
-        }
+        public void Initialize(GeneratorInitializationContext context) { }
 
-        if (context.Compilation.AssemblyName != "Embrace.SDK")
+        public void Execute(GeneratorExecutionContext context)
         {
-            return;
-        }
+            var symbols = context.ParseOptions.PreprocessorSymbolNames;
+            if (!symbols.Contains("EMBRACE_AUTO_INSTRUMENTATION_FPS_CAPTURE"))
+            {
+                return;
+            }
 
-        var assembly = Assembly.GetExecutingAssembly();
-        var stream = assembly.GetManifestResourceStream("EmbraceUnitySourceGenerator.Templates.EmbraceProfilerRecorderHelper.cs");
-        using var reader = new System.IO.StreamReader(stream);
-        var source = reader.ReadToEnd();
-        context.AddSource("EmbraceProfilerRecorderHelper.g.cs", source);
+            if (context.Compilation.AssemblyName != "Embrace.SDK")
+            {
+                return;
+            }
+
+            var assembly = Assembly.GetExecutingAssembly();
+            var stream = assembly.GetManifestResourceStream("EmbraceUnitySourceGenerator.Templates.EmbraceProfilerRecorderHelper.cs");
+            using var reader = new System.IO.StreamReader(stream);
+            var source = reader.ReadToEnd();
+            context.AddSource("EmbraceProfilerRecorderHelper.g.cs", source);
+        }
     }
 }
