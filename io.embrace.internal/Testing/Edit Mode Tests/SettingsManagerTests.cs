@@ -16,8 +16,9 @@ namespace EmbraceSDK.Tests
             Assert.IsNotNull(GetInstanceOfType<BaseSettingsManager, GeneralManager>(managers));
             Assert.IsNotNull(GetInstanceOfType<BaseSettingsManager, ConfigurationManager>(managers));
             Assert.IsNotNull(GetInstanceOfType<BaseSettingsManager, EmbraceWeaverSettingsManager>(managers));
+            Assert.IsNotNull(GetInstanceOfType<BaseSettingsManager, EmbraceSpansManager>(managers));
 
-            Assert.AreEqual(3, managers.Length);
+            Assert.AreEqual(4, managers.Length);
         }
 
         [Test]
