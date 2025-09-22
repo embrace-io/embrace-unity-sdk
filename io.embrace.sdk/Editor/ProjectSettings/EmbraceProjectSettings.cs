@@ -41,7 +41,8 @@ namespace EmbraceSDK.EditorView
 
         static EmbraceProjectSettings()
         {
-            string projectSettingsPath = Path.Combine(AssetDatabaseUtil.ProjectDirectory, ".embrace");
+            // The additionalfile is used here to ensure that the file is included in the compilation context for our source generators.
+            string projectSettingsPath = Path.Combine(AssetDatabaseUtil.DefaultDataDirectory, "EmbraceConfig.EmbraceUnitySourceGenerator.additionalfile");
             string userSettingsPath = Path.Combine(Application.persistentDataPath, "DeviceSDKInfo.json");
 
             _projectSettings = new JsonSettingsStore(projectSettingsPath);

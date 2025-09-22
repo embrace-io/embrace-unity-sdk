@@ -17,10 +17,15 @@ APPLE_SDK_VERSION ?= $(shell python3 .github/scripts/vars.py apple-sdk-version)
 APPLE_SDK_DIR = build/embrace_$(APPLE_SDK_VERSION)
 APPLE_SDK_ZIP = build/embrace_$(APPLE_SDK_VERSION).zip
 
-.PHONY: build clean github_env_vars install_ios_dependencies test test_all version
+.PHONY: build clean github_env_vars install_ios_dependencies test test_all version build_source_generator
 
 # Build the Unity package for the Embrace Unity SDK.
 build: $(UNITY_SDK_UNITYPACKAGE)
+
+# Build the source generator DLL
+build_source_generator:
+	dotnet build EmbraceUnitySourceGenerator/EmbraceUnitySourceGenerator.csproj --configuration Release
+	cp EmbraceUnitySourceGenerator/bin/Release/netstandard2.0/EmbraceUnitySourceGenerator.dll io.embrace.sdk/Scripts/EmbraceUnitySourceGenerator.dll
 
 # Remove ephemeral build artifacts.
 clean:
@@ -76,5 +81,5 @@ $(APPLE_SDK_DIR): $(APPLE_SDK_ZIP)
 	unzip -q -o $(APPLE_SDK_ZIP) -d $(APPLE_SDK_DIR)
 
 # Build the Unity package for the Embrace Unity SDK.
-$(UNITY_SDK_UNITYPACKAGE): install_ios_dependencies
+$(UNITY_SDK_UNITYPACKAGE): build_source_generator install_ios_dependencies
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)

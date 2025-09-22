@@ -44,7 +44,7 @@ namespace EmbraceSDK.Tests
 
             AssetDatabaseUtil.EmbraceDataDirectory = testDataDir;
 
-            var settingsFilePath = Path.Combine(AssetDatabaseUtil.ProjectDirectory, ".embrace");
+            var settingsFilePath = Path.Combine(Application.dataPath, "Embrace", "EmbraceConfig.EmbraceUnitySourceGenerator.additionalfile");
             var settingsText = File.ReadAllText(settingsFilePath);
             var settingsJObj = JObject.Parse(settingsText);
             var settingsToken = settingsJObj["dataDirectory"];
