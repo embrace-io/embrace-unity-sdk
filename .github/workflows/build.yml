@@ -54,6 +54,19 @@ jobs:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         run: |
           make build
+      - name: Validate npm package structure
+        run: |
+          cd io.embrace.sdk
+          npm pkg validate
+          npm publish --dry-run
+          npm pack
+      - name: Upload npm package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-pkg-io_embrace_sdk_${{ env.UNITY_SDK_VERSION }}.tgz
+          path: io.embrace.sdk/*.tgz
+          if-no-files-found: error
+          retention-days: 1
       - name: Upload package folder artifact
         if: ${{ inputs.package_folder_artifact }}
         uses: actions/upload-artifact@v4
