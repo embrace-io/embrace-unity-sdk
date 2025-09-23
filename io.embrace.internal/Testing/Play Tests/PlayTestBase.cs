@@ -17,6 +17,7 @@ namespace EmbraceSDK.Tests
             {
                 var substitute = Substitute.For<IEmbraceProvider>();
                 substitute.StartSpan(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<long>()).Returns("spanId");
+                substitute.SpanExists(Arg.Any<string>()).Returns(true);
                 Embrace.Instance.provider = substitute;
             }
         }
