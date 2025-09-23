@@ -11,7 +11,13 @@ namespace EmbraceSDK.Tests
     {
         protected void ProviderSetup(IEmbraceProvider provider = null)
         {
-            Embrace.Instance.provider = provider ?? Substitute.For<IEmbraceProvider>();
+            Embrace.Instance.provider = provider;
+
+            if (provider == null)
+            {
+                var substitute = Substitute.For<IEmbraceProvider>();
+                substitute.StartSpan(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<long>()).Returns("spanId");
+            }
         }
 
         protected IEnumerator LoadScene(string sceneName, float waitSeconds = 0f)

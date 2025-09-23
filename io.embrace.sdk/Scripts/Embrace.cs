@@ -981,6 +981,12 @@ namespace EmbraceSDK
                 return false;
             }
 
+            if (spanId == string.Empty)
+            {
+                EmbraceLogger.LogError("in order to stop a span, " + EmbraceLogger.GetEmptyErrorMessage("spanId"));
+                return false;
+            }
+
             if (provider.SpanExists(spanId) == false)
             {
                 EmbraceLogger.LogError($"Cannot stop span '{spanId}' because it does not exist.");
