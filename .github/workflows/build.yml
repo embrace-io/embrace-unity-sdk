@@ -57,7 +57,6 @@ jobs:
       - name: Validate npm package structure
         run: |
           cd io.embrace.sdk
-          npm pkg validate
           npm publish --dry-run
           npm pack
       - name: Upload npm package artifact
