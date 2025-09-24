@@ -29,11 +29,8 @@ namespace EmbraceSDK
         {
             // We need to remove the scene from the set of scenes currently being loaded.
             RemoveScene(scene.name, scene.buildIndex);
-
-            if (_scenesCurrentlyBeingLoaded.Count == 0)
-            {
-                _onSceneLoadFinished?.Invoke(scene.name);
-            }
+            
+            _onSceneLoadFinished?.Invoke(scene.name);
         }
 
         private void RemoveScene(string name, int index)
@@ -52,7 +49,8 @@ namespace EmbraceSDK
             bool mustCompleteNextFrame)
         {
             _scenesCurrentlyBeingLoaded.Add((sceneName, sceneBuildIndex));
-            _onSceneLoadStarted?.Invoke(sceneName);
+            _onSceneLoadStarted?.Invoke(sceneName ?? $"scene-build-index-{sceneBuildIndex}");
+            
             return base.LoadSceneAsyncByNameOrIndex(sceneName, sceneBuildIndex, parameters, mustCompleteNextFrame);
         }
     }
