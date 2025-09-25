@@ -373,6 +373,19 @@ public func embrace_log_network_client_error(url: UnsafePointer<CChar>?,
     }
 }
 
+@_cdecl("embrace_span_exists")
+public func embrace_span_exists(spanId: UnsafePointer<CChar>?) -> Bool {
+    guard let spanId else {
+        return false
+    }
+
+    if let _spanid = String(validatingUTF8: spanId) {
+        return EmbraceManager.spanExists(spanId: _spanid)
+    }
+
+    return false
+}
+
 @_cdecl("embrace_start_span")
 public func embrace_start_span(name: UnsafePointer<CChar>?, parentSpanId: UnsafePointer<CChar>?, startTimeMs: Double) -> UnsafeMutablePointer<CChar>? {
     guard let name else {

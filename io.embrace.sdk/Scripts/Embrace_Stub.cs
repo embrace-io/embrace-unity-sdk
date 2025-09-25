@@ -256,6 +256,12 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log($"Handled Exception: {exceptionName} : {exceptionMessage} : stack : {stack}");
         }
         
+        public bool SpanExists(string spanId)
+        {
+            EmbraceLogger.Log($"Span Exists: span ID {spanId}");
+            return true;
+        }
+        
         public string StartSpan(string spanName, string parentSpanId, long startTimeMs)
         {
             EmbraceLogger.Log($"Start Span: span name {spanName} parent span ID: {parentSpanId}" +

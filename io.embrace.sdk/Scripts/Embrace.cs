@@ -933,6 +933,25 @@ namespace EmbraceSDK
         /// <inheritdoc />
         public bool IsEnabled { get; private set; }
 
+        public bool SpanExists(string spanId)
+        {
+            if (spanId == null)
+            {
+                EmbraceLogger.LogError(EmbraceLogger.GetNullErrorMessage("spanId"));
+                return false;
+            }
+
+            try
+            {
+                return provider.SpanExists(spanId);
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
+        }
+        
         /// <summary>
         /// Create and start a new span.
         /// </summary>
@@ -959,6 +978,18 @@ namespace EmbraceSDK
             if (spanId == null) 
             {
                 EmbraceLogger.LogError("in order to stop a span, " + EmbraceLogger.GetNullErrorMessage("spanId"));
+                return false;
+            }
+
+            if (spanId == string.Empty)
+            {
+                EmbraceLogger.LogError("in order to stop a span, " + EmbraceLogger.GetEmptyErrorMessage("spanId"));
+                return false;
+            }
+
+            if (provider.SpanExists(spanId) == false)
+            {
+                EmbraceLogger.LogError($"Cannot stop span '{spanId}' because it does not exist.");
                 return false;
             }
 

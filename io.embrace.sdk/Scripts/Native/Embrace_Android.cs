@@ -125,6 +125,7 @@ namespace EmbraceSDK.Internal
         private const string _AddSpanAttributeMethod = "addSpanAttribute";
         private const string _RecordCompleteSpanMethod = "recordCompletedSpan";
         private const string _DisableMethod = "disable";
+        private const string _GetSpanMethod = "getSpan";
         private const string _RecordNetworkRequestMethod = "recordNetworkRequest";
         private const string _FromCompletedRequestMethod = "fromCompletedRequest";
         private const string _FromIncompleteRequestMethod = "fromIncompleteRequest";
@@ -709,6 +710,11 @@ namespace EmbraceSDK.Internal
             
             EmbraceSharedInstance.Call(_LogPushNotification, androidArgs.title, androidArgs.body, androidArgs.topic, androidArgs.id,
                 jNotificationPriority, jMessageDeliveredPriority, jIsNotification, jHasData);
+        }
+
+        public bool SpanExists(string spanId)
+        {
+            return EmbraceSharedInstance.Call<AndroidJavaObject>(_GetSpanMethod, spanId) != null;
         }
         
         public string StartSpan(string spanName, string parentSpanId, long startTimeMs)

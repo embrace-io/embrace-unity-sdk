@@ -148,6 +148,9 @@ namespace EmbraceSDK.Internal
         [DllImport("__Internal")]
         private static extern void embrace_disable();
         
+        [DllImport("__Internal")]
+        private static extern bool embrace_span_exists(string spanId);
+        
         void IEmbraceProvider.InitializeSDK()
         {
             EmbraceLogger.Log(EmbraceMessages.IOS_SDK_INITIALIZED);
@@ -543,6 +546,17 @@ namespace EmbraceSDK.Internal
             }
             
             return embrace_get_session_id().ConvertToString();
+        }
+        
+        bool IEmbraceProvider.SpanExists(string spanId)
+        {
+            if (IsReadyForCalls() == false)
+            {
+                EmbraceLogger.LogError(EmbraceMessages.SPAN_EXISTS_ERROR);
+                return false;
+            }
+            
+            return embrace_span_exists(spanId);
         }
 
         string IEmbraceProvider.StartSpan(string spanName, string parentSpanId, long startTimeMs)
