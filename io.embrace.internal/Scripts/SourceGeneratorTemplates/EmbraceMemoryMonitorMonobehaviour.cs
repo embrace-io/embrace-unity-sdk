@@ -45,6 +45,7 @@ namespace EmbraceSDK.Instrumentation
                 var instance = go.AddComponent<EmbraceMemoryMonitorMonobehaviour>();
                 DontDestroyOnLoad(go);
                 instance.InitializeMonitoring();
+                instance.StartMonitoring();
             }
             else
             {
