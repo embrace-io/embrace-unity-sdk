@@ -36,8 +36,8 @@ namespace EmbraceSDK.EditorView
 
             if (!string.IsNullOrEmpty(sdkInfo.wAnnouncementMessage))
             {
-                var titleHeight = styleConfigs.labelTitleStyle.guiStyle.CalcSize(new GUIContent(sdkInfo.wAnnouncementTitle)).y;
-                var messageHeight = styleConfigs.defaultTextStyle.guiStyle.CalcSize(new GUIContent(sdkInfo.wAnnouncementMessage)).y;
+                var titleHeight = StaticStyleConfigs.LabelTitleStyle.guiStyle.CalcSize(new GUIContent(sdkInfo.wAnnouncementTitle)).y;
+                var messageHeight = StaticStyleConfigs.DefaultTextStyle.guiStyle.CalcSize(new GUIContent(sdkInfo.wAnnouncementMessage)).y;
                 window.minSize = new Vector2(window.minSize.x, window.minSize.y + 110f + titleHeight + messageHeight);
             }
 
@@ -50,31 +50,31 @@ namespace EmbraceSDK.EditorView
         {
             base.OnGUI();
 
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
-            GUILayout.Label("Welcome", styleConfigs.welcomeStyle.guiStyle);
-            GUILayout.Label("Embrace SDK " + sdkInfo.version, new GUIStyle(styleConfigs.defaultTextStyle.guiStyle) { alignment = TextAnchor.MiddleCenter });
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
+            GUILayout.Label("Welcome", StaticStyleConfigs.WelcomeStyle.guiStyle);
+            GUILayout.Label("Embrace SDK " + sdkInfo.version, new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle) { alignment = TextAnchor.MiddleCenter });
             GUILayout.EndVertical();
             GUILayout.Label("Embrace’s Unity SDK lets you bring the deep, " +
-                "introspective and native debugging power of Embrace into your Unity game or application.", new GUIStyle(styleConfigs.defaultTextStyle.guiStyle) { padding = new RectOffset(15, 15, 15, 0), wordWrap = true });
+                "introspective and native debugging power of Embrace into your Unity game or application.", new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle) { padding = new RectOffset(15, 15, 15, 0), wordWrap = true });
 
             if (!string.IsNullOrEmpty(sdkInfo.wAnnouncementMessage))
             {
-                GUILayout.BeginVertical(styleConfigs.announcementBox.guiStyle);
-                GUILayout.Label(sdkInfo.wAnnouncementTitle, styleConfigs.labelTitleStyle.guiStyle);
-                GUILayout.Label(sdkInfo.wAnnouncementMessage, new GUIStyle(styleConfigs.defaultTextStyle.guiStyle) { wordWrap = true });
+                GUILayout.BeginVertical(StaticStyleConfigs.AnnouncementBox.guiStyle);
+                GUILayout.Label(sdkInfo.wAnnouncementTitle, StaticStyleConfigs.LabelTitleStyle.guiStyle);
+                GUILayout.Label(sdkInfo.wAnnouncementMessage, new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle) { wordWrap = true });
                 GUILayout.EndVertical();
             }
 
             if (setup)
             {
-                GUILayout.BeginVertical(styleConfigs.lightBoxStyle.guiStyle);
-                GUILayout.Label("Setup Required", styleConfigs.labelTitleStyle.guiStyle);
-                GUILayout.Label("Use the Embrace Window to configure both IOS and Android platforms.", new GUIStyle(styleConfigs.defaultTextStyle.guiStyle) { wordWrap = true });
+                GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
+                GUILayout.Label("Setup Required", StaticStyleConfigs.LabelTitleStyle.guiStyle);
+                GUILayout.Label("Use the Embrace Window to configure both IOS and Android platforms.", new GUIStyle(StaticStyleConfigs.DefaultTextStyle.guiStyle) { wordWrap = true });
                 GUILayout.EndVertical();
             }
 
 
-            GUILayout.BeginVertical(styleConfigs.darkBoxStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
             if (GUILayout.Button("Open Embrace Window"))
             {
                 GettingsStartedEditorWindow.Init();

@@ -14,7 +14,6 @@ namespace EmbraceSDK.EditorView
     [UnityEngine.TestTools.ExcludeFromCoverage]
     public class EmbraceSDKConfigurationEditor : UnityEditor.Editor
     {
-        private StyleConfigs _styleConfigs;
         private List<SerializedProperty> _serializedProperties;
         private float _longestLabelWidth;
         private string _envName;
@@ -28,7 +27,6 @@ namespace EmbraceSDK.EditorView
             // and target can be null during some of those invocations.
             if (target != null)
             {
-                _styleConfigs = Resources.Load<StyleConfigs>("StyleConfigs/MainStyleConfigs");
 
                 var config = (EmbraceConfiguration)target;
                 _envName = config.EnvironmentName;
@@ -61,13 +59,10 @@ namespace EmbraceSDK.EditorView
                     _serializedProperties.Add(prop);
                 }
 
-                if (_styleConfigs != null)
+                var labelWidth = StaticStyleConfigs.DefaultToggleStyle.guiStyle.CalcSize(new GUIContent(fieldInfo.Name)).x;
+                if (labelWidth > _longestLabelWidth)
                 {
-                    var labelWidth = _styleConfigs.defaultToggleStyle.guiStyle.CalcSize(new GUIContent(fieldInfo.Name)).x;
-                    if (labelWidth > _longestLabelWidth)
-                    {
-                        _longestLabelWidth = labelWidth + nestingDepth * _styleConfigs.defaultToggleStyle.guiStyle.padding.right;
-                    }
+                    _longestLabelWidth = labelWidth + nestingDepth * StaticStyleConfigs.DefaultToggleStyle.guiStyle.padding.right;
                 }
 
                 if (fieldInfo.FieldType.GetInterfaces().Contains(typeof(ITooltipPropertiesProvider)))
@@ -90,15 +85,15 @@ namespace EmbraceSDK.EditorView
 
             serializedObject.Update();
 
-            GUILayout.BeginVertical(_styleConfigs.darkBoxStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.DarkBoxStyle.guiStyle);
 
-            EditorGUILayout.TextField("Device Type", _deviceType, _styleConfigs.boldTextStyle.guiStyle);
+            EditorGUILayout.TextField("Device Type", _deviceType, StaticStyleConfigs.BoldTextStyle.guiStyle);
 
             // Default configs do not have a name assigned.
             if (!string.IsNullOrEmpty(_envName))
             {
-                GUILayout.Space(_styleConfigs.space);
-                EditorGUILayout.TextField("Configuration Name", _envName, _styleConfigs.boldTextStyle.guiStyle);
+                GUILayout.Space(StaticStyleConfigs.Space);
+                EditorGUILayout.TextField("Configuration Name", _envName, StaticStyleConfigs.BoldTextStyle.guiStyle);
             }
 
 #if DeveloperMode
@@ -108,7 +103,7 @@ namespace EmbraceSDK.EditorView
             GUILayout.EndVertical();
 
 
-            GUILayout.BeginVertical(_styleConfigs.lightBoxStyle.guiStyle);
+            GUILayout.BeginVertical(StaticStyleConfigs.LightBoxStyle.guiStyle);
 
             var originalLabelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = _longestLabelWidth;

@@ -56,6 +56,7 @@ namespace EmbraceSDK.Internal
         bool AddSpanAttribute(string spanId, string key, string value);
         bool RecordCompletedSpan(string spanName, long startTimeMs, long endTimeMs, int? errorCode, 
             string parentSpanId, Dictionary<string, string> attributes, EmbraceSpanEvent[] events);
+        bool SpanExists(string spanId);
         #if UNITY_IOS
         void RecordPushNotification(iOSPushNotificationArgs iosArgs);
         #elif UNITY_ANDROID

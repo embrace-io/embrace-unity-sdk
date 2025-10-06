@@ -67,7 +67,7 @@ namespace EmbraceSDK.EditorView
                 _isDirty = false;
             }
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             // Compare the current active device index against the saved device index to determine if
             // a change has occured as a result of changes made from this window, or externally.
@@ -82,7 +82,7 @@ namespace EmbraceSDK.EditorView
                 UpdateConfigEditor();
             }
 
-            GUILayout.Space(styleConfigs.space);
+            GUILayout.Space(StaticStyleConfigs.Space);
 
             CustomizeConfiguration();
         }
