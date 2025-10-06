@@ -53,7 +53,11 @@ namespace EmbraceSDK.Internal
 
         void Start()
         {
-            Embrace.Instance.StopSpan(_startSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            if (string.IsNullOrEmpty(_startSpanId) == false)
+            {
+                Embrace.Instance.StopSpan(_startSpanId, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
+            }
+            
             StartCoroutine(DoBreadcrumb());
             StartCoroutine(DoRequests());
             StartCoroutine(DoSpans());

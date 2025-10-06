@@ -116,6 +116,11 @@ namespace EmbraceSDK
         {
             return $"null {objectName} is not allowed through the Embrace SDK.";
         }
+        
+        public static string GetEmptyErrorMessage(string objectName)
+        {
+            return $"empty {objectName} is not allowed through the Embrace SDK.";
+        }
 
         #region Log
         #if EMBRACE_SILENCE_TYPE_LOG

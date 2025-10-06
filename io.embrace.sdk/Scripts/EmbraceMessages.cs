@@ -31,6 +31,7 @@ namespace EmbraceSDK
         public const string LOG_HANDLED_UNITY_EXCEPTION_ERROR = "Unable to log handled Unity exception, Embrace SDK not initialized";
         public const string GET_CURRENT_SESSION_ID_ERROR = "Unable to get current session id, Embrace SDK not initialized";
         public const string RECORD_PUSH_NOTIFICATION_ERROR = "Unable to record push notification, Embrace SDK not initialized";
+        public const string SPAN_EXISTS_ERROR = "Unable to check if span exists, Embrace SDK not initialized";
         public const string START_SPAN_ERROR = "Unable to start span, Embrace SDK not initialized";
         public const string STOP_SPAN_ERROR = "Unable to stop span, Embrace SDK not initialized";
         public const string ADD_SPAN_EVENT_ERROR = "Unable to add span event, Embrace SDK not initialized";
