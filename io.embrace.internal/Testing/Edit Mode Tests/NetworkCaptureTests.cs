@@ -23,7 +23,7 @@ namespace EmbraceSDK.Tests
     public class NetworkCaptureTests
     {
         private const string GET_URL = "https://embrace-io.github.io/embrace-unity-sdk/index.html";
-        private const string PROTOCOL_ERROR_URL = "https://httpbin.org/status/500";
+        private const string PROTOCOL_ERROR_URL = "https://data.emb-api.com/error";
         private const string INVALID_URL = "https://not-a-valid-url/";
 
         [UnitySetUp]
@@ -233,7 +233,7 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Is<int>(500));
+                    Arg.Is<int>(404));
         }
 
         [UnityTest]
