@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 namespace EmbraceSDK
 {
@@ -47,6 +48,11 @@ namespace EmbraceSDK
         public readonly EmbraceConfig Config;
         
         /// <summary>
+        /// Used by the iOS URLSessionCapture to ignore certain URLs from being captured.
+        /// </summary>
+        public readonly List<string> IgnoredUrls = new List<string>();
+        
+        /// <summary>
         /// Default constructor provided primarily for internal testing purposes.
         /// </summary>
         public EmbraceStartupArgs() {}
@@ -66,7 +72,8 @@ namespace EmbraceSDK
             string appGroupId=null, 
             string baseUrl=null, 
             string devBaseUrl=null, 
-            string configBaseUrl=null)
+            string configBaseUrl=null,
+            List<string> ignoredUrls = null)
         {
             AppId = appId;
             AppGroupId = appGroupId;
@@ -74,6 +81,11 @@ namespace EmbraceSDK
             DevBaseUrl = devBaseUrl;
             ConfigBaseUrl = configBaseUrl;
             Config = config;
+            
+            if (ignoredUrls != null)
+            {
+                IgnoredUrls = ignoredUrls;
+            }
         }
 
         /// <summary>
@@ -94,7 +106,8 @@ namespace EmbraceSDK
                    && BaseUrl == other.BaseUrl 
                    && DevBaseUrl == other.DevBaseUrl 
                    && ConfigBaseUrl == other.ConfigBaseUrl
-                   && Config == other.Config;
+                   && Config == other.Config
+                   && EqualityComparer<List<string>>.Default.Equals(IgnoredUrls, other.IgnoredUrls);
             
         }
 
@@ -104,7 +117,7 @@ namespace EmbraceSDK
         /// <returns>Hash of object</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(AppId, AppGroupId, BaseUrl, DevBaseUrl, ConfigBaseUrl, Config);
+            return HashCode.Combine(AppId, AppGroupId, BaseUrl, DevBaseUrl, ConfigBaseUrl, Config, IgnoredUrls);
         }
     }
 }
