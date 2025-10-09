@@ -42,7 +42,7 @@ public class EmbraceManager: NSObject {
                     _servicesBuilder.remove(ofType: ViewCaptureService.self)
                 }
                 
-                if !config.contains(.DisableEmbraceNativePushNotificationCaptureService) {
+                if !config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce) {
                     _servicesBuilder.add(.pushNotification())
                 }
     

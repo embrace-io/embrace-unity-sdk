@@ -146,7 +146,6 @@ namespace EmbraceSDK.Tests
             configuration.CAPTURE_COORDINATES = true;
             configuration.CRASH_REPORT_ENABLED = true;
             configuration.ENABLE_WK_AUTO_RELOAD = true;
-            configuration.DISABLED_URL_PATTERNS = new List<string> { "url1", "url2" };
             configuration.CUSTOM_PATH_HEADER_INFO.keys.Add("key2");
             configuration.CUSTOM_PATH_HEADER_INFO.values.Add("value2");
             configuration.CAPTURE_TAPPED_ELEMENTS = true;
@@ -176,7 +175,6 @@ namespace EmbraceSDK.Tests
             Assert.AreEqual(defaultConfiguration.CAPTURE_COORDINATES, configuration.CAPTURE_COORDINATES);
             Assert.AreEqual(defaultConfiguration.CRASH_REPORT_ENABLED, configuration.CRASH_REPORT_ENABLED);
             Assert.AreEqual(defaultConfiguration.ENABLE_WK_AUTO_RELOAD, configuration.ENABLE_WK_AUTO_RELOAD);
-            Assert.AreEqual(defaultConfiguration.DISABLED_URL_PATTERNS.Count, configuration.DISABLED_URL_PATTERNS.Count);
             Assert.AreEqual(defaultConfiguration.CUSTOM_PATH_HEADER_INFO.keys.Count, configuration.CUSTOM_PATH_HEADER_INFO.keys.Count);
             Assert.AreEqual(defaultConfiguration.CUSTOM_PATH_HEADER_INFO.values.Count, configuration.CUSTOM_PATH_HEADER_INFO.values.Count);
             Assert.AreEqual(defaultConfiguration.CAPTURE_TAPPED_ELEMENTS, configuration.CAPTURE_TAPPED_ELEMENTS);

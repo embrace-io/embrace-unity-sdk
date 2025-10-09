@@ -84,9 +84,6 @@ namespace EmbraceSDK.EditorView
         [OverrideBoolean(false)]
         public bool ENABLE_WK_AUTO_RELOAD;
 
-        [Tooltip(EmbraceTooltips.DisabledUrlPatterns)]
-        public List<string> DISABLED_URL_PATTERNS = new List<string>();
-
         [Tooltip(EmbraceTooltips.UrlSessionCaptureFilters)]
         public List<string> URLSESSION_CAPTURE_FILTERS = new List<string>();
 
@@ -133,7 +130,6 @@ namespace EmbraceSDK.EditorView
             COLLECT_NETWORK_REQUEST_METRICS = true;
             ENABLE_AUTOMATIC_VIEW_CAPTURE = true;
             ENABLE_WK_AUTO_RELOAD = false;
-            DISABLED_URL_PATTERNS.Clear();
             URLSESSION_CAPTURE_FILTERS.Clear();
             STARTUP_AUTOEND_SECONDS = 0;
             WEBVIEW_STRIP_QUERYPARAMS = false;
