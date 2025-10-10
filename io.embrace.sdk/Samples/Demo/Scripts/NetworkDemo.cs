@@ -25,22 +25,22 @@ namespace EmbraceSDK.Demo
 
         private void HandleGet()
         {
-            StartCoroutine(GetRequest("https://httpbin.org/image/jpeg"));
+            StartCoroutine(GetRequest("https://embrace.io/embrace.svg"));
         }
 
         private void HandlePost()
         {
-            StartCoroutine(PostRequest("https://httpbin.org/post"));
+            StartCoroutine(PostRequest("https://data.emb-api.com/"));
         }
 
         private void HandlePut()
         {
-            StartCoroutine(PutRequest("https://httpbin.org/put"));
+            StartCoroutine(PutRequest("https://data.emb-api.com/"));
         }
 
         private void HandleDelete()
         {
-            StartCoroutine(DeleteRequest("https://httpbin.org/delete"));
+            StartCoroutine(DeleteRequest("https://data.emb-api.com/"));
         }
 
         private void HandleError()

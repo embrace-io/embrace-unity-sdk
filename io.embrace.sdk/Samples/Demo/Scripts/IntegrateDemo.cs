@@ -185,7 +185,7 @@ namespace EmbraceSDK.Demo
         
         private IEnumerator GetRequest(string spanId, EmbraceSpanErrorCode spanErrorCode)
         {
-            using (UnityWebRequest webRequest = UnityWebRequest.Get("https://httpbin.org/image/jpeg"))
+            using (UnityWebRequest webRequest = UnityWebRequest.Get("https://embrace.io/embrace.svg"))
             {
                 yield return webRequest.SendWebRequest();
                 Embrace.Instance.StopSpan(spanId, GetCurrentMillisecondsPosix(), spanErrorCode);
