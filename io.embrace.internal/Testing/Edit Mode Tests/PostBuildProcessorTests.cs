@@ -388,7 +388,6 @@ namespace EmbraceSDK.Tests
                 Assert.AreEqual(loadedPlistRoot["TRACE_ID_HEADER_NAME"].AsString(), testConfig.TRACE_ID_HEADER_NAME);
                 Assert.AreEqual(loadedPlistRoot["CAPTURE_COORDINATES"].AsBoolean(), testConfig.CAPTURE_COORDINATES);
                 Assert.AreEqual(loadedPlistRoot["ENABLE_WK_AUTO_RELOAD"].AsBoolean(), testConfig.ENABLE_WK_AUTO_RELOAD);
-                Assert.AreEqual(loadedPlistRoot["DISABLED_URL_PATTERNS"].AsArray().values.Count, testConfig.DISABLED_URL_PATTERNS.Count);
                 Assert.AreEqual(loadedPlistRoot["CUSTOM_PATH_HEADER_INFO"].AsDict().values.Count, testConfig.CUSTOM_PATH_HEADER_INFO.keys.Count);
                 Assert.AreEqual(loadedPlistRoot["CUSTOM_PATH_HEADER_INFO"].AsDict().values.Count, testConfig.CUSTOM_PATH_HEADER_INFO.values.Count);
                 Assert.AreEqual(loadedPlistRoot["CAPTURE_TAPPED_ELEMENTS"].AsBoolean(), testConfig.CAPTURE_TAPPED_ELEMENTS);
@@ -447,7 +446,6 @@ namespace EmbraceSDK.Tests
             Assert.AreEqual(loadedPlistRoot["TRACE_ID_HEADER_NAME"].AsString(), deserializedConfig.TRACE_ID_HEADER_NAME);
             Assert.AreEqual(loadedPlistRoot["CAPTURE_COORDINATES"].AsBoolean(), deserializedConfig.CAPTURE_COORDINATES);
             Assert.AreEqual(loadedPlistRoot["ENABLE_WK_AUTO_RELOAD"].AsBoolean(), deserializedConfig.ENABLE_WK_AUTO_RELOAD);
-            Assert.AreEqual(loadedPlistRoot["DISABLED_URL_PATTERNS"].AsArray().values.Count, deserializedConfig.DISABLED_URL_PATTERNS.Count);
             Assert.AreEqual(loadedPlistRoot["CUSTOM_PATH_HEADER_INFO"].AsDict().values.Keys.ToList()[0], deserializedConfig.CUSTOM_PATH_HEADER_INFO.keys[0]);
             Assert.AreEqual(loadedPlistRoot["CUSTOM_PATH_HEADER_INFO"].AsDict().values.Values.ToList()[0].AsString(), deserializedConfig.CUSTOM_PATH_HEADER_INFO.values[0]);
             Assert.AreEqual(loadedPlistRoot["CAPTURE_TAPPED_ELEMENTS"].AsBoolean(), deserializedConfig.CAPTURE_TAPPED_ELEMENTS);

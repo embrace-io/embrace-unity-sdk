@@ -17,49 +17,65 @@ import OpenTelemetryApi
 public class EmbraceManager: NSObject {
     private var log = OSLog(subsystem: "Embrace", category: "UnityiOSNativeEmbraceManager")
     private static var spanRepository = SpanRepository()
-    static func startNativeSDK(appId: String, config: ConfigOptions, appGroupId: String?, endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?) -> Bool {
+    static func startNativeSDK(
+        appId: String,
+        config: ConfigOptions,
+        appGroupId: String?,
+        endpoints: (baseUrl: String, devBaseUrl: String, configBaseUrl: String)?,
+        ignoredURLs: [String] = []
+    ) -> Bool {
         do {
             var embraceOptions: Embrace.Options {
-                let _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter();
-                let _servicesBuilder = CaptureServiceBuilder().addDefaults()
-                if (config.contains(.DisableEmbraceNativeViewCaptureService)) {
-                    _servicesBuilder.remove(ofType: ViewCaptureService.self)
+                let _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter()
+    
+                let urlSessionOptions = URLSessionCaptureService.Options(
+                    injectTracingHeader: true,
+                    requestsDataSource: nil,
+                    ignoredURLs: ignoredURLs
+                )
+    
+                let builder = CaptureServiceBuilder()
+                    .addDefaults()
+                    .remove(ofType: URLSessionCaptureService.self)
+                    .add(.urlSession(options: urlSessionOptions))
+    
+                if config.contains(.DisableEmbraceNativeViewCaptureService) {
+                    builder.remove(ofType: ViewCaptureService.self)
                 }
-                if (!config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce)) {
-                    // Add the PushNotificationCaptureService by default for Unity
-                    _servicesBuilder.add(.pushNotification())
+                
+                if !config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce) {
+                    builder.add(.pushNotification())
                 }
-                var _endpoints: Embrace.Endpoints? = nil;
+    
+                var _endpoints: Embrace.Endpoints? = nil
                 if let endpoints {
                     _endpoints = Embrace.Endpoints(
                         baseURL: endpoints.baseUrl,
                         developmentBaseURL: endpoints.devBaseUrl,
-                        configBaseURL: endpoints.configBaseUrl)
+                        configBaseURL: endpoints.configBaseUrl
+                    )
                 }
-
+    
                 return .init(
                     appId: appId,
                     appGroupId: appGroupId,
                     platform: .unity,
                     endpoints: _endpoints,
-                    captureServices: _servicesBuilder.build(),
+                    captureServices: builder.build(),
                     crashReporter: _crashReporter
                 )
             }
-
-            try Embrace.setup(options: embraceOptions)
-                .start()
-
+    
+            try Embrace.setup(options: embraceOptions).start()
             return true
-        } catch let e {
+        } catch {
             if #available(iOS 14.0, *) {
-                os_log("Error starting Native Embrace SDK \(e.localizedDescription)")
+                os_log("Error starting Native Embrace SDK \(error.localizedDescription)")
             } else {
-                print("Error starting Native Embrace SDK \(e.localizedDescription)")
+                print("Error starting Native Embrace SDK \(error.localizedDescription)")
             }
             return false
         }
-
     }
 
     static func isStarted() -> Bool {

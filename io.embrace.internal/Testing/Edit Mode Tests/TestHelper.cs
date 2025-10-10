@@ -211,7 +211,6 @@ namespace EmbraceSDK.Tests
             Assert.AreEqual(source.CAPTURE_COORDINATES, compare.CAPTURE_COORDINATES);
             Assert.AreEqual(source.CRASH_REPORT_ENABLED, compare.CRASH_REPORT_ENABLED);
             Assert.AreEqual(source.ENABLE_WK_AUTO_RELOAD, compare.ENABLE_WK_AUTO_RELOAD);
-            Assert.AreEqual(source.DISABLED_URL_PATTERNS.Count, compare.DISABLED_URL_PATTERNS.Count);
             CompareEmbracePlistDictionary(source.CUSTOM_PATH_HEADER_INFO, compare.CUSTOM_PATH_HEADER_INFO);
             Assert.AreEqual(source.CAPTURE_TAPPED_ELEMENTS, compare.CAPTURE_TAPPED_ELEMENTS);
             Assert.AreEqual(source.STARTUP_AUTOEND_SECONDS, compare.STARTUP_AUTOEND_SECONDS);

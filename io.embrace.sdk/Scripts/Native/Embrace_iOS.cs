@@ -25,7 +25,7 @@ namespace EmbraceSDK.Internal
         
         [DllImport("__Internal")]
         private static extern bool embrace_sdk_start_native(string appId, int config, string appGroupId, string baseUrl,
-            string devBaseUrl, string configBaseUrl);
+            string devBaseUrl, string configBaseUrl, string[] ignoredUrls, int ignoredUrlsLength);
 
         [DllImport("__Internal")]
         private static extern bool embrace_sdk_is_started();
@@ -165,7 +165,9 @@ namespace EmbraceSDK.Internal
                     args.AppGroupId,
                     args.BaseUrl,
                     args.DevBaseUrl,
-                    args.ConfigBaseUrl);
+                    args.ConfigBaseUrl,
+                    args.IgnoredUrls?.ToArray(),
+                    args.IgnoredUrls?.Count ?? 0);
             }
             else
             {
