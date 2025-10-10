@@ -80,6 +80,11 @@ jobs:
     name: Test Linux (${{ matrix.editor.project}}, ${{ matrix.build_target }})
     runs-on: ubuntu-22.04
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          tool-cache: false
+          android: false
       - name: Checkout repository
         uses: actions/checkout@v5
         with:

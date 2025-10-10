@@ -130,30 +130,30 @@ namespace EmbraceSDK.Internal
 
         private IEnumerator DoRequests()
         {
-            using (var webRequest = UnityWebRequest.Get("https://httpbin.org/image/jpeg"))
+            using (var webRequest = UnityWebRequest.Get("https://embrace.io/embrace.svg"))
             {
                 yield return webRequest.SendWebRequest();
             }
 
             var form = new WWWForm();
             form.AddField("myField", "myData");
-            using (var webRequest = UnityWebRequest.Post("https://httpbin.org/post", form))
+            using (var webRequest = UnityWebRequest.Post("https://data.emb-api.com/", form))
             {
                 yield return webRequest.SendWebRequest();
             }
 
             var data = System.Text.Encoding.UTF8.GetBytes("This is some test data");
-            using (var webRequest = UnityWebRequest.Put("https://httpbin.org/put", data))
+            using (var webRequest = UnityWebRequest.Put("https://data.emb-api.com/", data))
             {
                 yield return webRequest.SendWebRequest();
             }
 
-            using (var webRequest = UnityWebRequest.Delete("https://httpbin.org/delete"))
+            using (var webRequest = UnityWebRequest.Delete("https://data.emb-api.com/"))
             {
                 yield return webRequest.SendWebRequest();
             }
 
-            using (var webRequest = UnityWebRequest.Get("https://httpbin.org/status/403"))
+            using (var webRequest = UnityWebRequest.Get("https://data.emb-api.com/error"))
             {
                 yield return webRequest.SendWebRequest();
             }
