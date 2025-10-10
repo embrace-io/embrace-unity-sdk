@@ -50,7 +50,7 @@ namespace EmbraceSDK
         /// <summary>
         /// Used by the iOS URLSessionCapture to ignore certain URLs from being captured.
         /// </summary>
-        public readonly List<string> IgnoredUrls = new List<string>();
+        public readonly List<string> IgnoredUrls = new();
         
         /// <summary>
         /// Default constructor provided primarily for internal testing purposes.

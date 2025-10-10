@@ -14,7 +14,9 @@ public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
                                      appGroupId: UnsafePointer<CChar>?,
                                      baseUrl: UnsafePointer<CChar>?,
                                      devBaseUrl: UnsafePointer<CChar>?,
-                                     configBaseUrl: UnsafePointer<CChar>?) -> Bool {
+                                     configBaseUrl: UnsafePointer<CChar>?, 
+                                     ignoredUrls: UnsafeMutablePointer<UnsafePointer<CChar>?>?,
+                                     ignoredUrlsCount: Int32) -> Bool {
     guard let appId else {
         return false;
     }
@@ -36,12 +38,22 @@ public func embrace_sdk_start_native(appId: UnsafePointer<CChar>?,
             endpoints = (_baseUrl, _devBaseUrl, _configBaseUrl)
         }
     }
+    
+    var ignored = [String]()
+        if let ptr = ignoredUrls, ignoredUrlsCount > 0 {
+            for i in 0..<ignoredUrlsCount {
+                if let c = ptr.advanced(by: Int(i)).pointee {
+                    ignored.append(String(cString: c))
+                }
+            }
+        }
 
     if let _appId = String(validatingUTF8: appId) {
         return EmbraceManager.startNativeSDK(appId: _appId,
                                              config: ConfigOptions(rawValue: config),
                                              appGroupId: _appGroupId,
-                                             endpoints: endpoints)
+                                             endpoints: endpoints,
+                                             ignoredURLs: ignored)
     }
 
     return false;

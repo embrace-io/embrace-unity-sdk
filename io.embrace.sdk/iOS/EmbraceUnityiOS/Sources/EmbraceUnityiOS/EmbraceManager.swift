@@ -34,16 +34,17 @@ public class EmbraceManager: NSObject {
                     ignoredURLs: ignoredURLs
                 )
     
-                let _servicesBuilder = CaptureServiceBuilder()
-                    .add(.urlSession(options: urlSessionOptions))
+                let builder = CaptureServiceBuilder()
                     .addDefaults()
+                    .remove(ofType: URLSessionCaptureService.self)
+                    .add(.urlSession(options: urlSessionOptions))
     
                 if config.contains(.DisableEmbraceNativeViewCaptureService) {
-                    _servicesBuilder.remove(ofType: ViewCaptureService.self)
+                    builder.remove(ofType: ViewCaptureService.self)
                 }
                 
                 if !config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce) {
-                    _servicesBuilder.add(.pushNotification())
+                    builder.add(.pushNotification())
                 }
     
                 var _endpoints: Embrace.Endpoints? = nil
@@ -60,7 +61,7 @@ public class EmbraceManager: NSObject {
                     appGroupId: appGroupId,
                     platform: .unity,
                     endpoints: _endpoints,
-                    captureServices: _servicesBuilder.build(),
+                    captureServices: builder.build(),
                     crashReporter: _crashReporter
                 )
             }
