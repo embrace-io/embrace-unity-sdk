@@ -23,6 +23,12 @@ jobs:
       UNITY_SDK_UNITYPACKAGE: # Path to the .unitypackage file output by the build.
       UNITY_SDK_VERSION: # Embrace Unity SDK version to build.
     steps:
+    - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        if: ${{ needs.environment.outputs.where == 'ubuntu-latest' }}
+        with:
+          tool-cache: false
+          android: false
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
