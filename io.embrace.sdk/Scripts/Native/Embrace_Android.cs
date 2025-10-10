@@ -44,7 +44,7 @@ namespace EmbraceSDK.Internal
             {
                 lock (mutex)
                 {
-                    if (embraceSharedInstance != null)
+                    if (embraceSharedInstance == null)
                     {
                         embraceSharedInstance = embraceClass.CallStatic<AndroidJavaObject>("getInstance");
                     }
