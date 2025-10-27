@@ -1,8 +1,6 @@
-# DevOps
-.github @embrace-io/team-devops
+.github @embrace-io/opensource-devops
 
-# Global, default owners
-* @embrace-io/sdk-unity
+* @embrace-io/opensource-unity
 
 # API surface owners
 io.embrace.sdk/Scripts/EmbraceApi.cs @fractalwrench @bidetofevil
