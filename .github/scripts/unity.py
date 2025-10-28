@@ -100,9 +100,9 @@ def activate_with_retries(
 ) -> None:
     """Activate a Unity license, retrying upon failure."""
     if retries is None:
-        retries = 5
+        retries = 30
     if delay is None:
-        delay = 15
+        delay = 60
     for attempt in range(1, retries + 1):
         try:
             logger.info("Activating Unity license (attempt %d)", attempt)
