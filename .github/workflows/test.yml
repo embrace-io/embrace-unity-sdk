@@ -174,7 +174,7 @@ jobs:
           ref: ${{ inputs.ref }}
           persist-credentials: false
       - name: Download test results
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           path: ./build
           pattern: test-results-*
