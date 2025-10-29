@@ -231,10 +231,7 @@ namespace EmbraceSDK.Tests
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)
         {
-            Debug.Log($"[Diag] Editor path: {UnityEditor.EditorApplication.applicationPath}");
-            Debug.Log($"[Diag] Android supported: {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
-            Debug.Log($"[Diag] Android engine dir: {BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None)}");
-            
+            ListInstalledEditors();
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
 
@@ -249,6 +246,32 @@ namespace EmbraceSDK.Tests
             }
 
             return summary.result;
+        }
+        
+        public static void ListInstalledEditors()
+        {
+            string[] possibleRoots =
+            {
+                "/opt/unity/editors",                                         // Linux (Hub default)
+                "/Applications/Unity/Hub/Editor",                             // macOS (old)
+                "/Applications/Unity Hub.app/Contents/Unity/Hub/Editor",      // macOS (new)
+                Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                    "Unity", "Hub", "Editor"),                                // Windows
+            };
+
+            foreach (var root in possibleRoots)
+            {
+                if (!Directory.Exists(root))
+                    continue;
+
+                foreach (var dir in Directory.GetDirectories(root))
+                {
+                    var editorPath = Path.Combine(dir, "Editor");
+                    if (Directory.Exists(editorPath))
+                        Console.WriteLine($"Found Unity Editor: {dir}");
+                }
+            }
         }
 #endif
 
