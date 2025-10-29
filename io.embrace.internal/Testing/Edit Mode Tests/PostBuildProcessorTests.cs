@@ -24,6 +24,20 @@ namespace EmbraceSDK.Tests
     public class PostBuildProcessorTests
     {
 #if UNITY_ANDROID
+        [OneTimeSetUp]
+        public void EnsureAndroidActive()
+        {
+            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+            {
+                // Make sure support exists (fast fail if the runner is misconfigured)
+                Assume.That(BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android),
+                    "Android Build Support not installed for this editor process");
+
+                bool ok = EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                Assume.That(ok, "Failed to switch active build target to Android");
+            }
+        }
+        
         [Test]
         // <summary>
         // Test if the regex catches the data we need.
