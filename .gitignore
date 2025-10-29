@@ -139,6 +139,7 @@ io.embrace.sdk/iOS/upload*
 
 # These were added by Xcode's Swift package template.
 /.build
+io.embrace.sdk/iOS/EmbraceUnityiOS/.build
 /Packages
 xcuserdata/
 DerivedData/
