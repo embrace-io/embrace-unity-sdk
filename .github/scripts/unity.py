@@ -109,7 +109,6 @@ def activate_with_retries(
             run(
                 args,
                 logger,
-                logger_filter=lambda line: "[Licensing::Client]" in line,
                 raise_on_error=True,
             )
             logger.info("License activated")
