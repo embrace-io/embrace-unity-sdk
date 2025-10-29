@@ -13,7 +13,6 @@ using Object = UnityEngine.Object;
 using System;
 using System.Text.RegularExpressions;
 #if UNITY_IOS || UNITY_TVOS
-using UnityEditor.iOS.Xcode;
 #endif
 
 namespace EmbraceSDK.Tests
@@ -268,8 +267,9 @@ namespace EmbraceSDK.Tests
                 foreach (var dir in Directory.GetDirectories(root))
                 {
                     var editorPath = Path.Combine(dir, "Editor");
+                    
                     if (Directory.Exists(editorPath))
-                        Console.WriteLine($"Found Unity Editor: {dir}");
+                        Debug.Log($"[Diag] Found Unity Editor: {dir}");
                 }
             }
         }
