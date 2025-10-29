@@ -190,16 +190,6 @@ namespace EmbraceSDK.Tests
 #endif
         public void BuildAndroidTest()
         {
-            // Fast fail if the module truly isn’t usable in *this* process:
-            if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
-                throw new InvalidOperationException("Android module not available in this Unity process.");
-
-            // Even stricter: verify the playback engine is actually present & loaded:
-            var engineDir = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
-            if (string.IsNullOrEmpty(engineDir) || !System.IO.Directory.Exists(engineDir))
-                throw new InvalidOperationException($"Android playback engine directory missing: {engineDir ?? "<null>"}");
-
-            
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             Assert.NotNull(defaultConfig);
@@ -241,6 +231,28 @@ namespace EmbraceSDK.Tests
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)
         {
+            var contents = EditorApplication.applicationContentsPath; // e.g., /opt/unity/Editor/Data
+            var androidDir = Path.Combine(contents, "PlaybackEngines", "AndroidPlayer");
+            var engineDir = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
+            var targetName = BuildPipeline.GetBuildTargetName(BuildTarget.Android);
+
+            Debug.Log($"[Diag] Unity {Application.unityVersion}");
+            Debug.Log($"[Diag] contentsPath={contents}");
+            Debug.Log($"[Diag] androidDirExists={Directory.Exists(androidDir)} path={androidDir}");
+            Debug.Log($"[Diag] engineDirExists={Directory.Exists(engineDir)} path={engineDir}");
+            Debug.Log($"[Diag] buildTargetName='{targetName}'");
+
+            // look for a couple of canary files that should exist if the module is really there
+            string[] canaries =
+            {
+                Path.Combine(androidDir, "Tools", "gradle"), // dir
+                Path.Combine(androidDir, "SourceBuild", "il2cpp_ndk", "Linux", "bin"), // dir on some installs
+                Path.Combine(androidDir, "UnityEditor.Android.Extensions.dll"),
+            };
+            
+            foreach (var c in canaries)
+                Debug.Log($"[Diag] exists({c})={ (Directory.Exists(c) || File.Exists(c)) }");
+            
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
 
