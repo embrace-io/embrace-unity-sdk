@@ -1,6 +1,7 @@
 #if UNITY_ANDROID
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor;
@@ -78,6 +79,8 @@ namespace EmbraceSDK.Tests
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
+            LogAssert.Expect(LogType.Assert, new Regex(@"Trying to add file .*boot\.config.*does not appear to exist on disk right now"));
+            
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";
@@ -87,6 +90,7 @@ namespace EmbraceSDK.Tests
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
 
+            LogAssert.NoUnexpectedReceived();
             Assert.AreEqual(BuildResult.Succeeded, summary.result);
 
             // The reference to the config instance will not always survive the build, so we'll reload it here before
