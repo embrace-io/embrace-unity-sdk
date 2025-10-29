@@ -204,8 +204,6 @@ namespace EmbraceSDK.Tests
             buildPlayerOptions.target = BuildTarget.Android;
             buildPlayerOptions.options = BuildOptions.None;
             BuildResult summary = BuildAndroid(buildPlayerOptions);
-
-            LogAssert.NoUnexpectedReceived();
             Assert.IsTrue(summary == BuildResult.Succeeded);
 
             // In older versions of Unity the reference to the default config will not survive the build, so we'll

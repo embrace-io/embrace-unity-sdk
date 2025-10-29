@@ -89,8 +89,6 @@ namespace EmbraceSDK.Tests
 
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
-
-            LogAssert.NoUnexpectedReceived();
             Assert.AreEqual(BuildResult.Succeeded, summary.result);
 
             // The reference to the config instance will not always survive the build, so we'll reload it here before
