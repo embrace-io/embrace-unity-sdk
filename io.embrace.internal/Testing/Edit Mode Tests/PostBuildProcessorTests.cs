@@ -190,6 +190,16 @@ namespace EmbraceSDK.Tests
 #endif
         public void BuildAndroidTest()
         {
+            // Fast fail if the module truly isn’t usable in *this* process:
+            if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android))
+                throw new InvalidOperationException("Android module not available in this Unity process.");
+
+            // Even stricter: verify the playback engine is actually present & loaded:
+            var engineDir = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
+            if (string.IsNullOrEmpty(engineDir) || !System.IO.Directory.Exists(engineDir))
+                throw new InvalidOperationException($"Android playback engine directory missing: {engineDir ?? "<null>"}");
+
+            
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             Assert.NotNull(defaultConfig);
