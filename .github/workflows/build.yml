@@ -65,14 +65,14 @@ jobs:
           make build
       - name: Upload package folder artifact
         if: ${{ inputs.package_folder_artifact }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           name: io_embrace_sdk_${{ env.UNITY_SDK_VERSION }}
           path: io.embrace.sdk
           if-no-files-found: error
           retention-days: 1
       - name: Upload unitypackage artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v4
         with:
           name: EmbraceSDK_${{ env.UNITY_SDK_VERSION }}.unitypackage
           path: ${{ env.UNITY_SDK_UNITYPACKAGE }}
