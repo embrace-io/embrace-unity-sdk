@@ -231,27 +231,9 @@ namespace EmbraceSDK.Tests
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)
         {
-            var contents = EditorApplication.applicationContentsPath; // e.g., /opt/unity/Editor/Data
-            var androidDir = Path.Combine(contents, "PlaybackEngines", "AndroidPlayer");
-            var engineDir = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
-            var targetName = BuildPipeline.GetBuildTargetName(BuildTarget.Android);
-
-            Debug.Log($"[Diag] Unity {Application.unityVersion}");
-            Debug.Log($"[Diag] contentsPath={contents}");
-            Debug.Log($"[Diag] androidDirExists={Directory.Exists(androidDir)} path={androidDir}");
-            Debug.Log($"[Diag] engineDirExists={Directory.Exists(engineDir)} path={engineDir}");
-            Debug.Log($"[Diag] buildTargetName='{targetName}'");
-
-            // look for a couple of canary files that should exist if the module is really there
-            string[] canaries =
-            {
-                Path.Combine(androidDir, "Tools", "gradle"), // dir
-                Path.Combine(androidDir, "SourceBuild", "il2cpp_ndk", "Linux", "bin"), // dir on some installs
-                Path.Combine(androidDir, "UnityEditor.Android.Extensions.dll"),
-            };
-            
-            foreach (var c in canaries)
-                Debug.Log($"[Diag] exists({c})={ (Directory.Exists(c) || File.Exists(c)) }");
+            Debug.Log($"[Diag] Editor path: {UnityEditor.EditorApplication.applicationPath}");
+            Debug.Log($"[Diag] Android supported: {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
+            Debug.Log($"[Diag] Android engine dir: {BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None)}");
             
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
