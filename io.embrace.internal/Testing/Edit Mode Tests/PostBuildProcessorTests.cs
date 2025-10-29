@@ -176,6 +176,10 @@ namespace EmbraceSDK.Tests
 #endif
         public void BuildAndroidTest()
         {
+            Debug.Log($"Unity {Application.unityVersion} at {EditorApplication.applicationPath}");
+            Debug.Log($"Android supported? " +
+                      BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android));
+            
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             Assert.NotNull(defaultConfig);
