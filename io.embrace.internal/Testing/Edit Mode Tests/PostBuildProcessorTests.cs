@@ -196,7 +196,8 @@ namespace EmbraceSDK.Tests
 
             var userValue = EditorUserBuildSettings.androidCreateSymbolsZip;
             EditorUserBuildSettings.androidCreateSymbolsZip = true;
-            
+            LogAssert.Expect(LogType.Assert, new Regex(@"Trying to add file .*boot\.config.*does not appear to exist on disk right now"));
+
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";
@@ -204,6 +205,7 @@ namespace EmbraceSDK.Tests
             buildPlayerOptions.options = BuildOptions.None;
             BuildResult summary = BuildAndroid(buildPlayerOptions);
 
+            LogAssert.NoUnexpectedReceived();
             Assert.IsTrue(summary == BuildResult.Succeeded);
 
             // In older versions of Unity the reference to the default config will not survive the build, so we'll
