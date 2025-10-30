@@ -1,15 +1,10 @@
 #if UNITY_ANDROID || UNITY_IOS
 using System;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-
-#if UNITY_ANDROID
-using UnityEditor.Android;
-#endif
 
 namespace EmbraceSDK.EditorView
 {
