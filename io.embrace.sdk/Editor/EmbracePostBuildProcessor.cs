@@ -29,6 +29,8 @@ namespace EmbraceSDK.EditorView
         // Android gradle fixup
         public void OnPostGenerateGradleAndroidProject(string projectPath)
         {
+            Debug.Log("[Diag] EmbracePostBuildProcessor.OnPostGenerateGradleAndroidProject");
+            
             // Unity has historically been inconsistent with whether the projectPath is the path to the root of the gradle
             // project or the unityLibrary directory within the project.
             string gradleProjectRootPath = projectPath;

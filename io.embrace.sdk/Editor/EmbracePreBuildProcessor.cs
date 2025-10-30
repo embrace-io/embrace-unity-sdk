@@ -14,6 +14,8 @@ namespace EmbraceSDK.EditorView
 
         public void OnPreprocessBuild(BuildReport report)
         {
+            Debug.Log("[Diag] EmbracePreBuildProcessor.OnPreprocessBuild");
+            
             switch (report.summary.platform)
             {
                 case BuildTarget.Android:
