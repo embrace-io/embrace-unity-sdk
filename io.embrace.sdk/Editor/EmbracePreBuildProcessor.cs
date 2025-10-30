@@ -16,7 +16,13 @@ namespace EmbraceSDK.EditorView
         public void OnPreprocessBuild(BuildReport report)
         {
             // Diagnostic logs
-            Debug.Log("[Diag] Embrace Pre Build Processor Invoked");
+            var pkg = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
+            Debug.Log($"[Diag] Editor: {Application.unityVersion}");
+            Debug.Log($"[Diag] Editor exe: {EditorApplication.applicationPath}");
+            Debug.Log($"[Diag] Contents: {EditorApplication.applicationContentsPath}");
+            Debug.Log($"[Diag] IsBuildTargetSupported(Android): {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
+            Debug.Log($"[Diag] PlaybackEngineDirectory(Android): {pkg}");
+            Debug.Log($"[Diag] AndroidPlayer exists? {Directory.Exists(pkg)}");
             
             switch (report.summary.platform)
             {
