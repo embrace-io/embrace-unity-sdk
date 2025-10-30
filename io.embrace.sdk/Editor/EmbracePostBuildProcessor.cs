@@ -9,6 +9,7 @@ namespace EmbraceSDK.EditorView
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
+    using UnityEditor;
     using UnityEditor.Android;
     using Newtonsoft.Json;
 
@@ -29,6 +30,19 @@ namespace EmbraceSDK.EditorView
         // Android gradle fixup
         public void OnPostGenerateGradleAndroidProject(string projectPath)
         {
+            // Diagnostic logs
+            var pkg = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
+            Debug.Log($"[[Diag Post]] Editor: {Application.unityVersion}");
+            Debug.Log($"[[Diag Post]] Editor exe: {EditorApplication.applicationPath}");
+            Debug.Log($"[[Diag Post]] Contents: {EditorApplication.applicationContentsPath}");
+            Debug.Log($"[[Diag Post]] IsBuildTargetSupported(Android): {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
+            Debug.Log($"[[Diag Post]] PlaybackEngineDirectory(Android): {pkg}");
+            Debug.Log($"[[Diag Post]] AndroidPlayer exists? {Directory.Exists(pkg)}");
+
+            Debug.Log($"[[Diag Post]] SDK: {AndroidExternalToolsSettings.sdkRootPath}");
+            Debug.Log($"[[Diag Post]] NDK: {AndroidExternalToolsSettings.ndkRootPath}");
+            Debug.Log($"[[Diag Post]] JDK: {AndroidExternalToolsSettings.jdkRootPath}");
+            
             // Unity has historically been inconsistent with whether the projectPath is the path to the root of the gradle
             // project or the unityLibrary directory within the project.
             string gradleProjectRootPath = projectPath;

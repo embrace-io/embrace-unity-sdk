@@ -1,9 +1,15 @@
 #if UNITY_ANDROID || UNITY_IOS
+using System;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+
+#if UNITY_ANDROID
+using UnityEditor.Android;
+#endif
 
 namespace EmbraceSDK.EditorView
 {
@@ -14,7 +20,26 @@ namespace EmbraceSDK.EditorView
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            Debug.Log("[Diag] EmbracePreBuildProcessor OnPreprocessBuild called");
+            // Diagnostic logs
+            var pkg = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
+            Debug.Log($"[[Diag Pre]] Editor: {Application.unityVersion}");
+            Debug.Log($"[[Diag Pre]] Editor exe: {EditorApplication.applicationPath}");
+            Debug.Log($"[[Diag Pre]] Contents: {EditorApplication.applicationContentsPath}");
+            Debug.Log($"[[Diag Pre]] IsBuildTargetSupported(Android): {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
+            Debug.Log($"[[Diag Pre]] PlaybackEngineDirectory(Android): {pkg}");
+            Debug.Log($"[[Diag Pre]] AndroidPlayer exists? {Directory.Exists(pkg)}");
+
+            Debug.Log($"[[Diag Pre]] SDK: {AndroidExternalToolsSettings.sdkRootPath}");
+            Debug.Log($"[[Diag Pre]] NDK: {AndroidExternalToolsSettings.ndkRootPath}");
+            Debug.Log($"[[Diag Pre]] JDK: {AndroidExternalToolsSettings.jdkRootPath}");
+
+            foreach (var e in new[] { "JAVA_HOME","JDK_HOME","ANDROID_HOME","ANDROID_SDK_ROOT","ANDROID_NDK_ROOT","ANDROID_NDK_HOME" })
+                Debug.Log($"[[Diag Pre]] ENV {e}={Environment.GetEnvironmentVariable(e)}");
+
+            var gradleLauncher = Directory.Exists(Path.Combine(pkg ?? "", "Tools")) 
+                ? Directory.GetFiles(Path.Combine(pkg ?? "", "Tools", "gradle"), "gradle-launcher-*.jar", SearchOption.AllDirectories).FirstOrDefault()
+                : null;
+            Debug.Log($"[[Diag Pre]] Has gradle launcher? {!string.IsNullOrEmpty(gradleLauncher)}");
             
             switch (report.summary.platform)
             {
@@ -43,7 +68,7 @@ namespace EmbraceSDK.EditorView
                 {
                     Directory.Delete(xcframeworksPath, true);
                 }
-                catch (System.Exception exc)
+                catch (Exception exc)
                 {
                     Debug.LogError($"Error deleting xcframework directories: {exc}");
                 }
