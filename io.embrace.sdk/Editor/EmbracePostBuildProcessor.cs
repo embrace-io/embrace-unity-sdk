@@ -9,7 +9,6 @@ namespace EmbraceSDK.EditorView
     using System.Collections.Generic;
     using System.IO;
     using System.Text;
-    using UnityEditor;
     using UnityEditor.Android;
     using Newtonsoft.Json;
 
@@ -31,25 +30,7 @@ namespace EmbraceSDK.EditorView
         public void OnPostGenerateGradleAndroidProject(string projectPath)
         {
             // Diagnostic logs
-            var pkg = BuildPipeline.GetPlaybackEngineDirectory(BuildTarget.Android, BuildOptions.None);
-            Debug.Log($"[[Diag Post]] Editor: {Application.unityVersion}");
-            Debug.Log($"[[Diag Post]] Editor exe: {EditorApplication.applicationPath}");
-            Debug.Log($"[[Diag Post]] Contents: {EditorApplication.applicationContentsPath}");
-            Debug.Log($"[[Diag Post]] IsBuildTargetSupported(Android): {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
-            Debug.Log($"[[Diag Post]] PlaybackEngineDirectory(Android): {pkg}");
-            Debug.Log($"[[Diag Post]] AndroidPlayer exists? {Directory.Exists(pkg)}");
-
-            Debug.Log($"[[Diag Post]] SDK: {AndroidExternalToolsSettings.sdkRootPath}");
-            Debug.Log($"[[Diag Post]] NDK: {AndroidExternalToolsSettings.ndkRootPath}");
-            Debug.Log($"[[Diag Post]] JDK: {AndroidExternalToolsSettings.jdkRootPath}");
-            
-            foreach (var e in new[] { "JAVA_HOME","JDK_HOME","ANDROID_HOME","ANDROID_SDK_ROOT","ANDROID_NDK_ROOT","ANDROID_NDK_HOME" })
-                Debug.Log($"[[Diag Post]] ENV {e}={Environment.GetEnvironmentVariable(e)}");
-
-            var gradleLauncher = Directory.Exists(Path.Combine(pkg ?? "", "Tools")) 
-                ? Directory.GetFiles(Path.Combine(pkg ?? "", "Tools", "gradle"), "gradle-launcher-*.jar", SearchOption.AllDirectories).FirstOrDefault()
-                : null;
-            Debug.Log($"[[Diag Post]] Has gradle launcher? {!string.IsNullOrEmpty(gradleLauncher)}");
+            Debug.Log("[Diag] Embrace Post Build Processor Invoked");
             
             // Unity has historically been inconsistent with whether the projectPath is the path to the root of the gradle
             // project or the unityLibrary directory within the project.

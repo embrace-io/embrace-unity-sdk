@@ -15,6 +15,9 @@ namespace EmbraceSDK.EditorView
 
         public void OnPreprocessBuild(BuildReport report)
         {
+            // Diagnostic logs
+            Debug.Log("[Diag] Embrace Pre Build Processor Invoked");
+            
             switch (report.summary.platform)
             {
                 case BuildTarget.Android:
