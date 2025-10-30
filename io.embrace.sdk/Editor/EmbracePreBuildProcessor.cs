@@ -6,6 +6,10 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
+#if UNITY_ANDROID
+using UnityEditor.Android;
+#endif
+
 namespace EmbraceSDK.EditorView
 {
     internal class EmbracePreBuildProcessor : IPreprocessBuildWithReport
@@ -23,6 +27,13 @@ namespace EmbraceSDK.EditorView
             Debug.Log($"[Diag] IsBuildTargetSupported(Android): {BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android)}");
             Debug.Log($"[Diag] PlaybackEngineDirectory(Android): {pkg}");
             Debug.Log($"[Diag] AndroidPlayer exists? {Directory.Exists(pkg)}");
+            
+            // Diagnostic logs 2
+            #if UNITY_ANDROID
+            Debug.Log($"[Diag] SDK: {AndroidExternalToolsSettings.sdkRootPath}");
+            Debug.Log($"[Diag] NDK: {AndroidExternalToolsSettings.ndkRootPath}");
+            Debug.Log($"[Diag] JDK: {AndroidExternalToolsSettings.jdkRootPath}");
+            #endif
             
             switch (report.summary.platform)
             {
