@@ -13,7 +13,6 @@ using Object = UnityEngine.Object;
 using System;
 using System.Text.RegularExpressions;
 #if UNITY_IOS || UNITY_TVOS
-using UnityEditor.iOS.Xcode;
 #endif
 
 namespace EmbraceSDK.Tests
@@ -24,6 +23,20 @@ namespace EmbraceSDK.Tests
     public class PostBuildProcessorTests
     {
 #if UNITY_ANDROID
+        [OneTimeSetUp]
+        public void EnsureAndroidActive()
+        {
+            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+            {
+                // Make sure support exists (fast fail if the runner is misconfigured)
+                Assume.That(BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android),
+                    "Android Build Support not installed for this editor process");
+
+                bool ok = EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                Assume.That(ok, "Failed to switch active build target to Android");
+            }
+        }
+        
         [Test]
         // <summary>
         // Test if the regex catches the data we need.
@@ -194,27 +207,25 @@ namespace EmbraceSDK.Tests
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
 
-            var userValue = EditorUserBuildSettings.androidCreateSymbolsZip;
-            EditorUserBuildSettings.androidCreateSymbolsZip = true;
-            
+            var userValue = EditorUserBuildSettings.androidCreateSymbols;
+            EditorUserBuildSettings.androidCreateSymbols = AndroidCreateSymbols.Public;
+            LogAssert.Expect(LogType.Assert, new Regex(@"Trying to add file .*boot\.config.*does not appear to exist on disk right now"));
+
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";
             buildPlayerOptions.target = BuildTarget.Android;
+            buildPlayerOptions.targetGroup = BuildTargetGroup.Android;
             buildPlayerOptions.options = BuildOptions.None;
             BuildResult summary = BuildAndroid(buildPlayerOptions);
-
             Assert.IsTrue(summary == BuildResult.Succeeded);
 
             // In older versions of Unity the reference to the default config will not survive the build, so we'll
             // reload it here before restoring its values.
             defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
-
-            //cleanup
-            //
-
+            
             TestHelper.ConfigRestore(defaultConfig);
-            EditorUserBuildSettings.androidCreateSymbolsZip = userValue;
+            EditorUserBuildSettings.androidCreateSymbols = userValue;
         }
 
         private BuildResult BuildAndroid(BuildPlayerOptions buildPlayerOptions)

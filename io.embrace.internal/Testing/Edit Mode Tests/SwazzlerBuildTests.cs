@@ -1,6 +1,7 @@
 #if UNITY_ANDROID
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor;
@@ -25,6 +26,20 @@ namespace EmbraceSDK.Tests
             }
 
             File.Copy(LAUNCHER_TEMPLATE_PATH, LAUNCHER_TEMPLATE_BACKUP_PATH, true);
+        }
+        
+        [OneTimeSetUp]
+        public void EnsureAndroidActive()
+        {
+            if (EditorUserBuildSettings.activeBuildTarget != BuildTarget.Android)
+            {
+                // Make sure support exists (fast fail if the runner is misconfigured)
+                Assume.That(BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Android, BuildTarget.Android),
+                    "Android Build Support not installed for this editor process");
+
+                bool ok = EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                Assume.That(ok, "Failed to switch active build target to Android");
+            }
         }
 
         [TearDown]
@@ -78,6 +93,8 @@ namespace EmbraceSDK.Tests
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
+            LogAssert.Expect(LogType.Assert, new Regex(@"Trying to add file .*boot\.config.*does not appear to exist on disk right now"));
+            
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/SampleScene.unity" };
             buildPlayerOptions.locationPathName = AssetDatabaseUtil.ProjectDirectory + "/Builds/Test Builds/AndroidBuild";
@@ -86,7 +103,6 @@ namespace EmbraceSDK.Tests
 
             BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
             BuildSummary summary = report.summary;
-
             Assert.AreEqual(BuildResult.Succeeded, summary.result);
 
             // The reference to the config instance will not always survive the build, so we'll reload it here before
