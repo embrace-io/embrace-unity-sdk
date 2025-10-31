@@ -42,6 +42,12 @@ github_env_vars:
 # Install the Unity editor. This is used by the GitHub workflows.
 install_editor:
 	python3 .github/scripts/unity.py --version "$(EDITOR_VERSION)" install --changeset "$(EDITOR_CHANGESET)" $(EXTRA_INSTALL_ARGS)
+# There is currently a bug on Linux where the Android Support package is not
+# fully installed. Work around this by manually extracting the package.
+ifeq ($(PLATFORM),linux)
+	cd /opt/unity/editors/$(EDITOR_VERSION)/Editor/Data/PlaybackEngines/AndroidPlayer && \
+		test -e UnityEditor.Android.Extensions.dll || (zcat TargetSupport.pkg.tmp/Payload | cpio -iu)
+endif
 
 # Install the Unity Hub, which will be used to install the Unity editor.
 # This is used by the GitHub workflows.
