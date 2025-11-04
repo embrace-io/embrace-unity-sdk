@@ -45,8 +45,12 @@ install_editor:
 # There is currently a bug on Linux where the Android Support package is not
 # fully installed. Work around this by manually extracting the package.
 ifeq ($(PLATFORM),linux)
+ifneq ($(BUILD_TARGET),android)
+    @echo "Skipping Android module extraction for non-Android build."
+else
 	cd /opt/unity/editors/$(EDITOR_VERSION)/Editor/Data/PlaybackEngines/AndroidPlayer && \
 		test -e UnityEditor.Android.Extensions.dll || (zcat TargetSupport.pkg.tmp/Payload | cpio -iu)
+endif
 endif
 
 # Install the Unity Hub, which will be used to install the Unity editor.
