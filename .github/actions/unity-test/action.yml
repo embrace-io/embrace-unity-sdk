@@ -49,6 +49,11 @@ runs:
       shell: bash
       run: |
         make install_ios_dependencies
+    - name: Make Apple SDK
+      if: ${{ inputs.build_target != 'android' }}
+      shell: bash
+      run: |
+        make apple-sdk
     - name: Install Unity Hub
       shell: bash
       run: |

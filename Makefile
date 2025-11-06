@@ -14,8 +14,8 @@ UNITY_SDK_VERSION = $(shell python3 .github/scripts/vars.py sdk-version)
 UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
 
 APPLE_SDK_VERSION ?= $(shell python3 .github/scripts/vars.py apple-sdk-version)
-APPLE_SDK_DIR = build/embrace_$(APPLE_SDK_VERSION)
-APPLE_SDK_ZIP = build/embrace_$(APPLE_SDK_VERSION).zip
+IOS_WORKSPACE ?= EmbraceUnityiOS.xcworkspace
+IOS_SCHEME    ?= EmbraceUnityiOS
 
 .PHONY: build clean github_env_vars install_ios_dependencies test test_all version build_source_generator
 
@@ -82,14 +82,12 @@ test:
 uninstall_editor:
 	python3 .github/scripts/unity.py --version "$(EDITOR_VERSION)" uninstall
 
-# Download the Embrace Apple SDK release from GitHub.
-$(APPLE_SDK_ZIP):
-	gh release download "$(APPLE_SDK_VERSION)" --repo embrace-io/embrace-apple-sdk --pattern 'embrace_$(APPLE_SDK_VERSION).zip' --dir ./build --clobber
-
-# Unzip the Embrace Apple SDK release.
-$(APPLE_SDK_DIR): $(APPLE_SDK_ZIP)
-	unzip -q -o $(APPLE_SDK_ZIP) -d $(APPLE_SDK_DIR)
-
 # Build the Unity package for the Embrace Unity SDK.
 $(UNITY_SDK_UNITYPACKAGE): build_source_generator install_ios_dependencies
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
+
+.PHONY: apple-sdk
+apple-sdk:
+	xcodebuild -workspace "$(IOS_WORKSPACE)" -scheme "$(IOS_SCHEME)" \
+	  -resolvePackageDependencies \
+	  -clonedSourcePackagesDirPath build/SourcePackages
