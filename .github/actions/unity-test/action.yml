@@ -46,7 +46,7 @@ runs:
           Library-
     - name: Setup Swift (Linux)
       if: ${{ inputs.build_target != 'android' }}
-      uses: swift-actions/setup-swift@682457186b71c25a884c45c06f859febbe259240 #v2.3.0
+      uses: swift-actions/setup-swift@d4537ff835c9778c934e48f78639e270edd5839e #v2.2.0
       with:
         swift-version: '5.9'
     - name: Cache SPM
