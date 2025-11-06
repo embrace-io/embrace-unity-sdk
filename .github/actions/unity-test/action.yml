@@ -48,7 +48,7 @@ runs:
       if: ${{ inputs.build_target != 'android' }}
       uses: swift-actions/setup-swift@v2
       with:
-        swift-version '5.9'
+        swift-version: '5.9'
     - name: Cache SPM
       if: ${{ inputs.build_target != 'android' }}
       uses: actions/cache@v4
