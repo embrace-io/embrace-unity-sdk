@@ -53,7 +53,7 @@ runs:
     - name: Export SPM vars
       shell: bash
       run: |
-        echo 'SPM_DIR=Packages/Embrace SDK/iOS/EmbraceUnityiOS' >> "$GITHUB_ENV"
+        echo "SPM_DIR=${{ github.workspace }}/Packages/Embrace SDK/iOS/EmbraceUnityiOS" >> "$GITHUB_ENV"
     - name: Cache SPM
       if: ${{ inputs.build_target != 'android' }}
       uses: actions/cache@v4
