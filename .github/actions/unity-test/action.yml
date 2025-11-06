@@ -34,6 +34,8 @@ runs:
         BUILD_TARGET: ${{ inputs.build_target }}
         EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
         EDITOR_VERSION: ${{ inputs.editor_version }}
+        REPO_PATH: embrace-unity-sdk
+        SPM_DIR: "Packages/Embrace SDK/iOS/EmbraceUnityiOS"
       run: |
         make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
