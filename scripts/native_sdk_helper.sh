@@ -28,21 +28,21 @@ fi
 
 if [[ $action == "set" ]]; then
   if [[ $(uname) == "Darwin" ]]; then
-    SED=gsed
+    SED="sed -i''"
   else
-    SED=sed
+    SED="sed -i"
   fi
 
   # Example: https://github.com/embrace-io/embrace-unity-sdk/pull/89
   if [[ $platform == "android" ]]; then
-    $SED -i -E "s/(ANDROID_SDK_VERSION = \")[^\"]*(\")/\1$version\2/" io.embrace.sdk/Editor/Data/VersionsRepository.cs
-    $SED -i -E "s/(spec=\"io\.embrace:embrace-[^:]+:)[0-9.]+/\1$version/" io.embrace.sdk/Editor/EmbraceSDKDependencies.xml
-    $SED -i -E "s/(classpath \"io\.embrace:embrace-[^:]+:)[0-9.]+/\1$version/" UnityProjects/*/Assets/Plugins/Android/baseProjectTemplate.gradle
+    $SED -E "s/(ANDROID_SDK_VERSION = \")[^\"]*(\")/\1$version\2/" io.embrace.sdk/Editor/Data/VersionsRepository.cs
+    $SED -E "s/(spec=\"io\.embrace:embrace-[^:]+:)[0-9.]+/\1$version/" io.embrace.sdk/Editor/EmbraceSDKDependencies.xml
+    $SED -E "s/(classpath \"io\.embrace:embrace-[^:]+:)[0-9.]+/\1$version/" UnityProjects/*/Assets/Plugins/Android/baseProjectTemplate.gradle
   fi
 
   # Example: https://github.com/embrace-io/embrace-unity-sdk/pull/130
   if [[ $platform == "apple" ]]; then
-    $SED -i -E "/url: \"https:\/\/github.com\/embrace-io\/embrace-apple-sdk.git\"/ s/(exact: \")[^\"]*(\")/\1$version\2/" io.embrace.sdk/iOS/EmbraceUnityiOS/Package.swift
+    $SED -E "/url: \"https:\/\/github.com\/embrace-io\/embrace-apple-sdk.git\"/ s/(exact: \")[^\"]*(\")/\1$version\2/" io.embrace.sdk/iOS/EmbraceUnityiOS/Package.swift
     cd io.embrace.sdk/iOS/EmbraceUnityiOS && swift package resolve
   fi
 fi
