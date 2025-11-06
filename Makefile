@@ -14,8 +14,6 @@ UNITY_SDK_VERSION = $(shell python3 .github/scripts/vars.py sdk-version)
 UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
 
 APPLE_SDK_VERSION ?= $(shell python3 .github/scripts/vars.py apple-sdk-version)
-IOS_WORKSPACE ?= EmbraceUnityiOS.xcworkspace
-IOS_SCHEME    ?= EmbraceUnityiOS
 
 .PHONY: build clean github_env_vars install_ios_dependencies test test_all version build_source_generator
 
@@ -78,8 +76,6 @@ uninstall_editor:
 $(UNITY_SDK_UNITYPACKAGE): build_source_generator install_ios_dependencies
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
 
-.PHONY: apple-sdk
-apple-sdk:
-	xcodebuild -workspace "$(IOS_WORKSPACE)" -scheme "$(IOS_SCHEME)" \
-	  -resolvePackageDependencies \
-	  -clonedSourcePackagesDirPath build/SourcePackages
+install_ios_dependencies:
+	@echo "Resolving iOS SPM dependencies…"
+	swift package --disable-sandbox resolve

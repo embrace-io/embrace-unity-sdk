@@ -44,11 +44,26 @@ runs:
         restore-keys: |
           Library-${{ inputs.project }}-
           Library-
-    - name: Make Apple SDK
+    - name: Setup Swift (Linux)
+      if: ${{ inputs.build_target != 'android' }}
+      uses: swift-actions/setup-swift@v2
+      with:
+        swift-version '5.9'
+    - name: Cache SPM
+      if: ${{ inputs.build_target != 'android' }}
+      uses: actions/cache@v4
+      with:
+        path: |
+          .build
+          Package.resolved
+        key: spm-${{ runner.os }}-${{ hashFiles('Package.resolved') }}
+        restore-keys: |
+          spm-${{ runner.os }}-
+    - name: Resolve iOS deps (SPM)
       if: ${{ inputs.build_target != 'android' }}
       shell: bash
       run: |
-        make apple-sdk
+        swift package --disable-sandbox resolve
     - name: Install Unity Hub
       shell: bash
       run: |
