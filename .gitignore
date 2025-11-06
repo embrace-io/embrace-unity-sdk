@@ -133,8 +133,6 @@ io.embrace.sdk/iOS/xcframeworks/*.xcframework/
 io.embrace.sdk/iOS/xcframeworks.meta
 
 # The trailing * on the lines below captures both the target file and the associated meta file
-io.embrace.sdk/iOS/embrace_symbol_upload*
-io.embrace.sdk/iOS/run.sh*
 io.embrace.sdk/iOS/upload*
 
 # These were added by Xcode's Swift package template.

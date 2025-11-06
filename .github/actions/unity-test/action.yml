@@ -44,11 +44,6 @@ runs:
         restore-keys: |
           Library-${{ inputs.project }}-
           Library-
-    - name: Install iOS dependencies
-      if: ${{ inputs.build_target != 'android' }}
-      shell: bash
-      run: |
-        make install_ios_dependencies
     - name: Make Apple SDK
       if: ${{ inputs.build_target != 'android' }}
       shell: bash

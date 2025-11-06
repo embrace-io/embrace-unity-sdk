@@ -66,14 +66,6 @@ else
 	$(error Platform "$(PLATFORM)" not supported)
 endif
 
-# Install the Embrace Apple SDK dependencies into the Unity project. This is
-# run before building the Unity package.
-install_ios_dependencies: $(APPLE_SDK_DIR)
-	-rm ./io.embrace.sdk/iOS/embrace_symbol_upload.darwin
-	-rm ./io.embrace.sdk/iOS/run.sh
-	mkdir -p ./io.embrace.sdk/iOS/
-	cp $(APPLE_SDK_DIR)/embrace_symbol_upload.darwin $(APPLE_SDK_DIR)/run.sh ./io.embrace.sdk/iOS/
-
 # Run the Unity tests.
 test:
 	python3 .github/scripts/unity.py --version "$(EDITOR_VERSION)" test $(EXTRA_TEST_ARGS)
