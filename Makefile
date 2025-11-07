@@ -73,5 +73,5 @@ uninstall_editor:
 	python3 .github/scripts/unity.py --version "$(EDITOR_VERSION)" uninstall
 
 # Build the Unity package for the Embrace Unity SDK.
-$(UNITY_SDK_UNITYPACKAGE): build_source_generator install_ios_dependencies
+$(UNITY_SDK_UNITYPACKAGE): build_source_generator
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
