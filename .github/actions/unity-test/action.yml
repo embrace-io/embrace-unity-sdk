@@ -46,9 +46,9 @@ runs:
           Library-
     - name: Setup Swift (Linux)
       if: ${{ inputs.build_target != 'android' }}
-      uses: swift-actions/setup-swift@d4537ff835c9778c934e48f78639e270edd5839e #v2.2.0
+      uses: swift-actions/setup-swift@d4537ff835c9778c934e48f78639e270edd5839e
       with:
-        swift-version: '5.10'
+        swift-version: '5.10.1'
     - name: Export SPM vars
       shell: bash
       run: |
@@ -60,9 +60,9 @@ runs:
         path: |
           "${{ env.SPM_DIR }}/.build"
           "${{ env.SPM_DIR }}/Package.resolved"
-        key: spm-${{ runner.os }}-swift5.9-${{ hashFiles(format('{0}/Package.resolved', env.SPM_DIR)) }}
+        key: spm-${{ runner.os }}-swift5.10-${{ hashFiles(format('{0}/Package.resolved', env.SPM_DIR)) }}
         restore-keys: |
-          spm-${{ runner.os }}-swift5.9-
+          spm-${{ runner.os }}-swift5.10-
     - name: Resolve iOS deps (SPM)
       if: ${{ inputs.build_target != 'android' }}
       shell: bash
