@@ -34,7 +34,6 @@ runs:
         BUILD_TARGET: ${{ inputs.build_target }}
         EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
         EDITOR_VERSION: ${{ inputs.editor_version }}
-        SPM_DIR: "Packages/Embrace SDK/iOS/EmbraceUnityiOS"
       run: |
         make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
@@ -53,7 +52,7 @@ runs:
     - name: Export SPM vars
       shell: bash
       run: |
-        echo "SPM_DIR=${GITHUB_WORKSPACE}/Packages/Embrace SDK/iOS/EmbraceUnityiOS" >> "$GITHUB_ENV"
+        echo "SPM_DIR=${GITHUB_WORKSPACE}/io.embrace.sdk/iOS/EmbraceUnityiOS" >> "$GITHUB_ENV"
     - name: Cache SPM
       if: ${{ inputs.build_target != 'android' }}
       uses: actions/cache@v4
