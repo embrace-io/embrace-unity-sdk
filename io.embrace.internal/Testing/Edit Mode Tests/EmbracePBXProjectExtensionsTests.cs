@@ -41,22 +41,23 @@ namespace EmbraceSDK.Tests
         {
             var pbxProject = new PBXProject();
             pbxProject.ReadFromFile(GetPBXProjectPath(data.ProjectFile));
+
             pbxProject.AddLocalPackage(
                 pathToBuiltProject: "Temp/TestAddLocalPackage",
                 sourcePath: Path.GetFullPath("Packages/io.embrace.sdk/iOS/EmbraceUnityiOS"),
                 projectPath: "EmbraceUnityiOS",
                 productName: "EmbraceUnityiOS"
             );
-            
-            string s = pbxProject.WriteToString();
-            StringAssert.Contains("projectPath = EmbraceUnityiOS", s);
-            StringAssert.Contains("productName = EmbraceUnityiOS", s);
-            StringAssert.Contains("XCSwiftPackageProductDependency", s);
-            StringAssert.Contains("productName = EmbraceUnityiOS", s);
-            var targetGuid = pbxProject.GetUnityFrameworkTargetGuid();
+
+            var actual = new PBXProject();
+            actual.ReadFromString(pbxProject.WriteToString());
+            var s = actual.WriteToString();
+            StringAssert.IsMatch(@"XCLocalSwiftPackageReference[\s\S]*?(path|relativePath|projectPath)\s*=\s*EmbraceUnityiOS\b", s);
+            StringAssert.IsMatch(@"XCSwiftPackageProductDependency[\s\S]*?productName\s*=\s*EmbraceUnityiOS\b", s);
+            var targetGuid = actual.GetUnityFrameworkTargetGuid();
             Assert.IsFalse(string.IsNullOrEmpty(targetGuid));
             StringAssert.Contains($"{targetGuid} /* UnityFramework */", s);
-            StringAssert.Contains("packageProductDependencies", s); // section exists
+            StringAssert.IsMatch($"{System.Text.RegularExpressions.Regex.Escape(targetGuid)} \\/\\* UnityFramework \\*\\/[\\s\\S]*?packageProductDependencies", s);
             StringAssert.Contains("EmbraceUnityiOS", s);
             StringAssert.DoesNotContain("Frameworks/io.embrace.sdk/iOS/xcframeworks", s);
         }
