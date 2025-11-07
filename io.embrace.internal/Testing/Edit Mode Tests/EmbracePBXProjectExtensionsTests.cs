@@ -48,7 +48,13 @@ namespace EmbraceSDK.Tests
                 productName: "EmbraceUnityiOS"
             );
             
-            File.WriteAllText(Application.dataPath + "/io.embrace.sdk/" + "pbx_file.txt", pbxProject.WriteToString());
+            string workspace = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
+            string exportDir = !string.IsNullOrEmpty(workspace)
+                ? Path.Combine(workspace, "test-exports")
+                : Path.Combine(Application.dataPath, "io.embrace.sdk"); // fallback for local runs
+
+            Directory.CreateDirectory(exportDir);
+            File.WriteAllText(Path.Combine(exportDir, "pbx_file.txt"), pbxProject.WriteToString());
             AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
         }
 

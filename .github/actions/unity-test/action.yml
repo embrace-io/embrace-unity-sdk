@@ -34,7 +34,6 @@ runs:
         BUILD_TARGET: ${{ inputs.build_target }}
         EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
         EDITOR_VERSION: ${{ inputs.editor_version }}
-        ARTIFACTS_DIR: ${{ runner.temp }}/test-exports
       run: |
         make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
@@ -107,7 +106,9 @@ runs:
       uses: actions/upload-artifact@v4
       with:
         name: test-exports
-        path: io.embrace.sdk
+        path: test-exports/**            # at repo root
+        if-no-files-found: error
+        retention-days: 14
         
     - name: Uninstall editor
       shell: bash
