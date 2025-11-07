@@ -44,15 +44,23 @@ runs:
         restore-keys: |
           Library-${{ inputs.project }}-
           Library-
+    - name: Preload Swift signing keys (Linux)
+      if: ${{ inputs.build_target != 'android' && runner.os == 'Linux' }}
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends gnupg ca-certificates curl
+        curl -fsSL --retry 5 --retry-connrefused https://swift.org/keys/all-keys.asc | gpg --batch --import -
     - name: Setup Swift (Linux)
       if: ${{ inputs.build_target != 'android' }}
       uses: swift-actions/setup-swift@d4537ff835c9778c934e48f78639e270edd5839e
       with:
         swift-version: '5.10.1'
-    - name: Export SPM vars
+    - name: Export Github Vars
       shell: bash
       run: |
         echo "SPM_DIR=${GITHUB_WORKSPACE}/io.embrace.sdk/iOS/EmbraceUnityiOS" >> "$GITHUB_ENV"
+        echo "ROOT_DIR=${GITHUB_WORKSPACE}" >> "$GITHUB_ENV"
     - name: Cache SPM
       if: ${{ inputs.build_target != 'android' }}
       uses: actions/cache@v4

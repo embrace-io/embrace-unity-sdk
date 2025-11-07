@@ -48,13 +48,17 @@ namespace EmbraceSDK.Tests
                 productName: "EmbraceUnityiOS"
             );
             
-            string workspace = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
-            string exportDir = !string.IsNullOrEmpty(workspace)
-                ? Path.Combine(workspace, "test-exports")
-                : Path.Combine(Application.dataPath, "io.embrace.sdk"); // fallback for local runs
+            string workspace = Environment.GetEnvironmentVariable("ROOT_DIR");
 
-            Directory.CreateDirectory(exportDir);
-            File.WriteAllText(Path.Combine(exportDir, "pbx_file.txt"), pbxProject.WriteToString());
+            if (string.IsNullOrEmpty(workspace))
+            {
+                Debug.LogWarning("[Diag] Root directory environment variable not set. Skipping writing PBX project file to disk.");
+            }
+            else
+            {
+                File.WriteAllText(Path.Combine(workspace, "pbx_file.txt"), pbxProject.WriteToString());
+            }
+            
             AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
         }
 
