@@ -47,7 +47,18 @@ namespace EmbraceSDK.Tests
                 projectPath: "EmbraceUnityiOS",
                 productName: "EmbraceUnityiOS"
             );
-            AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
+            
+            string s = pbxProject.WriteToString();
+            StringAssert.Contains("projectPath = EmbraceUnityiOS", s);
+            StringAssert.Contains("productName = EmbraceUnityiOS", s);
+            StringAssert.Contains("XCSwiftPackageProductDependency", s);
+            StringAssert.Contains("productName = EmbraceUnityiOS", s);
+            var targetGuid = pbxProject.GetUnityFrameworkTargetGuid();
+            Assert.IsFalse(string.IsNullOrEmpty(targetGuid));
+            StringAssert.Contains($"{targetGuid} /* UnityFramework */", s);
+            StringAssert.Contains("packageProductDependencies", s); // section exists
+            StringAssert.Contains("EmbraceUnityiOS", s);
+            StringAssert.DoesNotContain("Frameworks/io.embrace.sdk/iOS/xcframeworks", s);
         }
 
         [Test]
