@@ -47,13 +47,8 @@ namespace EmbraceSDK.Tests
                 projectPath: "EmbraceUnityiOS",
                 productName: "EmbraceUnityiOS"
             );
-            var outDir =
-                Environment.GetEnvironmentVariable("ARTIFACTS_DIR")
-                ?? TestContext.CurrentContext.WorkDirectory;
-            Directory.CreateDirectory(outDir);
-            var path = Path.Combine(outDir, "my-output.json");
-            File.WriteAllText(path, "{\"ok\":true}");
             
+            File.WriteAllText(Application.dataPath + "/io.embrace.sdk/" + "pbx_file.txt", pbxProject.WriteToString());
             AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
         }
 
