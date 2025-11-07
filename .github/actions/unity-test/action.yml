@@ -34,6 +34,7 @@ runs:
         BUILD_TARGET: ${{ inputs.build_target }}
         EDITOR_CHANGESET: ${{ inputs.editor_changeset }}
         EDITOR_VERSION: ${{ inputs.editor_version }}
+        ARTIFACTS_DIR: ${{ runner.temp }}/test-exports
       run: |
         make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
@@ -100,6 +101,29 @@ runs:
       run: |
         cd ./build/test-logs
         cat ./*
+        
+    - name: Upload exported files
+      if: ${{ inputs.build_target != 'android' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-exports
+        path: ${{ env.ARTIFACTS_DIR }}/
+        
+    - name: Add link + preview to summary
+      if: ${{ inputs.build_target != 'android' }}
+      shell: bash
+      run: |
+        echo "## Test export" >> $GITHUB_STEP_SUMMARY
+        echo "- Artifact: **test-exports**" >> $GITHUB_STEP_SUMMARY
+        echo "- Download: [Go to run artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}#artifacts)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "<details><summary>Preview my-output.json</summary>" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        printf '```json\n' >> $GITHUB_STEP_SUMMARY
+        sed -n '1,200p' "$ARTIFACTS_DIR/my-output.json" >> $GITHUB_STEP_SUMMARY
+        printf '\n```\n' >> $GITHUB_STEP_SUMMARY
+        echo "</details>" >> $GITHUB_STEP_SUMMARY
+        
     - name: Uninstall editor
       shell: bash
       run: |
