@@ -53,6 +53,7 @@ runs:
       run: |
         make install_editor
     - name: Get iOS Dependencies
+      if: ${{ inputs.build_target != 'android' }}
       run: |
         make ios_dependencies
     - name: Run tests
