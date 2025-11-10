@@ -26,7 +26,9 @@ public class EmbraceManager: NSObject {
     ) -> Bool {
         do {
             var embraceOptions: Embrace.Options {
-                let _crashReporter: CrashReporter? = config.contains(.DisableEmbraceCrashReporter) ? nil : EmbraceCrashReporter()
+                let _crashReporter: (any CrashReporter)? = 
+                    config.contains(.DisableEmbraceCrashReporter) ? nil : KSCrashReporter() as any CrashReporter
+
     
                 let urlSessionOptions = URLSessionCaptureService.Options(
                     injectTracingHeader: true,
