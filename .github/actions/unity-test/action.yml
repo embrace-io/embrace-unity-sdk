@@ -48,7 +48,7 @@ runs:
       if: ${{ inputs.build_target != 'android' }}
       shell: bash
       run: |
-        make ios_dependencies
+        make install_ios_dependencies
     - name: Install Unity Hub
       shell: bash
       run: |

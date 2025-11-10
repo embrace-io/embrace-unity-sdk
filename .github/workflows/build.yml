@@ -37,6 +37,11 @@ jobs:
       - name: Get the package version
         run: |
           make github_env_vars | tee -a $GITHUB_ENV
+      - name: Install iOS dependencies
+        if: ${{ inputs.build_target != 'android' }}
+        shell: bash
+        run: |
+          make install_ios_dependencies
       - name: Install Unity Hub
         run: |
           make install_hub
