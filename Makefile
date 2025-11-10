@@ -73,7 +73,7 @@ uninstall_editor:
 	python3 .github/scripts/unity.py --version "$(EDITOR_VERSION)" uninstall
 
 # Build the Unity package for the Embrace Unity SDK.
-$(UNITY_SDK_UNITYPACKAGE): build_source_generator
+$(UNITY_SDK_UNITYPACKAGE): build_source_generator install_ios_dependencies
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
 	
 # Download the support zile file and extract the run.sh and embrace_symbol_upload.darwin
