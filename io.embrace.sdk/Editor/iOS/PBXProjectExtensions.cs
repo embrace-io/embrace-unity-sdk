@@ -156,7 +156,12 @@ namespace EmbraceSDK.EditorView.iOS.Extensions
         {
             var sourceFiles = Directory
                 .GetFiles(sourcePath, "*", SearchOption.AllDirectories)
-                .Where(f => Path.HasExtension(".swift") || Path.HasExtension(".resolved"))
+                .Where(f =>
+                {
+                    var ext = Path.GetExtension(f);
+                    return string.Equals(ext, ".swift", StringComparison.OrdinalIgnoreCase) ||
+                           string.Equals(ext, ".resolved", StringComparison.OrdinalIgnoreCase);
+                })
                 .ToArray();
             foreach (var sourceFile in sourceFiles)
             {

@@ -47,6 +47,7 @@ namespace EmbraceSDK.Tests
                 projectPath: "EmbraceUnityiOS",
                 productName: "EmbraceUnityiOS"
             );
+            
             AssertProjectIsEqual(pbxProject, data.ExpectedProjectFile);
         }
 
