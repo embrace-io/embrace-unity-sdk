@@ -15,7 +15,7 @@ UNITY_SDK_UNITYPACKAGE = build/EmbraceSDK_$(UNITY_SDK_VERSION).unitypackage
 
 APPLE_SDK_VERSION ?= $(shell python3 .github/scripts/vars.py apple-sdk-version)
 
-.PHONY: build clean github_env_vars test test_all version build_source_generator
+.PHONY: build clean github_env_vars test test_all version build_source_generator ios_dependencies
 
 # Build the Unity package for the Embrace Unity SDK.
 build: $(UNITY_SDK_UNITYPACKAGE)
@@ -75,3 +75,9 @@ uninstall_editor:
 # Build the Unity package for the Embrace Unity SDK.
 $(UNITY_SDK_UNITYPACKAGE): build_source_generator
 	python3 .github/scripts/unity.py --version $(EDITOR_VERSION) build $(EXTRA_BUILD_ARGS)
+	
+# Download the support zile file and extract the run.sh and upload_symbols.darwin
+ios_dependencies:
+	curl -L -o embrace_support.zip https://downloads.embrace.io/embrace_support.zip
+	unzip -o embrace_support.zip "run.sh" "upload_symbols.darwin" -d io.embrace.sdk/iOS/
+	rm embrace_support.zip
