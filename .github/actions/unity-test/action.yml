@@ -44,6 +44,11 @@ runs:
         restore-keys: |
           Library-${{ inputs.project }}-
           Library-
+    - name: Install iOS dependencies
+      if: ${{ inputs.build_target != 'android' }}
+      shell: bash
+      run: |
+        make ios_dependencies
     - name: Install Unity Hub
       shell: bash
       run: |
@@ -52,10 +57,6 @@ runs:
       shell: bash
       run: |
         make install_editor
-    - name: Get iOS Dependencies
-      if: ${{ inputs.build_target != 'android' }}
-      run: |
-        make ios_dependencies
     - name: Run tests
       shell: bash
       env:
