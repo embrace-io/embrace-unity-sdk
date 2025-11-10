@@ -52,6 +52,9 @@ runs:
       shell: bash
       run: |
         make install_editor
+    - name: Get iOS Dependencies
+      run: |
+        make ios_dependencies
     - name: Run tests
       shell: bash
       env:
