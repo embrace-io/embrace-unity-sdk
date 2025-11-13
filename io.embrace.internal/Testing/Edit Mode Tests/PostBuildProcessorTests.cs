@@ -27,6 +27,14 @@ namespace EmbraceSDK.Tests
         [OneTimeSetUp]
         public void SetupAndroidBuildEnvironment()
         {
+            // Configure JDK path from environment variable (set by CI)
+            var jdkPath = System.Environment.GetEnvironmentVariable("JAVA_HOME");
+            if (!string.IsNullOrEmpty(jdkPath) && System.IO.Directory.Exists(jdkPath))
+            {
+                UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath = jdkPath;
+                Debug.Log($"[CI Setup] Configured JDK path: {jdkPath}");
+            }
+
             // Configure Gradle path from CI environment
             // Check common CI locations for Gradle installation
             var possibleGradlePaths = new[]
