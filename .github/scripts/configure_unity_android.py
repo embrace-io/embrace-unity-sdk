@@ -99,11 +99,12 @@ gradle.taskGraph.whenReady {
     if "GITHUB_ENV" in os.environ:
         with open(os.environ["GITHUB_ENV"], "a") as f:
             f.write(f"JAVA_HOME={jdk_path}\n")
+            f.write(f"GRADLE_HOME={gradle_path}\n")
             f.write(f"GRADLE_USER_HOME={gradle_home}\n")
             # Force Gradle to use specific Java version
             f.write(f"GRADLE_OPTS=-Dorg.gradle.java.home={jdk_path}\n")
         print("Environment variables written to GITHUB_ENV")
-        print("Set JAVA_HOME, GRADLE_USER_HOME, and GRADLE_OPTS")
+        print("Set JAVA_HOME, GRADLE_HOME, GRADLE_USER_HOME, and GRADLE_OPTS")
 
 
 if __name__ == "__main__":
