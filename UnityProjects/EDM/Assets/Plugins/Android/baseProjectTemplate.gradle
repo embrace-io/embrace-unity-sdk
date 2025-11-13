@@ -13,7 +13,8 @@ allprojects {
             // See which Gradle version is preinstalled with Unity here https://docs.unity3d.com/Manual/android-gradle-overview.html
             // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
             // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
-            classpath "com.android.tools.build:gradle:4.0.1"
+            // NOTE: AGP 8.3.0 requires Gradle 8.4+ and Java 17. Configure these in Unity Preferences > External Tools.
+            classpath "com.android.tools.build:gradle:8.3.0"
             classpath "io.embrace:embrace-swazzler:7.9.2"
             **BUILD_SCRIPT_DEPS**
         }

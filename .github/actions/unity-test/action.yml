@@ -57,6 +57,25 @@ runs:
       shell: bash
       run: |
         make install_editor
+    - name: Install Java 17
+      if: ${{ inputs.build_target == 'android' || inputs.build_target == '' }}
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: Setup Gradle
+      if: ${{ inputs.build_target == 'android' || inputs.build_target == '' }}
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.14.1'
+    - name: Configure Unity Android settings
+      if: ${{ inputs.build_target == 'android' || inputs.build_target == '' }}
+      shell: bash
+      run: |
+        python3 .github/scripts/configure_unity_android.py \
+          --editor-version "${{ inputs.editor_version }}" \
+          --gradle-path "$(which gradle | xargs dirname | xargs dirname)" \
+          --jdk-path "$JAVA_HOME"
     - name: Run tests
       shell: bash
       env:
