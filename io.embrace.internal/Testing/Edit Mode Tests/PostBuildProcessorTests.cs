@@ -24,6 +24,28 @@ namespace EmbraceSDK.Tests
     public class PostBuildProcessorTests
     {
 #if UNITY_ANDROID
+        [OneTimeSetUp]
+        public void SetupAndroidBuildEnvironment()
+        {
+            // Configure Gradle path from CI environment
+            // Check common CI locations for Gradle installation
+            var possibleGradlePaths = new[]
+            {
+                "/home/runner/gradle-installations/installs/gradle-8.14.1",
+                System.Environment.GetEnvironmentVariable("GRADLE_HOME"),
+            };
+
+            foreach (var path in possibleGradlePaths)
+            {
+                if (!string.IsNullOrEmpty(path) && System.IO.Directory.Exists(path))
+                {
+                    UnityEditor.Android.AndroidExternalToolsSettings.gradlePath = path;
+                    Debug.Log($"[CI Setup] Configured Gradle path: {path}");
+                    break;
+                }
+            }
+        }
+
         [Test]
         // <summary>
         // Test if the regex catches the data we need.
@@ -178,6 +200,8 @@ namespace EmbraceSDK.Tests
         {
             var defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
+            Debug.Log("Starting the test with default config check");
+            
             Assert.NotNull(defaultConfig);
 
             // NOTE: The test config contains override values for all fields which are used to output a json file with all available config settings.
@@ -191,8 +215,12 @@ namespace EmbraceSDK.Tests
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
+            Debug.Log("Meowing before appID and symbol check");
+            
             Assert.IsNotNull(testConfig.AppId);
             Assert.IsNotNull(testConfig.SymbolUploadApiToken);
+            
+            Debug.Log("Starting Android build");
 
             var userValue = EditorUserBuildSettings.androidCreateSymbolsZip;
             EditorUserBuildSettings.androidCreateSymbolsZip = true;
@@ -208,6 +236,9 @@ namespace EmbraceSDK.Tests
 
             // In older versions of Unity the reference to the default config will not survive the build, so we'll
             // reload it here before restoring its values.
+            
+            Debug.Log("Reloading AndroidConfiguration for cleanup.");
+            
             defaultConfig = AssetDatabaseUtil.LoadConfiguration<AndroidConfiguration>(ensureNotNull: false);
 
             //cleanup
