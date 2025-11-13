@@ -50,31 +50,6 @@ def configure_gradle_env(gradle_path: str, jdk_path: str, editor_version: str):
         else:
             print(f"Warning: Unity JDK path not found at {unity_jdk_path}")
 
-    # Configure Unity preferences for Edit Mode tests
-    if sys.platform == "linux":
-        # Unity on Linux stores preferences in ~/.config/unity3d/prefs
-        prefs_dir = os.path.expanduser("~/.config/unity3d")
-        os.makedirs(prefs_dir, exist_ok=True)
-        prefs_file = os.path.join(prefs_dir, "prefs")
-
-        # Unity uses a hash-based key system. The hash is consistent across installations
-        # Format: Key_hash: value
-        prefs_content = f"""JdkUseEmbedded_h4019811976: 0
-JdkPath_h4019811976: {jdk_path}
-GradleUseEmbedded_h4019811976: 0
-GradlePath_h4019811976: {gradle_path}
-AndroidSdkRoot_h4019811976: /usr/local/lib/android/sdk
-AndroidNdkRoot_h4019811976: /usr/local/lib/android/sdk/ndk-bundle
-"""
-
-        # Append to existing prefs or create new file
-        with open(prefs_file, "a") as f:
-            f.write(prefs_content)
-
-        print(f"Configured Unity preferences at {prefs_file}")
-        print(f"  JDK: {jdk_path}")
-        print(f"  Gradle: {gradle_path}")
-
     # Create gradle.properties in GRADLE_USER_HOME to force JDK
     gradle_home = os.path.expanduser("~/.gradle")
     os.makedirs(gradle_home, exist_ok=True)

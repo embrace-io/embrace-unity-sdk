@@ -76,6 +76,12 @@ runs:
           --editor-version "${{ inputs.editor_version }}" \
           --gradle-path "$(which gradle | xargs dirname | xargs dirname)" \
           --jdk-path "$JAVA_HOME"
+    - name: Patch gradleTemplate.properties with JDK path
+      if: ${{ inputs.build_target == 'android' || inputs.build_target == '' }}
+      shell: bash
+      run: |
+        python3 .github/scripts/patch_gradle_properties.py \
+          --jdk-path "$JAVA_HOME"
     - name: Run tests
       shell: bash
       env:
