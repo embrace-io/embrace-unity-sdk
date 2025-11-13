@@ -71,7 +71,7 @@ gradle.taskGraph.whenReady {
                 if (wrapperProps.exists()) {
                     wrapperProps.text = wrapperProps.text.replaceAll(
                         /distributionUrl=.*/,
-                        'distributionUrl=https\\://services.gradle.org/distributions/gradle-8.14.1-all.zip'
+                        'distributionUrl=https://services.gradle.org/distributions/gradle-8.14.1-all.zip'
                     )
                 }
             }
