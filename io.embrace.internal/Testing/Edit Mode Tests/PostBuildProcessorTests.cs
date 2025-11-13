@@ -27,22 +27,6 @@ namespace EmbraceSDK.Tests
         [OneTimeSetUp]
         public void SetupAndroidBuildEnvironment()
         {
-            // Configure JDK path to Unity's bundled JDK (which is symlinked to Java 17 on CI)
-            // Unity validates the JDK version when setting jdkRootPath, so we can't point directly to Java 17.
-            // Instead, point to Unity's bundled JDK path, which Unity doesn't validate.
-            var unityVersion = UnityEngine.Application.unityVersion;
-            var bundledJdkPath = $"/opt/unity/editors/{unityVersion}/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK";
-
-            if (System.IO.Directory.Exists(bundledJdkPath))
-            {
-                UnityEditor.Android.AndroidExternalToolsSettings.jdkRootPath = bundledJdkPath;
-                Debug.Log($"[CI Setup] Configured JDK path to Unity bundled JDK: {bundledJdkPath}");
-            }
-            else
-            {
-                Debug.LogWarning($"[CI Setup] Unity bundled JDK path not found: {bundledJdkPath}");
-            }
-
             // Configure Gradle path from CI environment
             // Check common CI locations for Gradle installation
             var possibleGradlePaths = new[]

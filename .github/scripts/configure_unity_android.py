@@ -37,19 +37,6 @@ def configure_gradle_env(gradle_path: str, jdk_path: str, editor_version: str):
         else:
             print(f"Warning: Unity Gradle path not found at {unity_gradle_path}")
 
-        # Replace OpenJDK
-        unity_jdk_path = f"/opt/unity/editors/{editor_version}/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK"
-        if os.path.exists(unity_jdk_path):
-            print(f"Backing up Unity's bundled OpenJDK at {unity_jdk_path}")
-            jdk_backup_path = f"{unity_jdk_path}.backup"
-            if not os.path.exists(jdk_backup_path):
-                os.rename(unity_jdk_path, jdk_backup_path)
-            print(f"Symlinking custom JDK from {jdk_path} to {unity_jdk_path}")
-            os.symlink(jdk_path, unity_jdk_path)
-            print(f"Unity will now use Java 17")
-        else:
-            print(f"Warning: Unity JDK path not found at {unity_jdk_path}")
-
     # Create gradle.properties in GRADLE_USER_HOME to force JDK
     gradle_home = os.path.expanduser("~/.gradle")
     os.makedirs(gradle_home, exist_ok=True)
