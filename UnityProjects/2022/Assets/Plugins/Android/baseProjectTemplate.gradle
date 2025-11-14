@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath "io.embrace:embrace-swazzler:7.5.0"
+        classpath "io.embrace:embrace-swazzler:7.9.3"
     }
 }
 
