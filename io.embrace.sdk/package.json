@@ -32,6 +32,7 @@
     "iOS/run.sh",
     "iOS/embrace_symbol_upload.darwin",
     "*.meta",
+    "!Tests.meta",
     "CHANGELOG.md"
   ],
   "hideInEditor": false,
