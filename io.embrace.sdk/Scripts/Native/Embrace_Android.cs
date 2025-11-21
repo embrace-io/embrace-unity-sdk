@@ -411,25 +411,13 @@ namespace EmbraceSDK.Internal
             EmbraceSharedInstance.Call<bool>(_RemoveSessionPropertyMethod, key);
         }
 
+        [Obsolete("GetSessionProperties is deprecated", false)]
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
-            if (!ReadyForCalls())
-            {
-                EmbraceLogger.LogError(EmbraceMessages.GET_SESSION_PROPERTIES_ERROR);
-                return null;
-            }
-
-            using AndroidJavaObject javaMap = EmbraceSharedInstance.Call<AndroidJavaObject>(_GetSessionPropertiesMethod);
-
-            // The Android SDK can return null if this function is called before the SDK is initialized, or if SDK
-            // initialization fails. In this case, return an empty dictionary to match behavior on iOS.
-            if (javaMap == null)
-            {
-                return new Dictionary<string, string>();
-            }
-
-            Dictionary<string, string> dictionary = DictionaryFromJavaMap(javaMap.GetRawObject());
-            return dictionary;
+            #if DEVELOPMENT_BUILD || UNITY_EDITOR
+            Debug.LogWarning(EmbraceMessages.GET_SESSION_PROPERTIES_DEPRECATED);
+            #endif
+            return null;
         }
 
         void IEmbraceProvider.LogMessage(string message, EMBSeverity severity, Dictionary<string, string> properties)

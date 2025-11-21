@@ -334,7 +334,7 @@ namespace EmbraceSDK.Internal
             embrace_remove_session_property(key);
         }
         
-        [Obsolete("GetSessionProperties is deprecated on iOS", false)]
+        [Obsolete("GetSessionProperties is deprecated", false)]
         Dictionary<string, string> IEmbraceProvider.GetSessionProperties()
         {
             #if DEVELOPMENT_BUILD || UNITY_EDITOR

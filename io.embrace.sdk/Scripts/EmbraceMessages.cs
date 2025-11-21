@@ -40,7 +40,7 @@ namespace EmbraceSDK
         public const string STARTUP_ARGS_ERROR = "Embrace iOS support requires the use of EmbraceStartupArgs";
         public const string SET_USER_AS_PAYER_ERROR = "Unable to set user as payer, Embrace SDK not initialized";
         public const string CLEAR_USER_AS_PAYER_ERROR = "Unable to clear user as payer, Embrace SDK not initialized";
-        public const string GET_SESSION_PROPERTIES_DEPRECATED = "GetSessionProperties is deprecated on iOS";
+        public const string GET_SESSION_PROPERTIES_DEPRECATED = "GetSessionProperties is deprecated.";
         public const string STRING_CONVERSION_ERROR = "Unable to convert string to message severity";
         public const string STUB_INITIALIZE_SDK = "InitializeSDK";
         public const string STUB_START_SDK = "StartSDK";
