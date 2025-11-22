@@ -18,6 +18,23 @@
     "email": "support@embrace.io",
     "url": "https://embrace.io/"
   },
+  "scripts": {
+    "prepublishOnly": "cd .. && make install_ios_dependencies"
+  },
+  "files": [
+    "Scripts/",
+    "Editor/",
+    "Resources/",
+    "Prefabs/",
+    "Plugins/",
+    "Samples/",
+    "iOS/EmbraceUnityiOS/",
+    "iOS/run.sh",
+    "iOS/embrace_symbol_upload.darwin",
+    "*.meta",
+    "!Tests.meta",
+    "CHANGELOG.md"
+  ],
   "hideInEditor": false,
   "type": "library",
   "samples": [
