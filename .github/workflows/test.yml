@@ -60,7 +60,7 @@ jobs:
       editor_versions: ${{ steps.get_editor_versions.outputs.editor_versions }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ inputs.ref }}
@@ -86,7 +86,7 @@ jobs:
           tool-cache: false
           android: false
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ inputs.ref }}
@@ -116,7 +116,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ inputs.ref }}
@@ -144,7 +144,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ inputs.ref }}
@@ -168,7 +168,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ inputs.ref }}
