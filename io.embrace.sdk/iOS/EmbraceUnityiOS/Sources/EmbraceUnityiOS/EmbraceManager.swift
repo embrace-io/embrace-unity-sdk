@@ -40,11 +40,13 @@ public class EmbraceManager: NSObject {
                     .addDefaults()
                     .remove(ofType: URLSessionCaptureService.self)
                     .add(.urlSession(options: urlSessionOptions))
-    
+
+                #if canImport(UIKit) && !os(watchOS)
                 if config.contains(.DisableEmbraceNativeViewCaptureService) {
                     builder.remove(ofType: ViewCaptureService.self)
                 }
-                
+                #endif
+
                 if !config.contains(.DisableEmbraceNativePushNotificationCaptureSerivce) {
                     builder.add(.pushNotification())
                 }
