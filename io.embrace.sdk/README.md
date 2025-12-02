@@ -44,27 +44,6 @@ Build Tools to be installed.
 If you run into any issues building the SDK locally, please reach out on our
 [community Slack](https://embraceio-community.slack.com/archives/C078WQ3DJMC)!
 
-## Publishing to npm
-
-The iOS symbol upload tools (`run.sh` and `embrace_symbol_upload.darwin`) are
-required for the npm package but are excluded from git via `.gitignore`. Before
-publishing to npm, these dependencies will be automatically downloaded via the
-`prepublishOnly` script, which runs `make install_ios_dependencies`.
-
-To publish to npm:
-
-```bash
-cd io.embrace.sdk
-npm publish
-```
-
-The `prepublishOnly` script will automatically download the required iOS tools
-from https://downloads.embrace.io/embrace_support.zip before packaging.
-
-**Note:** For local development and building, you must manually run `make` from
-the repository root to download iOS dependencies and build the SDK. The
-`prepublishOnly` script only runs automatically during `npm publish`.
-
 ## Usage
 
 - Refer to our [Features page](https://embrace.io/docs/unity/features/) to learn

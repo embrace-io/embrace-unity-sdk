@@ -10,19 +10,21 @@
 import Foundation
 import OSLog
 import OpenTelemetryApi
+import EmbraceCommonInternal
 
 // Should not get hit under normal circumstances, add as a guard against misinstrumentation
 private let MAX_STORED_SPANS = 10000
 
 class SpanRepository {
-    private let activeSpansQueue = DispatchQueue(label: "io.embrace.Unity.activeSpans",
-                                                 attributes: .concurrent)
-    private let completedSpansQueue = DispatchQueue(label: "io.embrace.Unity.completedSpans",
-                                                    attributes: .concurrent)
-    private var activeSpans = [String: Span]()
-    private var completedSpans = [String: Span]()
-    private var log = OSLog(subsystem: "Embrace", category: "SpanRepository")
 
+    private var log = OSLog(subsystem: "Embrace", category: "SpanRepository")
+    
+    private struct SpanData {
+        var activeSpans = [String: Span]()
+        var completedSpans = [String: Span]()
+    }
+    private let spanCache: EmbraceMutex<SpanData> = EmbraceMutex(SpanData())
+    
     init() {
         NotificationCenter.default.addObserver(
             self,
@@ -36,60 +38,46 @@ class SpanRepository {
     }
 
     func get(spanId: String) -> Span? {
-        var span: Span?
-
-        activeSpansQueue.sync {
-            span = activeSpans[spanId]
-        }
-
-        if span == nil {
-            completedSpansQueue.sync {
-                span = completedSpans[spanId]
+        spanCache.withLock {
+            guard let span = $0.activeSpans[spanId] else {
+                return $0.completedSpans[spanId]
             }
+            return span
         }
-
-        return span
     }
 
     func spanStarted(span: Span) -> String {
-        var key = getKey(span: span)
-
-        activeSpansQueue.async(flags: .barrier) {
-            if self.activeSpans.count > MAX_STORED_SPANS {
+        spanCache.withLock {
+            guard $0.activeSpans.count <= MAX_STORED_SPANS else {
                 os_log("Embrace SpanRepository.swift --> Too many active spans being tracked. Ignoring new active span. Please consider reducing the number of spans being tracked.",
                        log: self.log,
                        type: .error)
-                key = "";
-                return
+                return ""
             }
 
-            self.activeSpans.updateValue(span, forKey: key)
+            let key = getKey(span: span)
+            $0.activeSpans.updateValue(span, forKey: key)
+            return key
         }
-
-        return key
     }
 
     func spanEnded(span: Span) {
         let key = getKey(span: span)
-
-        activeSpansQueue.async(flags: .barrier) {
-            self.activeSpans.removeValue(forKey: key)
-        }
-
-        completedSpansQueue.async(flags: .barrier) {
-            if self.completedSpans.count > MAX_STORED_SPANS {
+        spanCache.withLock {
+            $0.activeSpans.removeValue(forKey: key)
+            guard $0.completedSpans.count <= MAX_STORED_SPANS else {
                 os_log("Embrace SpanRepository.swift --> Too many completed spans being tracked. Ignoring new completed span. Please consider reducing the number of spans being tracked.",
                        log: self.log,
                        type: .error)
                 return
             }
-            self.completedSpans.updateValue(span, forKey: key)
+            $0.completedSpans.updateValue(span, forKey: key)
         }
     }
 
     @objc func onSessionEnded() {
-        completedSpansQueue.async(flags: .barrier) {
-            self.completedSpans.removeAll()
+        spanCache.withLock {
+            $0.completedSpans.removeAll()
         }
     }
 

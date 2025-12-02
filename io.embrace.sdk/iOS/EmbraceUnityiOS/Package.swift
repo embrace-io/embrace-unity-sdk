@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "EmbraceUnityiOS", targets: ["EmbraceUnityiOS"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/embrace-io/embrace-apple-sdk.git", exact: "6.14.1")
+        .package(url: "https://github.com/embrace-io/embrace-apple-sdk.git", exact: "6.15.1")
     ],
     targets: [
         .target(
@@ -24,10 +24,6 @@ let package = Package(
                 .product(name: "EmbraceIO", package: "embrace-apple-sdk"),
                 .product(name: "EmbraceSemantics", package: "embrace-apple-sdk")
             ]
-        ),
-        .testTarget(
-            name: "EmbraceUnityiOSTests",
-            dependencies: ["EmbraceUnityiOS"]
-        ),
+        )
     ]
 )
