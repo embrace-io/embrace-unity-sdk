@@ -24,10 +24,6 @@ let package = Package(
                 .product(name: "EmbraceIO", package: "embrace-apple-sdk"),
                 .product(name: "EmbraceSemantics", package: "embrace-apple-sdk")
             ]
-        ),
-        .testTarget(
-            name: "EmbraceUnityiOSTests",
-            dependencies: ["EmbraceUnityiOS"]
-        ),
+        )
     ]
 )
