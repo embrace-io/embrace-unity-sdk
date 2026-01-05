@@ -34,7 +34,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           persist-credentials: true
@@ -68,7 +68,7 @@ jobs:
       RELEASE_COMMIT_SHA: ${{ needs.bump_version.outputs.release_commit_sha }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           ref: ${{ needs.bump_version.outputs.release_commit_sha }}

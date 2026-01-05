@@ -19,7 +19,7 @@ jobs:
       is_release_candidate: ${{ steps.verify_release.outputs.is_release_candidate }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           lfs: true
           persist-credentials: false
