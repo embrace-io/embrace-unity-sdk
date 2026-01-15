@@ -1,6 +1,8 @@
-.github @embrace-io/opensource-devops
-
+# Unity SDK
 * @embrace-io/opensource-unity
 
-# API surface owners
+# DevOps
+.github @embrace-io/opensource-devops @embrace-io/opensource-unity
+
+# API Surface Owners
 io.embrace.sdk/Scripts/EmbraceApi.cs @fractalwrench @bidetofevil
