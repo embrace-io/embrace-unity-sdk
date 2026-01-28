@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/embrace-io/embrace-apple-sdk.git",
       "state" : {
-        "revision" : "2d10aff205c7fd67712f979210e24a38bda402e8",
-        "version" : "6.15.1"
+        "revision" : "926fffad50095529bdfc25a2c0992fd32537f5ed",
+        "version" : "6.16.0"
       }
     },
     {
