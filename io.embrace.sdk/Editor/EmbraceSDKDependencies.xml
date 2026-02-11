@@ -4,9 +4,9 @@
       <repository>https://repo.maven.apache.org/maven2</repository>
       <repository>https://dl.google.com/dl/android/maven2</repository>
     </repositories>
-    <androidPackage spec="io.embrace:embrace-android-sdk:7.5.0">
+    <androidPackage spec="io.embrace:embrace-android-sdk:8.1.0">
     </androidPackage>
-    <androidPackage spec="io.embrace:embrace-android-okhttp3:7.5.0">
+    <androidPackage spec="io.embrace:embrace-android-okhttp3:8.1.0">
     </androidPackage>
   </androidPackages>
 </dependencies>
