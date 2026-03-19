@@ -37,7 +37,7 @@ runs:
       run: |
         make github_env_vars | tee -a $GITHUB_ENV
     - name: Cache Library folder
-      uses: actions/cache@v4
+      uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
       with:
         path: ./UnityProjects/${{ inputs.project }}/Library
         key: Library-${{ inputs.project }}-Android
