@@ -33,6 +33,8 @@ namespace EmbraceSDK.Internal
         private AndroidJavaClass embraceInternalApiClass;
         private AndroidJavaClass networkRequestClass;
         private AndroidJavaClass httpMethodEnum;
+        private AndroidJavaClass severityEnum;
+        private AndroidJavaClass exceptionTypeEnum;
         private AndroidJavaObject spanFailureCode;
         private AndroidJavaObject spanUserAbandonCode;
         private AndroidJavaObject spanUnknownCode;
@@ -232,6 +234,8 @@ namespace EmbraceSDK.Internal
             spanUnknownCode = spanErrorCode.GetStatic<AndroidJavaObject>("UNKNOWN");
             networkRequestClass = new AndroidJavaClass("io.embrace.android.embracesdk.network.EmbraceNetworkRequest");
             httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
+            severityEnum = new AndroidJavaClass("io.embrace.android.embracesdk.Severity");
+            exceptionTypeEnum = new AndroidJavaClass("io.embrace.android.embracesdk.LogExceptionType");
         }
 
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
@@ -633,6 +637,7 @@ namespace EmbraceSDK.Internal
 
             embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
+            httpMethod.Dispose();
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)
@@ -649,7 +654,12 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_logUnhandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
+            // get the severity enum for error
+            AndroidJavaObject severity = severityEnum.CallStatic<AndroidJavaObject>("valueOf", "ERROR");
+            AndroidJavaObject logExceptionType = exceptionTypeEnum.CallStatic<AndroidJavaObject>("valueOf", "UNHANDLED");
+            embraceSharedInstance.Call(_LogMessageMethod, severity, "Unity exception", stack, logExceptionType, exceptionName, exceptionMessage);
+            severity.Dispose();
+            logExceptionType.Dispose();
         }
 
         void IEmbraceProvider.LogHandledUnityException(string exceptionName, string exceptionMessage, string stack)
@@ -666,7 +676,12 @@ namespace EmbraceSDK.Internal
                 return;
             }
             
-            _embraceUnityInternalSharedInstance.Call(_logHandledUnityExceptionMethod, exceptionName, exceptionMessage, stack);
+            // get the severity enum for error
+            AndroidJavaObject severity = severityEnum.CallStatic<AndroidJavaObject>("valueOf", "ERROR");
+            AndroidJavaObject logExceptionType = exceptionTypeEnum.CallStatic<AndroidJavaObject>("valueOf", "HANDLED");
+            embraceSharedInstance.Call(_LogMessageMethod, severity, "Unity exception", stack, logExceptionType, exceptionName, exceptionMessage);
+            severity.Dispose();
+            logExceptionType.Dispose();
         }
         
         string IEmbraceProvider.GetCurrentSessionId()
