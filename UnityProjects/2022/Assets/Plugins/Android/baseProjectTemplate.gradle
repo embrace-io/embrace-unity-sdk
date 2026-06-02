@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath "io.embrace:embrace-swazzler:8.3.1"
+        classpath "io.embrace:embrace-gradle-plugin:8.3.1"
     }
 }
 

@@ -32,7 +32,7 @@ namespace EmbraceSDK.EditorView
         private const string VERSION_GROUP_NAME = "version";
 
         // Dependencies
-        public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-swazzler";
+        public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-gradle-plugin";
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-android-sdk";
 
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
@@ -73,7 +73,7 @@ namespace EmbraceSDK.EditorView
                     string newGradleText = ReplaceDependencyVersion(gradleSource, SWAZZLER_DEPENDENCY, xmlVersion);
                     File.WriteAllText(BaseProjectTemplatePath, newGradleText);
                     EmbraceLogger.Log(
-                        $"Updated embrace-swazzler version from {gradleVersion} to {xmlVersion} in Assets/{BASE_PROJECT_GRADLE_TEMPLATE_PATH}.");
+                        $"Updated embrace-gradle-plugin version from {gradleVersion} to {xmlVersion} in Assets/{BASE_PROJECT_GRADLE_TEMPLATE_PATH}.");
                 }
                 catch (System.Exception e)
                 {
@@ -91,18 +91,18 @@ namespace EmbraceSDK.EditorView
             if (TryReadGradleTemplate(BaseProjectTemplatePath, out string gradleSource, logWarningIfFileNotPresent: true))
             {
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
-                if (gradleSource.Contains("io.embrace:embrace-swazzler"))
+                if (gradleSource.Contains("io.embrace:embrace-gradle-plugin"))
                 {
-                    throw new UnityEditor.Build.BuildFailedException($"EmbraceGradleUtility found the embrace-swazzler classpath in " +
+                    throw new UnityEditor.Build.BuildFailedException($"EmbraceGradleUtility found the embrace-gradle-plugin classpath in " +
                                              $"{BaseProjectTemplatePath}. The embrace-bug-shake-gradle-plugin is not compatible " +
-                                             $"with embrace-swazzler and should not run simultaneously. Please remove the embrace-swazzler classpath from {BaseProjectTemplatePath} and build again.");
+                                             $"with embrace-gradle-plugin and should not run simultaneously. Please remove the embrace-gradle-plugin classpath from {BaseProjectTemplatePath} and build again.");
                 }
 #else 
                 if (gradleSource.Contains("io.embrace:embrace-bug-shake-gradle-plugin"))
                 {
                     throw new UnityEditor.Build.BuildFailedException("EmbraceGradleUtility found the embrace-bug-shake-gradle-plugin classpath in " +
-                                                                     $"{BaseProjectTemplatePath}. The embrace-swazzler is not compatible " +
-                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." + 
+                                                                     $"{BaseProjectTemplatePath}. The embrace-gradle-plugin is not compatible " +
+                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." +
                                                                      $"Please remove the embrace-bug-shake-gradle-plugin classpath from {BaseProjectTemplatePath} and build again.");
                 }   
 #endif
@@ -173,7 +173,7 @@ namespace EmbraceSDK.EditorView
         /// Tries to parse the version of the given dependency defined in <paramref name="text"/>.
         /// </summary>
         /// <param name="text">The text that contains the dependency.</param>
-        /// <param name="dependency">The dependency version to parse (for example, "io.embrace:embrace-swazzler").</param>
+        /// <param name="dependency">The dependency version to parse (for example, "io.embrace:embrace-gradle-plugin").</param>
         /// <param name="version">The version of the dependency, or null if parsing fails.</param>
         /// <returns>True if parsing was successful, otherwise false.</returns>
         public static bool TryParseDependencyVersion(string text, string dependency, out string version)
@@ -282,9 +282,9 @@ namespace EmbraceSDK.EditorView
 
         private static Regex GetDependencyVersionRegex(string dependency)
         {
-            // Regex expecting an android dependency like "io.embrace:embrace-swazzler:5.9.0"
+            // Regex expecting an android dependency like "io.embrace:embrace-gradle-plugin:5.9.0"
             // Splits the match into two groups:
-            //      - dependency: io.embrace:embrace-swazzler:
+            //      - dependency: io.embrace:embrace-gradle-plugin:
             //      - version: 5.9.0
             return new Regex($"(?<{DEPENDENCY_GROUP_NAME}>{dependency}\\:?)(?<{VERSION_GROUP_NAME}>[^\"\']+)");
         }

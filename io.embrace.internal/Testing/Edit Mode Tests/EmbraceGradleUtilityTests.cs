@@ -27,7 +27,7 @@ namespace EmbraceSDK.Tests
             public string description;
         }
 
-        private static string[] _dependencyTestCases =  { "io.embrace:embrace-swazzler", "io.embrace:embrace-swazzler:"};
+        private static string[] _dependencyTestCases =  { "io.embrace:embrace-gradle-plugin", "io.embrace:embrace-gradle-plugin:"};
 
         private static string[] _nonMatchingSourceTextCases =
             { "", " ", "__no_dependency__", "dependencies { classpath \"io.embrace:embrace-android-sdk:0.1.2\" }" };
@@ -42,26 +42,26 @@ namespace EmbraceSDK.Tests
             new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-other:0.1.2", expectedVersion = null, description = "Source text does not contain matching dependency"},
 
             // Matching cases
-            new DependencyMatchTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", expectedVersion = "0.1.2", description = "Source text equal to dependency without quotes" },
-            new DependencyMatchTestCase() { sourceText = "\"io.embrace:embrace-swazzler:0.1.2\"", expectedVersion = "0.1.2", description = "Source text equal to dependency inside double quotes"},
-            new DependencyMatchTestCase() { sourceText = "\'io.embrace:embrace-swazzler:0.1.2\'", expectedVersion = "0.1.2", description = "Source text equal to dependency inside single quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-swazzler:0.1.2\' }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version in single quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2-alpha2\" }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in double quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-swazzler:0.1.2-alpha2\' }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in single quotes"},
+            new DependencyMatchTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", expectedVersion = "0.1.2", description = "Source text equal to dependency without quotes" },
+            new DependencyMatchTestCase() { sourceText = "\"io.embrace:embrace-gradle-plugin:0.1.2\"", expectedVersion = "0.1.2", description = "Source text equal to dependency inside double quotes"},
+            new DependencyMatchTestCase() { sourceText = "\'io.embrace:embrace-gradle-plugin:0.1.2\'", expectedVersion = "0.1.2", description = "Source text equal to dependency inside single quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-gradle-plugin:0.1.2\' }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version in single quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2-alpha2\" }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in double quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-gradle-plugin:0.1.2-alpha2\' }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in single quotes"},
         };
 
         private static DependencyReplaceTestCase[] _replaceVersionDependencyTestCases =
         {
             new DependencyReplaceTestCase() { sourceText = null, newVersion = "1.2.3", expectedResult = null, description = "Source text is null" },
             new DependencyReplaceTestCase() { sourceText = "__NO_MATCH__", newVersion = "1.2.3", expectedResult = "__NO_MATCH__", description = "Source text does not contain match"},
-            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", newVersion = null, expectedResult = "io.embrace:embrace-swazzler:0.1.2", description = "New version is null" },
-            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", newVersion = "1.2.3", expectedResult = "io.embrace:embrace-swazzler:1.2.3", description = "Source text is dependency without quotes."},
-            new DependencyReplaceTestCase() { sourceText = "\"io.embrace:embrace-swazzler:0.1.2\"", newVersion = "1.2.3", expectedResult = "\"io.embrace:embrace-swazzler:1.2.3\"", description = "Source text is dependency inside double quotes." },
-            new DependencyReplaceTestCase() { sourceText = "\'io.embrace:embrace-swazzler:0.1.2\'", newVersion = "1.2.3", expectedResult = "\'io.embrace:embrace-swazzler:1.2.3\'", description = "Source text is dependency inside single quotes." },
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3\" }", description = "Source text matches in dependency block"},
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2-alpha2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3\" }", description = "Source text contains non-numeric characters in version"},
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", newVersion = "1.2.3-alpha4", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3-alpha4\" }", description = "New version text contains non-numeric characters"},
+            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", newVersion = null, expectedResult = "io.embrace:embrace-gradle-plugin:0.1.2", description = "New version is null" },
+            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", newVersion = "1.2.3", expectedResult = "io.embrace:embrace-gradle-plugin:1.2.3", description = "Source text is dependency without quotes."},
+            new DependencyReplaceTestCase() { sourceText = "\"io.embrace:embrace-gradle-plugin:0.1.2\"", newVersion = "1.2.3", expectedResult = "\"io.embrace:embrace-gradle-plugin:1.2.3\"", description = "Source text is dependency inside double quotes." },
+            new DependencyReplaceTestCase() { sourceText = "\'io.embrace:embrace-gradle-plugin:0.1.2\'", newVersion = "1.2.3", expectedResult = "\'io.embrace:embrace-gradle-plugin:1.2.3\'", description = "Source text is dependency inside single quotes." },
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3\" }", description = "Source text matches in dependency block"},
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2-alpha2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3\" }", description = "Source text contains non-numeric characters in version"},
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", newVersion = "1.2.3-alpha4", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3-alpha4\" }", description = "New version text contains non-numeric characters"},
         };
 
         [Test]
