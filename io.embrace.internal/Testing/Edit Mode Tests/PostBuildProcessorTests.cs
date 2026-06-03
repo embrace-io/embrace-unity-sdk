@@ -197,6 +197,12 @@ namespace EmbraceSDK.Tests
                 AndroidExternalToolsSettings.gradlePath = gradlePath;
             }
 
+            string jdkPath = Environment.GetEnvironmentVariable("EMBRACE_JDK_PATH");
+            if (!string.IsNullOrEmpty(jdkPath))
+            {
+                AndroidExternalToolsSettings.jdkRootPath = jdkPath;
+            }
+
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
