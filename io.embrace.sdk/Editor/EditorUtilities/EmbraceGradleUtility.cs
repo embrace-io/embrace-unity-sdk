@@ -41,6 +41,14 @@ namespace EmbraceSDK.EditorView
         private const string GRADLE_DISTRIBUTION_URL_REPLACEMENT = @"distributionUrl=https\://services.gradle.org/distributions/gradle-{0}-bin.zip";
         public const string MIN_GRADLE_VERSION = "8.0.2";
 
+        // AGP (Android Gradle Plugin)
+        // Matches both legacy classpath style and plugin DSL style:
+        //   classpath "com.android.tools.build:gradle:7.4.2"
+        //   id 'com.android.application' version '7.4.2'
+        private const string AGP_CLASSPATH_PATTERN = @"(com\.android\.tools\.build:gradle:)(\d+\.\d+(?:\.\d+)?)";
+        private const string AGP_PLUGIN_DSL_PATTERN = @"(id\s+['""]com\.android\.(application|library)['""](?:\s+version\s+['""])?)(\d+\.\d+(?:\.\d+)?)";
+        public const string MIN_AGP_VERSION = "8.0.2";
+
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
         public static string LauncherTemplatePath { get; } = Path.Combine(Application.dataPath, LAUNCHER_TEMPLATE_PATH);
         public static string GradlePropertiesPath { get; } = Path.Combine(Application.dataPath, GRADLE_PROPERTIES_TEMPLATE_PATH);
@@ -321,6 +329,56 @@ namespace EmbraceSDK.EditorView
             string newContent = Regex.Replace(content, GRADLE_DISTRIBUTION_URL_PATTERN, newUrl);
             File.WriteAllText(wrapperPath, newContent);
             EmbraceLogger.Log($"Updated Gradle version from {currentVersion} to {MIN_GRADLE_VERSION} in {wrapperPath}.");
+        }
+
+        /// <summary>
+        /// Ensures the root build.gradle in the given Gradle project specifies at least
+        /// <see cref="MIN_AGP_VERSION"/> for the Android Gradle Plugin. Handles both the
+        /// legacy <c>classpath "com.android.tools.build:gradle:x.y.z"</c> style (Unity &lt; 2022)
+        /// and the plugin DSL <c>id 'com.android.application' version 'x.y.z'</c> style (Unity 2022+).
+        /// </summary>
+        /// <param name="gradleProjectRootPath">Root directory of the generated Gradle project.</param>
+        public static void EnsureMinimumAgpVersion(string gradleProjectRootPath)
+        {
+            string buildGradlePath = Path.Combine(gradleProjectRootPath, "build.gradle");
+            if (!File.Exists(buildGradlePath))
+            {
+                EmbraceLogger.LogWarning($"Root build.gradle not found at {buildGradlePath}. AGP version will not be updated.");
+                return;
+            }
+
+            string content = File.ReadAllText(buildGradlePath);
+            bool updated = false;
+
+            // Legacy classpath style: classpath "com.android.tools.build:gradle:x.y.z"
+            content = Regex.Replace(content, AGP_CLASSPATH_PATTERN, m =>
+            {
+                string version = m.Groups[2].Value;
+                if (!IsGradleVersionAtLeast(version, MIN_AGP_VERSION))
+                {
+                    updated = true;
+                    return m.Groups[1].Value + MIN_AGP_VERSION;
+                }
+                return m.Value;
+            });
+
+            // Plugin DSL style: id 'com.android.application' version 'x.y.z'
+            content = Regex.Replace(content, AGP_PLUGIN_DSL_PATTERN, m =>
+            {
+                string version = m.Groups[3].Value;
+                if (!IsGradleVersionAtLeast(version, MIN_AGP_VERSION))
+                {
+                    updated = true;
+                    return m.Groups[1].Value + MIN_AGP_VERSION;
+                }
+                return m.Value;
+            });
+
+            if (updated)
+            {
+                File.WriteAllText(buildGradlePath, content);
+                EmbraceLogger.Log($"Updated AGP version to {MIN_AGP_VERSION} in {buildGradlePath}.");
+            }
         }
 
         internal static bool IsGradleVersionAtLeast(string current, string minimum)

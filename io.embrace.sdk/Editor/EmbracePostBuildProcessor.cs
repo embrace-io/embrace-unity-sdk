@@ -43,6 +43,7 @@ namespace EmbraceSDK.EditorView
             }
 
             EmbraceGradleUtility.EnsureMinimumGradleVersion(gradleProjectRootPath);
+            EmbraceGradleUtility.EnsureMinimumAgpVersion(gradleProjectRootPath);
 
             WriteEmbraceConfig(gradleProjectRootPath);
 
