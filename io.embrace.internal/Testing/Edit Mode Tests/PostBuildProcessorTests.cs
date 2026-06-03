@@ -12,9 +12,6 @@ using Newtonsoft.Json.Linq;
 using Object = UnityEngine.Object;
 using System;
 using System.Text.RegularExpressions;
-#if UNITY_ANDROID
-using UnityEditor.Android;
-#endif
 #if UNITY_IOS || UNITY_TVOS
 using UnityEditor.iOS.Xcode;
 #endif
@@ -195,12 +192,6 @@ namespace EmbraceSDK.Tests
             if (!string.IsNullOrEmpty(gradlePath))
             {
                 AndroidExternalToolsSettings.gradlePath = gradlePath;
-            }
-
-            string jdkPath = Environment.GetEnvironmentVariable("EMBRACE_JDK_PATH");
-            if (!string.IsNullOrEmpty(jdkPath))
-            {
-                AndroidExternalToolsSettings.jdkRootPath = jdkPath;
             }
 
             TestHelper.ConfigBackup(defaultConfig);

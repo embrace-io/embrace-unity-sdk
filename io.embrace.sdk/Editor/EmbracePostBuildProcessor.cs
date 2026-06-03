@@ -54,6 +54,14 @@ namespace EmbraceSDK.EditorView
             gradlePropertiesWriteBuffer.AddRange(EmbraceEdmUtility.GetEdmProperties(mainTemplate));
             gradlePropertiesWriteBuffer.Add(new KeyValuePair<string, string>(EmbraceIl2CppSymbolUtility.SWAZZLER_FEATURE_GRADLE_PROPERTY, EmbraceIl2CppSymbolUtility.AssembleSourceMappingInfo(projectPath) ? "true" : "false"));
 
+            // If EMBRACE_JDK_PATH is set (e.g. in CI where Unity's bundled JDK is too old),
+            // tell Gradle to use that JDK instead of the one Unity invoked it with.
+            string jdkOverridePath = System.Environment.GetEnvironmentVariable("EMBRACE_JDK_PATH");
+            if (!string.IsNullOrEmpty(jdkOverridePath))
+            {
+                gradlePropertiesWriteBuffer.Add(new KeyValuePair<string, string>("org.gradle.java.home", jdkOverridePath));
+            }
+
             EmbraceGradleUtility.WriteEmbraceGradleProperties(gradleProjectRootPath, gradlePropertiesWriteBuffer);
 
             // Actually we should assume the path for each Unity version for now and enforce with tests rather than trying to be smart.

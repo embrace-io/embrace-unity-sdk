@@ -4,7 +4,6 @@ using System.IO;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor;
-using UnityEditor.Android;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -31,12 +30,6 @@ namespace EmbraceSDK.Tests
             if (!string.IsNullOrEmpty(gradlePath))
             {
                 AndroidExternalToolsSettings.gradlePath = gradlePath;
-            }
-
-            string jdkPath = Environment.GetEnvironmentVariable("EMBRACE_JDK_PATH");
-            if (!string.IsNullOrEmpty(jdkPath))
-            {
-                AndroidExternalToolsSettings.jdkRootPath = jdkPath;
             }
         }
 
