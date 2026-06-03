@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor.Build;
