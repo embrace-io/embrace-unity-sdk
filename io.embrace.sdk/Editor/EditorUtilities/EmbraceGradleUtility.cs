@@ -35,6 +35,12 @@ namespace EmbraceSDK.EditorView
         public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-gradle-plugin";
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-android-sdk";
 
+        // Gradle wrapper
+        private const string GRADLE_WRAPPER_PROPERTIES_RELATIVE_PATH = "gradle/wrapper/gradle-wrapper.properties";
+        private const string GRADLE_DISTRIBUTION_URL_PATTERN = @"distributionUrl=.*gradle-(\d+\.\d+(?:\.\d+)?)-bin\.zip";
+        private const string GRADLE_DISTRIBUTION_URL_REPLACEMENT = @"distributionUrl=https\://services.gradle.org/distributions/gradle-{0}-bin.zip";
+        public const string MIN_GRADLE_VERSION = "8.0.2";
+
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
         public static string LauncherTemplatePath { get; } = Path.Combine(Application.dataPath, LAUNCHER_TEMPLATE_PATH);
         public static string GradlePropertiesPath { get; } = Path.Combine(Application.dataPath, GRADLE_PROPERTIES_TEMPLATE_PATH);
@@ -278,6 +284,60 @@ namespace EmbraceSDK.EditorView
                 EmbraceLogger.LogError($"Encountered {e.GetType().Name} while writing properties to {gradleFilePath}: {e.Message}");
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Ensures the gradle-wrapper.properties in the given Gradle project root specifies at least
+        /// <see cref="MIN_GRADLE_VERSION"/>. If the current version is lower it is updated in-place so
+        /// the Gradle wrapper downloads a compatible distribution before the build runs.
+        /// </summary>
+        /// <param name="gradleProjectRootPath">Root directory of the generated Gradle project.</param>
+        public static void EnsureMinimumGradleVersion(string gradleProjectRootPath)
+        {
+            string wrapperPath = Path.Combine(gradleProjectRootPath, GRADLE_WRAPPER_PROPERTIES_RELATIVE_PATH);
+
+            if (!File.Exists(wrapperPath))
+            {
+                EmbraceLogger.LogWarning($"gradle-wrapper.properties not found at {wrapperPath}. Gradle version will not be updated.");
+                return;
+            }
+
+            string content = File.ReadAllText(wrapperPath);
+            Match match = Regex.Match(content, GRADLE_DISTRIBUTION_URL_PATTERN);
+
+            if (!match.Success)
+            {
+                EmbraceLogger.LogWarning($"Could not parse Gradle version from {wrapperPath}. Gradle version will not be updated.");
+                return;
+            }
+
+            string currentVersion = match.Groups[1].Value;
+            if (IsGradleVersionAtLeast(currentVersion, MIN_GRADLE_VERSION))
+            {
+                return;
+            }
+
+            string newUrl = string.Format(GRADLE_DISTRIBUTION_URL_REPLACEMENT, MIN_GRADLE_VERSION);
+            string newContent = Regex.Replace(content, GRADLE_DISTRIBUTION_URL_PATTERN, newUrl);
+            File.WriteAllText(wrapperPath, newContent);
+            EmbraceLogger.Log($"Updated Gradle version from {currentVersion} to {MIN_GRADLE_VERSION} in {wrapperPath}.");
+        }
+
+        internal static bool IsGradleVersionAtLeast(string current, string minimum)
+        {
+            string[] currentParts = current.Split('.');
+            string[] minimumParts = minimum.Split('.');
+            int length = Math.Max(currentParts.Length, minimumParts.Length);
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = i < currentParts.Length && int.TryParse(currentParts[i], out int cv) ? cv : 0;
+                int m = i < minimumParts.Length && int.TryParse(minimumParts[i], out int mv) ? mv : 0;
+                if (c > m) return true;
+                if (c < m) return false;
+            }
+
+            return true;
         }
 
         private static Regex GetDependencyVersionRegex(string dependency)

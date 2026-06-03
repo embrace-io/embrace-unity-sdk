@@ -42,6 +42,8 @@ namespace EmbraceSDK.EditorView
                 gradleProjectRootPath = gradleProjectRootDirectory.Parent.FullName;
             }
 
+            EmbraceGradleUtility.EnsureMinimumGradleVersion(gradleProjectRootPath);
+
             WriteEmbraceConfig(gradleProjectRootPath);
 
             EmbraceGradleUtility.TryReadGradleTemplate(EmbraceGradleUtility.MainTemplatePath, out string mainTemplate);
