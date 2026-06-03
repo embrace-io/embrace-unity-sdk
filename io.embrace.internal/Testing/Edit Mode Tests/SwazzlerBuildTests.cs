@@ -4,6 +4,7 @@ using System.IO;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEditor.Android;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -25,6 +26,12 @@ namespace EmbraceSDK.Tests
             }
 
             File.Copy(LAUNCHER_TEMPLATE_PATH, LAUNCHER_TEMPLATE_BACKUP_PATH, true);
+
+            string gradlePath = Environment.GetEnvironmentVariable("EMBRACE_GRADLE_PATH");
+            if (!string.IsNullOrEmpty(gradlePath))
+            {
+                AndroidExternalToolsSettings.gradlePath = gradlePath;
+            }
         }
 
         [TearDown]

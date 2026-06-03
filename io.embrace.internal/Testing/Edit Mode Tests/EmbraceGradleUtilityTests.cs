@@ -196,6 +196,7 @@ namespace EmbraceSDK.Tests
             public void UpdatesVersion_WhenBelowMinimum()
             {
                 WriteWrapperProperties("7.5.1");
+                LogAssert.Expect(LogType.Log, new Regex("Updated Gradle version"));
                 EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath);
                 string content = File.ReadAllText(_wrapperPropertiesPath);
                 StringAssert.Contains($"gradle-{EmbraceGradleUtility.MIN_GRADLE_VERSION}-bin.zip", content);
@@ -222,6 +223,7 @@ namespace EmbraceSDK.Tests
             [Test, TestMustExpectAllLogs]
             public void LogsWarning_WhenFileNotFound()
             {
+                LogAssert.Expect(LogType.Warning, new Regex("gradle-wrapper.properties not found"));
                 Assert.DoesNotThrow(() => EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath));
             }
         }

@@ -12,6 +12,9 @@ using Newtonsoft.Json.Linq;
 using Object = UnityEngine.Object;
 using System;
 using System.Text.RegularExpressions;
+#if UNITY_ANDROID
+using UnityEditor.Android;
+#endif
 #if UNITY_IOS || UNITY_TVOS
 using UnityEditor.iOS.Xcode;
 #endif
@@ -187,7 +190,13 @@ namespace EmbraceSDK.Tests
             // If this test fails, make sure you are running unity with the start_unity.sh script in order to setup the env variables
             testConfig.AppId = Environment.GetEnvironmentVariable("EMBRACE_TEST_APP_ID");
             testConfig.SymbolUploadApiToken = Environment.GetEnvironmentVariable("EMBRACE_TEST_API_TOKEN");
-          
+
+            string gradlePath = Environment.GetEnvironmentVariable("EMBRACE_GRADLE_PATH");
+            if (!string.IsNullOrEmpty(gradlePath))
+            {
+                AndroidExternalToolsSettings.gradlePath = gradlePath;
+            }
+
             TestHelper.ConfigBackup(defaultConfig);
             TestHelper.CopyConfig(testConfig, defaultConfig);
             
