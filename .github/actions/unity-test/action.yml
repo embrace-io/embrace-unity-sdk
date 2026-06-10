@@ -49,6 +49,15 @@ runs:
       shell: bash
       run: |
         make install_ios_dependencies
+    - name: Install Gradle for Android build tests
+      if: ${{ inputs.build_target == 'android' }}
+      shell: bash
+      run: |
+        GRADLE_VERSION="8.0.2"
+        wget -q "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -O /tmp/gradle.zip
+        unzip -q /tmp/gradle.zip -d /opt/gradle
+        echo "EMBRACE_GRADLE_PATH=/opt/gradle/gradle-${GRADLE_VERSION}" >> $GITHUB_ENV
+        echo "EMBRACE_JDK_PATH=${JAVA_HOME_17_X64}" >> $GITHUB_ENV
     - name: Install Unity Hub
       shell: bash
       run: |

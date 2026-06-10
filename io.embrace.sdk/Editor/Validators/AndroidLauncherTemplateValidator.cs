@@ -7,7 +7,7 @@ namespace EmbraceSDK.Validators
     {
         private static Regex skipRegex = new Regex(@"(//.*)|\s?");
         private static Regex pluginRegex = new Regex(@"apply plugin: [""|'].+[""|']");
-        private const string applyPluginLine = "apply plugin: 'embrace-swazzler'";
+        private const string applyPluginLine = "apply plugin: 'io.embrace.gradle'";
 
         public static bool Validate(string filepath)
         {

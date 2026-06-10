@@ -7,7 +7,7 @@ namespace EmbraceSDK.Validators
     public static class AndroidBaseProjectTemplateValidator
     {
         private static Regex dependenciesRegex = new Regex(@"dependencies\s*{([^}]*?)}");
-        private static Regex classpathRegex = new Regex(@"classpath\s*[""|']io.embrace:embrace-swazzler:\d+.\d+.\d+[""|']");
+        private static Regex classpathRegex = new Regex(@"classpath\s*[""|']io.embrace:embrace-gradle-plugin:\d+.\d+.\d+[""|']");
         
         #if !UNITY_2022_2_OR_NEWER
         private static Regex repositoriesRegex = new Regex(@"repositories\s*{.*(\s+.+\s+)+}");

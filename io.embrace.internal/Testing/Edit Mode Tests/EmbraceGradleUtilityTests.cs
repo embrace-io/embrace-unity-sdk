@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using EmbraceSDK.EditorView;
 using NUnit.Framework;
 using UnityEditor.Build;
@@ -27,7 +28,7 @@ namespace EmbraceSDK.Tests
             public string description;
         }
 
-        private static string[] _dependencyTestCases =  { "io.embrace:embrace-swazzler", "io.embrace:embrace-swazzler:"};
+        private static string[] _dependencyTestCases =  { "io.embrace:embrace-gradle-plugin", "io.embrace:embrace-gradle-plugin:"};
 
         private static string[] _nonMatchingSourceTextCases =
             { "", " ", "__no_dependency__", "dependencies { classpath \"io.embrace:embrace-android-sdk:0.1.2\" }" };
@@ -42,26 +43,26 @@ namespace EmbraceSDK.Tests
             new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-other:0.1.2", expectedVersion = null, description = "Source text does not contain matching dependency"},
 
             // Matching cases
-            new DependencyMatchTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", expectedVersion = "0.1.2", description = "Source text equal to dependency without quotes" },
-            new DependencyMatchTestCase() { sourceText = "\"io.embrace:embrace-swazzler:0.1.2\"", expectedVersion = "0.1.2", description = "Source text equal to dependency inside double quotes"},
-            new DependencyMatchTestCase() { sourceText = "\'io.embrace:embrace-swazzler:0.1.2\'", expectedVersion = "0.1.2", description = "Source text equal to dependency inside single quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-swazzler:0.1.2\' }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version in single quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2-alpha2\" }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in double quotes"},
-            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-swazzler:0.1.2-alpha2\' }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in single quotes"},
+            new DependencyMatchTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", expectedVersion = "0.1.2", description = "Source text equal to dependency without quotes" },
+            new DependencyMatchTestCase() { sourceText = "\"io.embrace:embrace-gradle-plugin:0.1.2\"", expectedVersion = "0.1.2", description = "Source text equal to dependency inside double quotes"},
+            new DependencyMatchTestCase() { sourceText = "\'io.embrace:embrace-gradle-plugin:0.1.2\'", expectedVersion = "0.1.2", description = "Source text equal to dependency inside single quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-gradle-plugin:0.1.2\' }", expectedVersion = "0.1.2", description = "Source text contains matching numeric version in single quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2-alpha2\" }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in double quotes"},
+            new DependencyMatchTestCase() { sourceText = "dependencies { classpath \'io.embrace:embrace-gradle-plugin:0.1.2-alpha2\' }", expectedVersion = "0.1.2-alpha2", description = "Source text contains matching dependency with alphanumeric version in single quotes"},
         };
 
         private static DependencyReplaceTestCase[] _replaceVersionDependencyTestCases =
         {
             new DependencyReplaceTestCase() { sourceText = null, newVersion = "1.2.3", expectedResult = null, description = "Source text is null" },
             new DependencyReplaceTestCase() { sourceText = "__NO_MATCH__", newVersion = "1.2.3", expectedResult = "__NO_MATCH__", description = "Source text does not contain match"},
-            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", newVersion = null, expectedResult = "io.embrace:embrace-swazzler:0.1.2", description = "New version is null" },
-            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-swazzler:0.1.2", newVersion = "1.2.3", expectedResult = "io.embrace:embrace-swazzler:1.2.3", description = "Source text is dependency without quotes."},
-            new DependencyReplaceTestCase() { sourceText = "\"io.embrace:embrace-swazzler:0.1.2\"", newVersion = "1.2.3", expectedResult = "\"io.embrace:embrace-swazzler:1.2.3\"", description = "Source text is dependency inside double quotes." },
-            new DependencyReplaceTestCase() { sourceText = "\'io.embrace:embrace-swazzler:0.1.2\'", newVersion = "1.2.3", expectedResult = "\'io.embrace:embrace-swazzler:1.2.3\'", description = "Source text is dependency inside single quotes." },
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3\" }", description = "Source text matches in dependency block"},
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2-alpha2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3\" }", description = "Source text contains non-numeric characters in version"},
-            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-swazzler:0.1.2\" }", newVersion = "1.2.3-alpha4", expectedResult =  "dependencies { classpath \"io.embrace:embrace-swazzler:1.2.3-alpha4\" }", description = "New version text contains non-numeric characters"},
+            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", newVersion = null, expectedResult = "io.embrace:embrace-gradle-plugin:0.1.2", description = "New version is null" },
+            new DependencyReplaceTestCase() { sourceText = "io.embrace:embrace-gradle-plugin:0.1.2", newVersion = "1.2.3", expectedResult = "io.embrace:embrace-gradle-plugin:1.2.3", description = "Source text is dependency without quotes."},
+            new DependencyReplaceTestCase() { sourceText = "\"io.embrace:embrace-gradle-plugin:0.1.2\"", newVersion = "1.2.3", expectedResult = "\"io.embrace:embrace-gradle-plugin:1.2.3\"", description = "Source text is dependency inside double quotes." },
+            new DependencyReplaceTestCase() { sourceText = "\'io.embrace:embrace-gradle-plugin:0.1.2\'", newVersion = "1.2.3", expectedResult = "\'io.embrace:embrace-gradle-plugin:1.2.3\'", description = "Source text is dependency inside single quotes." },
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3\" }", description = "Source text matches in dependency block"},
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2-alpha2\" }", newVersion = "1.2.3", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3\" }", description = "Source text contains non-numeric characters in version"},
+            new DependencyReplaceTestCase() { sourceText = "dependencies { classpath \"io.embrace:embrace-gradle-plugin:0.1.2\" }", newVersion = "1.2.3-alpha4", expectedResult =  "dependencies { classpath \"io.embrace:embrace-gradle-plugin:1.2.3-alpha4\" }", description = "New version text contains non-numeric characters"},
         };
 
         [Test]
@@ -147,6 +148,85 @@ namespace EmbraceSDK.Tests
         public void VerifyIfSwazzlerAndBugshakeArePresentSimultaneously_DoesNotThrowsException_WhenOnlyOnePluginIsDefined()
         {
             Assert.DoesNotThrow(EmbraceGradleUtility.VerifyIfSwazzlerAndBugshakeArePresentSimultaneously);
+        }
+
+        [Test]
+        public void IsGradleVersionAtLeast_ReturnsExpectedValues()
+        {
+            Assert.IsTrue(EmbraceGradleUtility.IsGradleVersionAtLeast("8.0.2", "8.0.2"));
+            Assert.IsTrue(EmbraceGradleUtility.IsGradleVersionAtLeast("8.1.0", "8.0.2"));
+            Assert.IsTrue(EmbraceGradleUtility.IsGradleVersionAtLeast("9.0.0", "8.0.2"));
+            Assert.IsFalse(EmbraceGradleUtility.IsGradleVersionAtLeast("7.5.1", "8.0.2"));
+            Assert.IsFalse(EmbraceGradleUtility.IsGradleVersionAtLeast("8.0.1", "8.0.2"));
+            Assert.IsFalse(EmbraceGradleUtility.IsGradleVersionAtLeast("7.0.0", "8.0.2"));
+        }
+
+        public class EnsureMinimumGradleVersion
+        {
+            private string _testDir;
+            private string _wrapperPropertiesPath;
+
+            [SetUp]
+            public void SetUp()
+            {
+                _testDir = Path.Combine(AssetDatabaseUtil.ProjectDirectory, "Temp/GradleWrapperTest/gradle/wrapper");
+                Directory.CreateDirectory(_testDir);
+                _wrapperPropertiesPath = Path.Combine(_testDir, "../../gradle-wrapper.properties");
+                _wrapperPropertiesPath = Path.GetFullPath(Path.Combine(_testDir, "gradle-wrapper.properties"));
+            }
+
+            [TearDown]
+            public void TearDown()
+            {
+                string root = Path.Combine(AssetDatabaseUtil.ProjectDirectory, "Temp/GradleWrapperTest");
+                if (Directory.Exists(root))
+                {
+                    Directory.Delete(root, true);
+                }
+            }
+
+            private string RootPath => Path.Combine(AssetDatabaseUtil.ProjectDirectory, "Temp/GradleWrapperTest");
+
+            private void WriteWrapperProperties(string gradleVersion)
+            {
+                File.WriteAllText(_wrapperPropertiesPath,
+                    $"distributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-{gradleVersion}-bin.zip\nzipStoreBase=GRADLE_USER_HOME\n");
+            }
+
+            [Test, TestMustExpectAllLogs]
+            public void UpdatesVersion_WhenBelowMinimum()
+            {
+                WriteWrapperProperties("7.5.1");
+                LogAssert.Expect(LogType.Log, new Regex("Updated Gradle version"));
+                EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath);
+                string content = File.ReadAllText(_wrapperPropertiesPath);
+                StringAssert.Contains($"gradle-{EmbraceGradleUtility.MIN_GRADLE_VERSION}-bin.zip", content);
+            }
+
+            [Test, TestMustExpectAllLogs]
+            public void DoesNotUpdate_WhenAlreadyAtMinimum()
+            {
+                WriteWrapperProperties(EmbraceGradleUtility.MIN_GRADLE_VERSION);
+                EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath);
+                string content = File.ReadAllText(_wrapperPropertiesPath);
+                StringAssert.Contains($"gradle-{EmbraceGradleUtility.MIN_GRADLE_VERSION}-bin.zip", content);
+            }
+
+            [Test, TestMustExpectAllLogs]
+            public void DoesNotDowngrade_WhenAboveMinimum()
+            {
+                WriteWrapperProperties("9.5.1");
+                EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath);
+                string content = File.ReadAllText(_wrapperPropertiesPath);
+                StringAssert.Contains("gradle-9.5.1-bin.zip", content);
+            }
+
+            [Test, TestMustExpectAllLogs]
+            public void LogsWarning_WhenFileNotFound()
+            {
+                LogAssert.Expect(LogType.Warning, new Regex("gradle-wrapper.properties not found"));
+                Assert.DoesNotThrow(() => EmbraceGradleUtility.EnsureMinimumGradleVersion(RootPath));
+            }
         }
         
         #if UNITY_2022_2_OR_NEWER

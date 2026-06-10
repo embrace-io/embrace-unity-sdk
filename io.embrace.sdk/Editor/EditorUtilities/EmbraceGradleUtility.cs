@@ -32,8 +32,22 @@ namespace EmbraceSDK.EditorView
         private const string VERSION_GROUP_NAME = "version";
 
         // Dependencies
-        public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-swazzler";
+        public const string SWAZZLER_DEPENDENCY = "io.embrace:embrace-gradle-plugin";
         public const string ANDROID_SDK_DEPENDENCY = "io.embrace:embrace-android-sdk";
+
+        // Gradle wrapper
+        private const string GRADLE_WRAPPER_PROPERTIES_RELATIVE_PATH = "gradle/wrapper/gradle-wrapper.properties";
+        private const string GRADLE_DISTRIBUTION_URL_PATTERN = @"distributionUrl=.*gradle-(\d+\.\d+(?:\.\d+)?)-bin\.zip";
+        private const string GRADLE_DISTRIBUTION_URL_REPLACEMENT = @"distributionUrl=https\://services.gradle.org/distributions/gradle-{0}-bin.zip";
+        public const string MIN_GRADLE_VERSION = "8.0.2";
+
+        // AGP (Android Gradle Plugin)
+        // Matches both legacy classpath style and plugin DSL style:
+        //   classpath "com.android.tools.build:gradle:7.4.2"
+        //   id 'com.android.application' version '7.4.2'
+        private const string AGP_CLASSPATH_PATTERN = @"(com\.android\.tools\.build:gradle:)(\d+\.\d+(?:\.\d+)?)";
+        private const string AGP_PLUGIN_DSL_PATTERN = @"(id\s+['""]com\.android\.(application|library)['""](?:\s+version\s+['""])?)(\d+\.\d+(?:\.\d+)?)";
+        public const string MIN_AGP_VERSION = "8.0.2";
 
         public static string BaseProjectTemplatePath { get; } = Path.Combine(Application.dataPath, BASE_PROJECT_GRADLE_TEMPLATE_PATH);
         public static string LauncherTemplatePath { get; } = Path.Combine(Application.dataPath, LAUNCHER_TEMPLATE_PATH);
@@ -73,7 +87,7 @@ namespace EmbraceSDK.EditorView
                     string newGradleText = ReplaceDependencyVersion(gradleSource, SWAZZLER_DEPENDENCY, xmlVersion);
                     File.WriteAllText(BaseProjectTemplatePath, newGradleText);
                     EmbraceLogger.Log(
-                        $"Updated embrace-swazzler version from {gradleVersion} to {xmlVersion} in Assets/{BASE_PROJECT_GRADLE_TEMPLATE_PATH}.");
+                        $"Updated embrace-gradle-plugin version from {gradleVersion} to {xmlVersion} in Assets/{BASE_PROJECT_GRADLE_TEMPLATE_PATH}.");
                 }
                 catch (System.Exception e)
                 {
@@ -91,18 +105,18 @@ namespace EmbraceSDK.EditorView
             if (TryReadGradleTemplate(BaseProjectTemplatePath, out string gradleSource, logWarningIfFileNotPresent: true))
             {
 #if EMBRACE_ENABLE_BUGSHAKE_FORM
-                if (gradleSource.Contains("io.embrace:embrace-swazzler"))
+                if (gradleSource.Contains("io.embrace:embrace-gradle-plugin"))
                 {
-                    throw new UnityEditor.Build.BuildFailedException($"EmbraceGradleUtility found the embrace-swazzler classpath in " +
+                    throw new UnityEditor.Build.BuildFailedException($"EmbraceGradleUtility found the embrace-gradle-plugin classpath in " +
                                              $"{BaseProjectTemplatePath}. The embrace-bug-shake-gradle-plugin is not compatible " +
-                                             $"with embrace-swazzler and should not run simultaneously. Please remove the embrace-swazzler classpath from {BaseProjectTemplatePath} and build again.");
+                                             $"with embrace-gradle-plugin and should not run simultaneously. Please remove the embrace-gradle-plugin classpath from {BaseProjectTemplatePath} and build again.");
                 }
 #else 
                 if (gradleSource.Contains("io.embrace:embrace-bug-shake-gradle-plugin"))
                 {
                     throw new UnityEditor.Build.BuildFailedException("EmbraceGradleUtility found the embrace-bug-shake-gradle-plugin classpath in " +
-                                                                     $"{BaseProjectTemplatePath}. The embrace-swazzler is not compatible " +
-                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." + 
+                                                                     $"{BaseProjectTemplatePath}. The embrace-gradle-plugin is not compatible " +
+                                                                     $"with embrace-bug-shake-gradle-plugin and should not run simultaneously." +
                                                                      $"Please remove the embrace-bug-shake-gradle-plugin classpath from {BaseProjectTemplatePath} and build again.");
                 }   
 #endif
@@ -173,7 +187,7 @@ namespace EmbraceSDK.EditorView
         /// Tries to parse the version of the given dependency defined in <paramref name="text"/>.
         /// </summary>
         /// <param name="text">The text that contains the dependency.</param>
-        /// <param name="dependency">The dependency version to parse (for example, "io.embrace:embrace-swazzler").</param>
+        /// <param name="dependency">The dependency version to parse (for example, "io.embrace:embrace-gradle-plugin").</param>
         /// <param name="version">The version of the dependency, or null if parsing fails.</param>
         /// <returns>True if parsing was successful, otherwise false.</returns>
         public static bool TryParseDependencyVersion(string text, string dependency, out string version)
@@ -280,11 +294,115 @@ namespace EmbraceSDK.EditorView
             }
         }
 
+        /// <summary>
+        /// Ensures the gradle-wrapper.properties in the given Gradle project root specifies at least
+        /// <see cref="MIN_GRADLE_VERSION"/>. If the current version is lower it is updated in-place so
+        /// the Gradle wrapper downloads a compatible distribution before the build runs.
+        /// </summary>
+        /// <param name="gradleProjectRootPath">Root directory of the generated Gradle project.</param>
+        public static void EnsureMinimumGradleVersion(string gradleProjectRootPath)
+        {
+            string wrapperPath = Path.Combine(gradleProjectRootPath, GRADLE_WRAPPER_PROPERTIES_RELATIVE_PATH);
+
+            if (!File.Exists(wrapperPath))
+            {
+                EmbraceLogger.LogWarning($"gradle-wrapper.properties not found at {wrapperPath}. Gradle version will not be updated.");
+                return;
+            }
+
+            string content = File.ReadAllText(wrapperPath);
+            Match match = Regex.Match(content, GRADLE_DISTRIBUTION_URL_PATTERN);
+
+            if (!match.Success)
+            {
+                EmbraceLogger.LogWarning($"Could not parse Gradle version from {wrapperPath}. Gradle version will not be updated.");
+                return;
+            }
+
+            string currentVersion = match.Groups[1].Value;
+            if (IsGradleVersionAtLeast(currentVersion, MIN_GRADLE_VERSION))
+            {
+                return;
+            }
+
+            string newUrl = string.Format(GRADLE_DISTRIBUTION_URL_REPLACEMENT, MIN_GRADLE_VERSION);
+            string newContent = Regex.Replace(content, GRADLE_DISTRIBUTION_URL_PATTERN, newUrl);
+            File.WriteAllText(wrapperPath, newContent);
+            EmbraceLogger.Log($"Updated Gradle version from {currentVersion} to {MIN_GRADLE_VERSION} in {wrapperPath}.");
+        }
+
+        /// <summary>
+        /// Ensures the root build.gradle in the given Gradle project specifies at least
+        /// <see cref="MIN_AGP_VERSION"/> for the Android Gradle Plugin. Handles both the
+        /// legacy <c>classpath "com.android.tools.build:gradle:x.y.z"</c> style (Unity &lt; 2022)
+        /// and the plugin DSL <c>id 'com.android.application' version 'x.y.z'</c> style (Unity 2022+).
+        /// </summary>
+        /// <param name="gradleProjectRootPath">Root directory of the generated Gradle project.</param>
+        public static void EnsureMinimumAgpVersion(string gradleProjectRootPath)
+        {
+            string buildGradlePath = Path.Combine(gradleProjectRootPath, "build.gradle");
+            if (!File.Exists(buildGradlePath))
+            {
+                EmbraceLogger.LogWarning($"Root build.gradle not found at {buildGradlePath}. AGP version will not be updated.");
+                return;
+            }
+
+            string content = File.ReadAllText(buildGradlePath);
+            bool updated = false;
+
+            // Legacy classpath style: classpath "com.android.tools.build:gradle:x.y.z"
+            content = Regex.Replace(content, AGP_CLASSPATH_PATTERN, m =>
+            {
+                string version = m.Groups[2].Value;
+                if (!IsGradleVersionAtLeast(version, MIN_AGP_VERSION))
+                {
+                    updated = true;
+                    return m.Groups[1].Value + MIN_AGP_VERSION;
+                }
+                return m.Value;
+            });
+
+            // Plugin DSL style: id 'com.android.application' version 'x.y.z'
+            content = Regex.Replace(content, AGP_PLUGIN_DSL_PATTERN, m =>
+            {
+                string version = m.Groups[3].Value;
+                if (!IsGradleVersionAtLeast(version, MIN_AGP_VERSION))
+                {
+                    updated = true;
+                    return m.Groups[1].Value + MIN_AGP_VERSION;
+                }
+                return m.Value;
+            });
+
+            if (updated)
+            {
+                File.WriteAllText(buildGradlePath, content);
+                EmbraceLogger.Log($"Updated AGP version to {MIN_AGP_VERSION} in {buildGradlePath}.");
+            }
+        }
+
+        internal static bool IsGradleVersionAtLeast(string current, string minimum)
+        {
+            string[] currentParts = current.Split('.');
+            string[] minimumParts = minimum.Split('.');
+            int length = Math.Max(currentParts.Length, minimumParts.Length);
+
+            for (int i = 0; i < length; i++)
+            {
+                int c = i < currentParts.Length && int.TryParse(currentParts[i], out int cv) ? cv : 0;
+                int m = i < minimumParts.Length && int.TryParse(minimumParts[i], out int mv) ? mv : 0;
+                if (c > m) return true;
+                if (c < m) return false;
+            }
+
+            return true;
+        }
+
         private static Regex GetDependencyVersionRegex(string dependency)
         {
-            // Regex expecting an android dependency like "io.embrace:embrace-swazzler:5.9.0"
+            // Regex expecting an android dependency like "io.embrace:embrace-gradle-plugin:5.9.0"
             // Splits the match into two groups:
-            //      - dependency: io.embrace:embrace-swazzler:
+            //      - dependency: io.embrace:embrace-gradle-plugin:
             //      - version: 5.9.0
             return new Regex($"(?<{DEPENDENCY_GROUP_NAME}>{dependency}\\:?)(?<{VERSION_GROUP_NAME}>[^\"\']+)");
         }

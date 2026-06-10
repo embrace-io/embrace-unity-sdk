@@ -13,7 +13,7 @@ namespace EmbraceSDK.Tests
         public void SetUp()
         {
             // Create a temporary test file with content
-            File.WriteAllText(TestFilePath, "// Some comments\napply plugin: 'embrace-swazzler'\n");
+            File.WriteAllText(TestFilePath, "// Some comments\napply plugin: 'io.embrace.gradle'\n");
         }
 
         [OneTimeTearDown]
@@ -51,7 +51,7 @@ namespace EmbraceSDK.Tests
         public void Validate_SkipLine_ReturnsTrue()
         {
             // Arrange
-            var content = "// Some comments\n   \napply plugin: 'embrace-swazzler'\n";
+            var content = "// Some comments\n   \napply plugin: 'io.embrace.gradle'\n";
             File.WriteAllText(TestFilePath, content);
 
             // Act

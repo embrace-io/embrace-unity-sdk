@@ -42,6 +42,9 @@ namespace EmbraceSDK.EditorView
                 gradleProjectRootPath = gradleProjectRootDirectory.Parent.FullName;
             }
 
+            EmbraceGradleUtility.EnsureMinimumGradleVersion(gradleProjectRootPath);
+            EmbraceGradleUtility.EnsureMinimumAgpVersion(gradleProjectRootPath);
+
             WriteEmbraceConfig(gradleProjectRootPath);
 
             EmbraceGradleUtility.TryReadGradleTemplate(EmbraceGradleUtility.MainTemplatePath, out string mainTemplate);
@@ -50,6 +53,14 @@ namespace EmbraceSDK.EditorView
 
             gradlePropertiesWriteBuffer.AddRange(EmbraceEdmUtility.GetEdmProperties(mainTemplate));
             gradlePropertiesWriteBuffer.Add(new KeyValuePair<string, string>(EmbraceIl2CppSymbolUtility.SWAZZLER_FEATURE_GRADLE_PROPERTY, EmbraceIl2CppSymbolUtility.AssembleSourceMappingInfo(projectPath) ? "true" : "false"));
+
+            // If EMBRACE_JDK_PATH is set (e.g. in CI where Unity's bundled JDK is too old),
+            // tell Gradle to use that JDK instead of the one Unity invoked it with.
+            string jdkOverridePath = System.Environment.GetEnvironmentVariable("EMBRACE_JDK_PATH");
+            if (!string.IsNullOrEmpty(jdkOverridePath))
+            {
+                gradlePropertiesWriteBuffer.Add(new KeyValuePair<string, string>("org.gradle.java.home", jdkOverridePath));
+            }
 
             EmbraceGradleUtility.WriteEmbraceGradleProperties(gradleProjectRootPath, gradlePropertiesWriteBuffer);
 

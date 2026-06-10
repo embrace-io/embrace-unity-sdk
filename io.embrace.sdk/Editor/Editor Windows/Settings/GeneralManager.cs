@@ -151,7 +151,7 @@ namespace EmbraceSDK.EditorView
             {
                 symbol = EmbraceGradleUtility.EMBRACE_DISABLE_SWAZZLER_VERSION_UPDATE,
                 guiContent = new GUIContent("Disable Automatic Android Swazzler Version Update",
-                    "Prevents the Embrace Unity SDK from automatically updating the version of embrace-swazzler defined in the project's baseProjectTemplate.gradle."),
+                    "Prevents the Embrace Unity SDK from automatically updating the version of embrace-gradle-plugin defined in the project's baseProjectTemplate.gradle."),
                 defaultValue = false
             },
         };

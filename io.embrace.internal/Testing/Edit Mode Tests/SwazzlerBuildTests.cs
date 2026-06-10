@@ -25,6 +25,12 @@ namespace EmbraceSDK.Tests
             }
 
             File.Copy(LAUNCHER_TEMPLATE_PATH, LAUNCHER_TEMPLATE_BACKUP_PATH, true);
+
+            string gradlePath = Environment.GetEnvironmentVariable("EMBRACE_GRADLE_PATH");
+            if (!string.IsNullOrEmpty(gradlePath))
+            {
+                AndroidExternalToolsSettings.gradlePath = gradlePath;
+            }
         }
 
         [TearDown]

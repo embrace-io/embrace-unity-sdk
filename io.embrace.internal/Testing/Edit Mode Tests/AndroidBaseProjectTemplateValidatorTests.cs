@@ -16,7 +16,7 @@ namespace EmbraceSDK.Tests
             File.WriteAllText(TestFilePath, @"
                 dependencies {
                     classpath 'some.library:library:1.0.0'
-                    classpath 'io.embrace:embrace-swazzler:1.2.3'
+                    classpath 'io.embrace:embrace-gradle-plugin:1.2.3'
                     classpath 'io.embrace:embrace-bug-shake-gradle-plugin:1.2.3-SNAPSHOT'
                 }
                 repositories {
@@ -88,7 +88,7 @@ namespace EmbraceSDK.Tests
             // Arrange
             var content = @"
                 dependencies {
-                    classpath 'io.embrace:embrace-swazzler:1.2.3'
+                    classpath 'io.embrace:embrace-gradle-plugin:1.2.3'
                 }
                 repositories {
                     mavenLocal()
