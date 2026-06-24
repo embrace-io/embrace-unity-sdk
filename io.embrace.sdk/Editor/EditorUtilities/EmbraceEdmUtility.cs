@@ -189,7 +189,7 @@ namespace EmbraceSDK.EditorView
                 dependenciesDoc.LoadXml(dependenciesXMLData);
             
                 var directory = Path.GetDirectoryName(filePath);
-                if (directory != null && Directory.Exists(directory))
+                if (directory != null && !Directory.Exists(directory))
                 {
                     Directory.CreateDirectory(directory);
                 }
