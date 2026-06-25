@@ -101,15 +101,24 @@ namespace EmbraceSDK.Tests
         [Test]
         public void SaveDependenciesFile_WhenDirectoryCreationFails_ShouldLogErrorAndReturnFalse()
         {
-            var invalidPath = "C:/NonexistentDirectory/TestDependenciesFile.xml";
+            // Use an existing file as a path component so CreateDirectory throws on all platforms
+            var blockingFile = Path.GetTempFileName();
+            var invalidPath = Path.Combine(blockingFile, "subdir", "TestDependenciesFile.xml");
             var xmlData = "<root><dependency>TestDependency</dependency></root>";
 
-            var result = EmbraceEdmUtility.SaveDependenciesFile(xmlData, invalidPath);
+            try
+            {
+                var result = EmbraceEdmUtility.SaveDependenciesFile(xmlData, invalidPath);
 
-            Assert.IsFalse(result);
-            Assert.IsFalse(File.Exists(invalidPath));
+                Assert.IsFalse(result);
+                Assert.IsFalse(File.Exists(invalidPath));
 
-            LogAssert.Expect(LogType.Warning,$"{EmbraceLogger.LOG_TAG}: Failed to create the directory for the Embrace dependencies XML file.");
+                LogAssert.Expect(LogType.Warning,$"{EmbraceLogger.LOG_TAG}: Failed to create the directory for the Embrace dependencies XML file.");
+            }
+            finally
+            {
+                File.Delete(blockingFile);
+            }
         }
 
         [Test]
