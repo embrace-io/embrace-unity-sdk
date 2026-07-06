@@ -187,18 +187,13 @@ namespace EmbraceSDK.EditorView
             {
                 var dependenciesDoc = new XmlDocument();
                 dependenciesDoc.LoadXml(dependenciesXMLData);
-            
+
                 var directory = Path.GetDirectoryName(filePath);
-                if (directory != null && Directory.Exists(directory))
+                if (directory != null && !Directory.Exists(directory))
                 {
                     Directory.CreateDirectory(directory);
                 }
-                else
-                {
-                    EmbraceLogger.LogWarning("Failed to create the directory for the Embrace dependencies XML file.");
-                    return false;
-                }
-                
+
                 dependenciesDoc.Save(filePath);
                 EmbraceLogger.Log("Embrace SDK Dependencies XML file has been generated and saved.");
                 return true;
@@ -206,6 +201,11 @@ namespace EmbraceSDK.EditorView
             catch (XmlException ex)
             {
                 EmbraceLogger.LogWarning("Failed to generate the Embrace dependencies XML file.", ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                EmbraceLogger.LogWarning("Failed to create the directory for the Embrace dependencies XML file.");
                 return false;
             }
         }
