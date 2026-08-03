@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using EmbraceSDK.Internal;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -14,12 +17,127 @@ namespace EmbraceSDK.Networking
     /// </summary>
     public static class NetworkCapture
     {
+        // Traceparent validation
         public const string EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS = nameof(EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS);
+        private static readonly Regex TraceparentRegex = new("^(?<version>[0-9a-f]{2})-(?<traceId>[0-9a-f]{32})-(?<parentId>[0-9a-f]{16})-[0-9a-f]{2}$", RegexOptions.Compiled);
+        private const string AllZeroTraceId = "00000000000000000000000000000000";
+        private const string AllZeroParentId = "0000000000000000";
+
+        // Traceparent generation
+        private static readonly RandomNumberGenerator TraceparentRandom = RandomNumberGenerator.Create();
+        private static readonly object TraceparentRandomLock = new object();
+        private const int TraceIdBytes = 16;
+        private const int ParentIdBytes = 8;
+        private const int MaxTraceparentGenerationAttempts = 10;
+        
+        /// <summary>
+        /// Validates that <paramref name="traceparent"/> is a well-formed W3C traceparent header value
+        /// (https://www.w3.org/TR/trace-context/#traceparent-header). This is used both to sanity-check
+        /// traceparent values generated internally and to guard against malformed or malicious values
+        /// supplied by callers before they are attached as an HTTP header or forwarded to the native SDK.
+        /// </summary>
+        public static bool IsValidTraceparent(string traceparent)
+        {
+            if (string.IsNullOrEmpty(traceparent))
+            {
+                return false;
+            }
+
+            Match match = TraceparentRegex.Match(traceparent);
+            
+            if (!match.Success)
+            {
+                return false;
+            }
+
+            if (match.Groups["version"].Value == "ff")
+            {
+                return false;
+            }
+
+            if (match.Groups["traceId"].Value == AllZeroTraceId)
+            {
+                return false;
+            }
+
+            if (match.Groups["parentId"].Value == AllZeroParentId)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Generates a new, valid W3C traceparent header value (https://www.w3.org/TR/trace-context/#traceparent-header)
+        /// with a randomly generated trace id and parent (span) id, version "00" and trace-flags "01" (sampled).
+        /// </summary>
+        public static string GenerateTraceparent()
+        {
+            // GenerateHexId retries internally on the astronomically unlikely all-zero case, but we still guard
+            // the assembled string with IsValidTraceparent so this can never hand back a value it wouldn't accept.
+            // Bounded by MaxTraceparentGenerationAttempts so a persistently misbehaving RNG can't hang the caller.
+            for (int attempt = 0; attempt < MaxTraceparentGenerationAttempts; attempt++)
+            {
+                string traceparent = $"00-{GenerateHexId(TraceIdBytes)}-{GenerateHexId(ParentIdBytes)}-01";
+
+                if (IsValidTraceparent(traceparent))
+                {
+                    return traceparent;
+                }
+            }
+
+            throw new InvalidOperationException($"Failed to generate a valid W3C traceparent after {MaxTraceparentGenerationAttempts} attempts.");
+        }
+
+        private static string GenerateHexId(int byteCount)
+        {
+            byte[] bytes = new byte[byteCount];
+
+            lock (TraceparentRandomLock)
+            {
+                TraceparentRandom.GetBytes(bytes);
+            }
+
+            return BytesToHex(bytes);
+        }
+
+        private static string BytesToHex(byte[] bytes)
+        {
+            var builder = new StringBuilder(bytes.Length * 2);
+
+            foreach (byte b in bytes)
+            {
+                builder.Append(b.ToString("x2"));
+            }
+
+            return builder.ToString();
+        }
+
+        internal static bool IsNetworkSpanForwardingEnabled()
+        {
+            Embrace embrace = InternalEmbrace.GetExistingInstance();
+            if (embrace == null || !embrace.IsStarted)
+            {
+                return false;
+            }
+
+            try
+            {
+                return embrace.Provider?.IsNetworkSpanForwardingEnabled() ?? false;
+            }
+            catch (Exception e)
+            {
+                EmbraceLogger.LogException(e);
+                return false;
+            }
+        }
 
         private class PendingRequest<T>
         {
             public T requestOperation;
             public long startms;
+            public string traceparent;
         }
 
         #if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
@@ -49,12 +167,20 @@ namespace EmbraceSDK.Networking
                 throw new NullReferenceException();
             }
 
+            string traceparent = null;
+            if (IsNetworkSpanForwardingEnabled())
+            {
+                traceparent = GenerateTraceparent();
+                request.SetRequestHeader("traceparent", traceparent);
+            }
+
             UnityWebRequestAsyncOperation operation = request.SendWebRequest();
 
             _pendingUnityWebRequests[request] = new PendingRequest<UnityWebRequestAsyncOperation>()
             {
                 requestOperation = operation,
                 startms = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
+                traceparent = traceparent,
             };
 
             operation.completed += OnUnityWebRequestAsyncOperationComplete;
@@ -149,11 +275,11 @@ namespace EmbraceSDK.Networking
                 
                 if (error != string.Empty)
                 {
-                    Embrace.Instance.RecordIncompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, error);
+                    Embrace.Instance.RecordIncompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, error, pendingRequest.traceparent);
                 }
                 else
                 {
-                    Embrace.Instance.RecordCompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, bytesin, bytesout, code);
+                    Embrace.Instance.RecordCompleteNetworkRequest(request.url, method, pendingRequest.startms, endms, bytesin, bytesout, code, pendingRequest.traceparent);
                 }
                 #endif
 

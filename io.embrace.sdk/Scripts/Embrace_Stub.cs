@@ -223,14 +223,19 @@ namespace EmbraceSDK.Editor
             EmbraceLogger.Log($"Unity Version = {unityVersion} GUID = {guid} Unity-SDK Version= {sdkVersion}");
         }
         
-        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
+        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent)
         {
-            EmbraceLogger.Log( $"Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout}");
+            EmbraceLogger.Log( $"Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout} code: {code} traceparent: {traceparent}");
         }
 
-        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
+        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent)
         {
-            EmbraceLogger.Log( $"Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
+            EmbraceLogger.Log( $"Network Request: {url} method: {method} start: {startms} end: {endms} error: {error} traceparent: {traceparent}");
+        }
+
+        bool IEmbraceProvider.IsNetworkSpanForwardingEnabled()
+        {
+            return false;
         }
 
         #if UNITY_IOS

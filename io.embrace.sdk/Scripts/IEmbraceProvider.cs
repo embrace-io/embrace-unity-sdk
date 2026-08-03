@@ -45,8 +45,9 @@ namespace EmbraceSDK.Internal
         bool StartView(string name);
         bool EndView(string name);
         void SetMetaData(string unityVersion, string guid, string sdkVersion);
-        void RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code);
-        void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error);
+        void RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent);
+        void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent);
+        bool IsNetworkSpanForwardingEnabled();
         void LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack);
         void LogHandledUnityException(string exceptionName, string exceptionMessage, string stack);
         string GetCurrentSessionId();
