@@ -68,7 +68,9 @@ sudo apt-get update
 sudo apt-get install -y unityhub
 
 # Alias to "unity-hub" with default params
-printf '#!/bin/bash\nxvfb-run --auto-servernum /opt/unityhub/unityhub-bin --no-sandbox "$@"\n' | sudo tee /usr/bin/unity-hub >/dev/null
+# Unity Hub >=3.20.0 installs to /usr/lib/unityhub (launcher symlinked at
+# /usr/bin/unityhub), not the old /opt/unityhub/unityhub-bin layout.
+printf '#!/bin/bash\nxvfb-run --auto-servernum unityhub --no-sandbox "$@"\n' | sudo tee /usr/bin/unity-hub >/dev/null
 sudo chmod +x /usr/bin/unity-hub
 
 # Configure
