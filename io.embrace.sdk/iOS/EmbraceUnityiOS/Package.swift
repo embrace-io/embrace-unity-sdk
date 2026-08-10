@@ -12,7 +12,7 @@ let package = Package(
         .library(name: "EmbraceUnityiOS", targets: ["EmbraceUnityiOS"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/embrace-io/embrace-apple-sdk.git", exact: "6.20.0")
+        .package(url: "https://github.com/embrace-io/embrace-apple-sdk.git", exact: "6.21.0")
     ],
     targets: [
         .target(
