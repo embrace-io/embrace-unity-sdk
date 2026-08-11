@@ -1,0 +1,64 @@
+name: Publish to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run `npm publish --dry-run` instead of a real publish.'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+  id-token: write   # required for npm provenance attestation
+
+jobs:
+  publish:
+    name: Publish io.embrace.sdk to npm
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node + npm auth
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org
+
+      - name: Read package version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./io.embrace.sdk/package.json').version")
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version: $VERSION"
+
+      - name: Publish to npm
+        # prepublishOnly (make install_ios_dependencies) runs automatically as
+        # part of `npm publish` — see io.embrace.sdk/package.json.
+        working-directory: io.embrace.sdk
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            npm publish --dry-run
+          else
+            npm publish
+          fi
+
+      - name: Summary
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "Dry run complete for io.embrace.sdk@$VERSION. No package was published."
+          else
+            echo "Published io.embrace.sdk@$VERSION to https://www.npmjs.com/package/io.embrace.sdk"
+          fi
