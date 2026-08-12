@@ -32,9 +32,8 @@ jobs:
           package-manager-cache: false
 
       - name: Update npm
-        # Trusted publishing requires npm >=11.5.1, newer than what some Node
-        # versions bundle by default.
-        run: npm install -g npm@latest
+        # Trusted publishing requires npm >=11.5.1.
+        run: npm install -g npm@11.5.1
 
       - name: Read package version
         id: version
