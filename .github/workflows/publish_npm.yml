@@ -33,7 +33,7 @@ jobs:
 
       - name: Update npm
         # Trusted publishing requires npm >=11.5.1.
-        run: npm install -g npm@11.5.1
+        run: npm install -g npm@11.5.1 # zizmor: ignore[adhoc-packages] - pinned version, upgrading npm itself so no lockfile applies
 
       - name: Read package version
         id: version
