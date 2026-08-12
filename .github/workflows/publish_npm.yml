@@ -34,6 +34,10 @@ jobs:
         id: version
         run: |
           VERSION=$(node -p "require('./io.embrace.sdk/package.json').version")
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'; then
+            echo "::error::'$VERSION' from io.embrace.sdk/package.json is not a valid semantic version" >&2
+            exit 1
+          fi
           echo "value=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version: $VERSION"
 
