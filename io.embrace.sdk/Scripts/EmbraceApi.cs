@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EmbraceSDK
 {
@@ -61,9 +62,12 @@ namespace EmbraceSDK
         /// <summary>
         /// Starts instrumentation of the application using the Embrace SDK. This should be called during creation of the application, as early as possible.
         /// See Embrace Docs for integration instructions. For compatibility with other SDKs, the Embrace SDK must be initialized after any other SDK.
+        /// Callers that await the returned Task are guaranteed that the native SDK is ready for calls (or that a
+        /// startup timeout has elapsed) before it completes. Callers that don't await it see identical behavior
+        /// and timing to a synchronous call.
         /// </summary>
         /// <param name="args">Startup arguments to configure the SDK. REQUIRED on iOS</param>
-        void StartSDK(EmbraceStartupArgs args = null);
+        Task StartSDK(EmbraceStartupArgs args = null);
 
         /// <summary>
         /// Adds a breadcrumb.

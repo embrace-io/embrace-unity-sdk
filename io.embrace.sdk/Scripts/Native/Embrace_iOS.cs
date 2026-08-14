@@ -180,6 +180,8 @@ namespace EmbraceSDK.Internal
             return embrace_sdk_is_started();
         }
 
+        bool IEmbraceProvider.IsReadyForCalls() => IsReadyForCalls();
+
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
             if (IsReadyForCalls() == false)

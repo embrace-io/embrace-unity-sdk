@@ -234,6 +234,8 @@ namespace EmbraceSDK.Internal
             httpMethodEnum = new AndroidJavaClass("io.embrace.android.embracesdk.network.http.HttpMethod");
         }
 
+        bool IEmbraceProvider.IsReadyForCalls() => ReadyForCalls();
+
         void IEmbraceProvider.StartSDK(EmbraceStartupArgs args)
         {
             if (!ReadyForCalls())
