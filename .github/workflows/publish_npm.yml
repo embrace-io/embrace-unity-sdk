@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write   # required for npm provenance attestation
+  id-token: write   # required for npm trusted publishing (OIDC) and provenance
 
 jobs:
   publish:
@@ -24,11 +24,16 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Node + npm auth
+      - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: lts/*
+          node-version: '>=22.14.0' # minimum for npm trusted publishing support
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Update npm
+        # Trusted publishing requires npm >=11.5.1.
+        run: npm install -g npm@11.5.1 # zizmor: ignore[adhoc-packages] - pinned version, upgrading npm itself so no lockfile applies
 
       - name: Read package version
         id: version
@@ -46,8 +51,6 @@ jobs:
         # part of `npm publish` — see io.embrace.sdk/package.json.
         working-directory: io.embrace.sdk
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: "true"
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           if [ "$DRY_RUN" = "true" ]; then
