@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using EmbraceSDK;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
@@ -127,6 +128,51 @@ namespace EmbraceSDK.Tests
             embrace.StartSDK();
 
             embrace.provider.Received(1).StartSDK(null);
+        }
+
+        [UnityTest]
+        public IEnumerator StartSDK_Await_CompletesOnlyOnceProviderIsReady()
+        {
+            var embrace = Embrace.Create();
+            var provider = Substitute.For<IEmbraceProvider>();
+            provider.IsReadyForCalls().Returns(false, false, true);
+            embrace.provider = provider;
+            int originalInterval = Embrace.StartupReadinessPollIntervalMs;
+            Embrace.StartupReadinessPollIntervalMs = 10;
+            var task = embrace.StartSDK();
+            
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            Embrace.StartupReadinessPollIntervalMs = originalInterval;
+            Assert.IsFalse(task.IsFaulted);
+            provider.Received(3).IsReadyForCalls();
+        }
+
+        [UnityTest]
+        public IEnumerator StartSDK_Await_LogsWarningAndCompletes_OnTimeout()
+        {
+            var embrace = Embrace.Create();
+            var provider = Substitute.For<IEmbraceProvider>();
+            provider.IsReadyForCalls().Returns(false);
+            embrace.provider = provider;
+            int originalInterval = Embrace.StartupReadinessPollIntervalMs;
+            int originalTimeout = Embrace.StartupReadinessTimeoutMs;
+            Embrace.StartupReadinessPollIntervalMs = 5;
+            Embrace.StartupReadinessTimeoutMs = 20;
+            LogAssert.Expect(LogType.Warning, new Regex(Regex.Escape(EmbraceMessages.STARTUP_READINESS_TIMEOUT_WARNING)));
+            var task = embrace.StartSDK();
+            
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            Embrace.StartupReadinessPollIntervalMs = originalInterval;
+            Embrace.StartupReadinessTimeoutMs = originalTimeout;
+            Assert.IsFalse(task.IsFaulted);
         }
 
         [Test]

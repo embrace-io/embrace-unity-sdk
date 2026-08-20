@@ -22,6 +22,8 @@ namespace EmbraceSDK.Editor
         }
         #nullable disable
 
+        bool IEmbraceProvider.IsReadyForCalls() => true;
+
         LastRunEndState IEmbraceProvider.GetLastRunEndState()
         {
             EmbraceLogger.Log(EmbraceMessages.STUB_GET_LAST_RUN_END_STATE);

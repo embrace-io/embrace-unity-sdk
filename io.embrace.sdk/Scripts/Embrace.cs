@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using EmbraceSDK.Editor;
 using EmbraceSDK.Internal;
 using EmbraceSDK.Utilities;
@@ -54,6 +55,10 @@ namespace EmbraceSDK
         private static Embrace _instance;
         private Thread _mainThread;
         private bool _started;
+
+        // Internal (not public) so tests can shrink these for speed; not const so they're assignable.
+        internal static int StartupReadinessPollIntervalMs = 100;
+        internal static int StartupReadinessTimeoutMs = 10000;
         private static EmbraceSdkInfo sdkInfo;
         private UnhandledExceptionRateLimiting rateLimiter = new UnhandledExceptionRateLimiting();
         private Dictionary<string, string> emptyDictionary = new Dictionary<string, string>();
@@ -191,7 +196,7 @@ namespace EmbraceSDK
         }
 
         /// <inheritdoc />
-        public void StartSDK(EmbraceStartupArgs args = null)
+        public async Task StartSDK(EmbraceStartupArgs args = null)
         {
             #if EMBRACE_STARTUP_SPANS
             EmbraceStartupSpans.RecordStartSDKTime();
@@ -205,6 +210,8 @@ namespace EmbraceSDK
             {
                 Initialize();
             }
+
+            bool startedSuccessfully = false;
 
             try
             {
@@ -233,7 +240,8 @@ namespace EmbraceSDK
                 IsEnabled = true;
                 InternalEmbrace.SetInternalInstance(_instance);
                 EmbraceLogger.Log("Embrace SDK enabled. Version: " + sdkInfo.version);
-                
+                startedSuccessfully = true;
+
                 #if EMBRACE_STARTUP_SPANS
                 EmbraceStartupSpans.RecordStopSDKTime();
                 #endif
@@ -241,6 +249,40 @@ namespace EmbraceSDK
             catch (Exception e)
             {
                 Debug.LogException(e);
+            }
+
+            if (startedSuccessfully)
+            {
+                await WaitUntilProviderReadyAsync();
+            }
+        }
+
+        /// <summary>
+        /// Polls the provider's native readiness check on a fixed interval until it reports ready or a fixed
+        /// timeout elapses. Resumes on Unity's main-thread SynchronizationContext (the default behavior of
+        /// awaiting Task.Delay here), so it is safe to make further native/provider calls once this returns.
+        /// </summary>
+        private async Task WaitUntilProviderReadyAsync()
+        {
+            var readinessProvider = Provider;
+            
+            if (readinessProvider == null || readinessProvider.IsReadyForCalls())
+            {
+                return;
+            }
+
+            int elapsedMs = 0;
+            
+            while (!readinessProvider.IsReadyForCalls())
+            {
+                await Task.Delay(StartupReadinessPollIntervalMs);
+                elapsedMs += StartupReadinessPollIntervalMs;
+
+                if (elapsedMs >= StartupReadinessTimeoutMs)
+                {
+                    EmbraceLogger.LogWarning(EmbraceMessages.STARTUP_READINESS_TIMEOUT_WARNING);
+                    return;
+                }
             }
         }
 

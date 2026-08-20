@@ -15,6 +15,7 @@ namespace EmbraceSDK.Internal
         void InitializeSDK();
         // Public API
         void StartSDK(EmbraceStartupArgs args = null);
+        bool IsReadyForCalls();
         LastRunEndState GetLastRunEndState();
         void SetUserIdentifier(string identifier);
         void ClearUserIdentifier();
