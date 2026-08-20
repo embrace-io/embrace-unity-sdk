@@ -129,6 +129,7 @@ namespace EmbraceSDK.Internal
         private const string _RecordNetworkRequestMethod = "recordNetworkRequest";
         private const string _FromCompletedRequestMethod = "fromCompletedRequest";
         private const string _FromIncompleteRequestMethod = "fromIncompleteRequest";
+        private const string _IsNetworkSpanForwardingEnabledMethod = "isNetworkSpanForwardingEnabled";
 
         // Java Map Reading
         IntPtr CollectionIterator;
@@ -564,7 +565,7 @@ namespace EmbraceSDK.Internal
             _embraceUnityInternalSharedInstance.Call(_SetUnityMetaDataMethod, unityVersion, guid, sdkVersion);
         }
         
-        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
+        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent)
         {
             if (!ReadyForCalls())
             {
@@ -592,7 +593,7 @@ namespace EmbraceSDK.Internal
                 bytesin,
                 code,
                 null,
-                null,
+                traceparent,
                 null
             );
 
@@ -600,7 +601,7 @@ namespace EmbraceSDK.Internal
             networkRequest.Dispose();
         }
         
-        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
+        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent)
         {
             if (!ReadyForCalls())
             {
@@ -627,12 +628,29 @@ namespace EmbraceSDK.Internal
                 "",
                 error,
                 null,
-                null,
+                traceparent,
                 null
             );
 
             embraceSharedInstance.Call(_RecordNetworkRequestMethod, networkRequest);
             networkRequest.Dispose();
+        }
+
+        bool IEmbraceProvider.IsNetworkSpanForwardingEnabled()
+        {
+            if (!ReadyForCalls())
+            {
+                EmbraceLogger.LogError(EmbraceMessages.IS_NETWORK_SPAN_FORWARDING_ENABLED_ERROR);
+                return false;
+            }
+
+            if (!UnityInternalInterfaceReadyForCalls())
+            {
+                EmbraceLogger.LogError(EmbraceMessages.IS_NETWORK_SPAN_FORWARDING_ENABLED_ERROR);
+                return false;
+            }
+
+            return _embraceUnityInternalSharedInstance.Call<bool>(_IsNetworkSpanForwardingEnabledMethod);
         }
 
         void IEmbraceProvider.LogUnhandledUnityException(string exceptionName, string exceptionMessage, string stack)

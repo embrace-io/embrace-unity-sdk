@@ -194,7 +194,9 @@ namespace EmbraceSDK
         /// <param name="bytesin">The number of bytes returned in response to this network call</param>
         /// <param name="bytesout">The number of bytes sent as part of this network call</param>
         /// <param name="code">The status code returned from the server</param>
-        void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code);
+        /// <param name="traceparent">An optional W3C traceparent header value (https://www.w3.org/TR/trace-context/#traceparent-header)
+        /// identifying the trace this network call belongs to. Android only; ignored on other platforms.</param>
+        void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent = null);
 
         /// <summary>
         /// Records an incomplete network request originating from your application for aggregation and debugging on the Embrace.io dashboard.
@@ -204,7 +206,9 @@ namespace EmbraceSDK
         /// <param name="startms">The time that the network call started (Unix Timestamp)</param>
         /// <param name="endms">The time that the network call was completed (Unix Timestamp)</param>
         /// <param name="error">An optional error message describing any non-HTTP errors, such as a connection error or exception.</param>
-        void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error);
+        /// <param name="traceparent">An optional W3C traceparent header value (https://www.w3.org/TR/trace-context/#traceparent-header)
+        /// identifying the trace this network call belongs to. Android only; ignored on other platforms.</param>
+        void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent = null);
     }
     
     /// The public API that is used to interact with sessions.

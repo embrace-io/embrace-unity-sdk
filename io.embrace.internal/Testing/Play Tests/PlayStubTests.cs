@@ -271,7 +271,7 @@ namespace EmbraceSDK.Tests
             int bytesin = 0;
             int bytesout = 0;
             int code = 0;
-            LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout}");
+            LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} bytesin: {bytesin} bytesout: {bytesout} code: {code} traceparent: ");
             Embrace.Instance.StartSDK();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordCompleteNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
@@ -285,7 +285,7 @@ namespace EmbraceSDK.Tests
             long startms = 0;
             long endms = 0;
             string error = "Test Error";
-            LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} error: {error}");
+            LogAssert.Expect(LogType.Log, $"{EmbraceLogger.LOG_TAG}: Network Request: {url} method: {method} start: {startms} end: {endms} error: {error} traceparent: ");
             Embrace.Instance.StartSDK();
             yield return new WaitForFixedUpdate();
             Embrace.Instance.RecordIncompleteNetworkRequest(url, method, startms, endms, error);

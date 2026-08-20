@@ -37,6 +37,7 @@ namespace EmbraceSDK
         public const string ADD_SPAN_EVENT_ERROR = "Unable to add span event, Embrace SDK not initialized";
         public const string ADD_SPAN_ATTRIBUTE_ERROR = "Unable to add span attribute, Embrace SDK not initialized";
         public const string RECORD_COMPLETED_SPAN_ERROR = "Unable to record completed span, Embrace SDK not initialized";
+        public const string IS_NETWORK_SPAN_FORWARDING_ENABLED_ERROR = "Unable to check if network span forwarding is enabled, Embrace SDK not initialized";
         public const string STARTUP_ARGS_ERROR = "Embrace iOS support requires the use of EmbraceStartupArgs";
         public const string SET_USER_AS_PAYER_ERROR = "Unable to set user as payer, Embrace SDK not initialized";
         public const string CLEAR_USER_AS_PAYER_ERROR = "Unable to clear user as payer, Embrace SDK not initialized";
