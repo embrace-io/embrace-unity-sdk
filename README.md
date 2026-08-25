@@ -46,20 +46,14 @@ If you run into any issues building the SDK locally, please reach out on our
 
 ## Publishing to npm
 
+Publishing is automated via the [`Publish to npm`](.github/workflows/publish_npm.yml)
+GitHub Actions workflow. Trigger it manually from the Actions tab against the
+branch/ref you want to publish (optionally as a dry run first).
+
 The iOS symbol upload tools (`run.sh` and `embrace_symbol_upload.darwin`) are
 required for the npm package but are excluded from git via `.gitignore`. Before
 publishing to npm, these dependencies will be automatically downloaded via the
 `prepublishOnly` script, which runs `make install_ios_dependencies`.
-
-To publish to npm:
-
-```bash
-cd io.embrace.sdk
-npm publish
-```
-
-The `prepublishOnly` script will automatically download the required iOS tools
-from https://downloads.embrace.io/embrace_support.zip before packaging.
 
 **Note:** For local development and building, you must manually run `make` from
 the repository root to download iOS dependencies and build the SDK. The

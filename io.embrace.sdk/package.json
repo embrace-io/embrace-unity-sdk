@@ -1,6 +1,6 @@
 {
   "name": "io.embrace.sdk",
-  "version": "2.8.0",
+  "version": "2.8.3",
   "displayName": "Embrace SDK",
   "description": "Embrace's Unity SDK lets you bring the deep, introspective and native debugging power of Embrace into your Unity game or application.",
   "unity": "2019.1",
@@ -8,6 +8,10 @@
   "documentationUrl": "https://embrace.io/docs/unity/",
   "changelogUrl": "https://embrace.io/docs/unity/changelog/",
   "licensesUrl": "https://embrace.io/docs/terms-of-service/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/embrace-io/embrace-unity-sdk.git"
+  },
   "keywords": [
     "embrace",
     "crashes",

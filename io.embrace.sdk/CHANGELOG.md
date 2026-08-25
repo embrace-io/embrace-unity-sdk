@@ -5,6 +5,62 @@ sidebar_position: 4
 ---
 
 # Unity SDK Changelog
+## 2.8.3
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.21.0](https://embrace.io/docs/ios/changelog/#6210)
+*August 10, 2026*
+- Upgraded Embrace Apple SDK dependency to 6.21.0
+
+## 2.8.2
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.15.1](https://embrace.io/docs/ios/changelog/#6151)
+*July 6, 2026*
+- Fixed a bug in `EmbraceEdmUtility` where an inverted directory-existence check prevented a required directory from ever being created
+- Added a `NOTICE` file to the SDK, bundled into the `.unitypackage`
+
+## 2.8.1
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.15.1](https://embrace.io/docs/ios/changelog/#6151)
+*November 25, 2025*
+- Upgraded Embrace Apple SDK dependency to 6.15.1
+- Fixed a potential hang in the iOS SDK's `SpanRepository` by replacing concurrent dispatch queues with mutex-based synchronization
+- Deprecated and disabled the Android `getSessionProperties` native call; it will be removed in a future major version
+- Added a license and README for the npm root package and fixed missing files in the npm publish output
+
+## 2.8.0
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.14.1](https://embrace.io/docs/ios/changelog/#6141)
+*November 13, 2025*
+- Upgraded Embrace Apple SDK dependency to 6.14.1
+- Added a `SpanExists` function so developers get feedback when trying to stop a span that doesn't exist
+- Removed internal package Scriptable Objects in preparation for UPM distribution
+- Fixed an issue preventing configuration of auto-instrumentation options due to Unity Package Cache read-only status
+- Fixed a logical error in the Android shared instance setter
+- Added `IgnoredUrls` support to the iOS `EmbraceManager` so `URLSessionCaptureService` can ignore specified URLs
+- Replaced test endpoints that referenced httpbin with Embrace-owned endpoints
+- Added a workaround for a Unity Hub bug that left the Linux Android Support package partially installed
+
+## 2.7.0
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
+*September 4, 2025*
+- Added Embrace Memory Pressure auto-instrumentation for tracking memory conditions
+- Added automatic scene loading spans with an optional scene allow list
+- Added a minimum reporting interval so the SDK can't be overrun with logs
+- Removed an unnecessary serialization flag from `EmbraceStandaloneInputModule.cs`
+
+## 2.6.0
+Embrace Android SDK Version: [7.5.0](https://embrace.io/docs/android/changelog/#750)
+Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
+*August 14, 2025*
+- Upgraded Embrace Android dependency to 7.5.0
+- Added an `AutoViewCapture` helper component for reporting `StartView`/`EndView` automatically from a `GameObject`'s enable/disable lifecycle
+- Added automatic app startup spans (total start time, app loading, plugin init/loading) plus support for custom child spans
+- Added automatic FPS instrumentation (opt-in), tracking interval and session-average FPS along with profiler markers
+- Added Unity tap capture support, including handling for the legacy input schema and a new `EmbraceStandaloneInputModule` for custom input override
+- Added a sane default for the custom Android symbols directory property
+- Moved `WeaverSettings` outside of the `Assets` folder
+
 ## 2.5.0
 Embrace Android SDK Version: [7.3.0](https://embrace.io/docs/android/changelog/#730)
 Embrace Apple SDK Version: [6.8.4](https://embrace.io/docs/ios/changelog/#684)
