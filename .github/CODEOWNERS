@@ -5,4 +5,4 @@
 .github @embrace-io/opensource-devops @embrace-io/opensource-unity
 
 # API Surface Owners
-io.embrace.sdk/Scripts/EmbraceApi.cs @fractalwrench @bidetofevil
+io.embrace.sdk/Scripts/EmbraceApi.cs @fractalwrench @bidetofevil @noonat
