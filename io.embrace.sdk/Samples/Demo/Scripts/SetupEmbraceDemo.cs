@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EmbraceSDK.Internal;
 using UnityEngine;
@@ -19,15 +20,15 @@ namespace EmbraceSDK.Demo
         public string ConfigBaseUrl = "http://your-url.com";
         #endif
         
-        void Start()
+        IEnumerator Start()
         {
             #if DeveloperMode && UNITY_IOS
             // This setup is for Embrace Developer Mode on iOS only.
-            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId, 
+            Embrace.Instance.StartSDK(new EmbraceStartupArgs(AppId,
                 EmbraceConfig.Default,
-                AppGroupId.Length > 0 ? AppGroupId : null, 
-                BaseUrl.Length > 0 ? BaseUrl : null, 
-                DevBaseUrl.Length > 0 ? DevBaseUrl : null, 
+                AppGroupId.Length > 0 ? AppGroupId : null,
+                BaseUrl.Length > 0 ? BaseUrl : null,
+                DevBaseUrl.Length > 0 ? DevBaseUrl : null,
                 ConfigBaseUrl.Length > 0 ? ConfigBaseUrl : null));
             #elif UNITY_IOS
             // This setup is for Embrace on iOS only.
@@ -36,7 +37,14 @@ namespace EmbraceSDK.Demo
             // This setup is for Embrace on Android.
             Embrace.Instance.StartSDK();
             #endif
-            
+
+            while (!Embrace.Instance.IsStarted)
+            {
+                yield return null;
+            }
+
+            EmbraceLogger.Log($"Network Span Forwarding enabled: {Embrace.Instance.Provider.IsNetworkSpanForwardingEnabled()}");
+
             #if EMBRACE_STARTUP_SPANS && EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
             SimulateLoadingComplete();
             #elif EMBRACE_STARTUP_SPANS

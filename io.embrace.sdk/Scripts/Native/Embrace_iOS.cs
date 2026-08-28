@@ -476,8 +476,7 @@ namespace EmbraceSDK.Internal
             embrace_set_unity_metadata(unityVersion, guid, sdkVersion);
         }
 
-        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms,
-            long bytesin, long bytesout, int code)
+        void IEmbraceProvider.RecordCompletedNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent)
         {
             if (IsReadyForCalls() == false)
             {
@@ -488,8 +487,7 @@ namespace EmbraceSDK.Internal
             embrace_log_network_request(url, method.ToString(), startms, endms, bytesout, bytesin, code, null);
         }
 
-        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms,
-            string error)
+        void IEmbraceProvider.RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent)
         {
             if (IsReadyForCalls() == false)
             {
@@ -498,6 +496,11 @@ namespace EmbraceSDK.Internal
             }
             
             embrace_log_network_request(url, method.ToString(), startms, endms, 0, 0, 0, error);
+        }
+
+        bool IEmbraceProvider.IsNetworkSpanForwardingEnabled()
+        {
+            return false;
         }
 
         void IEmbraceProvider.RecordPushNotification(iOSPushNotificationArgs iosArgs)

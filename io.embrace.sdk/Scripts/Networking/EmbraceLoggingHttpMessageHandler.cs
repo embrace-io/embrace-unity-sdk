@@ -21,6 +21,13 @@ namespace EmbraceSDK.Networking
         {
             long startms = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
+            string traceparent = null;
+            if (NetworkCapture.IsNetworkSpanForwardingEnabled())
+            {
+                traceparent = NetworkCapture.GenerateTraceparent();
+                request.Headers.Add("traceparent", traceparent);
+            }
+
             HttpResponseMessage response = null;
             string error = null;
             try
@@ -50,14 +57,14 @@ namespace EmbraceSDK.Networking
                     long bytesin = response?.Content?.Headers?.ContentLength ?? 0;
                     long bytesout = request.Content?.Headers?.ContentLength ?? 0;
                     int code = (int)(response?.StatusCode ?? 0);
-                    
+
                     if (error != null)
                     {
-                        Embrace.Instance.RecordIncompleteNetworkRequest(uri, method, startms, endms, error);
+                        Embrace.Instance.RecordIncompleteNetworkRequest(uri, method, startms, endms, error, traceparent);
                     }
                     else
                     {
-                        Embrace.Instance.RecordCompleteNetworkRequest(uri, method, startms, endms, bytesin, bytesout, code);
+                        Embrace.Instance.RecordCompleteNetworkRequest(uri, method, startms, endms, bytesin, bytesout, code, traceparent);
                     }
                 }
             }

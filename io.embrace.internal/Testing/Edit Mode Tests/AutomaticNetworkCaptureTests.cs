@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using EmbraceSDK.EditorView;
 using EmbraceSDK.Internal;
+using EmbraceSDK.Networking;
 using JetBrains.Annotations;
 using NSubstitute;
 using UnityEngine;
@@ -92,7 +93,8 @@ namespace EmbraceSDK.Tests
                     Arg.Any<long>(),
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
-                    200);
+                    200,
+                    null);
 #endif
 
 #if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
@@ -144,7 +146,8 @@ namespace EmbraceSDK.Tests
                     Arg.Any<long>(),
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
-                    200);
+                    200,
+                    null);
 #endif
 
 #if EMBRACE_CAPTURE_DATA_PROCESSING_ERRORS
@@ -188,11 +191,11 @@ namespace EmbraceSDK.Tests
                     Arg.Any<long>(),
                     Arg.Is(bytesIn),
                     Arg.Is(bytesOut),
-                    200);
+                    200,
+                    null);
 #endif
 
-            _embraceInstance.provider.DidNotReceiveWithAnyArgs()
-                .LogMessage(default, default, default);
+            _embraceInstance.provider.DidNotReceiveWithAnyArgs().LogMessage(default, default, default);
         }
 
         private bool DictionariesAreEqual<TKey, TValue>(Dictionary<TKey, TValue> expected,
@@ -233,10 +236,12 @@ namespace EmbraceSDK.Tests
                     default,
                     default,
                     default,
+                    default,
                     default);
 
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
                 .RecordIncompleteNetworkRequest(default,
+                    default,
                     default,
                     default,
                     default,
@@ -261,7 +266,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -285,16 +291,18 @@ namespace EmbraceSDK.Tests
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
                         Arg.Any<long>(),
                         Arg.Any<long>(),
-                        Arg.Any<int>());
+                        Arg.Any<int>(),
+                        null);
             }
             else
             {
                 _embraceInstance.provider.Received()
-                    .RecordIncompleteNetworkRequest(GET_URL,
+                    .RecordIncompleteNetworkRequest(Arg.Is(GET_URL),
                         HTTPMethod.GET,
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
-                        Arg.Is<string>(s => !string.IsNullOrEmpty(s)));
+                        Arg.Is<string>(s => !string.IsNullOrEmpty(s)),
+                        Arg.Any<string>());
             }
         }
 
@@ -322,7 +330,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -343,7 +352,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -363,7 +373,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -389,7 +400,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]
@@ -418,7 +430,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -440,7 +453,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -459,7 +473,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -478,7 +493,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -498,7 +514,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -528,7 +545,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -558,7 +576,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -583,7 +602,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -610,7 +630,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -633,7 +654,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    null);
         }
 
         [UnityTest]
@@ -648,8 +670,8 @@ namespace EmbraceSDK.Tests
                 yield return null;
             }
 
-            embrace.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
-            embrace.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
+            embrace.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default, default);
+            embrace.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default, default);
         }
 
         private void FakeOnComplete(AsyncOperation obj)
@@ -682,7 +704,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    statusCode);
+                    statusCode, 
+                    null);
         }
 
         [Test]
@@ -698,7 +721,7 @@ namespace EmbraceSDK.Tests
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             bool isSuccess = (statusCode / 100) == 2;
-
+            
             if (isSuccess)
             {
                 _embraceInstance.provider.Received()
@@ -708,16 +731,18 @@ namespace EmbraceSDK.Tests
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
                         Arg.Any<long>(),
                         Arg.Any<long>(),
-                        statusCode);
+                        statusCode,
+                        null);
             }
             else
             {
                 _embraceInstance.provider.Received()
-                    .RecordIncompleteNetworkRequest(GET_URL,
+                    .RecordIncompleteNetworkRequest(Arg.Is(GET_URL),
                         HTTPMethod.GET,
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
                         Arg.Is<long>(t => t >= sendTime && t <= endTime),
-                        Arg.Is<string>(s => !string.IsNullOrEmpty(s)));
+                        Arg.Is<string>(s => !string.IsNullOrEmpty(s)),
+                        Arg.Any<string>());
             }
         }
 
@@ -731,6 +756,7 @@ namespace EmbraceSDK.Tests
                 var response = await client.GetAsync(GET_URL);
                 statusCode = (int)response.StatusCode;
             }
+            
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             _embraceInstance.provider.Received()
@@ -740,7 +766,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    statusCode);
+                    statusCode,
+                    null);
         }
 
         [Test]
@@ -753,6 +780,7 @@ namespace EmbraceSDK.Tests
                 var response = await client.GetAsync(GET_URL);
                 statusCode = (int)response.StatusCode;
             }
+            
             long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 
             _embraceInstance.provider.Received()
@@ -762,7 +790,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    statusCode);
+                    statusCode,
+                    null);
         }
 
         [Test]
@@ -770,17 +799,17 @@ namespace EmbraceSDK.Tests
         {
             await SendHttpClientAsync();
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
-                .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
+                .RecordCompletedNetworkRequest(default, default, default, default, default, default, default, default);
             _embraceInstance.provider.DidNotReceiveWithAnyArgs()
-                .RecordIncompleteNetworkRequest(default, default, default, default, default);
+                .RecordIncompleteNetworkRequest(default, default, default, default, default, default);
         }
 
         [Test]
         public async Task HttpClient_IsCapturedWhenMethodOverloadsAnExcludedMethodButNotExcludedItself([ValueSource(nameof(_urlSource))] string url)
         {
             await SendHttpClientAsync();
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
+            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default, default);
+            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default, default);
 
             long sendTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             await SendHttpClientAsync(GET_URL);
@@ -793,7 +822,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= sendTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    Arg.Any<string>());
         }
 
         [EmbraceWeaverExclude]
