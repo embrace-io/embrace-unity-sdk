@@ -59,6 +59,7 @@ namespace EmbraceSDK
         // Internal (not public) so tests can shrink these for speed; not const so they're assignable.
         internal static int StartupReadinessPollIntervalMs = 100;
         internal static int StartupReadinessTimeoutMs = 10000;
+        internal static int StartupReadinessSlowWaitMs = 2000;
         private static EmbraceSdkInfo sdkInfo;
         private UnhandledExceptionRateLimiting rateLimiter = new UnhandledExceptionRateLimiting();
         private Dictionary<string, string> emptyDictionary = new Dictionary<string, string>();
@@ -272,7 +273,8 @@ namespace EmbraceSDK
             }
 
             int elapsedMs = 0;
-            
+            bool loggedSlowWait = false;
+
             while (!readinessProvider.IsReadyForCalls())
             {
                 await Task.Delay(StartupReadinessPollIntervalMs);
@@ -282,6 +284,12 @@ namespace EmbraceSDK
                 {
                     EmbraceLogger.LogWarning(EmbraceMessages.STARTUP_READINESS_TIMEOUT_WARNING);
                     return;
+                }
+
+                if (!loggedSlowWait && elapsedMs >= StartupReadinessSlowWaitMs)
+                {
+                    loggedSlowWait = true;
+                    EmbraceLogger.Log(string.Format(EmbraceMessages.STARTUP_READINESS_SLOW_WAIT_LOG, elapsedMs));
                 }
             }
         }

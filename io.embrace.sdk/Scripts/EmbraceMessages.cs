@@ -39,6 +39,7 @@ namespace EmbraceSDK
         public const string RECORD_COMPLETED_SPAN_ERROR = "Unable to record completed span, Embrace SDK not initialized";
         public const string STARTUP_ARGS_ERROR = "Embrace iOS support requires the use of EmbraceStartupArgs";
         public const string STARTUP_READINESS_TIMEOUT_WARNING = "Embrace SDK: timed out waiting for the native SDK to become ready for calls. Continuing anyway; some early calls made during startup may have been dropped.";
+        public const string STARTUP_READINESS_SLOW_WAIT_LOG = "Embrace SDK: still waiting for the native SDK to become ready for calls after {0}ms.";
         public const string SET_USER_AS_PAYER_ERROR = "Unable to set user as payer, Embrace SDK not initialized";
         public const string CLEAR_USER_AS_PAYER_ERROR = "Unable to clear user as payer, Embrace SDK not initialized";
         public const string GET_SESSION_PROPERTIES_DEPRECATED = "GetSessionProperties is deprecated.";
