@@ -43,6 +43,7 @@ namespace EmbraceSDK.Demo
 
             // Awaiting StartSDK above guarantees the native SDK is ready for calls, so it's now
             // safe to make SDK calls immediately, e.g. Embrace.Instance.SetUserIdentifier(...).
+            EmbraceLogger.Log($"Network Span Forwarding enabled: {Embrace.Instance.Provider.IsNetworkSpanForwardingEnabled()}");
 
             #if EMBRACE_STARTUP_SPANS && EMBRACE_STARTUP_SPANS_LOADING_COMPLETE
             await SimulateLoadingComplete();

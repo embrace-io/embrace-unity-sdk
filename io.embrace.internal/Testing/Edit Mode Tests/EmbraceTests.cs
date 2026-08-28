@@ -569,7 +569,7 @@ namespace EmbraceSDK.Tests
             int bytesReceived = 150;
             int code = 200;
             Embrace.Instance.RecordCompleteNetworkRequest(url, method, startms, endms, bytesReceived, bytesSent, code);
-            embrace.provider.Received().RecordCompletedNetworkRequest(url, method, startms, endms, bytesReceived, bytesSent, code);
+            embrace.provider.Received().RecordCompletedNetworkRequest(url, method, startms, endms, bytesReceived, bytesSent, code, null);
         }
         
         [Test]
@@ -598,7 +598,7 @@ namespace EmbraceSDK.Tests
             long endms = 2;
             string error = "error";
             Embrace.Instance.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
-            embrace.provider.Received().RecordIncompleteNetworkRequest(url, method, startms, endms, error);
+            embrace.provider.Received().RecordIncompleteNetworkRequest(url, method, startms, endms, error, null);
         }
         
                 

@@ -37,6 +37,7 @@ namespace EmbraceSDK
         public const string ADD_SPAN_EVENT_ERROR = "Unable to add span event, Embrace SDK not initialized";
         public const string ADD_SPAN_ATTRIBUTE_ERROR = "Unable to add span attribute, Embrace SDK not initialized";
         public const string RECORD_COMPLETED_SPAN_ERROR = "Unable to record completed span, Embrace SDK not initialized";
+        public const string IS_NETWORK_SPAN_FORWARDING_ENABLED_ERROR = "Unable to check if network span forwarding is enabled, Embrace SDK not initialized";
         public const string STARTUP_ARGS_ERROR = "Embrace iOS support requires the use of EmbraceStartupArgs";
         public const string STARTUP_READINESS_TIMEOUT_WARNING = "Embrace SDK: timed out waiting for the native SDK to become ready for calls. Continuing anyway; some early calls made during startup may have been dropped.";
         public const string STARTUP_READINESS_SLOW_WAIT_LOG = "Embrace SDK: still waiting for the native SDK to become ready for calls after {0}ms.";

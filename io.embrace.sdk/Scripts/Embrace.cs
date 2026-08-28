@@ -800,7 +800,7 @@ namespace EmbraceSDK
         }
         
         /// <inheritdoc />
-        public void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code)
+        public void RecordCompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, long bytesin, long bytesout, int code, string traceparent = null)
         {
             if (url == null)
             {
@@ -810,7 +810,7 @@ namespace EmbraceSDK
 
             try
             {
-                Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code);
+                Provider?.RecordCompletedNetworkRequest(url, method, startms, endms, bytesin, bytesout, code, traceparent);
             }
             catch (Exception e)
             {
@@ -819,7 +819,7 @@ namespace EmbraceSDK
         }
         
         /// <inheritdoc />
-        public void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error)
+        public void RecordIncompleteNetworkRequest(string url, HTTPMethod method, long startms, long endms, string error, string traceparent = null)
         {
             if (url == null)
             {
@@ -835,7 +835,7 @@ namespace EmbraceSDK
             
             try
             {
-                Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error);
+                Provider?.RecordIncompleteNetworkRequest(url, method, startms, endms, error, traceparent);
             }
             catch (Exception e)
             {

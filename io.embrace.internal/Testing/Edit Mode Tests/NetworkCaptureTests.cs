@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using EmbraceSDK.Internal;
@@ -54,9 +55,9 @@ namespace EmbraceSDK.Tests
             NetworkCapture.DisposeWebRequest(preStartRequest);
 
             Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
-                .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
+                .RecordCompletedNetworkRequest(default, default, default, default, default, default, default, default);
             Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
-                .RecordIncompleteNetworkRequest(default, default, default, default, default);
+                .RecordIncompleteNetworkRequest(default, default, default, default, default, default);
 
             Embrace.Instance.StartSDK();
             long startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
@@ -156,6 +157,32 @@ namespace EmbraceSDK.Tests
             AssertAgainstNetworkRequestProvider(INVALID_URL, HTTPMethod.GET, startTime, endTime, bytesin, bytesout, statusCode, error);
         }
 
+        [UnityTest]
+        public IEnumerator NetworkCapture_AttachesTraceparentHeaderAndForwardsSameValue_WhenNetworkSpanForwardingIsEnabled()
+        {
+            Embrace.Instance.provider.IsNetworkSpanForwardingEnabled().Returns(true);
+            Embrace.Instance.StartSDK();
+
+            string attachedTraceparent;
+            using (UnityWebRequest request = UnityWebRequest.Get(GET_URL))
+            {
+                yield return NetworkCapture.SendWebRequest(request);
+                attachedTraceparent = request.GetRequestHeader("traceparent");
+            }
+
+            Assert.IsTrue(NetworkCapture.IsValidTraceparent(attachedTraceparent));
+
+            Embrace.Instance.provider.Received()
+                .RecordCompletedNetworkRequest(GET_URL,
+                    HTTPMethod.GET,
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<int>(),
+                    attachedTraceparent);
+        }
+
         private void AssertAgainstNetworkRequestProvider(string url, HTTPMethod method, long startTime, long endTime, long bytesin, long bytesout, int statusCode, string error)
         {
             if (error != string.Empty)
@@ -165,7 +192,8 @@ namespace EmbraceSDK.Tests
                         method,
                         Arg.Is<long>(t => t >= startTime && t <= endTime),
                         Arg.Is<long>(t => t >= startTime && t <= endTime),
-                        error);
+                        error,
+                        null);
             }
             else
             {
@@ -176,10 +204,55 @@ namespace EmbraceSDK.Tests
                         Arg.Is<long>(t => t >= startTime && t <= endTime),
                         Arg.Is(bytesin),
                         Arg.Is(bytesout),
-                        statusCode);
+                        statusCode,
+                        null);
             }
         }
 #endif
+
+        #region Traceparent
+
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01", true, TestName = "Valid traceparent with sampled flag")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-00", true, TestName = "Valid traceparent with unsampled flag")]
+        [TestCase(null, false, TestName = "Null is invalid")]
+        [TestCase("", false, TestName = "Empty string is invalid")]
+        [TestCase("00-00000000000000000000000000000000-00f067aa0ba902b7-01", false, TestName = "All-zero trace id is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-0000000000000000-01", false, TestName = "All-zero parent id is invalid")]
+        [TestCase("ff-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01", false, TestName = "Reserved version ff is invalid")]
+        [TestCase("00-4BF92F3577B34DA6A3CE929D0E0E4736-00f067aa0ba902b7-01", false, TestName = "Uppercase trace id is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7", false, TestName = "Missing trace-flags segment is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e473-00f067aa0ba902b7-01", false, TestName = "Trace id too short is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e47366-00f067aa0ba902b7-01", false, TestName = "Trace id too long is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b-01", false, TestName = "Parent id too short is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b70-01", false, TestName = "Parent id too long is invalid")]
+        [TestCase("00_4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01", false, TestName = "Wrong delimiter is invalid")]
+        [TestCase("00-4bf92f3577b34da6a3ce929d0e0e473g-00f067aa0ba902b7-01", false, TestName = "Non-hex character in trace id is invalid")]
+        
+        public void IsValidTraceparent_ValidatesFormat(string traceparent, bool expectedValid)
+        {
+            Assert.AreEqual(expectedValid, NetworkCapture.IsValidTraceparent(traceparent));
+        }
+
+        [Test]
+        public void GenerateTraceparent_AlwaysProducesAValueThatPassesValidation()
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                string traceparent = NetworkCapture.GenerateTraceparent();
+                Assert.IsTrue(NetworkCapture.IsValidTraceparent(traceparent), $"Generated traceparent '{traceparent}' failed validation.");
+            }
+        }
+
+        [Test]
+        public void GenerateTraceparent_ProducesDifferentValuesOnEachCall()
+        {
+            string first = NetworkCapture.GenerateTraceparent();
+            string second = NetworkCapture.GenerateTraceparent();
+
+            Assert.AreNotEqual(first, second);
+        }
+
+        #endregion Traceparent
 
         [UnityTest]
         public IEnumerator EmbraceLoggingHttpMessageHandler_LogsOnException()
@@ -205,7 +278,8 @@ namespace EmbraceSDK.Tests
                     HTTPMethod.GET,
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
-                    Arg.Is<string>(GetExpectedErrorMessage(task)));
+                    Arg.Is<string>(GetExpectedErrorMessage(task)),
+                    Arg.Any<string>());
         }
 
         [UnityTest]
@@ -233,7 +307,41 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Is<int>(404));
+                    Arg.Is<int>(404),
+                    Arg.Any<string>());
+        }
+
+        [UnityTest]
+        public IEnumerator EmbraceLoggingHttpMessageHandler_AttachesTraceparentHeaderAndForwardsSameValue_WhenNetworkSpanForwardingIsEnabled()
+        {
+            Embrace.Instance.provider.IsNetworkSpanForwardingEnabled().Returns(true);
+            Embrace.Instance.StartSDK();
+
+            HttpClient client = NetworkCapture.GetHttpClientWithLoggingHandler();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, GET_URL);
+
+            var task = client.SendAsync(request);
+
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            Assert.IsTrue(request.Headers.TryGetValues("traceparent", out var values));
+            string attachedTraceparent = values.FirstOrDefault();
+
+            Assert.IsTrue(NetworkCapture.IsValidTraceparent(attachedTraceparent));
+
+            Embrace.Instance.provider.Received()
+                .RecordCompletedNetworkRequest(
+                    Arg.Is<string>(GET_URL),
+                    HTTPMethod.GET,
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<long>(),
+                    Arg.Any<int>(),
+                    Arg.Is(attachedTraceparent));
         }
 
         [UnityTest]
@@ -248,9 +356,8 @@ namespace EmbraceSDK.Tests
                 yield return null;
             }
 
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs()
-                .RecordCompletedNetworkRequest(default, default, default, default, default, default, default);
-            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default);
+            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordCompletedNetworkRequest(default, default, default, default, default, default, default, default);
+            Embrace.Instance.provider.DidNotReceiveWithAnyArgs().RecordIncompleteNetworkRequest(default, default, default, default, default, default);
         }
 
         [UnityTest]
@@ -278,7 +385,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    Arg.Any<string>());
         }
 
         [UnityTest]
@@ -306,7 +414,8 @@ namespace EmbraceSDK.Tests
                     Arg.Is<long>(t => t >= startTime && t <= endTime),
                     Arg.Any<long>(),
                     Arg.Any<long>(),
-                    Arg.Any<int>());
+                    Arg.Any<int>(),
+                    Arg.Any<string>());
         }
 
         private string GetExpectedErrorMessage(UnityWebRequest request)
