@@ -15,6 +15,8 @@ import json
 import sys
 from os import path
 
+META_EXT = ".meta"
+
 
 def is_hidden(file_path: str) -> bool:
     """Mirror Unity's AssetDatabase import rules: any path with a
@@ -42,16 +44,16 @@ def main() -> int:
 
     errors = []
     for f in files:
-        if f.endswith(".meta"):
+        if f.endswith(META_EXT):
             continue
-        meta = f + ".meta"
+        meta = f + META_EXT
         if meta not in file_set:
             errors.append(f"missing .meta file: {meta} (asset {f} has none)")
 
     for f in files:
-        if not f.endswith(".meta"):
+        if not f.endswith(META_EXT):
             continue
-        asset = f[: -len(".meta")]
+        asset = f[: -len(META_EXT)]
         if asset in file_set or asset in dir_prefixes:
             continue
         errors.append(f"orphan .meta file: {f} (no matching asset {asset})")
