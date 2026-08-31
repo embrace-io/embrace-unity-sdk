@@ -132,9 +132,10 @@ InitTestScene*.unity
 io.embrace.sdk/iOS/xcframeworks/*.xcframework/
 io.embrace.sdk/iOS/xcframeworks.meta
 
-# The trailing * on the lines below captures both the target file and the associated meta file
-io.embrace.sdk/iOS/embrace_symbol_upload*
-io.embrace.sdk/iOS/run.sh*
+# Downloaded at build/publish time; not committed. Their .meta files ARE
+# committed (no trailing * here) so npm packs a valid pair for each.
+io.embrace.sdk/iOS/embrace_symbol_upload.darwin
+io.embrace.sdk/iOS/run.sh
 io.embrace.sdk/iOS/upload*
 
 # These were added by Xcode's Swift package template.
