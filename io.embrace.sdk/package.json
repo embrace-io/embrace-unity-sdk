@@ -37,7 +37,8 @@
     "iOS/embrace_symbol_upload.darwin",
     "*.meta",
     "!Tests.meta",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "NOTICE"
   ],
   "hideInEditor": false,
   "type": "library",

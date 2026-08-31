@@ -46,6 +46,22 @@ jobs:
           echo "value=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version: $VERSION"
 
+      - name: Download iOS dependencies
+        # Normally handled by the prepublishOnly script, but the package
+        # contents need to exist on disk before `npm pack` below can inspect
+        # them.
+        run: make install_ios_dependencies
+
+      - name: Validate every packaged file has a matching .meta file
+        # Unity refuses to import an asset with no .meta file when the
+        # package lives in the immutable package cache, so a missing .meta
+        # breaks every consumer's project. Catch that (and orphan .meta
+        # files with no matching asset) before publishing.
+        working-directory: io.embrace.sdk
+        run: |
+          npm pack --dry-run --json --ignore-scripts > /tmp/npm-pack.json
+          python3 ../.github/scripts/check_meta_files.py /tmp/npm-pack.json
+
       - name: Publish to npm
         # prepublishOnly (make install_ios_dependencies) runs automatically as
         # part of `npm publish` — see io.embrace.sdk/package.json.
