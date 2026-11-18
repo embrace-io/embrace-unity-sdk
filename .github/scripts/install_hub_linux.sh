@@ -65,7 +65,8 @@ sudo ln -sf /etc/machine-id /var/lib/dbus/machine-id
 wget -qO - https://hub.unity3d.com/linux/keys/public | gpg --dearmor | sudo tee /usr/share/keyrings/Unity_Technologies_ApS.gpg >/dev/null
 echo "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" | sudo tee /etc/apt/sources.list.d/unityhub.list >/dev/null
 sudo apt-get update
-sudo apt-get install -y unityhub
+# Unity Hub 4.x requires glibc 2.39 (Ubuntu 24.04); ubuntu-22.04 runners ship 2.35.
+sudo apt-get install -y 'unityhub=3.*'
 
 # Alias to "unity-hub" with default params
 # Unity Hub >=3.20.0 installs to /usr/lib/unityhub (launcher symlinked at
